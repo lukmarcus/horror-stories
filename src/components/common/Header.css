@@ -1,0 +1,30 @@
+.header {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    var(--color-primary) 100%
+  );
+  padding: var(--spacing-xl) var(--spacing-lg);
+  border-bottom: 2px solid var(--color-primary-light);
+  box-shadow: var(--shadow-md);
+}
+
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header__title {
+  color: white;
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.header__subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--font-size-sm);
+  margin: 0;
+  font-weight: var(--font-weight-normal);
+}
