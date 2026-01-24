@@ -1,53 +1,12 @@
 # ROADMAP.md - Horror Stories
 
-## Wersja: v0.0.1 - Current Development Branch
-
 Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
----
-
-## Milestone v0.0.0 - Inicjalizacja projektu ✅
-
-### Zakres
-- Setup Vite + React 18 + TypeScript
-- Konfiguracja struktury katalogów
-- Podstawowe tooling (ESLint, Prettier)
-- Inicjalizacja Git repozytorium
-
-### Status
-- ✅ UKOŃCZONE - [v0.0.0 766b6d1]
+**Ukończone wersje znajdują się w [CHANGELOG.md](CHANGELOG.md)**
 
 ---
 
-## Milestone v0.0.1 - UI Komponenty ✅
-
-### Zakres
-- ✅ Komponenty: Button (5 wariantów), Header (z logo), Footer
-- ✅ Globalne style i zmienne CSS
-- ✅ Layout base (kontener, responsywność)
-- ✅ WCAG compliance (form styling, reduced motion, high contrast)
-- ✅ Horror theme (ciemny temat, czerwona paleta)
-- ✅ Page layouts: Home, Instructions, About
-
-### Status
-- ✅ UKOŃCZONE - Commits: 3de620d, bace4af, 83b3a86
-
----
-
-## Milestone v0.0.2 - Routing & Strony ✅ (DONE in v0.0.1)
-
-### Zakres
-- ✅ Setup React Router (6 routes)
-- ✅ Strony: Home, Game, Instructions, About, ScenariosList, ScenarioSetup
-- ✅ Nawigacja między stronami
-- ✅ Mock data dla scenariuszy
-
-### Status
-- ✅ UKOŃCZONE - Commit: f5155b6
-
----
-
-## Milestone v0.0.3 - Paragraph Parser
+## Milestone v0.0.2 - Paragraph Parser
 
 ### Zakres
 - System parsowania tagów (`[item:]`, `[figure:]`, `[board:]`, `[token:]`, itp.)
@@ -62,7 +21,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.4 - Scenario Setup
+## Milestone v0.0.3 - Scenario Setup
 
 ### Zakres
 - Komponent setupu scenariusza
@@ -78,7 +37,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.5 - Dice Roller
+## Milestone v0.0.4 - Dice Roller
 
 ### Zakres
 - Komponent kostki k6
@@ -93,7 +52,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.6 - Warunkowe opcje
+## Milestone v0.0.5 - Warunkowe opcje
 
 ### Zakres
 - System conditional choices (zależne od posiadanych przedmiotów)
@@ -109,7 +68,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.7 - Walidacja & Error Handling
+## Milestone v0.0.6 - Walidacja & Error Handling
 
 ### Zakres
 - Walidacja paragrafów (numery, linki, pola obowiązkowe)
@@ -162,9 +121,8 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ## Branch strategy
 
 - **main** - Stable releases (v0.1.0+)
-- **v0.0.0** - Development (current)
-- Feature branches: `feature/xxx` → `v0.0.0`
+- **v0.0.2** - Development (current)
 
 ---
 
-**Ostatnia aktualizacja:** 2026-01-23
+**Ostatnia aktualizacja:** 2026-01-24
