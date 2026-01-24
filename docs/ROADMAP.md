@@ -1,59 +1,12 @@
 # ROADMAP.md - Horror Stories
 
-## Wersja: v0.0.0 - Current Development Branch
-
 Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
----
-
-## Milestone v0.0.0 - Inicjalizacja projektu
-
-### Zakres
-- Setup Vite + React 18 + TypeScript
-- Konfiguracja struktury katalogów
-- Podstawowe tooling (ESLint, Prettier)
-- Inicjalizacja Git repozytorium
-
-### Do przygotowania
-- ❌ Brak - czysto kod
-
-### Status
-- ⏳ Nie rozpoczęte
+**Ukończone wersje znajdują się w [CHANGELOG.md](CHANGELOG.md)**
 
 ---
 
-## Milestone v0.0.1 - UI Komponenty
-
-### Zakres
-- Komponenty: Button, Header, Footer
-- Globalne style i zmienne CSS
-- Layout base (kontener, responsywność)
-- WCAG compliance
-
-### Do przygotowania
-- ❌ Brak - czysto kod
-
-### Status
-- ⏳ Nie rozpoczęte
-
----
-
-## Milestone v0.0.2 - Routing & Strony
-
-### Zakres
-- Setup React Router
-- Strony: Home (menu), Game, Instructions, About, ScenariosList
-- Nawigacja między stronami
-
-### Do przygotowania
-- ❌ Brak - czysto kod
-
-### Status
-- ⏳ Nie rozpoczęte
-
----
-
-## Milestone v0.0.3 - Paragraph Parser
+## Milestone v0.0.2 - Paragraph Parser
 
 ### Zakres
 - System parsowania tagów (`[item:]`, `[figure:]`, `[board:]`, `[token:]`, itp.)
@@ -68,7 +21,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.4 - Scenario Setup
+## Milestone v0.0.3 - Scenario Setup
 
 ### Zakres
 - Komponent setupu scenariusza
@@ -84,7 +37,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.5 - Dice Roller
+## Milestone v0.0.4 - Dice Roller
 
 ### Zakres
 - Komponent kostki k6
@@ -99,7 +52,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.6 - Warunkowe opcje
+## Milestone v0.0.5 - Warunkowe opcje
 
 ### Zakres
 - System conditional choices (zależne od posiadanych przedmiotów)
@@ -115,7 +68,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.7 - Walidacja & Error Handling
+## Milestone v0.0.6 - Walidacja & Error Handling
 
 ### Zakres
 - Walidacja paragrafów (numery, linki, pola obowiązkowe)
@@ -168,9 +121,8 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ## Branch strategy
 
 - **main** - Stable releases (v0.1.0+)
-- **v0.0.0** - Development (current)
-- Feature branches: `feature/xxx` → `v0.0.0`
+- **v0.0.2** - Development (current)
 
 ---
 
-**Ostatnia aktualizacja:** 2026-01-23
+**Ostatnia aktualizacja:** 2026-01-24

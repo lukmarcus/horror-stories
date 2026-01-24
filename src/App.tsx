@@ -7,6 +7,7 @@ import { ScenarioSetup } from "./pages/ScenarioSetup";
 import { Game } from "./pages/Game";
 import Instructions from "./pages/Instructions.tsx";
 import About from "./pages/About.tsx";
+import packageJson from "../package.json";
 import "./styles/global.css";
 import "./App.css";
 
@@ -25,7 +26,7 @@ function App() {
             <Route path="/about" element={<About />} />
           </Routes>
         </main>
-        <Footer version="v0.0.0" />
+        <Footer version={`v${packageJson.version}`} />
       </div>
     </Router>
   );
