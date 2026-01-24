@@ -31,65 +31,57 @@ Interaktywna aplikacja webowa dla gry planszowej Horror Stories, stworzona w Rea
 
 ## Struktura projektu
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```
+horror-stories/
+├── src/
+│   ├── components/      # Komponenty React
+│   ├── pages/           # Strony (routing)
+│   ├── types/           # Definicje TypeScript
+│   ├── utils/           # Funkcje pomocnicze
+│   ├── styles/          # Globalne style i zmienne CSS
+│   ├── App.tsx          # Główny komponent
+│   └── main.tsx         # Punkt wejścia
+├── public/
+│   └── scenarios/       # Pliki JSON scenariuszy
+├── docs/                # Dokumentacja projektu
+└── package.json         # Konfiguracja npm
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Jak uruchomić
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+### Wymagania
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+- Node.js 20.19+ lub 22.12+
+- npm
+
+### Instalacja
+
+```bash
+npm install
 ```
+
+### Development
+
+```bash
+npm run dev
+```
+
+Aplikacja będzie dostępna na `http://localhost:5173`
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview
+
+```bash
+npm run preview
+```
+
+## Dokumentacja
+
+- [SPECIFICATION.md](docs/SPECIFICATION.md) - Szczegółowa specyfikacja funkcjonalności
+- [ROADMAP.md](docs/ROADMAP.md) - Plan rozwoju i wersji
+- [CHANGELOG.md](docs/CHANGELOG.md) - Historia zmian
