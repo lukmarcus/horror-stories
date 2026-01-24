@@ -1,12 +1,12 @@
 # ROADMAP.md - Horror Stories
 
-## Wersja: v0.0.0 - Current Development Branch
+## Wersja: v0.0.1 - Current Development Branch
 
 Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.0 - Inicjalizacja projektu
+## Milestone v0.0.0 - Inicjalizacja projektu ✅
 
 ### Zakres
 - Setup Vite + React 18 + TypeScript
@@ -14,42 +14,36 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - Podstawowe tooling (ESLint, Prettier)
 - Inicjalizacja Git repozytorium
 
-### Do przygotowania
-- ❌ Brak - czysto kod
-
 ### Status
-- ⏳ Nie rozpoczęte
+- ✅ UKOŃCZONE - [v0.0.0 766b6d1]
 
 ---
 
-## Milestone v0.0.1 - UI Komponenty
+## Milestone v0.0.1 - UI Komponenty ✅
 
 ### Zakres
-- Komponenty: Button, Header, Footer
-- Globalne style i zmienne CSS
-- Layout base (kontener, responsywność)
-- WCAG compliance
-
-### Do przygotowania
-- ❌ Brak - czysto kod
+- ✅ Komponenty: Button (5 wariantów), Header (z logo), Footer
+- ✅ Globalne style i zmienne CSS
+- ✅ Layout base (kontener, responsywność)
+- ✅ WCAG compliance (form styling, reduced motion, high contrast)
+- ✅ Horror theme (ciemny temat, czerwona paleta)
+- ✅ Page layouts: Home, Instructions, About
 
 ### Status
-- ⏳ Nie rozpoczęte
+- ✅ UKOŃCZONE - Commits: 3de620d, bace4af, 83b3a86
 
 ---
 
-## Milestone v0.0.2 - Routing & Strony
+## Milestone v0.0.2 - Routing & Strony ✅ (DONE in v0.0.1)
 
 ### Zakres
-- Setup React Router
-- Strony: Home (menu), Game, Instructions, About, ScenariosList
-- Nawigacja między stronami
-
-### Do przygotowania
-- ❌ Brak - czysto kod
+- ✅ Setup React Router (6 routes)
+- ✅ Strony: Home, Game, Instructions, About, ScenariosList, ScenarioSetup
+- ✅ Nawigacja między stronami
+- ✅ Mock data dla scenariuszy
 
 ### Status
-- ⏳ Nie rozpoczęte
+- ✅ UKOŃCZONE - Commit: f5155b6
 
 ---
 

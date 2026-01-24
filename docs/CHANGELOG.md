@@ -7,19 +7,36 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.1] - 2026-01-24
+
+### Dodane
+
+- Komponenty UI: Button (5 wariantów), Header (z logo i nawigacją), Footer
+- Page layouts: Home, Instructions, About, ScenariosList, ScenarioSetup, Game
+- Horror theme z ciemną paletą kolorów (czerwień + czerń + szarość)
+- Responsive design (mobile, tablet, desktop)
+- WCAG accessibility support
+- CSS Variables dla łatwej personalizacji
+- Logo aplikacji
+
+### Zmieniono
+
+- Header teraz zawiera nawigację z aktywnym stanem
+- Footer wyświetla wersję z package.json
+
+---
+
 ## [0.0.0] - 2026-01-24
 
 ### Dodane
 
-- Setup Vite + React 18 + TypeScript ze strict mode
-- React Router z 6 stronami (Home, Game, Setup, Instructions, About, ScenariosList)
+- Inicjalizacja projektu Vite + React 18 + TypeScript
+- Setup React Router z 6 stronami
 - Komponenty bazowe (Header, Footer, Button)
-- CSS Modules z CSS Variables do stylizacji
+- Podstawowe style i zmienne CSS
 - Wsparcie dla języka polskiego
-- Nawigacja na stronie głównej (Graj, Instrukcja, O Grze)
-- Sample scenariusz w formacie JSON
-- ESLint i Prettier skonfigurowane
-- Dokumentacja: SPECIFICATION.md, ROADMAP.md, CHANGELOG.md
+- Navigacja w aplikacji
+- Sample scenariusz w JSON
 
 ---
 
