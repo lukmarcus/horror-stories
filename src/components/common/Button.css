@@ -78,4 +78,32 @@
       transform: translateY(0);
     }
   }
+
+  &.button--outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-primary);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  &.button--text {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: none;
+
+    &:hover:not(:disabled) {
+      color: var(--color-primary-light);
+      text-decoration: underline;
+    }
+  }
 }

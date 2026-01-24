@@ -4,27 +4,111 @@
     var(--color-primary-dark) 0%,
     var(--color-primary) 100%
   );
-  padding: var(--spacing-xl) var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-lg);
   border-bottom: 2px solid var(--color-primary-light);
   box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header__container {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+}
+
+.header__logo-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.header__logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.header__branding {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 .header__title {
   color: white;
-  font-size: var(--font-size-3xl);
-  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-2xl);
+  margin: 0;
   text-transform: uppercase;
   letter-spacing: 2px;
+  font-weight: var(--font-weight-bold);
 }
 
 .header__subtitle {
   color: rgba(255, 255, 255, 0.8);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   margin: 0;
   font-weight: var(--font-weight-normal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header__nav {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.header__nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  &:hover {
+    color: var(--color-text);
+    border-bottom-color: white;
+  }
+
+  &.header__nav-link--active {
+    border-bottom-color: white;
+    color: white;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header__logo-section {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .header__nav {
+    width: 100%;
+    justify-content: center;
+    gap: var(--spacing-md);
+  }
+
+  .header__nav-link {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
 }
