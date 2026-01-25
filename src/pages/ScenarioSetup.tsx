@@ -3,10 +3,21 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/common";
 import "./ScenarioSetup.css";
 
+interface SetupStep {
+  id: string;
+  title: string;
+  description: string;
+  content: React.ReactNode;
+}
+
 export const ScenarioSetup: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useState(0);
   const [playerCount, setPlayerCount] = useState(2);
+  const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">(
+    "easy",
+  );
   const [soundEnabled, setSoundEnabled] = useState(true);
 
   // Mock scenario data
@@ -16,24 +27,146 @@ export const ScenarioSetup: React.FC = () => {
     description: "Zaginęła księga starożytnych zaklęć. Musisz ją znaleźć.",
     difficulty: "easy",
     duration: "45 min",
-    components: [
-      "Pioneer zaklęć (20 sztuk)",
-      "Token zniszczenia (15 sztuk)",
-      "Plansza główna",
-      "Karty odkryć (40 sztuk)",
-    ],
-    rules: [
-      "Gracze wybierają wspólnie ścieżkę przygody",
-      "Każdy rzut kością wpływa na dalszy ciąg historii",
-      "Zbieraj przedmioty i wskazówki",
-      "Unikaj przeszkód w drodze do wyjścia",
-    ],
+  };
+
+  const steps: SetupStep[] = [
+    {
+      id: "intro",
+      title: "Witaj!",
+      description: scenario.title,
+      content: (
+        <div className="scenario-setup__step-content">
+          <p>{scenario.description}</p>
+          <p className="scenario-setup__step-meta">
+            Czas gry: <strong>{scenario.duration}</strong>
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: "players",
+      title: "Gracze",
+      description: "Ile osób gra?",
+      content: (
+        <div className="scenario-setup__step-content">
+          <div className="scenario-setup__player-selector">
+            <label htmlFor="player-count">Liczba graczy:</label>
+            <div className="scenario-setup__player-buttons">
+              {[1, 2, 3, 4].map((num) => (
+                <button
+                  key={num}
+                  className={`scenario-setup__player-btn ${
+                    playerCount === num
+                      ? "scenario-setup__player-btn--active"
+                      : ""
+                  }`}
+                  onClick={() => setPlayerCount(num)}
+                >
+                  {num}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "difficulty",
+      title: "Trudność",
+      description: "Wybierz poziom trudności",
+      content: (
+        <div className="scenario-setup__step-content">
+          <div className="scenario-setup__difficulty-selector">
+            {["easy", "medium", "hard"].map((level) => (
+              <button
+                key={level}
+                className={`scenario-setup__difficulty-btn scenario-setup__difficulty-btn--${level} ${
+                  difficulty === level
+                    ? "scenario-setup__difficulty-btn--active"
+                    : ""
+                }`}
+                onClick={() =>
+                  setDifficulty(level as "easy" | "medium" | "hard")
+                }
+              >
+                {level === "easy"
+                  ? "Łatwa"
+                  : level === "medium"
+                    ? "Średnia"
+                    : "Trudna"}
+              </button>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "audio",
+      title: "Dźwięk",
+      description: "Włącz/wyłącz muzykę",
+      content: (
+        <div className="scenario-setup__step-content">
+          <div className="scenario-setup__audio-toggle">
+            <label className="scenario-setup__toggle">
+              <input
+                type="checkbox"
+                checked={soundEnabled}
+                onChange={(e) => setSoundEnabled(e.target.checked)}
+              />
+              <span>
+                {soundEnabled ? "Muzyka włączona" : "Muzyka wyłączona"}
+              </span>
+            </label>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "ready",
+      title: "Gotowy?",
+      description: "Wszystko jest ustawione",
+      content: (
+        <div className="scenario-setup__step-content">
+          <div className="scenario-setup__summary">
+            <p>
+              <strong>Gracze:</strong> {playerCount}
+            </p>
+            <p>
+              <strong>Trudność:</strong>{" "}
+              {difficulty === "easy"
+                ? "Łatwa"
+                : difficulty === "medium"
+                  ? "Średnia"
+                  : "Trudna"}
+            </p>
+            <p>
+              <strong>Dźwięk:</strong> {soundEnabled ? "Włączony" : "Wyłączony"}
+            </p>
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  const handleNext = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
   const handleStartGame = () => {
-    // Tutaj byłby kod do inicjalizacji gry
     navigate(`/game/${id}`);
   };
+
+  const step = steps[currentStep];
+  const isLast = currentStep === steps.length - 1;
+  const isFirst = currentStep === 0;
 
   return (
     <main className="scenario-setup">
@@ -44,113 +177,48 @@ export const ScenarioSetup: React.FC = () => {
       </section>
 
       <div className="scenario-setup__container">
-        {/* Left Column */}
-        <section className="scenario-setup__info">
-          <h1 className="scenario-setup__title">{scenario.title}</h1>
-          <p className="scenario-setup__description">{scenario.description}</p>
+        {/* Progress Bar */}
+        <div className="scenario-setup__progress">
+          <div className="scenario-setup__progress-bar">
+            <div
+              className="scenario-setup__progress-fill"
+              style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+            />
+          </div>
+          <span className="scenario-setup__progress-text">
+            Krok {currentStep + 1} / {steps.length}
+          </span>
+        </div>
 
-          <div className="scenario-setup__meta">
-            <div className="scenario-setup__meta-item">
-              <span className="scenario-setup__meta-label">Trudność</span>
-              <span className="scenario-setup__meta-value">
-                {scenario.difficulty}
-              </span>
-            </div>
-            <div className="scenario-setup__meta-item">
-              <span className="scenario-setup__meta-label">Czas gry</span>
-              <span className="scenario-setup__meta-value">
-                {scenario.duration}
-              </span>
-            </div>
+        {/* Step Content */}
+        <section className="scenario-setup__step">
+          <div className="scenario-setup__step-header">
+            <h1 className="scenario-setup__step-title">{step.title}</h1>
+            <p className="scenario-setup__step-subtitle">{step.description}</p>
           </div>
 
-          <section className="scenario-setup__section">
-            <h2 className="scenario-setup__section-title">Komponenty Gry</h2>
-            <ul className="scenario-setup__list">
-              {scenario.components.map((component, idx) => (
-                <li key={idx} className="scenario-setup__list-item">
-                  {component}
-                </li>
-              ))}
-            </ul>
-          </section>
+          <div className="scenario-setup__step-body">{step.content}</div>
 
-          <section className="scenario-setup__section">
-            <h2 className="scenario-setup__section-title">Zasady Gry</h2>
-            <ol className="scenario-setup__rules">
-              {scenario.rules.map((rule, idx) => (
-                <li key={idx} className="scenario-setup__rule-item">
-                  {rule}
-                </li>
-              ))}
-            </ol>
-          </section>
-        </section>
+          {/* Navigation */}
+          <div className="scenario-setup__step-footer">
+            <Button
+              variant="outline"
+              size="md"
+              onClick={handlePrev}
+              disabled={isFirst}
+            >
+              ← Wstecz
+            </Button>
 
-        {/* Right Column */}
-        <section className="scenario-setup__controls">
-          <div className="scenario-setup__panel">
-            <h2 className="scenario-setup__panel-title">Ustawienia Gry</h2>
-
-            {/* Player Count */}
-            <div className="scenario-setup__setting">
-              <label className="scenario-setup__label">Liczba Graczy</label>
-              <div className="scenario-setup__player-controls">
-                <button
-                  className="scenario-setup__player-btn"
-                  onClick={() => setPlayerCount((p) => Math.max(1, p - 1))}
-                >
-                  −
-                </button>
-                <span className="scenario-setup__player-count">
-                  {playerCount}
-                </span>
-                <button
-                  className="scenario-setup__player-btn"
-                  onClick={() => setPlayerCount((p) => Math.min(6, p + 1))}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            {/* Sound Toggle */}
-            <div className="scenario-setup__setting">
-              <label className="scenario-setup__label">
-                <input
-                  type="checkbox"
-                  checked={soundEnabled}
-                  onChange={(e) => setSoundEnabled(e.target.checked)}
-                  className="scenario-setup__checkbox"
-                />
-                Dźwięki atmosferyczne
-              </label>
-            </div>
-
-            {/* Info Box */}
-            <div className="scenario-setup__info-box">
-              <p className="scenario-setup__info-text">
-                ℹ️ Upewnij się, że masz dostęp do wszystkich komponentów gry
-                przed rozpoczęciem.
-              </p>
-            </div>
-
-            {/* Actions */}
-            <div className="scenario-setup__actions">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={handleStartGame}
-                style={{ width: "100%" }}
-              >
-                Zacznij Grę
+            {isLast ? (
+              <Button variant="primary" size="md" onClick={handleStartGame}>
+                🎮 Zacznij Grę
               </Button>
-              <Link to="/scenarios">
-                <Button variant="secondary" size="lg" style={{ width: "100%" }}>
-                  Anuluj
-                </Button>
-              </Link>
-            </div>
+            ) : (
+              <Button variant="primary" size="md" onClick={handleNext}>
+                Dalej →
+              </Button>
+            )}
           </div>
         </section>
       </div>

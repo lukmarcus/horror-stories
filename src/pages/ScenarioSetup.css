@@ -1,10 +1,8 @@
 .scenario-setup {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-xl) var(--spacing-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  min-height: calc(100vh - 200px);
+  background-color: var(--color-background);
 }
 
 .scenario-setup__back {
