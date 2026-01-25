@@ -7,6 +7,22 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.3] - 2026-01-25
+
+### Dodane
+
+- Input screen do wyboru numeru paragrafu z instrukcjami scenariusza
+- Paragraph screen do czytania tekstu paragrafu z opcjami wyboru
+- Przycisk powrotu do wprowadzania numeru paragrafu
+- Obsługa paragrafów bez opcji (dead-end) z przyciskiem powrotu do scenariusza
+
+### Zmieniono
+
+- Lista scenariuszy teraz pokazuje tylko grę, bez etapu wstępnej konfiguracji
+- Simplifikacja parametrów scenariusza do liczby graczy i czasu trwania
+
+---
+
 ## [0.0.2] - 2026-01-25
 
 ### Dodane
