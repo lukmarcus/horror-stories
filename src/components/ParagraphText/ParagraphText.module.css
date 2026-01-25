@@ -1,0 +1,82 @@
+.paragraph {
+  font-family: var(--font-base);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.tag {
+  position: relative;
+  padding: 0.125rem 0.375rem;
+  margin: 0 0.125rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  cursor: help;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Item tag - gold/amber */
+.tag-item {
+  background-color: rgba(180, 140, 0, 0.15);
+  color: #d4a800;
+  border: 1px solid rgba(180, 140, 0, 0.3);
+}
+
+.tag-item:hover {
+  background-color: rgba(180, 140, 0, 0.25);
+  border-color: rgba(180, 140, 0, 0.6);
+}
+
+/* Figure tag - purple */
+.tag-figure {
+  background-color: rgba(147, 51, 234, 0.15);
+  color: #b591ff;
+  border: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+.tag-figure:hover {
+  background-color: rgba(147, 51, 234, 0.25);
+  border-color: rgba(147, 51, 234, 0.6);
+}
+
+/* Board tag - cyan */
+.tag-board {
+  background-color: rgba(34, 211, 238, 0.15);
+  color: #22d3ee;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.tag-board:hover {
+  background-color: rgba(34, 211, 238, 0.25);
+  border-color: rgba(34, 211, 238, 0.6);
+}
+
+/* Token tag - lime */
+.tag-token {
+  background-color: rgba(132, 204, 22, 0.15);
+  color: #84cc16;
+  border: 1px solid rgba(132, 204, 22, 0.3);
+}
+
+.tag-token:hover {
+  background-color: rgba(132, 204, 22, 0.25);
+  border-color: rgba(132, 204, 22, 0.6);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .tag {
+    transition: none;
+  }
+
+  .tag:hover {
+    transform: none;
+  }
+}
