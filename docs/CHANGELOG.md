@@ -7,6 +7,17 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.2] - 2026-01-25
+
+### Dodane
+
+- Paragraph Parser utility - obsługa tagów `[item:]`, `[figure:]`, `[board:]`, `[token:]`
+- ParagraphText component - renderowanie tekstu z kolorowymi tagami
+- Unit tests dla parsera i komponentu (Vitest)
+- Sample scenariusz z tagami w grze
+
+---
+
 ## [0.0.1] - 2026-01-24
 
 ### Dodane
@@ -40,4 +51,4 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-**Ostatnia aktualizacja:** 2026-01-24
+**Ostatnia aktualizacja:** 2026-01-25
