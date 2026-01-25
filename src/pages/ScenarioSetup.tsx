@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useGameSetup } from "../contexts/GameSetupContext";
 import { Button } from "../components/common";
 import "./ScenarioSetup.css";
 
@@ -13,6 +14,7 @@ interface SetupStep {
 export const ScenarioSetup: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { setSetup } = useGameSetup();
   const [currentStep, setCurrentStep] = useState(0);
   const [playerCount, setPlayerCount] = useState(0);
   const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard" | "">(
@@ -180,6 +182,11 @@ export const ScenarioSetup: React.FC = () => {
   };
 
   const handleStartGame = () => {
+    setSetup({
+      playerCount,
+      difficulty: difficulty as "easy" | "medium" | "hard",
+      soundEnabled,
+    });
     navigate(`/game/${id}`);
   };
 

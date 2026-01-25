@@ -28,6 +28,13 @@
   letter-spacing: 1px;
 }
 
+.game__setup-info {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  display: flex;
+  gap: var(--spacing-md);
+}
+
 .game__container {
   display: grid;
   grid-template-columns: 1fr 320px;

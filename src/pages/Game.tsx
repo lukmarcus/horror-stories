@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useGameSetup } from "../contexts/GameSetupContext";
 import { Button } from "../components/common";
 import { ParagraphText } from "../components/ParagraphText/ParagraphText";
 import "./Game.css";
@@ -20,6 +21,7 @@ interface Paragraph {
 
 export const Game: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const { setup } = useGameSetup();
   const [currentParagraphId, setCurrentParagraphId] = useState("1");
   const [history, setHistory] = useState<string[]>(["1"]);
 
@@ -215,6 +217,17 @@ export const Game: React.FC = () => {
           <span className="game__step-counter">
             Krok {history.length} / Scenariusz: {id}
           </span>
+          {setup && (
+            <span className="game__setup-info">
+              👥 {setup.playerCount} graczy ·
+              {setup.difficulty === "easy"
+                ? " 🟢 Łatwa"
+                : setup.difficulty === "medium"
+                  ? " 🟡 Średnia"
+                  : " 🔴 Trudna"}
+              {setup.soundEnabled ? " 🔊" : " 🔇"}
+            </span>
+          )}
         </div>
       </div>
 
