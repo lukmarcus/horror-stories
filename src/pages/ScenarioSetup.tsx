@@ -14,11 +14,12 @@ export const ScenarioSetup: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
-  const [playerCount, setPlayerCount] = useState(2);
-  const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">(
-    "easy",
+  const [playerCount, setPlayerCount] = useState(0);
+  const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard" | "">(
+    "",
   );
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Mock scenario data
   const scenario = {
@@ -148,15 +149,33 @@ export const ScenarioSetup: React.FC = () => {
     },
   ];
 
+  const validateStep = (stepId: string): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    if (stepId === "players" && playerCount === 0) {
+      newErrors.players = "Wybierz liczbę graczy";
+    }
+    if (stepId === "difficulty" && difficulty === "") {
+      newErrors.difficulty = "Wybierz poziom trudności";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
+    const currentStepId = steps[currentStep].id;
+    if (validateStep(currentStepId)) {
+      if (currentStep < steps.length - 1) {
+        setCurrentStep(currentStep + 1);
+      }
     }
   };
 
   const handlePrev = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
+      setErrors({});
     }
   };
 
@@ -198,6 +217,10 @@ export const ScenarioSetup: React.FC = () => {
           </div>
 
           <div className="scenario-setup__step-body">{step.content}</div>
+
+          {errors[step.id] && (
+            <div className="scenario-setup__error">⚠️ {errors[step.id]}</div>
+          )}
 
           {/* Navigation */}
           <div className="scenario-setup__step-footer">
