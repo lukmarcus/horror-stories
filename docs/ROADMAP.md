@@ -6,21 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.2 - Paragraph Parser
-
-### Zakres
-- System parsowania tagów (`[item:]`, `[figure:]`, `[board:]`, `[token:]`, itp.)
-- Formatowanie tekstu (bold, italic, kolory)
-- Renderowanie tekstu z formatowaniem
-
-### Do przygotowania
-- ✅ **Scenariusz testowy** - kilka paragrafów z różnymi tagami
-
-### Status
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.0.3 - Scenario Setup
 
 ### Zakres

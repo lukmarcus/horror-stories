@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/common";
+import { ParagraphText } from "../components/ParagraphText/ParagraphText";
 import "./Game.css";
 
 interface Choice {
@@ -47,7 +48,7 @@ export const Game: React.FC = () => {
     },
     "2": {
       id: "2",
-      text: "Za drzwiami po lewej czeka schłodzona klatka schodowa. Luz powietrza zmraża Ci skórę. W oddali słychać kroki... czy to ty? Czy ktoś jeszcze jest w tym budynku?",
+      text: "Za drzwiami po lewej czeka schłodzona klatka schodowa. Luz powietrza zmraża Ci skórę. W oddali słychać [figure:tajemnicze kroki]... czy to ty? Czy [figure:ktoś inny] jest w tym budynku? Na ścianie widać [item:starą notatkę].",
       choices: [
         {
           id: "c4",
@@ -63,7 +64,7 @@ export const Game: React.FC = () => {
     },
     "3": {
       id: "3",
-      text: "Środkowe drzwi otwierają się na jasną bibliotekę. Półki książek sięgają sufitu. Pamiętasz — przyszłeś tutaj szukać zaginionej księgi. Czy ona jest tutaj?",
+      text: "Środkowe drzwi otwierają się na jasną bibliotekę. Półki książek sięgają sufitu. Pamiętasz — przyszłeś tutaj szukać [item:zaginionej księgi]. Czy ona jest tutaj? Na biurku widać [token:klucz] i [board:mapę starą].",
       choices: [
         {
           id: "c6",
@@ -79,7 +80,7 @@ export const Game: React.FC = () => {
     },
     "4": {
       id: "4",
-      text: "Prawe drzwi prowadzą do oszołomującego widoku — znaleźliście się na dachu budynku. Miasto rozciąga się poniżej, a dach jest całkowicie pusty. Chyba że...",
+      text: "Prawe drzwi prowadzą do oszołomującego widoku — znaleźliście się na dachu budynku. [figure:Miasto] rozciąga się poniżej, a [board:dach] jest całkowicie pusty. Chyba że [figure:coś się rusza] w cieniu...",
       choices: [
         {
           id: "c8",
@@ -106,7 +107,7 @@ export const Game: React.FC = () => {
     },
     "6": {
       id: "6",
-      text: "🎉 Znalazłeś zaginioną księgę! Twoja przygoda dobiegła końca — i to zwycięskiego!",
+      text: "🎉 Znalazłeś [item:zaginioną księgę]! Twoja przygoda dobiegła końca — i to zwycięskiego! [figure:Księga] lśni w świetle, a jej karty zawierają [board:tajemne znaki].",
       choices: [
         {
           id: "c11",
@@ -117,7 +118,7 @@ export const Game: React.FC = () => {
     },
     "7": {
       id: "7",
-      text: "Ktoś wchodzi do biblioteki. Pytanie brzmi — czy to sprzymierzeniec czy wróg?",
+      text: "[figure:Ktoś] wchodzi do biblioteki. Pytanie brzmi — czy to [figure:sprzymierzeniec] czy [figure:wróg]? Jego [item:maska] zasłania twarz, a w dłoni trzyma [item:broń].",
       choices: [
         {
           id: "c12",
@@ -133,7 +134,7 @@ export const Game: React.FC = () => {
     },
     "8": {
       id: "8",
-      text: "Na dachu czeka helikopter. Możesz stąd uciec! Ale czy to jest realne, czy tylko złudzenie?",
+      text: "Na dachu czeka [figure:helikopter]. Możesz stąd uciec! Ale czy to jest realne, czy tylko [token:złudzenie]?",
       choices: [
         {
           id: "c14",
@@ -149,7 +150,7 @@ export const Game: React.FC = () => {
     },
     "9": {
       id: "9",
-      text: "Czekasz w napięciu. Osoba przechodzi obok. Ufff! Udało się przejść niezauważony.",
+      text: "Czekasz w napięciu. [figure:Osoba] przechodzi obok. Ufff! Udało się przejść niezauważony dzięki [item:drewnianym półkom].",
       choices: [
         {
           id: "c16",
@@ -160,7 +161,7 @@ export const Game: React.FC = () => {
     },
     "10": {
       id: "10",
-      text: "Osoba się uśmiecha. To była bibliotekarka! Mówi: 'Szukasz księgi? Jest w sejfie za obrazem.'",
+      text: "[figure:Osoba] się uśmiecha. To była [figure:bibliotekarka]. Mówi: 'Szukasz [item:księgi]. Jest w [token:sejfie] za [board:obrazem].'",
       choices: [
         {
           id: "c17",
@@ -171,7 +172,7 @@ export const Game: React.FC = () => {
     },
     "11": {
       id: "11",
-      text: "🎉 Uciekłeś! Helikopter podnosi się w powietrze. Scenariusz ukończony!",
+      text: "🎉 Uciekłeś! [figure:Helikopter] podnosi się w powietrze na [board:dachu]. Scenariusz ukończony!",
       choices: [
         {
           id: "c18",
@@ -233,7 +234,10 @@ export const Game: React.FC = () => {
             )}
 
             <div className="game__text-box">
-              <p className="game__paragraph-text">{currentParagraph?.text}</p>
+              <ParagraphText
+                text={currentParagraph?.text || ""}
+                className="game__paragraph-text"
+              />
             </div>
           </div>
 
