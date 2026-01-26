@@ -212,6 +212,54 @@
   margin: 0;
 }
 
+.game__dice-section {
+  background-color: rgba(139, 0, 0, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.game__dice-instruction {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-md) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.game__dice-result-message {
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  animation: message-slide 0.4s ease-out;
+}
+
+.game__dice-result-message--success {
+  background-color: rgba(34, 139, 34, 0.15);
+  border: 2px solid #228b22;
+  color: #228b22;
+}
+
+.game__dice-result-message--fail {
+  background-color: rgba(139, 0, 0, 0.15);
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+@keyframes message-slide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .game__error-text {
   color: var(--color-danger);
   font-size: var(--font-size-md);
