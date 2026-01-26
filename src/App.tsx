@@ -3,7 +3,6 @@ import { Header } from "./components/common/Header";
 import { Footer } from "./components/common/Footer";
 import { Home } from "./pages/Home";
 import { ScenariosList } from "./pages/ScenariosList";
-import { ScenarioSetup } from "./pages/ScenarioSetup";
 import { Game } from "./pages/Game";
 import Instructions from "./pages/Instructions.tsx";
 import About from "./pages/About.tsx";
@@ -20,7 +19,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/scenarios" element={<ScenariosList />} />
-            <Route path="/scenarios/:id/setup" element={<ScenarioSetup />} />
             <Route path="/game/:id" element={<Game />} />
             <Route path="/instructions" element={<Instructions />} />
             <Route path="/about" element={<About />} />

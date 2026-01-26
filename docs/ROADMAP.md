@@ -6,22 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.3 - Scenario Setup
-
-### Zakres
-- Komponent setupu scenariusza
-- Kroki konfiguracji (przewijalne)
-- Logika przepływu: Setup → Game
-
-### Do przygotowania
-- ✅ **Kroki setupu** - szczegółowe instrukcje dla demo scenariusza
-- ✅ **Metadane scenariusza** - tytuł, opis, autor, liczba paragrafów
-
-### Status
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.0.4 - Dice Roller
 
 ### Zakres
@@ -106,8 +90,8 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ## Branch strategy
 
 - **main** - Stable releases (v0.1.0+)
-- **v0.0.2** - Development (current)
+- **v0.0.3** - Current development
 
 ---
 
-**Ostatnia aktualizacja:** 2026-01-24
+**Ostatnia aktualizacja:** 2026-01-25
