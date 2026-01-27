@@ -6,21 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.4 - Dice Roller
-
-### Zakres
-- Komponent kostki k6
-- Animacja rzutu
-- Integracja z paragrafami
-
-### Do przygotowania
-- ✅ **Paragraf z rzutem kostką** - testowy scenariusz
-
-### Status
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.0.5 - Warunkowe opcje
 
 ### Zakres

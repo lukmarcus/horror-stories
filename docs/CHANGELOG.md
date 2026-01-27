@@ -7,6 +7,18 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.4] - 2026-01-27
+
+### Dodane
+
+- DiceRoller component - kostka k6 z animacją obrotu
+- Wyświetlanie wyniku rzutu na ekranie
+- Przycisk "Dalej" do przejścia po zobaczeniu wyniku
+- Paragrafy testowe (#7, #8, #9) z rzutem kostką
+- Warunkowe paragrafy na podstawie wyniku kostki (sukces/porażka)
+
+---
+
 ## [0.0.3] - 2026-01-25
 
 ### Dodane

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/common";
 import { ParagraphText } from "../components/ParagraphText/ParagraphText";
+import { DiceRoller } from "../components/DiceRoller/DiceRoller";
 import "./Game.css";
 
 interface Choice {
@@ -16,6 +17,15 @@ interface Paragraph {
   choices?: Choice[];
   image?: string;
   audio?: string;
+  hasDiceRoll?: boolean;
+  diceRollDescription?: string;
+  diceResult?: {
+    threshold: number;
+    successText: string;
+    successNextId: string;
+    failText: string;
+    failNextId: string;
+  };
 }
 
 export const Game: React.FC = () => {
@@ -26,6 +36,7 @@ export const Game: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [showSetup, setShowSetup] = useState(false);
   const [error, setError] = useState("");
+  const [lastDiceResult, setLastDiceResult] = useState<number | null>(null);
 
   // Scenario data
   const scenarios: Record<
@@ -101,6 +112,37 @@ export const Game: React.FC = () => {
     "6": {
       id: "6",
       text: "🎉 Znalazłeś [item:zaginioną księgę]! Twoja przygoda dobiegła końca — i to zwycięskiego! [figure:Księga] lśni w świetle, a jej karty zawierają [board:tajemne znaki].",
+    },
+    "7": {
+      id: "7",
+      text: "Stoisz przed [item:tajemniczą skrzynią]. Na jej wieczku widnieje [figure:dziwny symbol]... Aby ją otworzyć, musisz rzucić kostką i uzyskać wynik wyższy niż 3.",
+      hasDiceRoll: true,
+      diceRollDescription: "Rzuć kostką aby spróbować otworzyć skrzynię",
+      diceResult: {
+        threshold: 3,
+        successText:
+          "🎉 Udało Ci się! Skrzynia otworzyła się ze zaskakującym świstem powietrza.",
+        successNextId: "8",
+        failText:
+          "❌ Nie tym razem! Skrzynia herself się zatrzasnęła, prawie przytłaczając Ci palce.",
+        failNextId: "9",
+      },
+    },
+    "8": {
+      id: "8",
+      text: "W środku skrzyni znajdujesz [item:stary zwój pergaminu] z notatkami o [figure:zakaźnym obrzędzie]... To może być [item:klucz] do zrozumienia tego budynku!",
+      choices: [
+        { id: "c11", text: "Zabierz zwój i wróć", nextParagraphId: "3" },
+        { id: "c12", text: "Przeczytaj zwój dokładnie", nextParagraphId: "6" },
+      ],
+    },
+    "9": {
+      id: "9",
+      text: "Mechanizm zabezpieczający w skrzyni został uruchomiony! Słychać hałas z wnętrza budynku... [figure:coś się rusza]. Powinieneś stąd wyjść! Szybko!",
+      choices: [
+        { id: "c13", text: "Uciekaj do biblioteki", nextParagraphId: "3" },
+        { id: "c14", text: "Ukryj się", nextParagraphId: "5" },
+      ],
     },
   };
 
@@ -255,6 +297,51 @@ export const Game: React.FC = () => {
                 <p className="game__error-text">Paragraf nie znaleziony</p>
               )}
             </div>
+
+            {/* Dice Roller */}
+            {currentParagraph?.hasDiceRoll && (
+              <div className="game__dice-section">
+                <p className="game__dice-instruction">
+                  {currentParagraph.diceRollDescription}
+                </p>
+                <DiceRoller
+                  onRoll={(result) => {
+                    setLastDiceResult(result);
+                  }}
+                  showNextButton={lastDiceResult !== null}
+                  onNext={() => {
+                    // Handle conditional paragraph based on dice result
+                    if (
+                      currentParagraph.diceResult &&
+                      currentParagraphId === "7" &&
+                      lastDiceResult !== null
+                    ) {
+                      const { threshold, successNextId, failNextId } =
+                        currentParagraph.diceResult;
+                      const nextId =
+                        lastDiceResult > threshold ? successNextId : failNextId;
+                      setCurrentParagraphId(nextId);
+                      setLastDiceResult(null);
+                    }
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Dice Result Message */}
+            {lastDiceResult !== null && currentParagraph?.diceResult && (
+              <div
+                className={`game__dice-result-message ${
+                  lastDiceResult > currentParagraph.diceResult.threshold
+                    ? "game__dice-result-message--success"
+                    : "game__dice-result-message--fail"
+                }`}
+              >
+                {lastDiceResult > currentParagraph.diceResult.threshold
+                  ? currentParagraph.diceResult.successText
+                  : currentParagraph.diceResult.failText}
+              </div>
+            )}
 
             {/* Choices */}
             {currentParagraph?.choices &&
