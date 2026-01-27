@@ -7,6 +7,18 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.6] - 2026-01-27
+
+### Dodane
+
+- Paragraph accessibility system - sprawdzanie czy paragraf jest dostępny bezpośrednio
+- isDirect/accessibleFrom properties dla każdego paragrafu
+- Warning dialog gdy użytkownik wpisze niedostępny paragraf
+- Informacja które paragrafy prowadzą do danego paragrafu
+- Unit tests dla accessibility logic
+
+---
+
 ## [0.0.5] - 2026-01-27
 
 ### Dodane

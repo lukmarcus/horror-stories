@@ -9,22 +9,28 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ## Milestone v0.0.6 - Walidacja & Error Handling
 
 ### Zakres
+
 - Walidacja paragrafów (numery, linki, pola obowiązkowe)
 - Error boundaries (React)
 - Komunikaty błędów dla użytkownika
 - Graceful degradation dla brakujących assetów
 
-### Do przygotowania
-- ✅ **Testy scenariuszy** - sprawdzenie wszystkich paragrafów
+### Ukończone
+
+- ✅ **Paragraph accessibility system** - isDirect/accessibleFrom properties
+- ✅ **Warning dialog** - informacja o niedostępności paragrafu
+- ✅ **Tests** - accessibility logic tests
 
 ### Status
-- ⏳ Nie rozpoczęte
+
+- ✅ **COMPLETED** - v0.0.6 released
 
 ---
 
 ## Milestone v0.1.0 - MVP Release
 
 ### Zakres
+
 - Kompletny scenariusz (przynajmniej jeden pełny)
 - Wszystkie assety (ikony, tła, grafiki)
 - Baza wszystkich elementów z gry
@@ -32,11 +38,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - Dokumentacja dla użytkownika
 
 ### Do przygotowania
+
 - ✅ **Kompletny scenariusz** - pełny scenariusz z wszystkimi funkcjami
 - ✅ **Wszystkie assety** - ikony, tła, grafiki z gry
 - ✅ **Baza elementów** - pełna lista obiektów (przedmioty, żetony, figurki)
 
 ### Status
+
 - ⏳ Nie rozpoczęte
 
 ---
@@ -44,11 +52,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ## Przyszłe rozszerzenia (post-v0.1.0)
 
 ### v0.2.0 - Audio & Music
+
 - Audio player
 - Muzyka w tle
 - Dźwięki i dialogi
 
 ### v0.3.0+ - Editor & Advanced Features
+
 - Edytor scenariuszy (osobna aplikacja)
 - Wczytywanie własnych JSON scenariuszy
 - Save/load postępu gry
