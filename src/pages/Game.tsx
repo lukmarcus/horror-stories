@@ -1,40 +1,11 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import type { Paragraph, Scenario } from "../types";
 import { Button } from "../components/common";
 import { ParagraphText } from "../components/ParagraphText/ParagraphText";
 import { DiceRoller } from "../components/DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../components/ConditionalChoice/ConditionalChoice";
 import "./Game.css";
-
-interface Choice {
-  id: string;
-  text: string;
-  nextParagraphId?: string;
-  isConditional?: boolean;
-  yesText?: string;
-  noText?: string;
-  yesNextId?: string;
-  noNextId?: string;
-}
-
-interface Paragraph {
-  id: string;
-  text: string;
-  choices?: Choice[];
-  image?: string;
-  audio?: string;
-  hasDiceRoll?: boolean;
-  diceRollDescription?: string;
-  diceResult?: {
-    threshold: number;
-    successText: string;
-    successNextId: string;
-    failText: string;
-    failNextId: string;
-  };
-  isDirect?: boolean;
-  accessibleFrom?: string[];
-}
 
 export const Game: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -52,28 +23,23 @@ export const Game: React.FC = () => {
     useState(false);
 
   // Scenario data
-  const scenarios: Record<
-    string,
-    {
-      title: string;
-      description: string;
-      playerCount: string;
-      duration: string;
-    }
-  > = {
+  const scenarios: Record<string, Scenario> = {
     "1": {
+      id: "1",
       title: "Tajemna Biblioteka",
       description: "Zaginęła księga starożytnych zaklęć. Musisz ją znaleźć.",
       playerCount: "2-4 graczy",
       duration: "45 min",
     },
     "2": {
+      id: "2",
       title: "Opuszczony Szpital",
       description: "Budynek pełen tajemnic czeka na odkrycie.",
       playerCount: "2-4 graczy",
       duration: "60 min",
     },
     "3": {
+      id: "3",
       title: "Nocny Koszmar",
       description: "Czy potrafisz przetrwać noc w domu nawiedzonym?",
       playerCount: "2-6 graczy",
