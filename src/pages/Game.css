@@ -6,6 +6,81 @@
   overflow: hidden;
 }
 
+/* Dialog Overlay */
+.game__dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.game__dialog {
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  max-width: 400px;
+  animation: dialog-pop 0.3s ease-out;
+}
+
+@keyframes dialog-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.game__dialog-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  margin: 0 0 var(--spacing-md) 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.game__dialog-text {
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+  line-height: 1.5;
+}
+
+.game__dialog-sources {
+  background: rgba(139, 0, 0, 0.1);
+  border-left: 3px solid var(--color-accent);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  border-radius: var(--border-radius-md);
+}
+
+.game__dialog-question {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  margin: var(--spacing-md) 0;
+  text-align: center;
+}
+
+.game__dialog-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+}
+
 /* Top Bar - Paragraph Mode */
 .game__top-bar {
   background-color: var(--color-surface);

@@ -32,6 +32,8 @@ interface Paragraph {
     failText: string;
     failNextId: string;
   };
+  isDirect?: boolean;
+  accessibleFrom?: string[];
 }
 
 export const Game: React.FC = () => {
@@ -43,6 +45,11 @@ export const Game: React.FC = () => {
   const [showSetup, setShowSetup] = useState(false);
   const [error, setError] = useState("");
   const [lastDiceResult, setLastDiceResult] = useState<number | null>(null);
+  const [pendingParagraphId, setPendingParagraphId] = useState<string | null>(
+    null,
+  );
+  const [showAccessibilityWarning, setShowAccessibilityWarning] =
+    useState(false);
 
   // Scenario data
   const scenarios: Record<
@@ -80,6 +87,7 @@ export const Game: React.FC = () => {
   const paragraphs: Record<string, Paragraph> = {
     "1": {
       id: "1",
+      isDirect: true,
       text: "Budzisz się w ciemnym pokoju. Słychać dziwne szmery dobiegające ze ścian. Twoje oczy powoli przyzwyczajają się do mroku. Widzisz [item:drzwi] — każde z nich mogłoby być wyjściem. Ale czujesz, że nie wszystko tutaj jest bezpieczne.",
       choices: [
         { id: "c1", text: "Podejdź do drzwi po lewej", nextParagraphId: "2" },
@@ -89,7 +97,9 @@ export const Game: React.FC = () => {
     },
     "2": {
       id: "2",
+      isDirect: true,
       text: "Za drzwiami po lewej czeka schłodzona klatka schodowa. Luz powietrza zmraża Ci skórę. W oddali słychać [figure:tajemnicze kroki]... czy to ty? Czy [figure:ktoś inny] jest w tym budynku? Na ścianie widać [item:starą notatkę].",
+      accessibleFrom: ["1"],
       choices: [
         { id: "c4", text: "Wejdź na schody", nextParagraphId: "5" },
         { id: "c5", text: "Wróć i wybierz inne drzwi", nextParagraphId: "1" },
@@ -97,7 +107,9 @@ export const Game: React.FC = () => {
     },
     "3": {
       id: "3",
+      isDirect: true,
       text: "Środkowe drzwi otwierają się na jasną bibliotekę. Półki książek sięgają sufitu. Pamiętasz — przyszłeś tutaj szukać [item:zaginionej księgi]. Czy ona jest tutaj? Na biurku widać [token:klucz] i [board:mapę starą].",
+      accessibleFrom: ["1"],
       choices: [
         { id: "c6", text: "Przeszukaj półki", nextParagraphId: "6" },
         { id: "c7", text: "Sprawdź zbliżone się kroki", nextParagraphId: "2" },
@@ -105,6 +117,8 @@ export const Game: React.FC = () => {
     },
     "4": {
       id: "4",
+      isDirect: false,
+      accessibleFrom: ["1"],
       text: "Prawe drzwi prowadzą do oszołomującego widoku — znaleźliście się na dachu budynku. [figure:Miasto] rozciąga się poniżej, a [board:dach] jest całkowicie pusty. Chyba że [figure:coś się rusza] w cieniu...",
       choices: [
         { id: "c8", text: "Przejdź po dachu", nextParagraphId: "5" },
@@ -113,14 +127,19 @@ export const Game: React.FC = () => {
     },
     "5": {
       id: "5",
+      isDirect: false,
+      accessibleFrom: ["2", "4"],
       text: "Koniec scenariusza: Nie przetrwałeś. Schody zawalają się pod Twoimi nogami.",
     },
     "6": {
       id: "6",
+      isDirect: false,
+      accessibleFrom: ["3", "8"],
       text: "🎉 Znalazłeś [item:zaginioną księgę]! Twoja przygoda dobiegła końca — i to zwycięskiego! [figure:Księga] lśni w świetle, a jej karty zawierają [board:tajemne znaki].",
     },
     "7": {
       id: "7",
+      isDirect: true,
       text: "Stoisz przed [item:tajemniczą skrzynią]. Na jej wieczku widnieje [figure:dziwny symbol]... Aby ją otworzyć, musisz rzucić kostką i uzyskać wynik wyższy niż 3.",
       hasDiceRoll: true,
       diceRollDescription: "Rzuć kostką aby spróbować otworzyć skrzynię",
@@ -136,6 +155,8 @@ export const Game: React.FC = () => {
     },
     "8": {
       id: "8",
+      isDirect: false,
+      accessibleFrom: ["7"],
       text: "W środku skrzyni znajdujesz [item:stary zwój pergaminu] z notatkami o [figure:zakaźnym obrzędzie]... To może być [item:klucz] do zrozumienia tego budynku!",
       choices: [
         { id: "c11", text: "Zabierz zwój i wróć", nextParagraphId: "3" },
@@ -144,13 +165,16 @@ export const Game: React.FC = () => {
     },
     "9": {
       id: "9",
+      isDirect: false,
+      accessibleFrom: ["7"],
       text: "Mechanizm zabezpieczający w skrzyni został uruchomiony! Słychać hałas z wnętrza budynku... [figure:coś się rusza]. Powinieneś stąd wyjść! Szybko!",
       choices: [
         {
           id: "c15",
           text: "Czy posiadasz [item:pergamin] z instrukcjami?",
           isConditional: true,
-          yesText: "✓ Pergamin! Szybko czytasz instrukcję... Znalazłeś ukryty przejście!",
+          yesText:
+            "✓ Pergamin! Szybko czytasz instrukcję... Znalazłeś ukryty przejście!",
           noText: "✗ Nie masz pergaminu. Panika! Biegniesz na oślep.",
           yesNextId: "10",
           noNextId: "11",
@@ -159,6 +183,8 @@ export const Game: React.FC = () => {
     },
     "10": {
       id: "10",
+      isDirect: false,
+      accessibleFrom: ["9"],
       text: "Dzięki instrukcjom z pergaminu znajdujesz ukryte przejście w ścianie. Przechodzisz przez niego i trafiasz do starego tunelu... Ucieka! 🎉",
       choices: [
         { id: "c16", text: "Wróć do biblioteki", nextParagraphId: "3" },
@@ -166,10 +192,10 @@ export const Game: React.FC = () => {
     },
     "11": {
       id: "11",
+      isDirect: false,
+      accessibleFrom: ["9"],
       text: "Biegniesz na oślep przez korytarze. Przypadkowo trafiasz na schody prowadzące na dach. Widok jest oszołamiający, ale również bardzo niebezpieczny... ☠️",
-      choices: [
-        { id: "c17", text: "Wróć na dół", nextParagraphId: "3" },
-      ],
+      choices: [{ id: "c17", text: "Wróć na dół", nextParagraphId: "3" }],
     },
   };
 
@@ -189,8 +215,31 @@ export const Game: React.FC = () => {
       return;
     }
 
+    const paragraph = paragraphs[paragraphId];
+
+    // Check if paragraph is directly accessible
+    if (paragraph.isDirect === false && paragraph.accessibleFrom) {
+      setPendingParagraphId(paragraphId);
+      setShowAccessibilityWarning(true);
+      return;
+    }
+
     setCurrentParagraphId(paragraphId);
     setInputValue("");
+  };
+
+  const handleConfirmAccessibility = () => {
+    if (pendingParagraphId) {
+      setCurrentParagraphId(pendingParagraphId);
+      setInputValue("");
+      setPendingParagraphId(null);
+    }
+    setShowAccessibilityWarning(false);
+  };
+
+  const handleCancelAccessibility = () => {
+    setPendingParagraphId(null);
+    setShowAccessibilityWarning(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -215,6 +264,40 @@ export const Game: React.FC = () => {
 
   return (
     <main className="game">
+      {/* Accessibility Warning Dialog */}
+      {showAccessibilityWarning && pendingParagraphId && (
+        <div className="game__dialog-overlay">
+          <div className="game__dialog">
+            <h2 className="game__dialog-title">Uwaga!</h2>
+            <p className="game__dialog-text">
+              Paragraf #{pendingParagraphId} jest dostępny tylko z:
+            </p>
+            <div className="game__dialog-sources">
+              {paragraphs[pendingParagraphId]?.accessibleFrom?.join(", ")}
+            </div>
+            <p className="game__dialog-question">
+              Czy chcesz mimo to przejść do tego paragrafu?
+            </p>
+            <div className="game__dialog-buttons">
+              <Button
+                variant="primary"
+                size="md"
+                onClick={handleConfirmAccessibility}
+              >
+                Tak
+              </Button>
+              <Button
+                variant="secondary"
+                size="md"
+                onClick={handleCancelAccessibility}
+              >
+                Nie
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Top Bar - Only in Paragraph Mode */}
       {currentParagraphId && (
         <div className="game__top-bar">
