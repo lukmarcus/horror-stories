@@ -3,12 +3,18 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/common";
 import { ParagraphText } from "../components/ParagraphText/ParagraphText";
 import { DiceRoller } from "../components/DiceRoller/DiceRoller";
+import { ConditionalChoice } from "../components/ConditionalChoice/ConditionalChoice";
 import "./Game.css";
 
 interface Choice {
   id: string;
   text: string;
-  nextParagraphId: string;
+  nextParagraphId?: string;
+  isConditional?: boolean;
+  yesText?: string;
+  noText?: string;
+  yesNextId?: string;
+  noNextId?: string;
 }
 
 interface Paragraph {
@@ -140,8 +146,29 @@ export const Game: React.FC = () => {
       id: "9",
       text: "Mechanizm zabezpieczający w skrzyni został uruchomiony! Słychać hałas z wnętrza budynku... [figure:coś się rusza]. Powinieneś stąd wyjść! Szybko!",
       choices: [
-        { id: "c13", text: "Uciekaj do biblioteki", nextParagraphId: "3" },
-        { id: "c14", text: "Ukryj się", nextParagraphId: "5" },
+        {
+          id: "c15",
+          text: "Czy posiadasz [item:pergamin] z instrukcjami?",
+          isConditional: true,
+          yesText: "✓ Pergamin! Szybko czytasz instrukcję... Znalazłeś ukryty przejście!",
+          noText: "✗ Nie masz pergaminu. Panika! Biegniesz na oślep.",
+          yesNextId: "10",
+          noNextId: "11",
+        },
+      ],
+    },
+    "10": {
+      id: "10",
+      text: "Dzięki instrukcjom z pergaminu znajdujesz ukryte przejście w ścianie. Przechodzisz przez niego i trafiasz do starego tunelu... Ucieka! 🎉",
+      choices: [
+        { id: "c16", text: "Wróć do biblioteki", nextParagraphId: "3" },
+      ],
+    },
+    "11": {
+      id: "11",
+      text: "Biegniesz na oślep przez korytarze. Przypadkowo trafiasz na schody prowadzące na dach. Widok jest oszołamiający, ale również bardzo niebezpieczny... ☠️",
+      choices: [
+        { id: "c17", text: "Wróć na dół", nextParagraphId: "3" },
       ],
     },
   };
@@ -347,19 +374,36 @@ export const Game: React.FC = () => {
             {currentParagraph?.choices &&
               currentParagraph.choices.length > 0 && (
                 <div className="game__choices">
-                  {currentParagraph.choices.map((choice) => (
-                    <Button
-                      key={choice.id}
-                      variant="primary"
-                      size="md"
-                      onClick={() =>
-                        setCurrentParagraphId(choice.nextParagraphId)
-                      }
-                      className="game__choice-btn"
-                    >
-                      {choice.text}
-                    </Button>
-                  ))}
+                  {currentParagraph.choices.map((choice) =>
+                    choice.isConditional ? (
+                      <ConditionalChoice
+                        key={choice.id}
+                        choice={choice}
+                        onYes={() =>
+                          choice.yesNextId &&
+                          setCurrentParagraphId(choice.yesNextId)
+                        }
+                        onNo={() =>
+                          choice.noNextId &&
+                          setCurrentParagraphId(choice.noNextId)
+                        }
+                      />
+                    ) : (
+                      <Button
+                        key={choice.id}
+                        variant="primary"
+                        size="md"
+                        onClick={() => {
+                          if (choice.nextParagraphId) {
+                            setCurrentParagraphId(choice.nextParagraphId);
+                          }
+                        }}
+                        className="game__choice-btn"
+                      >
+                        {choice.text}
+                      </Button>
+                    ),
+                  )}
                 </div>
               )}
 

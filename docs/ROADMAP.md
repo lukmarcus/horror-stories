@@ -6,22 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.5 - Warunkowe opcje
-
-### Zakres
-- System conditional choices (zależne od posiadanych przedmiotów)
-- State management dla ekwipunku/stanu gry
-- Logika wyświetlania opcji warunkowych
-
-### Do przygotowania
-- ✅ **Baza przedmiotów/figurek** - definicja dostępnych elementów
-- ✅ **Scenariusz testowy z warunkami** - paragrafy zależne od stanu
-
-### Status
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.0.6 - Walidacja & Error Handling
 
 ### Zakres

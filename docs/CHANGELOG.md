@@ -7,6 +7,17 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.5] - 2026-01-27
+
+### Dodane
+
+- ConditionalChoice component - pytania yes/no w paragrafach
+- Warunkowa logika wyboru - różne paragrafy dla odpowiedzi TAK/NIE
+- Wyświetlanie wyniku warunkowego wyboru
+- Paragrafy testowe (#9, #10, #11) z warunkową logiką
+
+---
+
 ## [0.0.4] - 2026-01-27
 
 ### Dodane
