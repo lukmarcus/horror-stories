@@ -1,0 +1,98 @@
+.conditional-choice {
+  background: rgba(139, 0, 0, 0.08);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md) 0;
+}
+
+.conditional-choice__question {
+  margin-bottom: var(--spacing-md);
+}
+
+.conditional-choice__question p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  margin: 0;
+  font-style: italic;
+}
+
+.conditional-choice__buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+.conditional-choice__btn {
+  flex: 1;
+  max-width: 200px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-lg);
+}
+
+.conditional-choice__btn--yes {
+  background: rgba(0, 139, 0, 0.2);
+}
+
+.conditional-choice__btn--yes:hover {
+  background: rgba(0, 139, 0, 0.4);
+}
+
+.conditional-choice__btn--no {
+  background: rgba(139, 0, 0, 0.2);
+}
+
+.conditional-choice__btn--no:hover {
+  background: rgba(139, 0, 0, 0.4);
+}
+
+.conditional-choice__result {
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  margin-top: var(--spacing-md);
+  animation: result-slide-in 0.4s ease-out;
+}
+
+@keyframes result-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.conditional-choice__result--yes {
+  background: rgba(0, 139, 0, 0.15);
+  border-left: 4px solid #00a000;
+}
+
+.conditional-choice__result--no {
+  background: rgba(139, 0, 0, 0.15);
+  border-left: 4px solid var(--color-accent);
+}
+
+.conditional-choice__result p {
+  color: var(--color-text-primary);
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .conditional-choice {
+    padding: var(--spacing-md);
+  }
+
+  .conditional-choice__buttons {
+    flex-direction: column;
+  }
+
+  .conditional-choice__btn {
+    max-width: 100%;
+  }
+}
