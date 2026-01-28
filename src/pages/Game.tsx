@@ -4,7 +4,7 @@ import { SCENARIOS, PARAGRAPHS } from "../data/scenarios";
 import { Button } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
 import { useGame } from "../hooks/useGame";
-import { checkParagraphAccessibility } from "../utils/gameLogic";
+import { useGameActions } from "../hooks/useGameActions";
 import "../styles/pages/game.css";
 
 const SETUP_STEPS = [
@@ -18,6 +18,7 @@ const SETUP_STEPS = [
 export const Game: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const game = useGame();
+  const gameActions = useGameActions();
 
   // Use imported game data
   const scenarios = SCENARIOS;
@@ -29,29 +30,21 @@ export const Game: React.FC = () => {
     : null;
 
   const handleJumpToParagraph = () => {
-    const paragraphId = game.state.inputValue.trim();
     game.clearError();
 
-    if (!paragraphId) {
-      game.setError("Wpisz numer paragrafu");
+    const result = gameActions.jumpToParagraph(game.state.inputValue, paragraphs);
+    if (!result.valid) {
+      game.setError(result.error || "Błąd");
       return;
     }
 
-    if (!paragraphs[paragraphId]) {
-      game.setError(`Paragraf #${paragraphId} nie istnieje`);
+    if (result.needsWarning && result.pendingId) {
+      game.showWarning(result.pendingId);
       return;
     }
 
-    const paragraph = paragraphs[paragraphId];
-    const accessibility = checkParagraphAccessibility(paragraphId, paragraph);
-
-    // Check if paragraph is directly accessible
-    if (!accessibility.isAccessible && accessibility.needsWarning) {
-      game.showWarning(paragraphId);
-      return;
-    }
-
-    game.setParagraph(paragraphId);
+    const nextId = game.state.inputValue.trim();
+    game.setParagraph(nextId);
     game.setInput("");
   };
 
@@ -86,13 +79,27 @@ export const Game: React.FC = () => {
     <main className="game">
       {/* Accessibility Warning Dialog */}
       {game.state.showAccessibilityWarning && game.state.pendingParagraphId && (
-        <div className="game__dialog-overlay">
-          <div className="game__dialog">
-            <h2 className="game__dialog-title">Uwaga!</h2>
+        <div
+          className="game__dialog-overlay"
+          role="presentation"
+          aria-hidden={!game.state.showAccessibilityWarning}
+        >
+          <dialog
+            className="game__dialog"
+            open={game.state.showAccessibilityWarning}
+            aria-labelledby="accessibility-dialog-title"
+            aria-modal="true"
+          >
+            <h2 id="accessibility-dialog-title" className="game__dialog-title">
+              Uwaga!
+            </h2>
             <p className="game__dialog-text">
               Paragraf #{game.state.pendingParagraphId} jest dostępny tylko z:
             </p>
-            <div className="game__dialog-sources">
+            <div
+              className="game__dialog-sources"
+              aria-label="Dostępne źródła paragrafu"
+            >
               {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.join(", ")}
             </div>
             <p className="game__dialog-question">
@@ -114,27 +121,38 @@ export const Game: React.FC = () => {
                 Nie
               </Button>
             </div>
-          </div>
+          </dialog>
         </div>
       )}
 
       {/* Top Bar - Only in Paragraph Mode */}
       {game.state.currentParagraphId && (
-        <div className="game__top-bar">
+        <nav className="game__top-bar" aria-label="Nawigacja gry">
           <div className="game__top-bar-content">
-            <Button variant="outline" size="sm" onClick={handleBackToInput}>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleBackToInput}
+              aria-label="Powrót do wyboru paragrafu"
+            >
               ← Wróć
             </Button>
-            <span className="game__scenario-info">Scenariusz #{id}</span>
+            <span
+              className="game__scenario-info"
+              aria-current="page"
+            >
+              Scenariusz #{id}
+            </span>
             <Button
               variant="outline"
               size="sm"
               onClick={() => game.toggleSetup()}
+              aria-label={game.state.showSetup ? "Zamknij instrukcje" : "Pokaż instrukcje"}
             >
               {game.state.showSetup ? "Zamknij Setup" : "⚙️ Setup"}
             </Button>
           </div>
-        </div>
+        </nav>
       )}
 
       {/* Setup Section */}
@@ -164,7 +182,7 @@ export const Game: React.FC = () => {
       <div className="game__container">
         {/* INPUT MODE - Show input panel */}
         {!game.state.currentParagraphId ? (
-          <section className="game__input-panel">
+          <section className="game__input-panel" aria-label="Panel wpisywania paragrafu">
             <div className="game__input-header">
               <h1 className="game__scenario-title">
                 {currentScenario?.title || "Scenariusz"}
@@ -181,8 +199,11 @@ export const Game: React.FC = () => {
                   value={game.state.inputValue}
                   onChange={(e) => game.setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder=""
+                  placeholder="np. 1, 2, 3..."
                   className="game__input"
+                  aria-label="Numer paragrafu do odwiedzenia"
+                  aria-describedby={game.state.error ? "input-error" : undefined}
+                  aria-invalid={!!game.state.error}
                   autoFocus
                 />
                 <Button
@@ -190,12 +211,15 @@ export const Game: React.FC = () => {
                   size="lg"
                   onClick={handleJumpToParagraph}
                   className="game__input-btn"
+                  aria-label="Przejść do paragrafu"
                 >
                   PRZEJDŹ
                 </Button>
               </div>
               {game.state.error && (
-                <p className="game__error">{game.state.error}</p>
+                <p id="input-error" className="game__error" role="alert">
+                  {game.state.error}
+                </p>
               )}
             </div>
 
@@ -218,7 +242,7 @@ export const Game: React.FC = () => {
           </section>
         ) : (
           /* PARAGRAPH MODE - Show paragraph */
-          <section className="game__paragraph-section">
+          <section className="game__paragraph-section" aria-label="Treść paragrafu">
             {currentParagraph ? (
               <ParagraphDisplay
                 paragraph={currentParagraph}
@@ -227,7 +251,9 @@ export const Game: React.FC = () => {
                 onBack={handleBackToInput}
               />
             ) : (
-              <p className="game__error-text">Paragraf nie znaleziony</p>
+              <p className="game__error-text" role="alert">
+                Paragraf nie znaleziony
+              </p>
             )}
           </section>
         )}
