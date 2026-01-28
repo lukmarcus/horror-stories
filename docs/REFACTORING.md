@@ -150,23 +150,24 @@ This document tracks proposed refactoring improvements identified during v0.0.6 
 
 **Recommended Action:**
 
-- [ ] Delete or empty `src/index.css` - use only `src/styles/global.css`
-- [ ] Update `src/main.tsx` to import `src/styles/global.css` instead of `src/index.css`
-- [ ] Create `src/styles/pages/` subfolder and move page-level CSS there
-  - `src/styles/pages/game.css` (move from src/pages/Game.css)
-  - `src/styles/pages/home.css` (move from src/pages/Home.css)
-  - etc.
-- [ ] Update import statements in page components
-- [ ] Keep component CSS colocated (current structure is good)
+- [x] Delete or empty `src/index.css` - use only `src/styles/global.css`
+- [x] Create `src/styles/pages/` subfolder and move page-level CSS there
+  - [x] `src/styles/pages/game.css` (move from src/pages/Game.css)
+  - [x] `src/styles/pages/home.css` (move from src/pages/Home.css)
+  - [x] `src/styles/pages/about.css` (move from src/pages/About.css)
+  - [x] `src/styles/pages/instructions.css` (move from src/pages/Instructions.css)
+  - [x] `src/styles/pages/scenarios-list.css` (move from src/pages/ScenariosList.css)
+- [x] Update import statements in page components
+- [x] Keep component CSS colocated (current structure is good)
 
 **Benefits:**
 
-- Single source of truth for global styles
-- Better organization of styles by layer (variables → global → pages → components)
-- Easier to maintain design system
-- Follows design system best practices
+- [x] Single source of truth for global styles
+- [x] Better organization of styles by layer (variables → global → pages → components)
+- [x] Easier to maintain design system
+- [x] Follows design system best practices
 
-**Recommendation:** **ADD TO PRIORITY 2** - moderate effort (10 min), good organizational benefit
+**Status:** ✅ **COMPLETED in v0.0.6**
 
 ---
 
@@ -270,18 +271,19 @@ Update `vitest.config.ts` to search `/tests` directory instead.
    - ✅ Update validation.ts to work with new Scenario structure
    - ✅ Run tests - 38 passing
 
-3. **Step 3:** Extract data (10 min)
-   - Create `src/data/scenarios.ts`
-   - Move hardcoded data
-   - Update Game.tsx imports
-   - Run tests
+3. ✅ **Step 3:** Extract data (10 min)
+   - ✅ Create `src/data/scenarios.ts`
+   - ✅ Move hardcoded data from Game.tsx
+   - ✅ Update Game.tsx imports
+   - ✅ Run tests - 38 passing
 
-4. **Step 4:** Create game logic utilities (10 min)
-   - Create `src/utils/gameLogic.ts`
-   - Extract accessibility logic
-   - Add tests
-   - Update Game.tsx
-   - Run tests
+4. ✅ **Step 4:** Create game logic utilities (10 min)
+   - ✅ Create `src/utils/gameLogic.ts` with:
+     - ✅ `checkParagraphAccessibility()` - Check if paragraph is accessible
+     - ✅ `getAccessibleSources()` - Get sources for non-direct paragraphs
+     - ✅ `validateParagraphId()` - Validate paragraph ID input
+   - ✅ Create `src/utils/gameLogic.test.ts` with 10 tests
+   - ✅ Total tests increased from 38 to 48 passing
 
 **PRIORITY 2 (15 min total):** 5. **Step 5:** Reorganize CSS (10 min)
 
