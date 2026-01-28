@@ -285,18 +285,20 @@ Update `vitest.config.ts` to search `/tests` directory instead.
    - ✅ Create `src/utils/gameLogic.test.ts` with 10 tests
    - ✅ Total tests increased from 38 to 48 passing
 
-**PRIORITY 2 (15 min total):** 5. **Step 5:** Reorganize CSS (10 min)
+**PRIORITY 2 (15 min total):** 
+5. ✅ **Step 5:** Reorganize CSS (10 min)
+   - ✅ Created `src/styles/pages/` subfolder
+   - ✅ Moved all page-level CSS files to src/styles/pages/
+   - ✅ Deleted duplicate `src/index.css`
+   - ✅ Updated all page component imports
+   - ✅ Run tests - 48 passing
 
-- Delete/empty `src/index.css`
-- Update `src/main.tsx` import
-- Create `src/styles/pages/` folder
-- Move page-level CSS files
-- Update page component imports
-- Run tests
-
-6. **Step 6:** Update documentation (5 min)
-   - Update README.md
-   - Final commit
+6. ✅ **Step 6:** Update documentation (5 min)
+   - ✅ Updated README.md with v0.0.6 version
+   - ✅ Added detailed project structure with descriptions
+   - ✅ Added "Architektura" section explaining separation of concerns
+   - ✅ Added key features documentation
+   - ✅ Updated REFACTORING.md checklist
 
 ---
 
