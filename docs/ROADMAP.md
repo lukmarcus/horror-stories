@@ -6,24 +6,63 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.6 - Walidacja & Error Handling
+## Milestone v0.0.7 - Spis Przedmiotów
 
 ### Zakres
 
-- Walidacja paragrafów (numery, linki, pola obowiązkowe)
-- Error boundaries (React)
-- Komunikaty błędów dla użytkownika
-- Graceful degradation dla brakujących assetów
+- Tracking przedmiotów z tagów `[item:nazwa]` w tekście
+- Panel wyświetlający zebrane przedmioty
+- Licznik przedmiotów w grze
 
-### Ukończone
+### Do przygotowania
 
-- ✅ **Paragraph accessibility system** - isDirect/accessibleFrom properties
-- ✅ **Warning dialog** - informacja o niedostępności paragrafu
-- ✅ **Tests** - accessibility logic tests
+- ⏳ Item tracking system
+- ⏳ Items panel component
+- ⏳ Tests dla item logic
 
 ### Status
 
-- ✅ **COMPLETED** - v0.0.6 released
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.0.8 - Pełny Scenariusz & JSON Struktura
+
+### Zakres
+
+- Tworzenie jednego kompletnego, porządnego scenariusza
+- Opracowanie i dokumentacja struktury JSON
+- Walidacja formatu scenariusza
+
+### Do przygotowania
+
+- ⏳ Pełny scenariusz z 20+ paragrafami
+- ⏳ Dokumentacja JSON schema
+- ⏳ Validator dla scenariuszy
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.0.9 - Export/Import Scenariuszy
+
+### Zakres
+
+- Wczytywanie custom scenariuszy w formacie JSON
+- Walidacja i error handling
+- Obsługa brakujących lub błędnych pól
+
+### Do przygotowania
+
+- ⏳ File upload component
+- ⏳ JSON parser i validator
+- ⏳ Error messages dla invalid JSON
+
+### Status
+
+- ⏳ Nie rozpoczęte
 
 ---
 
@@ -73,4 +112,4 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-**Ostatnia aktualizacja:** 2026-01-25
+**Ostatnia aktualizacja:** 2026-01-29
