@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/common";
-import "./ScenariosList.css";
+import "../styles/pages/scenarios-list.css";
 
 interface Scenario {
   id: string;

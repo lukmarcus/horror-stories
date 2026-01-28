@@ -7,6 +7,25 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.6] - 2026-01-28
+
+### Dodane
+
+- Lepsze komunikaty błędów - wyszczególnienie dostępnych numerów paragrafów
+- Wsparcie dla screen readers i asystentów dostępu
+
+### Zmieniono
+
+- Bardziej stabilna aplikacja - obsługiwanie błędów bez crash'u
+- Lepsze etykiety dla przycisków i pól wejściowych
+
+### Poprawiono
+
+- 26 testów edge case scenariuszy - większa niezawodność gry
+- Obsługa granicznych przypadków logiki kostki i warunków paragrafów
+
+---
+
 ## [0.0.5] - 2026-01-27
 
 ### Dodane
@@ -90,4 +109,4 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-**Ostatnia aktualizacja:** 2026-01-25
+**Ostatnia aktualizacja:** 2026-01-28

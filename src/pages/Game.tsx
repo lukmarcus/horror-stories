@@ -1,196 +1,63 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams, Link } from "react-router-dom";
+import { SCENARIOS, PARAGRAPHS } from "../data/scenarios";
 import { Button } from "../components/common";
-import { ParagraphText } from "../components/ParagraphText/ParagraphText";
-import { DiceRoller } from "../components/DiceRoller/DiceRoller";
-import { ConditionalChoice } from "../components/ConditionalChoice/ConditionalChoice";
-import "./Game.css";
+import { ParagraphDisplay } from "../components/ParagraphDisplay";
+import { useGame } from "../hooks/useGame";
+import { useGameActions } from "../hooks/useGameActions";
+import "../styles/pages/game.css";
 
-interface Choice {
-  id: string;
-  text: string;
-  nextParagraphId?: string;
-  isConditional?: boolean;
-  yesText?: string;
-  noText?: string;
-  yesNextId?: string;
-  noNextId?: string;
-}
-
-interface Paragraph {
-  id: string;
-  text: string;
-  choices?: Choice[];
-  image?: string;
-  audio?: string;
-  hasDiceRoll?: boolean;
-  diceRollDescription?: string;
-  diceResult?: {
-    threshold: number;
-    successText: string;
-    successNextId: string;
-    failText: string;
-    failNextId: string;
-  };
-}
+const SETUP_STEPS = [
+  "Gracze siedzą wokół stołu",
+  "Każdy gracz ma kartkę i długopis",
+  "Położyć planszę główną w środku",
+  "Mieszać karty odkryć",
+  "Jesteś gotowy! Zacznij przygodę",
+];
 
 export const Game: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [currentParagraphId, setCurrentParagraphId] = useState<string | null>(
-    null,
-  );
-  const [inputValue, setInputValue] = useState("");
-  const [showSetup, setShowSetup] = useState(false);
-  const [error, setError] = useState("");
-  const [lastDiceResult, setLastDiceResult] = useState<number | null>(null);
+  const game = useGame();
+  const gameActions = useGameActions();
 
-  // Scenario data
-  const scenarios: Record<
-    string,
-    {
-      title: string;
-      description: string;
-      playerCount: string;
-      duration: string;
-    }
-  > = {
-    "1": {
-      title: "Tajemna Biblioteka",
-      description: "Zaginęła księga starożytnych zaklęć. Musisz ją znaleźć.",
-      playerCount: "2-4 graczy",
-      duration: "45 min",
-    },
-    "2": {
-      title: "Opuszczony Szpital",
-      description: "Budynek pełen tajemnic czeka na odkrycie.",
-      playerCount: "2-4 graczy",
-      duration: "60 min",
-    },
-    "3": {
-      title: "Nocny Koszmar",
-      description: "Czy potrafisz przetrwać noc w domu nawiedzonym?",
-      playerCount: "2-6 graczy",
-      duration: "90 min",
-    },
-  };
+  // Use imported game data
+  const scenarios = SCENARIOS;
+  const paragraphs = PARAGRAPHS;
 
   const currentScenario = scenarios[id || "1"];
-
-  // Mock paragraphs
-  const paragraphs: Record<string, Paragraph> = {
-    "1": {
-      id: "1",
-      text: "Budzisz się w ciemnym pokoju. Słychać dziwne szmery dobiegające ze ścian. Twoje oczy powoli przyzwyczajają się do mroku. Widzisz [item:drzwi] — każde z nich mogłoby być wyjściem. Ale czujesz, że nie wszystko tutaj jest bezpieczne.",
-      choices: [
-        { id: "c1", text: "Podejdź do drzwi po lewej", nextParagraphId: "2" },
-        { id: "c2", text: "Podejdź do drzwi pośrodku", nextParagraphId: "3" },
-        { id: "c3", text: "Podejdź do drzwi po prawej", nextParagraphId: "4" },
-      ],
-    },
-    "2": {
-      id: "2",
-      text: "Za drzwiami po lewej czeka schłodzona klatka schodowa. Luz powietrza zmraża Ci skórę. W oddali słychać [figure:tajemnicze kroki]... czy to ty? Czy [figure:ktoś inny] jest w tym budynku? Na ścianie widać [item:starą notatkę].",
-      choices: [
-        { id: "c4", text: "Wejdź na schody", nextParagraphId: "5" },
-        { id: "c5", text: "Wróć i wybierz inne drzwi", nextParagraphId: "1" },
-      ],
-    },
-    "3": {
-      id: "3",
-      text: "Środkowe drzwi otwierają się na jasną bibliotekę. Półki książek sięgają sufitu. Pamiętasz — przyszłeś tutaj szukać [item:zaginionej księgi]. Czy ona jest tutaj? Na biurku widać [token:klucz] i [board:mapę starą].",
-      choices: [
-        { id: "c6", text: "Przeszukaj półki", nextParagraphId: "6" },
-        { id: "c7", text: "Sprawdź zbliżone się kroki", nextParagraphId: "2" },
-      ],
-    },
-    "4": {
-      id: "4",
-      text: "Prawe drzwi prowadzą do oszołomującego widoku — znaleźliście się na dachu budynku. [figure:Miasto] rozciąga się poniżej, a [board:dach] jest całkowicie pusty. Chyba że [figure:coś się rusza] w cieniu...",
-      choices: [
-        { id: "c8", text: "Przejdź po dachu", nextParagraphId: "5" },
-        { id: "c9", text: "Wróć do pokoju", nextParagraphId: "1" },
-      ],
-    },
-    "5": {
-      id: "5",
-      text: "Koniec scenariusza: Nie przetrwałeś. Schody zawalają się pod Twoimi nogami.",
-    },
-    "6": {
-      id: "6",
-      text: "🎉 Znalazłeś [item:zaginioną księgę]! Twoja przygoda dobiegła końca — i to zwycięskiego! [figure:Księga] lśni w świetle, a jej karty zawierają [board:tajemne znaki].",
-    },
-    "7": {
-      id: "7",
-      text: "Stoisz przed [item:tajemniczą skrzynią]. Na jej wieczku widnieje [figure:dziwny symbol]... Aby ją otworzyć, musisz rzucić kostką i uzyskać wynik wyższy niż 3.",
-      hasDiceRoll: true,
-      diceRollDescription: "Rzuć kostką aby spróbować otworzyć skrzynię",
-      diceResult: {
-        threshold: 3,
-        successText:
-          "🎉 Udało Ci się! Skrzynia otworzyła się ze zaskakującym świstem powietrza.",
-        successNextId: "8",
-        failText:
-          "❌ Nie tym razem! Skrzynia herself się zatrzasnęła, prawie przytłaczając Ci palce.",
-        failNextId: "9",
-      },
-    },
-    "8": {
-      id: "8",
-      text: "W środku skrzyni znajdujesz [item:stary zwój pergaminu] z notatkami o [figure:zakaźnym obrzędzie]... To może być [item:klucz] do zrozumienia tego budynku!",
-      choices: [
-        { id: "c11", text: "Zabierz zwój i wróć", nextParagraphId: "3" },
-        { id: "c12", text: "Przeczytaj zwój dokładnie", nextParagraphId: "6" },
-      ],
-    },
-    "9": {
-      id: "9",
-      text: "Mechanizm zabezpieczający w skrzyni został uruchomiony! Słychać hałas z wnętrza budynku... [figure:coś się rusza]. Powinieneś stąd wyjść! Szybko!",
-      choices: [
-        {
-          id: "c15",
-          text: "Czy posiadasz [item:pergamin] z instrukcjami?",
-          isConditional: true,
-          yesText: "✓ Pergamin! Szybko czytasz instrukcję... Znalazłeś ukryty przejście!",
-          noText: "✗ Nie masz pergaminu. Panika! Biegniesz na oślep.",
-          yesNextId: "10",
-          noNextId: "11",
-        },
-      ],
-    },
-    "10": {
-      id: "10",
-      text: "Dzięki instrukcjom z pergaminu znajdujesz ukryte przejście w ścianie. Przechodzisz przez niego i trafiasz do starego tunelu... Ucieka! 🎉",
-      choices: [
-        { id: "c16", text: "Wróć do biblioteki", nextParagraphId: "3" },
-      ],
-    },
-    "11": {
-      id: "11",
-      text: "Biegniesz na oślep przez korytarze. Przypadkowo trafiasz na schody prowadzące na dach. Widok jest oszołamiający, ale również bardzo niebezpieczny... ☠️",
-      choices: [
-        { id: "c17", text: "Wróć na dół", nextParagraphId: "3" },
-      ],
-    },
-  };
-
-  const currentParagraph = paragraphs[currentParagraphId || ""];
+  const currentParagraph = game.state.currentParagraphId
+    ? paragraphs[game.state.currentParagraphId]
+    : null;
 
   const handleJumpToParagraph = () => {
-    const paragraphId = inputValue.trim();
-    setError("");
+    game.clearError();
 
-    if (!paragraphId) {
-      setError("Wpisz numer paragrafu");
+    const result = gameActions.jumpToParagraph(game.state.inputValue, paragraphs);
+    if (!result.valid) {
+      game.setError(result.error || "Błąd");
       return;
     }
 
-    if (!paragraphs[paragraphId]) {
-      setError(`Paragraf #${paragraphId} nie istnieje`);
+    if (result.needsWarning && result.pendingId) {
+      game.showWarning(result.pendingId);
       return;
     }
 
-    setCurrentParagraphId(paragraphId);
-    setInputValue("");
+    const nextId = game.state.inputValue.trim();
+    game.setParagraph(nextId);
+    game.setInput("");
+  };
+
+  const handleConfirmAccessibility = () => {
+    if (game.state.pendingParagraphId) {
+      game.setParagraph(game.state.pendingParagraphId);
+      game.setInput("");
+    }
+    game.closeWarning();
+  };
+
+  const handleCancelAccessibility = () => {
+    game.closeWarning();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -200,47 +67,101 @@ export const Game: React.FC = () => {
   };
 
   const handleBackToInput = () => {
-    setCurrentParagraphId(null);
-    setInputValue("");
-    setError("");
+    game.reset();
   };
 
-  const setupSteps = [
-    "Gracze siedzą wokół stołu",
-    "Każdy gracz ma kartkę i długopis",
-    "Położyć planszę główną w środku",
-    "Mieszać karty odkryć",
-    "Jesteś gotowy! Zacznij przygodę",
-  ];
+  const handleChoice = (nextId: string) => {
+    game.setParagraph(nextId);
+    game.clearDiceResult();
+  };
 
   return (
     <main className="game">
-      {/* Top Bar - Only in Paragraph Mode */}
-      {currentParagraphId && (
-        <div className="game__top-bar">
-          <div className="game__top-bar-content">
-            <Button variant="outline" size="sm" onClick={handleBackToInput}>
-              ← Wróć
-            </Button>
-            <span className="game__scenario-info">Scenariusz #{id}</span>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowSetup(!showSetup)}
+      {/* Accessibility Warning Dialog */}
+      {game.state.showAccessibilityWarning && game.state.pendingParagraphId && (
+        <div
+          className="game__dialog-overlay"
+          role="presentation"
+          aria-hidden={!game.state.showAccessibilityWarning}
+        >
+          <dialog
+            className="game__dialog"
+            open={game.state.showAccessibilityWarning}
+            aria-labelledby="accessibility-dialog-title"
+            aria-modal="true"
+          >
+            <h2 id="accessibility-dialog-title" className="game__dialog-title">
+              Uwaga!
+            </h2>
+            <p className="game__dialog-text">
+              Paragraf #{game.state.pendingParagraphId} jest dostępny tylko z:
+            </p>
+            <div
+              className="game__dialog-sources"
+              aria-label="Dostępne źródła paragrafu"
             >
-              {showSetup ? "Zamknij Setup" : "⚙️ Setup"}
-            </Button>
-          </div>
+              {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.join(", ")}
+            </div>
+            <p className="game__dialog-question">
+              Czy chcesz mimo to przejść do tego paragrafu?
+            </p>
+            <div className="game__dialog-buttons">
+              <Button
+                variant="primary"
+                size="md"
+                onClick={handleConfirmAccessibility}
+              >
+                Tak
+              </Button>
+              <Button
+                variant="secondary"
+                size="md"
+                onClick={handleCancelAccessibility}
+              >
+                Nie
+              </Button>
+            </div>
+          </dialog>
         </div>
       )}
 
+      {/* Top Bar - Only in Paragraph Mode */}
+      {game.state.currentParagraphId && (
+        <nav className="game__top-bar" aria-label="Nawigacja gry">
+          <div className="game__top-bar-content">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleBackToInput}
+              aria-label="Powrót do wyboru paragrafu"
+            >
+              ← Wróć
+            </Button>
+            <span
+              className="game__scenario-info"
+              aria-current="page"
+            >
+              Scenariusz #{id}
+            </span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => game.toggleSetup()}
+              aria-label={game.state.showSetup ? "Zamknij instrukcje" : "Pokaż instrukcje"}
+            >
+              {game.state.showSetup ? "Zamknij Setup" : "⚙️ Setup"}
+            </Button>
+          </div>
+        </nav>
+      )}
+
       {/* Setup Section */}
-      {showSetup && (
+      {game.state.showSetup && (
         <section className="game__setup-section">
           <div className="game__setup-container">
             <h2 className="game__setup-title">Ustawienie początkowe</h2>
             <ol className="game__setup-list">
-              {setupSteps.map((step, idx) => (
+              {SETUP_STEPS.map((step, idx) => (
                 <li key={idx} className="game__setup-item">
                   {step}
                 </li>
@@ -249,7 +170,7 @@ export const Game: React.FC = () => {
             <Button
               variant="primary"
               size="md"
-              onClick={() => setShowSetup(false)}
+              onClick={() => game.toggleSetup()}
             >
               Gotów! Zacznij grać
             </Button>
@@ -260,8 +181,8 @@ export const Game: React.FC = () => {
       {/* Container */}
       <div className="game__container">
         {/* INPUT MODE - Show input panel */}
-        {!currentParagraphId ? (
-          <section className="game__input-panel">
+        {!game.state.currentParagraphId ? (
+          <section className="game__input-panel" aria-label="Panel wpisywania paragrafu">
             <div className="game__input-header">
               <h1 className="game__scenario-title">
                 {currentScenario?.title || "Scenariusz"}
@@ -275,11 +196,14 @@ export const Game: React.FC = () => {
               <div className="game__input-group">
                 <input
                   type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
+                  value={game.state.inputValue}
+                  onChange={(e) => game.setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder=""
+                  placeholder="np. 1, 2, 3..."
                   className="game__input"
+                  aria-label="Numer paragrafu do odwiedzenia"
+                  aria-describedby={game.state.error ? "input-error" : undefined}
+                  aria-invalid={!!game.state.error}
                   autoFocus
                 />
                 <Button
@@ -287,11 +211,16 @@ export const Game: React.FC = () => {
                   size="lg"
                   onClick={handleJumpToParagraph}
                   className="game__input-btn"
+                  aria-label="Przejść do paragrafu"
                 >
                   PRZEJDŹ
                 </Button>
               </div>
-              {error && <p className="game__error">{error}</p>}
+              {game.state.error && (
+                <p id="input-error" className="game__error" role="alert">
+                  {game.state.error}
+                </p>
+              )}
             </div>
 
             {/* Options */}
@@ -299,10 +228,10 @@ export const Game: React.FC = () => {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setShowSetup(!showSetup)}
+                onClick={() => game.toggleSetup()}
                 className="game__option-btn"
               >
-                ⚙️ {showSetup ? "Zamknij Setup" : "Przygotuj Scenariusz"}
+                ⚙️ {game.state.showSetup ? "Zamknij Setup" : "Przygotuj Scenariusz"}
               </Button>
               <Link to="/scenarios" className="game__option-link">
                 <Button variant="secondary" size="sm">
@@ -312,114 +241,19 @@ export const Game: React.FC = () => {
             </div>
           </section>
         ) : (
-          /* PARAGRAPH MODE - Show paragraph text and choices */
-          <section className="game__paragraph-section">
-            <div className="game__text-box">
-              {currentParagraph ? (
-                <ParagraphText
-                  text={currentParagraph.text}
-                  className="game__paragraph-text"
-                />
-              ) : (
-                <p className="game__error-text">Paragraf nie znaleziony</p>
-              )}
-            </div>
-
-            {/* Dice Roller */}
-            {currentParagraph?.hasDiceRoll && (
-              <div className="game__dice-section">
-                <p className="game__dice-instruction">
-                  {currentParagraph.diceRollDescription}
-                </p>
-                <DiceRoller
-                  onRoll={(result) => {
-                    setLastDiceResult(result);
-                  }}
-                  showNextButton={lastDiceResult !== null}
-                  onNext={() => {
-                    // Handle conditional paragraph based on dice result
-                    if (
-                      currentParagraph.diceResult &&
-                      currentParagraphId === "7" &&
-                      lastDiceResult !== null
-                    ) {
-                      const { threshold, successNextId, failNextId } =
-                        currentParagraph.diceResult;
-                      const nextId =
-                        lastDiceResult > threshold ? successNextId : failNextId;
-                      setCurrentParagraphId(nextId);
-                      setLastDiceResult(null);
-                    }
-                  }}
-                />
-              </div>
-            )}
-
-            {/* Dice Result Message */}
-            {lastDiceResult !== null && currentParagraph?.diceResult && (
-              <div
-                className={`game__dice-result-message ${
-                  lastDiceResult > currentParagraph.diceResult.threshold
-                    ? "game__dice-result-message--success"
-                    : "game__dice-result-message--fail"
-                }`}
-              >
-                {lastDiceResult > currentParagraph.diceResult.threshold
-                  ? currentParagraph.diceResult.successText
-                  : currentParagraph.diceResult.failText}
-              </div>
-            )}
-
-            {/* Choices */}
-            {currentParagraph?.choices &&
-              currentParagraph.choices.length > 0 && (
-                <div className="game__choices">
-                  {currentParagraph.choices.map((choice) =>
-                    choice.isConditional ? (
-                      <ConditionalChoice
-                        key={choice.id}
-                        choice={choice}
-                        onYes={() =>
-                          choice.yesNextId &&
-                          setCurrentParagraphId(choice.yesNextId)
-                        }
-                        onNo={() =>
-                          choice.noNextId &&
-                          setCurrentParagraphId(choice.noNextId)
-                        }
-                      />
-                    ) : (
-                      <Button
-                        key={choice.id}
-                        variant="primary"
-                        size="md"
-                        onClick={() => {
-                          if (choice.nextParagraphId) {
-                            setCurrentParagraphId(choice.nextParagraphId);
-                          }
-                        }}
-                        className="game__choice-btn"
-                      >
-                        {choice.text}
-                      </Button>
-                    ),
-                  )}
-                </div>
-              )}
-
-            {/* Dead End - No choices */}
-            {(!currentParagraph?.choices ||
-              currentParagraph.choices.length === 0) && (
-              <div className="game__dead-end">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  onClick={handleBackToInput}
-                  className="game__dead-end-btn"
-                >
-                  Wróć do scenariusza
-                </Button>
-              </div>
+          /* PARAGRAPH MODE - Show paragraph */
+          <section className="game__paragraph-section" aria-label="Treść paragrafu">
+            {currentParagraph ? (
+              <ParagraphDisplay
+                paragraph={currentParagraph}
+                lastDiceResult={game.state.lastDiceResult}
+                onChoice={handleChoice}
+                onBack={handleBackToInput}
+              />
+            ) : (
+              <p className="game__error-text" role="alert">
+                Paragraf nie znaleziony
+              </p>
             )}
           </section>
         )}
@@ -427,3 +261,4 @@ export const Game: React.FC = () => {
     </main>
   );
 };
+

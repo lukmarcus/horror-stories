@@ -1,44 +1,63 @@
 /**
  * Horror Stories - Type Definitions
+ * Central source of truth for all application types
  */
 
+/**
+ * Single choice option in a paragraph
+ */
+export interface Choice {
+  id: string;
+  text: string;
+  nextParagraphId?: string;
+  isConditional?: boolean;
+  yesText?: string;
+  noText?: string;
+  yesNextId?: string;
+  noNextId?: string;
+}
+
+/**
+ * Dice roll result configuration for conditional branching
+ */
+export interface DiceResult {
+  threshold: number;
+  successText: string;
+  successNextId: string;
+  failText: string;
+  failNextId: string;
+}
+
+/**
+ * Single paragraph/node in the story tree
+ */
 export interface Paragraph {
   id: string;
   text: string;
   choices?: Choice[];
   image?: string;
   audio?: string;
+  hasDiceRoll?: boolean;
+  diceRollDescription?: string;
+  diceResult?: DiceResult;
+  isDirect?: boolean;
+  accessibleFrom?: string[];
 }
 
-export interface Choice {
-  id: string;
-  text: string;
-  nextParagraphId: string;
-  diceRoll?: DiceRequirement;
-}
-
-export interface DiceRequirement {
-  dice: number;
-  sides: number;
-  minValue: number;
-  successParagraphId: string;
-  failureParagraphId: string;
-}
-
+/**
+ * Game scenario containing title, description, and game data
+ */
 export interface Scenario {
   id: string;
   title: string;
   description: string;
-  version: string;
-  author?: string;
-  difficulty: "Easy" | "Medium" | "Hard";
-  maxPlayers: number;
-  estimatedDuration: number; // in minutes
-  paragraphs: Paragraph[];
-  startingParagraphId: string;
-  image?: string;
+  playerCount: string;
+  duration: string;
 }
 
+/**
+ * Game state tracking during gameplay
+ */
 export interface GameState {
   scenarioId: string;
   currentParagraphId: string;

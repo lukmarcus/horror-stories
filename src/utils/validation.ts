@@ -8,39 +8,12 @@ export function validateScenario(scenario: Scenario): {
 
   if (!scenario.id) errors.push("Scenario must have an ID");
   if (!scenario.title) errors.push("Scenario must have a title");
-  if (!scenario.paragraphs || scenario.paragraphs.length === 0) {
-    errors.push("Scenario must have at least one paragraph");
-  }
-  if (!scenario.startingParagraphId)
-    errors.push("Scenario must specify a starting paragraph");
-
-  // Validate that starting paragraph exists
-  if (scenario.paragraphs) {
-    const startParagraph = scenario.paragraphs.find(
-      (p) => p.id === scenario.startingParagraphId,
-    );
-    if (!startParagraph) {
-      errors.push(
-        `Starting paragraph with ID "${scenario.startingParagraphId}" not found`,
-      );
-    }
-
-    // Validate all paragraph references
-    scenario.paragraphs.forEach((paragraph) => {
-      if (paragraph.choices) {
-        paragraph.choices.forEach((choice) => {
-          const targetParagraph = scenario.paragraphs.find(
-            (p) => p.id === choice.nextParagraphId,
-          );
-          if (!targetParagraph) {
-            errors.push(
-              `Paragraph "${paragraph.id}" choice "${choice.id}" references non-existent paragraph "${choice.nextParagraphId}"`,
-            );
-          }
-        });
-      }
-    });
-  }
+  if (!scenario.description)
+    errors.push("Scenario must have a description");
+  if (!scenario.playerCount)
+    errors.push("Scenario must specify player count");
+  if (!scenario.duration)
+    errors.push("Scenario must have estimated duration");
 
   return {
     valid: errors.length === 0,

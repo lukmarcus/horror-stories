@@ -5,7 +5,7 @@ Interaktywna aplikacja webowa dla gry planszowej Horror Stories, stworzona w Rea
 ## Informacje o projekcie
 
 - **Nazwa**: Horror Stories
-- **Wersja**: 0.0.0
+- **Wersja**: 0.0.6
 - **Autor**: Marek Szumny
 - **Licencja**: MIT
 - **Opis**: Aplikacja towarzysząca grze planszowej Horror Stories
@@ -22,28 +22,58 @@ Interaktywna aplikacja webowa dla gry planszowej Horror Stories, stworzona w Rea
 
 ## Stack technologiczny
 
-- **Frontend**: React 18
+- **Frontend**: React 18+
 - **Narzędzie budowania**: Vite
 - **Język**: TypeScript (tryb strict)
 - **Routing**: React Router v7
+- **Testowanie**: Vitest + jsdom
 - **Style**: CSS z CSS Variables
 - **Menadżer pakietów**: npm
+
+## Architektura
+
+### Separation of Concerns
+
+Projekt jest zorganizowany wg. czytelnych warstw:
+
+- **types/** - Centralne definicje typów (Scenario, Paragraph, Choice, DiceResult)
+- **data/** - Dane aplikacji (SCENARIOS, PARAGRAPHS constants)
+- **components/** - Komponenty React (Business + UI components)
+- **pages/** - Strony/routy (Home, Game, ScenariosList, etc.)
+- **utils/** - Logika biznesowa i helpery (gameLogic, paragraphParser, paragraphAccessibility)
+- **styles/** - CSS organizowany po warstwach (global, variables, pages)
+
+### Kluczowe cechy
+
+- **Type Safety**: Wszystkie typy w TypeScript strict mode
+- **Game Logic**: Oddzielona od komponentów (src/utils/gameLogic.ts)
+- **Data-driven**: Dane gry w src/data/scenarios.ts, nie w komponentach
+- **Accessible**: Walidacja dostępności paragrafów z warningami użytkownika
+- **Tested**: 48+ testów pokrywających logikę gry, komponenty i utility functions
 
 ## Struktura projektu
 
 ```
 horror-stories/
 ├── src/
-│   ├── components/      # Komponenty React
-│   ├── pages/           # Strony (routing)
-│   ├── types/           # Definicje TypeScript
-│   ├── utils/           # Funkcje pomocnicze
+│   ├── components/      # Komponenty React (Button, Header, Footer, DiceRoller, ConditionalChoice, etc.)
+│   ├── pages/           # Strony (Home, ScenariosList, Game, Instructions, About)
+│   ├── types/           # Definicje TypeScript (Scenario, Paragraph, Choice, DiceResult, etc.)
+│   ├── data/            # Dane gry (SCENARIOS, PARAGRAPHS)
+│   ├── utils/           # Funkcje pomocnicze (paragraphParser, gameLogic, paragraphAccessibility, validation)
 │   ├── styles/          # Globalne style i zmienne CSS
+│   │   ├── variables.css    # CSS custom properties
+│   │   ├── global.css       # Globalne style i reset
+│   │   └── pages/           # Style specificzne dla stron
 │   ├── App.tsx          # Główny komponent
 │   └── main.tsx         # Punkt wejścia
 ├── public/
-│   └── scenarios/       # Pliki JSON scenariuszy
+│   └── scenarios/       # Pliki JSON scenariuszy (przyszłe)
 ├── docs/                # Dokumentacja projektu
+│   ├── SPECIFICATION.md # Specyfikacja funkcjonalności
+│   ├── ROADMAP.md       # Plan rozwoju
+│   ├── CHANGELOG.md     # Historia zmian
+│   └── REFACTORING.md   # Plan refaktoringu
 └── package.json         # Konfiguracja npm
 ```
 
