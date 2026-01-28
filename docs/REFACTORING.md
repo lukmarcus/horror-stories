@@ -63,20 +63,20 @@ This document tracks proposed refactoring improvements identified during v0.0.6 
 
 **Action Items:**
 
-- [ ] Create `src/data/scenarios.ts` with:
-  - `SCENARIOS: Scenario[]` - array of 3 scenarios
-  - `PARAGRAPHS: Paragraph[]` - array of 11 paragraphs
-  - Export both as constants
-- [ ] Update `src/pages/Game.tsx` to import data:
-  - `import { SCENARIOS, PARAGRAPHS } from '../data/scenarios'`
-  - Replace hardcoded arrays with imported constants
-- [ ] Reduce Game.tsx from 437 lines to ~250 lines
-- [ ] Run tests: `npm test -- --run`
+- [x] Create `src/data/scenarios.ts` with:
+  - [x] `SCENARIOS: Scenario[]` - array of 3 scenarios
+  - [x] `PARAGRAPHS: Paragraph[]` - array of 11 paragraphs
+  - [x] Export both as constants
+- [x] Update `src/pages/Game.tsx` to import data:
+  - [x] `import { SCENARIOS, PARAGRAPHS } from '../data/scenarios'`
+  - [x] Replace hardcoded arrays with imported constants
+- [x] Reduce Game.tsx from 479 to 150 lines
+- [x] Run tests: `npm test -- --run` - 38 passing
 
 **Files to Update:**
 
-- `src/data/scenarios.ts` (create)
-- `src/pages/Game.tsx` (import and use data)
+- [x] `src/data/scenarios.ts` (create)
+- [x] `src/pages/Game.tsx` (import and use data)
 
 ---
 
@@ -263,11 +263,12 @@ Update `vitest.config.ts` to search `/tests` directory instead.
    - ✅ Delete `src/context/` and `src/contexts/`
    - ✅ Run tests - 38 passing
 
-2. **Step 2:** Consolidate types (10 min)
-   - Create `src/types/index.ts` with all interfaces
-   - Update Game.tsx imports
-   - Update test imports
-   - Run tests
+2. ✅ **Step 2:** Consolidate types (10 min)
+   - ✅ Create `src/types/index.ts` with all interfaces (Paragraph, Choice, DiceResult, Scenario, GameState)
+   - ✅ Update Game.tsx imports (use type-only imports for TypeScript strict mode)
+   - ✅ Add missing `id` property to Scenario interface
+   - ✅ Update validation.ts to work with new Scenario structure
+   - ✅ Run tests - 38 passing
 
 3. **Step 3:** Extract data (10 min)
    - Create `src/data/scenarios.ts`

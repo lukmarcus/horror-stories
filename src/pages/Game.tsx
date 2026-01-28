@@ -5,7 +5,7 @@ import { Button } from "../components/common";
 import { ParagraphText } from "../components/ParagraphText/ParagraphText";
 import { DiceRoller } from "../components/DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../components/ConditionalChoice/ConditionalChoice";
-import "./Game.css";
+import "../styles/pages/game.css";
 
 export const Game: React.FC = () => {
   const { id } = useParams<{ id: string }>();

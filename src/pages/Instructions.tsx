@@ -1,5 +1,5 @@
 import React from "react";
-import "./Instructions.css";
+import "../styles/pages/instructions.css";
 
 const Instructions: React.FC = () => {
   return (
