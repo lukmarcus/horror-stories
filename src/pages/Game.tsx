@@ -24,7 +24,7 @@ export const Game: React.FC = () => {
   const scenarios = SCENARIOS;
   const paragraphs = PARAGRAPHS;
 
-  const currentScenario = scenarios[id || "1"];
+  const currentScenario = scenarios[id || "droga-donikad"];
   const currentParagraph = game.state.currentParagraphId
     ? paragraphs[game.state.currentParagraphId]
     : null;
@@ -32,7 +32,10 @@ export const Game: React.FC = () => {
   const handleJumpToParagraph = () => {
     game.clearError();
 
-    const result = gameActions.jumpToParagraph(game.state.inputValue, paragraphs);
+    const result = gameActions.jumpToParagraph(
+      game.state.inputValue,
+      paragraphs,
+    );
     if (!result.valid) {
       game.setError(result.error || "Błąd");
       return;
@@ -100,7 +103,9 @@ export const Game: React.FC = () => {
               className="game__dialog-sources"
               aria-label="Dostępne źródła paragrafu"
             >
-              {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.join(", ")}
+              {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.join(
+                ", ",
+              )}
             </div>
             <p className="game__dialog-question">
               Czy chcesz mimo to przejść do tego paragrafu?
@@ -137,17 +142,16 @@ export const Game: React.FC = () => {
             >
               ← Wróć
             </Button>
-            <span
-              className="game__scenario-info"
-              aria-current="page"
-            >
+            <span className="game__scenario-info" aria-current="page">
               Scenariusz #{id}
             </span>
             <Button
               variant="outline"
               size="sm"
               onClick={() => game.toggleSetup()}
-              aria-label={game.state.showSetup ? "Zamknij instrukcje" : "Pokaż instrukcje"}
+              aria-label={
+                game.state.showSetup ? "Zamknij instrukcje" : "Pokaż instrukcje"
+              }
             >
               {game.state.showSetup ? "Zamknij Setup" : "⚙️ Setup"}
             </Button>
@@ -182,7 +186,10 @@ export const Game: React.FC = () => {
       <div className="game__container">
         {/* INPUT MODE - Show input panel */}
         {!game.state.currentParagraphId ? (
-          <section className="game__input-panel" aria-label="Panel wpisywania paragrafu">
+          <section
+            className="game__input-panel"
+            aria-label="Panel wpisywania paragrafu"
+          >
             <div className="game__input-header">
               <h1 className="game__scenario-title">
                 {currentScenario?.title || "Scenariusz"}
@@ -202,7 +209,9 @@ export const Game: React.FC = () => {
                   placeholder="np. 1, 2, 3..."
                   className="game__input"
                   aria-label="Numer paragrafu do odwiedzenia"
-                  aria-describedby={game.state.error ? "input-error" : undefined}
+                  aria-describedby={
+                    game.state.error ? "input-error" : undefined
+                  }
                   aria-invalid={!!game.state.error}
                   autoFocus
                 />
@@ -231,7 +240,10 @@ export const Game: React.FC = () => {
                 onClick={() => game.toggleSetup()}
                 className="game__option-btn"
               >
-                ⚙️ {game.state.showSetup ? "Zamknij Setup" : "Przygotuj Scenariusz"}
+                ⚙️{" "}
+                {game.state.showSetup
+                  ? "Zamknij Setup"
+                  : "Przygotuj Scenariusz"}
               </Button>
               <Link to="/scenarios" className="game__option-link">
                 <Button variant="secondary" size="sm">
@@ -242,7 +254,10 @@ export const Game: React.FC = () => {
           </section>
         ) : (
           /* PARAGRAPH MODE - Show paragraph */
-          <section className="game__paragraph-section" aria-label="Treść paragrafu">
+          <section
+            className="game__paragraph-section"
+            aria-label="Treść paragrafu"
+          >
             {currentParagraph ? (
               <ParagraphDisplay
                 paragraph={currentParagraph}
@@ -261,4 +276,3 @@ export const Game: React.FC = () => {
     </main>
   );
 };
-

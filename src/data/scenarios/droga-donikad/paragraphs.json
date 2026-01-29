@@ -1,14 +1,12 @@
 {
   "paragraphs": [
     {
-      "id": 77,
+      "id": "1",
+      "isDirect": true,
       "text": "[Paragrafy będą dodane tutaj]",
-      "image": null,
       "choices": [],
       "hasDiceRoll": false,
-      "items": [],
-      "isDirect": true,
-      "accessibleFrom": []
+      "items": []
     }
   ]
 }

@@ -53,6 +53,9 @@ export interface Scenario {
   description: string;
   playerCount: string;
   duration: string;
+  characters?: string[];
+  tokens?: Record<string, number>;
+  notes?: string;
 }
 
 /**

@@ -1,0 +1,38 @@
+{
+  "scenarios": [
+    {
+      "id": "droga-donikad",
+      "title": "Droga donikąd",
+      "description": "Jessica budzi się w ciemnym pokoju bez pamięci. Musi znaleźć wyjście i dowiedzieć się co się stało.",
+      "playerCount": "2 graczy",
+      "duration": "120 min",
+      "characters": ["Jessica", "Patrick"],
+      "tokens": {
+        "A": 30,
+        "B": 83
+      },
+      "notes": "drugi gracz dołącza po około 20 min"
+    },
+    {
+      "id": "tajemna-biblioteka",
+      "title": "Tajemna Biblioteka",
+      "description": "Zaginęła księga starożytnych zaklęć. Musisz ją znaleźć.",
+      "playerCount": "2-4 graczy",
+      "duration": "45 min"
+    },
+    {
+      "id": "opuszczony-szpital",
+      "title": "Opuszczony Szpital",
+      "description": "Budynek pełen tajemnic czeka na odkrycie.",
+      "playerCount": "2-4 graczy",
+      "duration": "60 min"
+    },
+    {
+      "id": "nocny-koszmar",
+      "title": "Nocny Koszmar",
+      "description": "Czy potrafisz przetrwać noc w domu nawiedzonym?",
+      "playerCount": "2-6 graczy",
+      "duration": "90 min"
+    }
+  ]
+}
