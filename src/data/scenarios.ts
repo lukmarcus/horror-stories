@@ -6,6 +6,7 @@
 import type { Scenario, Paragraph } from "../types";
 import scenariosIndex from "./scenarios/index.json";
 import droga from "./scenarios/droga-donikad/paragraphs.json";
+import drogaSetup from "./scenarios/droga-donikad/setup.json";
 import biblioteka from "./scenarios/tajemna-biblioteka/paragraphs.json";
 import szpital from "./scenarios/opuszczony-szpital/paragraphs.json";
 import koszmar from "./scenarios/nocny-koszmar/paragraphs.json";
@@ -33,4 +34,11 @@ export const PARAGRAPHS: Record<string, Paragraph> = {
   ...Object.fromEntries(
     koszmar.paragraphs.map((p: Paragraph) => [p.id.toString(), p]),
   ),
+};
+
+/**
+ * Setup steps for each scenario
+ */
+export const SETUP_DATA: Record<string, { steps: Array<{ stepNumber: number; text: string }> }> = {
+  "droga-donikad": drogaSetup,
 };

@@ -256,10 +256,94 @@
   gap: var(--spacing-sm);
 }
 
-.game__setup-item {
+.game__setup-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-bg) 0%,
+    var(--color-surface) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.game__setup-container {
+  width: 100%;
+  max-width: 700px;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.game__setup-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  text-align: center;
+}
+
+.game__setup-step {
+  background-color: var(--color-surface-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  margin: var(--spacing-lg) 0;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game__setup-step-number {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-bold);
+}
+
+.game__setup-step-content {
   color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.game__setup-controls {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: space-between;
+  margin: var(--spacing-lg) 0;
+}
+
+.game__setup-empty {
+  color: var(--color-text-muted);
   font-size: var(--font-size-md);
-  line-height: 1.6;
+  padding: var(--spacing-lg);
+  text-align: center;
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  margin: var(--spacing-md) 0;
 }
 
 /* Paragraph Section */

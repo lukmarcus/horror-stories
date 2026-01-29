@@ -44,6 +44,38 @@ export const ScenariosList: React.FC = () => {
               </div>
             </div>
 
+            {/* Characters */}
+            {scenario.characters && scenario.characters.length > 0 && (
+              <div className="scenarios-list__metadata">
+                <h3 className="scenarios-list__metadata-title">Postacie</h3>
+                <p className="scenarios-list__metadata-content">
+                  {scenario.characters.join(", ")}
+                </p>
+              </div>
+            )}
+
+            {/* Tokens */}
+            {scenario.tokens && Object.keys(scenario.tokens).length > 0 && (
+              <div className="scenarios-list__metadata">
+                <h3 className="scenarios-list__metadata-title">Żetony</h3>
+                <p className="scenarios-list__metadata-content">
+                  {Object.entries(scenario.tokens)
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join(", ")}
+                </p>
+              </div>
+            )}
+
+            {/* Notes */}
+            {scenario.notes && (
+              <div className="scenarios-list__metadata">
+                <h3 className="scenarios-list__metadata-title">Uwagi</h3>
+                <p className="scenarios-list__metadata-content">
+                  {scenario.notes}
+                </p>
+              </div>
+            )}
+
             <Link
               to={`/game/${scenario.id}`}
               className="scenarios-list__card-link"
