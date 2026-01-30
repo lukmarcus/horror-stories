@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../data/scenarios";
 import { Button } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
+import { RichText } from "../components/RichText";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
 import "../styles/pages/game.css";
@@ -127,39 +128,61 @@ export const Game: React.FC = () => {
       {/* Setup Section - Full Screen View */}
       {game.state.showSetup && (
         <section className="game__setup-fullscreen">
+          <div className="game__setup-header">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                game.resetSetupStep();
+                game.toggleSetup();
+              }}
+              aria-label="Powrót do gry"
+            >
+              ← Wróć do gry
+            </Button>
+            <h1 className="game__scenario-title" style={{ margin: 0, flex: 1 }}>
+              Ustawienie: {currentScenario?.title || "Scenariusz"}
+            </h1>
+          </div>
+
           <div className="game__setup-container">
-            <h2 className="game__setup-title">Ustawienie początkowe</h2>
             {setupSteps.length > 0 ? (
               <>
                 <div className="game__setup-step">
-                  <div className="game__setup-step-number">
-                    Krok {game.state.currentSetupStep + 1} z {setupSteps.length}
+                  <div className="game__setup-step-header">
+                    <div className="game__setup-step-number">
+                      Krok {game.state.currentSetupStep + 1} z{" "}
+                      {setupSteps.length}
+                    </div>
+                    <div className="game__setup-controls">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => game.prevSetupStep()}
+                        disabled={game.state.currentSetupStep === 0}
+                      >
+                        ← Poprzedni
+                      </Button>
+
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => game.nextSetupStep()}
+                        disabled={
+                          game.state.currentSetupStep === setupSteps.length - 1
+                        }
+                      >
+                        Następny →
+                      </Button>
+                    </div>
                   </div>
                   <div className="game__setup-step-content">
-                    {setupSteps[game.state.currentSetupStep]?.text}
+                    {setupSteps[game.state.currentSetupStep]?.text && (
+                      <RichText
+                        text={setupSteps[game.state.currentSetupStep].text}
+                      />
+                    )}
                   </div>
-                </div>
-
-                <div className="game__setup-controls">
-                  <Button
-                    variant="secondary"
-                    size="md"
-                    onClick={() => game.prevSetupStep()}
-                    disabled={game.state.currentSetupStep === 0}
-                  >
-                    ← Poprzedni
-                  </Button>
-
-                  <Button
-                    variant="secondary"
-                    size="md"
-                    onClick={() => game.nextSetupStep()}
-                    disabled={
-                      game.state.currentSetupStep === setupSteps.length - 1
-                    }
-                  >
-                    Następny →
-                  </Button>
                 </div>
 
                 {game.state.currentSetupStep === setupSteps.length - 1 && (

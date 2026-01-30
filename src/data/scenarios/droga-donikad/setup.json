@@ -2,63 +2,67 @@
   "steps": [
     {
       "stepNumber": 1,
-      "text": "Umieść żeton Jessici w plastikowych podstawce. Od teraz będziemy nazywać ją [yellow]figurką[/yellow]. Dobierz jej [yellow]ekwipunek[/yellow] (patrz obrazek) i połóż ją stroną z imieniem i wizerunkiem postaci.\n\n[tu będą dwa obrazki, figurka i ekwipunek]"
+      "text": "Umieść żeton Jessici w plastikowych podstawce. Od teraz będziemy nazywać ją [color:yellow]figurką[/color]. Dobierz jej [color:yellow]ekwipunek[/color] (patrz obrazek) i połóż ją stroną z imieniem i wizerunkiem postaci.\n\n[image:jessica-ekwipunek][image:jessica-figurka]"
     },
     {
       "stepNumber": 2,
-      "text": "Następnie przygotuj jej [yellow]talię postaci[/yellow], która odzwierciedla jej stan psycho-fizyczny. Weź talię kart z ikoną [symbol rewersu karty] na rewersie i przygotuj dla Jessici jej talię składającą się z:\n\nDwóch [symbol karty 1] + dwóch [symbol karty 2] + dwóch [symbol karty 3]\n\nUtworzone w ten sposób talie potasuj i umieść zakryte (rewersami do góry) obok ekwipunku postaci. Talii [red]nie można[/red] przeglądać.\n\n[grafika z ułożenia ekwipunku i talii]"
+      "text": "Następnie przygotuj jej [color:yellow]talię postaci[/color] która odzwierciedla jej stan psycho-fizyczny. Weź talię kart z ikoną [symbol:rewers] na rewersie i przygotuj dla Jessici jej talię składającą się z:\n\nDwóch [symbol:karta1] + dwóch [symbol:karta2] + dwóch [symbol:karta3]"
     },
     {
       "stepNumber": 3,
-      "text": "Niewykorzystane karty [symbol rewersu karty] odłóż na bok. Będą one stanowić [yellow]pulę ogólną kart postaci[/yellow]."
+      "text": "Utworzone w ten sposób talie potasuj i umieść zakryte (rewersami do góry) obok ekwipunku postaci. Talii [color:red]nie można[/color] przeglądać.\n\n[image:jessica-ekwipunek-talia]"
     },
     {
       "stepNumber": 4,
-      "text": "Wyłóż planszę 12 (stroną [żeton A]; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu [purple]E[/purple] żeton zamkniętych drzwi ([żeton zamkniętych drzwi]). Na środku planszy postaw figurkę Jessici (obrazek po prawej).\n\nW tym scenariuszu kładź plansze stroną w zamkniętych przestrzeniach. Ilustracje na planszach pełnią wyłącznie rolę estetyczną."
+      "text": "Niewykorzystane karty [symbol:rewers] odłóż na bok. Będą one stanoć [color:yellow]pulę ogólną kart postaci[/color]."
     },
     {
       "stepNumber": 5,
-      "text": "[italic]Jessice towarzyszy nieznośny ból głowy. To jednak mniejszy z jej problemów. Otóż nie wie gdzie się znajduje i dlaczego. Wracała wspólnie z Patrickiem z imprezy, który obiecał, że ją podrzuci. To nie jest sen, bo jest zbyt realistyczny. Mroczny pokój bez okien i drzwiami naprzeciwko jest realny. Zadzwoniłaby po pomoc, ale ktoś zabrał jej telefon. Stara się odsuwać myśli na temat tego, że mogła zostać porwana. Patrick wyglądał na miłego chłopaka, nie zrobiłby tego. Niezależnie kto to jej zrobił, powinna znaleźć wyjście.[/italic]"
+      "text": "Wyłóż planszę 12 (stroną [token:A]; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu [color:purple]E[/color] żeton zamkniętych drzwi ([symbol:drzwi-zamkniete]). Na środku planszy postaw figurkę Jessici (obrazek po prawej).\n\nW tym scenariuszu kładź plansze stroną w zamkniętych przestrzeniach. Ilustracje na planszach pełnią wyłącznie rolę estetyczną."
     },
     {
       "stepNumber": 6,
-      "text": "Dobierz dwustronną [bold]kartę akcji ogólnych[/bold]. Stanowi spis możliwych akcji (spójrz na obrazek):\n\n[grafika kart akcji]"
+      "text": "[style:italic]Jessice towarzyszy nieznośny ból głowy. To jednak mniejszy z jej problemów. Otóż nie wie gdzie się znajduje i dlaczego. Wracała wspólnie z Patrickiem z imprezy, który obiecał, że ją podrzuci. To nie jest sen, bo jest zbyt realistyczny. Mroczny pokój bez okien i drzwiami naprzeciwko jest realny. Zadzwoniłaby po pomoc, ale ktoś zabrał jej telefon. Stara się odsuwać myśli na temat tego, że mogła zostać porwana. Patrick wyglądał na miłego chłopaka, nie zrobiłby tego. Niezależnie kto to jej zrobił, powinna znaleźć wyjście.[/style:italic]"
     },
     {
       "stepNumber": 7,
-      "text": "W grze będzie pojawiał się symbol gwiazdki ([symbol gwiazdy]). Odnosi się on do tych, które występują na kartach z talii postaci (tych z rewersem [symbol rewersu karty], spójrz na obrazek po prawej) Ps. ilustracja nie ma żadnego znaczenia.\n\n[grafika karty z gwiazdą]"
+      "text": "Dobierz dwustronną [style:bold]kartę akcji ogólnych[/style:bold]. Stanowi spis możliwych akcji (spójrz na obrazek):\n\n[image:karty-akcji-ogolnych]"
     },
     {
       "stepNumber": 8,
-      "text": "Zużywając akcję na \"[bold]Otwarcie drzwi[/bold]\" zadeklaruj przed dobraniem określoną przez siebie liczbę kart z talii postaci Jessici (w przypadku \"Otwarcia drzwi\" maksymalnie do trzech), dobierz tyle kart ile zadeklarowano i sprawdź rezultat w postaci łącznej sumy [symbol gwiazdy] na wszystkich.\n\n[bold][red]GRACZ DECYDUJE ILE DOBIERZE KART[/red] [underline]ZANIM JE ODSŁONI[/underline][red]. MOŻE SIĘ ZDARZYĆ SYTUACJA, IŻ ZABRAKNIE POTRZEBNEJ LICZBY - NIE MOŻNA WTEDY ZMIENIĆ ZDANIA I DOCIĄGNĄĆ WIĘCEJ PO FAKCIE.[/red][/bold]"
+      "text": "W grze będzie pojawiał się symbol gwiazdki ([symbol:gwiazda]). Odnosi się on do tych, które występują na kartach z talii postaci (tych z rewersem [symbol:rewers], spójrz na obrazek po prawej) Ps. ilustracja nie ma żadnego znaczenia.\n\n[image:karta-gwiazda]"
     },
     {
       "stepNumber": 9,
-      "text": "W razie porażki, czyli wyniku rzędu 0[symbol giwazdy], w ramach nowej akcji po prostu powtórz czynność, aż zdołasz otworzyć drzwi ([symbol otwartych drzwi]) lub je wyważyć ([symbol wyważonych drzwi]). Wyważonych nie będzie można zamknąć w razie potrzeby.\n\nDobrane [symbol rewersu karty] zawsze odkładamy od razu na [yellow]stos kart odrzuconych[/yellow] tej postaci (ten stos w przeciwieństwie do talii postaci można zawsze przeglądać)."
+      "text": "Zużywając akcję na \"[style:bold]Otwarcie drzwi[/style:bold]\" zadeklaruj przed dobraniem określoną przez siebie liczbę kart z talii postaci Jessici (w przypadku \"Otwarcia drzwi\" maksymalnie do trzech), dobierz tyle kart ile zadeklarowano i sprawdź rezultat w postaci łącznej sumy [symbol:gwiazda] na wszystkich.\n\n[style:bold][color:red]GRACZ DECYDUJE ILE DOBIERZE KART[/color] [style:underline]ZANIM JE ODSŁONI[/style:underline][color:red]. MOŻE SIĘ ZDARZYĆ SYTUACJA, IŻ ZABRAKNIE POTRZEBNEJ LICZBY - NIE MOŻNA WTEDY ZMIENIĆ ZDANIA I DOCIĄGNĄĆ WIĘCEJ PO FAKCIE.[/color][/style:bold]"
     },
     {
       "stepNumber": 10,
-      "text": "Ilekroć należałoby dobrać [symbol rewersu karty], ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z [symbol rewersu karty]) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej [symbol rewersu karty])."
+      "text": "W razie porażki, czyli wyniku rzędu 0[symbol:gwiazda], w ramach nowej akcji po prostu powtórz czynność, aż zdołasz otworzyć drzwi ([symbol:drzwi-otwarte]) lub je wyważyć ([symbol:drzwi-wywazone]). Wyważonych nie będzie można zamknąć w razie potrzeby.\n\nDobrane [symbol:rewers] zawsze odkładamy od razu na [color:yellow]stos kart odrzuconych[/color] tej postaci (ten stos w przeciwieństwie do talii postaci można zawsze przeglądać)."
     },
     {
       "stepNumber": 11,
-      "text": "Wykorzystaj teraz \"Otwarcie drzwi\" ze spisu możliwych akcji."
+      "text": "Ilekroć należałoby dobrać [symbol:rewers], ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z [symbol:rewers]) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej [symbol:rewers])."
     },
     {
       "stepNumber": 12,
-      "text": "Przemieszczać się do nowych plansz można wyłącznie poprzez [symbol otwartych drzwi] lub [symbol wyważonych drzwi]. Otwarcie drzwi lub wyważenie [bold]NIE[/bold] oznacza automatyczne przemieszczenia się do nowego planszy.\n\nJedyne dostępne przejście wiedzie na wschód. Przechodząc w tym kierunku do nowej planszy, sprawdzamy [green]paragraf[/green], który należy wtedy przeczytać. W przypadku planszy 12 idąc na wschód należy przejść do [green]paragrafu 77[/green].\n\n[grafika planszy 12]\n\n[bigger bold red]Wstrzymaj się z tym jednak przez chwilę![/bigger bold red]"
+      "text": "Wykorzystaj teraz \"Otwarcie drzwi\" ze spisu możliwych akcji."
     },
     {
       "stepNumber": 13,
-      "text": "Zwróć uwagę, że przy numerze [green]77[/green] znajduje się symbol [symbol paragrafu] (oznacza [green]paragraf[/green]).\n\nIlekroć w ramach akcji wskazujesz [symbol paragrafu] oznacza to konieczność dobrania przez figurkę aktualnie wykonującą turę dobrania wierzchniej karty ze swojej talii postaci, czyli [symbol rewersu karty]. Nie wymaga to żadnych [symbol gwiazdy], aby to zrobić."
+      "text": "Przemieszczać się do nowych plansz można wyłącznie poprzez [symbol:drzwi-otwarte] lub [symbol:drzwi-wywazone]. Otwarcie drzwi lub wyważenie [style:bold]NIE[/style:bold] oznacza automatyczne przemieszczenia się do nowego planszy.\n\nJedyne dostępne przejście wiedzie na wschód. Przechodząc w tym kierunku do nowej planszy, sprawdzamy [color:green]paragraf[/color], który należy wtedy przeczytać. W przypadku planszy 12 idąc na wschód należy przejść do [color:green]paragrafu 77[/color].\n\n[image:plansza-12]\n\n[style:bigger][style:bold][color:red]Wstrzymaj się z tym jednak przez chwilę![/color][/style:bold][/style:bigger]"
     },
     {
       "stepNumber": 14,
-      "text": "Jessica, aby więc przejść na wschód wskazuje paragraf [green]77[/green]. Jako, że ma na sobie [symbol paragrafu], dobiera wierzchnią kartę ze swojej talii i odkłada ją na stos odrzucony. Dopiero po zrobieniu tego i rozpatrzeniu tekstu (jeśli takowy jest) może przejść do wskazanego przez siebie paragrafu. Nadrukowane [symbol paragrafu] na planszach można wskazywać wyłącznie, gdy chcemy odkryć nową planszę i tym kierunku wiodą [symbol otwartych drzwi] / [symbol wyważonych drzwi].\n\nParagrafy zaznaczone w każdym scenariuszu na zielono i znajdują się zawsze po lewej stronie każdego scenariusza. Na obrazku po lewej możesz zobaczyć paragrafy [green]2[/green] oraz [green]3[/green].\n\n[grafika zaznaczonych paragrafów]"
+      "text": "Zwróć uwagę, że przy numerze [color:green]77[/color] znajduje się symbol [symbol:paragraf] (oznacza [color:green]paragraf[/color]).\n\nIlekroć w ramach akcji wskazujesz [symbol:paragraf] oznacza to konieczność dobrania przez figurkę aktualnie wykonującą turę dobrania wierzchniej karty ze swojej talii postaci, czyli [symbol:rewers]. Nie wymaga to żadnych [symbol:gwiazda], aby to zrobić."
     },
     {
       "stepNumber": 15,
-      "text": "[bold red]DOBIERZ WIERZCHNIĄ KARTĘ Z TALII I PRZEJDŹ DO PARAGRAFU [green]77[/green] na stronie 13.[/bold red]"
+      "text": "Jessica, aby więc przejść na wschód wskazuje paragraf [color:green]77[/color]. Jako, że ma na sobie [symbol:paragraf], dobiera wierzchnią kartę ze swojej talii i odkłada ją na stos odrzucony. Dopiero po zrobieniu tego i rozpatrzeniu tekstu (jeśli takowy jest) może przejść do wskazanego przez siebie paragrafu. Nadrukowane [symbol:paragraf] na planszach można wskazywać wyłącznie, gdy chcemy odkryć nową planszę i tym kierunku wiodą [symbol:drzwi-otwarte] / [symbol:drzwi-wywazone].\n\nParagrafy zaznaczone w każdym scenariuszu na zielono i znajdują się zawsze po lewej stronie każdego scenariusza. Na obrazku po lewej możesz zobaczyć paragrafy [color:green]2[/color] oraz [color:green]3[/color].\n\n[image:paragrafy]"
+    },
+    {
+      "stepNumber": 16,
+      "text": "[style:bold][color:red]DOBIERZ WIERZCHNIĄ KARTĘ Z TALII I PRZEJDŹ DO PARAGRAFU [color:green]77[/color] na stronie 13.[/color][/style:bold]"
     }
   ]
 }
