@@ -15,7 +15,10 @@ import koszmar from "./scenarios/nocny-koszmar/paragraphs.json";
  * Available game scenarios - loaded from index.json
  */
 export const SCENARIOS: Record<string, Scenario> = Object.fromEntries(
-  scenariosIndex.scenarios.map((scenario) => [scenario.id, scenario as Scenario]),
+  scenariosIndex.scenarios.map((scenario) => [
+    scenario.id,
+    scenario as Scenario,
+  ]),
 );
 
 /**
@@ -39,6 +42,16 @@ export const PARAGRAPHS: Record<string, Paragraph> = {
 /**
  * Setup steps for each scenario
  */
-export const SETUP_DATA: Record<string, { steps: Array<{ stepNumber: number; text: string }> }> = {
-  "droga-donikad": drogaSetup,
+type SetupStep = {
+  stepNumber: number;
+  content?: Array<{
+    type: "text" | "image" | "symbol" | "token";
+    html?: string;
+    id?: string;
+  }>;
+  text?: string;
+};
+
+export const SETUP_DATA: Record<string, { steps: SetupStep[] }> = {
+  "droga-donikad": drogaSetup as { steps: SetupStep[] },
 };

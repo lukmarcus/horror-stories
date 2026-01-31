@@ -104,7 +104,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Komponenty bazowe (Header, Footer, Button)
 - Podstawowe style i zmienne CSS
 - Wsparcie dla języka polskiego
-- Navigacja w aplikacji
+- Nawigacja w aplikacji
 - Sample scenariusz w JSON
 
 ---

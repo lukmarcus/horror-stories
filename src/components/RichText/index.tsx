@@ -1,135 +1,167 @@
 import React from "react";
 import "./rich-text.css";
 
-interface RichTextProps {
-  text: string;
+interface ContentBlock {
+  type: "text" | "image" | "symbol" | "token";
+  html?: string;
+  id?: string;
+  size?: "xs" | "sm" | "lg" | "xl";
 }
 
-export const RichText: React.FC<RichTextProps> = ({ text }) => {
-  // Parse text with tags and convert to React elements
-  const parseText = (input: string): React.ReactNode[] => {
-    const elements: React.ReactNode[] = [];
-    const tagRegex =
-      /\[([a-z]+)(?:[:=]([^\]]*))?\]([\s\S]*?)\[\/\1\]|\[([a-z]+)[:=]([^\]]*)\]|\[([a-z]+)\s+([^\]]*)\]/g;
-    let lastIndex = 0;
-    let match;
+interface RichTextProps {
+  content?: ContentBlock[];
+  text?: string; // for backward compatibility
+}
 
-    while ((match = tagRegex.exec(input)) !== null) {
-      // Add text before the tag
-      if (match.index > lastIndex) {
-        elements.push(
-          input
-            .substring(lastIndex, match.index)
-            .split("\n")
-            .map((line, i, arr) =>
-              i < arr.length - 1 ? (
-                <React.Fragment key={`text-${lastIndex}-${i}`}>
-                  {line}
-                  <br />
-                </React.Fragment>
-              ) : (
-                line
-              ),
-            ),
-        );
-      }
-
-      if (match[1]) {
-        // Closing tag format: [tag]text[/tag] or [tag:subtype]text[/tag]
-        const tag = match[1];
-        const subtype = match[2]; // for [tag:subtype] format
-        const content = match[3];
-        const key = `${tag}-${lastIndex}`;
-
-        if (tag === "color") {
-          const colorClass = `rich-${subtype}`;
-          elements.push(
-            <span key={key} className={colorClass}>
-              {parseText(content)}
-            </span>,
-          );
-        } else if (tag === "style") {
-          if (subtype === "bold") {
-            elements.push(<strong key={key}>{parseText(content)}</strong>);
-          } else if (subtype === "italic") {
-            elements.push(<em key={key}>{parseText(content)}</em>);
-          } else if (subtype === "underline") {
-            elements.push(<u key={key}>{parseText(content)}</u>);
-          } else if (subtype === "bigger") {
-            elements.push(
-              <span key={key} className="rich-bigger">
-                {parseText(content)}
-              </span>,
-            );
-          }
-        } else {
-          elements.push(content);
-        }
-      } else if (match[4]) {
-        // Self-closing tag format with colon: [image:text] or [symbol:text] or [token:text]
-        const tag = match[4];
-        const content = match[5];
-        const key = `${tag}-${lastIndex}`;
-
-        if (tag === "image") {
-          elements.push(
-            <div key={key} className="rich-image-placeholder">
-              <div className="rich-image-icon">🖼️</div>
-              <div className="rich-image-text">{content}</div>
-            </div>,
-          );
-        } else if (tag === "symbol") {
-          // Map symbol types to emoji
-          const symbolMap: Record<string, string> = {
-            rewers: "👤",
-            gwiazda: "⭐",
-            "drzwi-otwarte": "🚪",
-            "drzwi-wywazone": "💥",
-            "drzwi-zamkniete": "🔐",
-            paragraf: "§",
-            karta1: "❶",
-            karta2: "❷",
-            karta3: "❸",
-          };
-          const emoji = symbolMap[content] || `[${content}]`;
-          elements.push(<span key={key}>{emoji}</span>);
-        } else if (tag === "token") {
-          // Map token types to formatted letters
-          const tokenMap: Record<string, string> = {
-            A: "𝐀",
-          };
-          const symbol = tokenMap[content] || `[${content}]`;
-          elements.push(<span key={key}>{symbol}</span>);
-        }
-      } else if (match[6]) {
-        // Unused: Self-closing tag format with space: [symbol text]
-        // We use [symbol:text] format instead
-      }
-
-      lastIndex = tagRegex.lastIndex;
-    }
-
-    // Add remaining text
-    if (lastIndex < input.length) {
-      elements.push(
-        input
-          .substring(lastIndex)
-          .split("\n")
-          .map((line, i, arr) =>
-            i < arr.length - 1 ? (
-              <React.Fragment key={`text-end-${i}`}>
-                {line}
-                <br />
-              </React.Fragment>
-            ) : (
-              line
-            ),
-          ),
-      );
-    }
-
-    return elements.length > 0 ? elements : [input];
+export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
+  // Symbol to emoji mapping
+  const symbolMap: Record<string, string> = {
+    rewers: "👤",
+    gwiazda: "⭐",
+    "drzwi-otwarte": "🚪",
+    "drzwi-wywazone": "💥",
+    "drzwi-zamkniete": "🔐",
+    paragraf: "§",
+    karta1: "❶",
+    karta2: "❷",
+    karta3: "❸",
   };
 
-  return <div className="rich-text">{parseText(text)}</div>;
+  // Token mapping
+  const tokenMap: Record<string, string> = {
+    A: "𝐀",
+    B: "𝐁",
+  };
+
+  // Parse HTML and replace custom tags with React elements
+  const parseHtml = (html: string): React.ReactNode[] => {
+    const customTagRegex = /<(symbol|token|image)\s+id=["']([^"']+)["']\s*\/>/g;
+    let currentPos = 0;
+    const finalElements: React.ReactNode[] = [];
+
+    let matchFinal;
+
+    while ((matchFinal = customTagRegex.exec(html)) !== null) {
+      // Add HTML before this tag
+      const beforeHtml = html.substring(currentPos, matchFinal.index);
+      if (beforeHtml) {
+        finalElements.push(...parseStandardHtml(beforeHtml));
+      }
+
+      // Add custom element
+      const tag = matchFinal[1];
+      const id = matchFinal[2];
+      const key = `custom-${tag}-${id}`;
+
+      if (tag === "image") {
+        finalElements.push(
+          <div key={key} className="rich-image-placeholder">
+            <div className="rich-image-icon">🖼️</div>
+            <div className="rich-image-text">{id}</div>
+          </div>,
+        );
+      } else if (tag === "symbol") {
+        const emoji = symbolMap[id] || `[${id}]`;
+        finalElements.push(<span key={key} className="symbol">{emoji}</span>);
+      } else if (tag === "token") {
+        const symbol = tokenMap[id] || `[${id}]`;
+        finalElements.push(<span key={key} className="token">{symbol}</span>);
+      }
+
+      currentPos = customTagRegex.lastIndex;
+    }
+
+    // Add remaining HTML
+    if (currentPos < html.length) {
+      const remainingHtml = html.substring(currentPos);
+      if (remainingHtml) {
+        finalElements.push(...parseStandardHtml(remainingHtml));
+      }
+    }
+
+    return finalElements;
+  };
+
+  // Parse standard HTML tags
+  const parseStandardHtml = (html: string): React.ReactNode[] => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+
+    const traverse = (node: Node): React.ReactNode[] => {
+      const nodes: React.ReactNode[] = [];
+
+      node.childNodes.forEach((child, idx) => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const text = child.textContent || "";
+          nodes.push(text);
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          const elem = child as HTMLElement;
+          const childContent = traverse(elem);
+
+          if (elem.tagName === "SPAN") {
+            if (elem.className.startsWith("color-") || elem.className.startsWith("size-")) {
+              nodes.push(
+                <span key={idx} className={elem.className}>
+                  {childContent}
+                </span>,
+              );
+            } else {
+              nodes.push(childContent);
+            }
+          } else if (elem.tagName === "STRONG") {
+            nodes.push(<strong key={idx}>{childContent}</strong>);
+          } else if (elem.tagName === "EM") {
+            nodes.push(<em key={idx}>{childContent}</em>);
+          } else if (elem.tagName === "U") {
+            nodes.push(<u key={idx}>{childContent}</u>);
+          } else if (elem.tagName === "BR") {
+            nodes.push(<br key={idx} />);
+          } else {
+            nodes.push(childContent);
+          }
+        }
+      });
+
+      return nodes;
+    };
+
+    return traverse(div);
+  };
+
+  // Render content blocks
+  const renderContentBlocks = (blocks: ContentBlock[]): React.ReactNode => {
+    return blocks.map((block, idx) => {
+      if (block.type === "text" && block.html) {
+        const sizeClass = block.size ? `size-${block.size}` : "";
+        return (
+          <div key={idx} className={`rich-text-block ${sizeClass}`.trim()}>
+            {parseHtml(block.html)}
+          </div>
+        );
+      } else if (block.type === "image" && block.id) {
+        return (
+          <div key={idx} className="rich-image-placeholder">
+            <div className="rich-image-icon">🖼️</div>
+            <div className="rich-image-text">{block.id}</div>
+          </div>
+        );
+      }
+      return null;
+    });
+  };
+
+  // Backward compatibility: if text prop is provided, use old parser
+  if (text && !content) {
+    return (
+      <div className="rich-text">
+        <div className="rich-text-block">{parseHtml(text)}</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rich-text">
+      {content ? renderContentBlocks(content) : null}
+    </div>
+  );
 };
