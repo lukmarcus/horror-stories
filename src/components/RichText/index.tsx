@@ -9,7 +9,8 @@ export const RichText: React.FC<RichTextProps> = ({ text }) => {
   // Parse text with tags and convert to React elements
   const parseText = (input: string): React.ReactNode[] => {
     const elements: React.ReactNode[] = [];
-    const tagRegex = /\[([a-z]+)(?:=([^\]]*))?\](.*?)\[\/\1\]|\[([a-z]+)[:=]([^\]]*)\]|\[([a-z]+)\s+([^\]]*)\]/g;
+    const tagRegex =
+      /\[([a-z]+)(?:[:=]([^\]]*))?\]([\s\S]*?)\[\/\1\]|\[([a-z]+)[:=]([^\]]*)\]|\[([a-z]+)\s+([^\]]*)\]/g;
     let lastIndex = 0;
     let match;
 
@@ -17,16 +18,19 @@ export const RichText: React.FC<RichTextProps> = ({ text }) => {
       // Add text before the tag
       if (match.index > lastIndex) {
         elements.push(
-          input.substring(lastIndex, match.index).split("\n").map((line, i, arr) =>
-            i < arr.length - 1 ? (
-              <React.Fragment key={`text-${lastIndex}-${i}`}>
-                {line}
-                <br />
-              </React.Fragment>
-            ) : (
-              line
+          input
+            .substring(lastIndex, match.index)
+            .split("\n")
+            .map((line, i, arr) =>
+              i < arr.length - 1 ? (
+                <React.Fragment key={`text-${lastIndex}-${i}`}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ) : (
+                line
+              ),
             ),
-          ),
         );
       }
 
@@ -46,17 +50,11 @@ export const RichText: React.FC<RichTextProps> = ({ text }) => {
           );
         } else if (tag === "style") {
           if (subtype === "bold") {
-            elements.push(
-              <strong key={key}>{parseText(content)}</strong>,
-            );
+            elements.push(<strong key={key}>{parseText(content)}</strong>);
           } else if (subtype === "italic") {
-            elements.push(
-              <em key={key}>{parseText(content)}</em>,
-            );
+            elements.push(<em key={key}>{parseText(content)}</em>);
           } else if (subtype === "underline") {
-            elements.push(
-              <u key={key}>{parseText(content)}</u>,
-            );
+            elements.push(<u key={key}>{parseText(content)}</u>);
           } else if (subtype === "bigger") {
             elements.push(
               <span key={key} className="rich-bigger">
@@ -83,22 +81,22 @@ export const RichText: React.FC<RichTextProps> = ({ text }) => {
         } else if (tag === "symbol") {
           // Map symbol types to emoji
           const symbolMap: Record<string, string> = {
-            "rewers": "👤",
-            "gwiazda": "⭐",
+            rewers: "👤",
+            gwiazda: "⭐",
             "drzwi-otwarte": "🚪",
             "drzwi-wywazone": "💥",
             "drzwi-zamkniete": "🔐",
-            "paragraf": "§",
-            "karta1": "❶",
-            "karta2": "❷",
-            "karta3": "❸",
+            paragraf: "§",
+            karta1: "❶",
+            karta2: "❷",
+            karta3: "❸",
           };
           const emoji = symbolMap[content] || `[${content}]`;
           elements.push(<span key={key}>{emoji}</span>);
         } else if (tag === "token") {
           // Map token types to formatted letters
           const tokenMap: Record<string, string> = {
-            "A": "𝐀",
+            A: "𝐀",
           };
           const symbol = tokenMap[content] || `[${content}]`;
           elements.push(<span key={key}>{symbol}</span>);
@@ -114,16 +112,19 @@ export const RichText: React.FC<RichTextProps> = ({ text }) => {
     // Add remaining text
     if (lastIndex < input.length) {
       elements.push(
-        input.substring(lastIndex).split("\n").map((line, i, arr) =>
-          i < arr.length - 1 ? (
-            <React.Fragment key={`text-end-${i}`}>
-              {line}
-              <br />
-            </React.Fragment>
-          ) : (
-            line
+        input
+          .substring(lastIndex)
+          .split("\n")
+          .map((line, i, arr) =>
+            i < arr.length - 1 ? (
+              <React.Fragment key={`text-end-${i}`}>
+                {line}
+                <br />
+              </React.Fragment>
+            ) : (
+              line
+            ),
           ),
-        ),
       );
     }
 

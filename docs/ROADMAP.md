@@ -73,7 +73,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - Kompletny scenariusz (przynajmniej jeden pełny)
 - Wszystkie assety (ikony, tła, grafiki)
 - Baza wszystkich elementów z gry
-- Optimizacja wydajności
+- Optymizacja wydajności
 - Dokumentacja dla użytkownika
 
 ### Do przygotowania

@@ -61,7 +61,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Zmieniono
 
 - Lista scenariuszy teraz pokazuje tylko grę, bez etapu wstępnej konfiguracji
-- Simplifikacja parametrów scenariusza do liczby graczy i czasu trwania
+- Symplifikacja parametrów scenariusza do liczby graczy i czasu trwania
 
 ---
 
