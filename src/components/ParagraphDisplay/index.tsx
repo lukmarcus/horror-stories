@@ -19,6 +19,8 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
   onChoice,
   onBack,
 }) => {
+  const [currentPage, setCurrentPage] = React.useState(0);
+  
   // Check if dice roll was successful
   const isDiceRollSuccess =
     paragraph.hasDiceRoll &&
@@ -28,6 +30,11 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
 
   // Check if paragraph is dead end (no choices, no dice)
   const isDeadEnd = !paragraph.choices && !paragraph.hasDiceRoll;
+  
+  // Handle content pages
+  const hasPages = paragraph.contentPages && paragraph.contentPages.length > 0;
+  const maxPage = hasPages ? paragraph.contentPages!.length - 1 : 0;
+  const currentContent = hasPages ? paragraph.contentPages![currentPage] : paragraph.content;
 
   return (
     <article
@@ -44,7 +51,19 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
 
       {paragraph.text && <ParagraphText text={paragraph.text} />}
       
-      {paragraph.content && <RichText content={paragraph.content} />}
+      {currentContent && <RichText content={currentContent} />}
+      
+      {hasPages && (
+        <div className="pagination" style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "1rem" }}>
+          <button onClick={() => setCurrentPage(Math.max(0, currentPage - 1))} disabled={currentPage === 0}>
+            ← Poprzedni
+          </button>
+          <span>{currentPage + 1} / {maxPage + 1}</span>
+          <button onClick={() => setCurrentPage(Math.min(maxPage, currentPage + 1))} disabled={currentPage === maxPage}>
+            Następny →
+          </button>
+        </div>
+      )}
 
       {isDeadEnd && (
         <div className="dead-end" role="status" aria-live="polite">

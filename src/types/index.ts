@@ -29,19 +29,25 @@ export interface DiceResult {
 }
 
 /**
+ * Content block for rich text paragraphs
+ */
+export interface ContentBlock {
+  type: "text" | "image" | "symbol" | "token";
+  html?: string;
+  id?: string;
+  size?: "xs" | "sm" | "lg" | "xl";
+  style?: "bold" | "italic" | "underline";
+  color?: "yellow" | "red" | "purple" | "green";
+}
+
+/**
  * Single paragraph/node in the story tree
  */
 export interface Paragraph {
   id: string;
   text?: string;
-  content?: Array<{
-    type: "text" | "image" | "symbol" | "token";
-    html?: string;
-    id?: string;
-    size?: "xs" | "sm" | "lg" | "xl";
-    style?: "bold" | "italic" | "underline";
-    color?: "yellow" | "red" | "purple" | "green";
-  }>;
+  content?: ContentBlock[];
+  contentPages?: ContentBlock[][];
   choices?: Choice[];
   image?: string;
   audio?: string;
