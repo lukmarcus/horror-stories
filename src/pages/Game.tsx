@@ -182,11 +182,13 @@ export const Game: React.FC = () => {
                         content={
                           setupSteps[game.state.currentSetupStep].content
                         }
+                        scenarioId={scenarioId}
                       />
                     )}
                     {setupSteps[game.state.currentSetupStep]?.text && (
                       <RichText
                         text={setupSteps[game.state.currentSetupStep].text}
+                        scenarioId={scenarioId}
                       />
                     )}
                   </div>

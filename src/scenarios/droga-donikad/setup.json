@@ -93,11 +93,7 @@
       "content": [
         {
           "type": "text",
-          "html": "W grze będzie pojawiał się symbol gwiazdki (<symbol id='gwiazda'/>). Odnosi się on do tych, które występują na kartach z talii postaci (tych z rewersem <symbol id='rewers'/>, spójrz na obrazek po prawej)."
-        },
-        {
-          "type": "text",
-          "html": "Ps. ilustracja nie ma żadnego znaczenia."
+          "html": "W grze będzie pojawiał się symbol gwiazdki (<symbol id='gwiazda'/>). Odnosi się on do tych, które występują na kartach z talii postaci (tych z rewersem <symbol id='rewers'/>, spójrz na obrazek po prawej). Ps. ilustracja nie ma żadnego znaczenia."
         },
         {
           "type": "image",

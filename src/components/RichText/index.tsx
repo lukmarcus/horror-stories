@@ -13,9 +13,10 @@ interface ContentBlock {
 interface RichTextProps {
   content?: ContentBlock[];
   text?: string; // for backward compatibility
+  scenarioId?: string; // for loading images
 }
 
-export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
+export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId }) => {
   // Symbol to emoji mapping
   const symbolMap: Record<string, string> = {
     rewers: "👤",
@@ -59,12 +60,24 @@ export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
       customElementCounter++;
 
       if (tag === "image") {
-        finalElements.push(
-          <div key={key} className="rich-image-placeholder">
-            <div className="rich-image-icon">🖼️</div>
-            <div className="rich-image-text">{id}</div>
-          </div>,
-        );
+        const imagePath = scenarioId 
+          ? new URL(`../../scenarios/${scenarioId}/images/${id}.jpg`, import.meta.url).href
+          : undefined;
+
+        if (imagePath) {
+          finalElements.push(
+            <div key={key} className="rich-image-block">
+              <img src={imagePath} alt={id} className="rich-image" />
+            </div>,
+          );
+        } else {
+          finalElements.push(
+            <div key={key} className="rich-image-placeholder">
+              <div className="rich-image-icon">🖼️</div>
+              <div className="rich-image-text">{id}</div>
+            </div>,
+          );
+        }
       } else if (tag === "symbol") {
         const emoji = symbolMap[id] || `[${id}]`;
         finalElements.push(
@@ -193,10 +206,20 @@ export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
           </div>
         );
       } else if (block.type === "image" && block.id) {
+        const imagePath = scenarioId 
+          ? new URL(`../../scenarios/${scenarioId}/images/${block.id}.jpg`, import.meta.url).href
+          : undefined;
+
         return (
-          <div key={idx} className="rich-image-placeholder">
-            <div className="rich-image-icon">🖼️</div>
-            <div className="rich-image-text">{block.id}</div>
+          <div key={idx} className="rich-image-block">
+            {imagePath ? (
+              <img src={imagePath} alt={block.id} className="rich-image" />
+            ) : (
+              <>
+                <div className="rich-image-icon">🖼️</div>
+                <div className="rich-image-text">{block.id}</div>
+              </>
+            )}
           </div>
         );
       }
