@@ -7,6 +7,49 @@
       "choices": [],
       "hasDiceRoll": false,
       "items": []
+    },
+    {
+      "id": "77",
+      "isDirect": true,
+      "content": [
+        {
+          "type": "text",
+          "html": "Dostaw planszę 14<token id='A'/> przy symbolu <token id='E'/> planszy 12<token id='A'/>. Przestaw swoją figurkę do planszy 14<token id='A'/>. Figurka, która odkrywa nową planszę, zawsze może (po zapoznaniu z paragrafem) przestawić się do nowootkrytej planszy."
+        },
+        {
+          "type": "text",
+          "html": "Potóż <token id='drzwi-otwarte'/> lub <token id='drzwi-zamkniete'/> (w zależności jaki był efekt \"Otwarcia drzwi\") tak, aby łączyty obie plansze – zeton ma leżeć jednocześnie na <token id='E'/> planszy 12 i <token id='W'/> planszy 14. Na każdym łączeniu, o ile nie napisano inaczej, <span class='color-red'>leżeć może wyłącznie jeden element</span> (np. drwi, żeton planszy itd)."
+        },
+        {
+          "type": "text",
+          "html": "Na <token id='E'/> planszy 14 wytłóż żetony plansz: <token id='37'/>, <token id='53'/> oraz <token id='121'/>."
+        },
+        {
+          "type": "text",
+          "html": "Różne ksztatty żetonów plansz służą jedynie ich segregowaniu po kształtach, aby ich wykładanie było tatwieisze w późniejszych etapach gry, gdy pojawi się ich więcej."
+        },
+        {
+          "type": "text",
+          "html": "Leży tu starszy człowiek, który wygląda jakby nic nie mogło już mu pomoc."
+        },
+        {
+          "type": "text",
+          "html": "Pamiętaj, że możesz wskazywać dowolne <token id='drzwi-otwarte'/> na planszy lub łączeniu planszy (o ile są tam <token id='drzwi-otwarte'/> bez odkrytych plansz po ich drugiej stronie) figurką aktualnie rozgrywającą swoją turę. Pamiętaj, że Ilekroć wskazujesz <token id='drzwi-otwarte'/>, dobierasz jedną wierzchnią <token id='karta-postaci'/> z talii postaci, a dopiero po jej rozpatzeniu (gdyby były na nich jakieś efekty) przechodzisz do odpowiedniego paragrafu.",
+          "style": "italic"
+        },
+        {
+          "type": "text",
+          "html": "<span class='color-red'>Spróbuj znaleźć sposób na wydostanie się czerwonymi drzwiami.</span>",
+          "color": "red"
+        },
+        {
+          "type": "text",
+          "html": "Ilekroć należatoby dobrać <token id='karta-postaci'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli strongą z <token id='karta-postaci'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talię bez wyraźnego polecenia (np. dobranie kolejnej <token id='karta-postaci'/>)."
+        }
+      ],
+      "choices": [],
+      "hasDiceRoll": false,
+      "items": []
     }
   ]
 }

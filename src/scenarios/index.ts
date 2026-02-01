@@ -26,16 +26,28 @@ export const SCENARIOS: Record<string, Scenario> = Object.fromEntries(
  */
 export const PARAGRAPHS: Record<string, Paragraph> = {
   ...Object.fromEntries(
-    droga.paragraphs.map((p: Paragraph) => [p.id.toString(), p]),
+    (droga.paragraphs as unknown as Paragraph[]).map((p) => [
+      p.id.toString(),
+      p,
+    ]),
   ),
   ...Object.fromEntries(
-    biblioteka.paragraphs.map((p: Paragraph) => [p.id.toString(), p]),
+    (biblioteka.paragraphs as unknown as Paragraph[]).map((p) => [
+      p.id.toString(),
+      p,
+    ]),
   ),
   ...Object.fromEntries(
-    szpital.paragraphs.map((p: Paragraph) => [p.id.toString(), p]),
+    (szpital.paragraphs as unknown as Paragraph[]).map((p) => [
+      p.id.toString(),
+      p,
+    ]),
   ),
   ...Object.fromEntries(
-    koszmar.paragraphs.map((p: Paragraph) => [p.id.toString(), p]),
+    (koszmar.paragraphs as unknown as Paragraph[]).map((p) => [
+      p.id.toString(),
+      p,
+    ]),
   ),
 };
 

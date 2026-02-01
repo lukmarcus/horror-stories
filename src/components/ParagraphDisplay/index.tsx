@@ -1,6 +1,7 @@
 import React from "react";
 import type { Paragraph } from "../../types";
 import { ParagraphText } from "../ParagraphText/ParagraphText";
+import { RichText } from "../RichText";
 import { DiceRoller } from "../DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../ConditionalChoice/ConditionalChoice";
 import "./ParagraphDisplay.css";
@@ -41,7 +42,9 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
         />
       )}
 
-      <ParagraphText text={paragraph.text} />
+      {paragraph.text && <ParagraphText text={paragraph.text} />}
+      
+      {paragraph.content && <RichText content={paragraph.content} />}
 
       {isDeadEnd && (
         <div className="dead-end" role="status" aria-live="polite">

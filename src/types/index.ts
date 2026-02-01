@@ -33,7 +33,15 @@ export interface DiceResult {
  */
 export interface Paragraph {
   id: string;
-  text: string;
+  text?: string;
+  content?: Array<{
+    type: "text" | "image" | "symbol" | "token";
+    html?: string;
+    id?: string;
+    size?: "xs" | "sm" | "lg" | "xl";
+    style?: "bold" | "italic" | "underline";
+    color?: "yellow" | "red" | "purple" | "green";
+  }>;
   choices?: Choice[];
   image?: string;
   audio?: string;
@@ -42,6 +50,7 @@ export interface Paragraph {
   diceResult?: DiceResult;
   isDirect?: boolean;
   accessibleFrom?: string[];
+  items?: string[];
 }
 
 /**
