@@ -66,7 +66,7 @@
 
 ### Muzyka w tle
 
-- Opcjonalna muzyka ambientalna w grze
+- Opcjonalna muzyka ambient w grze
 - Przycisk on/off w menu
 
 ### Player dźwięków/dialogów
@@ -129,7 +129,7 @@
 ### Stylizacja
 
 - Grafika jako tło (background)
-- Specjalne czcionki (horrorowe/atmosferyczne)
+- Specjalne czcionki (horror/atmosferyczne)
 - Spójny visual consistency
 
 ### Stopka (na każdym ekranie)

@@ -1,48 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { SCENARIOS } from "../scenarios";
 import { Button } from "../components/common";
 import "../styles/pages/scenarios-list.css";
 
-interface Scenario {
-  id: string;
-  title: string;
-  description: string;
-  duration: string;
-  minPlayers: number;
-  maxPlayers: number;
-}
-
 export const ScenariosList: React.FC = () => {
-  // Mock scenarios
-  const scenarios: Scenario[] = [
-    {
-      id: "1",
-      title: "Tajemna Biblioteka",
-      description:
-        "Zaginęła księga starożytnych zaklęć. Musisz ją znaleźć, zanim będzie za późno.",
-      duration: "45 min",
-      minPlayers: 2,
-      maxPlayers: 4,
-    },
-    {
-      id: "2",
-      title: "Opuszczony Szpital",
-      description:
-        "Budynek pełen tajemnic czeka na odkrycie. Każdy pokój kryje nowe niebezpieczeństwo.",
-      duration: "60 min",
-      minPlayers: 2,
-      maxPlayers: 4,
-    },
-    {
-      id: "3",
-      title: "Nocny Koszmar",
-      description:
-        "Czy potrafisz przetrwać noc w domu nawiedzonym przez duchy? Musisz znaleźć sposób na ucieczkę.",
-      duration: "90 min",
-      minPlayers: 2,
-      maxPlayers: 6,
-    },
-  ];
+  // Load scenarios from data
+  const scenarios = Object.values(SCENARIOS);
 
   return (
     <main className="scenarios-list">
@@ -75,10 +39,42 @@ export const ScenariosList: React.FC = () => {
               <div className="scenarios-list__info-item">
                 <span className="scenarios-list__info-icon">👥</span>
                 <span className="scenarios-list__info-text">
-                  {scenario.minPlayers}-{scenario.maxPlayers} graczy
+                  {scenario.playerCount}
                 </span>
               </div>
             </div>
+
+            {/* Characters */}
+            {scenario.characters && scenario.characters.length > 0 && (
+              <div className="scenarios-list__metadata">
+                <h3 className="scenarios-list__metadata-title">Postacie</h3>
+                <p className="scenarios-list__metadata-content">
+                  {scenario.characters.join(", ")}
+                </p>
+              </div>
+            )}
+
+            {/* Tokens */}
+            {scenario.tokens && Object.keys(scenario.tokens).length > 0 && (
+              <div className="scenarios-list__metadata">
+                <h3 className="scenarios-list__metadata-title">Żetony</h3>
+                <p className="scenarios-list__metadata-content">
+                  {Object.entries(scenario.tokens)
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join(", ")}
+                </p>
+              </div>
+            )}
+
+            {/* Notes */}
+            {scenario.notes && (
+              <div className="scenarios-list__metadata">
+                <h3 className="scenarios-list__metadata-title">Uwagi</h3>
+                <p className="scenarios-list__metadata-content">
+                  {scenario.notes}
+                </p>
+              </div>
+            )}
 
             <Link
               to={`/game/${scenario.id}`}

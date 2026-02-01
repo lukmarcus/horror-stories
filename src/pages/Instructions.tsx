@@ -30,7 +30,7 @@ const Instructions: React.FC = () => {
             <div className="instructions__step-content">
               <h3 className="instructions__step-title">Przygotowanie</h3>
               <p>
-                Przed grą przygotuj físyczne komponenty gry (pionki, karty,
+                Przed grą przygotuj fizyczne komponenty gry (pionki, karty,
                 itp.) zgodnie z instrukcjami scenariusza.
               </p>
             </div>
