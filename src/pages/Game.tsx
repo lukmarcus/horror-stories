@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../data/scenarios";
+import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
 import { Button } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
 import { RichText } from "../components/RichText";

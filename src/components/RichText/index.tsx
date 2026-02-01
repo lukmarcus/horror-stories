@@ -6,6 +6,8 @@ interface ContentBlock {
   html?: string;
   id?: string;
   size?: "xs" | "sm" | "lg" | "xl";
+  style?: "bold" | "italic" | "underline";
+  color?: "yellow" | "red" | "purple" | "green";
 }
 
 interface RichTextProps {
@@ -38,6 +40,7 @@ export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
     const customTagRegex = /<(symbol|token|image)\s+id=["']([^"']+)["']\s*\/>/g;
     let currentPos = 0;
     const finalElements: React.ReactNode[] = [];
+    let customElementCounter = 0;
 
     let matchFinal;
 
@@ -45,13 +48,15 @@ export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
       // Add HTML before this tag
       const beforeHtml = html.substring(currentPos, matchFinal.index);
       if (beforeHtml) {
-        finalElements.push(...parseStandardHtml(beforeHtml));
+        finalElements.push(...parseStandardHtml(beforeHtml, customElementCounter));
+        customElementCounter += countHtmlElements(beforeHtml);
       }
 
       // Add custom element
       const tag = matchFinal[1];
       const id = matchFinal[2];
-      const key = `custom-${tag}-${id}`;
+      const key = `custom-${tag}-${id}-${customElementCounter}`;
+      customElementCounter++;
 
       if (tag === "image") {
         finalElements.push(
@@ -62,10 +67,18 @@ export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
         );
       } else if (tag === "symbol") {
         const emoji = symbolMap[id] || `[${id}]`;
-        finalElements.push(<span key={key} className="symbol">{emoji}</span>);
+        finalElements.push(
+          <span key={key} className="symbol">
+            {emoji}
+          </span>,
+        );
       } else if (tag === "token") {
         const symbol = tokenMap[id] || `[${id}]`;
-        finalElements.push(<span key={key} className="token">{symbol}</span>);
+        finalElements.push(
+          <span key={key} className="token">
+            {symbol}
+          </span>,
+        );
       }
 
       currentPos = customTagRegex.lastIndex;
@@ -75,33 +88,56 @@ export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
     if (currentPos < html.length) {
       const remainingHtml = html.substring(currentPos);
       if (remainingHtml) {
-        finalElements.push(...parseStandardHtml(remainingHtml));
+        finalElements.push(...parseStandardHtml(remainingHtml, customElementCounter));
       }
     }
 
     return finalElements;
   };
 
-  // Parse standard HTML tags
-  const parseStandardHtml = (html: string): React.ReactNode[] => {
+  // Count HTML elements for key generation
+  const countHtmlElements = (html: string): number => {
     const div = document.createElement("div");
     div.innerHTML = html;
+    let count = 0;
+    const traverse = (node: Node) => {
+      node.childNodes.forEach((child) => {
+        if (child.nodeType === Node.ELEMENT_NODE) {
+          count++;
+          traverse(child);
+        }
+      });
+    };
+    traverse(div);
+    return count;
+  };
+
+  // Parse standard HTML tags
+  const parseStandardHtml = (html: string, startCounter: number): React.ReactNode[] => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    let elementCounter = startCounter;
 
     const traverse = (node: Node): React.ReactNode[] => {
       const nodes: React.ReactNode[] = [];
 
-      node.childNodes.forEach((child, idx) => {
+      node.childNodes.forEach((child) => {
         if (child.nodeType === Node.TEXT_NODE) {
           const text = child.textContent || "";
           nodes.push(text);
         } else if (child.nodeType === Node.ELEMENT_NODE) {
           const elem = child as HTMLElement;
           const childContent = traverse(elem);
+          const key = `elem-${elementCounter}`;
+          elementCounter++;
 
           if (elem.tagName === "SPAN") {
-            if (elem.className.startsWith("color-") || elem.className.startsWith("size-")) {
+            if (
+              elem.className.startsWith("color-") ||
+              elem.className.startsWith("size-")
+            ) {
               nodes.push(
-                <span key={idx} className={elem.className}>
+                <span key={key} className={elem.className}>
                   {childContent}
                 </span>,
               );
@@ -109,13 +145,13 @@ export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
               nodes.push(childContent);
             }
           } else if (elem.tagName === "STRONG") {
-            nodes.push(<strong key={idx}>{childContent}</strong>);
+            nodes.push(<strong key={key}>{childContent}</strong>);
           } else if (elem.tagName === "EM") {
-            nodes.push(<em key={idx}>{childContent}</em>);
+            nodes.push(<em key={key}>{childContent}</em>);
           } else if (elem.tagName === "U") {
-            nodes.push(<u key={idx}>{childContent}</u>);
+            nodes.push(<u key={key}>{childContent}</u>);
           } else if (elem.tagName === "BR") {
-            nodes.push(<br key={idx} />);
+            nodes.push(<br key={key} />);
           } else {
             nodes.push(childContent);
           }
@@ -132,10 +168,28 @@ export const RichText: React.FC<RichTextProps> = ({ content, text }) => {
   const renderContentBlocks = (blocks: ContentBlock[]): React.ReactNode => {
     return blocks.map((block, idx) => {
       if (block.type === "text" && block.html) {
-        const sizeClass = block.size ? `size-${block.size}` : "";
+        const classes = [
+          "rich-text-block",
+          block.size ? `size-${block.size}` : "",
+          block.color ? `color-${block.color}` : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+        let content: React.ReactNode = parseHtml(block.html);
+
+        // Apply style wrapper if needed
+        if (block.style === "bold") {
+          content = <strong>{content}</strong>;
+        } else if (block.style === "italic") {
+          content = <em>{content}</em>;
+        } else if (block.style === "underline") {
+          content = <u>{content}</u>;
+        }
+
         return (
-          <div key={idx} className={`rich-text-block ${sizeClass}`.trim()}>
-            {parseHtml(block.html)}
+          <div key={idx} className={classes}>
+            {content}
           </div>
         );
       } else if (block.type === "image" && block.id) {

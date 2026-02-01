@@ -4,12 +4,12 @@
  */
 
 import type { Scenario, Paragraph } from "../types";
-import scenariosIndex from "./scenarios/index.json";
-import droga from "./scenarios/droga-donikad/paragraphs.json";
-import drogaSetup from "./scenarios/droga-donikad/setup.json";
-import biblioteka from "./scenarios/tajemna-biblioteka/paragraphs.json";
-import szpital from "./scenarios/opuszczony-szpital/paragraphs.json";
-import koszmar from "./scenarios/nocny-koszmar/paragraphs.json";
+import scenariosIndex from "./index.json";
+import droga from "./droga-donikad/paragraphs.json";
+import drogaSetup from "./droga-donikad/setup.json";
+import biblioteka from "./tajemna-biblioteka/paragraphs.json";
+import szpital from "./opuszczony-szpital/paragraphs.json";
+import koszmar from "./nocny-koszmar/paragraphs.json";
 
 /**
  * Available game scenarios - loaded from index.json
@@ -48,6 +48,9 @@ type SetupStep = {
     type: "text" | "image" | "symbol" | "token";
     html?: string;
     id?: string;
+    size?: "xs" | "sm" | "lg" | "xl";
+    style?: "bold" | "italic" | "underline";
+    color?: "yellow" | "red" | "purple" | "green";
   }>;
   text?: string;
 };

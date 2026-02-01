@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SCENARIOS } from "../data/scenarios";
+import { SCENARIOS } from "../scenarios";
 import { Button } from "../components/common";
 import "../styles/pages/scenarios-list.css";
 

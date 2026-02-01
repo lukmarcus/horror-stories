@@ -44,6 +44,7 @@
 .symbol,
 .token {
   font-size: inherit;
+  color: inherit;
   line-height: inherit;
   display: inline;
 }

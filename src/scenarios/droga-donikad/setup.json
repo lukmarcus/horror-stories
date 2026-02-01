@@ -26,7 +26,7 @@
         },
         {
           "type": "text",
-          "size": "lg",
+          "size": "xl",
           "html": "Dwóch <symbol id='karta1'/> + dwóch <symbol id='karta2'/> + dwóch <symbol id='karta3'/>"
         }
       ]
@@ -41,6 +41,10 @@
         {
           "type": "image",
           "id": "jessica-ekwipunek-talia"
+        },
+        {
+          "type": "text",
+          "html": "Niewykorzystane karty <symbol id='rewers'/> odłóż na bok. Będą one stanowić <span class='color-yellow'>pulę ogólną kart postaci</span>."
         }
       ]
     },
@@ -49,25 +53,11 @@
       "content": [
         {
           "type": "text",
-          "html": "Niewykorzystane karty <symbol id='rewers'/> odłóż na bok. Będą one stanowić <span class='color-yellow'>pulę ogólną kart postaci</span>."
-        }
-      ]
-    },
-    {
-      "stepNumber": 5,
-      "content": [
+          "html": "Wyłóż planszę 12 (stroną <token id='A'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>). Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
+        },
         {
-          "type": "text",
-          "html": "Wyłóż planszę 12 (stroną <token id='A'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>)."
-        }
-      ]
-    },
-    {
-      "stepNumber": 6,
-      "content": [
-        {
-          "type": "text",
-          "html": "Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
+          "type": "image",
+          "id": "jessica-plansza"
         },
         {
           "type": "text",
@@ -76,16 +66,17 @@
       ]
     },
     {
-      "stepNumber": 7,
+      "stepNumber": 5,
       "content": [
         {
           "type": "text",
-          "html": "<em>Jessice towarzyszy nieznośny ból głowy. To jednak mniejszy z jej problemów. Otóż nie wie gdzie się znajduje i dlaczego. Wracała wspólnie z Patrickiem z imprezy, który obiecał, że ją podrzuci. To nie jest sen, bo jest zbyt realistyczny. Mroczny pokój bez okien i drzwiami naprzeciwko jest realny. Zadzwoniłaby po pomoc, ale ktoś zabrał jej telefon. Stara się odsuwać myśli na temat tego, że mogła zostać porwana. Patrick wyglądał na miłego chłopaka, nie zrobiłby tego. Niezależnie kto to jej zrobił, powinna znaleźć wyjście.</em>"
+          "style": "italic",
+          "html": "Jessice towarzyszy nieznośny ból głowy. To jednak mniejszy z jej problemów. Otóż nie wie gdzie się znajduje i dlaczego. Wracała wspólnie z Patrickiem z imprezy, który obiecał, że ją podrzuci. To nie jest sen, bo jest zbyt realistyczny. Mroczny pokój bez okien i drzwiami naprzeciwko jest realny. Zadzwoniłaby po pomoc, ale ktoś zabrał jej telefon. Stara się odsuwać myśli na temat tego, że mogła zostać porwana. Patrick wyglądał na miłego chłopaka, nie zrobiłby tego. Niezależnie kto to jej zrobił, powinna znaleźć wyjście."
         }
       ]
     },
     {
-      "stepNumber": 8,
+      "stepNumber": 6,
       "content": [
         {
           "type": "text",
@@ -98,17 +89,12 @@
       ]
     },
     {
-      "stepNumber": 9,
+      "stepNumber": 7,
       "content": [
         {
           "type": "text",
           "html": "W grze będzie pojawiał się symbol gwiazdki (<symbol id='gwiazda'/>). Odnosi się on do tych, które występują na kartach z talii postaci (tych z rewersem <symbol id='rewers'/>, spójrz na obrazek po prawej)."
-        }
-      ]
-    },
-    {
-      "stepNumber": 10,
-      "content": [
+        },
         {
           "type": "text",
           "html": "Ps. ilustracja nie ma żadnego znaczenia."
@@ -120,7 +106,7 @@
       ]
     },
     {
-      "stepNumber": 11,
+      "stepNumber": 8,
       "content": [
         {
           "type": "text",
@@ -129,38 +115,39 @@
       ]
     },
     {
-      "stepNumber": 12,
+      "stepNumber": 9,
       "content": [
         {
           "type": "text",
-          "html": "<strong><span class='color-red'>GRACZ DECYDUJE ILE DOBIERZE KART</span></strong> <u>ZANIM JE ODSŁONI</u> <strong><span class='color-red'>MOŻE SIĘ ZDARZYĆ SYTUACJA, IŻ ZABRAKNIE POTRZEBNEJ LICZBY <symbol id='gwiazda'/> - NIE MOŻNA WTEDY ZMIENIĆ ZDANIA I DOCIĄGNĄĆ WIĘCEJ PO FAKCIE.</span></strong>"
+          "style": "bold",
+          "html": "<span class='color-red'>GRACZ DECYDUJE ILE DOBIERZE KART</span> <u>ZANIM JE ODSŁONI</u> <span class='color-red'>MOŻE SIĘ ZDARZYĆ SYTUACJA, IŻ ZABRAKNIE POTRZEBNEJ LICZBY</span> <symbol id='gwiazda'/> <span class='color-red'>- NIE MOŻNA WTEDY ZMIENIĆ ZDANIA I DOCIĄGNĄĆ WIĘCEJ PO FAKCIE.</span>"
         }
       ]
     },
     {
-      "stepNumber": 13,
+      "stepNumber": 10,
       "content": [
         {
           "type": "text",
-          "html": "W razie porażki, czyli wyniku rzędu 0<symbol id='gwiazda'/>, w ramach nowej akcji po prostu powtórz czynność, aż zdołasz otworzyć drzwi (<symbol id='drzwi-otwarte'/>) lub je wyważyć (<symbol id='drzwi-wywazone'/>)."
+          "html": "W razie porażki, czyli wyniku rzędu 0<symbol id='gwiazda'/>, w ramach nowej akcji po prostu powtórz czynność, aż zdołasz otworzyć drzwi (<symbol id='drzwi-otwarte'/>) lub je wyważyć (<symbol id='drzwi-wywazone'/>). Wyważonych nie będzie można zamknąć w razie potrzeby."
         }
       ]
     },
     {
-      "stepNumber": 14,
+      "stepNumber": 11,
       "content": [
-        {
-          "type": "text",
-          "html": "Wyważonych nie będzie można zamknąć w razie potrzeby."
-        },
         {
           "type": "text",
           "html": "Dobrane <symbol id='rewers'/> zawsze odkładamy od razu na <span class='color-yellow'>stos kart odrzuconych</span> tej postaci (ten stos w przeciwieństwie do talii postaci można zawsze przeglądać)."
+        },
+        {
+          "type": "image",
+          "id": "karty-odrzucone"
         }
       ]
     },
     {
-      "stepNumber": 15,
+      "stepNumber": 12,
       "content": [
         {
           "type": "text",
@@ -169,21 +156,21 @@
       ]
     },
     {
-      "stepNumber": 16,
+      "stepNumber": 13,
       "content": [
         {
           "type": "text",
           "html": "Wykorzystaj teraz \"Otwarcie drzwi\" ze spisu możliwych akcji."
+        },
+        {
+          "type": "text",
+          "html": "Przemieszczać się do nowych plansz można wyłącznie poprzez <symbol id='drzwi-otwarte'/> lub <symbol id='drzwi-wywazone'/>. Otwarcie drzwi lub wyważenie <strong>NIE</strong> oznacza automatyczne przemieszczenia się do nowego planszy."
         }
       ]
     },
     {
-      "stepNumber": 17,
+      "stepNumber": 14,
       "content": [
-        {
-          "type": "text",
-          "html": "Przemieszczać się do nowych plansz można wyłącznie poprzez <symbol id='drzwi-otwarte'/> lub <symbol id='drzwi-wywazone'/>. Otwarcie drzwi lub wyważenie <strong>NIE</strong> oznacza automatyczne przemieszczenia się do nowego planszy."
-        },
         {
           "type": "text",
           "html": "Jedyne dostępne przejście wiedzie na wschód. Przechodząc w tym kierunku do nowej planszy, sprawdzamy <span class='color-green'>paragraf</span>, który należy wtedy przeczytać. W przypadku planszy 12 idąc na wschód należy przejść do <span class='color-green'>paragrafu 77</span>."
@@ -191,29 +178,22 @@
         {
           "type": "image",
           "id": "plansza-12"
+        },
+        {
+          "type": "text",
+          "size": "xl",
+          "style": "bold",
+          "html": "<span class='color-red'>Wstrzymaj się z tym jednak przez chwilę!</span>"
         }
       ]
     },
     {
-      "stepNumber": 18,
+      "stepNumber": 15,
       "content": [
-        {
-          "type": "text",
-          "html": "<strong><span class='color-red'>Wstrzymaj się z tym jednak przez chwilę!</span></strong>"
-        },
         {
           "type": "text",
           "html": "Zwróć uwagę, że przy numerze <span class='color-green'>77</span> znajduje się symbol <symbol id='paragraf'/> (oznacza <span class='color-green'>paragraf</span>)."
         },
-        {
-          "type": "image",
-          "id": "plansza-12"
-        }
-      ]
-    },
-    {
-      "stepNumber": 19,
-      "content": [
         {
           "type": "text",
           "html": "Ilekroć w ramach akcji wskazujesz <symbol id='paragraf'/> oznacza to konieczność dobrania przez figurkę aktualnie wykonującą turę dobrania wierzchniej karty ze swojej talii postaci, czyli <symbol id='rewers'/>. Nie wymaga to żadnych <symbol id='gwiazda'/>, aby to zrobić."
@@ -221,16 +201,17 @@
       ]
     },
     {
-      "stepNumber": 20,
+      "stepNumber": 16,
       "content": [
         {
           "type": "text",
-          "html": "Jessica, aby więc przejść na wschód wskazuje paragraf <span class='color-green'>77</span>. Jako, że ma na sobie <symbol id='paragraf'/>, dobiera wierzchnią kartę ze swojej talii i odkłada ją na stos odrzucony. Dopiero po zrobieniu tego i rozpatrzeniu tekstu (jeśli takowy jest) może przejść do wskazanego przez siebie paragrafu."
-        },
-        {
-          "type": "text",
-          "html": "Nadrukowane <symbol id='paragraf'/> na planszach można wskazywać wyłącznie, gdy chcemy odkryć nową planszę i tym kierunku wiodą <symbol id='drzwi-otwarte'/> / <symbol id='drzwi-wywazone'/>."
-        },
+          "html": "Jessica, aby więc przejść na wschód wskazuje paragraf <span class='color-green'>77</span>. Jako, że ma na sobie <symbol id='paragraf'/>, dobiera wierzchnią kartę ze swojej talii i odkłada ją na stos odrzucony. Dopiero po zrobieniu tego i rozpatrzeniu tekstu (jeśli takowy jest) może przejść do wskazanego przez siebie paragrafu. Nadrukowane <symbol id='paragraf'/> na planszach można wskazywać wyłącznie, gdy chcemy odkryć nową planszę i tym kierunku wiodą <symbol id='drzwi-otwarte'/> / <symbol id='drzwi-wywazone'/>."
+        }
+      ]
+    },
+    {
+      "stepNumber": 17,
+      "content": [
         {
           "type": "text",
           "html": "Paragrafy zaznaczone w każdym scenariuszu na zielono i znajdują się zawsze po lewej stronie każdego scenariusza. Na obrazku po lewej możesz zobaczyć paragrafy <span class='color-green'>2</span> oraz <span class='color-green'>3</span>."
@@ -242,11 +223,13 @@
       ]
     },
     {
-      "stepNumber": 21,
+      "stepNumber": 18,
       "content": [
         {
           "type": "text",
-          "html": "<strong><span class='color-red'>DOBIERZ WIERZCHNIĄ KARTĘ Z TALII I PRZEJDŹ DO PARAGRAFU</span> <span class='color-green'>77</span> <span class='color-red'>na stronie 13.</span></strong>"
+          "style": "bold",
+          "size": "lg",
+          "html": "<span class='color-red'>DOBIERZ WIERZCHNIĄ KARTĘ Z TALII I PRZEJDŹ DO PARAGRAFU</span> <span class='color-green'>77</span> <span class='color-red'>na stronie 13.</span>"
         }
       ]
     }
