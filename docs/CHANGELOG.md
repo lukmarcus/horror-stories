@@ -7,6 +7,22 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.7] - 2026-02-01
+
+### Dodane
+
+- Instrukcje ustawienia gry z wizardem krok-po-kroku
+- 18 kroków setupu dla scenariusza "Droga Donikąd" - wyjaśnienie wszystkich reguł gry
+- Wsparcie dla wyświetlania grafik scenariusza (zdjęcia planszy, kart, figurek)
+- Lepsze formatowanie tekstu setupu - kolory, rozmiary czcionek dla lepszej czytelności
+
+### Zmieniono
+
+- Przeorganizowana struktura danych - wszystkie scenariusze w jednym miejscu
+- Ulepszona obsługa setup steps - bardziej czytelne i intuicyjne
+
+---
+
 ## [0.0.6] - 2026-01-28
 
 ### Dodane
@@ -109,4 +125,4 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-**Ostatnia aktualizacja:** 2026-01-28
+**Ostatnia aktualizacja:** 2026-02-01

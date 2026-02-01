@@ -5,7 +5,7 @@ Interaktywna aplikacja webowa dla gry planszowej Horror Stories, stworzona w Rea
 ## Informacje o projekcie
 
 - **Nazwa**: Horror Stories
-- **Wersja**: 0.0.6
+- **Wersja**: 0.0.7
 - **Autor**: Marek Szumny
 - **Licencja**: MIT
 - **Opis**: Aplikacja towarzysząca grze planszowej Horror Stories
@@ -64,7 +64,7 @@ horror-stories/
 │   ├── styles/          # Globalne style i zmienne CSS
 │   │   ├── variables.css    # CSS custom properties
 │   │   ├── global.css       # Globalne style i reset
-│   │   └── pages/           # Style specificzne dla stron
+│   │   └── pages/           # Style specyficzne dla stron
 │   ├── App.tsx          # Główny komponent
 │   └── main.tsx         # Punkt wejścia
 ├── public/
