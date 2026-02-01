@@ -72,7 +72,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Zakres
 
-- Kompletny scenariusz (Droga do Nikąd)
+- Kompletny scenariusz (Droga Donikąd)
 - Item tracking system
 - Wszystkie assety graficzne
 - Baza wszystkich elementów z gry
@@ -155,7 +155,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ## Branch strategy
 
 - **main** - Stable releases (v0.1.0+)
-- **v0.0.8** - Current development
+- **v0.0.7** - Current development
 
 ---
 

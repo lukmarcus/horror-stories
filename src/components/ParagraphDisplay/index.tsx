@@ -11,6 +11,7 @@ interface ParagraphDisplayProps {
   lastDiceResult: number | null;
   onChoice: (nextId: string) => void;
   onBack: () => void;
+  scenarioId?: string;
 }
 
 export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
@@ -18,6 +19,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
   lastDiceResult,
   onChoice,
   onBack,
+  scenarioId,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
   
@@ -40,6 +42,13 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     <article
       className="paragraph-display"
       aria-label={`Paragraf ${paragraph.id}`}
+      style={{
+        background: "linear-gradient(135deg, var(--color-surface), rgba(139, 0, 0, 0.1))",
+        border: "1px solid var(--color-border)",
+        borderRadius: "var(--border-radius-md)",
+        padding: "var(--spacing-lg)",
+        marginBottom: "var(--spacing-lg)",
+      }}
     >
       {paragraph.image && (
         <img
@@ -49,19 +58,35 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
         />
       )}
 
+      {hasPages && (
+        <div className="game__setup-step-header">
+          <div className="game__setup-step-number">
+            Część {currentPage + 1} z {maxPage + 1}
+          </div>
+          <div className="game__setup-controls">
+            <button 
+              className="button button--secondary button--sm"
+              onClick={() => setCurrentPage(Math.max(0, currentPage - 1))} 
+              disabled={currentPage === 0}
+            >
+              ← Poprzedni
+            </button>
+            <button 
+              className="button button--secondary button--sm"
+              onClick={() => setCurrentPage(Math.min(maxPage, currentPage + 1))} 
+              disabled={currentPage === maxPage}
+            >
+              Następny →
+            </button>
+          </div>
+        </div>
+      )}
+
       {paragraph.text && <ParagraphText text={paragraph.text} />}
       
-      {currentContent && <RichText content={currentContent} />}
-      
-      {hasPages && (
-        <div className="pagination" style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "1rem" }}>
-          <button onClick={() => setCurrentPage(Math.max(0, currentPage - 1))} disabled={currentPage === 0}>
-            ← Poprzedni
-          </button>
-          <span>{currentPage + 1} / {maxPage + 1}</span>
-          <button onClick={() => setCurrentPage(Math.min(maxPage, currentPage + 1))} disabled={currentPage === maxPage}>
-            Następny →
-          </button>
+      {currentContent && (
+        <div className="game__setup-step-content" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+          <RichText content={currentContent} scenarioId={scenarioId} />
         </div>
       )}
 

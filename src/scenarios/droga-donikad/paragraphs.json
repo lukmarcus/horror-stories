@@ -15,30 +15,34 @@
         [
           {
             "type": "text",
-            "html": "Dostaw planszę 14<token id='A'/> przy symbolu <token id='E'/> planszy 12<token id='A'/>. Przestaw swoją figurkę do planszy 14<token id='A'/>. Figurka, która odkrywa nową planszę, zawsze może (po zapoznaniu z paragrafem) przestawić się do nowootkrytej planszy."
+            "html": "Dostaw planszę 14<token id='A'/> przy symbolu <span class='color-purple'>E</span> planszy 12<token id='A'/>. Przestaw swoją figurkę do planszy 14<token id='A'/>. Figurka, która odkrywa nową planszę, zawsze może (po zapoznaniu z paragrafem) przestawić się do nowoodkrytej planszy."
+          },
+          {
+            "type": "image",
+            "id": "plansza-14"
           },
           {
             "type": "text",
-            "html": "Potóż <token id='drzwi-otwarte'/> lub <token id='drzwi-zamkniete'/> (w zależności jaki był efekt \"Otwarcia drzwi\") tak, aby łączyty obie plansze – zeton ma leżeć jednocześnie na <token id='E'/> planszy 12 i <token id='W'/> planszy 14. Na każdym łączeniu, o ile nie napisano inaczej, <span class='color-red'>leżeć może wyłącznie jeden element</span> (np. drwi, żeton planszy itd)."
+            "html": "Połóż <symbol id='drzwi-otwarte'/> lub <symbol id='drzwi-wywazone'/> (w zależności jaki był efekt \"Otwarcia drzwi\") tak, aby łączyły obie plansze - żeton ma leżeć jednocześnie na <span class='color-purple'>E</span> planszy 12 i <span class='color-purple'>W</span> planszy 14. <span class='color-red'>Na każdym łączeniu, o ile nie napisano inaczej, leżeć może wyłącznie jeden element</span> (np. drzwi, żeton planszy itd)."
           },
           {
             "type": "text",
-            "html": "Na <token id='E'/> planszy 14 wytłóż żetony plansz: <token id='37'/>, <token id='53'/> oraz <token id='121'/>."
+            "html": "Na <span class='color-purple'>E</span> planszy 14 wyłóż żetony plansz: <token id='37'/>, <token id='53'/> oraz <token id='121'/>."
           },
           {
             "type": "text",
-            "html": "Różne ksztatty żetonów plansz służą jedynie ich segregowaniu po kształtach, aby ich wykładanie było tatwieisze w późniejszych etapach gry, gdy pojawi się ich więcej."
+            "html": "Różne kształty żetonów plansz służą jedynie ich segregowaniu po kształtach, aby ich wykładanie było łatwiejsze w późniejszych etapach gry, gdy pojawi się ich więcej."
           }
         ],
         [
           {
             "type": "text",
-            "html": "Leży tu starszy człowiek, który wygląda jakby nic nie mogło już mu pomoc."
+            "style": "italic",
+            "html": "Leży tu starszy człowiek, który wygląda jakby nic nie mogło już mu pomóc."
           },
           {
             "type": "text",
-            "html": "Pamiętaj, że możesz wskazywać dowolne <token id='drzwi-otwarte'/> na planszy lub łączeniu planszy (o ile są tam <token id='drzwi-otwarte'/> bez odkrytych plansz po ich drugiej stronie) figurką aktualnie rozgrywającą swoją turę. Pamiętaj, że Ilekroć wskazujesz <token id='drzwi-otwarte'/>, dobierasz jedną wierzchnią <token id='karta-postaci'/> z talii postaci, a dopiero po jej rozpatzeniu (gdyby były na nich jakieś efekty) przechodzisz do odpowiedniego paragrafu.",
-            "style": "italic"
+            "html": "Pamiętaj, że możesz wskazywać dowolne <symbol id='paragraf'/> na planszy lub łączeniu plansz (o ile są tam <symbol id='drzwi-otwarte'/> / <symbol id='drzwi-wywazone'/> bez odkrytych plansz po ich drugiej stronie) figurką aktualnie rozgrywającą swoją turę. Pamiętaj, że Ilekroć wskazujesz <symbol id='paragraf'/>, dobierasz jedną wierzchnią <symbol id='rewers'/> z talii postaci, a dopiero po jej rozpatrzeniu (gdyby były na nich jakieś efekty) przechodzisz do odpowiedniego paragrafu."
           },
           {
             "type": "text",
@@ -47,7 +51,7 @@
           },
           {
             "type": "text",
-            "html": "Ilekroć należatoby dobrać <token id='karta-postaci'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli strongą z <token id='karta-postaci'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talię bez wyraźnego polecenia (np. dobranie kolejnej <token id='karta-postaci'/>)."
+            "html": "Ilekroć należałoby dobrać <symbol id='rewers'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='rewers'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='rewers'/>)."
           }
         ]
       ],

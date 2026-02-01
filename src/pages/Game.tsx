@@ -235,14 +235,6 @@ export const Game: React.FC = () => {
                 <span className="game__scenario-info" aria-current="page">
                   Scenariusz #{id}
                 </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => game.toggleSetup()}
-                  aria-label="Pokaż instrukcje przygotowania"
-                >
-                  ⚙️ Setup
-                </Button>
               </div>
             </nav>
           )}
@@ -327,6 +319,7 @@ export const Game: React.FC = () => {
                     lastDiceResult={game.state.lastDiceResult}
                     onChoice={handleChoice}
                     onBack={handleBackToInput}
+                    scenarioId={scenarioId}
                   />
                 ) : (
                   <p className="game__error-text" role="alert">
