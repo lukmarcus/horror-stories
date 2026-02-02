@@ -17,19 +17,6 @@ interface RichTextProps {
 }
 
 export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId }) => {
-  // Symbol to emoji mapping
-  const symbolMap: Record<string, string> = {
-    rewers: "👤",
-    gwiazda: "⭐",
-    "drzwi-otwarte": "🚪",
-    "drzwi-wywazone": "💥",
-    "drzwi-zamkniete": "🔐",
-    paragraf: "§",
-    karta1: "❶",
-    karta2: "❷",
-    karta3: "❸",
-  };
-
   // Token mapping
   const tokenMap: Record<string, string> = {
     A: "𝐀",
@@ -38,7 +25,7 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
 
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode[] => {
-    const customTagRegex = /<(symbol|token|image)\s+id=["']([^"']+)["']\s*\/>/g;
+    const customTagRegex = /<(symbol|token|letter|item|image)\s+id=["']([^"']+)["']\s*\/>/g;
     let currentPos = 0;
     const finalElements: React.ReactNode[] = [];
     let customElementCounter = 0;
@@ -79,17 +66,38 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
           );
         }
       } else if (tag === "symbol") {
-        const emoji = symbolMap[id] || `[${id}]`;
+        const symbolPath = new URL(`../../assets/symbols/${id}.png`, import.meta.url).href;
         finalElements.push(
-          <span key={key} className="symbol">
-            {emoji}
-          </span>,
+          <img
+            key={key}
+            src={symbolPath}
+            alt={id}
+            className="symbol-image"
+            title={id}
+          />,
+        );
+      } else if (tag === "letter") {
+        const letterPath = new URL(`../../assets/letters/${id}.png`, import.meta.url).href;
+        finalElements.push(
+          <img
+            key={key}
+            src={letterPath}
+            alt={id}
+            className="letter-image"
+            title={id}
+          />,
         );
       } else if (tag === "token") {
         const symbol = tokenMap[id] || `[${id}]`;
         finalElements.push(
           <span key={key} className="token">
             {symbol}
+          </span>,
+        );
+      } else if (tag === "item") {
+        finalElements.push(
+          <span key={key} className="item">
+            [{id}]
           </span>,
         );
       }

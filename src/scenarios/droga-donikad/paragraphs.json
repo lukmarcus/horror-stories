@@ -15,7 +15,7 @@
         [
           {
             "type": "text",
-            "html": "Dostaw planszę 14<token id='A'/> przy symbolu <span class='color-purple'>E</span> planszy 12<token id='A'/>. Przestaw swoją figurkę do planszy 14<token id='A'/>. Figurka, która odkrywa nową planszę, zawsze może (po zapoznaniu z paragrafem) przestawić się do nowoodkrytej planszy."
+            "html": "Dostaw planszę 14<letter id='a'/> przy symbolu <span class='color-purple'>E</span> planszy 12<letter id='a'/>. Przestaw swoją figurkę do planszy 14<letter id='a'/>. Figurka, która odkrywa nową planszę, zawsze może (po zapoznaniu z paragrafem) przestawić się do nowoodkrytej planszy."
           },
           {
             "type": "image",
