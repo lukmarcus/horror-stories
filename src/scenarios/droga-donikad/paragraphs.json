@@ -4,13 +4,77 @@
       "id": "1",
       "isDirect": true,
       "text": "[Paragrafy będą dodane tutaj]",
-      "choices": [],
-      "hasDiceRoll": false,
-      "items": []
+      "choices": []
+    },
+    {
+      "id": "26",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Kto robi ten ruch?"
+          },
+          {
+            "type": "text",
+            "html": "Wybierz postać:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "<person id='jessica'/>",
+          "text": "Jessica",
+          "nextParagraphId": "26-jessica"
+        },
+        {
+          "html": "<person id='patrick'/>",
+          "text": "Patrick",
+          "nextParagraphId": "26-patrick"
+        }
+      ],
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "26-jessica",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "[Perspektywa Jessiki]"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wróć",
+          "nextParagraphId": "26"
+        }
+      ]
+    },
+    {
+      "id": "26-patrick",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "[Perspektywa Patricka]"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wróć",
+          "nextParagraphId": "26"
+        }
+      ]
     },
     {
       "id": "77",
       "isDirect": true,
+      "isMultiPage": true,
       "contentPages": [
         [
           {
@@ -56,7 +120,6 @@
         ]
       ],
       "choices": [],
-      "hasDiceRoll": false,
       "items": []
     }
   ]
