@@ -22,7 +22,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
   scenarioId,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
-  
+
   // Check if dice roll was successful
   const isDiceRollSuccess =
     paragraph.hasDiceRoll &&
@@ -31,24 +31,21 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     lastDiceResult > paragraph.diceResult.threshold;
 
   // Check if paragraph is dead end (no choices, no dice)
-  const isDeadEnd = !paragraph.choices && !paragraph.hasDiceRoll;
-  
+  const isDeadEnd =
+    (!paragraph.choices || paragraph.choices.length === 0) &&
+    !paragraph.hasDiceRoll;
+
   // Handle content pages
   const hasPages = paragraph.contentPages && paragraph.contentPages.length > 0;
   const maxPage = hasPages ? paragraph.contentPages!.length - 1 : 0;
-  const currentContent = hasPages ? paragraph.contentPages![currentPage] : paragraph.content;
+  const currentContent = hasPages
+    ? paragraph.contentPages![currentPage]
+    : paragraph.content;
 
   return (
     <article
-      className="paragraph-display"
+      className="paragraph-display game__setup-step"
       aria-label={`Paragraf ${paragraph.id}`}
-      style={{
-        background: "linear-gradient(135deg, var(--color-surface), rgba(139, 0, 0, 0.1))",
-        border: "1px solid var(--color-border)",
-        borderRadius: "var(--border-radius-md)",
-        padding: "var(--spacing-lg)",
-        marginBottom: "var(--spacing-lg)",
-      }}
     >
       {paragraph.image && (
         <img
@@ -64,16 +61,16 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
             Część {currentPage + 1} z {maxPage + 1}
           </div>
           <div className="game__setup-controls">
-            <button 
+            <button
               className="button button--secondary button--sm"
-              onClick={() => setCurrentPage(Math.max(0, currentPage - 1))} 
+              onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
               disabled={currentPage === 0}
             >
               ← Poprzedni
             </button>
-            <button 
+            <button
               className="button button--secondary button--sm"
-              onClick={() => setCurrentPage(Math.min(maxPage, currentPage + 1))} 
+              onClick={() => setCurrentPage(Math.min(maxPage, currentPage + 1))}
               disabled={currentPage === maxPage}
             >
               Następny →
@@ -83,22 +80,25 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
       )}
 
       {paragraph.text && <ParagraphText text={paragraph.text} />}
-      
+
       {currentContent && (
-        <div className="game__setup-step-content" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+        <div
+          className="game__setup-step-content"
+          style={{ flexDirection: "column", alignItems: "flex-start" }}
+        >
           <RichText content={currentContent} scenarioId={scenarioId} />
         </div>
       )}
 
-      {isDeadEnd && (
+      {isDeadEnd && currentPage === maxPage && (
         <div className="dead-end" role="status" aria-live="polite">
-          <p>Koniec gry!</p>
           <button
             onClick={onBack}
-            className="button button--secondary"
+            className="button button--primary button--md"
             aria-label="Powrót do wyboru paragrafu"
+            style={{ width: "100%" }}
           >
-            Powrót
+            Powrót do gry
           </button>
         </div>
       )}

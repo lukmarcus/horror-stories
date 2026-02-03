@@ -145,100 +145,95 @@ export const Game: React.FC = () => {
             </h1>
           </div>
 
-          <div className="game__setup-container">
-            {setupSteps.length > 0 ? (
-              <>
-                <div className="game__setup-step">
-                  <div className="game__setup-step-header">
-                    <div className="game__setup-step-number">
-                      Krok {game.state.currentSetupStep + 1} z{" "}
-                      {setupSteps.length}
-                    </div>
-                    <div className="game__setup-controls">
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => game.prevSetupStep()}
-                        disabled={game.state.currentSetupStep === 0}
-                      >
-                        ← Poprzedni
-                      </Button>
-
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => game.nextSetupStep()}
-                        disabled={
-                          game.state.currentSetupStep === setupSteps.length - 1
-                        }
-                      >
-                        Następny →
-                      </Button>
-                    </div>
+          {setupSteps.length > 0 ? (
+            <>
+              <div className="game__setup-step">
+                <div className="game__setup-step-header">
+                  <div className="game__setup-step-number">
+                    Krok {game.state.currentSetupStep + 1} z {setupSteps.length}
                   </div>
-                  <div className="game__setup-step-content">
-                    {setupSteps[game.state.currentSetupStep]?.content && (
-                      <RichText
-                        content={
-                          setupSteps[game.state.currentSetupStep].content
-                        }
-                        scenarioId={scenarioId}
-                      />
-                    )}
-                    {setupSteps[game.state.currentSetupStep]?.text && (
-                      <RichText
-                        text={setupSteps[game.state.currentSetupStep].text}
-                        scenarioId={scenarioId}
-                      />
-                    )}
+                  <div className="game__setup-controls">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => game.prevSetupStep()}
+                      disabled={game.state.currentSetupStep === 0}
+                    >
+                      ← Poprzedni
+                    </Button>
+
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => game.nextSetupStep()}
+                      disabled={
+                        game.state.currentSetupStep === setupSteps.length - 1
+                      }
+                    >
+                      Następny →
+                    </Button>
                   </div>
                 </div>
+                <div className="game__setup-step-content">
+                  {setupSteps[game.state.currentSetupStep]?.content && (
+                    <RichText
+                      content={setupSteps[game.state.currentSetupStep].content}
+                      scenarioId={scenarioId}
+                    />
+                  )}
+                  {setupSteps[game.state.currentSetupStep]?.text && (
+                    <RichText
+                      text={setupSteps[game.state.currentSetupStep].text}
+                      scenarioId={scenarioId}
+                    />
+                  )}
+                </div>
+              </div>
 
-                {game.state.currentSetupStep === setupSteps.length - 1 && (
+              {game.state.currentSetupStep === setupSteps.length - 1 && (
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "var(--spacing-md)",
+                    width: "100%",
+                  }}
+                >
+                  <Button
+                    variant="secondary"
+                    size="md"
+                    onClick={() => {
+                      game.resetSetupStep();
+                      game.toggleSetup();
+                    }}
+                  >
+                    ← Wróć do wyboru
+                  </Button>
                   <Button
                     variant="primary"
                     size="md"
                     onClick={() => {
                       game.resetSetupStep();
                       game.toggleSetup();
+                      game.setParagraph("77");
                     }}
-                    style={{ width: "100%" }}
+                    style={{ flex: 1 }}
                   >
-                    Gotów! Zacznij grać
+                    Przejdź do paragrafu 77
                   </Button>
-                )}
-              </>
-            ) : (
-              <p className="game__setup-empty">
-                Brak kroki przygotowania dla tego scenariusza.
-              </p>
-            )}
-          </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <p className="game__setup-empty">
+              Brak kroki przygotowania dla tego scenariusza.
+            </p>
+          )}
         </section>
       )}
 
       {/* Main Game View - Hidden when showing Setup */}
       {!game.state.showSetup && (
         <>
-          {/* Top Bar - Only in Paragraph Mode */}
-          {game.state.currentParagraphId && (
-            <nav className="game__top-bar" aria-label="Nawigacja gry">
-              <div className="game__top-bar-content">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleBackToInput}
-                  aria-label="Powrót do wyboru paragrafu"
-                >
-                  ← Wróć
-                </Button>
-                <span className="game__scenario-info" aria-current="page">
-                  Scenariusz #{id}
-                </span>
-              </div>
-            </nav>
-          )}
-
           {/* Container */}
           <div className="game__container">
             {/* INPUT MODE - Show input panel */}
@@ -310,9 +305,25 @@ export const Game: React.FC = () => {
             ) : (
               /* PARAGRAPH MODE - Show paragraph */
               <section
-                className="game__paragraph-section"
+                className="game__setup-fullscreen"
                 aria-label="Treść paragrafu"
               >
+                <div className="game__setup-header">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleBackToInput}
+                    aria-label="Powrót do wyboru paragrafu"
+                  >
+                    ← Wróć
+                  </Button>
+                  <h1
+                    className="game__scenario-title"
+                    style={{ margin: 0, flex: 1 }}
+                  >
+                    Paragraf: {game.state.currentParagraphId}
+                  </h1>
+                </div>
                 {currentParagraph ? (
                   <ParagraphDisplay
                     paragraph={currentParagraph}

@@ -298,7 +298,7 @@
   background-color: var(--color-surface-secondary);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-xl);
+  padding: var(--spacing-2xl);
   margin: var(--spacing-lg) 0;
   min-height: 250px;
   display: flex;
