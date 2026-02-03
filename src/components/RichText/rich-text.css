@@ -55,7 +55,8 @@
 }
 
 .symbol-image,
-.letter-image {
+.letter-image,
+.person-image {
   height: 1.4em;
   width: auto;
   display: inline;

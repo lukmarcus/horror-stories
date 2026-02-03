@@ -8,7 +8,8 @@
  */
 export interface Choice {
   id: string;
-  text: string;
+  text?: string;
+  html?: string;
   nextParagraphId?: string;
   isConditional?: boolean;
   yesText?: string;
@@ -57,6 +58,8 @@ export interface Paragraph {
   isDirect?: boolean;
   accessibleFrom?: string[];
   items?: string[];
+  isMultiPage?: boolean;
+  areChoicesHorizontal?: boolean;
 }
 
 /**

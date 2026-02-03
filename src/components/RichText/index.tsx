@@ -25,7 +25,7 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
 
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode[] => {
-    const customTagRegex = /<(symbol|token|letter|item|image)\s+id=["']([^"']+)["']\s*\/>/g;
+    const customTagRegex = /<(symbol|token|letter|item|image|person)\s+id=["']([^"']+)["']\s*\/>/g;
     let currentPos = 0;
     const finalElements: React.ReactNode[] = [];
     let customElementCounter = 0;
@@ -99,6 +99,17 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
           <span key={key} className="item">
             [{id}]
           </span>,
+        );
+      } else if (tag === "person") {
+        const personPath = new URL(`../../assets/persons/${id}.jpg`, import.meta.url).href;
+        finalElements.push(
+          <img
+            key={key}
+            src={personPath}
+            alt={id}
+            className="person-image"
+            title={id}
+          />,
         );
       }
 
