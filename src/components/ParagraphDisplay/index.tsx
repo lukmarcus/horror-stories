@@ -36,59 +36,96 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     !paragraph.hasDiceRoll;
 
   // Handle content pages
-  const hasPages = paragraph.contentPages && paragraph.contentPages.length > 0;
-  const maxPage = hasPages ? paragraph.contentPages!.length - 1 : 0;
-  const currentContent = hasPages
-    ? paragraph.contentPages![currentPage]
+  const hasPages = paragraph.isMultiPage && paragraph.contentPages && paragraph.contentPages.length > 1;
+  const maxPage = paragraph.contentPages ? paragraph.contentPages.length - 1 : 0;
+  const currentContent = paragraph.contentPages
+    ? paragraph.contentPages[currentPage]
     : paragraph.content;
 
   return (
-    <article
-      className="paragraph-display game__setup-step"
-      aria-label={`Paragraf ${paragraph.id}`}
-    >
-      {paragraph.image && (
-        <img
-          src={paragraph.image}
-          alt={`Ilustracja do paragrafu ${paragraph.id}`}
-          className="paragraph-image"
-        />
-      )}
+    <>
+      <article
+        className="paragraph-display game__setup-step"
+        aria-label={`Paragraf ${paragraph.id}`}
+      >
+        {paragraph.image && (
+          <img
+            src={paragraph.image}
+            alt={`Ilustracja do paragrafu ${paragraph.id}`}
+            className="paragraph-image"
+          />
+        )}
 
-      {hasPages && (
-        <div className="game__setup-step-header">
-          <div className="game__setup-step-number">
-            Część {currentPage + 1} z {maxPage + 1}
+        {hasPages && (
+          <div className="game__setup-step-header">
+            <div className="game__setup-step-number">
+              Część {currentPage + 1} z {maxPage + 1}
+            </div>
+            <div className="game__setup-controls">
+              <button
+                className="button button--secondary button--sm"
+                onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
+                disabled={currentPage === 0}
+              >
+                ← Poprzedni
+              </button>
+              <button
+                className="button button--secondary button--sm"
+                onClick={() => setCurrentPage(Math.min(maxPage, currentPage + 1))}
+                disabled={currentPage === maxPage}
+              >
+                Następny →
+              </button>
+            </div>
           </div>
-          <div className="game__setup-controls">
-            <button
-              className="button button--secondary button--sm"
-              onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
-              disabled={currentPage === 0}
-            >
-              ← Poprzedni
-            </button>
-            <button
-              className="button button--secondary button--sm"
-              onClick={() => setCurrentPage(Math.min(maxPage, currentPage + 1))}
-              disabled={currentPage === maxPage}
-            >
-              Następny →
-            </button>
+        )}
+
+        {paragraph.text && <ParagraphText text={paragraph.text} />}
+
+        {currentContent && (
+          <div
+            className="game__setup-step-content"
+            style={{ flexDirection: "column", alignItems: "flex-start" }}
+          >
+            <RichText content={currentContent} scenarioId={scenarioId} />
           </div>
-        </div>
-      )}
+        )}
 
-      {paragraph.text && <ParagraphText text={paragraph.text} />}
+        {paragraph.hasDiceRoll &&
+          paragraph.diceResult &&
+          lastDiceResult !== null && (
+            <div className="dice-result" role="status" aria-live="assertive">
+              <p>
+                {isDiceRollSuccess
+                  ? paragraph.diceResult.successText
+                  : paragraph.diceResult.failText}
+              </p>
+              <button
+                onClick={() =>
+                  onChoice(
+                    isDiceRollSuccess
+                      ? paragraph.diceResult!.successNextId
+                      : paragraph.diceResult!.failNextId,
+                  )
+                }
+                className="button button--primary"
+                aria-label="Przejść do następnego paragrafu"
+              >
+                PRZEJDŹ
+              </button>
+            </div>
+          )}
 
-      {currentContent && (
-        <div
-          className="game__setup-step-content"
-          style={{ flexDirection: "column", alignItems: "flex-start" }}
-        >
-          <RichText content={currentContent} scenarioId={scenarioId} />
-        </div>
-      )}
+        {paragraph.hasDiceRoll && lastDiceResult === null && (
+          <div
+            className="dice-roller-wrapper"
+            role="status"
+            aria-label="Kostka do gry"
+          >
+            <DiceRoller />
+          </div>
+        )}
+      </article>
 
       {isDeadEnd && currentPage === maxPage && (
         <div className="dead-end" role="status" aria-live="polite">
@@ -103,43 +140,8 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
         </div>
       )}
 
-      {paragraph.hasDiceRoll &&
-        paragraph.diceResult &&
-        lastDiceResult !== null && (
-          <div className="dice-result" role="status" aria-live="assertive">
-            <p>
-              {isDiceRollSuccess
-                ? paragraph.diceResult.successText
-                : paragraph.diceResult.failText}
-            </p>
-            <button
-              onClick={() =>
-                onChoice(
-                  isDiceRollSuccess
-                    ? paragraph.diceResult!.successNextId
-                    : paragraph.diceResult!.failNextId,
-                )
-              }
-              className="button button--primary"
-              aria-label="Przejść do następnego paragrafu"
-            >
-              PRZEJDŹ
-            </button>
-          </div>
-        )}
-
-      {paragraph.hasDiceRoll && lastDiceResult === null && (
-        <div
-          className="dice-roller-wrapper"
-          role="status"
-          aria-label="Kostka do gry"
-        >
-          <DiceRoller />
-        </div>
-      )}
-
       {paragraph.choices && paragraph.choices.length > 0 && (
-        <fieldset className="choices" aria-label="Dostępne wybory">
+        <fieldset className={`choices ${paragraph.areChoicesHorizontal ? "choices--horizontal" : "choices--vertical"}`} aria-label="Dostępne wybory">
           <legend className="sr-only">Wybierz następny paragraf</legend>
           {paragraph.choices.map((choice) => {
             if (choice.isConditional) {
@@ -159,14 +161,24 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
                   choice.nextParagraphId && onChoice(choice.nextParagraphId)
                 }
                 className="button button--primary"
-                aria-label={choice.text}
+                aria-label={choice.text || ""}
               >
-                {choice.text}
+                {choice.html ? (
+                  <>
+                    <RichText
+                      text={choice.html}
+                      scenarioId={scenarioId}
+                    />
+                    {choice.text && <span>{choice.text}</span>}
+                  </>
+                ) : (
+                  choice.text
+                )}
               </button>
             );
           })}
         </fieldset>
       )}
-    </article>
+    </>
   );
 };

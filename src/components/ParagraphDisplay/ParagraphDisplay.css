@@ -52,6 +52,37 @@
   flex-direction: column;
   gap: 1rem;
   margin-top: 2rem;
+  border: none;
+}
+
+.choices .button {
+  outline: none;
+}
+
+.choices--vertical {
+  flex-direction: column;
+}
+
+.choices--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.choices--horizontal .button {
+  flex: 1;
+  min-width: 200px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.5rem;
+  min-height: 280px;
+  gap: 0.75rem;
+}
+
+/* Larger person images in horizontal layout */
+.choices--horizontal .person-image {
+  height: 150px;
+  width: auto;
 }
 
 @media (max-width: 600px) {
