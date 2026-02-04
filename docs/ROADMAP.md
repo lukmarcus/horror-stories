@@ -6,61 +6,72 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.8 - Complete Scenario
+## Milestone v0.0.8 - Kompletny scenariusz
 
 ### Zakres
 
 - Tworzenie jednego kompletnego, porządnego scenariusza
-- Pełne setup steps z grafika
+- Pełne kroki przygotowania z grafiką
 - Wszystkie paragrafy scenariusza
-- Testowanie complete flow
+- Testowanie kompletnego przepływu gry
+- Wsparcie dla tagów osób (person tag) z grafikami
+- Bogata zawartość HTML w wyborach (choices)
+- Flagi kontrolujące layout (isMultiPage, areChoicesHorizontal)
 
-### Do przygotowania
+### Wykonane
 
-- ⏳ Pełny scenariusz (20+ paragrafów + setup)
-- ⏳ Testy complete game flow
-- ⏳ Balance checking
+- ✅ System tagów osób (`<person id='jessica'/>`) - ładowanie JPG z assets/persons/
+- ✅ Parser RichText ze wsparciem dla: symbol, token, letter, item, person, image
+- ✅ Renderowanie wyborów z polem `html` dla bogatej zawartości
+- ✅ Flaga `isMultiPage` - kontrola wyświetlania numeracji stron
+- ✅ Flaga `areChoicesHorizontal` - kontrola layoutu przycisków
+- ✅ Paragraf 1 (wejście z 37, link do 105)
+- ✅ Paragraf 2 (isDirect: false, dostępny tylko z 26-patrick)
+- ✅ Paragraf 26 (hub) z wyborem postaci (Jessica/Patrick)
+- ✅ Paragraf 26-jessica (akcja informacyjna)
+- ✅ Paragraf 26-patrick (3 wybory)
+- ✅ Paragraf 37 (mechanika interakcji z przedmiotami)
+- ✅ Paragraf 40 (Patrick się budzi, przygotowanie planszy)
+- ✅ Paragraf 50 (martwych drzwi, dead-end)
+- ✅ Paragraf 53 (mechanika przeszukiwania)
+- ✅ Paragraf 61 (podnoszenie przedmiotów - ręka)
+- ✅ Paragraf 65 (pytanie warunkowe: czy Patrick leży?)
+- ✅ Paragraf 65-61 (wariantowa ścieżka - usuwanie itemów)
+- ✅ Paragraf 70 (odkrywanie biurka, wyłożenie planszy)
+- ✅ Paragraf 77 (odkrywanie nowej planszy, spotkanie NPC)
+- ✅ Paragraf 105 (odkrycie Patrick leżącego, setup gry)
+- ✅ Paragraf 121 (spotkanie z nieznajomym NPC)
+- ✅ Paragraf 123 (interakcja ze rzeźbą, warunki)
+- ✅ System isDirect: false z accessibleFrom - ograniczone dostępy do paragrafów
+- ✅ Ekran ostrzeżenia dostępności (pełny widok dla isDirect: false)
+- ✅ Oddzielna struktura danych dla scenariuszy (paragrafy organizowane po scenarioId)
+- ✅ Grafiki gry (jessica.jpg, patrick.jpg, symbole, litery, grafiki scenariusza)
+
+### Do zrobienia
+
+- ⏳ Uzupełnienie scenariusza (4-9 paragrafów do celu 20+)
+- ⏳ Testy kompletnego przepływu gry
+- ⏳ Balansowanie gry
 
 ### Status
 
-- ⏳ W trakcie
+- 🔄 Zaawansowany etap (16/20+ paragrafów)
 
 ---
 
-## Milestone v0.0.8 - Complete Scenario
+## Milestone v0.0.9 - System śledzenia przedmiotów
 
 ### Zakres
 
-- Tworzenie jednego kompletnego, porządnego scenariusza
-- Pełne setup steps z grafiką
-- Wszystkie paragrafy scenariusza (20+)
-- Testowanie complete flow
-
-### Do przygotowania
-
-- ⏳ Pełny scenariusz (20+ paragrafów + setup)
-- ⏳ Testy complete game flow
-- ⏳ Balance checking
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
-## Milestone v0.0.9 - Item Tracking & Item Pickups
-
-### Zakres
-
-- Tracking przedmiotów z paragrafów (item pickups)
+- System śledzenia przedmiotów z paragrafów (item pickups)
 - Panel wyświetlający zebrane przedmioty
 - Licznik przedmiotów w grze
 
-### Do przygotowania
+### Do zrobienia
 
-- ⏳ Item tracking system
-- ⏳ Items panel component
-- ⏳ Tests dla item logic
+- ⏳ System śledzenia przedmiotów
+- ⏳ Komponent panelu przedmiotów
+- ⏳ Testy logiki przedmiotów
 
 ### Status
 
@@ -73,16 +84,16 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ### Zakres
 
 - Kompletny scenariusz (Droga Donikąd)
-- Item tracking system
+- System śledzenia przedmiotów
 - Wszystkie assety graficzne
 - Baza wszystkich elementów z gry
 - Optymizacja wydajności
 - Dokumentacja dla użytkownika
 
-### Do przygotowania
+### Do zrobienia
 
 - ✅ **Kompletny scenariusz** - z v0.0.8
-- ✅ **Item tracking** - z v0.0.9
+- ✅ **System śledzenia przedmiotów** - z v0.0.9
 - ✅ **Wszystkie assety** - ikony, tła, grafiki
 - ✅ **Baza elementów** - pełna lista obiektów
 
@@ -92,7 +103,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.1+ - Remaining Scenarios
+## Milestone v0.1.1+ - Pozostałe scenariusze
 
 ### Zakres
 
@@ -107,11 +118,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.0 - Audio & Music
+## Milestone v0.2.0 - Dźwięk i muzyka
 
 ### Zakres
 
-- Audio player
+- Odtwarzacz audio
 - Muzyka w tle dla scenariuszy
 - Dźwięki i dialogi
 
@@ -121,14 +132,14 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.3.0+ - Advanced Features
+## Milestone v0.3.0+ - Zaawansowane funkcje
 
 ### Zakres
 
 - Edytor scenariuszy
-- Wczytywanie własnych JSON scenariuszy
-- Save/load postępu gry
-- Multilingual support
+- Wczytywanie własnych scenariuszy JSON
+- Zapis/wczyt postępu gry
+- Wsparcie dla wielu języków
 
 ### Status
 
@@ -136,15 +147,15 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v1.0.0 - Production Release
+## Milestone v1.0.0 - Wydanie produkcyjne
 
 ### Zakres
 
 - Wszystkie 4 scenariusze w pełni działające
-- Audio & Music system
+- System audio i muzyki
 - Pełna dokumentacja
-- Performance optimization
-- Stabilna, production-ready aplikacja
+- Optymizacja wydajności
+- Stabilna aplikacja gotowa do produkcji
 
 ### Status
 
@@ -152,11 +163,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Branch strategy
+## Strategia gałęzi
 
-- **main** - Stable releases (v0.1.0+)
-- **v0.0.7** - Current development
+- **main** - Stabilne wydania (v0.1.0+)
+- **v0.0.8** - Aktualna rozbudowa
 
 ---
 
-**Ostatnia aktualizacja:** 2026-02-01
+**Ostatnia aktualizacja:** 2026-02-04

@@ -2,9 +2,30 @@
   "paragraphs": [
     {
       "id": "1",
-      "isDirect": true,
-      "text": "[Paragrafy będą dodane tutaj]",
-      "choices": []
+      "isDirect": false,
+      "accessibleFrom": ["37"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Odrzuć żeton planszy <item id='37'/> (słowo odrzuć oznacza odłożenie tego elementu do puli z której pochodzi) i zastąp go żetonem otwartych drzwi (<symbol id='drzwi-otwarte'/>)."
+          },
+          {
+            "type": "text",
+            "html": "Odrzuć również <item id='84'/> z ekwipunku."
+          },
+          {
+            "type": "text",
+            "html": "Czas przejść dalej przez nowo otwarte drzwi. W tym celu musisz <symbol id='paragraf'/> i dobrać wierzchnią <symbol id='rewers'/>. Dopiero po rozpatrzeniu karty (przez przechodzeniu do nowej planszy <symbol id='gwiazda'/> nie mają znaczenia; można mieć nawet 0<symbol id='gwiazda'/> i mniej) przejdź do <span class='color-green'>105</span>."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Przejdź do <span class='color-green'>105</span>.",
+          "nextParagraphId": "105"
+        }
+      ]
     },
     {
       "id": "2",
@@ -61,12 +82,7 @@
           }
         ]
       ],
-      "choices": [
-        {
-          "text": "Wróć",
-          "nextParagraphId": "26"
-        }
-      ]
+      "choices": []
     },
     {
       "id": "26-patrick",
@@ -121,6 +137,90 @@
       ]
     },
     {
+      "id": "40",
+      "isDirect": false,
+      "accessibleFrom": ["65"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Postaw stojącą figurkę <person id='patrick'/> na planszy 2<letter id='a'/>."
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Patrick momentalnie otwiera oczy i podnosi się nerwowo rozglądając się wokół siebie."
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='patrick'/> (Mamrocze coś pod nosem) Moja głowa …"
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='jessica'/> Jesteś cały?"
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='patrick'/> (Mamrocze coś pod nosem) Tak … Chyba. Gdzie jesteśmy?"
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='jessica'/> Też chciałabym wiedzieć. Obudziłam się przed chwilą"
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='patrick'/> Jechaliśmy autem, po czym nagle znajdujemy się tutaj. Jak to możliwe?"
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='jessica'/> Na swoją obronę mam to, że spałam, więc ..."
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='patrick'/> Poważnie nie wiem jak się tu znaleźliśmy."
+          },
+          {
+            "type": "text",
+            "html": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <token id='1'/> + dwóch <token id='2'/> + dwóch <token id='3'/>"
+          },
+          {
+            "type": "image",
+            "id": "patrick-talia"
+          },
+          {
+            "type": "text",
+            "html": "W każdym scenariuszu postacie kierowane przez graczy posiadają do wykorzystania dwie akcje w swojej turze zanim następna będzie mogła wykonać swoje. Zawsze musi wykorzystać obie, choć jedna z nich (odpoczynek) to swoista forma oddania akcji."
+          },
+          {
+            "type": "text",
+            "html": "Załóżmy, że Jessica zużyła obie swoje akcje. W takiej sytuacji następuje tura Patricka. Gracz/e kontrolują na przemian dwie postacie (<span class='color-red'>każda posiada po 2 akcje w turze</span>), aż do końca scenariusza."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "50",
+      "isDirect": false,
+      "accessibleFrom": ["123"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wielkie stalowe masywne drzwi. Może jest jakiś sposób ich otwarcia, bo próba siłowego otwarcia skończy się najwyżej złamaniem sobie czegoś. Paragraf nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
       "id": "53",
       "isDirect": true,
       "contentPages": [
@@ -141,6 +241,71 @@
           "nextParagraphId": ""
         }
       ]
+    },
+    {
+      "id": "61",
+      "isDirect": false,
+      "accessibleFrom": ["40"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Odcięta męska ręka. Patrzenie na nią przyprawia Cię o mdłości."
+          },
+          {
+            "type": "text",
+            "html": "Możesz ją podnieść używając akcji \"Podnieś przedmioty\" z <strong>karty akcji ogólnych</strong>."
+          },
+          {
+            "type": "image",
+            "id": "podnies-przedmiot"
+          },
+          {
+            "type": "text",
+            "html": "W razie potrzeby jest możliwości wymiany przedmiotami poprzez rozmowę z inną postacią. Paragraf nie prowadzi dalej co oznacza, że opuszczasz go (nie przywraca Ci to zużytej na sprawdzenie akcji)"
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "65",
+      "isDirect": false,
+      "accessibleFrom": ["123"],
+      "areChoicesHorizontal": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Czy figurka <person id='patrick'/> leży?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "TAK",
+          "nextParagraphId": "40"
+        },
+        {
+          "html": "NIE",
+          "nextParagraphId": "65-61"
+        }
+      ]
+    },
+    {
+      "id": "65-61",
+      "isDirect": false,
+      "accessibleFrom": ["65"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Jeśli wskazano <item id='61'/>: Odrzuć: <item id='123'/>, <item id='61'/> i <item id='50'/>. W miejscu gdzie stały <item id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
+          }
+        ]
+      ],
+      "choices": []
     },
     {
       "id": "70",
@@ -220,8 +385,59 @@
           }
         ]
       ],
-      "choices": [],
-      "items": []
+      "choices": []
+    },
+    {
+      "id": "105",
+      "isDirect": false,
+      "accessibleFrom": ["1"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wyłóż planszę 2<letter id='a'/> na <span class='color-purple'>E</span>. Odrzuć <item id='121'/>."
+          },
+          {
+            "type": "text",
+            "html": "Pamiętaj o przestawieniu swojej figurki do nowo odkrytej planszy."
+          },
+          {
+            "type": "text",
+            "html": "Na środku planszy 2 wyłóż: <item id='61'/> oraz <item id='123'/>."
+          },
+          {
+            "type": "text",
+            "html": "Na <span class='color-purple'>E</span> planszy 2 wyłóż żeton planszy <item id='50'/>."
+          },
+          {
+            "type": "text",
+            "html": "Umieść żeton Patricka w plastikowej podstawce. Połóż jego figurkę leżącą na środku planszy 2. Posiada <symbol id='paragraf'/>, więc można go również wskazywać w ramach akcji (dobierając wierzchnią kartę z talii). Przedmioty (kwadratowe żetony) możesz również wskazywać zarówno, gdy leżą na planszy / w twoim ekwipunku / w cudzym ekwipunku postaci, która znajduje się na planszy z Twoją figurką."
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Patrick! - krzyknęła. Ty żyjesz!"
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Nie odwzajemnił tego, bo leżał nieprzytomny. Natychmiast wykluczyła wersję w której mógł ją porwać. Żałuje, że zdecydowała się na chwilę drzemki w aucie, bo teraz nie ma pojęcia co mogło się wydarzyć."
+          },
+          {
+            "type": "text",
+            "html": "Teren się nieco rozrósł. Pamiętaj, że można się przemieszczać korzystając z akcji \"Ruch\". Wszystko opowie Ci karta ogólnych akcji."
+          },
+          {
+            "type": "image",
+            "id": "karty-akcji"
+          },
+          {
+            "type": "text",
+            "html": "<span class='color-red'>Znajdź sposób na przejście dalej.</span>"
+          }
+        ]
+      ],
+      "choices": []
     },
     {
       "id": "121",
@@ -232,12 +448,39 @@
             "type": "text",
             "style": "italic",
             "html": "Starszy mężczyzna. Nie kojarzysz go. Sądząc po licznych ranach, kałuży krwi pod nim musi być martwy. Brakuje mu prawej dłoni."
+          },
+          {
+            "type": "text",
+            "html": "<span class='color-red'>Opuść paragraf</span> (ilekroć nie prowadzi dalej, oznacza to, że możesz zająć się teraz czymś innym; nie przywraca ci to akcji wykorzystanej na sprawdzenie paragrafu)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "123",
+      "isDirect": false,
+      "accessibleFrom": ["105"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Rzeźba, której brak prawej ręki."
+          },
+          {
+            "type": "text",
+            "html": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "<span class='color-red'>Opuść paragraf</span> (ilekroć nie prowadzi dalej, oznacza to, że możesz zająć się teraz czymś innym; nie przywraca ci to akcji wykorzystanej na sprawdzenie paragrafu)",
+          "html": "Tylko jeśli na planszy znajdują się <item id='50'/> dowolna z postaci na tej planszy posiada przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='123'/>. Następnie przejdź do paragrafu <span class='color-green'>65</span>.",
+          "nextParagraphId": "65"
+        },
+        {
+          "html": "Opuszczam paragraf.",
           "nextParagraphId": ""
         }
       ]
