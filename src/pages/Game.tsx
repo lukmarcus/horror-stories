@@ -15,8 +15,9 @@ export const Game: React.FC = () => {
 
   // Use imported game data
   const scenarios = SCENARIOS;
-  const paragraphs = PARAGRAPHS;
+  const allParagraphs = PARAGRAPHS;
   const scenarioId = id || "droga-donikad";
+  const paragraphs = allParagraphs[scenarioId] || {};
 
   const currentScenario = scenarios[scenarioId];
   const setupSteps = SETUP_DATA[scenarioId]?.steps || [];
@@ -31,13 +32,14 @@ export const Game: React.FC = () => {
       game.state.inputValue,
       paragraphs,
     );
-    if (!result.valid) {
-      game.setError(result.error || "Błąd");
-      return;
-    }
 
     if (result.needsWarning && result.pendingId) {
       game.showWarning(result.pendingId);
+      return;
+    }
+
+    if (!result.valid) {
+      game.setError(result.error || "Błąd");
       return;
     }
 
@@ -75,54 +77,52 @@ export const Game: React.FC = () => {
 
   return (
     <main className="game">
-      {/* Accessibility Warning Dialog */}
+      {/* Accessibility Warning Screen */}
       {game.state.showAccessibilityWarning && game.state.pendingParagraphId && (
-        <div
-          className="game__dialog-overlay"
-          role="presentation"
-          aria-hidden={!game.state.showAccessibilityWarning}
+        <section
+          className="game__container game__accessibility-warning"
+          aria-label="Ostrzeżenie o dostępności paragrafu"
         >
-          <dialog
-            className="game__dialog"
-            open={game.state.showAccessibilityWarning}
-            aria-labelledby="accessibility-dialog-title"
-            aria-modal="true"
-          >
-            <h2 id="accessibility-dialog-title" className="game__dialog-title">
-              Uwaga!
-            </h2>
-            <p className="game__dialog-text">
-              Paragraf #{game.state.pendingParagraphId} jest dostępny tylko z:
-            </p>
-            <div
-              className="game__dialog-sources"
-              aria-label="Dostępne źródła paragrafu"
-            >
-              {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.join(
-                ", ",
-              )}
+          <div className="game__warning-content">
+            <h1 className="game__scenario-title">
+              {currentScenario?.title || "Scenariusz"}
+            </h1>
+            <div className="game__warning-box">
+              <h2 className="game__warning-title">Ostrzeżenie</h2>
+              <p className="game__warning-text">
+                Paragraf #{game.state.pendingParagraphId} jest dostępny tylko z:
+              </p>
+              <div className="game__warning-sources">
+                {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.map(
+                  (source) => (
+                    <div key={source} className="game__warning-source">
+                      • Paragraf #{source}
+                    </div>
+                  ),
+                )}
+              </div>
+              <p className="game__warning-question">
+                Czy chcesz mimo to przejść do tego paragrafu?
+              </p>
+              <div className="game__warning-buttons">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={handleConfirmAccessibility}
+                >
+                  Tak, rozumiem
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  onClick={handleCancelAccessibility}
+                >
+                  Powrót
+                </Button>
+              </div>
             </div>
-            <p className="game__dialog-question">
-              Czy chcesz mimo to przejść do tego paragrafu?
-            </p>
-            <div className="game__dialog-buttons">
-              <Button
-                variant="primary"
-                size="md"
-                onClick={handleConfirmAccessibility}
-              >
-                Tak
-              </Button>
-              <Button
-                variant="secondary"
-                size="md"
-                onClick={handleCancelAccessibility}
-              >
-                Nie
-              </Button>
-            </div>
-          </dialog>
-        </div>
+          </div>
+        </section>
       )}
 
       {/* Setup Section - Full Screen View */}
@@ -231,8 +231,8 @@ export const Game: React.FC = () => {
         </section>
       )}
 
-      {/* Main Game View - Hidden when showing Setup */}
-      {!game.state.showSetup && (
+      {/* Main Game View - Hidden when showing Setup or Warning */}
+      {!game.state.showSetup && !game.state.showAccessibilityWarning && (
         <>
           {/* Container */}
           <div className="game__container">

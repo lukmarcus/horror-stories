@@ -157,9 +157,13 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
             return (
               <button
                 key={choice.id}
-                onClick={() =>
-                  choice.nextParagraphId && onChoice(choice.nextParagraphId)
-                }
+                onClick={() => {
+                  if (choice.nextParagraphId === "") {
+                    onBack();
+                  } else if (choice.nextParagraphId) {
+                    onChoice(choice.nextParagraphId);
+                  }
+                }}
                 className="button button--primary"
                 aria-label={choice.text || ""}
               >

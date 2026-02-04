@@ -7,6 +7,7 @@
 .color-red,
 .color-purple,
 .color-green,
+.color-blue,
 .size-xs,
 .size-sm,
 .size-lg,
@@ -29,6 +30,10 @@
 
 .color-green {
   color: #4caf50;
+}
+
+.color-blue {
+  color: #3b82f6;
 }
 
 .size-xs {
