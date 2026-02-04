@@ -7,6 +7,21 @@
       "choices": []
     },
     {
+      "id": "2",
+      "isDirect": false,
+      "accessibleFrom": ["26-patrick"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='jessica'/> Tylko tyle, że mnie odwoziłeś. Musiałam zasnąć, bo chwilę potem wybudziłam się tutaj."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
       "id": "26",
       "isDirect": true,
       "contentPages": [
@@ -42,7 +57,7 @@
         [
           {
             "type": "text",
-            "html": "[Perspektywa Jessiki]"
+            "html": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='rewers'/> ze swojego stosu odrzuconego do talii."
           }
         ]
       ],
@@ -60,16 +75,102 @@
         [
           {
             "type": "text",
-            "html": "[Perspektywa Patricka]"
+            "html": "Poznałaś ją na imprezie i zaproponowałeś, że odwieziesz ją do domu. Co prawda nie byłeś w szczytowej formie, ale było niedaleko, a w nocy ruch był znikomy ruch."
+          },
+          {
+            "type": "text",
+            "html": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "text": "Wróć",
-          "nextParagraphId": "26"
+          "html": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
+          "nextParagraphId": "2"
+        },
+        {
+          "html": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
+          "nextParagraphId": ""
+        },
+        {
+          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "nextParagraphId": ""
         }
       ]
+    },
+    {
+      "id": "37",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='37'/>. Następnie przejdź do paragrafu <span class='color-green'>1</span>.",
+          "nextParagraphId": "1"
+        },
+        {
+          "html": "Jeśli żadnego przedmiotu nie posiadasz lub zmieniłaś zdanie, opuść ten paragraf (wybranie opcji opuszczenia paragrafu jej nie przywraca; można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
+      "id": "53",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Przeszukaj biurko. Jeśli chcesz to zrobić przejdź do <span class='color-green'>paragrafu 70</span> (tego rodzaju przejścia <span class='color-red'>nie</span> są wskazaniem <symbol id='paragraf'/>, a tym samym nie wymagają dobrania kolejnej wierzchniej <symbol id='rewers'/>)",
+          "nextParagraphId": "70"
+        },
+        {
+          "html": "Opuść ten paragraf (ale pamiętaj, że każde wskazanie <symbol id='paragraf'/> oznacza konieczność dobrania wierzchniej <symbol id='rewers'/>, nawet jeśli wskazujesz paragraf, który już znasz; <span class='color-red'>ponadto NIE przywróci ci to zużytej na wskazanie <symbol id='paragraf'/> akcji</span>)",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
+      "id": "70",
+      "isDirect": false,
+      "accessibleFrom": ["53"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Odrzuć <item id='53'/> (oznacza to odłożenie do puli z której pochodzi)."
+          },
+          {
+            "type": "text",
+            "html": "W szufladzie biurka znajdujesz klucz (<item id='84'/>). Dodaj go do swojego ekwipunku."
+          },
+          {
+            "type": "text",
+            "html": "Wszystkie kwadratowe żetony są przedmiotami, które można tam umieszczać."
+          },
+          {
+            "type": "text",
+            "html": "Zwróć uwagę, że klucz posiada <symbol id='paragraf'/>. Jeśli przedmiot z tym symbolem znajduje się na planszy z Twoją figurką lub w twoim ekwipunku, możesz w ramach akcji (dobierając jedno <symbol id='rewers'/>) przejść do jego <span class='color-green'>paragrafu</span>. Nie musisz tego robić - tylko wskazujemy, że jest to możliwe."
+          },
+          {
+            "type": "text",
+            "html": "(<span class='color-red'>!!!</span>) Ilekroć należałoby dobrać <symbol id='rewers'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='rewers'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='rewers'/>)."
+          }
+        ]
+      ],
+      "choices": []
     },
     {
       "id": "77",
@@ -121,6 +222,25 @@
       ],
       "choices": [],
       "items": []
+    },
+    {
+      "id": "121",
+      "isDirect": false,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Starszy mężczyzna. Nie kojarzysz go. Sądząc po licznych ranach, kałuży krwi pod nim musi być martwy. Brakuje mu prawej dłoni."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "<span class='color-red'>Opuść paragraf</span> (ilekroć nie prowadzi dalej, oznacza to, że możesz zająć się teraz czymś innym; nie przywraca ci to akcji wykorzystanej na sprawdzenie paragrafu)",
+          "nextParagraphId": ""
+        }
+      ]
     }
   ]
 }

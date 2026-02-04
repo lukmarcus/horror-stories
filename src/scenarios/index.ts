@@ -22,28 +22,28 @@ export const SCENARIOS: Record<string, Scenario> = Object.fromEntries(
 );
 
 /**
- * Game paragraphs/nodes from JSON data
+ * Game paragraphs/nodes from JSON data - organized by scenario
  */
-export const PARAGRAPHS: Record<string, Paragraph> = {
-  ...Object.fromEntries(
+export const PARAGRAPHS: Record<string, Record<string, Paragraph>> = {
+  "droga-donikad": Object.fromEntries(
     (droga.paragraphs as unknown as Paragraph[]).map((p) => [
       p.id.toString(),
       p,
     ]),
   ),
-  ...Object.fromEntries(
+  "tajemna-biblioteka": Object.fromEntries(
     (biblioteka.paragraphs as unknown as Paragraph[]).map((p) => [
       p.id.toString(),
       p,
     ]),
   ),
-  ...Object.fromEntries(
+  "opuszczony-szpital": Object.fromEntries(
     (szpital.paragraphs as unknown as Paragraph[]).map((p) => [
       p.id.toString(),
       p,
     ]),
   ),
-  ...Object.fromEntries(
+  "nocny-koszmar": Object.fromEntries(
     (koszmar.paragraphs as unknown as Paragraph[]).map((p) => [
       p.id.toString(),
       p,
