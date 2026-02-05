@@ -27,9 +27,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Flaga `areChoicesHorizontal` - kontrola layoutu przycisków
 - ✅ Paragraf 1 (wejście z 37, link do 105)
 - ✅ Paragraf 2 (isDirect: false, dostępny tylko z 26-patrick)
+- ✅ Paragraf 3 (rzeźba nie drgnęła - kara, wejście z 111)
+- ✅ Paragraf 14 (obraz "Czyściec", dead-end)
+- ✅ Paragraf 15 (rzeźba nie drgnęła - kara, wejście z 111)
 - ✅ Paragraf 26 (hub) z wyborem postaci (Jessica/Patrick)
 - ✅ Paragraf 26-jessica (akcja informacyjna)
 - ✅ Paragraf 26-patrick (3 wybory)
+- ✅ Paragraf 29 (wyłożenie planszy 3, odkrycie dziury)
 - ✅ Paragraf 37 (mechanika interakcji z przedmiotami)
 - ✅ Paragraf 40 (Patrick się budzi, przygotowanie planszy)
 - ✅ Paragraf 50 (martwych drzwi, dead-end)
@@ -49,13 +53,16 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Do zrobienia
 
-- ⏳ Uzupełnienie scenariusza (4-9 paragrafów do celu 20+)
-- ⏳ Testy kompletnego przepływu gry
-- ⏳ Balansowanie gry
+### Do zrobienia
+
+- ⏳ Wszystkie paragrafy scenariusza (ostatecznie ~160-180 paragrafów)
+- ⏳ Pełne gałęzie narracyjne dla obu postaci
+- ⏳ Wszystkie warunki i warianty ścieżek
+- ⏳ Testowanie gry
 
 ### Status
 
-- 🔄 Zaawansowany etap (16/20+ paragrafów)
+- 🔄 W trakcie (21/~180 paragrafów) - główna ścieżka i podstawowe mechaniki
 
 ---
 

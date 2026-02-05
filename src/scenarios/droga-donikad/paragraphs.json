@@ -43,6 +43,51 @@
       "choices": []
     },
     {
+      "id": "3",
+      "isDirect": false,
+      "accessibleFrom": ["111"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "14",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Obraz podpisany na ramie jako <span style='font-style: italic;'>Czyściec</span>. Widzisz na nim <span class='color-red'>ośmioro</span> ludzi, z których <span class='color-red'>czworo</span> jest wciąganych przez aniołów ku czemuś, co wygląda jak niebo."
+          },
+          {
+            "type": "text",
+            "html": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "15",
+      "isDirect": false,
+      "accessibleFrom": ["111"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
       "id": "26",
       "isDirect": true,
       "contentPages": [
@@ -113,6 +158,24 @@
           "nextParagraphId": ""
         }
       ]
+    },
+    {
+      "id": "29",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wyłóż planszę 3<letter id='b'/>, a na jej <span class='color-purple'>N</span> połóż <item id='69'/> (tak, aby leżało jednocześnie również na <span class='color-purple'>S</span> planszy 14)."
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Jak to możliwe, że wcześniej nie dostrzegliście wielkiej dziury w ścianie?"
+          }
+        ]
+      ],
+      "choices": []
     },
     {
       "id": "37",
