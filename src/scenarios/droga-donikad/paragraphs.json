@@ -57,6 +57,153 @@
       "choices": []
     },
     {
+      "id": "9",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Którą postacią jesteś?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "<person id='jessica'/>",
+          "text": "Jessica",
+          "nextParagraphId": "9-jessica"
+        },
+        {
+          "html": "<person id='patrick'/>",
+          "text": "Patrick",
+          "nextParagraphId": "9-patrick"
+        }
+      ],
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "9-jessica",
+      "isDirect": false,
+      "accessibleFrom": ["9"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Poznałaś go na imprezie. Wracaliście jednym autem."
+          },
+          {
+            "type": "text",
+            "html": "Figurka Patricka leży czy stoi?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Patrick leży",
+          "nextParagraphId": "9-patrick-lezy"
+        },
+        {
+          "html": "Patrick stoi",
+          "nextParagraphId": "9-patrick-stoi"
+        }
+      ],
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "9-patrick-lezy",
+      "isDirect": false,
+      "accessibleFrom": ["9-jessica"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Spróbuj go ocucić (przejdź do paragrafu <span class='color-green'>40</span>)",
+          "nextParagraphId": "40"
+        },
+        {
+          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
+      "id": "9-patrick-stoi",
+      "isDirect": false,
+      "accessibleFrom": ["9-jessica"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Spróbuj z nim porozmawiać (przejdź do paragrafu <span class='color-green'>99</span>)",
+          "nextParagraphId": "99"
+        },
+        {
+          "html": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
+          "nextParagraphId": ""
+        },
+        {
+          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
+      "id": "9-patrick",
+      "isDirect": false,
+      "accessibleFrom": ["9"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "... Głowa nie daje Ci żyć. Domyślasz się, że trochę przesadziłeś na imprezie. Możesz wtasować dowolną <symbol id='rewers'/> ze swojego stosu odrzuconego do talii."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "12",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Drewniane drzwi z wyrytym na nich napisem: <span style='font-style: italic;'>\"Gdy winy odpokutowane, otworzą się bramy, rozjaśni się mrok\"</span>."
+          },
+          {
+            "type": "text",
+            "html": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku lub jakiś leży na planszy z Twoją figurką wskaż ten którym chcesz wejść w interakcję z drzwiami. Następnie przejdź do paragrafu <span class='color-green'>51</span>. Ps. Jeśli potrzebny przedmiot ma druga postać, może z nią porozmawiaj, aby poprosić, aby Ci go przekazała?",
+          "nextParagraphId": "51"
+        },
+        {
+          "html": "Spróbuj przebić się siłą. Dobierz do 4<symbol id='rewers'/> i po zsumowaniu ilości <symbol id='gwiazda'/> przejdź do paragrafu <span class='color-green'>39</span>. Ps. Jeśli masz pustą talię, sformuj nową ze stosu odrzuconego. Jeśli dobrano nie wystarczającą ilość (np. deklarujesz dobranie 4<symbol id='rewers'/>, a w talii masz 3<symbol id='rewers'/>, dobierz te 3<symbol id='rewers'/>, zapamiętaj sumę <symbol id='gwiazda'/>, i sformuj nową talię ze stosu odrzuconego i dobierz z wierzchu świeżo sformowanej talii czwartą. Tak, może się okazać, że raz już użytej podczas tego testu karty przyjdzie ci rozpatrzyć drugi raz. To normalne.",
+          "nextParagraphId": "39"
+        },
+        {
+          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
       "id": "14",
       "isDirect": true,
       "contentPages": [

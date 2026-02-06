@@ -28,6 +28,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Paragraf 1 (wejście z 37, link do 105)
 - ✅ Paragraf 2 (isDirect: false, dostępny tylko z 26-patrick)
 - ✅ Paragraf 3 (rzeźba nie drgnęła - kara, wejście z 111)
+- ✅ Paragraf 9 (pytanie: która postać)
+- ✅ Paragraf 9-jessica (Jessica przejmuje, pytanie czy Patrick leży)
+- ✅ Paragraf 9-patrick-lezy (opcje: ocucić lub opuść)
+- ✅ Paragraf 9-patrick-stoi (opcje: porozmawiać, wymiana, opuść)
+- ✅ Paragraf 9-patrick (Patrick przejmuje, głowa boleje)
+- ✅ Paragraf 12 (drewniane drzwi, 3 opcje - interakcja/siła/opuść)
 - ✅ Paragraf 14 (obraz "Czyściec", dead-end)
 - ✅ Paragraf 15 (rzeźba nie drgnęła - kara, wejście z 111)
 - ✅ Paragraf 26 (hub) z wyborem postaci (Jessica/Patrick)
@@ -62,7 +68,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- 🔄 W trakcie (21/~180 paragrafów) - główna ścieżka i podstawowe mechaniki
+- 🔄 W trakcie (27/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki
 
 ---
 
