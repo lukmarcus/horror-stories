@@ -52,10 +52,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Paragraf 105 (odkrycie Patrick leżącego, setup gry)
 - ✅ Paragraf 121 (spotkanie z nieznajomym NPC)
 - ✅ Paragraf 123 (interakcja ze rzeźbą, warunki)
+- ✅ Paragraf 30 (wprowadzenie klauna - 4-częściowy tutorial mechanik antagonisty)
 - ✅ System isDirect: false z accessibleFrom - ograniczone dostępy do paragrafów
 - ✅ Ekran ostrzeżenia dostępności (pełny widok dla isDirect: false)
 - ✅ Oddzielna struktura danych dla scenariuszy (paragrafy organizowane po scenarioId)
-- ✅ Grafiki gry (jessica.jpg, patrick.jpg, symbole, litery, grafiki scenariusza)
+- ✅ Grafiki gry (jessica.jpg, patrick.jpg, klaun.jpg, symbole, litery, grafiki scenariusza)
+- ✅ Grafiki paragrafów: klaun-planszetka.jpg, klaun-akcje.jpg, rip.jpg, karty-negatywne.jpg
+- ✅ Symbole antagonisty: przeciwnik.png, zycie.png
 
 ### Do zrobienia
 
@@ -68,7 +71,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- 🔄 W trakcie (27/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki
+- 🔄 W trakcie (28/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
 
 ---
 
