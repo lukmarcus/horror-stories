@@ -36,8 +36,13 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     !paragraph.hasDiceRoll;
 
   // Handle content pages
-  const hasPages = paragraph.isMultiPage && paragraph.contentPages && paragraph.contentPages.length > 1;
-  const maxPage = paragraph.contentPages ? paragraph.contentPages.length - 1 : 0;
+  const hasPages =
+    paragraph.isMultiPage &&
+    paragraph.contentPages &&
+    paragraph.contentPages.length > 1;
+  const maxPage = paragraph.contentPages
+    ? paragraph.contentPages.length - 1
+    : 0;
   const currentContent = paragraph.contentPages
     ? paragraph.contentPages[currentPage]
     : paragraph.content;
@@ -71,7 +76,9 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
               </button>
               <button
                 className="button button--secondary button--sm"
-                onClick={() => setCurrentPage(Math.min(maxPage, currentPage + 1))}
+                onClick={() =>
+                  setCurrentPage(Math.min(maxPage, currentPage + 1))
+                }
                 disabled={currentPage === maxPage}
               >
                 Następny →
@@ -125,6 +132,32 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
             <DiceRoller />
           </div>
         )}
+
+        {hasPages && (
+          <div className="game__setup-step-footer">
+            <div className="game__setup-step-number">
+              Część {currentPage + 1} z {maxPage + 1}
+            </div>
+            <div className="game__setup-controls">
+              <button
+                className="button button--secondary button--sm"
+                onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
+                disabled={currentPage === 0}
+              >
+                ← Poprzedni
+              </button>
+              <button
+                className="button button--secondary button--sm"
+                onClick={() =>
+                  setCurrentPage(Math.min(maxPage, currentPage + 1))
+                }
+                disabled={currentPage === maxPage}
+              >
+                Następny →
+              </button>
+            </div>
+          </div>
+        )}
       </article>
 
       {isDeadEnd && currentPage === maxPage && (
@@ -141,7 +174,10 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
       )}
 
       {paragraph.choices && paragraph.choices.length > 0 && (
-        <fieldset className={`choices ${paragraph.areChoicesHorizontal ? "choices--horizontal" : "choices--vertical"}`} aria-label="Dostępne wybory">
+        <fieldset
+          className={`choices ${paragraph.areChoicesHorizontal ? "choices--horizontal" : "choices--vertical"}`}
+          aria-label="Dostępne wybory"
+        >
           <legend className="sr-only">Wybierz następny paragraf</legend>
           {paragraph.choices.map((choice) => {
             if (choice.isConditional) {
@@ -169,10 +205,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
               >
                 {choice.html ? (
                   <>
-                    <RichText
-                      text={choice.html}
-                      scenarioId={scenarioId}
-                    />
+                    <RichText text={choice.html} scenarioId={scenarioId} />
                     {choice.text && <span>{choice.text}</span>}
                   </>
                 ) : (
