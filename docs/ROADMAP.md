@@ -40,7 +40,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Paragraf 26-jessica (akcja informacyjna)
 - ✅ Paragraf 26-patrick (3 wybory)
 - ✅ Paragraf 29 (wyłożenie planszy 3, odkrycie dziury)
+- ✅ Paragraf 30 (wprowadzenie klauna - 4-częściowy tutorial mechanik antagonisty)
+- ✅ Paragraf 34 (warunkie: symbol LIII, otmowanie przedmiotów, dead-end)
+- ✅ Paragraf 35 (setup planszy 16, wyjaśnienie mechaniki losowych przedmiotów)
+- ✅ Paragraf 36 (rzeźba odsłania przejście, zastępcze drzwi otwarte)
 - ✅ Paragraf 37 (mechanika interakcji z przedmiotami)
+- ✅ Paragraf 38 (obraz czterech osób w ogniu, note o przeglądaniu paragrafów)
+- ✅ Paragraf 39 (warunkowe otwarcie drzwi na podstawie gwiazdek)
 - ✅ Paragraf 40 (Patrick się budzi, przygotowanie planszy)
 - ✅ Paragraf 50 (martwych drzwi, dead-end)
 - ✅ Paragraf 53 (mechanika przeszukiwania)
@@ -52,7 +58,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Paragraf 105 (odkrycie Patrick leżącego, setup gry)
 - ✅ Paragraf 121 (spotkanie z nieznajomym NPC)
 - ✅ Paragraf 123 (interakcja ze rzeźbą, warunki)
-- ✅ Paragraf 30 (wprowadzenie klauna - 4-częściowy tutorial mechanik antagonisty)
 - ✅ System isDirect: false z accessibleFrom - ograniczone dostępy do paragrafów
 - ✅ Ekran ostrzeżenia dostępności (pełny widok dla isDirect: false)
 - ✅ Oddzielna struktura danych dla scenariuszy (paragrafy organizowane po scenarioId)
@@ -71,7 +76,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- 🔄 W trakcie (28/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
+- 🔄 W trakcie (33/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
 
 ---
 

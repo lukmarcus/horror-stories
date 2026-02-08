@@ -813,6 +813,103 @@
           "nextParagraphId": ""
         }
       ]
+    },
+    {
+      "id": "34",
+      "isDirect": false,
+      "accessibleFrom": ["137"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Jeśli wskazano przedmiot z cyfrą rzymską LIII dobierz 1<symbol id='pd'/>, odrzuć <item id='137'/> i <item id='113'/>. Połóż <item id='48'/> do swojego ekwipunku (odrzuć ewentualnie nadmiarowe przedmioty odkryte na planszy)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "35",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wyłóż planszę 16<letter id='a'/>, a na jego środku <item id='173'/> oraz <item id='14'/>."
+          },
+          {
+            "type": "text",
+            "html": "Teraz się <strong><span class='color-red'>SKUP</span></strong>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
+          },
+          {
+            "type": "text",
+            "html": "Z czarnego worka wylosuj trzy kwadratowe żetony (tych z <symbol id='losowe'/> na rewersie). Wykłada się je zawsze odkryte na planszy (chyba, że scenariusz wyraźnie powie inaczej)."
+          },
+          {
+            "type": "text",
+            "html": "Są to przedmioty określane mianem \"losowych\". Dobiera się je identycznie jak przedmioty fabularne. Używanie przedmiotów <symbol id='losowe'/> kosztuje jedną akcję (wyjątek stanowi <symbol id='amunicja-pistolet'/>/<symbol id='amunicja-strzelba'/>, których nie możemy użyć samych). Użycie <symbol id='losowe'/> skutkuje wrzuceniem jego żetonu z powrotem do czarnego worka."
+          },
+          {
+            "type": "text",
+            "html": "Jeśli w jakikolwiek sposób dobierzesz przedmioty (kwadratowe żetony), ale nie masz dostatecznej ilości miejsca w ekwipunku, możesz położyć na nim dowolne przedmioty, a resztę odłożyć odkryte na planszy z Twoją figurką."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Jeśli nie wyłożono jeszcze talii rozwoju (i nie wiesz o czym mowa) przejdź do paragrafu <span class='color-green'>75</span>.",
+          "nextParagraphId": "75"
+        },
+        {
+          "html": "wróć",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
+      "id": "36",
+      "isDirect": false,
+      "accessibleFrom": ["111"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Rzeźba przesuwa się na bok odsłaniając przejście prowadzące dalej. W miejscu rzeźby postaw <symbol id='drzwi-otwarte'/> (czyli <span class='color-purple'>W</span> planszy 1). <span class='color-blue'>Odrzuć</span> <item id='111'/>."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "38",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Spoglądasz właśnie na obraz, w którym <span class='color-red'>cztery</span> osoby znajdujące się w ogniu spoglądają na anioły nad nimi. Sprawiają wrażenie jakoby porzuciły wszelką nadzieję."
+          },
+          {
+            "type": "text",
+            "html": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "39",
+      "isDirect": false,
+      "accessibleFrom": ["12"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Jeśli dobrano co najmniej 6<symbol id='gwiazda'/>, odrzuć <item id='12'/> i w jej miejscu połóż <symbol id='drzwi-otwarte'/>."
+          }
+        ]
+      ],
+      "choices": []
     }
   ]
 }
