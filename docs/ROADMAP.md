@@ -48,8 +48,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Paragraf 38 (obraz czterech osób w ogniu, note o przeglądaniu paragrafów)
 - ✅ Paragraf 39 (warunkowe otwarcie drzwi na podstawie gwiazdek)
 - ✅ Paragraf 40 (Patrick się budzi, przygotowanie planszy)
+- ✅ Paragraf 48 (zielony klucz - dead-end)
+- ✅ Paragraf 49 (setup planszy 13, wyjaśnienie mechaniki losowych przedmiotów)
 - ✅ Paragraf 50 (martwych drzwi, dead-end)
+- ✅ Paragraf 52 (rzeźba się nie porusza - kara, wejście z 111)
 - ✅ Paragraf 53 (mechanika przeszukiwania)
+- ✅ Paragraf 54 (wkładasz głowę w dziurę, dead-end)
+- ✅ Paragraf 55 (Patrick o barku, dead-end)
 - ✅ Paragraf 61 (podnoszenie przedmiotów - ręka)
 - ✅ Paragraf 65 (pytanie warunkowe: czy Patrick leży?)
 - ✅ Paragraf 65-61 (wariantowa ścieżka - usuwanie itemów)
@@ -76,23 +81,27 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- 🔄 W trakcie (33/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
+- 🔄 W trakcie (38/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
 
 ---
 
-## Milestone v0.0.9 - System śledzenia przedmiotów
+## Milestone v0.0.9 - Organizacja przedmiotów i grafik
 
 ### Zakres
 
-- System śledzenia przedmiotów z paragrafów (item pickups)
-- Panel wyświetlający zebrane przedmioty
-- Licznik przedmiotów w grze
+- Kompletne spisanie wszystkich przedmiotów scenariusza
+- Posortowanie i kategoryzowanie przedmiotów
+- Dodanie grafik dla wszystkich przedmiotów
+- Integracja grafik przedmiotów w paragrafach
+- Podjęcie ostatecznej decyzji dotyczącej numeracji i nazewnictwa przedmiotów
 
 ### Do zrobienia
 
-- ⏳ System śledzenia przedmiotów
-- ⏳ Komponent panelu przedmiotów
-- ⏳ Testy logiki przedmiotów
+- ⏳ Spisanie wszystkich przedmiotów z paragrafów
+- ⏳ Kategoryzacja przedmiotów
+- ⏳ Tworzenie/pozyskanie grafik przedmiotów
+- ⏳ Integracja grafik w systemie renderowania
+- ⏳ Standaryzacja numeracji i nazewnictwa
 
 ### Status
 
@@ -100,23 +109,25 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.0 - MVP Release
+## Milestone v0.1.0 - MVP Release - Visual Design
 
 ### Zakres
 
-- Kompletny scenariusz (Droga Donikąd)
-- System śledzenia przedmiotów
-- Wszystkie assety graficzne
-- Baza wszystkich elementów z gry
-- Optymizacja wydajności
+- Kompletny design wizualny aplikacji
+- Responsywny layout na wszystkich urządzeniach
+- Koherentna paleta barw i typografia
+- Polishing UI/UX
+- Optymalizacja wydajności
 - Dokumentacja dla użytkownika
 
 ### Do zrobienia
 
-- ✅ **Kompletny scenariusz** - z v0.0.8
-- ✅ **System śledzenia przedmiotów** - z v0.0.9
-- ✅ **Wszystkie assety** - ikony, tła, grafiki
-- ✅ **Baza elementów** - pełna lista obiektów
+- ⏳ Design system - kolory, typografia, komponenty
+- ⏳ Responsywność - mobile, tablet, desktop
+- ⏳ Animacje i przejścia
+- ⏳ Accessibility - WCAG compliance
+- ⏳ Optymizacja wydajności
+- ⏳ Testing i bug fixing
 
 ### Status
 
