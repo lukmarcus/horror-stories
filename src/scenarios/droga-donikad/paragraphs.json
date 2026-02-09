@@ -802,6 +802,20 @@
       "choices": []
     },
     {
+      "id": "62",
+      "isDirect": false,
+      "accessibleFrom": ["111"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
       "id": "65",
       "isDirect": false,
       "accessibleFrom": ["123"],
@@ -840,6 +854,32 @@
       "choices": []
     },
     {
+      "id": "69",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Pulsuje równomiernie przeraźliwie jasnym światłem. Nie jesteś przez to w stanie zobaczyć co jest po drugiej stronie. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Zajrzyj tam (przejdź do <span class='color-green'>54</span>)",
+          "nextParagraphId": "54"
+        },
+        {
+          "html": "Wejdź do środka (przejdź do <span class='color-green'>180</span>)",
+          "nextParagraphId": "180"
+        },
+        {
+          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
       "id": "70",
       "isDirect": false,
       "accessibleFrom": ["53"],
@@ -864,6 +904,20 @@
           {
             "type": "text",
             "html": "(<span class='color-red'>!!!</span>) Ilekroć należałoby dobrać <symbol id='rewers'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='rewers'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='rewers'/>)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "73",
+      "isDirect": false,
+      "accessibleFrom": ["111"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
           }
         ]
       ],
