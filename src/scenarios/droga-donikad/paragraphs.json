@@ -924,6 +924,51 @@
       "choices": []
     },
     {
+      "id": "75",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wyłóż (w zasięgu wzroku graczy) cztery losowe karty z tzw. \"talii rozwoju\", czyli kart z nadrukowanym symbolem <symbol id='pd'/>. Stanowią \"rynek talii rozwoju\"."
+          },
+          {
+            "type": "image",
+            "id": "karta-rozwoju"
+          },
+          {
+            "type": "text",
+            "html": "Pozostałe połóż obok rewersem obok tych czterech."
+          },
+          {
+            "type": "text",
+            "html": "Na końcu tury aktualnie wykonująca turę postać może skorzystać z rynku."
+          },
+          {
+            "type": "text",
+            "html": "Może najpierw odrzucić jedną kart z rynku rozwoju, uzupełnić do czterech."
+          },
+          {
+            "type": "text",
+            "html": "Następnie może wydać dowolną ilość żetonów rozwoju (<symbol id='pd'/>), aby dołożyć do swojego stosu odrzuconego dowolne spośród tych wyłożonych kart z talii rozwoju."
+          },
+          {
+            "type": "text",
+            "html": "Po zakupie pojedynczej karty natychmiast uzupełnij rynek (np. gracz kupuje jedną, uzupełnia rynek i znów może kupić kolejną jeśli ma wolny <symbol id='pd'/>)."
+          },
+          {
+            "type": "text",
+            "html": "<span class='color-red'><strong>Zwróć uwagę, że karty mają na sobie jakiś tekst. Ilekroć deklarujesz ile kart dobierzesz, dobierasz od tej pory JEDNA PO DRUGIEJ i rozpatrujesz natychmiast tekst (jeśli jest) na nowo dobranej. Dopiero po rozpatrzeniu tekstu robisz resztę (np. przechodzisz do paragrafu).</strong></span>"
+          },
+          {
+            "type": "text",
+            "html": "Przykład: deklarujesz dobranie 3 kart. Dociągasz pierwszą. Nie posiada żadnego tekstu. Potem dobierasz drugą. Posiada jakiś efekt, który musisz rozpatrzyć natychmiast. Dobierasz trzecią. Również posiada tekst, który rozpatrujesz."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
       "id": "77",
       "isDirect": true,
       "isMultiPage": true,
@@ -968,6 +1013,70 @@
           {
             "type": "text",
             "html": "Ilekroć należałoby dobrać <symbol id='rewers'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='rewers'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='rewers'/>)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "80",
+      "isDirect": false,
+      "accessibleFrom": ["99"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "<person id='patrick'/><italic>Źle</italic> - odpowiada. <italic>Boli mnie każda część ciała i prawdopodobnie mam złamaną nogę. Gdyby nie adrenalina pewnie zwijałbym się z bólu, ale okoliczności do tego nie sprzyjają. A u ciebie?</italic>"
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='jessica'/>Fizycznie do zniesienia. Reszty już prawdopodobnie nie zdołam nigdy wyrzucić z głowy."
+          },
+          {
+            "type": "text",
+            "html": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "81",
+      "isDirect": false,
+      "accessibleFrom": ["111"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "82",
+      "isDirect": false,
+      "accessibleFrom": ["173"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Znajdujesz <item id='113'/>. Dodaj ją do swojego ekwipunku. Odrzuć <item id='173'/>."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "83",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Odrzuć <letter id='b'/> z toru czasu. Połóż obok planszy <person id='klaun'/> żeton <effect id='plus-jedna-kosc'/>. Od tej pory rzuca do końca scenariusza jedną kością więcej."
           }
         ]
       ],

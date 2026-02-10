@@ -56,10 +56,18 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Paragraf 54 (wkładasz głowę w dziurę, dead-end)
 - ✅ Paragraf 55 (Patrick o barku, dead-end)
 - ✅ Paragraf 61 (podnoszenie przedmiotów - ręka)
+- ✅ Paragraf 62 (rzeźba się nie porusza - kara, wejście z 111)
 - ✅ Paragraf 65 (pytanie warunkowe: czy Patrick leży?)
 - ✅ Paragraf 65-61 (wariantowa ścieżka - usuwanie itemów)
+- ✅ Paragraf 69 (pulsujące światło - trzy opcje)
 - ✅ Paragraf 70 (odkrywanie biurka, wyłożenie planszy)
+- ✅ Paragraf 73 (rzeźba się nie porusza - kara, wejście z 111)
+- ✅ Paragraf 75 (setup talii rozwoju, wyjaśnienie mechaniki)
 - ✅ Paragraf 77 (odkrywanie nowej planszy, spotkanie NPC)
+- ✅ Paragraf 80 (rozmowa Patrick-Jessica, dead-end)
+- ✅ Paragraf 81 (rzeźba się nie porusza - kara, wejście z 111)
+- ✅ Paragraf 82 (znalezienie przedmiotu 113, dead-end)
+- ✅ Paragraf 83 (nowy efekt dla klauna - dead-end)
 - ✅ Paragraf 105 (odkrycie Patrick leżącego, setup gry)
 - ✅ Paragraf 121 (spotkanie z nieznajomym NPC)
 - ✅ Paragraf 123 (interakcja ze rzeźbą, warunki)
@@ -81,7 +89,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- 🔄 W trakcie (38/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
+- 🔄 W trakcie (48/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
 
 ---
 
