@@ -98,7 +98,33 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.9 - Organizacja przedmiotów i grafik
+## Milestone v0.0.9 - Code Quality & Schema Optimization
+
+### Zakres
+
+Refaktoryzacja struktury danych scenariuszy w celu uproszczenia i optymalizacji schematu JSON:
+
+- **Domyślne pogrubienie dla kolorów** - Usunąć zwielokrotnianie `<strong>` wokół kolorowych tekstów, zastosować CSS global
+- **accessibleFrom implikuje isDirect** - Pole isDirect staje się redundantne, usunąć je dla paragrafów które mają accessibleFrom
+- **Uproszczenie struktury obrazów** - Zmiana z `{type: "image", id: "..."}` na `"image": "id"`
+- **Uproszczenie struktury tekstu** - Zmiana z `{type: "text", html: "..."}` na `"text": "..."`
+- **Wsparcie dla wielokrotnych ID** - Umożliwić tablicę ID-ów dla paragrafów o identycznej treści ale dostępnych z różnych źródeł (np. paragrafy "Rzeźba wydaje się ani drgnąć")
+
+### Do zrobienia
+
+- ⏳ Implementacja zmian w parserze paragrafów
+- ⏳ Aktualizacja komponenty renderujących (ParagraphText, ParagraphDisplay)
+- ⏳ Refaktoryzacja wszystkich 180+ paragrafów z nową strukturą
+- ⏳ Testy jednostkowe dla parsera
+- ⏳ Walidacja zmian na całym scenariuszu
+
+### Status
+
+- ⏳ Nie rozpoczęte (zaplanowano po ukończeniu v0.0.8)
+
+---
+
+## Milestone v0.0.10 - Organizacja przedmiotów i grafik
 
 ### Zakres
 
