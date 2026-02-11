@@ -1083,6 +1083,152 @@
       "choices": []
     },
     {
+      "id": "84",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Klucz z podwieszoną do niego kartką. Napisano na niej <em>\"cierpienie uszlachetnia\"</em>. Dziwne."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "97",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wyłóż planszę 11<letter id='a'/>, a na jej środku <item id='137'/>, zaś na jej <span class='color-blue'>N</span> i <span class='color-blue'>S</span> wyłóż <symbol id='drzwi-zamkniete'/>."
+          },
+          {
+            "type": "text",
+            "html": "Czas podkręcić nieco tempo. Otóż do tej pory nie groziło żadne realnie niebezpieczeństwo."
+          },
+          {
+            "type": "text",
+            "html": "Wyłóż tor czasu, a na nim żeton alfabetu <letter id='a'/> na polu 1 oraz <letter id='b'/> na polu 4."
+          },
+          {
+            "type": "image",
+            "id": "tor-czasu"
+          },
+          {
+            "type": "text",
+            "html": "Do tej pory upływ czasu nie miał znaczenia. Od tej pory czas niemal zawsze będzie działał na waszą niekorzyść. Ilekroć, KTÓRAKOLWIEK z postaci dobierze ostatnią kartę ze swojej talii postaci, przesuwa się natychmiast WSZYSTKIE żetony ALFABETU na torze czasu o jedno pole w kierunku pola <symbol id='czas'/>. Pole <span class='color-yellow'>AKTYWNE</span> na torze czasu jest odrębne od tej zasady i położone w nim elementy <u>nigdy</u> nie są przesuwane."
+          }
+        ],
+        [
+          {
+            "type": "text",
+            "html": "Jeśli na pole <symbol id='czas'/> przesunie się jakiś żeton alfabetu, to <strong>na koniec tury</strong> postaci, w której nastąpiło to przesunięcie sprawdzamy efekt wydarzenia wywołany przez ten żeton. W tym celu zaglądamy na pierwszą stronę aktualnie rozgrywanego scenariusza i przechodzimy do <span class='color-green'>paragrafu</span> wskazanego przez dany żeton (<strong>obrazek po prawej</strong>)."
+          },
+          {
+            "type": "image",
+            "id": "opis-scenariusza"
+          },
+          {
+            "type": "text",
+            "html": "Gdyby doszło do sytuacji aktywacji kilku wydarzeń naraz, rozpatrz żetony w kolejności alfabetycznej (najpierw <letter id='a'/>, potem <letter id='b'/> itd.)."
+          },
+          {
+            "type": "text",
+            "html": "Przy ekwipunku <person id='jessica'/> oraz <person id='patrick'/> połóż po 3<symbol id='zycie'/> dla każdego. Reprezentuje ich zdrowie. Wraz z utratą ostatniego sprawdza się paragraf <span class='color-green'>100</span> o czym ma przypominać żeton pierwszego gracza (obrazek po prawej)."
+          },
+          {
+            "type": "image",
+            "id": "rip"
+          },
+          {
+            "type": "text",
+            "html": "Przekaż do Jessice. Nie zmienia on swojego właściciela (chyba, że scenariusz wyraźnie powie inaczej)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "99",
+      "isDirect": false,
+      "accessibleFrom": ["9"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Jest roztrzęsiony i sprawia wrażenie, jakby jeszcze nie mógł otrząsnąć się z szoku. Ślady walki o życie i przerażające wspomnienia malowały się na jego twarzy. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Spytaj jak się czuje (przejdź do paragrafu <span class='color-green'>80</span>)",
+          "nextParagraphId": "80"
+        },
+        {
+          "html": "Spytaj go czy pamięta jak się tu znaleźli (przejdź do paragrafu <span class='color-green'>112</span>)",
+          "nextParagraphId": "112"
+        },
+        {
+          "html": "<strong>(Wybierz tylko jeśli na planszy znajduje się <item id='50'/>)</strong> Nakłoń go, aby pomógł Ci wyważyć drzwi stojące na drodze (przejdź do paragrafu <span class='color-green'>55</span>)",
+          "nextParagraphId": "55"
+        },
+        {
+          "html": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami.",
+          "nextParagraphId": ""
+        },
+        {
+          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
+      "id": "100",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Śmierć. Sprawdź kogo dotyczy."
+          },
+          {
+            "type": "text",
+            "html": "<strong><person id='klaun'/></strong> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
+          },
+          {
+            "type": "text",
+            "html": "<strong><person id='jessica'/> / <person id='patrick'/></strong> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+          },
+          {
+            "type": "image",
+            "id": "rana-ciezka"
+          },
+          {
+            "type": "text",
+            "html": "Jeśli obie postacie takowy posiadają przejdź do <span class='color-green'>180</span>."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "101",
+      "isDirect": false,
+      "accessibleFrom": ["111"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
       "id": "105",
       "isDirect": false,
       "accessibleFrom": ["1"],

@@ -68,6 +68,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Paragraf 81 (rzeźba się nie porusza - kara, wejście z 111)
 - ✅ Paragraf 82 (znalezienie przedmiotu 113, dead-end)
 - ✅ Paragraf 83 (nowy efekt dla klauna - dead-end)
+- ✅ Paragraf 84 (klucz z kartką "cierpienie uszlachetnia", dead-end)
+- ✅ Paragraf 97 (setup planszy 11, wdrażanie toru czasu)
+- ✅ Paragraf 99 (rozmowa z Patrickiem - 5 opcji)
+- ✅ Paragraf 100 (obsługa śmierci postaci)
+- ✅ Paragraf 101 (rzeźba się nie porusza - kara, wejście z 111)
 - ✅ Paragraf 105 (odkrycie Patrick leżącego, setup gry)
 - ✅ Paragraf 121 (spotkanie z nieznajomym NPC)
 - ✅ Paragraf 123 (interakcja ze rzeźbą, warunki)
@@ -89,7 +94,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- 🔄 W trakcie (48/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
+- 🔄 W trakcie (53/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
 
 ---
 
