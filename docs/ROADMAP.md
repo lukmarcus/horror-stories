@@ -83,6 +83,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Paragraf 121 (spotkanie z nieznajomym NPC)
 - ✅ Paragraf 123 (interakcja ze rzeźbą, warunki)
 - ✅ Paragraf 126 (rzeźba się nie porusza - kara, wejście z 111)
+- ✅ Paragraf 137 (biblioteczka - warunkowa interakcja)
+- ✅ Paragraf 147 (starszy mężczyzna - deja vu, dead-end)
+- ✅ Paragraf 151 (wspomnienia zderzenia, koniec scenariusza!)
+- ✅ Paragraf 155 (rzeźba się nie porusza - kara, wejście z 111)
+- ✅ Paragraf 173 (sterta książek z wyborem przeszukania)
+- ✅ Paragraf 180 (reset planszy, finał scenariusza)
 - ✅ System isDirect: false z accessibleFrom - ograniczone dostępy do paragrafów
 - ✅ Ekran ostrzeżenia dostępności (pełny widok dla isDirect: false)
 - ✅ Oddzielna struktura danych dla scenariuszy (paragrafy organizowane po scenarioId)
@@ -101,7 +107,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- 🔄 W trakcie (61/~180 paragrafów) - ujawnienie śmierci, zagadka licznikowa, opisanie antagonisty
+- ✅ Ukończony (67 paragrafów, ostatni ID: 180) - scenariusz „Droga Donikąd" w całości
 
 ---
 
@@ -116,6 +122,10 @@ Refaktoryzacja struktury danych scenariuszy w celu uproszczenia i optymalizacji 
 - **Uproszczenie struktury obrazów** - Zmiana z `{type: "image", id: "..."}` na `"image": "id"`
 - **Uproszczenie struktury tekstu** - Zmiana z `{type: "text", html: "..."}` na `"text": "..."`
 - **Wsparcie dla wielokrotnych ID** - Umożliwić tablicę ID-ów dla paragrafów o identycznej treści ale dostępnych z różnych źródeł (np. paragrafy "Rzeźba wydaje się ani drgnąć")
+- **Wariantowe zawartość w jednym paragrafie** - Zamiast tworzyć oddzielne paragrafy dla różnych gałęzi (np. 26-jessica, 26-patrick), umożliwić warianty treści w ramach jednego ID z logiem renderowania zawartości na bazie wyborów
+- **Opcjonalne odstępy między paragrafami** - Pomyśleć nad schematem pozwalającym na kontrolowanie spacingu/paddingu między zawartością paragrafów w UI
+- **Stylizacja tekstu końcowego** - Znaleźć lepsze rozwiązanie na wyświetlanie fragmentów tekstu jak w paragrafie 151 (zwielokrotnianie HTML tagów dla stylizacji)
+- **Refaktor ekranu direct: false** - Przeprojektować wizualnie ekran ostrzeżenia dostępności dla paragrafów z accessibleFrom (wymaga zmian UI/UX)
 
 ### Do zrobienia
 

@@ -1494,6 +1494,153 @@
         ]
       ],
       "choices": []
+    },
+    {
+      "id": "137",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Biblioteczka z mnóstwem pozycji do wyboru. Cała półka wydaje się wypełniona w całości poza jednym miejscem. Wygląda jakby brakowało czegoś."
+          },
+          {
+            "type": "text",
+            "html": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Tylko jeśli posiadasz jakikolwiek przedmiot w ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='137'/>. Następnie przejdź do paragrafu <span class='color-green'>34</span>.",
+          "nextParagraphId": "34"
+        },
+        {
+          "html": "Opuszczam paragraf.",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
+      "id": "147",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Starszy mężczyzna, którego już wcześniej widziałaś. Dlaczego masz wrażenie, że przeżywasz jakieś deja vu i już … już to robiłaś?"
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "151",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Wszystko już pamiętasz. Wybudziłaś się w momencie, gdy Patrick stracił kontrolę i zjechał akurat na cudzy pas taranując czołowo jadącego w drugim aucie starszego mężczyznę. Pamiętasz go, bo na ułamek sekundy zdążyłaś spojrzeć mu w oczy."
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Pamiętasz zderzenie. Mężczyzna wyleciał przednią szybą wprost na asfalt. Wy z kolei utknęliście w aucie, które zaczęło płonąć. Na nic były wasze krzyki połączone z rozpaczliwym kopaniem w zakleszczone drzwi, które nie chciały drgnąć."
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Płonęliście żywcem wiedząc, że nie ma wyjścia z tej sytuacji. Wiedzieliście, że to koniec, ale ten mimo waszych błagań nie chciał nadejść. Kiedy już więc do niego doszło, trafiliście tutaj. Wydaje się, że rozumiesz czym może być to miejsce. Nie jesteś złą osobą i nie powinno Cię tu być. Nie zamierzasz pokutować, ani przepraszać. Zamierasz zrobisz wszystko, aby opuścić to miejsce."
+          },
+          {
+            "type": "text",
+            "html": "<span style='font-size: larger;'><span class='color-red'><strong>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</strong></span></span>"
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "155",
+      "isDirect": false,
+      "accessibleFrom": ["111"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "173",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Sterta książek."
+          },
+          {
+            "type": "text",
+            "html": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Zacznij przeszukiwać w poszukiwaniu czegoś przydatnego (przejdź do <span class='color-green'>82</span>)",
+          "nextParagraphId": "82"
+        },
+        {
+          "html": "Dobierz jeden losowy <symbol id='losowe'/>. Możesz położyć go w ekwipunku.",
+          "nextParagraphId": ""
+        },
+        {
+          "html": "Opuszczam paragraf.",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
+      "id": "180",
+      "isDirect": false,
+      "accessibleFrom": ["69", "100"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Odrzuć wszystkie plansze <strong>inne</strong> niż 12,14 i 2. Odrzuć wszystkie elementy na odrzuconych planszach. Odrzuć <item id='69'/>. Połóż figurkę <person id='patrick'/> leżącą na planszy 2<letter id='a'/>."
+          },
+          {
+            "type": "text",
+            "html": "Na planszy 12<letter id='a'/> wyłóż stojącą figurkę <person id='jessica'/>, a na <span class='color-blue'>E</span> wyłóż <symbol id='drzwi-otwarte'/> (zastąp inny element jeśli był)."
+          },
+          {
+            "type": "text",
+            "html": "Na środku planszy 14<letter id='a'/> wyłóż <item id='147'/>."
+          },
+          {
+            "type": "text",
+            "html": "Na <span class='color-blue'>E</span> planszy 2<letter id='a'/> wyłóż <symbol id='drzwi-otwarte'/> (zastąp inny element jeśli był) i na środku połóż tam leżącą figurkę Patricka."
+          },
+          {
+            "type": "text",
+            "html": "Na środku planszy 14<letter id='a'/> wyłóż żeton priorytetu <item id='110'/>, a na środku planszy 2<letter id='a'/> żeton priorytetu <item id='151'/> (o tym jak działają przeczytasz nieco niżej)."
+          },
+          {
+            "type": "text",
+            "html": "Turę rozgrywa już wyłącznie Jessica."
+          }
+        ]
+      ],
+      "choices": []
     }
   ]
 }
