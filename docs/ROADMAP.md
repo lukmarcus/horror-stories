@@ -74,8 +74,15 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Paragraf 100 (obsługa śmierci postaci)
 - ✅ Paragraf 101 (rzeźba się nie porusza - kara, wejście z 111)
 - ✅ Paragraf 105 (odkrycie Patrick leżącego, setup gry)
+- ✅ Paragraf 110 (ujawnienie śmierci postaci - death revelation)
+- ✅ Paragraf 111 (licznikowa zagadka z przyciskami 3-15)
+- ✅ Paragraf 112 (rozmowa z Patrickiem na temat światła)
+- ✅ Paragraf 113 (książka "Odkupienie" z pustymi kartkami)
+- ✅ Paragraf 116 (setup planszy 1 z tabliczką)
+- ✅ Paragraf 117 (opis wyglądu i zapachu antagonisty - dead-end)
 - ✅ Paragraf 121 (spotkanie z nieznajomym NPC)
 - ✅ Paragraf 123 (interakcja ze rzeźbą, warunki)
+- ✅ Paragraf 126 (rzeźba się nie porusza - kara, wejście z 111)
 - ✅ System isDirect: false z accessibleFrom - ograniczone dostępy do paragrafów
 - ✅ Ekran ostrzeżenia dostępności (pełny widok dla isDirect: false)
 - ✅ Oddzielna struktura danych dla scenariuszy (paragrafy organizowane po scenarioId)
@@ -94,7 +101,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- 🔄 W trakcie (53/~180 paragrafów) - hub postaci, główna ścieżka, mechaniki antagonisty
+- 🔄 W trakcie (61/~180 paragrafów) - ujawnienie śmierci, zagadka licznikowa, opisanie antagonisty
 
 ---
 

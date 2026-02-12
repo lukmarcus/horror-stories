@@ -1281,6 +1281,161 @@
       "choices": []
     },
     {
+      "id": "110",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Odsuwaliście od siebie tę myśl. W końcu całe życie było przed wami."
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "W końcu zaczyna to docierać."
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Vy … vy chyba nie żyjecie. Na chwilę przed zderzeniem czołowym z autem jadącym swoim pasem wybudził Cię krzyk Patricka. Wiedziałaś, że wpuszczenie go do auta w tym stanie nie jest dobrym pomysłem, ale obiecał, że będzie jechał powoli. Na trasie miewał momenty, gdy bardziej kierowało go auto niż on sam. Miałaś jednak nadzieję, że skoro było niedaleko, to uznałaś, że będzie dobrze i zmęczona zabawą się zdrzemniesz."
+          },
+          {
+            "type": "text",
+            "html": "Odrzuć <item id='110'/>. Jeśli masz niewykorzystane akcje, wykorzystaj je."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "111",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Kamienna tabliczka z następującą treścią:"
+          },
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "\"Dusze czekają w mękach swych lichych. Nie potępione, lecz nie zbawione. Ile ich czeka na wybawienie, by w końcu ujrzeć niebo - zbawienie?\"."
+          },
+          {
+            "type": "text",
+            "html": "Tuż pod napisem znajdują się klawisze z cyframi z przedziału od 3 do 15. Chcesz któryś wcisnąć? Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "html": "Trzy?",
+          "nextParagraphId": "52"
+        },
+        {
+          "html": "Pięć?",
+          "nextParagraphId": "81"
+        },
+        {
+          "html": "Sześć?",
+          "nextParagraphId": "126"
+        },
+        {
+          "html": "Siedem?",
+          "nextParagraphId": "3"
+        },
+        {
+          "html": "Osiem?",
+          "nextParagraphId": "36"
+        },
+        {
+          "html": "Dziewięć?",
+          "nextParagraphId": "62"
+        },
+        {
+          "html": "Dziesięć?",
+          "nextParagraphId": "15"
+        },
+        {
+          "html": "Jedenaście?",
+          "nextParagraphId": "101"
+        },
+        {
+          "html": "Dwanaście?",
+          "nextParagraphId": "73"
+        },
+        {
+          "html": "Trzynaście?",
+          "nextParagraphId": "155"
+        },
+        {
+          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "nextParagraphId": ""
+        }
+      ]
+    },
+    {
+      "id": "112",
+      "isDirect": false,
+      "accessibleFrom": ["99"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "<person id='patrick'/> Ostatnie co pamiętam to silne światło. Mam równie dużo pytań co ty."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "113",
+      "isDirect": false,
+      "accessibleFrom": ["82"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Książka zatytułowana \"Odkupienie\" autorstwa … no właśnie na okładce brakuje tytułu kogo. W środku są tylko puste kartki."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "116",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Wyłóż planszę 1<letter id='a'/>. Na jego <span class='color-blue'>W</span> połóż <item id='111'/>. Na środku wyłóż 3 losowe <symbol id='losowe'/>."
+          },
+          {
+            "type": "text",
+            "html": "Zawsze są wykładane odkryte, chyba, że scenariusz powie inaczej. Użycie efektu <symbol id='losowe'/> zużywa jedną akcję."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "117",
+      "isDirect": true,
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "style": "italic",
+            "html": "Szeroki, nienaturalny uśmiech rozciąga się od ucha do ucha, a jego spękana, kredowobiała skóra zdaje się być napięta do granic możliwości. Oczy? Zbyt duże, zbyt czarne, jakby nie miały dna – otchłanie, w których odbija się strach tych, którzy na niego spojrzą. Jego kostium, kiedyś być może kolorowy, jest teraz przybrudzony, poplamiony czymś, czego lepiej nie identyfikować. Jego dłonie, zbyt długie i kościste, zakończone są paznokciami niczym cienkie ostrza. Pachnie czymś słodkim, ale zepsutym, jak wata cukrowa zmieszana z odorem rozkładu. Jedyne co chcesz teraz zrobić to uciekać jak najdalej od tego czegoś."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
       "id": "121",
       "isDirect": false,
       "contentPages": [
@@ -1325,6 +1480,20 @@
           "nextParagraphId": ""
         }
       ]
+    },
+    {
+      "id": "126",
+      "isDirect": false,
+      "accessibleFrom": ["111"],
+      "contentPages": [
+        [
+          {
+            "type": "text",
+            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+          }
+        ]
+      ],
+      "choices": []
     }
   ]
 }
