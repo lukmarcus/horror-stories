@@ -7,6 +7,29 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.8] - 2026-02-12
+
+### Dodane
+
+- Kompletny scenariusz "Droga Donikąd" - pełna rozgrywka z 67 paragrafami
+- Wybór postaci - graj jako Jessica lub Patrick z różnymi ścieżkami przejścia
+- Warunkowe paragrafy - różne teksty i opcje w zależności od historii gry
+- Paragrafy z przyciskami
+- Możliwość śmierci postaci - niektóre wybory mogą prowadzić do śmierć bohatera
+- Bogatsze opisy paragrafów - tekst z formatowaniem, kolorami i stylami
+- Stronicowanie długich tekstów - paragrafy mogą mieć wiele stron do przeczytania
+- Grafiki scenariusza - ilustracje planszy, kart, przedmiotów i postaci
+- Grafiki postaci i antagonisty (Jessica, Patrick, Klaun)
+- Symbole gry - od drzwi po amunicję
+- Ulepszone ostrzeżenie o dostępie - dedykowany widok zamiast dialogu
+
+### Zmieniono
+
+- Przeorganizowana struktura dostępu do paragrafów - stabilniejsza rozgrywka
+- Ulepszona obsługa opcji warunkowych - bardziej intuicyjne przechodzenie między scenami
+
+---
+
 ## [0.0.7] - 2026-02-01
 
 ### Dodane
