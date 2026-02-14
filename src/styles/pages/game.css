@@ -82,6 +82,74 @@
   margin-top: var(--spacing-lg);
 }
 
+/* Accessibility Warning Screen */
+.game__accessibility-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-xl);
+}
+
+.game__warning-content {
+  width: 100%;
+  max-width: 600px;
+}
+
+.game__warning-box {
+  background-color: var(--color-surface-secondary);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2xl);
+  text-align: center;
+}
+
+.game__warning-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  margin: 0 0 var(--spacing-lg) 0;
+  text-transform: uppercase;
+}
+
+.game__warning-text {
+  font-size: var(--font-size-base);
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--color-text);
+}
+
+.game__warning-sources {
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  text-align: left;
+}
+
+.game__warning-source {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  margin: var(--spacing-sm) 0;
+}
+
+.game__warning-question {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semi-bold);
+  margin: var(--spacing-lg) 0;
+  color: var(--color-text);
+}
+
+.game__warning-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.game__warning-buttons .button {
+  width: 100%;
+}
+
 /* Top Bar - Paragraph Mode */
 .game__top-bar {
   background-color: var(--color-surface);
@@ -298,21 +366,29 @@
   background-color: var(--color-surface-secondary);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-xl);
-  margin: var(--spacing-lg) 0;
-  min-height: 250px;
+  padding: var(--spacing-md);
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
 }
 
-.game__setup-step-header {
+.game__setup-step-header,
+.game__setup-step-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-md);
+}
+
+.game__setup-step-header {
   padding-bottom: var(--spacing-md);
   border-bottom: 1px solid var(--color-border);
+}
+
+.game__setup-step-footer {
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
 }
 
 .game__setup-step-number {
@@ -328,9 +404,9 @@
   color: var(--color-text-secondary);
   font-size: var(--font-size-lg);
   line-height: var(--line-height-relaxed);
-  flex-grow: 1;
+  flex-grow: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   white-space: pre-wrap;
   word-wrap: break-word;
 }

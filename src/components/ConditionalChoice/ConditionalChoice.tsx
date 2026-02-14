@@ -5,7 +5,7 @@ import "./ConditionalChoice.css";
 interface ConditionalChoiceProps {
   choice: {
     id: string;
-    text: string;
+    text?: string;
     yesText?: string;
     noText?: string;
     yesNextId?: string;

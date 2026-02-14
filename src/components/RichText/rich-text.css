@@ -2,44 +2,54 @@
   width: 100%;
 }
 
+/* Common font weight */
+.color-yellow,
+.color-red,
+.color-purple,
+.color-green,
+.color-blue,
+.size-xs,
+.size-sm,
+.size-lg,
+.size-xl,
+.item {
+  font-weight: 500;
+}
+
 .color-yellow {
   color: #ffeb3b;
-  font-weight: 500;
 }
 
 .color-red {
   color: #ff6b6b;
-  font-weight: 500;
 }
 
 .color-purple {
   color: #bb86fc;
-  font-weight: 500;
 }
 
 .color-green {
   color: #4caf50;
-  font-weight: 500;
+}
+
+.color-blue {
+  color: #3b82f6;
 }
 
 .size-xs {
   font-size: 0.75em;
-  font-weight: 500;
 }
 
 .size-sm {
   font-size: 0.9em;
-  font-weight: 500;
 }
 
 .size-lg {
   font-size: 1.25em;
-  font-weight: 500;
 }
 
 .size-xl {
   font-size: 1.5em;
-  font-weight: 500;
 }
 .symbol,
 .token {
@@ -47,6 +57,20 @@
   color: inherit;
   line-height: inherit;
   display: inline;
+}
+
+.symbol-image,
+.letter-image,
+.person-image {
+  height: 1.4em;
+  width: auto;
+  display: inline;
+  vertical-align: -0.3em;
+  margin: 0 0.1em;
+}
+
+.item {
+  color: var(--color-accent);
 }
 .rich-placeholder {
   background-color: var(--color-surface-secondary);

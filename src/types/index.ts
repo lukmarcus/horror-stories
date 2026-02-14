@@ -8,7 +8,8 @@
  */
 export interface Choice {
   id: string;
-  text: string;
+  text?: string;
+  html?: string;
   nextParagraphId?: string;
   isConditional?: boolean;
   yesText?: string;
@@ -29,11 +30,25 @@ export interface DiceResult {
 }
 
 /**
+ * Content block for rich text paragraphs
+ */
+export interface ContentBlock {
+  type: "text" | "image" | "symbol" | "token";
+  html?: string;
+  id?: string;
+  size?: "xs" | "sm" | "lg" | "xl";
+  style?: "bold" | "italic" | "underline";
+  color?: "yellow" | "red" | "purple" | "green";
+}
+
+/**
  * Single paragraph/node in the story tree
  */
 export interface Paragraph {
   id: string;
-  text: string;
+  text?: string;
+  content?: ContentBlock[];
+  contentPages?: ContentBlock[][];
   choices?: Choice[];
   image?: string;
   audio?: string;
@@ -42,6 +57,9 @@ export interface Paragraph {
   diceResult?: DiceResult;
   isDirect?: boolean;
   accessibleFrom?: string[];
+  items?: string[];
+  isMultiPage?: boolean;
+  areChoicesHorizontal?: boolean;
 }
 
 /**
