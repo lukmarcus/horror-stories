@@ -6,7 +6,33 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.9 - Code Quality & Schema Optimization
+## Milestone v0.0.9 - Testy i poprawki
+
+### Zakres
+
+Dodanie testów dla nowych funkcjonalności z v0.0.8 i poprawy kritycznych bugów:
+
+- **Testy systemu dostępu** - Sprawdzenie czy paragraf z `isDirect: false` jest dostępny tylko z określonych źródeł
+- **Testy warunkowych paragrafów** - Weryfikacja logiki `accessibleFrom`, filtrowanie paragrafów
+- **Testy flagi layoutu** - Sprawdzenie czy `isMultiPage` i `areChoicesHorizontal` zmieniają rendering
+- **End-to-end test scenariusza** - Pełna ścieżka gry dla obu postaci (Jessica/Patrick)
+- **Poprawy routingu** - Fiksowanie nawigacji na GitHub Pages
+
+### Do zrobienia
+
+- ⏳ Napisanie testów dostępu do paragrafów
+- ⏳ Napisanie testów warunkowej logiki
+- ⏳ Napisanie testów flagi layoutu
+- ⏳ Uruchomienie i walidacja e2e testu scenariusza
+- ⏳ Poprawy bugów znalezionych podczas testowania
+
+### Status
+
+- ⏳ W trakcie (prawie ukończone)
+
+---
+
+## Milestone v0.0.10 - Code Quality & Schema Optimization
 
 ### Zakres
 
@@ -32,11 +58,11 @@ Refaktoryzacja struktury danych scenariuszy w celu uproszczenia i optymalizacji 
 
 ### Status
 
-- ⏳ Nie rozpoczęte (zaplanowano po ukończeniu v0.0.8)
+- ⏳ Nie rozpoczęte
 
 ---
 
-## Milestone v0.0.10 - Organizacja przedmiotów i grafik
+## Milestone v0.0.11 - Organizacja przedmiotów i grafik
 
 ### Zakres
 
@@ -48,7 +74,7 @@ Refaktoryzacja struktury danych scenariuszy w celu uproszczenia i optymalizacji 
 
 ### Do zrobienia
 
-- ⏳ Spisanie wszystkich przedmiotów z paragrafów
+- ⏳ Spisanie wszystkich předmiotów z paragrafów
 - ⏳ Kategoryzacja przedmiotów
 - ⏳ Tworzenie/pozyskanie grafik przedmiotów
 - ⏳ Integracja grafik w systemie renderowania
