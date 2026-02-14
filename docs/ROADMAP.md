@@ -6,7 +6,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.9 - Code Quality & Schema Optimization
+## Milestone v0.0.10 - Code Quality & Schema Optimization
 
 ### Zakres
 
@@ -32,11 +32,11 @@ Refaktoryzacja struktury danych scenariuszy w celu uproszczenia i optymalizacji 
 
 ### Status
 
-- ⏳ Nie rozpoczęte (zaplanowano po ukończeniu v0.0.8)
+- ⏳ Nie rozpoczęte
 
 ---
 
-## Milestone v0.0.10 - Organizacja przedmiotów i grafik
+## Milestone v0.0.11 - Organizacja przedmiotów i grafik
 
 ### Zakres
 

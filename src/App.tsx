@@ -14,7 +14,7 @@ import "./App.css";
 function App() {
   return (
     <ErrorBoundary>
-      <Router>
+      <Router basename="/horror-stories/">
         <div className="app">
           <Header />
           <main className="app__main">
