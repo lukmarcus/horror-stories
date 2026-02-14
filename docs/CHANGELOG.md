@@ -7,10 +7,19 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.9] - 2026-02-14
+
+### Poprawiono
+
+- Routing aplikacji na GitHub Pages - wszystkie linki nawigacyjne działają prawidłowo
+
+---
+
 ## [0.0.8] - 2026-02-12
 
 ### Dodane
 
+- Aplikacja dostępna na GitHub Pages
 - Kompletny scenariusz "Droga Donikąd" - pełna rozgrywka z 67 paragrafami
 - Wybór postaci - graj jako Jessica lub Patrick z różnymi ścieżkami przejścia
 - Warunkowe paragrafy - różne teksty i opcje w zależności od historii gry
