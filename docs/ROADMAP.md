@@ -6,33 +6,54 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.10 - Code Quality & Schema Optimization
+## Milestone v0.0.10 - Code Quality & Codebase Cleanup
 
 ### Zakres
 
-Refaktoryzacja struktury danych scenariuszy w celu uproszczenia i optymalizacji schematu JSON:
+Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na dwie fazy:
+
+#### Faza 1: Porządki w Kodzie (Quick Wins)
+
+- **Usunąć placeholder componenty** - `src/components/Paragraph/index.tsx` i `src/components/AudioPlayer/index.tsx` (nigdy nieuużywane)
+- **Standaryzować exporty** - Zmienić `export default` w `Instructions.tsx` i `About.tsx` na `export const` (konsystencja z innymi stronami)
+- **Barrel exports dla modułów** - Dodać `src/hooks/index.ts` i `src/utils/index.ts` (ograniczyć deep imports)
+- **Zaktualizować About.tsx** - Dynamicznie wczytywać wersję z `package.json` zamiast hardkodowanego v0.0.1
+- **Dokumentacja CODE_QUALITY** - Stwierdzić `docs/CODE_QUALITY.md` z wytycznymi dla maintainability
+
+#### Faza 2: Refactoring Schematu JSON (Schema Optimization)
 
 - **Domyślne pogrubienie dla kolorów** - Usunąć zwielokrotnianie `<strong>` wokół kolorowych tekstów, zastosować CSS global
 - **accessibleFrom implikuje isDirect** - Pole isDirect staje się redundantne, usunąć je dla paragrafów które mają accessibleFrom
 - **Uproszczenie struktury obrazów** - Zmiana z `{type: "image", id: "..."}` na `"image": "id"`
 - **Uproszczenie struktury tekstu** - Zmiana z `{type: "text", html: "..."}` na `"text": "..."`
-- **Wsparcie dla wielokrotnych ID** - Umożliwić tablicę ID-ów dla paragrafów o identycznej treści ale dostępnych z różnych źródeł (np. paragrafy "Rzeźba wydaje się ani drgnąć")
-- **Wariantowe zawartość w jednym paragrafie** - Zamiast tworzyć oddzielne paragrafy dla różnych gałęzi (np. 26-jessica, 26-patrick), umożliwić warianty treści w ramach jednego ID z logiem renderowania zawartości na bazie wyborów
-- **Opcjonalne odstępy między paragrafami** - Pomyśleć nad schematem pozwalającym na kontrolowanie spacingu/paddingu między zawartością paragrafów w UI
-- **Stylizacja tekstu końcowego** - Znaleźć lepsze rozwiązanie na wyświetlanie fragmentów tekstu jak w paragrafie 151 (zwielokrotnianie HTML tagów dla stylizacji)
-- **Refaktor ekranu direct: false** - Przeprojektować wizualnie ekran ostrzeżenia dostępności dla paragrafów z accessibleFrom (wymaga zmian UI/UX)
+- **Wsparcie dla wielokrotnych ID** - Umożliwić tablicę ID-ów dla paragrafów o identycznej treści ale dostępnych z różnych źródeł
+- **Wariantowe zawartość w jednym paragrafie** - Zamiast oddzielne paragrafy (26-jessica, 26-patrick), umożliwić warianty w jednym ID
+- **Opcjonalne odstępy między paragrafami** - Schemat kontrolowania spacingu/paddingu między zawartością paragrafów w UI
+- **Stylizacja tekstu końcowego** - Lepsze rozwiązanie na wyświetlanie fragmentów tekstu (paragraf 151)
+- **Refaktor ekranu direct: false** - Przeprojektować wizualnie ekran ostrzeżenia dostępności dla paragrafów z accessibleFrom
 
 ### Do zrobienia
 
+#### Faza 1
+
+- ⏳ Usunąć placeholder componenty (`Paragraph`, `AudioPlayer`)
+- ⏳ Standaryzować exporty strony (Instructions, About → export const)
+- ⏳ Dodać barrel exports: `src/hooks/index.ts`, `src/utils/index.ts`
+- ⏳ Zaktualizować import w `src/components/common/index.ts` (Button)
+- ⏳ Zmienić About.tsx: hardkod v0.0.1 → dynamicznie z package.json
+- ⏳ Stworzyć `docs/CODE_QUALITY.md` z wytycznymi
+
+#### Faza 2
+
 - ⏳ Implementacja zmian w parserze paragrafów
-- ⏳ Aktualizacja komponenty renderujących (ParagraphText, ParagraphDisplay)
-- ⏳ Refaktoryzacja wszystkich 180+ paragrafów z nową strukturą
+- ⏳ Aktualizacja komponentów renderujących (ParagraphText, ParagraphDisplay)
+- ⏳ Refaktoryzacja paragrafów JSON z nową strukturą
 - ⏳ Testy jednostkowe dla parsera
 - ⏳ Walidacja zmian na całym scenariuszu
 
 ### Status
 
-- ⏳ Nie rozpoczęte
+- ⏳ Nie rozpoczęte (Faza 1 zaplanowana na początek)
 
 ---
 
