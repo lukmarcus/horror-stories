@@ -1,2 +1,2 @@
-// Custom hooks placeholder
-export {};
+export { useGame } from "./useGame";
+export { useGameActions } from "./useGameActions";
