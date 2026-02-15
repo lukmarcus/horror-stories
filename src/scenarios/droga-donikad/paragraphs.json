@@ -409,7 +409,7 @@
             "text": "Wyłóż planszę 16<letter id='a'/>, a na jego środku <item id='173'/> oraz <item id='14'/>."
           },
           {
-            "text": "Teraz się <strong><span class='color-red'>SKUP</span></strong>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
+            "text": "Teraz się <span class='color-red'>SKUP</span>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
           },
           {
             "text": "Z czarnego worka wylosuj trzy kwadratowe żetony (tych z <symbol id='losowe'/> na rewersie). Wykłada się je zawsze odkryte na planszy (chyba, że scenariusz wyraźnie powie inaczej)."
@@ -577,7 +577,7 @@
             "text": "Wyłóż planszę 13<letter id='a'/>, na jego <span class='color-purple'>W</span> wyłóż <item id='12'/>, a na środku <item id='38'/>."
           },
           {
-            "text": "Teraz się <strong><span class='color-red'>SKUP</span></strong>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
+            "text": "Teraz się <span class='color-red'>SKUP</span>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
           },
           {
             "text": "Z czarnego worka wylosuj trzy kwadratowe żetony (tych z <symbol id='losowe'/> na rewersie). Wykłada się je zawsze odkryte na planszy (chyba, że scenariusz wyraźnie powie inaczej)."
@@ -832,7 +832,7 @@
             "text": "Po zakupie pojedynczej karty natychmiast uzupełnij rynek (np. gracz kupuje jedną, uzupełnia rynek i znów może kupić kolejną jeśli ma wolny <symbol id='pd'/>)."
           },
           {
-            "text": "<span class='color-red'><strong>Zwróć uwagę, że karty mają na sobie jakiś tekst. Ilekroć deklarujesz ile kart dobierzesz, dobierasz od tej pory JEDNA PO DRUGIEJ i rozpatrujesz natychmiast tekst (jeśli jest) na nowo dobranej. Dopiero po rozpatrzeniu tekstu robisz resztę (np. przechodzisz do paragrafu).</strong></span>"
+            "text": "<span class='color-red'>Zwróć uwagę, że karty mają na sobie jakiś tekst. Ilekroć deklarujesz ile kart dobierzesz, dobierasz od tej pory JEDNA PO DRUGIEJ i rozpatrujesz natychmiast tekst (jeśli jest) na nowo dobranej. Dopiero po rozpatrzeniu tekstu robisz resztę (np. przechodzisz do paragrafu).</span>"
           },
           {
             "text": "Przykład: deklarujesz dobranie 3 kart. Dociągasz pierwszą. Nie posiada żadnego tekstu. Potem dobierasz drugą. Posiada jakiś efekt, który musisz rozpatrzyć natychmiast. Dobierasz trzecią. Również posiada tekst, który rozpatrujesz."
@@ -1032,10 +1032,10 @@
             "text": "Śmierć. Sprawdź kogo dotyczy."
           },
           {
-            "text": "<strong><person id='klaun'/></strong> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
+            "text": "<person id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
           },
           {
-            "text": "<strong><person id='jessica'/> / <person id='patrick'/></strong> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+            "text": "<person id='jessica'/> / <person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
           },
           {
             "image": "rana-ciezka"
@@ -1357,7 +1357,7 @@
             "html": "Płonęliście żywcem wiedząc, że nie ma wyjścia z tej sytuacji. Wiedzieliście, że to koniec, ale ten mimo waszych błagań nie chciał nadejść. Kiedy już więc do niego doszło, trafiliście tutaj. Wydaje się, że rozumiesz czym może być to miejsce. Nie jesteś złą osobą i nie powinno Cię tu być. Nie zamierzasz pokutować, ani przepraszać. Zamierasz zrobisz wszystko, aby opuścić to miejsce."
           },
           {
-            "text": "<span style='font-size: larger;'><span class='color-red'><strong>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</strong></span></span>"
+            "text": "<span style='font-size: larger;'><span class='color-red'>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</span></span>"
           }
         ]
       ],
@@ -1431,4 +1431,3 @@
     }
   ]
 }
-

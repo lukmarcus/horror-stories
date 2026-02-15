@@ -238,8 +238,8 @@ export const RichText: React.FC<RichTextProps> = ({
 
         let content: React.ReactNode = parseHtml(textContent);
 
-        // Apply style wrapper if needed
-        if (block.style === "bold") {
+        // Apply style wrapper if needed (skip bold if color is present, as colors are bold by default)
+        if (block.style === "bold" && !block.color) {
           content = <strong>{content}</strong>;
         } else if (block.style === "italic") {
           content = <em>{content}</em>;
