@@ -36,15 +36,16 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 
 #### Faza 1
 
-- ⏳ Usunąć placeholder componenty (`Paragraph`, `AudioPlayer`)
-- ⏳ Standaryzować exporty strony (Instructions, About → export const)
-- ⏳ Dodać barrel exports: `src/hooks/index.ts`, `src/utils/index.ts`
-- ⏳ Zaktualizować import w `src/components/common/index.ts` (Button)
-- ⏳ Zmienić About.tsx: hardkod v0.0.1 → dynamicznie z package.json
-- ⏳ Stworzyć `docs/CODE_QUALITY.md` z wytycznymi
+- ✅ Usunąć placeholder componenty (`Paragraph`, `AudioPlayer`)
+- ✅ Standaryzować exporty strony (Instructions, About → export const)
+- ✅ Dodać barrel exports: `src/hooks/index.ts`, `src/utils/index.ts`
+- ✅ Zaktualizować import w `src/components/common/index.ts` (Button)
+- ✅ Zmienić About.tsx: hardkod v0.0.1 → dynamicznie z package.json
+- ✅ Stworzyć `docs/CODE_QUALITY.md` z wytycznymi
 
 #### Faza 2
 
+- ⏳ Analiza struktury paragrafów i ustalenie nowego schematu
 - ⏳ Implementacja zmian w parserze paragrafów
 - ⏳ Aktualizacja komponentów renderujących (ParagraphText, ParagraphDisplay)
 - ⏳ Refaktoryzacja paragrafów JSON z nową strukturą
@@ -53,7 +54,7 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 
 ### Status
 
-- ⏳ Nie rozpoczęte (Faza 1 zaplanowana na początek)
+- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 w przygotowaniu)
 
 ---
 

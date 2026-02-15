@@ -2,7 +2,6 @@
   "paragraphs": [
     {
       "id": "1",
-      "isDirect": false,
       "accessibleFrom": ["37"],
       "contentPages": [
         [
@@ -29,7 +28,6 @@
     },
     {
       "id": "2",
-      "isDirect": false,
       "accessibleFrom": ["26-patrick"],
       "contentPages": [
         [
@@ -44,7 +42,6 @@
     },
     {
       "id": "3",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -58,7 +55,6 @@
     },
     {
       "id": "9",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -83,7 +79,6 @@
     },
     {
       "id": "9-jessica",
-      "isDirect": false,
       "accessibleFrom": ["9"],
       "contentPages": [
         [
@@ -111,7 +106,6 @@
     },
     {
       "id": "9-patrick-lezy",
-      "isDirect": false,
       "accessibleFrom": ["9-jessica"],
       "contentPages": [
         [
@@ -134,7 +128,6 @@
     },
     {
       "id": "9-patrick-stoi",
-      "isDirect": false,
       "accessibleFrom": ["9-jessica"],
       "contentPages": [
         [
@@ -161,7 +154,6 @@
     },
     {
       "id": "9-patrick",
-      "isDirect": false,
       "accessibleFrom": ["9"],
       "contentPages": [
         [
@@ -175,7 +167,6 @@
     },
     {
       "id": "12",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -205,7 +196,6 @@
     },
     {
       "id": "14",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -222,7 +212,6 @@
     },
     {
       "id": "15",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -236,7 +225,6 @@
     },
     {
       "id": "26",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -265,7 +253,6 @@
     },
     {
       "id": "26-jessica",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -278,7 +265,6 @@
     },
     {
       "id": "26-patrick",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -308,7 +294,6 @@
     },
     {
       "id": "29",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -326,7 +311,6 @@
     },
     {
       "id": "30",
-      "isDirect": true,
       "isMultiPage": true,
       "contentPages": [
         [
@@ -445,7 +429,6 @@
     },
     {
       "id": "34",
-      "isDirect": false,
       "accessibleFrom": ["137"],
       "contentPages": [
         [
@@ -459,7 +442,6 @@
     },
     {
       "id": "35",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -501,7 +483,6 @@
     },
     {
       "id": "36",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -515,7 +496,6 @@
     },
     {
       "id": "37",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -537,7 +517,6 @@
     },
     {
       "id": "38",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -554,7 +533,6 @@
     },
     {
       "id": "39",
-      "isDirect": false,
       "accessibleFrom": ["12"],
       "contentPages": [
         [
@@ -568,7 +546,6 @@
     },
     {
       "id": "40",
-      "isDirect": false,
       "accessibleFrom": ["65"],
       "contentPages": [
         [
@@ -638,7 +615,6 @@
     },
     {
       "id": "48",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -651,7 +627,6 @@
     },
     {
       "id": "49",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -693,7 +668,6 @@
     },
     {
       "id": "50",
-      "isDirect": false,
       "accessibleFrom": ["123"],
       "contentPages": [
         [
@@ -707,7 +681,6 @@
     },
     {
       "id": "52",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -721,7 +694,6 @@
     },
     {
       "id": "53",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -743,7 +715,6 @@
     },
     {
       "id": "54",
-      "isDirect": false,
       "accessibleFrom": ["69"],
       "contentPages": [
         [
@@ -757,7 +728,6 @@
     },
     {
       "id": "55",
-      "isDirect": false,
       "accessibleFrom": ["99"],
       "contentPages": [
         [
@@ -776,7 +746,6 @@
     },
     {
       "id": "61",
-      "isDirect": false,
       "accessibleFrom": ["40"],
       "contentPages": [
         [
@@ -803,7 +772,6 @@
     },
     {
       "id": "62",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -817,7 +785,6 @@
     },
     {
       "id": "65",
-      "isDirect": false,
       "accessibleFrom": ["123"],
       "areChoicesHorizontal": true,
       "contentPages": [
@@ -841,7 +808,6 @@
     },
     {
       "id": "65-61",
-      "isDirect": false,
       "accessibleFrom": ["65"],
       "contentPages": [
         [
@@ -855,7 +821,6 @@
     },
     {
       "id": "69",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -881,7 +846,6 @@
     },
     {
       "id": "70",
-      "isDirect": false,
       "accessibleFrom": ["53"],
       "contentPages": [
         [
@@ -911,7 +875,6 @@
     },
     {
       "id": "73",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -925,7 +888,6 @@
     },
     {
       "id": "75",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -970,7 +932,6 @@
     },
     {
       "id": "77",
-      "isDirect": true,
       "isMultiPage": true,
       "contentPages": [
         [
@@ -1020,7 +981,6 @@
     },
     {
       "id": "80",
-      "isDirect": false,
       "accessibleFrom": ["99"],
       "contentPages": [
         [
@@ -1043,7 +1003,6 @@
     },
     {
       "id": "81",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -1057,7 +1016,6 @@
     },
     {
       "id": "82",
-      "isDirect": false,
       "accessibleFrom": ["173"],
       "contentPages": [
         [
@@ -1071,7 +1029,6 @@
     },
     {
       "id": "83",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1084,7 +1041,6 @@
     },
     {
       "id": "84",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1097,7 +1053,6 @@
     },
     {
       "id": "97",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1152,7 +1107,6 @@
     },
     {
       "id": "99",
-      "isDirect": false,
       "accessibleFrom": ["9"],
       "contentPages": [
         [
@@ -1187,7 +1141,6 @@
     },
     {
       "id": "100",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1216,7 +1169,6 @@
     },
     {
       "id": "101",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -1230,7 +1182,6 @@
     },
     {
       "id": "105",
-      "isDirect": false,
       "accessibleFrom": ["1"],
       "contentPages": [
         [
@@ -1282,7 +1233,6 @@
     },
     {
       "id": "110",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1310,7 +1260,6 @@
     },
     {
       "id": "111",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1377,7 +1326,6 @@
     },
     {
       "id": "112",
-      "isDirect": false,
       "accessibleFrom": ["99"],
       "contentPages": [
         [
@@ -1392,7 +1340,6 @@
     },
     {
       "id": "113",
-      "isDirect": false,
       "accessibleFrom": ["82"],
       "contentPages": [
         [
@@ -1406,7 +1353,6 @@
     },
     {
       "id": "116",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1423,7 +1369,6 @@
     },
     {
       "id": "117",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1437,7 +1382,6 @@
     },
     {
       "id": "121",
-      "isDirect": false,
       "contentPages": [
         [
           {
@@ -1455,7 +1399,6 @@
     },
     {
       "id": "123",
-      "isDirect": false,
       "accessibleFrom": ["105"],
       "contentPages": [
         [
@@ -1483,7 +1426,6 @@
     },
     {
       "id": "126",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -1497,7 +1439,6 @@
     },
     {
       "id": "137",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1524,7 +1465,6 @@
     },
     {
       "id": "147",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1538,7 +1478,6 @@
     },
     {
       "id": "151",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1566,7 +1505,6 @@
     },
     {
       "id": "155",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -1580,7 +1518,6 @@
     },
     {
       "id": "173",
-      "isDirect": true,
       "contentPages": [
         [
           {
@@ -1610,7 +1547,6 @@
     },
     {
       "id": "180",
-      "isDirect": false,
       "accessibleFrom": ["69", "100"],
       "contentPages": [
         [

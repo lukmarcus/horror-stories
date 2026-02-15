@@ -15,14 +15,12 @@ describe("Variant Paragraphs - Character Routes", () => {
   const jessicaVariant: Paragraph = {
     id: "26-jessica",
     text: "Jessica takes control - using intelligence and wit",
-    isDirect: false,
     accessibleFrom: ["26"],
   };
 
   const patrickVariant: Paragraph = {
     id: "26-patrick",
     text: "Patrick takes control - using brute force",
-    isDirect: false,
     accessibleFrom: ["26"],
   };
 
@@ -49,10 +47,7 @@ describe("Variant Paragraphs - Character Routes", () => {
     });
 
     it("should be non-direct (only accessible from hub)", () => {
-      expect(jessicaVariant.isDirect).toBe(false);
       expect(jessicaVariant.accessibleFrom).toContain("26");
-
-      expect(patrickVariant.isDirect).toBe(false);
       expect(patrickVariant.accessibleFrom).toContain("26");
     });
 
@@ -81,7 +76,6 @@ describe("Variant Paragraphs - Character Routes", () => {
       const variant: Paragraph = {
         id: "9-jessica",
         text: "Jessica reacts",
-        isDirect: false,
         accessibleFrom: ["1", "8"],
       };
 
@@ -95,7 +89,6 @@ describe("Variant Paragraphs - Character Routes", () => {
       const commonParagraph: Paragraph = {
         id: "27",
         text: "Both characters arrive here",
-        isDirect: false,
         accessibleFrom: ["26-jessica", "26-patrick"],
       };
 

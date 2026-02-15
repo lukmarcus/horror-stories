@@ -55,8 +55,7 @@ export interface Paragraph {
   hasDiceRoll?: boolean;
   diceRollDescription?: string;
   diceResult?: DiceResult;
-  isDirect?: boolean;
-  accessibleFrom?: string[];
+  accessibleFrom?: string[]; // If empty/undefined, paragraph is directly accessible (isDirect=true)
   items?: string[];
   isMultiPage?: boolean;
   areChoicesHorizontal?: boolean;

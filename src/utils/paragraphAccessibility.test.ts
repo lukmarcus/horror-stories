@@ -1,32 +1,42 @@
 import { describe, it, expect } from "vitest";
 
 describe("Paragraph Accessibility", () => {
-  it("should identify direct paragraphs", () => {
-    const paragraph = {
+  it("should identify direct paragraphs (no accessibleFrom)", () => {
+    const paragraph: {
+      id: string;
+      text: string;
+      accessibleFrom?: string[];
+    } = {
       id: "1",
-      isDirect: true,
       text: "Test",
     };
 
-    expect(paragraph.isDirect).toBe(true);
+    // Direct paragraphs don't have accessibleFrom
+    expect(paragraph.accessibleFrom).toBeUndefined();
   });
 
-  it("should identify non-direct paragraphs", () => {
-    const paragraph = {
+  it("should identify non-direct paragraphs (has accessibleFrom)", () => {
+    const paragraph: {
+      id: string;
+      accessibleFrom?: string[];
+      text: string;
+    } = {
       id: "4",
-      isDirect: false,
       accessibleFrom: ["1"],
       text: "Test",
     };
 
-    expect(paragraph.isDirect).toBe(false);
+    expect(paragraph.accessibleFrom).toBeDefined();
     expect(paragraph.accessibleFrom).toContain("1");
   });
 
   it("should list all sources for non-direct paragraph", () => {
-    const paragraph = {
+    const paragraph: {
+      id: string;
+      accessibleFrom?: string[];
+      text: string;
+    } = {
       id: "9",
-      isDirect: false,
       accessibleFrom: ["7"],
       text: "Test",
     };
@@ -37,12 +47,10 @@ describe("Paragraph Accessibility", () => {
   it("should handle multiple sources", () => {
     const paragraph: {
       id: string;
-      isDirect: boolean;
       accessibleFrom?: string[];
       text: string;
     } = {
       id: "5",
-      isDirect: false,
       accessibleFrom: ["2", "4"],
       text: "Test",
     };
@@ -53,47 +61,51 @@ describe("Paragraph Accessibility", () => {
   });
 
   it("should determine if paragraph needs warning", () => {
-    const paragraph = {
+    const paragraph: {
+      id: string;
+      accessibleFrom?: string[];
+      text: string;
+    } = {
       id: "4",
-      isDirect: false,
       accessibleFrom: ["1"],
       text: "Test",
     };
 
     const needsWarning =
-      paragraph.isDirect === false && !!paragraph.accessibleFrom;
+      !!paragraph.accessibleFrom && paragraph.accessibleFrom.length > 0;
     expect(needsWarning).toBe(true);
   });
 
   it("should not show warning for direct paragraphs", () => {
     const paragraph: {
       id: string;
-      isDirect: boolean;
       text: string;
       accessibleFrom?: string[];
     } = {
       id: "1",
-      isDirect: true,
       text: "Test",
     };
 
     const needsWarning =
-      paragraph.isDirect === false && !!paragraph.accessibleFrom;
+      !!paragraph.accessibleFrom && paragraph.accessibleFrom.length > 0;
     expect(needsWarning).toBe(false);
   });
 
   it("should validate accessibility data is consistent", () => {
-    const paragraphs = [
-      { id: "1", isDirect: true },
-      { id: "2", isDirect: true },
-      { id: "3", isDirect: true },
-      { id: "4", isDirect: false, accessibleFrom: ["1"] },
-      { id: "5", isDirect: false, accessibleFrom: ["2", "4"] },
+    const paragraphs: Array<{
+      id: string;
+      accessibleFrom?: string[];
+    }> = [
+      { id: "1" },
+      { id: "2" },
+      { id: "3" },
+      { id: "4", accessibleFrom: ["1"] },
+      { id: "5", accessibleFrom: ["2", "4"] },
     ];
 
-    // All non-direct paragraphs should have accessibleFrom
+    // All paragraphs with accessibleFrom should have it defined
     const invalidParagraphs = paragraphs.filter(
-      (p) => p.isDirect === false && !("accessibleFrom" in p),
+      (p) => "accessibleFrom" in p && !p.accessibleFrom,
     );
     expect(invalidParagraphs).toHaveLength(0);
   });
