@@ -1,14 +1,6 @@
 import React from "react";
+import type { ContentBlock } from "../../types";
 import "./rich-text.css";
-
-interface ContentBlock {
-  type: "text" | "image" | "symbol" | "token";
-  html?: string;
-  id?: string;
-  size?: "xs" | "sm" | "lg" | "xl";
-  style?: "bold" | "italic" | "underline";
-  color?: "yellow" | "red" | "purple" | "green";
-}
 
 interface RichTextProps {
   content?: ContentBlock[];
@@ -16,16 +8,15 @@ interface RichTextProps {
   scenarioId?: string; // for loading images
 }
 
-export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId }) => {
-  // Token mapping
-  const tokenMap: Record<string, string> = {
-    A: "𝐀",
-    B: "𝐁",
-  };
-
+export const RichText: React.FC<RichTextProps> = ({
+  content,
+  text,
+  scenarioId,
+}) => {
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode[] => {
-    const customTagRegex = /<(symbol|token|letter|item|image|person)\s+id=["']([^"']+)["']\s*\/>/g;
+    const customTagRegex =
+      /<(symbol|letter|item|image|person)\s+id=["']([^"']+)["']\s*\/>/g;
     let currentPos = 0;
     const finalElements: React.ReactNode[] = [];
     let customElementCounter = 0;
@@ -36,7 +27,9 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
       // Add HTML before this tag
       const beforeHtml = html.substring(currentPos, matchFinal.index);
       if (beforeHtml) {
-        finalElements.push(...parseStandardHtml(beforeHtml, customElementCounter));
+        finalElements.push(
+          ...parseStandardHtml(beforeHtml, customElementCounter),
+        );
         customElementCounter += countHtmlElements(beforeHtml);
       }
 
@@ -47,8 +40,11 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
       customElementCounter++;
 
       if (tag === "image") {
-        const imagePath = scenarioId 
-          ? new URL(`../../scenarios/${scenarioId}/images/${id}.jpg`, import.meta.url).href
+        const imagePath = scenarioId
+          ? new URL(
+              `../../scenarios/${scenarioId}/images/${id}.jpg`,
+              import.meta.url,
+            ).href
           : undefined;
 
         if (imagePath) {
@@ -66,7 +62,10 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
           );
         }
       } else if (tag === "symbol") {
-        const symbolPath = new URL(`../../assets/symbols/${id}.png`, import.meta.url).href;
+        const symbolPath = new URL(
+          `../../assets/symbols/${id}.png`,
+          import.meta.url,
+        ).href;
         finalElements.push(
           <img
             key={key}
@@ -77,7 +76,10 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
           />,
         );
       } else if (tag === "letter") {
-        const letterPath = new URL(`../../assets/letters/${id}.png`, import.meta.url).href;
+        const letterPath = new URL(
+          `../../assets/letters/${id}.png`,
+          import.meta.url,
+        ).href;
         finalElements.push(
           <img
             key={key}
@@ -87,13 +89,6 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
             title={id}
           />,
         );
-      } else if (tag === "token") {
-        const symbol = tokenMap[id] || `[${id}]`;
-        finalElements.push(
-          <span key={key} className="token">
-            {symbol}
-          </span>,
-        );
       } else if (tag === "item") {
         finalElements.push(
           <span key={key} className="item">
@@ -101,7 +96,10 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
           </span>,
         );
       } else if (tag === "person") {
-        const personPath = new URL(`../../assets/persons/${id}.jpg`, import.meta.url).href;
+        const personPath = new URL(
+          `../../assets/persons/${id}.jpg`,
+          import.meta.url,
+        ).href;
         finalElements.push(
           <img
             key={key}
@@ -120,7 +118,9 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
     if (currentPos < html.length) {
       const remainingHtml = html.substring(currentPos);
       if (remainingHtml) {
-        finalElements.push(...parseStandardHtml(remainingHtml, customElementCounter));
+        finalElements.push(
+          ...parseStandardHtml(remainingHtml, customElementCounter),
+        );
       }
     }
 
@@ -145,7 +145,10 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
   };
 
   // Parse standard HTML tags
-  const parseStandardHtml = (html: string, startCounter: number): React.ReactNode[] => {
+  const parseStandardHtml = (
+    html: string,
+    startCounter: number,
+  ): React.ReactNode[] => {
     const div = document.createElement("div");
     div.innerHTML = html;
     let elementCounter = startCounter;
@@ -199,6 +202,29 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
   // Render content blocks
   const renderContentBlocks = (blocks: ContentBlock[]): React.ReactNode => {
     return blocks.map((block, idx) => {
+      // Handle new image format: {image: "id"}
+      if (block.image) {
+        const imagePath = scenarioId
+          ? new URL(
+              `../../scenarios/${scenarioId}/images/${block.image}.jpg`,
+              import.meta.url,
+            ).href
+          : undefined;
+
+        return (
+          <div key={idx} className="rich-image-block">
+            {imagePath ? (
+              <img src={imagePath} alt={block.image} className="rich-image" />
+            ) : (
+              <>
+                <div className="rich-image-icon">🖼️</div>
+                <div className="rich-image-text">{block.image}</div>
+              </>
+            )}
+          </div>
+        );
+      }
+
       if (block.type === "text" && block.html) {
         const classes = [
           "rich-text-block",
@@ -224,19 +250,23 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
             {content}
           </div>
         );
-      } else if (block.type === "image" && block.id) {
-        const imagePath = scenarioId 
-          ? new URL(`../../scenarios/${scenarioId}/images/${block.id}.jpg`, import.meta.url).href
+      } else if (block.type === "image" && (block.id || block.image)) {
+        const imageId = block.image || block.id;
+        const imagePath = scenarioId
+          ? new URL(
+              `../../scenarios/${scenarioId}/images/${imageId}.jpg`,
+              import.meta.url,
+            ).href
           : undefined;
 
         return (
           <div key={idx} className="rich-image-block">
             {imagePath ? (
-              <img src={imagePath} alt={block.id} className="rich-image" />
+              <img src={imagePath} alt={imageId} className="rich-image" />
             ) : (
               <>
                 <div className="rich-image-icon">🖼️</div>
-                <div className="rich-image-text">{block.id}</div>
+                <div className="rich-image-text">{imageId}</div>
               </>
             )}
           </div>

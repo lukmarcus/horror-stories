@@ -457,8 +457,7 @@
             "html": "Z czarnego worka wylosuj trzy kwadratowe żetony (tych z <symbol id='losowe'/> na rewersie). Wykłada się je zawsze odkryte na planszy (chyba, że scenariusz wyraźnie powie inaczej)."
           },
           {
-            "type": "image",
-            "id": "czarny-worek"
+            "image": "czarny-worek"
           },
           {
             "type": "text",
@@ -595,11 +594,10 @@
           },
           {
             "type": "text",
-            "html": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <token id='1'/> + dwóch <token id='2'/> + dwóch <token id='3'/>"
+            "html": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <image id='1'/> + dwóch <image id='2'/> + dwóch <image id='3'/>"
           },
           {
-            "type": "image",
-            "id": "patrick-talia"
+            "image": "patrick-talia"
           },
           {
             "type": "text",
@@ -642,8 +640,7 @@
             "html": "Z czarnego worka wylosuj trzy kwadratowe żetony (tych z <symbol id='losowe'/> na rewersie). Wykłada się je zawsze odkryte na planszy (chyba, że scenariusz wyraźnie powie inaczej)."
           },
           {
-            "type": "image",
-            "id": "czarny-worek"
+            "image": "czarny-worek"
           },
           {
             "type": "text",
@@ -759,8 +756,7 @@
             "html": "Możesz ją podnieść używając akcji \"Podnieś przedmioty\" z <strong>karty akcji ogólnych</strong>."
           },
           {
-            "type": "image",
-            "id": "podnies-przedmiot"
+            "image": "podnies-przedmiot"
           },
           {
             "type": "text",
@@ -895,8 +891,7 @@
             "html": "Wyłóż (w zasięgu wzroku graczy) cztery losowe karty z tzw. \"talii rozwoju\", czyli kart z nadrukowanym symbolem <symbol id='pd'/>. Stanowią \"rynek talii rozwoju\"."
           },
           {
-            "type": "image",
-            "id": "karta-rozwoju"
+            "image": "karta-rozwoju"
           },
           {
             "type": "text",
@@ -940,8 +935,7 @@
             "html": "Dostaw planszę 14<letter id='a'/> przy symbolu <span class='color-purple'>E</span> planszy 12<letter id='a'/>. Przestaw swoją figurkę do planszy 14<letter id='a'/>. Figurka, która odkrywa nową planszę, zawsze może (po zapoznaniu z paragrafem) przestawić się do nowoodkrytej planszy."
           },
           {
-            "type": "image",
-            "id": "plansza-14"
+            "image": "plansza-14"
           },
           {
             "type": "text",
@@ -949,7 +943,7 @@
           },
           {
             "type": "text",
-            "html": "Na <span class='color-purple'>E</span> planszy 14 wyłóż żetony plansz: <token id='37'/>, <token id='53'/> oraz <token id='121'/>."
+            "html": "Na <span class='color-purple'>E</span> planszy 14 wyłóż żetony plansz: <item id='37'/>, <item id='53'/> oraz <item id='121'/>."
           },
           {
             "type": "text",
@@ -1068,8 +1062,7 @@
             "html": "Wyłóż tor czasu, a na nim żeton alfabetu <letter id='a'/> na polu 1 oraz <letter id='b'/> na polu 4."
           },
           {
-            "type": "image",
-            "id": "tor-czasu"
+            "image": "tor-czasu"
           },
           {
             "type": "text",
@@ -1082,8 +1075,7 @@
             "html": "Jeśli na pole <symbol id='czas'/> przesunie się jakiś żeton alfabetu, to <strong>na koniec tury</strong> postaci, w której nastąpiło to przesunięcie sprawdzamy efekt wydarzenia wywołany przez ten żeton. W tym celu zaglądamy na pierwszą stronę aktualnie rozgrywanego scenariusza i przechodzimy do <span class='color-green'>paragrafu</span> wskazanego przez dany żeton (<strong>obrazek po prawej</strong>)."
           },
           {
-            "type": "image",
-            "id": "opis-scenariusza"
+            "image": "opis-scenariusza"
           },
           {
             "type": "text",
@@ -1094,8 +1086,7 @@
             "html": "Przy ekwipunku <person id='jessica'/> oraz <person id='patrick'/> połóż po 3<symbol id='zycie'/> dla każdego. Reprezentuje ich zdrowie. Wraz z utratą ostatniego sprawdza się paragraf <span class='color-green'>100</span> o czym ma przypominać żeton pierwszego gracza (obrazek po prawej)."
           },
           {
-            "type": "image",
-            "id": "rip"
+            "image": "rip"
           },
           {
             "type": "text",
@@ -1156,8 +1147,7 @@
             "html": "<strong><person id='jessica'/> / <person id='patrick'/></strong> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
           },
           {
-            "type": "image",
-            "id": "rana-ciezka"
+            "image": "rana-ciezka"
           },
           {
             "type": "text",
@@ -1220,8 +1210,7 @@
             "html": "Teren się nieco rozrósł. Pamiętaj, że można się przemieszczać korzystając z akcji \"Ruch\". Wszystko opowie Ci karta ogólnych akcji."
           },
           {
-            "type": "image",
-            "id": "karty-akcji"
+            "image": "karty-akcji"
           },
           {
             "type": "text",

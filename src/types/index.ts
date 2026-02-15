@@ -33,9 +33,10 @@ export interface DiceResult {
  * Content block for rich text paragraphs
  */
 export interface ContentBlock {
-  type: "text" | "image" | "symbol" | "token";
+  type?: "text" | "image" | "symbol" | "token";
   html?: string;
   id?: string;
+  image?: string; // New format: direct image reference
   size?: "xs" | "sm" | "lg" | "xl";
   style?: "bold" | "italic" | "underline";
   color?: "yellow" | "red" | "purple" | "green";

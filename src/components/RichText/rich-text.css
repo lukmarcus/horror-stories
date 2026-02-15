@@ -51,8 +51,7 @@
 .size-xl {
   font-size: 1.5em;
 }
-.symbol,
-.token {
+.symbol {
   font-size: inherit;
   color: inherit;
   line-height: inherit;

@@ -8,12 +8,10 @@
           "html": "Umieść żeton Jessici w plastikowych podstawce. Od teraz będziemy nazywać ją <span class='color-yellow'>figurką</span>. Dobierz jej <span class='color-yellow'>ekwipunek</span> (patrz obrazek) i połóż ją stroną z imieniem i wizerunkiem postaci."
         },
         {
-          "type": "image",
-          "id": "jessica-ekwipunek"
+          "image": "jessica-ekwipunek"
         },
         {
-          "type": "image",
-          "id": "jessica-figurka"
+          "image": "jessica-figurka"
         }
       ]
     },
@@ -39,8 +37,7 @@
           "html": "Utworzone w ten sposób talie potasuj i umieść zakryte (rewersami do góry) obok ekwipunku postaci. Talii <span class='color-red'>nie można</span> przeglądać."
         },
         {
-          "type": "image",
-          "id": "jessica-ekwipunek-talia"
+          "image": "jessica-ekwipunek-talia"
         },
         {
           "type": "text",
@@ -53,11 +50,10 @@
       "content": [
         {
           "type": "text",
-          "html": "Wyłóż planszę 12 (stroną <token id='A'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>). Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
+          "html": "Wyłóż planszę 12 (stroną <letter id='A'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>). Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
         },
         {
-          "type": "image",
-          "id": "jessica-plansza"
+          "image": "jessica-plansza"
         },
         {
           "type": "text",
@@ -83,8 +79,7 @@
           "html": "Dobierz dwustronną <strong>kartę akcji ogólnych</strong>. Stanowi spis możliwych akcji (spójrz na obrazek):"
         },
         {
-          "type": "image",
-          "id": "karty-akcji-ogolnych"
+          "image": "karty-akcji-ogolnych"
         }
       ]
     },
@@ -96,8 +91,7 @@
           "html": "W grze będzie pojawiał się symbol gwiazdki (<symbol id='gwiazda'/>). Odnosi się on do tych, które występują na kartach z talii postaci (tych z rewersem <symbol id='rewers'/>, spójrz na obrazek po prawej). Ps. ilustracja nie ma żadnego znaczenia."
         },
         {
-          "type": "image",
-          "id": "karta-gwiazda"
+          "image": "karta-gwiazda"
         }
       ]
     },
@@ -137,8 +131,7 @@
           "html": "Dobrane <symbol id='rewers'/> zawsze odkładamy od razu na <span class='color-yellow'>stos kart odrzuconych</span> tej postaci (ten stos w przeciwieństwie do talii postaci można zawsze przeglądać)."
         },
         {
-          "type": "image",
-          "id": "karty-odrzucone"
+          "image": "karty-odrzucone"
         }
       ]
     },
@@ -172,8 +165,7 @@
           "html": "Jedyne dostępne przejście wiedzie na wschód. Przechodząc w tym kierunku do nowej planszy, sprawdzamy <span class='color-green'>paragraf</span>, który należy wtedy przeczytać. W przypadku planszy 12 idąc na wschód należy przejść do <span class='color-green'>paragrafu 77</span>."
         },
         {
-          "type": "image",
-          "id": "plansza-12"
+          "image": "plansza-12"
         },
         {
           "type": "text",
@@ -213,8 +205,7 @@
           "html": "Paragrafy zaznaczone w każdym scenariuszu na zielono i znajdują się zawsze po lewej stronie każdego scenariusza. Na obrazku po lewej możesz zobaczyć paragrafy <span class='color-green'>2</span> oraz <span class='color-green'>3</span>."
         },
         {
-          "type": "image",
-          "id": "paragrafy"
+          "image": "paragrafy"
         }
       ]
     },
