@@ -209,7 +209,11 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
               >
                 {choice.html ? (
                   <>
-                    <RichText text={choice.html} scenarioId={scenarioId} />
+                    <RichText
+                      text={choice.html}
+                      scenarioId={scenarioId}
+                      noSpacing
+                    />
                     {choice.text && <span>{choice.text}</span>}
                   </>
                 ) : (

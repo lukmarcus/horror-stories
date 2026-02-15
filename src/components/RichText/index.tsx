@@ -6,12 +6,14 @@ interface RichTextProps {
   content?: ContentBlock[];
   text?: string; // for backward compatibility
   scenarioId?: string; // for loading images
+  noSpacing?: boolean; // disable spacing (for use inside buttons/choices)
 }
 
 export const RichText: React.FC<RichTextProps> = ({
   content,
   text,
   scenarioId,
+  noSpacing,
 }) => {
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode[] => {
@@ -211,8 +213,15 @@ export const RichText: React.FC<RichTextProps> = ({
             ).href
           : undefined;
 
+        const imageClasses = [
+          "rich-image-block",
+          block.spacing === "none" ? "spacing-none" : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
         return (
-          <div key={idx} className="rich-image-block">
+          <div key={idx} className={imageClasses}>
             {imagePath ? (
               <img src={imagePath} alt={block.image} className="rich-image" />
             ) : (
@@ -232,6 +241,7 @@ export const RichText: React.FC<RichTextProps> = ({
           "rich-text-block",
           block.size ? `size-${block.size}` : "",
           block.color ? `color-${block.color}` : "",
+          block.spacing === "none" ? "spacing-none" : "",
         ]
           .filter(Boolean)
           .join(" ");
@@ -261,8 +271,15 @@ export const RichText: React.FC<RichTextProps> = ({
             ).href
           : undefined;
 
+        const imageClasses = [
+          "rich-image-block",
+          block.spacing === "none" ? "spacing-none" : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
         return (
-          <div key={idx} className="rich-image-block">
+          <div key={idx} className={imageClasses}>
             {imagePath ? (
               <img src={imagePath} alt={imageId} className="rich-image" />
             ) : (
@@ -280,9 +297,10 @@ export const RichText: React.FC<RichTextProps> = ({
 
   // Backward compatibility: if text prop is provided, use old parser
   if (text && !content) {
+    const blockClass = noSpacing ? "rich-text-block spacing-none" : "rich-text-block";
     return (
       <div className="rich-text">
-        <div className="rich-text-block">{parseHtml(text)}</div>
+        <div className={blockClass}>{parseHtml(text)}</div>
       </div>
     );
   }

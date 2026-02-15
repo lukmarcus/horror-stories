@@ -24,15 +24,66 @@ export const SCENARIOS: Record<string, Scenario> = Object.fromEntries(
 /**
  * Game paragraphs/nodes from JSON data - organized by scenario
  * Supports single IDs and array of IDs - creates entries for each ID
+ * Automatically adds spacing: "none" to the last content block in each paragraph
  */
 const createParagraphMap = (
   paragraphs: Paragraph[],
 ): Record<string, Paragraph> => {
   const map: Record<string, Paragraph> = {};
   for (const p of paragraphs) {
-    const ids = Array.isArray(p.id) ? p.id : [p.id];
+    // Clone the paragraph and add spacing: "none" to the last content block
+    const paragraph = { ...p };
+
+    // Handle contentPages (2D array: array of pages, each page is array of blocks)
+    if (
+      paragraph.contentPages &&
+      Array.isArray(paragraph.contentPages) &&
+      paragraph.contentPages.length > 0
+    ) {
+      const lastPageIndex = paragraph.contentPages.length - 1;
+      const lastPage = paragraph.contentPages[lastPageIndex];
+
+      if (
+        Array.isArray(lastPage) &&
+        lastPage.length > 0
+      ) {
+        const lastBlockIndex = lastPage.length - 1;
+        const lastBlock = lastPage[lastBlockIndex];
+
+        if (lastBlock && !lastBlock.spacing) {
+          // Clone contentPages with the updated last block
+          paragraph.contentPages = [
+            ...paragraph.contentPages.slice(0, lastPageIndex),
+            [
+              ...lastPage.slice(0, lastBlockIndex),
+              { ...lastBlock, spacing: "none" as const },
+            ],
+          ];
+        }
+      }
+    }
+    // Handle single-page content array
+    else if (
+      paragraph.content &&
+      Array.isArray(paragraph.content) &&
+      paragraph.content.length > 0
+    ) {
+      const lastIndex = paragraph.content.length - 1;
+      const lastBlock = paragraph.content[lastIndex];
+
+      if (lastBlock && !lastBlock.spacing) {
+        paragraph.content = [
+          ...paragraph.content.slice(0, lastIndex),
+          { ...lastBlock, spacing: "none" as const },
+        ];
+      }
+    }
+
+    const ids = Array.isArray(paragraph.id)
+      ? paragraph.id
+      : [paragraph.id];
     for (const id of ids) {
-      map[id.toString()] = p;
+      map[id.toString()] = paragraph;
     }
   }
   return map;

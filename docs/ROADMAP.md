@@ -51,14 +51,14 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 - ✅ Uprościć strukturę tekstu: `{type: "text", html}` → `{text: html}`
 - ✅ Domyślne pogrubienie dla kolorów - CSS global zamiast `<strong>`
 - ✅ Wsparcie dla wielokrotnych ID
+- ✅ Opcjonalne odstępy między paragrafami - automatyczne `spacing: "none"` na ostatnim bloku
 - ⏳ Wariantowe zawartość w jednym paragrafie
-- ⏳ Opcjonalne odstępy między paragrafami
 - ⏳ Stylizacja tekstu końcowego
 - ⏳ Refaktor ekranu direct: false
 
 ### Status
 
-- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 - 6/10 zadań)
+- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 - 7/10 zadań)
 
 ---
 
@@ -179,4 +179,37 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 
 ---
 
-**Ostatnia aktualizacja:** 2026-02-04
+## Backlog - Potencjalne Ulepszenia
+
+### UI/UX Improvements
+
+- **Horizontal choices - visual grouping** - Umieścić horizontal choices w ramce (border, background, padding) aby były bardziej wyróżnione
+- **Choice history tracking** - Po wyborze opcji, zapisać i wyświetlić na następnym paragrafie co gracz wybrał (np. "Wybrałeś: [wybór]")
+- **Wariantowe zawartość w paragrafach** - Zamiast oddzielnych ID-ów (np. 26-jessica, 26-patrick), umożliwić warianty z merge'em choices. Złożone ze względu na hierarchię wariantów (warianty w wariantach)
+- **Paragraph spacing control** - Pole w JSON do kontrolowania marginów/paddingu między paragrafami
+- **End-game text styling** - Dedykowany layout dla końcowych paragrafów scenariusza (np. paragraf 151 - "The End")
+- **Accessibility warning UI** - Przeprojektować wizualizację ekranu ostrzeżenia dostępności (direct: false)
+
+### Schema & Data Structure
+
+- **Document variant patterns** - Dokumentować istniejące warianty postaci (9-jessica, 9-patrick, 26-jessica, 26-patrick) w CODE_QUALITY.md
+- **Multiple IDs usage** - Monitorować gdzie są używane wielokrotne ID-y i optymalizować strukturę w przyszłości
+
+### Status
+
+- 🔄 W backlogu - niezaplanowane na konkretną wersję
+
+---
+
+---
+
+## Legenda
+
+- ✅ Ukończone
+- 🔄 W trakcie
+- ⏳ Zaplanowane/W backlogu
+- ❌ Odłożone/Odrzucone
+
+---
+
+**Ostatnia aktualizacja:** 2026-02-16

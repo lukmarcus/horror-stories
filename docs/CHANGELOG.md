@@ -7,6 +7,45 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.10] - 2026-02-16
+
+### Zmieniono
+
+- **Refactoring schematu JSON** - uproszczenie i optymalizacja struktury danych
+  - Usunięto redundantne pole `isDirect` - teraz inferred z obecności `accessibleFrom`
+  - Uproszczono strukturę obrazów: `{type: "image", id}` → `{image: id}`
+  - Uproszczono strukturę tekstu: `{type: "text", html}` → `{text: html}`
+  - Zastąpiono tagi tokenów semantycznymi: `<token>` → `<letter>`, `<item>`, `<image>`
+  - Stosowanie domyślnego pogrubienia dla kolorów poprzez CSS zamiast `<strong>` wrapperów
+- **Wsparcie dla wielokrotnych ID-ów** - paragrafy o identycznej treści dostępne z różnych źródeł mają teraz array ID
+- **Kontrola spacingu między blokami treści** - dodano pole `spacing: "none"` dla bloku, automatycznie zastosowany do ostatniego bloku paragrafu
+
+### Dodane
+
+- Type support dla `spacing?: "none"` w interfejsie `ContentBlock`
+- CSS rules dla `spacing-none` na text i image blocks
+- `noSpacing` prop do RichText component dla wyłączenia margesów w buttonach/choices
+- Automatyczne stosowanie `spacing: "none"` do ostatniego bloku w `createParagraphMap()`
+
+### Poprawiono
+
+- Usunięto niezamierzone margesy przed przyciskami wyboru
+- Naprawiono obsługę `contentPages` (dwuwymiarowa tablica) w logice spacingu
+- Wyeliminowano duplikaty paragrafów poprzez konsolidację ID-ów (9 duplikatów → 1 wpis z array ID)
+- Naprawiono brakujący ID (null) w paragrafie 180
+
+### Dokumentacja
+
+- Zaktualizowano CODE_QUALITY.md z wytycznymi struktury i standardów kodowych
+- Dodano Backlog sekcję w ROADMAP z potencjalnymi ulepszeniami UI/UX i schematu
+
+### Status
+
+- 🎯 UKOŃCZONO Phase 1 (5/5) i Phase 2 (7/10 zadań) - v0.0.10 milestone
+- Testy: 129/129 ✅
+
+---
+
 ## [0.0.9] - 2026-02-14
 
 ### Poprawiono

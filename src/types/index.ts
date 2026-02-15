@@ -41,6 +41,7 @@ export interface ContentBlock {
   size?: "xs" | "sm" | "lg" | "xl";
   style?: "bold" | "italic" | "underline";
   color?: "yellow" | "red" | "purple" | "green";
+  spacing?: "none"; // Optional spacing control - omit for default spacing
 }
 
 /**
