@@ -225,7 +225,9 @@ export const RichText: React.FC<RichTextProps> = ({
         );
       }
 
-      if (block.type === "text" && block.html) {
+      // Handle new text format: {text: "html"} or old format: {type: "text", html: "..."}
+      const textContent = block.text || (block.type === "text" ? block.html : undefined);
+      if (textContent) {
         const classes = [
           "rich-text-block",
           block.size ? `size-${block.size}` : "",
@@ -234,7 +236,7 @@ export const RichText: React.FC<RichTextProps> = ({
           .filter(Boolean)
           .join(" ");
 
-        let content: React.ReactNode = parseHtml(block.html);
+        let content: React.ReactNode = parseHtml(textContent);
 
         // Apply style wrapper if needed
         if (block.style === "bold") {

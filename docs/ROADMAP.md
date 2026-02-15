@@ -45,16 +45,20 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 
 #### Faza 2
 
-- ⏳ Analiza struktury paragrafów i ustalenie nowego schematu
-- ⏳ Implementacja zmian w parserze paragrafów
-- ⏳ Aktualizacja komponentów renderujących (ParagraphText, ParagraphDisplay)
-- ⏳ Refaktoryzacja paragrafów JSON z nową strukturą
-- ⏳ Testy jednostkowe dla parsera
-- ⏳ Walidacja zmian na całym scenariuszu
+- ✅ Usunąć redundantne pole `isDirect` (teraz inferred z `accessibleFrom`)
+- ✅ Uprościć strukturę obrazów: `{type: "image", id}` → `{image: id}`
+- ✅ Zamienit tokeny na semantic tags: `<token>` → `<letter>`, `<item>`, `<image>`
+- ✅ Uprościć strukturę tekstu: `{type: "text", html}` → `{text: html}`
+- ⏳ Domyślne pogrubienie dla kolorów - CSS global zamiast `<strong>`
+- ⏳ Wsparcie dla wielokrotnych ID
+- ⏳ Wariantowe zawartość w jednym paragrafie
+- ⏳ Opcjonalne odstępy między paragrafami
+- ⏳ Stylizacja tekstu końcowego
+- ⏳ Refaktor ekranu direct: false
 
 ### Status
 
-- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 w przygotowaniu)
+- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 - 4/10 zadań)
 
 ---
 

@@ -34,7 +34,8 @@ export interface DiceResult {
  */
 export interface ContentBlock {
   type?: "text" | "image" | "symbol" | "token";
-  html?: string;
+  text?: string; // New format: simplified {text: "html"}
+  html?: string; // Old format: kept for backward compatibility
   id?: string;
   image?: string; // New format: direct image reference
   size?: "xs" | "sm" | "lg" | "xl";
