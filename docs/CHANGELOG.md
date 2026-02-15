@@ -33,6 +33,10 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Naprawiono obsługę `contentPages` (dwuwymiarowa tablica) w logice spacingu
 - Wyeliminowano duplikaty paragrafów poprzez konsolidację ID-ów (9 duplikatów → 1 wpis z array ID)
 - Naprawiono brakujący ID (null) w paragrafie 180
+- **Konwertowanie starych formatów na nowy** - zamiana `"type": "text"` z `"html"` na `"text"` w paragrafach i setupie
+- **Naprawienie renderowania HTML** - italic tekst teraz wyświetla się prawidłowo poprzez `<em>` zamiast `<span style>`
+- **Scalenie duplikatów pól w choices** - dwa oddzielne pola `"text"` w wyborach postaci scalone w jedno z newline
+- **Obsługa HTML w wyborach** - choices teraz prawidłowo renderują znaczniki HTML w polu `"text"`
 
 ### Dokumentacja
 

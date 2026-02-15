@@ -21,9 +21,8 @@
           "text": "Następnie przygotuj jej <span class='color-yellow'>talię postaci</span> która odzwierciedla jej stan psycho-fizyczny. Weź talię kart z ikoną <symbol id='rewers'/> na rewersie i przygotuj dla Jessici jej talię składającą się z:"
         },
         {
-          "type": "text",
           "size": "xl",
-          "html": "Dwóch <symbol id='karta1'/> + dwóch <symbol id='karta2'/> + dwóch <symbol id='karta3'/>"
+          "text": "Dwóch <symbol id='karta1'/> + dwóch <symbol id='karta2'/> + dwóch <symbol id='karta3'/>"
         }
       ]
     },
@@ -59,9 +58,8 @@
       "stepNumber": 5,
       "content": [
         {
-          "type": "text",
           "style": "italic",
-          "html": "Jessice towarzyszy nieznośny ból głowy. To jednak mniejszy z jej problemów. Otóż nie wie gdzie się znajduje i dlaczego. Wracała wspólnie z Patrickiem z imprezy, który obiecał, że ją podrzuci. To nie jest sen, bo jest zbyt realistyczny. Mroczny pokój bez okien i drzwiami naprzeciwko jest realny. Zadzwoniłaby po pomoc, ale ktoś zabrał jej telefon. Stara się odsuwać myśli na temat tego, że mogła zostać porwana. Patrick wyglądał na miłego chłopaka, nie zrobiłby tego. Niezależnie kto to jej zrobił, powinna znaleźć wyjście."
+          "text": "Jessice towarzyszy nieznośny ból głowy. To jednak mniejszy z jej problemów. Otóż nie wie gdzie się znajduje i dlaczego. Wracała wspólnie z Patrickiem z imprezy, który obiecał, że ją podrzuci. To nie jest sen, bo jest zbyt realistyczny. Mroczny pokój bez okien i drzwiami naprzeciwko jest realny. Zadzwoniłaby po pomoc, ale ktoś zabrał jej telefon. Stara się odsuwać myśli na temat tego, że mogła zostać porwana. Patrick wyglądał na miłego chłopaka, nie zrobiłby tego. Niezależnie kto to jej zrobił, powinna znaleźć wyjście."
         }
       ]
     },
@@ -99,9 +97,8 @@
       "stepNumber": 9,
       "content": [
         {
-          "type": "text",
           "style": "bold",
-          "html": "<span class='color-red'>GRACZ DECYDUJE ILE DOBIERZE KART</span> <u>ZANIM JE ODSŁONI</u> <span class='color-red'>MOŻE SIĘ ZDARZYĆ SYTUACJA, IŻ ZABRAKNIE POTRZEBNEJ LICZBY</span> <symbol id='gwiazda'/> <span class='color-red'>- NIE MOŻNA WTEDY ZMIENIĆ ZDANIA I DOCIĄGNĄĆ WIĘCEJ PO FAKCIE.</span>"
+          "text": "<span class='color-red'>GRACZ DECYDUJE ILE DOBIERZE KART</span> <u>ZANIM JE ODSŁONI</u> <span class='color-red'>MOŻE SIĘ ZDARZYĆ SYTUACJA, IŻ ZABRAKNIE POTRZEBNEJ LICZBY</span> <symbol id='gwiazda'/> <span class='color-red'>- NIE MOŻNA WTEDY ZMIENIĆ ZDANIA I DOCIĄGNĄĆ WIĘCEJ PO FAKCIE.</span>"
         }
       ]
     },
@@ -153,10 +150,9 @@
           "image": "plansza-12"
         },
         {
-          "type": "text",
           "size": "xl",
           "style": "bold",
-          "html": "<span class='color-red'>Wstrzymaj się z tym jednak przez chwilę!</span>"
+          "text": "<span class='color-red'>Wstrzymaj się z tym jednak przez chwilę!</span>"
         }
       ]
     },
@@ -194,15 +190,11 @@
       "stepNumber": 18,
       "content": [
         {
-          "type": "text",
           "style": "bold",
           "size": "lg",
-          "html": "<span class='color-red'>DOBIERZ WIERZCHNIĄ KARTĘ Z TALII I PRZEJDŹ DO PARAGRAFU</span> <span class='color-green'>77</span> <span class='color-red'>na stronie 13.</span>"
+          "text": "<span class='color-red'>DOBIERZ WIERZCHNIĄ KARTĘ Z TALII I PRZEJDŹ DO PARAGRAFU</span> <span class='color-green'>77</span> <span class='color-red'>na stronie 13.</span>"
         }
       ]
     }
   ]
 }
-
-
-

@@ -207,15 +207,12 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
                 className="button button--primary"
                 aria-label={choice.text || ""}
               >
-                {choice.html ? (
-                  <>
-                    <RichText
-                      text={choice.html}
-                      scenarioId={scenarioId}
-                      noSpacing
-                    />
-                    {choice.text && <span>{choice.text}</span>}
-                  </>
+                {choice.text && choice.text.includes("<") ? (
+                  <RichText
+                    text={choice.text}
+                    scenarioId={scenarioId}
+                    noSpacing
+                  />
                 ) : (
                   choice.text
                 )}

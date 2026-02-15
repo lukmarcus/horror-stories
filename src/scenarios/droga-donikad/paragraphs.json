@@ -18,7 +18,7 @@
       ],
       "choices": [
         {
-          "html": "Przejdź do <span class='color-green'>105</span>.",
+          "text": "Przejdź do <span class='color-green'>105</span>.",
           "nextParagraphId": "105"
         }
       ]
@@ -29,9 +29,8 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/> Tylko tyle, że mnie odwoziłeś. Musiałam zasnąć, bo chwilę potem wybudziłam się tutaj."
+            "text": "<person id='jessica'/> Tylko tyle, że mnie odwoziłeś. Musiałam zasnąć, bo chwilę potem wybudziłam się tutaj."
           }
         ]
       ],
@@ -60,13 +59,11 @@
       ],
       "choices": [
         {
-          "html": "<person id='jessica'/>",
-          "text": "Jessica",
+          "text": "<person id='jessica'/>\nJessica",
           "nextParagraphId": "9-jessica"
         },
         {
-          "html": "<person id='patrick'/>",
-          "text": "Patrick",
+          "text": "<person id='patrick'/>\nPatrick",
           "nextParagraphId": "9-patrick"
         }
       ],
@@ -87,11 +84,11 @@
       ],
       "choices": [
         {
-          "html": "Patrick leży",
+          "text": "Patrick leży",
           "nextParagraphId": "9-patrick-lezy"
         },
         {
-          "html": "Patrick stoi",
+          "text": "Patrick stoi",
           "nextParagraphId": "9-patrick-stoi"
         }
       ],
@@ -109,11 +106,11 @@
       ],
       "choices": [
         {
-          "html": "Spróbuj go ocucić (przejdź do paragrafu <span class='color-green'>40</span>)",
+          "text": "Spróbuj go ocucić (przejdź do paragrafu <span class='color-green'>40</span>)",
           "nextParagraphId": "40"
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
@@ -130,15 +127,15 @@
       ],
       "choices": [
         {
-          "html": "Spróbuj z nim porozmawiać (przejdź do paragrafu <span class='color-green'>99</span>)",
+          "text": "Spróbuj z nim porozmawiać (przejdź do paragrafu <span class='color-green'>99</span>)",
           "nextParagraphId": "99"
         },
         {
-          "html": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
           "nextParagraphId": ""
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
@@ -160,7 +157,7 @@
       "contentPages": [
         [
           {
-            "text": "Drewniane drzwi z wyrytym na nich napisem: <span style='font-style: italic;'>\"Gdy winy odpokutowane, otworzą się bramy, rozjaśni się mrok\"</span>."
+            "text": "Drewniane drzwi z wyrytym na nich napisem: <em>\"Gdy winy odpokutowane, otworzą się bramy, rozjaśni się mrok\"</em>."
           },
           {
             "text": "Wybierz jedną z opcji spośród:"
@@ -169,15 +166,15 @@
       ],
       "choices": [
         {
-          "html": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku lub jakiś leży na planszy z Twoją figurką wskaż ten którym chcesz wejść w interakcję z drzwiami. Następnie przejdź do paragrafu <span class='color-green'>51</span>. Ps. Jeśli potrzebny przedmiot ma druga postać, może z nią porozmawiaj, aby poprosić, aby Ci go przekazała?",
+          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku lub jakiś leży na planszy z Twoją figurką wskaż ten którym chcesz wejść w interakcję z drzwiami. Następnie przejdź do paragrafu <span class='color-green'>51</span>. Ps. Jeśli potrzebny przedmiot ma druga postać, może z nią porozmawiaj, aby poprosić, aby Ci go przekazała?",
           "nextParagraphId": "51"
         },
         {
-          "html": "Spróbuj przebić się siłą. Dobierz do 4<symbol id='rewers'/> i po zsumowaniu ilości <symbol id='gwiazda'/> przejdź do paragrafu <span class='color-green'>39</span>. Ps. Jeśli masz pustą talię, sformuj nową ze stosu odrzuconego. Jeśli dobrano nie wystarczającą ilość (np. deklarujesz dobranie 4<symbol id='rewers'/>, a w talii masz 3<symbol id='rewers'/>, dobierz te 3<symbol id='rewers'/>, zapamiętaj sumę <symbol id='gwiazda'/>, i sformuj nową talię ze stosu odrzuconego i dobierz z wierzchu świeżo sformowanej talii czwartą. Tak, może się okazać, że raz już użytej podczas tego testu karty przyjdzie ci rozpatrzyć drugi raz. To normalne.",
+          "text": "Spróbuj przebić się siłą. Dobierz do 4<symbol id='rewers'/> i po zsumowaniu ilości <symbol id='gwiazda'/> przejdź do paragrafu <span class='color-green'>39</span>. Ps. Jeśli masz pustą talię, sformuj nową ze stosu odrzuconego. Jeśli dobrano nie wystarczającą ilość (np. deklarujesz dobranie 4<symbol id='rewers'/>, a w talii masz 3<symbol id='rewers'/>, dobierz te 3<symbol id='rewers'/>, zapamiętaj sumę <symbol id='gwiazda'/>, i sformuj nową talię ze stosu odrzuconego i dobierz z wierzchu świeżo sformowanej talii czwartą. Tak, może się okazać, że raz już użytej podczas tego testu karty przyjdzie ci rozpatrzyć drugi raz. To normalne.",
           "nextParagraphId": "39"
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
@@ -187,7 +184,7 @@
       "contentPages": [
         [
           {
-            "text": "Obraz podpisany na ramie jako <span style='font-style: italic;'>Czyściec</span>. Widzisz na nim <span class='color-red'>ośmioro</span> ludzi, z których <span class='color-red'>czworo</span> jest wciąganych przez aniołów ku czemuś, co wygląda jak niebo."
+            "text": "Obraz podpisany na ramie jako <em>Czyściec</em>. Widzisz na nim <span class='color-red'>ośmioro</span> ludzi, z których <span class='color-red'>czworo</span> jest wciąganych przez aniołów ku czemuś, co wygląda jak niebo."
           },
           {
             "text": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
@@ -210,13 +207,11 @@
       ],
       "choices": [
         {
-          "html": "<person id='jessica'/>",
-          "text": "Jessica",
+          "text": "<person id='jessica'/>\nJessica",
           "nextParagraphId": "26-jessica"
         },
         {
-          "html": "<person id='patrick'/>",
-          "text": "Patrick",
+          "text": "<person id='patrick'/>\nPatrick",
           "nextParagraphId": "26-patrick"
         }
       ],
@@ -247,15 +242,15 @@
       ],
       "choices": [
         {
-          "html": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
+          "text": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
           "nextParagraphId": "2"
         },
         {
-          "html": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
           "nextParagraphId": ""
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
@@ -268,9 +263,8 @@
             "text": "Wyłóż planszę 3<letter id='b'/>, a na jej <span class='color-purple'>N</span> połóż <item id='69'/> (tak, aby leżało jednocześnie również na <span class='color-purple'>S</span> planszy 14)."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Jak to możliwe, że wcześniej nie dostrzegliście wielkiej dziury w ścianie?"
+            "text": "Jak to możliwe, że wcześniej nie dostrzegliście wielkiej dziury w ścianie?"
           }
         ]
       ],
@@ -285,39 +279,32 @@
             "text": "Odrzuć <span class='color-blue'>żeton</span> <letter id='a'/> z toru czasu."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Rozległ się dźwięk - cichy, ale niepokojąco wyraźny. Echo odbijało się od ścian budynku. To były kroki… ciężkie, powolne. Charakterystyczne uderzenia wielkich, przesadnie dużych butów zbliżały się, choć żadne z was nie widziało, co się zbliża. Serce biło wam jak oszalałe, a powietrze wypełnił zapach waty cukrowej. Nagle kroki ustały."
+            "text": "Rozległ się dźwięk - cichy, ale niepokojąco wyraźny. Echo odbijało się od ścian budynku. To były kroki… ciężkie, powolne. Charakterystyczne uderzenia wielkich, przesadnie dużych butów zbliżały się, choć żadne z was nie widziało, co się zbliża. Serce biło wam jak oszalałe, a powietrze wypełnił zapach waty cukrowej. Nagle kroki ustały."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Oczom <person id='jessica'/> i <person id='patrick'/> ukazał się klaun. Z nożem w ręku."
+            "text": "Oczom <person id='jessica'/> i <person id='patrick'/> ukazał się klaun. Z nożem w ręku."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Samo w sobie byłoby to dość przerażające, gdyby nie fakt, że oboje śmiertelnie się ich boją. W głowie <person id='jessica'/> natychmiast powróciło wspomnienie, gdy miała sześć lat."
+            "text": "Samo w sobie byłoby to dość przerażające, gdyby nie fakt, że oboje śmiertelnie się ich boją. W głowie <person id='jessica'/> natychmiast powróciło wspomnienie, gdy miała sześć lat."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Rodzice wynajęli klauna, żeby ją rozśmieszył. Pamięta jego buty. Przy każdym kroku wydawały głośne klap jak coś, co nie pasuje do rzeczywistości. Gdy do niej podszedł, uśmiechnął się – ale coś było nie tak. Zbyt szeroko, zbyt długo, jakby skóra jego twarzy miała pęknąć. Czuła, że patrzy na nią w inny sposób niż na resztę dzieci. Wpatrywał się wprost w jej oczy, a jego uśmiech wydawał się być wręcz nienaturalnie szeroki. Od tamtego momentu nie może spoglądać na klauny. Tymczasem teraz klaun jest tutaj, w dodatku trzymając wielki nóż i uśmiechający się złowrogo."
+            "text": "Rodzice wynajęli klauna, żeby ją rozśmieszył. Pamięta jego buty. Przy każdym kroku wydawały głośne klap jak coś, co nie pasuje do rzeczywistości. Gdy do niej podszedł, uśmiechnął się – ale coś było nie tak. Zbyt szeroko, zbyt długo, jakby skóra jego twarzy miała pęknąć. Czuła, że patrzy na nią w inny sposób niż na resztę dzieci. Wpatrywał się wprost w jej oczy, a jego uśmiech wydawał się być wręcz nienaturalnie szeroki. Od tamtego momentu nie może spoglądać na klauny. Tymczasem teraz klaun jest tutaj, w dodatku trzymając wielki nóż i uśmiechający się złowrogo."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/>: Dlaczego goni nas akurat cholerny przerażający klaun?"
+            "text": "<person id='patrick'/>: Dlaczego goni nas akurat cholerny przerażający klaun?"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/>: Nie wiem, ale śmiertelnie się ich boję."
+            "text": "<person id='jessica'/>: Nie wiem, ale śmiertelnie się ich boję."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/>: Ja też."
+            "text": "<person id='patrick'/>: Ja też."
           }
         ],
         [
@@ -415,11 +402,11 @@
       ],
       "choices": [
         {
-          "html": "Jeśli nie wyłożono jeszcze talii rozwoju (i nie wiesz o czym mowa) przejdź do paragrafu <span class='color-green'>75</span>.",
+          "text": "Jeśli nie wyłożono jeszcze talii rozwoju (i nie wiesz o czym mowa) przejdź do paragrafu <span class='color-green'>75</span>.",
           "nextParagraphId": "75"
         },
         {
-          "html": "wróć",
+          "text": "wróć",
           "nextParagraphId": ""
         }
       ]
@@ -447,11 +434,11 @@
       ],
       "choices": [
         {
-          "html": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='37'/>. Następnie przejdź do paragrafu <span class='color-green'>1</span>.",
+          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='37'/>. Następnie przejdź do paragrafu <span class='color-green'>1</span>.",
           "nextParagraphId": "1"
         },
         {
-          "html": "Jeśli żadnego przedmiotu nie posiadasz lub zmieniłaś zdanie, opuść ten paragraf (wybranie opcji opuszczenia paragrafu jej nie przywraca; można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)",
+          "text": "Jeśli żadnego przedmiotu nie posiadasz lub zmieniłaś zdanie, opuść ten paragraf (wybranie opcji opuszczenia paragrafu jej nie przywraca; można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)",
           "nextParagraphId": ""
         }
       ]
@@ -491,44 +478,36 @@
             "text": "Postaw stojącą figurkę <person id='patrick'/> na planszy 2<letter id='a'/>."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Patrick momentalnie otwiera oczy i podnosi się nerwowo rozglądając się wokół siebie."
+            "text": "Patrick momentalnie otwiera oczy i podnosi się nerwowo rozglądając się wokół siebie."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> (Mamrocze coś pod nosem) Moja głowa …"
+            "text": "<person id='patrick'/> (Mamrocze coś pod nosem) Moja głowa …"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/> Jesteś cały?"
+            "text": "<person id='jessica'/> Jesteś cały?"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> (Mamrocze coś pod nosem) Tak … Chyba. Gdzie jesteśmy?"
+            "text": "<person id='patrick'/> (Mamrocze coś pod nosem) Tak … Chyba. Gdzie jesteśmy?"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/> Też chciałabym wiedzieć. Obudziłam się przed chwilą"
+            "text": "<person id='jessica'/> Też chciałabym wiedzieć. Obudziłam się przed chwilą"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> Jechaliśmy autem, po czym nagle znajdujemy się tutaj. Jak to możliwe?"
+            "text": "<person id='patrick'/> Jechaliśmy autem, po czym nagle znajdujemy się tutaj. Jak to możliwe?"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/> Na swoją obronę mam to, że spałam, więc ..."
+            "text": "<person id='jessica'/> Na swoją obronę mam to, że spałam, więc ..."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> Poważnie nie wiem jak się tu znaleźliśmy."
+            "text": "<person id='patrick'/> Poważnie nie wiem jak się tu znaleźliśmy."
           },
           {
             "text": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <image id='1'/> + dwóch <image id='2'/> + dwóch <image id='3'/>"
@@ -583,11 +562,11 @@
       ],
       "choices": [
         {
-          "html": "Jeśli nie wyłożono jeszcze talii rozwoju (i nie wiesz o czym mowa) przejdź do paragrafu <span class='color-green'>75</span>.",
+          "text": "Jeśli nie wyłożono jeszcze talii rozwoju (i nie wiesz o czym mowa) przejdź do paragrafu <span class='color-green'>75</span>.",
           "nextParagraphId": "75"
         },
         {
-          "html": "wróć",
+          "text": "wróć",
           "nextParagraphId": ""
         }
       ]
@@ -615,11 +594,11 @@
       ],
       "choices": [
         {
-          "html": "Przeszukaj biurko. Jeśli chcesz to zrobić przejdź do <span class='color-green'>paragrafu 70</span> (tego rodzaju przejścia <span class='color-red'>nie</span> są wskazaniem <symbol id='paragraf'/>, a tym samym nie wymagają dobrania kolejnej wierzchniej <symbol id='rewers'/>)",
+          "text": "Przeszukaj biurko. Jeśli chcesz to zrobić przejdź do <span class='color-green'>paragrafu 70</span> (tego rodzaju przejścia <span class='color-red'>nie</span> są wskazaniem <symbol id='paragraf'/>, a tym samym nie wymagają dobrania kolejnej wierzchniej <symbol id='rewers'/>)",
           "nextParagraphId": "70"
         },
         {
-          "html": "Opuść ten paragraf (ale pamiętaj, że każde wskazanie <symbol id='paragraf'/> oznacza konieczność dobrania wierzchniej <symbol id='rewers'/>, nawet jeśli wskazujesz paragraf, który już znasz; <span class='color-red'>ponadto NIE przywróci ci to zużytej na wskazanie <symbol id='paragraf'/> akcji</span>)",
+          "text": "Opuść ten paragraf (ale pamiętaj, że każde wskazanie <symbol id='paragraf'/> oznacza konieczność dobrania wierzchniej <symbol id='rewers'/>, nawet jeśli wskazujesz paragraf, który już znasz; <span class='color-red'>ponadto NIE przywróci ci to zużytej na wskazanie <symbol id='paragraf'/> akcji</span>)",
           "nextParagraphId": ""
         }
       ]
@@ -642,9 +621,8 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/>Złamałbym sobie tylko bark. Nie ma szans – odpowiada zrezygnowany patrząc na drzwi – musi być jakiś inny sposób."
+            "text": "<person id='patrick'/>Złamałbym sobie tylko bark. Nie ma szans – odpowiada zrezygnowany patrząc na drzwi – musi być jakiś inny sposób."
           },
           {
             "text": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
@@ -659,9 +637,8 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Odcięta męska ręka. Patrzenie na nią przyprawia Cię o mdłości."
+            "text": "Odcięta męska ręka. Patrzenie na nią przyprawia Cię o mdłości."
           },
           {
             "text": "Możesz ją podnieść używając akcji \"Podnieś przedmioty\" z <strong>karty akcji ogólnych</strong>."
@@ -689,11 +666,11 @@
       ],
       "choices": [
         {
-          "html": "TAK",
+          "text": "TAK",
           "nextParagraphId": "40"
         },
         {
-          "html": "NIE",
+          "text": "NIE",
           "nextParagraphId": "65-61"
         }
       ]
@@ -721,15 +698,15 @@
       ],
       "choices": [
         {
-          "html": "Zajrzyj tam (przejdź do <span class='color-green'>54</span>)",
+          "text": "Zajrzyj tam (przejdź do <span class='color-green'>54</span>)",
           "nextParagraphId": "54"
         },
         {
-          "html": "Wejdź do środka (przejdź do <span class='color-green'>180</span>)",
+          "text": "Wejdź do środka (przejdź do <span class='color-green'>180</span>)",
           "nextParagraphId": "180"
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
@@ -816,9 +793,8 @@
         ],
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Leży tu starszy człowiek, który wygląda jakby nic nie mogło już mu pomóc."
+            "text": "Leży tu starszy człowiek, który wygląda jakby nic nie mogło już mu pomóc."
           },
           {
             "text": "Pamiętaj, że możesz wskazywać dowolne <symbol id='paragraf'/> na planszy lub łączeniu plansz (o ile są tam <symbol id='drzwi-otwarte'/> / <symbol id='drzwi-wywazone'/> bez odkrytych plansz po ich drugiej stronie) figurką aktualnie rozgrywającą swoją turę. Pamiętaj, że Ilekroć wskazujesz <symbol id='paragraf'/>, dobierasz jedną wierzchnią <symbol id='rewers'/> z talii postaci, a dopiero po jej rozpatrzeniu (gdyby były na nich jakieś efekty) przechodzisz do odpowiedniego paragrafu."
@@ -840,12 +816,11 @@
       "contentPages": [
         [
           {
-            "text": "<person id='patrick'/><italic>Źle</italic> - odpowiada. <italic>Boli mnie każda część ciała i prawdopodobnie mam złamaną nogę. Gdyby nie adrenalina pewnie zwijałbym się z bólu, ale okoliczności do tego nie sprzyjają. A u ciebie?</italic>"
+            "text": "<person id='patrick'/><em>Źle</em> - odpowiada. <em>Boli mnie każda część ciała i prawdopodobnie mam złamaną nogę. Gdyby nie adrenalina pewnie zwijałbym się z bólu, ale okoliczności do tego nie sprzyjają. A u ciebie?</em>"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/>Fizycznie do zniesienia. Reszty już prawdopodobnie nie zdołam nigdy wyrzucić z głowy."
+            "text": "<person id='jessica'/>Fizycznie do zniesienia. Reszty już prawdopodobnie nie zdołam nigdy wyrzucić z głowy."
           },
           {
             "text": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
@@ -943,23 +918,23 @@
       ],
       "choices": [
         {
-          "html": "Spytaj jak się czuje (przejdź do paragrafu <span class='color-green'>80</span>)",
+          "text": "Spytaj jak się czuje (przejdź do paragrafu <span class='color-green'>80</span>)",
           "nextParagraphId": "80"
         },
         {
-          "html": "Spytaj go czy pamięta jak się tu znaleźli (przejdź do paragrafu <span class='color-green'>112</span>)",
+          "text": "Spytaj go czy pamięta jak się tu znaleźli (przejdź do paragrafu <span class='color-green'>112</span>)",
           "nextParagraphId": "112"
         },
         {
-          "html": "<strong>(Wybierz tylko jeśli na planszy znajduje się <item id='50'/>)</strong> Nakłoń go, aby pomógł Ci wyważyć drzwi stojące na drodze (przejdź do paragrafu <span class='color-green'>55</span>)",
+          "text": "<strong>(Wybierz tylko jeśli na planszy znajduje się <item id='50'/>)</strong> Nakłoń go, aby pomógł Ci wyważyć drzwi stojące na drodze (przejdź do paragrafu <span class='color-green'>55</span>)",
           "nextParagraphId": "55"
         },
         {
-          "html": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami.",
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami.",
           "nextParagraphId": ""
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
@@ -1008,14 +983,12 @@
             "text": "Umieść żeton Patricka w plastikowej podstawce. Połóż jego figurkę leżącą na środku planszy 2. Posiada <symbol id='paragraf'/>, więc można go również wskazywać w ramach akcji (dobierając wierzchnią kartę z talii). Przedmioty (kwadratowe żetony) możesz również wskazywać zarówno, gdy leżą na planszy / w twoim ekwipunku / w cudzym ekwipunku postaci, która znajduje się na planszy z Twoją figurką."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Patrick! - krzyknęła. Ty żyjesz!"
+            "text": "Patrick! - krzyknęła. Ty żyjesz!"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Nie odwzajemnił tego, bo leżał nieprzytomny. Natychmiast wykluczyła wersję w której mógł ją porwać. Żałuje, że zdecydowała się na chwilę drzemki w aucie, bo teraz nie ma pojęcia co mogło się wydarzyć."
+            "text": "Nie odwzajemnił tego, bo leżał nieprzytomny. Natychmiast wykluczyła wersję w której mógł ją porwać. Żałuje, że zdecydowała się na chwilę drzemki w aucie, bo teraz nie ma pojęcia co mogło się wydarzyć."
           },
           {
             "text": "Teren się nieco rozrósł. Pamiętaj, że można się przemieszczać korzystając z akcji \"Ruch\". Wszystko opowie Ci karta ogólnych akcji."
@@ -1035,19 +1008,16 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Odsuwaliście od siebie tę myśl. W końcu całe życie było przed wami."
+            "text": "Odsuwaliście od siebie tę myśl. W końcu całe życie było przed wami."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "W końcu zaczyna to docierać."
+            "text": "W końcu zaczyna to docierać."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Vy … vy chyba nie żyjecie. Na chwilę przed zderzeniem czołowym z autem jadącym swoim pasem wybudził Cię krzyk Patricka. Wiedziałaś, że wpuszczenie go do auta w tym stanie nie jest dobrym pomysłem, ale obiecał, że będzie jechał powoli. Na trasie miewał momenty, gdy bardziej kierowało go auto niż on sam. Miałaś jednak nadzieję, że skoro było niedaleko, to uznałaś, że będzie dobrze i zmęczona zabawą się zdrzemniesz."
+            "text": "Wy ... wy chyba nie żyjecie. Na chwilę przed zderzeniem czołowym z autem jadącym swoim pasem wybudził Cię krzyk Patricka. Wiedziałaś, że wpuszczenie go do auta w tym stanie nie jest dobrym pomysłem, ale obiecał, że będzie jechał powoli. Na trasie miewał momenty, gdy bardziej kierowało go auto niż on sam. Miałaś jednak nadzieję, że skoro było niedaleko, to uznałaś, że będzie dobrze i zmęczona zabawą się zdrzemniesz."
           },
           {
             "text": "Odrzuć <item id='110'/>. Jeśli masz niewykorzystane akcje, wykorzystaj je."
@@ -1064,9 +1034,8 @@
             "text": "Kamienna tabliczka z następującą treścią:"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "\"Dusze czekają w mękach swych lichych. Nie potępione, lecz nie zbawione. Ile ich czeka na wybawienie, by w końcu ujrzeć niebo - zbawienie?\"."
+            "text": "\"Dusze czekają w mękach swych lichych. Nie potępione, lecz nie zbawione. Ile ich czeka na wybawienie, by w końcu ujrzeć niebo - zbawienie?\"."
           },
           {
             "text": "Tuż pod napisem znajdują się klawisze z cyframi z przedziału od 3 do 15. Chcesz któryś wcisnąć? Wybierz jedną z opcji spośród:"
@@ -1075,47 +1044,47 @@
       ],
       "choices": [
         {
-          "html": "Trzy?",
+          "text": "Trzy?",
           "nextParagraphId": "52"
         },
         {
-          "html": "Pięć?",
+          "text": "Pięć?",
           "nextParagraphId": "81"
         },
         {
-          "html": "Sześć?",
+          "text": "Sześć?",
           "nextParagraphId": "126"
         },
         {
-          "html": "Siedem?",
+          "text": "Siedem?",
           "nextParagraphId": "3"
         },
         {
-          "html": "Osiem?",
+          "text": "Osiem?",
           "nextParagraphId": "36"
         },
         {
-          "html": "Dziewięć?",
+          "text": "Dziewięć?",
           "nextParagraphId": "62"
         },
         {
-          "html": "Dziesięć?",
+          "text": "Dziesięć?",
           "nextParagraphId": "15"
         },
         {
-          "html": "Jedenaście?",
+          "text": "Jedenaście?",
           "nextParagraphId": "101"
         },
         {
-          "html": "Dwanaście?",
+          "text": "Dwanaście?",
           "nextParagraphId": "73"
         },
         {
-          "html": "Trzynaście?",
+          "text": "Trzynaście?",
           "nextParagraphId": "155"
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
@@ -1126,9 +1095,8 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> Ostatnie co pamiętam to silne światło. Mam równie dużo pytań co ty."
+            "text": "<person id='patrick'/> Ostatnie co pamiętam to silne światło. Mam równie dużo pytań co ty."
           }
         ]
       ],
@@ -1165,9 +1133,8 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Szeroki, nienaturalny uśmiech rozciąga się od ucha do ucha, a jego spękana, kredowobiała skóra zdaje się być napięta do granic możliwości. Oczy? Zbyt duże, zbyt czarne, jakby nie miały dna – otchłanie, w których odbija się strach tych, którzy na niego spojrzą. Jego kostium, kiedyś być może kolorowy, jest teraz przybrudzony, poplamiony czymś, czego lepiej nie identyfikować. Jego dłonie, zbyt długie i kościste, zakończone są paznokciami niczym cienkie ostrza. Pachnie czymś słodkim, ale zepsutym, jak wata cukrowa zmieszana z odorem rozkładu. Jedyne co chcesz teraz zrobić to uciekać jak najdalej od tego czegoś."
+            "text": "Szeroki, nienaturalny uśmiech rozciąga się od ucha do ucha, a jego spękana, kredowobiała skóra zdaje się być napięta do granic możliwości. Oczy? Zbyt duże, zbyt czarne, jakby nie miały dna – otchłanie, w których odbija się strach tych, którzy na niego spojrzą. Jego kostium, kiedyś być może kolorowy, jest teraz przybrudzony, poplamiony czymś, czego lepiej nie identyfikować. Jego dłonie, zbyt długie i kościste, zakończone są paznokciami niczym cienkie ostrza. Pachnie czymś słodkim, ale zepsutym, jak wata cukrowa zmieszana z odorem rozkładu. Jedyne co chcesz teraz zrobić to uciekać jak najdalej od tego czegoś."
           }
         ]
       ],
@@ -1178,9 +1145,8 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Starszy mężczyzna. Nie kojarzysz go. Sądząc po licznych ranach, kałuży krwi pod nim musi być martwy. Brakuje mu prawej dłoni."
+            "text": "Starszy mężczyzna. Nie kojarzysz go. Sądząc po licznych ranach, kałuży krwi pod nim musi być martwy. Brakuje mu prawej dłoni."
           },
           {
             "text": "<span class='color-red'>Opuść paragraf</span> (ilekroć nie prowadzi dalej, oznacza to, że możesz zająć się teraz czymś innym; nie przywraca ci to akcji wykorzystanej na sprawdzenie paragrafu)."
@@ -1195,9 +1161,8 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Rzeźba, której brak prawej ręki."
+            "text": "Rzeźba, której brak prawej ręki."
           },
           {
             "text": "Wybierz jedną z opcji spośród:"
@@ -1206,11 +1171,11 @@
       ],
       "choices": [
         {
-          "html": "Tylko jeśli na planszy znajdują się <item id='50'/> dowolna z postaci na tej planszy posiada przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='123'/>. Następnie przejdź do paragrafu <span class='color-green'>65</span>.",
+          "text": "Tylko jeśli na planszy znajdują się <item id='50'/> dowolna z postaci na tej planszy posiada przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='123'/>. Następnie przejdź do paragrafu <span class='color-green'>65</span>.",
           "nextParagraphId": "65"
         },
         {
-          "html": "Opuszczam paragraf.",
+          "text": "Opuszczam paragraf.",
           "nextParagraphId": ""
         }
       ]
@@ -1220,9 +1185,8 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Biblioteczka z mnóstwem pozycji do wyboru. Cała półka wydaje się wypełniona w całości poza jednym miejscem. Wygląda jakby brakowało czegoś."
+            "text": "Biblioteczka z mnóstwem pozycji do wyboru. Cała półka wydaje się wypełniona w całości poza jednym miejscem. Wygląda jakby brakowało czegoś."
           },
           {
             "text": "Wybierz jedną z opcji spośród:"
@@ -1231,11 +1195,11 @@
       ],
       "choices": [
         {
-          "html": "Tylko jeśli posiadasz jakikolwiek przedmiot w ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='137'/>. Następnie przejdź do paragrafu <span class='color-green'>34</span>.",
+          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='137'/>. Następnie przejdź do paragrafu <span class='color-green'>34</span>.",
           "nextParagraphId": "34"
         },
         {
-          "html": "Opuszczam paragraf.",
+          "text": "Opuszczam paragraf.",
           "nextParagraphId": ""
         }
       ]
@@ -1245,9 +1209,8 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Starszy mężczyzna, którego już wcześniej widziałaś. Dlaczego masz wrażenie, że przeżywasz jakieś deja vu i już … już to robiłaś?"
+            "text": "Starszy mężczyzna, którego już wcześniej widziałaś. Dlaczego masz wrażenie, że przeżywasz jakieś deja vu i już … już to robiłaś?"
           }
         ]
       ],
@@ -1258,22 +1221,19 @@
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Wszystko już pamiętasz. Wybudziłaś się w momencie, gdy Patrick stracił kontrolę i zjechał akurat na cudzy pas taranując czołowo jadącego w drugim aucie starszego mężczyznę. Pamiętasz go, bo na ułamek sekundy zdążyłaś spojrzeć mu w oczy."
+            "text": "Wszystko już pamiętasz. Wybudziłaś się w momencie, gdy Patrick stracił kontrolę i zjechał akurat na cudzy pas taranując czołowo jadącego w drugim aucie starszego mężczyznę. Pamiętasz go, bo na ułamek sekundy zdążyłaś spojrzeć mu w oczy."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Pamiętasz zderzenie. Mężczyzna wyleciał przednią szybą wprost na asfalt. Wy z kolei utknęliście w aucie, które zaczęło płonąć. Na nic były wasze krzyki połączone z rozpaczliwym kopaniem w zakleszczone drzwi, które nie chciały drgnąć."
+            "text": "Pamiętasz zderzenie. Mężczyzna wyleciał przednią szybą wprost na asfalt. Wy z kolei utknęliście w aucie, które zaczęło płonąć. Na nic były wasze krzyki połączone z rozpaczliwym kopaniem w zakleszczone drzwi, które nie chciały drgnąć."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Płonęliście żywcem wiedząc, że nie ma wyjścia z tej sytuacji. Wiedzieliście, że to koniec, ale ten mimo waszych błagań nie chciał nadejść. Kiedy już więc do niego doszło, trafiliście tutaj. Wydaje się, że rozumiesz czym może być to miejsce. Nie jesteś złą osobą i nie powinno Cię tu być. Nie zamierzasz pokutować, ani przepraszać. Zamierasz zrobisz wszystko, aby opuścić to miejsce."
+            "text": "Płonęliście żywcem wiedząc, że nie ma wyjścia z tej sytuacji. Wiedzieliście, że to koniec, ale ten mimo waszych błagań nie chciał nadejść. Kiedy już więc do niego doszło, trafiliście tutaj. Wydaje się, że rozumiesz czym może być to miejsce. Nie jesteś złą osobą i nie powinno Cię tu być. Nie zamierzasz pokutować, ani przepraszać. Zamierasz zrobisz wszystko, aby opuścić to miejsce."
           },
           {
-            "text": "<span style='font-size: larger;'><span class='color-red'>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</span></span>"
+            "text": "<span class='size-xl color-red'>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</span>"
           }
         ]
       ],
@@ -1293,15 +1253,15 @@
       ],
       "choices": [
         {
-          "html": "Zacznij przeszukiwać w poszukiwaniu czegoś przydatnego (przejdź do <span class='color-green'>82</span>)",
+          "text": "Zacznij przeszukiwać w poszukiwaniu czegoś przydatnego (przejdź do <span class='color-green'>82</span>)",
           "nextParagraphId": "82"
         },
         {
-          "html": "Dobierz jeden losowy <symbol id='losowe'/>. Możesz położyć go w ekwipunku.",
+          "text": "Dobierz jeden losowy <symbol id='losowe'/>. Możesz położyć go w ekwipunku.",
           "nextParagraphId": ""
         },
         {
-          "html": "Opuszczam paragraf.",
+          "text": "Opuszczam paragraf.",
           "nextParagraphId": ""
         }
       ]

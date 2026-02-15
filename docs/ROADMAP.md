@@ -52,13 +52,14 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 - ✅ Domyślne pogrubienie dla kolorów - CSS global zamiast `<strong>`
 - ✅ Wsparcie dla wielokrotnych ID
 - ✅ Opcjonalne odstępy między paragrafami - automatyczne `spacing: "none"` na ostatnim bloku
+- ✅ Bugfixy i standaryzacja formatów - konwersja JSON, naprawy renderowania HTML, standardizacja choices
 - ⏳ Wariantowe zawartość w jednym paragrafie
 - ⏳ Stylizacja tekstu końcowego
 - ⏳ Refaktor ekranu direct: false
 
 ### Status
 
-- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 - 7/10 zadań)
+- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 - 8/10 zadań, 3 zaplanowane na dalsze wersje)
 
 ---
 
