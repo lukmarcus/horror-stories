@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/pages/about.css";
 
-const About: React.FC = () => {
+export const About: React.FC = () => {
   return (
     <main className="about">
       <section className="about__hero">
@@ -125,5 +125,3 @@ const About: React.FC = () => {
     </main>
   );
 };
-
-export default About;
