@@ -47,16 +47,20 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     ? paragraph.contentPages[currentPage]
     : paragraph.content;
 
+  const paragraphIdStr = Array.isArray(paragraph.id)
+    ? paragraph.id.join(", ")
+    : paragraph.id;
+
   return (
     <>
       <article
         className="paragraph-display game__setup-step"
-        aria-label={`Paragraf ${paragraph.id}`}
+        aria-label={`Paragraf ${paragraphIdStr}`}
       >
         {paragraph.image && (
           <img
             src={paragraph.image}
-            alt={`Ilustracja do paragrafu ${paragraph.id}`}
+            alt={`Ilustracja do paragrafu ${paragraphIdStr}`}
             className="paragraph-image"
           />
         )}

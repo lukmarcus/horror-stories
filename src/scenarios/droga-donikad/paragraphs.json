@@ -38,7 +38,7 @@
       "choices": []
     },
     {
-      "id": "3",
+      "id": ["3", "15", "52", "62", "73", "81", "101", "126", "155"],
       "accessibleFrom": ["111"],
       "contentPages": [
         [
@@ -191,18 +191,6 @@
           },
           {
             "text": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "15",
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
           }
         ]
       ],
@@ -617,18 +605,6 @@
       "choices": []
     },
     {
-      "id": "52",
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
       "id": "53",
       "contentPages": [
         [
@@ -695,18 +671,6 @@
           },
           {
             "text": "W razie potrzeby jest możliwości wymiany przedmiotami poprzez rozmowę z inną postacią. Paragraf nie prowadzi dalej co oznacza, że opuszczasz go (nie przywraca Ci to zużytej na sprawdzenie akcji)"
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "62",
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
           }
         ]
       ],
@@ -789,18 +753,6 @@
           },
           {
             "text": "(<span class='color-red'>!!!</span>) Ilekroć należałoby dobrać <symbol id='rewers'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='rewers'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='rewers'/>)."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "73",
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
           }
         ]
       ],
@@ -897,18 +849,6 @@
           },
           {
             "text": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "81",
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
           }
         ]
       ],
@@ -1042,18 +982,6 @@
           },
           {
             "text": "Jeśli obie postacie takowy posiadają przejdź do <span class='color-green'>180</span>."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "101",
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
           }
         ]
       ],
@@ -1288,18 +1216,6 @@
       ]
     },
     {
-      "id": "126",
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
       "id": "137",
       "contentPages": [
         [
@@ -1358,18 +1274,6 @@
           },
           {
             "text": "<span style='font-size: larger;'><span class='color-red'>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</span></span>"
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "155",
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
           }
         ]
       ],

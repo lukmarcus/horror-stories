@@ -23,31 +23,33 @@ export const SCENARIOS: Record<string, Scenario> = Object.fromEntries(
 
 /**
  * Game paragraphs/nodes from JSON data - organized by scenario
+ * Supports single IDs and array of IDs - creates entries for each ID
  */
+const createParagraphMap = (
+  paragraphs: Paragraph[],
+): Record<string, Paragraph> => {
+  const map: Record<string, Paragraph> = {};
+  for (const p of paragraphs) {
+    const ids = Array.isArray(p.id) ? p.id : [p.id];
+    for (const id of ids) {
+      map[id.toString()] = p;
+    }
+  }
+  return map;
+};
+
 export const PARAGRAPHS: Record<string, Record<string, Paragraph>> = {
-  "droga-donikad": Object.fromEntries(
-    (droga.paragraphs as unknown as Paragraph[]).map((p) => [
-      p.id.toString(),
-      p,
-    ]),
+  "droga-donikad": createParagraphMap(
+    droga.paragraphs as unknown as Paragraph[],
   ),
-  "tajemna-biblioteka": Object.fromEntries(
-    (biblioteka.paragraphs as unknown as Paragraph[]).map((p) => [
-      p.id.toString(),
-      p,
-    ]),
+  "tajemna-biblioteka": createParagraphMap(
+    biblioteka.paragraphs as unknown as Paragraph[],
   ),
-  "opuszczony-szpital": Object.fromEntries(
-    (szpital.paragraphs as unknown as Paragraph[]).map((p) => [
-      p.id.toString(),
-      p,
-    ]),
+  "opuszczony-szpital": createParagraphMap(
+    szpital.paragraphs as unknown as Paragraph[],
   ),
-  "nocny-koszmar": Object.fromEntries(
-    (koszmar.paragraphs as unknown as Paragraph[]).map((p) => [
-      p.id.toString(),
-      p,
-    ]),
+  "nocny-koszmar": createParagraphMap(
+    koszmar.paragraphs as unknown as Paragraph[],
   ),
 };
 

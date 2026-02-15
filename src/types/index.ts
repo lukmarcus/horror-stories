@@ -47,7 +47,7 @@ export interface ContentBlock {
  * Single paragraph/node in the story tree
  */
 export interface Paragraph {
-  id: string;
+  id: string | string[]; // Can be single ID or array of IDs for paragraphs accessible from multiple sources
   text?: string;
   content?: ContentBlock[];
   contentPages?: ContentBlock[][];

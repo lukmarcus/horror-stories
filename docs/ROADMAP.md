@@ -50,7 +50,7 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 - ✅ Zamienit tokeny na semantic tags: `<token>` → `<letter>`, `<item>`, `<image>`
 - ✅ Uprościć strukturę tekstu: `{type: "text", html}` → `{text: html}`
 - ✅ Domyślne pogrubienie dla kolorów - CSS global zamiast `<strong>`
-- ⏳ Wsparcie dla wielokrotnych ID
+- ✅ Wsparcie dla wielokrotnych ID
 - ⏳ Wariantowe zawartość w jednym paragrafie
 - ⏳ Opcjonalne odstępy między paragrafami
 - ⏳ Stylizacja tekstu końcowego
@@ -58,7 +58,7 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 
 ### Status
 
-- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 - 5/10 zadań)
+- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 - 6/10 zadań)
 
 ---
 
