@@ -1,4 +1,5 @@
 import React from "react";
+import packageJson from "../../package.json";
 import "../styles/pages/about.css";
 
 export const About: React.FC = () => {
@@ -105,7 +106,7 @@ export const About: React.FC = () => {
           <div className="about__info-grid">
             <div className="about__info-item">
               <span className="about__info-label">Wersja:</span>
-              <span className="about__info-value">v0.0.1</span>
+              <span className="about__info-value">v{packageJson.version}</span>
             </div>
             <div className="about__info-item">
               <span className="about__info-label">Status:</span>
