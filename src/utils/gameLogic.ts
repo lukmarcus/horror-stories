@@ -31,7 +31,9 @@ export function checkParagraphAccessibility(
   }
 
   // Check if paragraph is directly accessible
-  const needsWarning = paragraph.isDirect === false && !!paragraph.accessibleFrom;
+  // Paragraph is NOT directly accessible if it has accessibleFrom constraints
+  const needsWarning =
+    !!paragraph.accessibleFrom && paragraph.accessibleFrom.length > 0;
 
   return {
     exists: true,
@@ -46,9 +48,7 @@ export function checkParagraphAccessibility(
  * @param paragraph - The paragraph object
  * @returns Array of paragraph IDs that lead to this paragraph
  */
-export function getAccessibleSources(
-  paragraph: Paragraph,
-): string[] {
+export function getAccessibleSources(paragraph: Paragraph): string[] {
   return paragraph.accessibleFrom || [];
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/pages/instructions.css";
 
-const Instructions: React.FC = () => {
+export const Instructions: React.FC = () => {
   return (
     <main className="instructions">
       <section className="instructions__hero">
@@ -141,5 +141,3 @@ const Instructions: React.FC = () => {
     </main>
   );
 };
-
-export default Instructions;

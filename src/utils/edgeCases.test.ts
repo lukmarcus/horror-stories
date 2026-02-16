@@ -40,7 +40,7 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
 
     it("should handle extreme threshold values", () => {
       const testRolls = (threshold: number) => {
-        return [1, 2, 3, 4, 5, 6].filter(r => r > threshold).length;
+        return [1, 2, 3, 4, 5, 6].filter((r) => r > threshold).length;
       };
 
       expect(testRolls(0)).toBe(6); // All 6 rolls succeed
@@ -94,8 +94,10 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
 
       // Can we trace 1 -> 2 -> 3?
       const p1Accessible = true; // Direct
-      const p2Accessible = p1Accessible && paragraphs["2"]?.accessibleFrom?.includes("1");
-      const p3Accessible = p2Accessible && paragraphs["3"]?.accessibleFrom?.includes("2");
+      const p2Accessible =
+        p1Accessible && paragraphs["2"]?.accessibleFrom?.includes("1");
+      const p3Accessible =
+        p2Accessible && paragraphs["3"]?.accessibleFrom?.includes("2");
 
       expect(p1Accessible).toBe(true);
       expect(p2Accessible).toBe(true);
@@ -110,8 +112,11 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
         accessibleFrom: ["1"], // Self-referential
       };
 
+      const idStr = Array.isArray(paragraph.id)
+        ? paragraph.id[0]
+        : paragraph.id;
       const hasSelfReference =
-        paragraph.accessibleFrom && paragraph.accessibleFrom.includes(paragraph.id);
+        paragraph.accessibleFrom && paragraph.accessibleFrom.includes(idStr);
       expect(hasSelfReference).toBe(true);
     });
 
@@ -199,7 +204,9 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
     it("should detect loops in game path", () => {
       const history = ["1", "2", "3", "2"]; // Looped back to 2
 
-      const hasLoop = history.some((id, index) => history.indexOf(id) !== index);
+      const hasLoop = history.some(
+        (id, index) => history.indexOf(id) !== index,
+      );
       expect(hasLoop).toBe(true);
     });
 
@@ -240,7 +247,9 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
       const thresholds = [1, 2, 3, 4, 5];
 
       thresholds.forEach((threshold) => {
-        const successPath = [1, 2, 3, 4, 5, 6].filter((roll) => roll > threshold);
+        const successPath = [1, 2, 3, 4, 5, 6].filter(
+          (roll) => roll > threshold,
+        );
         const failPath = [1, 2, 3, 4, 5, 6].filter((roll) => roll <= threshold);
 
         expect(successPath.length + failPath.length).toBe(6);

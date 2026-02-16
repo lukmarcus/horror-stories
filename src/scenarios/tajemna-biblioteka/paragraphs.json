@@ -2,7 +2,6 @@
   "paragraphs": [
     {
       "id": "1",
-      "isDirect": true,
       "text": "Budzisz się w ciemnym pokoju. Słychać dziwne szmery dobiegające ze ścian. Twoje oczy powoli przyzwyczajają się do mroku. Widzisz [item:drzwi] — każde z nich mogłoby być wyjściem. Ale czujesz, że nie wszystko tutaj jest bezpieczne.",
       "choices": [
         {
@@ -24,7 +23,6 @@
     },
     {
       "id": "2",
-      "isDirect": true,
       "text": "Za drzwiami po lewej czeka schłodzona klatka schodowa. Luz powietrza zmraża Ci skórę. W oddali słychać [figure:tajemnicze kroki]... czy to ty? Czy [figure:ktoś inny] jest w tym budynku? Na ścianie widać [item:starą notatkę].",
       "accessibleFrom": ["1"],
       "choices": [
@@ -38,7 +36,6 @@
     },
     {
       "id": "3",
-      "isDirect": true,
       "text": "Środkowe drzwi otwierają się na jasną bibliotekę. Półki książek sięgają sufitu. Pamiętasz — przyszedłeś tutaj szukać [item:zaginionej księgi]. Czy ona jest tutaj? Na biurku widać [token:klucz] i [board:mapę starą].",
       "accessibleFrom": ["1"],
       "choices": [
@@ -52,21 +49,21 @@
     },
     {
       "id": "4",
-      "isDirect": false,
       "accessibleFrom": ["1"],
       "text": "Prawe drzwi prowadzą do oszałamiającego widoku — znaleźliście się na dachu budynku. [figure:Miasto] rozciąga się poniżej, a [board:dach] jest całkowicie pusty. Chyba że [figure:coś się rusza] w cieniu..."
     },
     {
       "id": "5",
-      "isDirect": false,
       "accessibleFrom": ["2", "4"],
       "text": "Koniec scenariusza: Nie przetrwałeś. Schody zawalają się pod Twoimi nogami."
     },
     {
       "id": "6",
-      "isDirect": false,
       "accessibleFrom": ["3"],
       "text": "🎉 Znalazłeś [item:zaginioną księgę]! Twoja przygoda dobiegła końca — i to zwycięskiego! [figure:Księga] lśni w świetle, a jej karty zawierają [board:tajemne znaki]."
     }
   ]
 }
+
+
+

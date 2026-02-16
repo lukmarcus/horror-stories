@@ -33,19 +33,22 @@ export interface DiceResult {
  * Content block for rich text paragraphs
  */
 export interface ContentBlock {
-  type: "text" | "image" | "symbol" | "token";
-  html?: string;
+  type?: "text" | "image" | "symbol" | "token";
+  text?: string; // New format: simplified {text: "html"}
+  html?: string; // Old format: kept for backward compatibility
   id?: string;
+  image?: string; // New format: direct image reference
   size?: "xs" | "sm" | "lg" | "xl";
   style?: "bold" | "italic" | "underline";
   color?: "yellow" | "red" | "purple" | "green";
+  spacing?: "none"; // Optional spacing control - omit for default spacing
 }
 
 /**
  * Single paragraph/node in the story tree
  */
 export interface Paragraph {
-  id: string;
+  id: string | string[]; // Can be single ID or array of IDs for paragraphs accessible from multiple sources
   text?: string;
   content?: ContentBlock[];
   contentPages?: ContentBlock[][];
@@ -55,8 +58,7 @@ export interface Paragraph {
   hasDiceRoll?: boolean;
   diceRollDescription?: string;
   diceResult?: DiceResult;
-  isDirect?: boolean;
-  accessibleFrom?: string[];
+  accessibleFrom?: string[]; // If empty/undefined, paragraph is directly accessible (isDirect=true)
   items?: string[];
   isMultiPage?: boolean;
   areChoicesHorizontal?: boolean;

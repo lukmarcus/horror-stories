@@ -7,6 +7,26 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.10] - 2026-02-16
+
+### Dodano
+
+- Kontrola spacingu między zawartością - bardziej przejrzysta wizualizacja paragrafów
+- Wsparcie dla wielokrotnych ID paragrafów - umożliwia ponowne użycie identycznej zawartości
+
+### Zmieniono
+
+- Ulepszone renderowanie tekstu (kursywa, kolory, rozmiary)
+- Optymalizacja struktury danych scenariuszy
+
+### Poprawiono
+
+- Marginesy przed przyciskami wyboru
+- Renderowanie tekstu kursywnego
+- Duplikaty tekstu w wyborach
+
+---
+
 ## [0.0.9] - 2026-02-14
 
 ### Poprawiono
@@ -17,7 +37,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.8] - 2026-02-12
 
-### Dodane
+### Dodano
 
 - Aplikacja dostępna na GitHub Pages
 - Kompletny scenariusz "Droga Donikąd" - pełna rozgrywka z 67 paragrafami
@@ -41,7 +61,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.7] - 2026-02-01
 
-### Dodane
+### Dodano
 
 - Instrukcje ustawienia gry z wizardem krok-po-kroku
 - 18 kroków setupu dla scenariusza "Droga Donikąd" - wyjaśnienie wszystkich reguł gry
@@ -57,7 +77,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.6] - 2026-01-28
 
-### Dodane
+### Dodano
 
 - Lepsze komunikaty błędów - wyszczególnienie dostępnych numerów paragrafów
 - Wsparcie dla screen readers i asystentów dostępu
@@ -69,14 +89,13 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ### Poprawiono
 
-- 26 testów edge case scenariuszy - większa niezawodność gry
 - Obsługa granicznych przypadków logiki kostki i warunków paragrafów
 
 ---
 
 ## [0.0.5] - 2026-01-27
 
-### Dodane
+### Dodano
 
 - ConditionalChoice component - pytania yes/no w paragrafach
 - Warunkowa logika wyboru - różne paragrafy dla odpowiedzi TAK/NIE
@@ -87,7 +106,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.4] - 2026-01-27
 
-### Dodane
+### Dodano
 
 - DiceRoller component - kostka k6 z animacją obrotu
 - Wyświetlanie wyniku rzutu na ekranie
@@ -99,7 +118,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.3] - 2026-01-25
 
-### Dodane
+### Dodano
 
 - Input screen do wyboru numeru paragrafu z instrukcjami scenariusza
 - Paragraph screen do czytania tekstu paragrafu z opcjami wyboru
@@ -115,7 +134,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.2] - 2026-01-25
 
-### Dodane
+### Dodano
 
 - Paragraph Parser utility - obsługa tagów `[item:]`, `[figure:]`, `[board:]`, `[token:]`
 - ParagraphText component - renderowanie tekstu z kolorowymi tagami
@@ -126,7 +145,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.1] - 2026-01-24
 
-### Dodane
+### Dodano
 
 - Komponenty UI: Button (5 wariantów), Header (z logo i nawigacją), Footer
 - Page layouts: Home, Instructions, About, ScenariosList, ScenarioSetup, Game
@@ -145,7 +164,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.0] - 2026-01-24
 
-### Dodane
+### Dodano
 
 - Inicjalizacja projektu Vite + React 18 + TypeScript
 - Setup React Router z 6 stronami

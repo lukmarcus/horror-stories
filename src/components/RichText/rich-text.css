@@ -2,12 +2,23 @@
   width: 100%;
 }
 
-/* Common font weight */
+.rich-text-block {
+  margin-bottom: 1.5rem; /* Default spacing between content blocks */
+}
+
+.rich-text-block.spacing-none {
+  margin-bottom: 0; /* Remove spacing when explicitly specified */
+}
+
+/* Common font weight - colors are bold by default */
 .color-yellow,
 .color-red,
 .color-purple,
 .color-green,
-.color-blue,
+.color-blue {
+  font-weight: bold;
+}
+
 .size-xs,
 .size-sm,
 .size-lg,
@@ -51,8 +62,7 @@
 .size-xl {
   font-size: 1.5em;
 }
-.symbol,
-.token {
+.symbol {
   font-size: inherit;
   color: inherit;
   line-height: inherit;
@@ -99,6 +109,10 @@
   margin: var(--spacing-md) 0;
   display: flex;
   justify-content: center;
+}
+
+.rich-image-block.spacing-none {
+  margin: 0;
 }
 
 .rich-image {

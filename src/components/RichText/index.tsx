@@ -1,31 +1,24 @@
 import React from "react";
+import type { ContentBlock } from "../../types";
 import "./rich-text.css";
-
-interface ContentBlock {
-  type: "text" | "image" | "symbol" | "token";
-  html?: string;
-  id?: string;
-  size?: "xs" | "sm" | "lg" | "xl";
-  style?: "bold" | "italic" | "underline";
-  color?: "yellow" | "red" | "purple" | "green";
-}
 
 interface RichTextProps {
   content?: ContentBlock[];
   text?: string; // for backward compatibility
   scenarioId?: string; // for loading images
+  noSpacing?: boolean; // disable spacing (for use inside buttons/choices)
 }
 
-export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId }) => {
-  // Token mapping
-  const tokenMap: Record<string, string> = {
-    A: "𝐀",
-    B: "𝐁",
-  };
-
+export const RichText: React.FC<RichTextProps> = ({
+  content,
+  text,
+  scenarioId,
+  noSpacing,
+}) => {
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode[] => {
-    const customTagRegex = /<(symbol|token|letter|item|image|person)\s+id=["']([^"']+)["']\s*\/>/g;
+    const customTagRegex =
+      /<(symbol|letter|item|image|person)\s+id=["']([^"']+)["']\s*\/>/g;
     let currentPos = 0;
     const finalElements: React.ReactNode[] = [];
     let customElementCounter = 0;
@@ -36,7 +29,9 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
       // Add HTML before this tag
       const beforeHtml = html.substring(currentPos, matchFinal.index);
       if (beforeHtml) {
-        finalElements.push(...parseStandardHtml(beforeHtml, customElementCounter));
+        finalElements.push(
+          ...parseStandardHtml(beforeHtml, customElementCounter),
+        );
         customElementCounter += countHtmlElements(beforeHtml);
       }
 
@@ -47,8 +42,11 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
       customElementCounter++;
 
       if (tag === "image") {
-        const imagePath = scenarioId 
-          ? new URL(`../../scenarios/${scenarioId}/images/${id}.jpg`, import.meta.url).href
+        const imagePath = scenarioId
+          ? new URL(
+              `../../scenarios/${scenarioId}/images/${id}.jpg`,
+              import.meta.url,
+            ).href
           : undefined;
 
         if (imagePath) {
@@ -66,7 +64,10 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
           );
         }
       } else if (tag === "symbol") {
-        const symbolPath = new URL(`../../assets/symbols/${id}.png`, import.meta.url).href;
+        const symbolPath = new URL(
+          `../../assets/symbols/${id}.png`,
+          import.meta.url,
+        ).href;
         finalElements.push(
           <img
             key={key}
@@ -77,7 +78,10 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
           />,
         );
       } else if (tag === "letter") {
-        const letterPath = new URL(`../../assets/letters/${id}.png`, import.meta.url).href;
+        const letterPath = new URL(
+          `../../assets/letters/${id}.png`,
+          import.meta.url,
+        ).href;
         finalElements.push(
           <img
             key={key}
@@ -87,13 +91,6 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
             title={id}
           />,
         );
-      } else if (tag === "token") {
-        const symbol = tokenMap[id] || `[${id}]`;
-        finalElements.push(
-          <span key={key} className="token">
-            {symbol}
-          </span>,
-        );
       } else if (tag === "item") {
         finalElements.push(
           <span key={key} className="item">
@@ -101,7 +98,10 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
           </span>,
         );
       } else if (tag === "person") {
-        const personPath = new URL(`../../assets/persons/${id}.jpg`, import.meta.url).href;
+        const personPath = new URL(
+          `../../assets/persons/${id}.jpg`,
+          import.meta.url,
+        ).href;
         finalElements.push(
           <img
             key={key}
@@ -120,7 +120,9 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
     if (currentPos < html.length) {
       const remainingHtml = html.substring(currentPos);
       if (remainingHtml) {
-        finalElements.push(...parseStandardHtml(remainingHtml, customElementCounter));
+        finalElements.push(
+          ...parseStandardHtml(remainingHtml, customElementCounter),
+        );
       }
     }
 
@@ -145,7 +147,10 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
   };
 
   // Parse standard HTML tags
-  const parseStandardHtml = (html: string, startCounter: number): React.ReactNode[] => {
+  const parseStandardHtml = (
+    html: string,
+    startCounter: number,
+  ): React.ReactNode[] => {
     const div = document.createElement("div");
     div.innerHTML = html;
     let elementCounter = startCounter;
@@ -199,19 +204,52 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
   // Render content blocks
   const renderContentBlocks = (blocks: ContentBlock[]): React.ReactNode => {
     return blocks.map((block, idx) => {
-      if (block.type === "text" && block.html) {
-        const classes = [
-          "rich-text-block",
-          block.size ? `size-${block.size}` : "",
-          block.color ? `color-${block.color}` : "",
+      // Handle new image format: {image: "id"}
+      if (block.image) {
+        const imagePath = scenarioId
+          ? new URL(
+              `../../scenarios/${scenarioId}/images/${block.image}.jpg`,
+              import.meta.url,
+            ).href
+          : undefined;
+
+        const imageClasses = [
+          "rich-image-block",
+          block.spacing === "none" ? "spacing-none" : "",
         ]
           .filter(Boolean)
           .join(" ");
 
-        let content: React.ReactNode = parseHtml(block.html);
+        return (
+          <div key={idx} className={imageClasses}>
+            {imagePath ? (
+              <img src={imagePath} alt={block.image} className="rich-image" />
+            ) : (
+              <>
+                <div className="rich-image-icon">🖼️</div>
+                <div className="rich-image-text">{block.image}</div>
+              </>
+            )}
+          </div>
+        );
+      }
 
-        // Apply style wrapper if needed
-        if (block.style === "bold") {
+      // Handle new text format: {text: "html"} or old format: {type: "text", html: "..."}
+      const textContent = block.text || (block.type === "text" ? block.html : undefined);
+      if (textContent) {
+        const classes = [
+          "rich-text-block",
+          block.size ? `size-${block.size}` : "",
+          block.color ? `color-${block.color}` : "",
+          block.spacing === "none" ? "spacing-none" : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+        let content: React.ReactNode = parseHtml(textContent);
+
+        // Apply style wrapper if needed (skip bold if color is present, as colors are bold by default)
+        if (block.style === "bold" && !block.color) {
           content = <strong>{content}</strong>;
         } else if (block.style === "italic") {
           content = <em>{content}</em>;
@@ -224,19 +262,30 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
             {content}
           </div>
         );
-      } else if (block.type === "image" && block.id) {
-        const imagePath = scenarioId 
-          ? new URL(`../../scenarios/${scenarioId}/images/${block.id}.jpg`, import.meta.url).href
+      } else if (block.type === "image" && (block.id || block.image)) {
+        const imageId = block.image || block.id;
+        const imagePath = scenarioId
+          ? new URL(
+              `../../scenarios/${scenarioId}/images/${imageId}.jpg`,
+              import.meta.url,
+            ).href
           : undefined;
 
+        const imageClasses = [
+          "rich-image-block",
+          block.spacing === "none" ? "spacing-none" : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
         return (
-          <div key={idx} className="rich-image-block">
+          <div key={idx} className={imageClasses}>
             {imagePath ? (
-              <img src={imagePath} alt={block.id} className="rich-image" />
+              <img src={imagePath} alt={imageId} className="rich-image" />
             ) : (
               <>
                 <div className="rich-image-icon">🖼️</div>
-                <div className="rich-image-text">{block.id}</div>
+                <div className="rich-image-text">{imageId}</div>
               </>
             )}
           </div>
@@ -248,9 +297,10 @@ export const RichText: React.FC<RichTextProps> = ({ content, text, scenarioId })
 
   // Backward compatibility: if text prop is provided, use old parser
   if (text && !content) {
+    const blockClass = noSpacing ? "rich-text-block spacing-none" : "rich-text-block";
     return (
       <div className="rich-text">
-        <div className="rich-text-block">{parseHtml(text)}</div>
+        <div className={blockClass}>{parseHtml(text)}</div>
       </div>
     );
   }

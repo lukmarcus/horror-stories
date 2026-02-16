@@ -6,36 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.10 - Code Quality & Schema Optimization
-
-### Zakres
-
-Refaktoryzacja struktury danych scenariuszy w celu uproszczenia i optymalizacji schematu JSON:
-
-- **Domyślne pogrubienie dla kolorów** - Usunąć zwielokrotnianie `<strong>` wokół kolorowych tekstów, zastosować CSS global
-- **accessibleFrom implikuje isDirect** - Pole isDirect staje się redundantne, usunąć je dla paragrafów które mają accessibleFrom
-- **Uproszczenie struktury obrazów** - Zmiana z `{type: "image", id: "..."}` na `"image": "id"`
-- **Uproszczenie struktury tekstu** - Zmiana z `{type: "text", html: "..."}` na `"text": "..."`
-- **Wsparcie dla wielokrotnych ID** - Umożliwić tablicę ID-ów dla paragrafów o identycznej treści ale dostępnych z różnych źródeł (np. paragrafy "Rzeźba wydaje się ani drgnąć")
-- **Wariantowe zawartość w jednym paragrafie** - Zamiast tworzyć oddzielne paragrafy dla różnych gałęzi (np. 26-jessica, 26-patrick), umożliwić warianty treści w ramach jednego ID z logiem renderowania zawartości na bazie wyborów
-- **Opcjonalne odstępy między paragrafami** - Pomyśleć nad schematem pozwalającym na kontrolowanie spacingu/paddingu między zawartością paragrafów w UI
-- **Stylizacja tekstu końcowego** - Znaleźć lepsze rozwiązanie na wyświetlanie fragmentów tekstu jak w paragrafie 151 (zwielokrotnianie HTML tagów dla stylizacji)
-- **Refaktor ekranu direct: false** - Przeprojektować wizualnie ekran ostrzeżenia dostępności dla paragrafów z accessibleFrom (wymaga zmian UI/UX)
-
-### Do zrobienia
-
-- ⏳ Implementacja zmian w parserze paragrafów
-- ⏳ Aktualizacja komponenty renderujących (ParagraphText, ParagraphDisplay)
-- ⏳ Refaktoryzacja wszystkich 180+ paragrafów z nową strukturą
-- ⏳ Testy jednostkowe dla parsera
-- ⏳ Walidacja zmian na całym scenariuszu
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.0.11 - Organizacja przedmiotów i grafik
 
 ### Zakres
@@ -57,6 +27,28 @@ Refaktoryzacja struktury danych scenariuszy w celu uproszczenia i optymalizacji 
 ### Status
 
 - ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.0.12 - UI/UX Visual Improvements
+
+### Zakres
+
+- **Stylizacja tekstu końcowego** - Dedykowany wyświetlanie ostatnich paragrafów scenariusza
+- **Refaktor ekranu direct: false** - Ulepszone UI dla ostrzeżenia dostępności (paragraf 77 itp)
+- **Wariantowe zawartość** - Zaawansowana obsługa wariantów (warianty postaci w jednym paragrafie)
+
+### Do zrobienia
+
+- ⏳ End-game text styling - przeprojektować wyświetlanie tekstu końcowego (paragraf 151)
+- ⏳ Accessibility warning UI redesign - lepsze UI dla ekranu dostępności (direct: false)
+- ⏳ Variant content with merge logic - hierarchiczna struktura wariantów postaci
+- ⏳ Horizontal choices visual grouping - ramka/background dla choices poziomych
+- ⏳ Choice history tracking - wyświetlenie ostatnio dokonanego wyboru
+
+### Status
+
+- ⏳ Zaplanowana
 
 ---
 
@@ -149,8 +141,15 @@ Refaktoryzacja struktury danych scenariuszy w celu uproszczenia i optymalizacji 
 ## Strategia gałęzi
 
 - **main** - Stabilne wydania (v0.1.0+)
-- **v0.0.9** - Aktualna rozbudowa
+- **v0.0.10+** - Bieżący development
+
+## Legenda
+
+- ✅ Ukończone
+- 🔄 W trakcie
+- ⏳ Zaplanowane/W backlogu
+- ❌ Odłożone/Odrzucone
 
 ---
 
-**Ostatnia aktualizacja:** 2026-02-04
+**Ostatnia aktualizacja:** 2026-02-16

@@ -2,55 +2,47 @@
   "paragraphs": [
     {
       "id": "1",
-      "isDirect": false,
       "accessibleFrom": ["37"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Odrzuć żeton planszy <item id='37'/> (słowo odrzuć oznacza odłożenie tego elementu do puli z której pochodzi) i zastąp go żetonem otwartych drzwi (<symbol id='drzwi-otwarte'/>)."
+            "text": "Odrzuć żeton planszy <item id='37'/> (słowo odrzuć oznacza odłożenie tego elementu do puli z której pochodzi) i zastąp go żetonem otwartych drzwi (<symbol id='drzwi-otwarte'/>)."
           },
           {
-            "type": "text",
-            "html": "Odrzuć również <item id='84'/> z ekwipunku."
+            "text": "Odrzuć również <item id='84'/> z ekwipunku."
           },
           {
-            "type": "text",
-            "html": "Czas przejść dalej przez nowo otwarte drzwi. W tym celu musisz <symbol id='paragraf'/> i dobrać wierzchnią <symbol id='rewers'/>. Dopiero po rozpatrzeniu karty (przez przechodzeniu do nowej planszy <symbol id='gwiazda'/> nie mają znaczenia; można mieć nawet 0<symbol id='gwiazda'/> i mniej) przejdź do <span class='color-green'>105</span>."
+            "text": "Czas przejść dalej przez nowo otwarte drzwi. W tym celu musisz <symbol id='paragraf'/> i dobrać wierzchnią <symbol id='rewers'/>. Dopiero po rozpatrzeniu karty (przez przechodzeniu do nowej planszy <symbol id='gwiazda'/> nie mają znaczenia; można mieć nawet 0<symbol id='gwiazda'/> i mniej) przejdź do <span class='color-green'>105</span>."
           }
         ]
       ],
       "choices": [
         {
-          "html": "Przejdź do <span class='color-green'>105</span>.",
+          "text": "Przejdź do <span class='color-green'>105</span>.",
           "nextParagraphId": "105"
         }
       ]
     },
     {
       "id": "2",
-      "isDirect": false,
       "accessibleFrom": ["26-patrick"],
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/> Tylko tyle, że mnie odwoziłeś. Musiałam zasnąć, bo chwilę potem wybudziłam się tutaj."
+            "text": "<person id='jessica'/> Tylko tyle, że mnie odwoziłeś. Musiałam zasnąć, bo chwilę potem wybudziłam się tutaj."
           }
         ]
       ],
       "choices": []
     },
     {
-      "id": "3",
-      "isDirect": false,
+      "id": ["3", "15", "52", "62", "73", "81", "101", "126", "155"],
       "accessibleFrom": ["111"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+            "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
           }
         ]
       ],
@@ -58,24 +50,20 @@
     },
     {
       "id": "9",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Którą postacią jesteś?"
+            "text": "Którą postacią jesteś?"
           }
         ]
       ],
       "choices": [
         {
-          "html": "<person id='jessica'/>",
-          "text": "Jessica",
+          "text": "<person id='jessica'/>\nJessica",
           "nextParagraphId": "9-jessica"
         },
         {
-          "html": "<person id='patrick'/>",
-          "text": "Patrick",
+          "text": "<person id='patrick'/>\nPatrick",
           "nextParagraphId": "9-patrick"
         }
       ],
@@ -83,27 +71,24 @@
     },
     {
       "id": "9-jessica",
-      "isDirect": false,
       "accessibleFrom": ["9"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Poznałaś go na imprezie. Wracaliście jednym autem."
+            "text": "Poznałaś go na imprezie. Wracaliście jednym autem."
           },
           {
-            "type": "text",
-            "html": "Figurka Patricka leży czy stoi?"
+            "text": "Figurka Patricka leży czy stoi?"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Patrick leży",
+          "text": "Patrick leży",
           "nextParagraphId": "9-patrick-lezy"
         },
         {
-          "html": "Patrick stoi",
+          "text": "Patrick stoi",
           "nextParagraphId": "9-patrick-stoi"
         }
       ],
@@ -111,63 +96,57 @@
     },
     {
       "id": "9-patrick-lezy",
-      "isDirect": false,
       "accessibleFrom": ["9-jessica"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wybierz jedną z opcji spośród:"
+            "text": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Spróbuj go ocucić (przejdź do paragrafu <span class='color-green'>40</span>)",
+          "text": "Spróbuj go ocucić (przejdź do paragrafu <span class='color-green'>40</span>)",
           "nextParagraphId": "40"
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "9-patrick-stoi",
-      "isDirect": false,
       "accessibleFrom": ["9-jessica"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wybierz jedną z opcji spośród:"
+            "text": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Spróbuj z nim porozmawiać (przejdź do paragrafu <span class='color-green'>99</span>)",
+          "text": "Spróbuj z nim porozmawiać (przejdź do paragrafu <span class='color-green'>99</span>)",
           "nextParagraphId": "99"
         },
         {
-          "html": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
           "nextParagraphId": ""
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "9-patrick",
-      "isDirect": false,
       "accessibleFrom": ["9"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "... Głowa nie daje Ci żyć. Domyślasz się, że trochę przesadziłeś na imprezie. Możesz wtasować dowolną <symbol id='rewers'/> ze swojego stosu odrzuconego do talii."
+            "text": "... Głowa nie daje Ci żyć. Domyślasz się, że trochę przesadziłeś na imprezie. Możesz wtasować dowolną <symbol id='rewers'/> ze swojego stosu odrzuconego do talii."
           }
         ]
       ],
@@ -175,60 +154,40 @@
     },
     {
       "id": "12",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Drewniane drzwi z wyrytym na nich napisem: <span style='font-style: italic;'>\"Gdy winy odpokutowane, otworzą się bramy, rozjaśni się mrok\"</span>."
+            "text": "Drewniane drzwi z wyrytym na nich napisem: <em>\"Gdy winy odpokutowane, otworzą się bramy, rozjaśni się mrok\"</em>."
           },
           {
-            "type": "text",
-            "html": "Wybierz jedną z opcji spośród:"
+            "text": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku lub jakiś leży na planszy z Twoją figurką wskaż ten którym chcesz wejść w interakcję z drzwiami. Następnie przejdź do paragrafu <span class='color-green'>51</span>. Ps. Jeśli potrzebny przedmiot ma druga postać, może z nią porozmawiaj, aby poprosić, aby Ci go przekazała?",
+          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku lub jakiś leży na planszy z Twoją figurką wskaż ten którym chcesz wejść w interakcję z drzwiami. Następnie przejdź do paragrafu <span class='color-green'>51</span>. Ps. Jeśli potrzebny przedmiot ma druga postać, może z nią porozmawiaj, aby poprosić, aby Ci go przekazała?",
           "nextParagraphId": "51"
         },
         {
-          "html": "Spróbuj przebić się siłą. Dobierz do 4<symbol id='rewers'/> i po zsumowaniu ilości <symbol id='gwiazda'/> przejdź do paragrafu <span class='color-green'>39</span>. Ps. Jeśli masz pustą talię, sformuj nową ze stosu odrzuconego. Jeśli dobrano nie wystarczającą ilość (np. deklarujesz dobranie 4<symbol id='rewers'/>, a w talii masz 3<symbol id='rewers'/>, dobierz te 3<symbol id='rewers'/>, zapamiętaj sumę <symbol id='gwiazda'/>, i sformuj nową talię ze stosu odrzuconego i dobierz z wierzchu świeżo sformowanej talii czwartą. Tak, może się okazać, że raz już użytej podczas tego testu karty przyjdzie ci rozpatrzyć drugi raz. To normalne.",
+          "text": "Spróbuj przebić się siłą. Dobierz do 4<symbol id='rewers'/> i po zsumowaniu ilości <symbol id='gwiazda'/> przejdź do paragrafu <span class='color-green'>39</span>. Ps. Jeśli masz pustą talię, sformuj nową ze stosu odrzuconego. Jeśli dobrano nie wystarczającą ilość (np. deklarujesz dobranie 4<symbol id='rewers'/>, a w talii masz 3<symbol id='rewers'/>, dobierz te 3<symbol id='rewers'/>, zapamiętaj sumę <symbol id='gwiazda'/>, i sformuj nową talię ze stosu odrzuconego i dobierz z wierzchu świeżo sformowanej talii czwartą. Tak, może się okazać, że raz już użytej podczas tego testu karty przyjdzie ci rozpatrzyć drugi raz. To normalne.",
           "nextParagraphId": "39"
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "14",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Obraz podpisany na ramie jako <span style='font-style: italic;'>Czyściec</span>. Widzisz na nim <span class='color-red'>ośmioro</span> ludzi, z których <span class='color-red'>czworo</span> jest wciąganych przez aniołów ku czemuś, co wygląda jak niebo."
+            "text": "Obraz podpisany na ramie jako <em>Czyściec</em>. Widzisz na nim <span class='color-red'>ośmioro</span> ludzi, z których <span class='color-red'>czworo</span> jest wciąganych przez aniołów ku czemuś, co wygląda jak niebo."
           },
           {
-            "type": "text",
-            "html": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "15",
-      "isDirect": false,
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "type": "text",
-            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+            "text": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
           }
         ]
       ],
@@ -236,28 +195,23 @@
     },
     {
       "id": "26",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Kto robi ten ruch?"
+            "text": "Kto robi ten ruch?"
           },
           {
-            "type": "text",
-            "html": "Wybierz postać:"
+            "text": "Wybierz postać:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "<person id='jessica'/>",
-          "text": "Jessica",
+          "text": "<person id='jessica'/>\nJessica",
           "nextParagraphId": "26-jessica"
         },
         {
-          "html": "<person id='patrick'/>",
-          "text": "Patrick",
+          "text": "<person id='patrick'/>\nPatrick",
           "nextParagraphId": "26-patrick"
         }
       ],
@@ -265,12 +219,10 @@
     },
     {
       "id": "26-jessica",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='rewers'/> ze swojego stosu odrzuconego do talii."
+            "text": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='rewers'/> ze swojego stosu odrzuconego do talii."
           }
         ]
       ],
@@ -278,47 +230,41 @@
     },
     {
       "id": "26-patrick",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Poznałaś ją na imprezie i zaproponowałeś, że odwieziesz ją do domu. Co prawda nie byłeś w szczytowej formie, ale było niedaleko, a w nocy ruch był znikomy ruch."
+            "text": "Poznałaś ją na imprezie i zaproponowałeś, że odwieziesz ją do domu. Co prawda nie byłeś w szczytowej formie, ale było niedaleko, a w nocy ruch był znikomy ruch."
           },
           {
-            "type": "text",
-            "html": "Wybierz jedną z opcji spośród:"
+            "text": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
+          "text": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
           "nextParagraphId": "2"
         },
         {
-          "html": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
           "nextParagraphId": ""
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "29",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wyłóż planszę 3<letter id='b'/>, a na jej <span class='color-purple'>N</span> połóż <item id='69'/> (tak, aby leżało jednocześnie również na <span class='color-purple'>S</span> planszy 14)."
+            "text": "Wyłóż planszę 3<letter id='b'/>, a na jej <span class='color-purple'>N</span> połóż <item id='69'/> (tak, aby leżało jednocześnie również na <span class='color-purple'>S</span> planszy 14)."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Jak to możliwe, że wcześniej nie dostrzegliście wielkiej dziury w ścianie?"
+            "text": "Jak to możliwe, że wcześniej nie dostrzegliście wielkiej dziury w ścianie?"
           }
         ]
       ],
@@ -326,118 +272,93 @@
     },
     {
       "id": "30",
-      "isDirect": true,
       "isMultiPage": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Odrzuć <span class='color-blue'>żeton</span> <letter id='a'/> z toru czasu."
+            "text": "Odrzuć <span class='color-blue'>żeton</span> <letter id='a'/> z toru czasu."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Rozległ się dźwięk - cichy, ale niepokojąco wyraźny. Echo odbijało się od ścian budynku. To były kroki… ciężkie, powolne. Charakterystyczne uderzenia wielkich, przesadnie dużych butów zbliżały się, choć żadne z was nie widziało, co się zbliża. Serce biło wam jak oszalałe, a powietrze wypełnił zapach waty cukrowej. Nagle kroki ustały."
+            "text": "Rozległ się dźwięk - cichy, ale niepokojąco wyraźny. Echo odbijało się od ścian budynku. To były kroki… ciężkie, powolne. Charakterystyczne uderzenia wielkich, przesadnie dużych butów zbliżały się, choć żadne z was nie widziało, co się zbliża. Serce biło wam jak oszalałe, a powietrze wypełnił zapach waty cukrowej. Nagle kroki ustały."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Oczom <person id='jessica'/> i <person id='patrick'/> ukazał się klaun. Z nożem w ręku."
+            "text": "Oczom <person id='jessica'/> i <person id='patrick'/> ukazał się klaun. Z nożem w ręku."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Samo w sobie byłoby to dość przerażające, gdyby nie fakt, że oboje śmiertelnie się ich boją. W głowie <person id='jessica'/> natychmiast powróciło wspomnienie, gdy miała sześć lat."
+            "text": "Samo w sobie byłoby to dość przerażające, gdyby nie fakt, że oboje śmiertelnie się ich boją. W głowie <person id='jessica'/> natychmiast powróciło wspomnienie, gdy miała sześć lat."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Rodzice wynajęli klauna, żeby ją rozśmieszył. Pamięta jego buty. Przy każdym kroku wydawały głośne klap jak coś, co nie pasuje do rzeczywistości. Gdy do niej podszedł, uśmiechnął się – ale coś było nie tak. Zbyt szeroko, zbyt długo, jakby skóra jego twarzy miała pęknąć. Czuła, że patrzy na nią w inny sposób niż na resztę dzieci. Wpatrywał się wprost w jej oczy, a jego uśmiech wydawał się być wręcz nienaturalnie szeroki. Od tamtego momentu nie może spoglądać na klauny. Tymczasem teraz klaun jest tutaj, w dodatku trzymając wielki nóż i uśmiechający się złowrogo."
+            "text": "Rodzice wynajęli klauna, żeby ją rozśmieszył. Pamięta jego buty. Przy każdym kroku wydawały głośne klap jak coś, co nie pasuje do rzeczywistości. Gdy do niej podszedł, uśmiechnął się – ale coś było nie tak. Zbyt szeroko, zbyt długo, jakby skóra jego twarzy miała pęknąć. Czuła, że patrzy na nią w inny sposób niż na resztę dzieci. Wpatrywał się wprost w jej oczy, a jego uśmiech wydawał się być wręcz nienaturalnie szeroki. Od tamtego momentu nie może spoglądać na klauny. Tymczasem teraz klaun jest tutaj, w dodatku trzymając wielki nóż i uśmiechający się złowrogo."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/>: Dlaczego goni nas akurat cholerny przerażający klaun?"
+            "text": "<person id='patrick'/>: Dlaczego goni nas akurat cholerny przerażający klaun?"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/>: Nie wiem, ale śmiertelnie się ich boję."
+            "text": "<person id='jessica'/>: Nie wiem, ale śmiertelnie się ich boję."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/>: Ja też."
+            "text": "<person id='patrick'/>: Ja też."
           }
         ],
         [
           {
-            "type": "text",
-            "html": "Postaw figurkę <person id='klaun'/> na planszy 12<letter id='a'/>. Wyciągnij jego planszetkę i połóż stroną dla 1-2 graczy (widać to w lewym górnym rogu)."
+            "text": "Postaw figurkę <person id='klaun'/> na planszy 12<letter id='a'/>. Wyciągnij jego planszetkę i połóż stroną dla 1-2 graczy (widać to w lewym górnym rogu)."
           },
           {
-            "type": "text",
-            "html": "<image id='klaun-planszetka'/>"
+            "text": "<image id='klaun-planszetka'/>"
           },
           {
-            "type": "text",
-            "html": "<span class='color-red'>Od momentu pojawienia się</span> <symbol id='przeciwnik'/> <span class='color-red'>po turach postaci kontrolowanych przez graczy, swoją turę rozpoczynają wszystkie</span> <symbol id='przeciwnik'/>."
+            "text": "<span class='color-red'>Od momentu pojawienia się</span> <symbol id='przeciwnik'/> <span class='color-red'>po turach postaci kontrolowanych przez graczy, swoją turę rozpoczynają wszystkie</span> <symbol id='przeciwnik'/>."
           },
           {
-            "type": "text",
-            "html": "Żeby było to jeszcze jaśniejsze, ostatnią postacią graczy jest ta, która wykonuje swoją turę tuż przed posiadaczem znacznika 1 gracza (patrz obrazek po prawej)."
+            "text": "Żeby było to jeszcze jaśniejsze, ostatnią postacią graczy jest ta, która wykonuje swoją turę tuż przed posiadaczem znacznika 1 gracza (patrz obrazek po prawej)."
           },
           {
-            "type": "text",
-            "html": "<image id='rip'/>"
+            "text": "<image id='rip'/>"
           },
           {
-            "type": "text",
-            "html": "W tym scenariuszu będzie miało to miejsce zawsze po <person id='patrick'/>."
+            "text": "W tym scenariuszu będzie miało to miejsce zawsze po <person id='patrick'/>."
           }
         ],
         [
           {
-            "type": "text",
-            "html": "Tura <symbol id='przeciwnik'/> polega na rzucie określoną na karcie liczbą kości i rozpatrzeniu odpowiedniego wyniku z jej planszetki. <span class='color-red'>Jeśli spełniony zostanie warunek zagrania efektu (o czym za moment), zużywa to jedną akcję</span>. To ile akcji posiada, wyznacza planszetka (patrz obrazek po prawej). W przypadku klauna będą to dwie akcje. Jego tura kończy się natychmiast w chwili zużycia obu."
+            "text": "Tura <symbol id='przeciwnik'/> polega na rzucie określoną na karcie liczbą kości i rozpatrzeniu odpowiedniego wyniku z jej planszetki. <span class='color-red'>Jeśli spełniony zostanie warunek zagrania efektu (o czym za moment), zużywa to jedną akcję</span>. To ile akcji posiada, wyznacza planszetka (patrz obrazek po prawej). W przypadku klauna będą to dwie akcje. Jego tura kończy się natychmiast w chwili zużycia obu."
           },
           {
-            "type": "text",
-            "html": "<image id='klaun-akcje'/>"
+            "text": "<image id='klaun-akcje'/>"
           },
           {
-            "type": "text",
-            "html": "Sumujemy wyniki na kościach i sprawdzamy, który efekt zostanie rozpatrzony. Jeśli zostanie spełniony warunek opisany <span class='color-red'>na czerwono</span>, wtedy efekt zostaje aktywowany."
+            "text": "Sumujemy wyniki na kościach i sprawdzamy, który efekt zostanie rozpatrzony. Jeśli zostanie spełniony warunek opisany <span class='color-red'>na czerwono</span>, wtedy efekt zostaje aktywowany."
           },
           {
-            "type": "text",
-            "html": "Jeśli efekt nie może zostać uruchomiony, bo warunek nie może zostać spełniony, sprawdza się kolejny z niższą sumą (np. suma na kościach wynosi 6, czyli \"Zabawę z nożem\"; jednak nie spełnia warunków jego aktywacji, bo nikogo nie ma na planszy. Tym samym przechodzi się do \"Ruch\")."
+            "text": "Jeśli efekt nie może zostać uruchomiony, bo warunek nie może zostać spełniony, sprawdza się kolejny z niższą sumą (np. suma na kościach wynosi 6, czyli \"Zabawę z nożem\"; jednak nie spełnia warunków jego aktywacji, bo nikogo nie ma na planszy. Tym samym przechodzi się do \"Ruch\")."
           },
           {
-            "type": "text",
-            "html": "Robi się to tak długo, aż któryś z nich będzie można aktywować. Może się okazać, że rzut klauna będzie tak pechowy (suma 3), że straci jedną ze swoich akcji."
+            "text": "Robi się to tak długo, aż któryś z nich będzie można aktywować. Może się okazać, że rzut klauna będzie tak pechowy (suma 3), że straci jedną ze swoich akcji."
           }
         ],
         [
           {
-            "type": "text",
-            "html": "W tym scenariuszu \"pierwszym graczem\" jest <person id='jessica'/>, więc zawsze po turze <person id='patrick'/> będzie aktywowany <person id='klaun'/>. Posiada dwie akcje i w każdej rzuca dwiema kośćmi. Tuż po jego turach znów zaczynamy od 1. Gracza (<person id='jessica'/>), potem <person id='patrick'/> i znów <person id='klaun'/>. Tak, aż do końca gry."
+            "text": "W tym scenariuszu \"pierwszym graczem\" jest <person id='jessica'/>, więc zawsze po turze <person id='patrick'/> będzie aktywowany <person id='klaun'/>. Posiada dwie akcje i w każdej rzuca dwiema kośćmi. Tuż po jego turach znów zaczynamy od 1. Gracza (<person id='jessica'/>), potem <person id='patrick'/> i znów <person id='klaun'/>. Tak, aż do końca gry."
           },
           {
-            "type": "text",
-            "html": "Jeden z efektów może dodawać Ci do talii negatywne karty. Jeśli nie ma tam słowa \"możesz\", oznacza to, że <span class='color-red'>musisz je rozpatrzyć</span> (patrz karta po prawej)."
+            "text": "Jeden z efektów może dodawać Ci do talii negatywne karty. Jeśli nie ma tam słowa \"możesz\", oznacza to, że <span class='color-red'>musisz je rozpatrzyć</span> (patrz karta po prawej)."
           },
           {
-            "type": "text",
-            "html": "<image id='karta-negatywna'/>"
+            "text": "<image id='karta-negatywna'/>"
           },
           {
-            "type": "text",
-            "html": "Połóż obok planszetki klauna 7<symbol id='zycie'/>. Symbolizują jego zdrowie. Gdyby utracił je wszystkie, podobnie jak wy, przechodzi się na końcu tury do paragrafu <span class='color-green'>100</span>."
+            "text": "Połóż obok planszetki klauna 7<symbol id='zycie'/>. Symbolizują jego zdrowie. Gdyby utracił je wszystkie, podobnie jak wy, przechodzi się na końcu tury do paragrafu <span class='color-green'>100</span>."
           },
           {
-            "type": "text",
-            "html": "Jeśli czytasz to po turze <person id='patrick'/>, to oznacza, że czas aktywować klauna!"
+            "text": "Jeśli czytasz to po turze <person id='patrick'/>, to oznacza, że czas aktywować klauna!"
           }
         ]
       ],
@@ -445,13 +366,11 @@
     },
     {
       "id": "34",
-      "isDirect": false,
       "accessibleFrom": ["137"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Jeśli wskazano przedmiot z cyfrą rzymską LIII dobierz 1<symbol id='pd'/>, odrzuć <item id='137'/> i <item id='113'/>. Połóż <item id='48'/> do swojego ekwipunku (odrzuć ewentualnie nadmiarowe przedmioty odkryte na planszy)."
+            "text": "Jeśli wskazano przedmiot z cyfrą rzymską LIII dobierz 1<symbol id='pd'/>, odrzuć <item id='137'/> i <item id='113'/>. Połóż <item id='48'/> do swojego ekwipunku (odrzuć ewentualnie nadmiarowe przedmioty odkryte na planszy)."
           }
         ]
       ],
@@ -459,55 +378,46 @@
     },
     {
       "id": "35",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wyłóż planszę 16<letter id='a'/>, a na jego środku <item id='173'/> oraz <item id='14'/>."
+            "text": "Wyłóż planszę 16<letter id='a'/>, a na jego środku <item id='173'/> oraz <item id='14'/>."
           },
           {
-            "type": "text",
-            "html": "Teraz się <strong><span class='color-red'>SKUP</span></strong>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
+            "text": "Teraz się <span class='color-red'>SKUP</span>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
           },
           {
-            "type": "text",
-            "html": "Z czarnego worka wylosuj trzy kwadratowe żetony (tych z <symbol id='losowe'/> na rewersie). Wykłada się je zawsze odkryte na planszy (chyba, że scenariusz wyraźnie powie inaczej)."
+            "text": "Z czarnego worka wylosuj trzy kwadratowe żetony (tych z <symbol id='losowe'/> na rewersie). Wykłada się je zawsze odkryte na planszy (chyba, że scenariusz wyraźnie powie inaczej)."
           },
           {
-            "type": "image",
-            "id": "czarny-worek"
+            "image": "czarny-worek"
           },
           {
-            "type": "text",
-            "html": "Są to przedmioty określane mianem \"losowych\". Dobiera się je identycznie jak przedmioty fabularne. Używanie przedmiotów <symbol id='losowe'/> kosztuje jedną akcję (wyjątek stanowi <symbol id='amunicja-pistolet'/>/<symbol id='amunicja-strzelba'/>, których nie możemy użyć samych). Użycie <symbol id='losowe'/> skutkuje wrzuceniem jego żetonu z powrotem do czarnego worka."
+            "text": "Są to przedmioty określane mianem \"losowych\". Dobiera się je identycznie jak przedmioty fabularne. Używanie przedmiotów <symbol id='losowe'/> kosztuje jedną akcję (wyjątek stanowi <symbol id='amunicja-pistolet'/>/<symbol id='amunicja-strzelba'/>, których nie możemy użyć samych). Użycie <symbol id='losowe'/> skutkuje wrzuceniem jego żetonu z powrotem do czarnego worka."
           },
           {
-            "type": "text",
-            "html": "Jeśli w jakikolwiek sposób dobierzesz przedmioty (kwadratowe żetony), ale nie masz dostatecznej ilości miejsca w ekwipunku, możesz położyć na nim dowolne przedmioty, a resztę odłożyć odkryte na planszy z Twoją figurką."
+            "text": "Jeśli w jakikolwiek sposób dobierzesz przedmioty (kwadratowe żetony), ale nie masz dostatecznej ilości miejsca w ekwipunku, możesz położyć na nim dowolne przedmioty, a resztę odłożyć odkryte na planszy z Twoją figurką."
           }
         ]
       ],
       "choices": [
         {
-          "html": "Jeśli nie wyłożono jeszcze talii rozwoju (i nie wiesz o czym mowa) przejdź do paragrafu <span class='color-green'>75</span>.",
+          "text": "Jeśli nie wyłożono jeszcze talii rozwoju (i nie wiesz o czym mowa) przejdź do paragrafu <span class='color-green'>75</span>.",
           "nextParagraphId": "75"
         },
         {
-          "html": "wróć",
+          "text": "wróć",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "36",
-      "isDirect": false,
       "accessibleFrom": ["111"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Rzeźba przesuwa się na bok odsłaniając przejście prowadzące dalej. W miejscu rzeźby postaw <symbol id='drzwi-otwarte'/> (czyli <span class='color-purple'>W</span> planszy 1). <span class='color-blue'>Odrzuć</span> <item id='111'/>."
+            "text": "Rzeźba przesuwa się na bok odsłaniając przejście prowadzące dalej. W miejscu rzeźby postaw <symbol id='drzwi-otwarte'/> (czyli <span class='color-purple'>W</span> planszy 1). <span class='color-blue'>Odrzuć</span> <item id='111'/>."
           }
         ]
       ],
@@ -515,38 +425,33 @@
     },
     {
       "id": "37",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wybierz jedną z opcji spośród:"
+            "text": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='37'/>. Następnie przejdź do paragrafu <span class='color-green'>1</span>.",
+          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='37'/>. Następnie przejdź do paragrafu <span class='color-green'>1</span>.",
           "nextParagraphId": "1"
         },
         {
-          "html": "Jeśli żadnego przedmiotu nie posiadasz lub zmieniłaś zdanie, opuść ten paragraf (wybranie opcji opuszczenia paragrafu jej nie przywraca; można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)",
+          "text": "Jeśli żadnego przedmiotu nie posiadasz lub zmieniłaś zdanie, opuść ten paragraf (wybranie opcji opuszczenia paragrafu jej nie przywraca; można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "38",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Spoglądasz właśnie na obraz, w którym <span class='color-red'>cztery</span> osoby znajdujące się w ogniu spoglądają na anioły nad nimi. Sprawiają wrażenie jakoby porzuciły wszelką nadzieję."
+            "text": "Spoglądasz właśnie na obraz, w którym <span class='color-red'>cztery</span> osoby znajdujące się w ogniu spoglądają na anioły nad nimi. Sprawiają wrażenie jakoby porzuciły wszelką nadzieję."
           },
           {
-            "type": "text",
-            "html": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
+            "text": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
           }
         ]
       ],
@@ -554,13 +459,11 @@
     },
     {
       "id": "39",
-      "isDirect": false,
       "accessibleFrom": ["12"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Jeśli dobrano co najmniej 6<symbol id='gwiazda'/>, odrzuć <item id='12'/> i w jej miejscu połóż <symbol id='drzwi-otwarte'/>."
+            "text": "Jeśli dobrano co najmniej 6<symbol id='gwiazda'/>, odrzuć <item id='12'/> i w jej miejscu połóż <symbol id='drzwi-otwarte'/>."
           }
         ]
       ],
@@ -568,69 +471,55 @@
     },
     {
       "id": "40",
-      "isDirect": false,
       "accessibleFrom": ["65"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Postaw stojącą figurkę <person id='patrick'/> na planszy 2<letter id='a'/>."
+            "text": "Postaw stojącą figurkę <person id='patrick'/> na planszy 2<letter id='a'/>."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Patrick momentalnie otwiera oczy i podnosi się nerwowo rozglądając się wokół siebie."
+            "text": "Patrick momentalnie otwiera oczy i podnosi się nerwowo rozglądając się wokół siebie."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> (Mamrocze coś pod nosem) Moja głowa …"
+            "text": "<person id='patrick'/> (Mamrocze coś pod nosem) Moja głowa …"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/> Jesteś cały?"
+            "text": "<person id='jessica'/> Jesteś cały?"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> (Mamrocze coś pod nosem) Tak … Chyba. Gdzie jesteśmy?"
+            "text": "<person id='patrick'/> (Mamrocze coś pod nosem) Tak … Chyba. Gdzie jesteśmy?"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/> Też chciałabym wiedzieć. Obudziłam się przed chwilą"
+            "text": "<person id='jessica'/> Też chciałabym wiedzieć. Obudziłam się przed chwilą"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> Jechaliśmy autem, po czym nagle znajdujemy się tutaj. Jak to możliwe?"
+            "text": "<person id='patrick'/> Jechaliśmy autem, po czym nagle znajdujemy się tutaj. Jak to możliwe?"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/> Na swoją obronę mam to, że spałam, więc ..."
+            "text": "<person id='jessica'/> Na swoją obronę mam to, że spałam, więc ..."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> Poważnie nie wiem jak się tu znaleźliśmy."
+            "text": "<person id='patrick'/> Poważnie nie wiem jak się tu znaleźliśmy."
           },
           {
-            "type": "text",
-            "html": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <token id='1'/> + dwóch <token id='2'/> + dwóch <token id='3'/>"
+            "text": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <image id='1'/> + dwóch <image id='2'/> + dwóch <image id='3'/>"
           },
           {
-            "type": "image",
-            "id": "patrick-talia"
+            "image": "patrick-talia"
           },
           {
-            "type": "text",
-            "html": "W każdym scenariuszu postacie kierowane przez graczy posiadają do wykorzystania dwie akcje w swojej turze zanim następna będzie mogła wykonać swoje. Zawsze musi wykorzystać obie, choć jedna z nich (odpoczynek) to swoista forma oddania akcji."
+            "text": "W każdym scenariuszu postacie kierowane przez graczy posiadają do wykorzystania dwie akcje w swojej turze zanim następna będzie mogła wykonać swoje. Zawsze musi wykorzystać obie, choć jedna z nich (odpoczynek) to swoista forma oddania akcji."
           },
           {
-            "type": "text",
-            "html": "Załóżmy, że Jessica zużyła obie swoje akcje. W takiej sytuacji następuje tura Patricka. Gracz/e kontrolują na przemian dwie postacie (<span class='color-red'>każda posiada po 2 akcje w turze</span>), aż do końca scenariusza."
+            "text": "Załóżmy, że Jessica zużyła obie swoje akcje. W takiej sytuacji następuje tura Patricka. Gracz/e kontrolują na przemian dwie postacie (<span class='color-red'>każda posiada po 2 akcje w turze</span>), aż do końca scenariusza."
           }
         ]
       ],
@@ -638,12 +527,10 @@
     },
     {
       "id": "48",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Zielony klucz z zawieszoną kartką <em>\"Nie powinien był prowadzić\"</em>."
+            "text": "Zielony klucz z zawieszoną kartką <em>\"Nie powinien był prowadzić\"</em>."
           }
         ]
       ],
@@ -651,69 +538,46 @@
     },
     {
       "id": "49",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wyłóż planszę 13<letter id='a'/>, na jego <span class='color-purple'>W</span> wyłóż <item id='12'/>, a na środku <item id='38'/>."
+            "text": "Wyłóż planszę 13<letter id='a'/>, na jego <span class='color-purple'>W</span> wyłóż <item id='12'/>, a na środku <item id='38'/>."
           },
           {
-            "type": "text",
-            "html": "Teraz się <strong><span class='color-red'>SKUP</span></strong>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
+            "text": "Teraz się <span class='color-red'>SKUP</span>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
           },
           {
-            "type": "text",
-            "html": "Z czarnego worka wylosuj trzy kwadratowe żetony (tych z <symbol id='losowe'/> na rewersie). Wykłada się je zawsze odkryte na planszy (chyba, że scenariusz wyraźnie powie inaczej)."
+            "text": "Z czarnego worka wylosuj trzy kwadratowe żetony (tych z <symbol id='losowe'/> na rewersie). Wykłada się je zawsze odkryte na planszy (chyba, że scenariusz wyraźnie powie inaczej)."
           },
           {
-            "type": "image",
-            "id": "czarny-worek"
+            "image": "czarny-worek"
           },
           {
-            "type": "text",
-            "html": "Są to przedmioty określane mianem \"losowych\". Dobiera się je identycznie jak przedmioty fabularne. Używanie przedmiotów <symbol id='losowe'/> kosztuje jedną akcję (wyjątek stanowi <symbol id='amunicja-pistolet'/>/<symbol id='amunicja-strzelba'/>, których nie możemy użyć samych). Użycie <symbol id='losowe'/> skutkuje wrzuceniem jego żetonu z powrotem do czarnego worka."
+            "text": "Są to przedmioty określane mianem \"losowych\". Dobiera się je identycznie jak przedmioty fabularne. Używanie przedmiotów <symbol id='losowe'/> kosztuje jedną akcję (wyjątek stanowi <symbol id='amunicja-pistolet'/>/<symbol id='amunicja-strzelba'/>, których nie możemy użyć samych). Użycie <symbol id='losowe'/> skutkuje wrzuceniem jego żetonu z powrotem do czarnego worka."
           },
           {
-            "type": "text",
-            "html": "Jeśli w jakikolwiek sposób dobierzesz przedmioty (kwadratowe żetony), ale nie masz dostatecznej ilości miejsca w ekwipunku, możesz położyć na nim dowolne przedmioty, a resztę odłożyć odkryte na planszy z Twoją figurką."
+            "text": "Jeśli w jakikolwiek sposób dobierzesz przedmioty (kwadratowe żetony), ale nie masz dostatecznej ilości miejsca w ekwipunku, możesz położyć na nim dowolne przedmioty, a resztę odłożyć odkryte na planszy z Twoją figurką."
           }
         ]
       ],
       "choices": [
         {
-          "html": "Jeśli nie wyłożono jeszcze talii rozwoju (i nie wiesz o czym mowa) przejdź do paragrafu <span class='color-green'>75</span>.",
+          "text": "Jeśli nie wyłożono jeszcze talii rozwoju (i nie wiesz o czym mowa) przejdź do paragrafu <span class='color-green'>75</span>.",
           "nextParagraphId": "75"
         },
         {
-          "html": "wróć",
+          "text": "wróć",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "50",
-      "isDirect": false,
       "accessibleFrom": ["123"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wielkie stalowe masywne drzwi. Może jest jakiś sposób ich otwarcia, bo próba siłowego otwarcia skończy się najwyżej złamaniem sobie czegoś. Paragraf nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "52",
-      "isDirect": false,
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "type": "text",
-            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+            "text": "Wielkie stalowe masywne drzwi. Może jest jakiś sposób ich otwarcia, bo próba siłowego otwarcia skończy się najwyżej złamaniem sobie czegoś. Paragraf nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
           }
         ]
       ],
@@ -721,35 +585,31 @@
     },
     {
       "id": "53",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wybierz jedną z opcji spośród:"
+            "text": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Przeszukaj biurko. Jeśli chcesz to zrobić przejdź do <span class='color-green'>paragrafu 70</span> (tego rodzaju przejścia <span class='color-red'>nie</span> są wskazaniem <symbol id='paragraf'/>, a tym samym nie wymagają dobrania kolejnej wierzchniej <symbol id='rewers'/>)",
+          "text": "Przeszukaj biurko. Jeśli chcesz to zrobić przejdź do <span class='color-green'>paragrafu 70</span> (tego rodzaju przejścia <span class='color-red'>nie</span> są wskazaniem <symbol id='paragraf'/>, a tym samym nie wymagają dobrania kolejnej wierzchniej <symbol id='rewers'/>)",
           "nextParagraphId": "70"
         },
         {
-          "html": "Opuść ten paragraf (ale pamiętaj, że każde wskazanie <symbol id='paragraf'/> oznacza konieczność dobrania wierzchniej <symbol id='rewers'/>, nawet jeśli wskazujesz paragraf, który już znasz; <span class='color-red'>ponadto NIE przywróci ci to zużytej na wskazanie <symbol id='paragraf'/> akcji</span>)",
+          "text": "Opuść ten paragraf (ale pamiętaj, że każde wskazanie <symbol id='paragraf'/> oznacza konieczność dobrania wierzchniej <symbol id='rewers'/>, nawet jeśli wskazujesz paragraf, który już znasz; <span class='color-red'>ponadto NIE przywróci ci to zużytej na wskazanie <symbol id='paragraf'/> akcji</span>)",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "54",
-      "isDirect": false,
       "accessibleFrom": ["69"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wkładasz tam głowę, ale nie dostrzegasz ABSOLUTNIE niczego. Może jednak lepsze to niż zginąć z ręki klauna, których śmiertelnie się boisz nawet, gdy nie próbują Cię zamordować? Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
+            "text": "Wkładasz tam głowę, ale nie dostrzegasz ABSOLUTNIE niczego. Może jednak lepsze to niż zginąć z ręki klauna, których śmiertelnie się boisz nawet, gdy nie próbują Cię zamordować? Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
           }
         ]
       ],
@@ -757,18 +617,15 @@
     },
     {
       "id": "55",
-      "isDirect": false,
       "accessibleFrom": ["99"],
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/>Złamałbym sobie tylko bark. Nie ma szans – odpowiada zrezygnowany patrząc na drzwi – musi być jakiś inny sposób."
+            "text": "<person id='patrick'/>Złamałbym sobie tylko bark. Nie ma szans – odpowiada zrezygnowany patrząc na drzwi – musi być jakiś inny sposób."
           },
           {
-            "type": "text",
-            "html": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
+            "text": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
           }
         ]
       ],
@@ -776,40 +633,21 @@
     },
     {
       "id": "61",
-      "isDirect": false,
       "accessibleFrom": ["40"],
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Odcięta męska ręka. Patrzenie na nią przyprawia Cię o mdłości."
+            "text": "Odcięta męska ręka. Patrzenie na nią przyprawia Cię o mdłości."
           },
           {
-            "type": "text",
-            "html": "Możesz ją podnieść używając akcji \"Podnieś przedmioty\" z <strong>karty akcji ogólnych</strong>."
+            "text": "Możesz ją podnieść używając akcji \"Podnieś przedmioty\" z <strong>karty akcji ogólnych</strong>."
           },
           {
-            "type": "image",
-            "id": "podnies-przedmiot"
+            "image": "podnies-przedmiot"
           },
           {
-            "type": "text",
-            "html": "W razie potrzeby jest możliwości wymiany przedmiotami poprzez rozmowę z inną postacią. Paragraf nie prowadzi dalej co oznacza, że opuszczasz go (nie przywraca Ci to zużytej na sprawdzenie akcji)"
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "62",
-      "isDirect": false,
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "type": "text",
-            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+            "text": "W razie potrzeby jest możliwości wymiany przedmiotami poprzez rozmowę z inną postacią. Paragraf nie prowadzi dalej co oznacza, że opuszczasz go (nie przywraca Ci to zużytej na sprawdzenie akcji)"
           }
         ]
       ],
@@ -817,37 +655,33 @@
     },
     {
       "id": "65",
-      "isDirect": false,
       "accessibleFrom": ["123"],
       "areChoicesHorizontal": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Czy figurka <person id='patrick'/> leży?"
+            "text": "Czy figurka <person id='patrick'/> leży?"
           }
         ]
       ],
       "choices": [
         {
-          "html": "TAK",
+          "text": "TAK",
           "nextParagraphId": "40"
         },
         {
-          "html": "NIE",
+          "text": "NIE",
           "nextParagraphId": "65-61"
         }
       ]
     },
     {
       "id": "65-61",
-      "isDirect": false,
       "accessibleFrom": ["65"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Jeśli wskazano <item id='61'/>: Odrzuć: <item id='123'/>, <item id='61'/> i <item id='50'/>. W miejscu gdzie stały <item id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
+            "text": "Jeśli wskazano <item id='61'/>: Odrzuć: <item id='123'/>, <item id='61'/> i <item id='50'/>. W miejscu gdzie stały <item id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
           }
         ]
       ],
@@ -855,69 +689,47 @@
     },
     {
       "id": "69",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Pulsuje równomiernie przeraźliwie jasnym światłem. Nie jesteś przez to w stanie zobaczyć co jest po drugiej stronie. Wybierz jedną z opcji spośród:"
+            "text": "Pulsuje równomiernie przeraźliwie jasnym światłem. Nie jesteś przez to w stanie zobaczyć co jest po drugiej stronie. Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Zajrzyj tam (przejdź do <span class='color-green'>54</span>)",
+          "text": "Zajrzyj tam (przejdź do <span class='color-green'>54</span>)",
           "nextParagraphId": "54"
         },
         {
-          "html": "Wejdź do środka (przejdź do <span class='color-green'>180</span>)",
+          "text": "Wejdź do środka (przejdź do <span class='color-green'>180</span>)",
           "nextParagraphId": "180"
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "70",
-      "isDirect": false,
       "accessibleFrom": ["53"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Odrzuć <item id='53'/> (oznacza to odłożenie do puli z której pochodzi)."
+            "text": "Odrzuć <item id='53'/> (oznacza to odłożenie do puli z której pochodzi)."
           },
           {
-            "type": "text",
-            "html": "W szufladzie biurka znajdujesz klucz (<item id='84'/>). Dodaj go do swojego ekwipunku."
+            "text": "W szufladzie biurka znajdujesz klucz (<item id='84'/>). Dodaj go do swojego ekwipunku."
           },
           {
-            "type": "text",
-            "html": "Wszystkie kwadratowe żetony są przedmiotami, które można tam umieszczać."
+            "text": "Wszystkie kwadratowe żetony są przedmiotami, które można tam umieszczać."
           },
           {
-            "type": "text",
-            "html": "Zwróć uwagę, że klucz posiada <symbol id='paragraf'/>. Jeśli przedmiot z tym symbolem znajduje się na planszy z Twoją figurką lub w twoim ekwipunku, możesz w ramach akcji (dobierając jedno <symbol id='rewers'/>) przejść do jego <span class='color-green'>paragrafu</span>. Nie musisz tego robić - tylko wskazujemy, że jest to możliwe."
+            "text": "Zwróć uwagę, że klucz posiada <symbol id='paragraf'/>. Jeśli przedmiot z tym symbolem znajduje się na planszy z Twoją figurką lub w twoim ekwipunku, możesz w ramach akcji (dobierając jedno <symbol id='rewers'/>) przejść do jego <span class='color-green'>paragrafu</span>. Nie musisz tego robić - tylko wskazujemy, że jest to możliwe."
           },
           {
-            "type": "text",
-            "html": "(<span class='color-red'>!!!</span>) Ilekroć należałoby dobrać <symbol id='rewers'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='rewers'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='rewers'/>)."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "73",
-      "isDirect": false,
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "type": "text",
-            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+            "text": "(<span class='color-red'>!!!</span>) Ilekroć należałoby dobrać <symbol id='rewers'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='rewers'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='rewers'/>)."
           }
         ]
       ],
@@ -925,44 +737,34 @@
     },
     {
       "id": "75",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wyłóż (w zasięgu wzroku graczy) cztery losowe karty z tzw. \"talii rozwoju\", czyli kart z nadrukowanym symbolem <symbol id='pd'/>. Stanowią \"rynek talii rozwoju\"."
+            "text": "Wyłóż (w zasięgu wzroku graczy) cztery losowe karty z tzw. \"talii rozwoju\", czyli kart z nadrukowanym symbolem <symbol id='pd'/>. Stanowią \"rynek talii rozwoju\"."
           },
           {
-            "type": "image",
-            "id": "karta-rozwoju"
+            "image": "karta-rozwoju"
           },
           {
-            "type": "text",
-            "html": "Pozostałe połóż obok rewersem obok tych czterech."
+            "text": "Pozostałe połóż obok rewersem obok tych czterech."
           },
           {
-            "type": "text",
-            "html": "Na końcu tury aktualnie wykonująca turę postać może skorzystać z rynku."
+            "text": "Na końcu tury aktualnie wykonująca turę postać może skorzystać z rynku."
           },
           {
-            "type": "text",
-            "html": "Może najpierw odrzucić jedną kart z rynku rozwoju, uzupełnić do czterech."
+            "text": "Może najpierw odrzucić jedną kart z rynku rozwoju, uzupełnić do czterech."
           },
           {
-            "type": "text",
-            "html": "Następnie może wydać dowolną ilość żetonów rozwoju (<symbol id='pd'/>), aby dołożyć do swojego stosu odrzuconego dowolne spośród tych wyłożonych kart z talii rozwoju."
+            "text": "Następnie może wydać dowolną ilość żetonów rozwoju (<symbol id='pd'/>), aby dołożyć do swojego stosu odrzuconego dowolne spośród tych wyłożonych kart z talii rozwoju."
           },
           {
-            "type": "text",
-            "html": "Po zakupie pojedynczej karty natychmiast uzupełnij rynek (np. gracz kupuje jedną, uzupełnia rynek i znów może kupić kolejną jeśli ma wolny <symbol id='pd'/>)."
+            "text": "Po zakupie pojedynczej karty natychmiast uzupełnij rynek (np. gracz kupuje jedną, uzupełnia rynek i znów może kupić kolejną jeśli ma wolny <symbol id='pd'/>)."
           },
           {
-            "type": "text",
-            "html": "<span class='color-red'><strong>Zwróć uwagę, że karty mają na sobie jakiś tekst. Ilekroć deklarujesz ile kart dobierzesz, dobierasz od tej pory JEDNA PO DRUGIEJ i rozpatrujesz natychmiast tekst (jeśli jest) na nowo dobranej. Dopiero po rozpatrzeniu tekstu robisz resztę (np. przechodzisz do paragrafu).</strong></span>"
+            "text": "<span class='color-red'>Zwróć uwagę, że karty mają na sobie jakiś tekst. Ilekroć deklarujesz ile kart dobierzesz, dobierasz od tej pory JEDNA PO DRUGIEJ i rozpatrujesz natychmiast tekst (jeśli jest) na nowo dobranej. Dopiero po rozpatrzeniu tekstu robisz resztę (np. przechodzisz do paragrafu).</span>"
           },
           {
-            "type": "text",
-            "html": "Przykład: deklarujesz dobranie 3 kart. Dociągasz pierwszą. Nie posiada żadnego tekstu. Potem dobierasz drugą. Posiada jakiś efekt, który musisz rozpatrzyć natychmiast. Dobierasz trzecią. Również posiada tekst, który rozpatrujesz."
+            "text": "Przykład: deklarujesz dobranie 3 kart. Dociągasz pierwszą. Nie posiada żadnego tekstu. Potem dobierasz drugą. Posiada jakiś efekt, który musisz rozpatrzyć natychmiast. Dobierasz trzecią. Również posiada tekst, który rozpatrujesz."
           }
         ]
       ],
@@ -970,49 +772,39 @@
     },
     {
       "id": "77",
-      "isDirect": true,
       "isMultiPage": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Dostaw planszę 14<letter id='a'/> przy symbolu <span class='color-purple'>E</span> planszy 12<letter id='a'/>. Przestaw swoją figurkę do planszy 14<letter id='a'/>. Figurka, która odkrywa nową planszę, zawsze może (po zapoznaniu z paragrafem) przestawić się do nowoodkrytej planszy."
+            "text": "Dostaw planszę 14<letter id='a'/> przy symbolu <span class='color-purple'>E</span> planszy 12<letter id='a'/>. Przestaw swoją figurkę do planszy 14<letter id='a'/>. Figurka, która odkrywa nową planszę, zawsze może (po zapoznaniu z paragrafem) przestawić się do nowoodkrytej planszy."
           },
           {
-            "type": "image",
-            "id": "plansza-14"
+            "image": "plansza-14"
           },
           {
-            "type": "text",
-            "html": "Połóż <symbol id='drzwi-otwarte'/> lub <symbol id='drzwi-wywazone'/> (w zależności jaki był efekt \"Otwarcia drzwi\") tak, aby łączyły obie plansze - żeton ma leżeć jednocześnie na <span class='color-purple'>E</span> planszy 12 i <span class='color-purple'>W</span> planszy 14. <span class='color-red'>Na każdym łączeniu, o ile nie napisano inaczej, leżeć może wyłącznie jeden element</span> (np. drzwi, żeton planszy itd)."
+            "text": "Połóż <symbol id='drzwi-otwarte'/> lub <symbol id='drzwi-wywazone'/> (w zależności jaki był efekt \"Otwarcia drzwi\") tak, aby łączyły obie plansze - żeton ma leżeć jednocześnie na <span class='color-purple'>E</span> planszy 12 i <span class='color-purple'>W</span> planszy 14. <span class='color-red'>Na każdym łączeniu, o ile nie napisano inaczej, leżeć może wyłącznie jeden element</span> (np. drzwi, żeton planszy itd)."
           },
           {
-            "type": "text",
-            "html": "Na <span class='color-purple'>E</span> planszy 14 wyłóż żetony plansz: <token id='37'/>, <token id='53'/> oraz <token id='121'/>."
+            "text": "Na <span class='color-purple'>E</span> planszy 14 wyłóż żetony plansz: <item id='37'/>, <item id='53'/> oraz <item id='121'/>."
           },
           {
-            "type": "text",
-            "html": "Różne kształty żetonów plansz służą jedynie ich segregowaniu po kształtach, aby ich wykładanie było łatwiejsze w późniejszych etapach gry, gdy pojawi się ich więcej."
+            "text": "Różne kształty żetonów plansz służą jedynie ich segregowaniu po kształtach, aby ich wykładanie było łatwiejsze w późniejszych etapach gry, gdy pojawi się ich więcej."
           }
         ],
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Leży tu starszy człowiek, który wygląda jakby nic nie mogło już mu pomóc."
+            "text": "Leży tu starszy człowiek, który wygląda jakby nic nie mogło już mu pomóc."
           },
           {
-            "type": "text",
-            "html": "Pamiętaj, że możesz wskazywać dowolne <symbol id='paragraf'/> na planszy lub łączeniu plansz (o ile są tam <symbol id='drzwi-otwarte'/> / <symbol id='drzwi-wywazone'/> bez odkrytych plansz po ich drugiej stronie) figurką aktualnie rozgrywającą swoją turę. Pamiętaj, że Ilekroć wskazujesz <symbol id='paragraf'/>, dobierasz jedną wierzchnią <symbol id='rewers'/> z talii postaci, a dopiero po jej rozpatrzeniu (gdyby były na nich jakieś efekty) przechodzisz do odpowiedniego paragrafu."
+            "text": "Pamiętaj, że możesz wskazywać dowolne <symbol id='paragraf'/> na planszy lub łączeniu plansz (o ile są tam <symbol id='drzwi-otwarte'/> / <symbol id='drzwi-wywazone'/> bez odkrytych plansz po ich drugiej stronie) figurką aktualnie rozgrywającą swoją turę. Pamiętaj, że Ilekroć wskazujesz <symbol id='paragraf'/>, dobierasz jedną wierzchnią <symbol id='rewers'/> z talii postaci, a dopiero po jej rozpatrzeniu (gdyby były na nich jakieś efekty) przechodzisz do odpowiedniego paragrafu."
           },
           {
-            "type": "text",
-            "html": "<span class='color-red'>Spróbuj znaleźć sposób na wydostanie się czerwonymi drzwiami.</span>",
+            "text": "<span class='color-red'>Spróbuj znaleźć sposób na wydostanie się czerwonymi drzwiami.</span>",
             "color": "red"
           },
           {
-            "type": "text",
-            "html": "Ilekroć należałoby dobrać <symbol id='rewers'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='rewers'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='rewers'/>)."
+            "text": "Ilekroć należałoby dobrać <symbol id='rewers'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='rewers'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='rewers'/>)."
           }
         ]
       ],
@@ -1020,36 +812,18 @@
     },
     {
       "id": "80",
-      "isDirect": false,
       "accessibleFrom": ["99"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "<person id='patrick'/><italic>Źle</italic> - odpowiada. <italic>Boli mnie każda część ciała i prawdopodobnie mam złamaną nogę. Gdyby nie adrenalina pewnie zwijałbym się z bólu, ale okoliczności do tego nie sprzyjają. A u ciebie?</italic>"
+            "text": "<person id='patrick'/><em>Źle</em> - odpowiada. <em>Boli mnie każda część ciała i prawdopodobnie mam złamaną nogę. Gdyby nie adrenalina pewnie zwijałbym się z bólu, ale okoliczności do tego nie sprzyjają. A u ciebie?</em>"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='jessica'/>Fizycznie do zniesienia. Reszty już prawdopodobnie nie zdołam nigdy wyrzucić z głowy."
+            "text": "<person id='jessica'/>Fizycznie do zniesienia. Reszty już prawdopodobnie nie zdołam nigdy wyrzucić z głowy."
           },
           {
-            "type": "text",
-            "html": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "81",
-      "isDirect": false,
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "type": "text",
-            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+            "text": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
           }
         ]
       ],
@@ -1057,13 +831,11 @@
     },
     {
       "id": "82",
-      "isDirect": false,
       "accessibleFrom": ["173"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Znajdujesz <item id='113'/>. Dodaj ją do swojego ekwipunku. Odrzuć <item id='173'/>."
+            "text": "Znajdujesz <item id='113'/>. Dodaj ją do swojego ekwipunku. Odrzuć <item id='173'/>."
           }
         ]
       ],
@@ -1071,12 +843,10 @@
     },
     {
       "id": "83",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Odrzuć <letter id='b'/> z toru czasu. Połóż obok planszy <person id='klaun'/> żeton <effect id='plus-jedna-kosc'/>. Od tej pory rzuca do końca scenariusza jedną kością więcej."
+            "text": "Odrzuć <letter id='b'/> z toru czasu. Połóż obok planszy <person id='klaun'/> żeton <effect id='plus-jedna-kosc'/>. Od tej pory rzuca do końca scenariusza jedną kością więcej."
           }
         ]
       ],
@@ -1084,12 +854,10 @@
     },
     {
       "id": "84",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Klucz z podwieszoną do niego kartką. Napisano na niej <em>\"cierpienie uszlachetnia\"</em>. Dziwne."
+            "text": "Klucz z podwieszoną do niego kartką. Napisano na niej <em>\"cierpienie uszlachetnia\"</em>. Dziwne."
           }
         ]
       ],
@@ -1097,54 +865,42 @@
     },
     {
       "id": "97",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wyłóż planszę 11<letter id='a'/>, a na jej środku <item id='137'/>, zaś na jej <span class='color-blue'>N</span> i <span class='color-blue'>S</span> wyłóż <symbol id='drzwi-zamkniete'/>."
+            "text": "Wyłóż planszę 11<letter id='a'/>, a na jej środku <item id='137'/>, zaś na jej <span class='color-blue'>N</span> i <span class='color-blue'>S</span> wyłóż <symbol id='drzwi-zamkniete'/>."
           },
           {
-            "type": "text",
-            "html": "Czas podkręcić nieco tempo. Otóż do tej pory nie groziło żadne realnie niebezpieczeństwo."
+            "text": "Czas podkręcić nieco tempo. Otóż do tej pory nie groziło żadne realnie niebezpieczeństwo."
           },
           {
-            "type": "text",
-            "html": "Wyłóż tor czasu, a na nim żeton alfabetu <letter id='a'/> na polu 1 oraz <letter id='b'/> na polu 4."
+            "text": "Wyłóż tor czasu, a na nim żeton alfabetu <letter id='a'/> na polu 1 oraz <letter id='b'/> na polu 4."
           },
           {
-            "type": "image",
-            "id": "tor-czasu"
+            "image": "tor-czasu"
           },
           {
-            "type": "text",
-            "html": "Do tej pory upływ czasu nie miał znaczenia. Od tej pory czas niemal zawsze będzie działał na waszą niekorzyść. Ilekroć, KTÓRAKOLWIEK z postaci dobierze ostatnią kartę ze swojej talii postaci, przesuwa się natychmiast WSZYSTKIE żetony ALFABETU na torze czasu o jedno pole w kierunku pola <symbol id='czas'/>. Pole <span class='color-yellow'>AKTYWNE</span> na torze czasu jest odrębne od tej zasady i położone w nim elementy <u>nigdy</u> nie są przesuwane."
+            "text": "Do tej pory upływ czasu nie miał znaczenia. Od tej pory czas niemal zawsze będzie działał na waszą niekorzyść. Ilekroć, KTÓRAKOLWIEK z postaci dobierze ostatnią kartę ze swojej talii postaci, przesuwa się natychmiast WSZYSTKIE żetony ALFABETU na torze czasu o jedno pole w kierunku pola <symbol id='czas'/>. Pole <span class='color-yellow'>AKTYWNE</span> na torze czasu jest odrębne od tej zasady i położone w nim elementy <u>nigdy</u> nie są przesuwane."
           }
         ],
         [
           {
-            "type": "text",
-            "html": "Jeśli na pole <symbol id='czas'/> przesunie się jakiś żeton alfabetu, to <strong>na koniec tury</strong> postaci, w której nastąpiło to przesunięcie sprawdzamy efekt wydarzenia wywołany przez ten żeton. W tym celu zaglądamy na pierwszą stronę aktualnie rozgrywanego scenariusza i przechodzimy do <span class='color-green'>paragrafu</span> wskazanego przez dany żeton (<strong>obrazek po prawej</strong>)."
+            "text": "Jeśli na pole <symbol id='czas'/> przesunie się jakiś żeton alfabetu, to <strong>na koniec tury</strong> postaci, w której nastąpiło to przesunięcie sprawdzamy efekt wydarzenia wywołany przez ten żeton. W tym celu zaglądamy na pierwszą stronę aktualnie rozgrywanego scenariusza i przechodzimy do <span class='color-green'>paragrafu</span> wskazanego przez dany żeton (<strong>obrazek po prawej</strong>)."
           },
           {
-            "type": "image",
-            "id": "opis-scenariusza"
+            "image": "opis-scenariusza"
           },
           {
-            "type": "text",
-            "html": "Gdyby doszło do sytuacji aktywacji kilku wydarzeń naraz, rozpatrz żetony w kolejności alfabetycznej (najpierw <letter id='a'/>, potem <letter id='b'/> itd.)."
+            "text": "Gdyby doszło do sytuacji aktywacji kilku wydarzeń naraz, rozpatrz żetony w kolejności alfabetycznej (najpierw <letter id='a'/>, potem <letter id='b'/> itd.)."
           },
           {
-            "type": "text",
-            "html": "Przy ekwipunku <person id='jessica'/> oraz <person id='patrick'/> połóż po 3<symbol id='zycie'/> dla każdego. Reprezentuje ich zdrowie. Wraz z utratą ostatniego sprawdza się paragraf <span class='color-green'>100</span> o czym ma przypominać żeton pierwszego gracza (obrazek po prawej)."
+            "text": "Przy ekwipunku <person id='jessica'/> oraz <person id='patrick'/> połóż po 3<symbol id='zycie'/> dla każdego. Reprezentuje ich zdrowie. Wraz z utratą ostatniego sprawdza się paragraf <span class='color-green'>100</span> o czym ma przypominać żeton pierwszego gracza (obrazek po prawej)."
           },
           {
-            "type": "image",
-            "id": "rip"
+            "image": "rip"
           },
           {
-            "type": "text",
-            "html": "Przekaż do Jessice. Nie zmienia on swojego właściciela (chyba, że scenariusz wyraźnie powie inaczej)."
+            "text": "Przekaż do Jessice. Nie zmienia on swojego właściciela (chyba, że scenariusz wyraźnie powie inaczej)."
           }
         ]
       ],
@@ -1152,77 +908,55 @@
     },
     {
       "id": "99",
-      "isDirect": false,
       "accessibleFrom": ["9"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Jest roztrzęsiony i sprawia wrażenie, jakby jeszcze nie mógł otrząsnąć się z szoku. Ślady walki o życie i przerażające wspomnienia malowały się na jego twarzy. Wybierz jedną z opcji spośród:"
+            "text": "Jest roztrzęsiony i sprawia wrażenie, jakby jeszcze nie mógł otrząsnąć się z szoku. Ślady walki o życie i przerażające wspomnienia malowały się na jego twarzy. Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Spytaj jak się czuje (przejdź do paragrafu <span class='color-green'>80</span>)",
+          "text": "Spytaj jak się czuje (przejdź do paragrafu <span class='color-green'>80</span>)",
           "nextParagraphId": "80"
         },
         {
-          "html": "Spytaj go czy pamięta jak się tu znaleźli (przejdź do paragrafu <span class='color-green'>112</span>)",
+          "text": "Spytaj go czy pamięta jak się tu znaleźli (przejdź do paragrafu <span class='color-green'>112</span>)",
           "nextParagraphId": "112"
         },
         {
-          "html": "<strong>(Wybierz tylko jeśli na planszy znajduje się <item id='50'/>)</strong> Nakłoń go, aby pomógł Ci wyważyć drzwi stojące na drodze (przejdź do paragrafu <span class='color-green'>55</span>)",
+          "text": "<strong>(Wybierz tylko jeśli na planszy znajduje się <item id='50'/>)</strong> Nakłoń go, aby pomógł Ci wyważyć drzwi stojące na drodze (przejdź do paragrafu <span class='color-green'>55</span>)",
           "nextParagraphId": "55"
         },
         {
-          "html": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami.",
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami.",
           "nextParagraphId": ""
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "100",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Śmierć. Sprawdź kogo dotyczy."
+            "text": "Śmierć. Sprawdź kogo dotyczy."
           },
           {
-            "type": "text",
-            "html": "<strong><person id='klaun'/></strong> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
+            "text": "<person id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
           },
           {
-            "type": "text",
-            "html": "<strong><person id='jessica'/> / <person id='patrick'/></strong> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+            "text": "<person id='jessica'/> / <person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
           },
           {
-            "type": "image",
-            "id": "rana-ciezka"
+            "image": "rana-ciezka"
           },
           {
-            "type": "text",
-            "html": "Jeśli obie postacie takowy posiadają przejdź do <span class='color-green'>180</span>."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "101",
-      "isDirect": false,
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "type": "text",
-            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+            "text": "Jeśli obie postacie takowy posiadają przejdź do <span class='color-green'>180</span>."
           }
         ]
       ],
@@ -1230,51 +964,40 @@
     },
     {
       "id": "105",
-      "isDirect": false,
       "accessibleFrom": ["1"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wyłóż planszę 2<letter id='a'/> na <span class='color-purple'>E</span>. Odrzuć <item id='121'/>."
+            "text": "Wyłóż planszę 2<letter id='a'/> na <span class='color-purple'>E</span>. Odrzuć <item id='121'/>."
           },
           {
-            "type": "text",
-            "html": "Pamiętaj o przestawieniu swojej figurki do nowo odkrytej planszy."
+            "text": "Pamiętaj o przestawieniu swojej figurki do nowo odkrytej planszy."
           },
           {
-            "type": "text",
-            "html": "Na środku planszy 2 wyłóż: <item id='61'/> oraz <item id='123'/>."
+            "text": "Na środku planszy 2 wyłóż: <item id='61'/> oraz <item id='123'/>."
           },
           {
-            "type": "text",
-            "html": "Na <span class='color-purple'>E</span> planszy 2 wyłóż żeton planszy <item id='50'/>."
+            "text": "Na <span class='color-purple'>E</span> planszy 2 wyłóż żeton planszy <item id='50'/>."
           },
           {
-            "type": "text",
-            "html": "Umieść żeton Patricka w plastikowej podstawce. Połóż jego figurkę leżącą na środku planszy 2. Posiada <symbol id='paragraf'/>, więc można go również wskazywać w ramach akcji (dobierając wierzchnią kartę z talii). Przedmioty (kwadratowe żetony) możesz również wskazywać zarówno, gdy leżą na planszy / w twoim ekwipunku / w cudzym ekwipunku postaci, która znajduje się na planszy z Twoją figurką."
+            "text": "Umieść żeton Patricka w plastikowej podstawce. Połóż jego figurkę leżącą na środku planszy 2. Posiada <symbol id='paragraf'/>, więc można go również wskazywać w ramach akcji (dobierając wierzchnią kartę z talii). Przedmioty (kwadratowe żetony) możesz również wskazywać zarówno, gdy leżą na planszy / w twoim ekwipunku / w cudzym ekwipunku postaci, która znajduje się na planszy z Twoją figurką."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Patrick! - krzyknęła. Ty żyjesz!"
+            "text": "Patrick! - krzyknęła. Ty żyjesz!"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Nie odwzajemnił tego, bo leżał nieprzytomny. Natychmiast wykluczyła wersję w której mógł ją porwać. Żałuje, że zdecydowała się na chwilę drzemki w aucie, bo teraz nie ma pojęcia co mogło się wydarzyć."
+            "text": "Nie odwzajemnił tego, bo leżał nieprzytomny. Natychmiast wykluczyła wersję w której mógł ją porwać. Żałuje, że zdecydowała się na chwilę drzemki w aucie, bo teraz nie ma pojęcia co mogło się wydarzyć."
           },
           {
-            "type": "text",
-            "html": "Teren się nieco rozrósł. Pamiętaj, że można się przemieszczać korzystając z akcji \"Ruch\". Wszystko opowie Ci karta ogólnych akcji."
+            "text": "Teren się nieco rozrósł. Pamiętaj, że można się przemieszczać korzystając z akcji \"Ruch\". Wszystko opowie Ci karta ogólnych akcji."
           },
           {
-            "type": "image",
-            "id": "karty-akcji"
+            "image": "karty-akcji"
           },
           {
-            "type": "text",
-            "html": "<span class='color-red'>Znajdź sposób na przejście dalej.</span>"
+            "text": "<span class='color-red'>Znajdź sposób na przejście dalej.</span>"
           }
         ]
       ],
@@ -1282,27 +1005,22 @@
     },
     {
       "id": "110",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Odsuwaliście od siebie tę myśl. W końcu całe życie było przed wami."
+            "text": "Odsuwaliście od siebie tę myśl. W końcu całe życie było przed wami."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "W końcu zaczyna to docierać."
+            "text": "W końcu zaczyna to docierać."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Vy … vy chyba nie żyjecie. Na chwilę przed zderzeniem czołowym z autem jadącym swoim pasem wybudził Cię krzyk Patricka. Wiedziałaś, że wpuszczenie go do auta w tym stanie nie jest dobrym pomysłem, ale obiecał, że będzie jechał powoli. Na trasie miewał momenty, gdy bardziej kierowało go auto niż on sam. Miałaś jednak nadzieję, że skoro było niedaleko, to uznałaś, że będzie dobrze i zmęczona zabawą się zdrzemniesz."
+            "text": "Wy ... wy chyba nie żyjecie. Na chwilę przed zderzeniem czołowym z autem jadącym swoim pasem wybudził Cię krzyk Patricka. Wiedziałaś, że wpuszczenie go do auta w tym stanie nie jest dobrym pomysłem, ale obiecał, że będzie jechał powoli. Na trasie miewał momenty, gdy bardziej kierowało go auto niż on sam. Miałaś jednak nadzieję, że skoro było niedaleko, to uznałaś, że będzie dobrze i zmęczona zabawą się zdrzemniesz."
           },
           {
-            "type": "text",
-            "html": "Odrzuć <item id='110'/>. Jeśli masz niewykorzystane akcje, wykorzystaj je."
+            "text": "Odrzuć <item id='110'/>. Jeśli masz niewykorzystane akcje, wykorzystaj je."
           }
         ]
       ],
@@ -1310,81 +1028,75 @@
     },
     {
       "id": "111",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Kamienna tabliczka z następującą treścią:"
+            "text": "Kamienna tabliczka z następującą treścią:"
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "\"Dusze czekają w mękach swych lichych. Nie potępione, lecz nie zbawione. Ile ich czeka na wybawienie, by w końcu ujrzeć niebo - zbawienie?\"."
+            "text": "\"Dusze czekają w mękach swych lichych. Nie potępione, lecz nie zbawione. Ile ich czeka na wybawienie, by w końcu ujrzeć niebo - zbawienie?\"."
           },
           {
-            "type": "text",
-            "html": "Tuż pod napisem znajdują się klawisze z cyframi z przedziału od 3 do 15. Chcesz któryś wcisnąć? Wybierz jedną z opcji spośród:"
+            "text": "Tuż pod napisem znajdują się klawisze z cyframi z przedziału od 3 do 15. Chcesz któryś wcisnąć? Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Trzy?",
+          "text": "Trzy?",
           "nextParagraphId": "52"
         },
         {
-          "html": "Pięć?",
+          "text": "Pięć?",
           "nextParagraphId": "81"
         },
         {
-          "html": "Sześć?",
+          "text": "Sześć?",
           "nextParagraphId": "126"
         },
         {
-          "html": "Siedem?",
+          "text": "Siedem?",
           "nextParagraphId": "3"
         },
         {
-          "html": "Osiem?",
+          "text": "Osiem?",
           "nextParagraphId": "36"
         },
         {
-          "html": "Dziewięć?",
+          "text": "Dziewięć?",
           "nextParagraphId": "62"
         },
         {
-          "html": "Dziesięć?",
+          "text": "Dziesięć?",
           "nextParagraphId": "15"
         },
         {
-          "html": "Jedenaście?",
+          "text": "Jedenaście?",
           "nextParagraphId": "101"
         },
         {
-          "html": "Dwanaście?",
+          "text": "Dwanaście?",
           "nextParagraphId": "73"
         },
         {
-          "html": "Trzynaście?",
+          "text": "Trzynaście?",
           "nextParagraphId": "155"
         },
         {
-          "html": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "112",
-      "isDirect": false,
       "accessibleFrom": ["99"],
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "<person id='patrick'/> Ostatnie co pamiętam to silne światło. Mam równie dużo pytań co ty."
+            "text": "<person id='patrick'/> Ostatnie co pamiętam to silne światło. Mam równie dużo pytań co ty."
           }
         ]
       ],
@@ -1392,13 +1104,11 @@
     },
     {
       "id": "113",
-      "isDirect": false,
       "accessibleFrom": ["82"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Książka zatytułowana \"Odkupienie\" autorstwa … no właśnie na okładce brakuje tytułu kogo. W środku są tylko puste kartki."
+            "text": "Książka zatytułowana \"Odkupienie\" autorstwa … no właśnie na okładce brakuje tytułu kogo. W środku są tylko puste kartki."
           }
         ]
       ],
@@ -1406,16 +1116,13 @@
     },
     {
       "id": "116",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Wyłóż planszę 1<letter id='a'/>. Na jego <span class='color-blue'>W</span> połóż <item id='111'/>. Na środku wyłóż 3 losowe <symbol id='losowe'/>."
+            "text": "Wyłóż planszę 1<letter id='a'/>. Na jego <span class='color-blue'>W</span> połóż <item id='111'/>. Na środku wyłóż 3 losowe <symbol id='losowe'/>."
           },
           {
-            "type": "text",
-            "html": "Zawsze są wykładane odkryte, chyba, że scenariusz powie inaczej. Użycie efektu <symbol id='losowe'/> zużywa jedną akcję."
+            "text": "Zawsze są wykładane odkryte, chyba, że scenariusz powie inaczej. Użycie efektu <symbol id='losowe'/> zużywa jedną akcję."
           }
         ]
       ],
@@ -1423,13 +1130,11 @@
     },
     {
       "id": "117",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Szeroki, nienaturalny uśmiech rozciąga się od ucha do ucha, a jego spękana, kredowobiała skóra zdaje się być napięta do granic możliwości. Oczy? Zbyt duże, zbyt czarne, jakby nie miały dna – otchłanie, w których odbija się strach tych, którzy na niego spojrzą. Jego kostium, kiedyś być może kolorowy, jest teraz przybrudzony, poplamiony czymś, czego lepiej nie identyfikować. Jego dłonie, zbyt długie i kościste, zakończone są paznokciami niczym cienkie ostrza. Pachnie czymś słodkim, ale zepsutym, jak wata cukrowa zmieszana z odorem rozkładu. Jedyne co chcesz teraz zrobić to uciekać jak najdalej od tego czegoś."
+            "text": "Szeroki, nienaturalny uśmiech rozciąga się od ucha do ucha, a jego spękana, kredowobiała skóra zdaje się być napięta do granic możliwości. Oczy? Zbyt duże, zbyt czarne, jakby nie miały dna – otchłanie, w których odbija się strach tych, którzy na niego spojrzą. Jego kostium, kiedyś być może kolorowy, jest teraz przybrudzony, poplamiony czymś, czego lepiej nie identyfikować. Jego dłonie, zbyt długie i kościste, zakończone są paznokciami niczym cienkie ostrza. Pachnie czymś słodkim, ale zepsutym, jak wata cukrowa zmieszana z odorem rozkładu. Jedyne co chcesz teraz zrobić to uciekać jak najdalej od tego czegoś."
           }
         ]
       ],
@@ -1437,17 +1142,14 @@
     },
     {
       "id": "121",
-      "isDirect": false,
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Starszy mężczyzna. Nie kojarzysz go. Sądząc po licznych ranach, kałuży krwi pod nim musi być martwy. Brakuje mu prawej dłoni."
+            "text": "Starszy mężczyzna. Nie kojarzysz go. Sądząc po licznych ranach, kałuży krwi pod nim musi być martwy. Brakuje mu prawej dłoni."
           },
           {
-            "type": "text",
-            "html": "<span class='color-red'>Opuść paragraf</span> (ilekroć nie prowadzi dalej, oznacza to, że możesz zająć się teraz czymś innym; nie przywraca ci to akcji wykorzystanej na sprawdzenie paragrafu)."
+            "text": "<span class='color-red'>Opuść paragraf</span> (ilekroć nie prowadzi dalej, oznacza to, że możesz zająć się teraz czymś innym; nie przywraca ci to akcji wykorzystanej na sprawdzenie paragrafu)."
           }
         ]
       ],
@@ -1455,82 +1157,60 @@
     },
     {
       "id": "123",
-      "isDirect": false,
       "accessibleFrom": ["105"],
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Rzeźba, której brak prawej ręki."
+            "text": "Rzeźba, której brak prawej ręki."
           },
           {
-            "type": "text",
-            "html": "Wybierz jedną z opcji spośród:"
+            "text": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Tylko jeśli na planszy znajdują się <item id='50'/> dowolna z postaci na tej planszy posiada przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='123'/>. Następnie przejdź do paragrafu <span class='color-green'>65</span>.",
+          "text": "Tylko jeśli na planszy znajdują się <item id='50'/> dowolna z postaci na tej planszy posiada przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='123'/>. Następnie przejdź do paragrafu <span class='color-green'>65</span>.",
           "nextParagraphId": "65"
         },
         {
-          "html": "Opuszczam paragraf.",
+          "text": "Opuszczam paragraf.",
           "nextParagraphId": ""
         }
       ]
     },
     {
-      "id": "126",
-      "isDirect": false,
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "type": "text",
-            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
       "id": "137",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Biblioteczka z mnóstwem pozycji do wyboru. Cała półka wydaje się wypełniona w całości poza jednym miejscem. Wygląda jakby brakowało czegoś."
+            "text": "Biblioteczka z mnóstwem pozycji do wyboru. Cała półka wydaje się wypełniona w całości poza jednym miejscem. Wygląda jakby brakowało czegoś."
           },
           {
-            "type": "text",
-            "html": "Wybierz jedną z opcji spośród:"
+            "text": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Tylko jeśli posiadasz jakikolwiek przedmiot w ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='137'/>. Następnie przejdź do paragrafu <span class='color-green'>34</span>.",
+          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='137'/>. Następnie przejdź do paragrafu <span class='color-green'>34</span>.",
           "nextParagraphId": "34"
         },
         {
-          "html": "Opuszczam paragraf.",
+          "text": "Opuszczam paragraf.",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "147",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Starszy mężczyzna, którego już wcześniej widziałaś. Dlaczego masz wrażenie, że przeżywasz jakieś deja vu i już … już to robiłaś?"
+            "text": "Starszy mężczyzna, którego już wcześniej widziałaś. Dlaczego masz wrażenie, że przeżywasz jakieś deja vu i już … już to robiłaś?"
           }
         ]
       ],
@@ -1538,41 +1218,22 @@
     },
     {
       "id": "151",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
             "style": "italic",
-            "html": "Wszystko już pamiętasz. Wybudziłaś się w momencie, gdy Patrick stracił kontrolę i zjechał akurat na cudzy pas taranując czołowo jadącego w drugim aucie starszego mężczyznę. Pamiętasz go, bo na ułamek sekundy zdążyłaś spojrzeć mu w oczy."
+            "text": "Wszystko już pamiętasz. Wybudziłaś się w momencie, gdy Patrick stracił kontrolę i zjechał akurat na cudzy pas taranując czołowo jadącego w drugim aucie starszego mężczyznę. Pamiętasz go, bo na ułamek sekundy zdążyłaś spojrzeć mu w oczy."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Pamiętasz zderzenie. Mężczyzna wyleciał przednią szybą wprost na asfalt. Wy z kolei utknęliście w aucie, które zaczęło płonąć. Na nic były wasze krzyki połączone z rozpaczliwym kopaniem w zakleszczone drzwi, które nie chciały drgnąć."
+            "text": "Pamiętasz zderzenie. Mężczyzna wyleciał przednią szybą wprost na asfalt. Wy z kolei utknęliście w aucie, które zaczęło płonąć. Na nic były wasze krzyki połączone z rozpaczliwym kopaniem w zakleszczone drzwi, które nie chciały drgnąć."
           },
           {
-            "type": "text",
             "style": "italic",
-            "html": "Płonęliście żywcem wiedząc, że nie ma wyjścia z tej sytuacji. Wiedzieliście, że to koniec, ale ten mimo waszych błagań nie chciał nadejść. Kiedy już więc do niego doszło, trafiliście tutaj. Wydaje się, że rozumiesz czym może być to miejsce. Nie jesteś złą osobą i nie powinno Cię tu być. Nie zamierzasz pokutować, ani przepraszać. Zamierasz zrobisz wszystko, aby opuścić to miejsce."
+            "text": "Płonęliście żywcem wiedząc, że nie ma wyjścia z tej sytuacji. Wiedzieliście, że to koniec, ale ten mimo waszych błagań nie chciał nadejść. Kiedy już więc do niego doszło, trafiliście tutaj. Wydaje się, że rozumiesz czym może być to miejsce. Nie jesteś złą osobą i nie powinno Cię tu być. Nie zamierzasz pokutować, ani przepraszać. Zamierasz zrobisz wszystko, aby opuścić to miejsce."
           },
           {
-            "type": "text",
-            "html": "<span style='font-size: larger;'><span class='color-red'><strong>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</strong></span></span>"
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "155",
-      "isDirect": false,
-      "accessibleFrom": ["111"],
-      "contentPages": [
-        [
-          {
-            "type": "text",
-            "html": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
+            "text": "<span class='size-xl color-red'>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</span>"
           }
         ]
       ],
@@ -1580,63 +1241,53 @@
     },
     {
       "id": "173",
-      "isDirect": true,
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Sterta książek."
+            "text": "Sterta książek."
           },
           {
-            "type": "text",
-            "html": "Wybierz jedną z opcji spośród:"
+            "text": "Wybierz jedną z opcji spośród:"
           }
         ]
       ],
       "choices": [
         {
-          "html": "Zacznij przeszukiwać w poszukiwaniu czegoś przydatnego (przejdź do <span class='color-green'>82</span>)",
+          "text": "Zacznij przeszukiwać w poszukiwaniu czegoś przydatnego (przejdź do <span class='color-green'>82</span>)",
           "nextParagraphId": "82"
         },
         {
-          "html": "Dobierz jeden losowy <symbol id='losowe'/>. Możesz położyć go w ekwipunku.",
+          "text": "Dobierz jeden losowy <symbol id='losowe'/>. Możesz położyć go w ekwipunku.",
           "nextParagraphId": ""
         },
         {
-          "html": "Opuszczam paragraf.",
+          "text": "Opuszczam paragraf.",
           "nextParagraphId": ""
         }
       ]
     },
     {
       "id": "180",
-      "isDirect": false,
       "accessibleFrom": ["69", "100"],
       "contentPages": [
         [
           {
-            "type": "text",
-            "html": "Odrzuć wszystkie plansze <strong>inne</strong> niż 12,14 i 2. Odrzuć wszystkie elementy na odrzuconych planszach. Odrzuć <item id='69'/>. Połóż figurkę <person id='patrick'/> leżącą na planszy 2<letter id='a'/>."
+            "text": "Odrzuć wszystkie plansze <strong>inne</strong> niż 12,14 i 2. Odrzuć wszystkie elementy na odrzuconych planszach. Odrzuć <item id='69'/>. Połóż figurkę <person id='patrick'/> leżącą na planszy 2<letter id='a'/>."
           },
           {
-            "type": "text",
-            "html": "Na planszy 12<letter id='a'/> wyłóż stojącą figurkę <person id='jessica'/>, a na <span class='color-blue'>E</span> wyłóż <symbol id='drzwi-otwarte'/> (zastąp inny element jeśli był)."
+            "text": "Na planszy 12<letter id='a'/> wyłóż stojącą figurkę <person id='jessica'/>, a na <span class='color-blue'>E</span> wyłóż <symbol id='drzwi-otwarte'/> (zastąp inny element jeśli był)."
           },
           {
-            "type": "text",
-            "html": "Na środku planszy 14<letter id='a'/> wyłóż <item id='147'/>."
+            "text": "Na środku planszy 14<letter id='a'/> wyłóż <item id='147'/>."
           },
           {
-            "type": "text",
-            "html": "Na <span class='color-blue'>E</span> planszy 2<letter id='a'/> wyłóż <symbol id='drzwi-otwarte'/> (zastąp inny element jeśli był) i na środku połóż tam leżącą figurkę Patricka."
+            "text": "Na <span class='color-blue'>E</span> planszy 2<letter id='a'/> wyłóż <symbol id='drzwi-otwarte'/> (zastąp inny element jeśli był) i na środku połóż tam leżącą figurkę Patricka."
           },
           {
-            "type": "text",
-            "html": "Na środku planszy 14<letter id='a'/> wyłóż żeton priorytetu <item id='110'/>, a na środku planszy 2<letter id='a'/> żeton priorytetu <item id='151'/> (o tym jak działają przeczytasz nieco niżej)."
+            "text": "Na środku planszy 14<letter id='a'/> wyłóż żeton priorytetu <item id='110'/>, a na środku planszy 2<letter id='a'/> żeton priorytetu <item id='151'/> (o tym jak działają przeczytasz nieco niżej)."
           },
           {
-            "type": "text",
-            "html": "Turę rozgrywa już wyłącznie Jessica."
+            "text": "Turę rozgrywa już wyłącznie Jessica."
           }
         ]
       ],

@@ -2,17 +2,19 @@
   "paragraphs": [
     {
       "id": "1",
-      "isDirect": true,
       "text": "Budzisz się w swoim [item:łóżku]]. Noc jest absolutnie czarna. Droga do okna to tylko kilka kroków, ale czujesz że coś nie jest w porządku. Powietrze jest gęste, a w kącie pokoju słychać cichy szept.",
       "choices": [
         { "id": "c1", "text": "Włącz światło", "nextParagraphId": "2" },
         { "id": "c2", "text": "Wstań ostrożnie", "nextParagraphId": "3" },
-        { "id": "c3", "text": "Zostań w łóżku i słuchaj", "nextParagraphId": "4" }
+        {
+          "id": "c3",
+          "text": "Zostań w łóżku i słuchaj",
+          "nextParagraphId": "4"
+        }
       ]
     },
     {
       "id": "2",
-      "isDirect": true,
       "text": "Światło rozprasza ciemność. Pokój wygląda normalnie, ale [figure:coś jest nie tak]]. Twoje odbicie w lustrze miga. Czy to naprawdę Ty?",
       "accessibleFrom": ["1"],
       "choices": [
@@ -22,7 +24,6 @@
     },
     {
       "id": "3",
-      "isDirect": true,
       "text": "Powoli wychodzisz z łóżka. Podłoga jest zimna i lepka. W mroku widzisz [item:otwarcie drzwi]] do korytarza. Tam czeka noc.",
       "accessibleFrom": ["1"],
       "choices": [
@@ -31,28 +32,27 @@
     },
     {
       "id": "4",
-      "isDirect": true,
       "text": "Szept się wzmacnia. To robi się coraz głośniejsze. [figure:Coś]] powoli zbliża się do Twojego łóżka.",
       "accessibleFrom": ["1"],
       "choices": []
     },
     {
       "id": "5",
-      "isDirect": false,
       "accessibleFrom": ["2"],
       "text": "To nie było Twoje odbicie. Coś innego patrzało z drugiej strony lustra. Teraz jest tutaj."
     },
     {
       "id": "6",
-      "isDirect": false,
       "accessibleFrom": ["2"],
       "text": "Uciekasz z domu o północy. Możliwe że przetrwałeś... ale co Cię będzie czekać jutro?"
     },
     {
       "id": "7",
-      "isDirect": false,
       "accessibleFrom": ["3"],
       "text": "Korytarz rozciąga się bez końca. Wreszcie rozumiesz: nigdy stąd nie wyjdziesz."
     }
   ]
 }
+
+
+

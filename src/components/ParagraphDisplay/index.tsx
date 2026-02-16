@@ -47,16 +47,20 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     ? paragraph.contentPages[currentPage]
     : paragraph.content;
 
+  const paragraphIdStr = Array.isArray(paragraph.id)
+    ? paragraph.id.join(", ")
+    : paragraph.id;
+
   return (
     <>
       <article
         className="paragraph-display game__setup-step"
-        aria-label={`Paragraf ${paragraph.id}`}
+        aria-label={`Paragraf ${paragraphIdStr}`}
       >
         {paragraph.image && (
           <img
             src={paragraph.image}
-            alt={`Ilustracja do paragrafu ${paragraph.id}`}
+            alt={`Ilustracja do paragrafu ${paragraphIdStr}`}
             className="paragraph-image"
           />
         )}
@@ -203,11 +207,12 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
                 className="button button--primary"
                 aria-label={choice.text || ""}
               >
-                {choice.html ? (
-                  <>
-                    <RichText text={choice.html} scenarioId={scenarioId} />
-                    {choice.text && <span>{choice.text}</span>}
-                  </>
+                {choice.text && choice.text.includes("<") ? (
+                  <RichText
+                    text={choice.text}
+                    scenarioId={scenarioId}
+                    noSpacing
+                  />
                 ) : (
                   choice.text
                 )}
