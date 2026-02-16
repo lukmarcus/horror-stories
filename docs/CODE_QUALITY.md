@@ -111,7 +111,7 @@ import { Paragraph, Choice, parseParagraphText } from "../types";
 - Props interfaces: `ComponentNameProps` (np. `MyComponentProps`)
 - Hooks: `useHookName` (np. `useGame`)
 
-### Strukturu Komponentu
+### Struktura Komponentu
 
 ```typescript
 // 1. Importy
@@ -379,7 +379,115 @@ export async function loadScenario(scenarioId: string): Promise<Scenario> {
 - Bez testów (dodaj testy najpierw!)
 - Na ostatni moment przed deadline
 
-## 14. Continuous Integration
+## 14. Scenario JSON Schema (v0.0.10+)
+
+### Struktura Paragrafu
+
+```typescript
+interface Paragraph {
+  id: string | string[]; // String lub array dla wielokrotnych ID-ów
+  text: string; // Główny tekst paragrafu
+  contentPages?: ContentBlock[][]; // Dla wielostronicowych paragrafów
+  content?: ContentBlock[]; // Zawartość paragrafów (tekst, obrazy, etc)
+  choices?: Choice[]; // Dostępne wybory dla gracza
+  accessibleFrom?: number[]; // ID-y paragrafów z których można tu dojść
+}
+
+interface ContentBlock {
+  text?: string; // Tekst (może zawierać tagi HTML: <em>, <strong>, itd)
+  size?: "small" | "normal" | "large";
+  style?: "italic" | "normal";
+  image?: string; // ID obrazu
+  spacing?: "none"; // Brak marginesu pod tym blokiem
+}
+
+interface Choice {
+  next: number; // ID paragrafu docelowego
+  text: string; // Tekst przycisku (może zawierać HTML)
+  condition?: string; // Warunek (np. diceThreshold)
+}
+```
+
+### Multi-ID Paragraphs
+
+Gdy ten sam tekst powinien być dostępny z wielu źródeł, używaj array ID:
+
+```json
+{
+  "id": [9, "9-jessica", "9-patrick"],
+  "text": "Historia dla obu postaci...",
+  "choices": [{ "next": 26, "text": "Idę do kuchni" }]
+}
+```
+
+**Zastosowanie:** Konsolidacja duplikatów paragrafów dla Jessica/Patrick.
+
+### Spacing Control
+
+Pole `spacing: "none"` wyłącza margines dolny bloku (ważne przed przyciskami):
+
+```json
+{
+  "id": 5,
+  "content": [
+    {
+      "text": "Ostatni akapit przed przyciskami"
+    },
+    {
+      "text": "Podpowiedź:",
+      "spacing": "none"
+    }
+  ],
+  "choices": [...]
+}
+```
+
+**Automatyka:** Ostatni blok w paragrafie automatycznie otrzymuje `spacing: "none"` przy ładowaniu (patrz `createParagraphMap()`).
+
+### Text Field Standardization
+
+**Stary format (przed v0.0.10):**
+
+```json
+{
+  "type": "text",
+  "html": "Tekst z <strong>HTML</strong>"
+}
+```
+
+**Nowy format (v0.0.10+):**
+
+```json
+{
+  "text": "Tekst z <strong>HTML</strong>"
+}
+```
+
+**Obsługiwane tagi HTML:**
+
+- `<em>` - kursywa
+- `<strong>` - pogrubienie
+- `<letter id="...">` - literka (symbol)
+- `<item id="...">` - przedmiot
+- `<image id="...">` - obrazek
+- `<span class="color-X">` - kolory (CSS klasy)
+
+### Choice Formatting
+
+Choices mogą zawierać HTML w polu `text`:
+
+```json
+{
+  "next": 26,
+  "text": "Idę do <strong>kuchni</strong>"
+}
+```
+
+Komponent automatycznie renderuje HTML jeśli `text` zawiera `<`.
+
+---
+
+## 15. Continuous Integration
 
 ### Testy przed commitem
 
@@ -396,4 +504,4 @@ npm run lint
 
 ---
 
-**Ostatnia aktualizacja:** 2026-02-15
+**Ostatnia aktualizacja:** 2026-02-16

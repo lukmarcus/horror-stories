@@ -9,44 +9,21 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.10] - 2026-02-16
 
+### Dodano
+
+- Kontrola spacingu między zawartością - bardziej przejrzysta wizualizacja paragrafów
+- Wsparcie dla wielokrotnych ID paragrafów - umożliwia ponowne użycie identycznej zawartości
+
 ### Zmieniono
 
-- **Refactoring schematu JSON** - uproszczenie i optymalizacja struktury danych
-  - Usunięto redundantne pole `isDirect` - teraz inferred z obecności `accessibleFrom`
-  - Uproszczono strukturę obrazów: `{type: "image", id}` → `{image: id}`
-  - Uproszczono strukturę tekstu: `{type: "text", html}` → `{text: html}`
-  - Zastąpiono tagi tokenów semantycznymi: `<token>` → `<letter>`, `<item>`, `<image>`
-  - Stosowanie domyślnego pogrubienia dla kolorów poprzez CSS zamiast `<strong>` wrapperów
-- **Wsparcie dla wielokrotnych ID-ów** - paragrafy o identycznej treści dostępne z różnych źródeł mają teraz array ID
-- **Kontrola spacingu między blokami treści** - dodano pole `spacing: "none"` dla bloku, automatycznie zastosowany do ostatniego bloku paragrafu
-
-### Dodane
-
-- Type support dla `spacing?: "none"` w interfejsie `ContentBlock`
-- CSS rules dla `spacing-none` na text i image blocks
-- `noSpacing` prop do RichText component dla wyłączenia margesów w buttonach/choices
-- Automatyczne stosowanie `spacing: "none"` do ostatniego bloku w `createParagraphMap()`
+- Ulepszone renderowanie tekstu (kursywa, kolory, rozmiary)
+- Optymalizacja struktury danych scenariuszy
 
 ### Poprawiono
 
-- Usunięto niezamierzone margesy przed przyciskami wyboru
-- Naprawiono obsługę `contentPages` (dwuwymiarowa tablica) w logice spacingu
-- Wyeliminowano duplikaty paragrafów poprzez konsolidację ID-ów (9 duplikatów → 1 wpis z array ID)
-- Naprawiono brakujący ID (null) w paragrafie 180
-- **Konwertowanie starych formatów na nowy** - zamiana `"type": "text"` z `"html"` na `"text"` w paragrafach i setupie
-- **Naprawienie renderowania HTML** - italic tekst teraz wyświetla się prawidłowo poprzez `<em>` zamiast `<span style>`
-- **Scalenie duplikatów pól w choices** - dwa oddzielne pola `"text"` w wyborach postaci scalone w jedno z newline
-- **Obsługa HTML w wyborach** - choices teraz prawidłowo renderują znaczniki HTML w polu `"text"`
-
-### Dokumentacja
-
-- Zaktualizowano CODE_QUALITY.md z wytycznymi struktury i standardów kodowych
-- Dodano Backlog sekcję w ROADMAP z potencjalnymi ulepszeniami UI/UX i schematu
-
-### Status
-
-- 🎯 UKOŃCZONO Phase 1 (5/5) i Phase 2 (7/10 zadań) - v0.0.10 milestone
-- Testy: 129/129 ✅
+- Marginesy przed przyciskami wyboru
+- Renderowanie tekstu kursywnego
+- Duplikaty tekstu w wyborach
 
 ---
 
@@ -60,7 +37,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.8] - 2026-02-12
 
-### Dodane
+### Dodano
 
 - Aplikacja dostępna na GitHub Pages
 - Kompletny scenariusz "Droga Donikąd" - pełna rozgrywka z 67 paragrafami
@@ -84,7 +61,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.7] - 2026-02-01
 
-### Dodane
+### Dodano
 
 - Instrukcje ustawienia gry z wizardem krok-po-kroku
 - 18 kroków setupu dla scenariusza "Droga Donikąd" - wyjaśnienie wszystkich reguł gry
@@ -100,7 +77,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.6] - 2026-01-28
 
-### Dodane
+### Dodano
 
 - Lepsze komunikaty błędów - wyszczególnienie dostępnych numerów paragrafów
 - Wsparcie dla screen readers i asystentów dostępu
@@ -112,14 +89,13 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ### Poprawiono
 
-- 26 testów edge case scenariuszy - większa niezawodność gry
 - Obsługa granicznych przypadków logiki kostki i warunków paragrafów
 
 ---
 
 ## [0.0.5] - 2026-01-27
 
-### Dodane
+### Dodano
 
 - ConditionalChoice component - pytania yes/no w paragrafach
 - Warunkowa logika wyboru - różne paragrafy dla odpowiedzi TAK/NIE
@@ -130,7 +106,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.4] - 2026-01-27
 
-### Dodane
+### Dodano
 
 - DiceRoller component - kostka k6 z animacją obrotu
 - Wyświetlanie wyniku rzutu na ekranie
@@ -142,7 +118,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.3] - 2026-01-25
 
-### Dodane
+### Dodano
 
 - Input screen do wyboru numeru paragrafu z instrukcjami scenariusza
 - Paragraph screen do czytania tekstu paragrafu z opcjami wyboru
@@ -158,7 +134,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.2] - 2026-01-25
 
-### Dodane
+### Dodano
 
 - Paragraph Parser utility - obsługa tagów `[item:]`, `[figure:]`, `[board:]`, `[token:]`
 - ParagraphText component - renderowanie tekstu z kolorowymi tagami
@@ -169,7 +145,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.1] - 2026-01-24
 
-### Dodane
+### Dodano
 
 - Komponenty UI: Button (5 wariantów), Header (z logo i nawigacją), Footer
 - Page layouts: Home, Instructions, About, ScenariosList, ScenarioSetup, Game
@@ -188,7 +164,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.0] - 2026-01-24
 
-### Dodane
+### Dodano
 
 - Inicjalizacja projektu Vite + React 18 + TypeScript
 - Setup React Router z 6 stronami

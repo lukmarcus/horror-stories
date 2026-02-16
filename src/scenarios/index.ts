@@ -110,8 +110,8 @@ export const PARAGRAPHS: Record<string, Record<string, Paragraph>> = {
 type SetupStep = {
   stepNumber: number;
   content?: Array<{
-    type: "text" | "image" | "symbol" | "token";
-    html?: string;
+    type?: "image" | "letter" | "item";
+    text?: string;
     id?: string;
     size?: "xs" | "sm" | "lg" | "xl";
     style?: "bold" | "italic" | "underline";

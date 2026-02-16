@@ -6,63 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.10 - Code Quality & Codebase Cleanup
-
-### Zakres
-
-Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na dwie fazy:
-
-#### Faza 1: Porządki w Kodzie (Quick Wins)
-
-- **Usunąć placeholder componenty** - `src/components/Paragraph/index.tsx` i `src/components/AudioPlayer/index.tsx` (nigdy nieuużywane)
-- **Standaryzować exporty** - Zmienić `export default` w `Instructions.tsx` i `About.tsx` na `export const` (konsystencja z innymi stronami)
-- **Barrel exports dla modułów** - Dodać `src/hooks/index.ts` i `src/utils/index.ts` (ograniczyć deep imports)
-- **Zaktualizować About.tsx** - Dynamicznie wczytywać wersję z `package.json` zamiast hardkodowanego v0.0.1
-- **Dokumentacja CODE_QUALITY** - Stwierdzić `docs/CODE_QUALITY.md` z wytycznymi dla maintainability
-
-#### Faza 2: Refactoring Schematu JSON (Schema Optimization)
-
-- **Domyślne pogrubienie dla kolorów** - Usunąć zwielokrotnianie `<strong>` wokół kolorowych tekstów, zastosować CSS global
-- **accessibleFrom implikuje isDirect** - Pole isDirect staje się redundantne, usunąć je dla paragrafów które mają accessibleFrom
-- **Uproszczenie struktury obrazów** - Zmiana z `{type: "image", id: "..."}` na `"image": "id"`
-- **Uproszczenie struktury tekstu** - Zmiana z `{type: "text", html: "..."}` na `"text": "..."`
-- **Wsparcie dla wielokrotnych ID** - Umożliwić tablicę ID-ów dla paragrafów o identycznej treści ale dostępnych z różnych źródeł
-- **Wariantowe zawartość w jednym paragrafie** - Zamiast oddzielne paragrafy (26-jessica, 26-patrick), umożliwić warianty w jednym ID
-- **Opcjonalne odstępy między paragrafami** - Schemat kontrolowania spacingu/paddingu między zawartością paragrafów w UI
-- **Stylizacja tekstu końcowego** - Lepsze rozwiązanie na wyświetlanie fragmentów tekstu (paragraf 151)
-- **Refaktor ekranu direct: false** - Przeprojektować wizualnie ekran ostrzeżenia dostępności dla paragrafów z accessibleFrom
-
-### Do zrobienia
-
-#### Faza 1
-
-- ✅ Usunąć placeholder componenty (`Paragraph`, `AudioPlayer`)
-- ✅ Standaryzować exporty strony (Instructions, About → export const)
-- ✅ Dodać barrel exports: `src/hooks/index.ts`, `src/utils/index.ts`
-- ✅ Zaktualizować import w `src/components/common/index.ts` (Button)
-- ✅ Zmienić About.tsx: hardkod v0.0.1 → dynamicznie z package.json
-- ✅ Stworzyć `docs/CODE_QUALITY.md` z wytycznymi
-
-#### Faza 2
-
-- ✅ Usunąć redundantne pole `isDirect` (teraz inferred z `accessibleFrom`)
-- ✅ Uprościć strukturę obrazów: `{type: "image", id}` → `{image: id}`
-- ✅ Zamienit tokeny na semantic tags: `<token>` → `<letter>`, `<item>`, `<image>`
-- ✅ Uprościć strukturę tekstu: `{type: "text", html}` → `{text: html}`
-- ✅ Domyślne pogrubienie dla kolorów - CSS global zamiast `<strong>`
-- ✅ Wsparcie dla wielokrotnych ID
-- ✅ Opcjonalne odstępy między paragrafami - automatyczne `spacing: "none"` na ostatnim bloku
-- ✅ Bugfixy i standaryzacja formatów - konwersja JSON, naprawy renderowania HTML, standardizacja choices
-- ⏳ Wariantowe zawartość w jednym paragrafie
-- ⏳ Stylizacja tekstu końcowego
-- ⏳ Refaktor ekranu direct: false
-
-### Status
-
-- 🔄 W trakcie (Faza 1 ✅ ukończona, Faza 2 - 8/10 zadań, 3 zaplanowane na dalsze wersje)
-
----
-
 ## Milestone v0.0.11 - Organizacja przedmiotów i grafik
 
 ### Zakres
@@ -84,6 +27,28 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 ### Status
 
 - ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.0.12 - UI/UX Visual Improvements
+
+### Zakres
+
+- **Stylizacja tekstu końcowego** - Dedykowany wyświetlanie ostatnich paragrafów scenariusza
+- **Refaktor ekranu direct: false** - Ulepszone UI dla ostrzeżenia dostępności (paragraf 77 itp)
+- **Wariantowe zawartość** - Zaawansowana obsługa wariantów (warianty postaci w jednym paragrafie)
+
+### Do zrobienia
+
+- ⏳ End-game text styling - przeprojektować wyświetlanie tekstu końcowego (paragraf 151)
+- ⏳ Accessibility warning UI redesign - lepsze UI dla ekranu dostępności (direct: false)
+- ⏳ Variant content with merge logic - hierarchiczna struktura wariantów postaci
+- ⏳ Horizontal choices visual grouping - ramka/background dla choices poziomych
+- ⏳ Choice history tracking - wyświetlenie ostatnio dokonanego wyboru
+
+### Status
+
+- ⏳ Zaplanowana
 
 ---
 
@@ -176,33 +141,7 @@ Sprzątanie bazy kodowej i przygotowanie do refactoringu schematu, podzielone na
 ## Strategia gałęzi
 
 - **main** - Stabilne wydania (v0.1.0+)
-- **v0.0.9** - Aktualna rozbudowa
-
----
-
-## Backlog - Potencjalne Ulepszenia
-
-### UI/UX Improvements
-
-- **Horizontal choices - visual grouping** - Umieścić horizontal choices w ramce (border, background, padding) aby były bardziej wyróżnione
-- **Choice history tracking** - Po wyborze opcji, zapisać i wyświetlić na następnym paragrafie co gracz wybrał (np. "Wybrałeś: [wybór]")
-- **Wariantowe zawartość w paragrafach** - Zamiast oddzielnych ID-ów (np. 26-jessica, 26-patrick), umożliwić warianty z merge'em choices. Złożone ze względu na hierarchię wariantów (warianty w wariantach)
-- **Paragraph spacing control** - Pole w JSON do kontrolowania marginów/paddingu między paragrafami
-- **End-game text styling** - Dedykowany layout dla końcowych paragrafów scenariusza (np. paragraf 151 - "The End")
-- **Accessibility warning UI** - Przeprojektować wizualizację ekranu ostrzeżenia dostępności (direct: false)
-
-### Schema & Data Structure
-
-- **Document variant patterns** - Dokumentować istniejące warianty postaci (9-jessica, 9-patrick, 26-jessica, 26-patrick) w CODE_QUALITY.md
-- **Multiple IDs usage** - Monitorować gdzie są używane wielokrotne ID-y i optymalizować strukturę w przyszłości
-
-### Status
-
-- 🔄 W backlogu - niezaplanowane na konkretną wersję
-
----
-
----
+- **v0.0.10+** - Bieżący development
 
 ## Legenda
 
