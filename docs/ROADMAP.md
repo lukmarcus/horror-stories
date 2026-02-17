@@ -37,6 +37,9 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - **Stylizacja tekstu końcowego** - Dedykowany wyświetlanie ostatnich paragrafów scenariusza
 - **Refaktor ekranu direct: false** - Ulepszone UI dla ostrzeżenia dostępności (paragraf 77 itp)
 - **Wariantowe zawartość** - Zaawansowana obsługa wariantów (warianty postaci w jednym paragrafie)
+- **Browser history / back button** - Przycisk wstecz przeglądarki powraca do poprzedniego paragrafu
+- **Powrót z paragrafów niedostępnych** - Button "Wróć" dla paragrafów bez dostępu (`direct: false`)
+- **Input zamiast powrotu** - Dla paragrafów bez choices pokazać input zamiast "powrotu do gry"
 
 ### Do zrobienia
 
@@ -45,6 +48,9 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ⏳ Variant content with merge logic - hierarchiczna struktura wariantów postaci
 - ⏳ Horizontal choices visual grouping - ramka/background dla choices poziomych
 - ⏳ Choice history tracking - wyświetlenie ostatnio dokonanego wyboru
+- ⏳ Browser history support - Wdrożyć URL state (`?para=X`) dla pełnej obsługi historii przeglądarki
+- ⏳ Back button for inaccessible paragraphs - Button "Wróć" dla paragrafów z `direct: false`
+- ⏳ Input field for dead-end paragraphs - Zastąpić "powrót do gry" inputem dla paragrafów bez choices
 
 ### Status
 
@@ -113,7 +119,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 - Edytor scenariuszy
 - Wczytywanie własnych scenariuszy JSON
-- Zapis/wczyt postępu gry
+- Zapis/odczyt postępu gry
 - Wsparcie dla wielu języków
 
 ### Status

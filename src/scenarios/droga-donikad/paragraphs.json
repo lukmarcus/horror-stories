@@ -573,7 +573,6 @@
     },
     {
       "id": "50",
-      "accessibleFrom": ["123"],
       "contentPages": [
         [
           {
@@ -633,7 +632,6 @@
     },
     {
       "id": "61",
-      "accessibleFrom": ["40"],
       "contentPages": [
         [
           {
