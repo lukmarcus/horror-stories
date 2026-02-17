@@ -9,6 +9,10 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.0.11] - Zaplanowana
 
+### Dodano
+
+- Favicon - ikona aplikacji w przeglądarce
+
 ### Poprawiono
 
 - Logo aplikacji - naprawa ścieżki asetu poprzez import zamiast hardcoded path (best practice)
