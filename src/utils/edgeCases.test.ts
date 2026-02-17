@@ -72,7 +72,6 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
       const paragraph = {
         id: "5",
         text: "Complex paragraph",
-        isDirect: false,
         accessibleFrom: ["1", "2", "3", "4"],
       };
 
@@ -83,13 +82,10 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
     });
 
     it("should validate chain of accessible paragraphs", () => {
-      const paragraphs: Record<
-        string,
-        { isDirect?: boolean; accessibleFrom?: string[] }
-      > = {
-        "1": { isDirect: true },
-        "2": { isDirect: false, accessibleFrom: ["1"] },
-        "3": { isDirect: false, accessibleFrom: ["2"] },
+      const paragraphs: Record<string, { accessibleFrom?: string[] }> = {
+        "1": {},
+        "2": { accessibleFrom: ["1"] },
+        "3": { accessibleFrom: ["2"] },
       };
 
       // Can we trace 1 -> 2 -> 3?
@@ -108,7 +104,6 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
       // This would be bad data, but should be detected
       const paragraph = {
         id: "1",
-        isDirect: false,
         accessibleFrom: ["1"], // Self-referential
       };
 
@@ -123,7 +118,6 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
     it("should handle empty accessibleFrom array", () => {
       const paragraph = {
         id: "X",
-        isDirect: false,
         accessibleFrom: [],
       };
 

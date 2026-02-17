@@ -7,16 +7,13 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
     "1": {
       id: "1",
       text: "Start of scenario",
-      isDirect: true,
       choices: [
-        { id: "next", text: "Enter the building", nextParagraphId: "105" },
+        { id: "next", text: "Enter the building", nextParagraphId: "9" },
       ],
     },
     "9": {
       id: "9",
       text: "Who are you?",
-      isDirect: false,
-      accessibleFrom: ["26"],
       choices: [
         { id: "jessica", text: "Jessica", nextParagraphId: "9-jessica" },
         { id: "patrick", text: "Patrick", nextParagraphId: "9-patrick" },
@@ -25,21 +22,18 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
     "9-jessica": {
       id: "9-jessica",
       text: "Jessica awakens",
-      isDirect: false,
       accessibleFrom: ["9"],
       choices: [{ id: "next", text: "Continue", nextParagraphId: "26" }],
     },
     "9-patrick": {
       id: "9-patrick",
       text: "Patrick awakens",
-      isDirect: false,
       accessibleFrom: ["9"],
       choices: [{ id: "next", text: "Continue", nextParagraphId: "26" }],
     },
     "26": {
       id: "26",
       text: "Choose your character",
-      isDirect: false,
       accessibleFrom: ["9-jessica", "9-patrick"],
       areChoicesHorizontal: true,
       choices: [
@@ -58,21 +52,18 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
     "26-jessica": {
       id: "26-jessica",
       text: "Jessica's perspective",
-      isDirect: false,
       accessibleFrom: ["26"],
       choices: [{ id: "next", text: "Move forward", nextParagraphId: "50" }],
     },
     "26-patrick": {
       id: "26-patrick",
       text: "Patrick's perspective",
-      isDirect: false,
       accessibleFrom: ["26"],
       choices: [{ id: "next", text: "Move forward", nextParagraphId: "50" }],
     },
     "50": {
       id: "50",
       text: "Dead doors - dead end",
-      isDirect: false,
       accessibleFrom: ["26-jessica", "26-patrick"],
       choices: [{ id: "back", text: "Go back", nextParagraphId: "26" }],
     },
@@ -81,22 +72,22 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
   describe("Scenario entry points", () => {
     it("should have valid starting paragraph", () => {
       const startParagraph = scenarioParagraphs["1"];
-      expect(startParagraph.isDirect).toBe(true);
+      expect(startParagraph.accessibleFrom).toBeUndefined();
       expect(startParagraph.choices).toHaveLength(1);
-      expect(startParagraph.choices![0].nextParagraphId).toBe("105");
+      expect(startParagraph.choices![0].nextParagraphId).toBe("9");
     });
 
     it("should have first choice point accessible", () => {
       const firstChoice = scenarioParagraphs["9"];
-      expect(firstChoice.isDirect).toBe(false);
+      expect(firstChoice.accessibleFrom).toBeUndefined();
       expect(firstChoice.choices).toHaveLength(2);
     });
   });
 
   describe("Jessica's path", () => {
-    it("should navigate: 1 → 105 → ... → 26 → (Jessica) → 50", () => {
+    it("should navigate: 1 → 9 → 26 → (Jessica) → 50", () => {
       // Start
-      expect(scenarioParagraphs["1"].choices![0].nextParagraphId).toBe("105");
+      expect(scenarioParagraphs["1"].choices![0].nextParagraphId).toBe("9");
 
       // Character intro (mocked jump to 26)
       const characterHub = scenarioParagraphs["26"];
@@ -119,13 +110,12 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
 
     it("should verify Jessica variant is not directly accessible", () => {
       const jessicaVariant = scenarioParagraphs["9-jessica"];
-      expect(jessicaVariant.isDirect).toBe(false);
       expect(jessicaVariant.accessibleFrom).toEqual(["9"]);
     });
   });
 
   describe("Patrick's path", () => {
-    it("should navigate: 1 → 105 → ... → 26 → (Patrick) → 50", () => {
+    it("should navigate: 1 → 9 → 26 → (Patrick) → 50", () => {
       // Character hub
       const characterHub = scenarioParagraphs["26"];
       expect(characterHub.accessibleFrom).toContain("9-patrick");
@@ -147,7 +137,6 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
 
     it("should verify Patrick variant is not directly accessible", () => {
       const patrickVariant = scenarioParagraphs["9-patrick"];
-      expect(patrickVariant.isDirect).toBe(false);
       expect(patrickVariant.accessibleFrom).toEqual(["9"]);
     });
   });
@@ -187,9 +176,9 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
         p.accessibleFrom?.forEach((ref) => allReferences.add(ref));
       });
 
-      // Note: 105 is not in mock data (simplified scenario)
+      // All referenced paragraphs must be defined in mock
       const missingParagraphs = [...allReferences].filter(
-        (id) => !scenarioParagraphs[id] && id !== "105",
+        (id) => !scenarioParagraphs[id],
       );
       expect(missingParagraphs).toHaveLength(0);
     });
@@ -206,8 +195,8 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
         const current = toCheck.shift()!;
         const p = scenarioParagraphs[current];
 
-        if (p && p.isDirect !== false) {
-          // Only follow choices for direct paragraphs
+        if (p) {
+          // Follow choices for all reachable paragraphs
           p.choices?.forEach((c) => {
             if (
               c.nextParagraphId &&
@@ -225,16 +214,11 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
       // 1. Is direct and reachable, OR
       // 2. Is non-direct with valid accessibleFrom references
       Object.values(scenarioParagraphs).forEach((p) => {
-        if (p.isDirect !== false) {
+        if (p.accessibleFrom) {
           expect(reachable).toContain(p.id);
-        } else {
-          // Non-direct paragraphs should have accessibleFrom
-          expect(p.accessibleFrom).toBeDefined();
-          if (p.accessibleFrom) {
-            p.accessibleFrom.forEach((sourceId) => {
-              expect(scenarioParagraphs[sourceId]).toBeDefined();
-            });
-          }
+          p.accessibleFrom.forEach((sourceId) => {
+            expect(scenarioParagraphs[sourceId]).toBeDefined();
+          });
         }
       });
     });

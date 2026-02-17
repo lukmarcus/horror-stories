@@ -33,7 +33,7 @@ export interface DiceResult {
  * Content block for rich text paragraphs
  */
 export interface ContentBlock {
-  type?: "text" | "image" | "symbol" | "token";
+  type?: "text" | "image" | "letter" | "item";
   text?: string; // New format: simplified {text: "html"}
   html?: string; // Old format: kept for backward compatibility
   id?: string;

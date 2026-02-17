@@ -7,6 +7,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.11] - Zaplanowana
+
+### Poprawiono
+
+- Logo aplikacji - naprawa ścieżki asetu poprzez import zamiast hardcoded path (best practice)
+
+---
+
 ## [0.0.10] - 2026-02-16
 
 ### Dodano
