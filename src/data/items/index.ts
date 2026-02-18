@@ -1,7 +1,7 @@
-import storyItemsData from './storyItems.json';
-import locationsData from './locations.json';
-import randomItemsData from './randomItems.json';
-import symbolsData from './symbols.json';
+import storyItemsData from "./storyItems.json";
+import locationsData from "./locations.json";
+import randomItemsData from "./randomItems.json";
+import symbolsData from "./symbols.json";
 
 // Types
 export interface StoryItem {
@@ -10,14 +10,12 @@ export interface StoryItem {
   romanNumeral: string;
   description: string | null;
   paragraphId: number | null;
-  image: string;
 }
 
 export interface Location {
   id: string;
   name: string;
   paragraphId: number;
-  image: string;
 }
 
 export interface RandomItem {
@@ -25,13 +23,11 @@ export interface RandomItem {
   name: string;
   romanNumeral: string;
   description: string | null;
-  image: string;
 }
 
 export interface Symbol {
   id: string;
   name: string;
-  image: string;
 }
 
 // Exports
@@ -41,14 +37,79 @@ export const randomItems: RandomItem[] = randomItemsData.items;
 export const symbols: Symbol[] = symbolsData.symbols;
 
 // Helpers
-export const getStoryItem = (id: string): StoryItem | undefined =>
-  storyItems.find((item) => item.id === id);
+const getImagePath = (
+  id: string,
+  type: "items" | "locations" | "randomItems" | "symbols",
+): string => `/assets/images/${type}/${id}.png`;
 
-export const getLocation = (paragraphId: number): Location | undefined =>
-  locations.find((loc) => loc.paragraphId === paragraphId);
+/**
+ * Resolve image path: try .png first, fallback to .jpg
+ */
+export const resolveImagePath = (
+  id: string,
+  type: "items" | "locations" | "randomItems" | "symbols",
+): string => {
+  // For now, return .png as primary. Component should handle 404 and fallback to .jpg
+  return `/assets/images/${type}/${id}.png`;
+};
 
-export const getSymbol = (id: string): Symbol | undefined =>
-  symbols.find((sym) => sym.id === id);
+/**
+ * Async helper to check image existence and return correct extension
+ */
+export const getResolvedImagePath = async (
+  id: string,
+  type: "items" | "locations" | "randomItems" | "symbols",
+): Promise<string> => {
+  const pngPath = `/assets/images/${type}/${id}.png`;
+  const jpgPath = `/assets/images/${type}/${id}.jpg`;
 
-export const getRandomItem = (id: string): RandomItem | undefined =>
-  randomItems.find((item) => item.id === id);
+  try {
+    const response = await fetch(pngPath, { method: "HEAD" });
+    if (response.ok) return pngPath;
+  } catch {
+    // PNG not found, try JPG
+  }
+
+  try {
+    const response = await fetch(jpgPath, { method: "HEAD" });
+    if (response.ok) return jpgPath;
+  } catch {
+    // JPG not found either, return PNG as fallback
+  }
+
+  return pngPath;
+};
+
+export const getStoryItem = (
+  id: string,
+): (StoryItem & { imagePath: string }) | undefined => {
+  const item = storyItems.find((item) => item.id === id);
+  return item ? { ...item, imagePath: getImagePath(id, "items") } : undefined;
+};
+
+export const getLocation = (
+  paragraphId: number,
+): (Location & { imagePath: string }) | undefined => {
+  const location = locations.find((loc) => loc.paragraphId === paragraphId);
+  return location
+    ? { ...location, imagePath: getImagePath(location.id, "locations") }
+    : undefined;
+};
+
+export const getSymbol = (
+  id: string,
+): (Symbol & { imagePath: string }) | undefined => {
+  const symbol = symbols.find((sym) => sym.id === id);
+  return symbol
+    ? { ...symbol, imagePath: getImagePath(id, "symbols") }
+    : undefined;
+};
+
+export const getRandomItem = (
+  id: string,
+): (RandomItem & { imagePath: string }) | undefined => {
+  const item = randomItems.find((item) => item.id === id);
+  return item
+    ? { ...item, imagePath: getImagePath(id, "randomItems") }
+    : undefined;
+};

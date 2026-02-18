@@ -4,36 +4,31 @@
       "id": "random-1",
       "name": "Tajemniczy przedmiot I",
       "romanNumeral": "I",
-      "description": null,
-      "image": "items/random_1.png"
+      "description": null
     },
     {
       "id": "random-2",
       "name": "Przedmiot losowy II",
       "romanNumeral": "II",
-      "description": "Coś z worka",
-      "image": "items/random_2.png"
+      "description": "Coś z worka"
     },
     {
       "id": "random-3",
       "name": "Losowy element III",
       "romanNumeral": "III",
-      "description": null,
-      "image": "items/random_3.png"
+      "description": null
     },
     {
       "id": "random-4",
       "name": "Przedmiot IV",
       "romanNumeral": "IV",
-      "description": null,
-      "image": "items/random_4.png"
+      "description": null
     },
     {
       "id": "random-5",
       "name": "Element V",
       "romanNumeral": "V",
-      "description": "Z czarnego worka",
-      "image": "items/random_5.png"
+      "description": "Z czarnego worka"
     }
   ]
 }

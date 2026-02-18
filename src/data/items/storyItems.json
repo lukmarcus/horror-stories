@@ -5,88 +5,77 @@
       "name": "Nota o ćwiczeniach",
       "romanNumeral": "XIV",
       "description": "Notatka z informacjami",
-      "paragraphId": null,
-      "image": "items/note_14.png"
+      "paragraphId": null
     },
     {
       "id": "37",
       "name": "Żeton priorytetu",
       "romanNumeral": "XXXVII",
       "description": "Żeton do śledzenia kolejności",
-      "paragraphId": 1,
-      "image": "items/priority_37.png"
+      "paragraphId": 1
     },
     {
       "id": "48",
       "name": "Przedmiot 48",
       "romanNumeral": "XLVIII",
       "description": "Tajemniczy przedmiot",
-      "paragraphId": null,
-      "image": "items/item_48.png"
+      "paragraphId": null
     },
     {
       "id": "84",
       "name": "Przedmiot do odrzucenia",
       "romanNumeral": "LXXXIV",
       "description": "Element scenariusza",
-      "paragraphId": null,
-      "image": "items/item_84.png"
+      "paragraphId": null
     },
     {
       "id": "110",
       "name": "Żeton priorytetu II",
       "romanNumeral": "CX",
       "description": "Dodatkowy żeton priorytetu",
-      "paragraphId": null,
-      "image": "items/priority_110.png"
+      "paragraphId": null
     },
     {
       "id": "111",
       "name": "Przedmiot 111",
       "romanNumeral": "CXI",
       "description": "Rzeźba",
-      "paragraphId": null,
-      "image": "items/item_111.png"
+      "paragraphId": null
     },
     {
       "id": "113",
       "name": "Odnaleziona rzecz",
       "romanNumeral": "CXIII",
       "description": "Przedmiot znaleziony w paragrafie",
-      "paragraphId": null,
-      "image": "items/item_113.png"
+      "paragraphId": null
     },
     {
       "id": "123",
       "name": "Interaktywny przedmiot",
       "romanNumeral": "CXXIII",
       "description": "Można interakcjonować z nim",
-      "paragraphId": null,
-      "image": "items/item_123.png"
+      "paragraphId": null
     },
     {
       "id": "137",
       "name": "Przedmiot z cyfrą",
       "romanNumeral": "CXXXVII",
       "description": "Element warunkowy",
-      "paragraphId": null,
-      "image": "items/item_137.png"
+      "paragraphId": null
     },
     {
       "id": "151",
       "name": "Żeton priorytetu III",
       "romanNumeral": "CLI",
       "description": "Trzeci żeton priorytetu",
-      "paragraphId": null,
-      "image": "items/priority_151.png"
+      "paragraphId": null
     },
     {
       "id": "173",
       "name": "Przedmiot do wymiany",
       "romanNumeral": "CLXXIII",
       "description": "Element scenariuszy",
-      "paragraphId": null,
-      "image": "items/item_173.png"
+      "paragraphId": null
     }
   ]
 }

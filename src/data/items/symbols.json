@@ -2,48 +2,39 @@
   "symbols": [
     {
       "id": "drzwi-otwarte",
-      "name": "Drzwi otwarte",
-      "image": "symbols/door_open.png"
+      "name": "Drzwi otwarte"
     },
     {
       "id": "drzwi-zamknięte",
-      "name": "Drzwi zamknięte",
-      "image": "symbols/door_closed.png"
+      "name": "Drzwi zamknięte"
     },
     {
       "id": "życie",
-      "name": "Znacznik zdrowia",
-      "image": "symbols/health.png"
+      "name": "Znacznik zdrowia"
     },
     {
       "id": "rewers",
-      "name": "Żeton ruchu",
-      "image": "symbols/turn_marker.png"
+      "name": "Żeton ruchu"
     },
     {
       "id": "amunicja-pistolet",
-      "name": "Amunicja do pistoletu",
-      "image": "symbols/ammo_pistol.png"
+      "name": "Amunicja do pistoletu"
     },
     {
       "id": "amunicja-strzelba",
-      "name": "Amunicja do strzelby",
-      "image": "symbols/ammo_shotgun.png"
+      "name": "Amunicja do strzelby"
     },
     {
       "id": "losowe",
-      "name": "Marker losowy",
-      "image": "symbols/random_marker.png"
+      "name": "Marker losowy"
     },
     {
       "id": "pd",
-      "name": "Punkt doświadczenia",
-      "image": "symbols/experience_point.png"
+      "name": "Punkt doświadczenia"
     },
     {
       "id": "paragraf",
-      "name": "Symbol paragrafu",
-      "image": "symbols/paragraph.png"
+      "name": "Symbol paragrafu"
     }
   ]
 }
