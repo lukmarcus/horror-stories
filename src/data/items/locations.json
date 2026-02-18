@@ -1,0 +1,40 @@
+{
+  "locations": [
+    {
+      "id": "room-1",
+      "name": "Punkt startowy",
+      "paragraphId": 1,
+      "image": "locations/room_1.png"
+    },
+    {
+      "id": "room-37",
+      "name": "Pokój z rzeźbą",
+      "paragraphId": 37,
+      "image": "locations/room_37.png"
+    },
+    {
+      "id": "room-50",
+      "name": "Sala główna",
+      "paragraphId": 50,
+      "image": "locations/room_50.png"
+    },
+    {
+      "id": "room-75",
+      "name": "Pomieszczenie z talią",
+      "paragraphId": 75,
+      "image": "locations/room_75.png"
+    },
+    {
+      "id": "room-100",
+      "name": "Punkt śmierci",
+      "paragraphId": 100,
+      "image": "locations/room_100.png"
+    },
+    {
+      "id": "room-151",
+      "name": "Końcowa sala",
+      "paragraphId": 151,
+      "image": "locations/room_151.png"
+    }
+  ]
+}
