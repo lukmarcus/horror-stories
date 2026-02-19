@@ -52,16 +52,13 @@ export const RichText: React.FC<RichTextProps> = ({
 
         if (imagePath) {
           finalElements.push(
-            <div key={key} className="rich-image-block">
-              <img src={imagePath} alt={id} className="rich-image" />
-            </div>,
+            <img key={key} src={imagePath} alt={id} className="inline-image" />,
           );
         } else {
           finalElements.push(
-            <div key={key} className="rich-image-placeholder">
-              <div className="rich-image-icon">🖼️</div>
-              <div className="rich-image-text">{id}</div>
-            </div>,
+            <span key={key} className="rich-image-placeholder">
+              🖼️ {id}
+            </span>,
           );
         }
       } else if (tag === "symbol") {

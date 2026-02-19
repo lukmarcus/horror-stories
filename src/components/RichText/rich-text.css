@@ -71,7 +71,8 @@
 
 .symbol-image,
 .letter-image,
-.person-image {
+.person-image,
+.inline-image {
   height: 1.4em;
   width: auto;
   display: inline;

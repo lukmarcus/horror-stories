@@ -17,12 +17,19 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
   - Room items (roomItems) - identyfikowane przez numery paragrafów (1, 37, 50)
   - Random items - identyfikowane przez nazwy (tajemniczy-przedmiot-i, przedmiot-losowy-ii)
   - Symbols - komponenty symboli i warunków warunkowych
+  - Persons, Letters, Statuses - pełna baza obiektów gry
 - TypeScript loader `src/data/items/index.ts` - helper functions do dostępu do obiektów z image path resolution
-- Organized asset structure: `public/assets/images/{storyItems,roomItems,randomItems,symbols}/`
+- Organized asset structure: `public/assets/images/{storyItems,roomItems,randomItems,symbols,persons,letters,statuses}/`
+- Dynamic asset loading dla osób, liter i symboli w komponencie RichText
+- Inline image rendering w tekście - obrazy wyświetlają się obok tekstu zamiast na nowych wierszach
+- Card images (karta1, karta2, karta3) - zamiana symboli na rzeczywiste obrazy kart w setup i paragrafach
 
 ### Poprawiono
 
 - Logo aplikacji - naprawa ścieżki asetu poprzez import zamiast hardcoded path (best practice)
+- Asset paths - użycie `import.meta.env.BASE_URL` dla poprawnego działania na GitHub Pages `/horror-stories/`
+- Letter case sensitivity - naprawiono `<letter id='A'/>` na `<letter id='a'/>`
+- Renderowanie custom tagów (`<symbol>`, `<letter>`, `<person>`) - teraz dynamicznie ładuje obrazy z data loader
 
 ---
 

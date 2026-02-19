@@ -22,7 +22,7 @@
         },
         {
           "size": "xl",
-          "text": "Dwóch <symbol id='karta1'/> + dwóch <symbol id='karta2'/> + dwóch <symbol id='karta3'/>"
+          "text": "Dwóch <image id='karta1'/> + dwóch <image id='karta2'/> + dwóch <image id='karta3'/>"
         }
       ]
     },
