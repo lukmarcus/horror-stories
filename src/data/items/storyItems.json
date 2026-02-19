@@ -1,81 +1,59 @@
 {
   "items": [
     {
-      "id": "14",
-      "name": "Nota o ćwiczeniach",
-      "romanNumeral": "XIV",
-      "description": "Notatka z informacjami",
-      "paragraphId": null
+      "id": "XIV",
+      "paragraphId": null,
+      "description": "Notatka z informacjami"
     },
     {
-      "id": "37",
-      "name": "Żeton priorytetu",
-      "romanNumeral": "XXXVII",
-      "description": "Żeton do śledzenia kolejności",
-      "paragraphId": 1
+      "id": "XXXVII",
+      "paragraphId": 1,
+      "description": "Żeton do śledzenia kolejności"
     },
     {
-      "id": "48",
-      "name": "Przedmiot 48",
-      "romanNumeral": "XLVIII",
-      "description": "Tajemniczy przedmiot",
-      "paragraphId": null
+      "id": "XLVIII",
+      "paragraphId": null,
+      "description": "Tajemniczy przedmiot"
     },
     {
-      "id": "84",
-      "name": "Przedmiot do odrzucenia",
-      "romanNumeral": "LXXXIV",
-      "description": "Element scenariusza",
-      "paragraphId": null
+      "id": "LXXXIV",
+      "paragraphId": null,
+      "description": "Element scenariusza"
     },
     {
-      "id": "110",
-      "name": "Żeton priorytetu II",
-      "romanNumeral": "CX",
-      "description": "Dodatkowy żeton priorytetu",
-      "paragraphId": null
+      "id": "CX",
+      "paragraphId": null,
+      "description": "Dodatkowy żeton priorytetu"
     },
     {
-      "id": "111",
-      "name": "Przedmiot 111",
-      "romanNumeral": "CXI",
-      "description": "Rzeźba",
-      "paragraphId": null
+      "id": "CXI",
+      "paragraphId": null,
+      "description": "Rzeźba"
     },
     {
-      "id": "113",
-      "name": "Odnaleziona rzecz",
-      "romanNumeral": "CXIII",
-      "description": "Przedmiot znaleziony w paragrafie",
-      "paragraphId": null
+      "id": "CXIII",
+      "paragraphId": null,
+      "description": "Przedmiot znaleziony w paragrafie"
     },
     {
-      "id": "123",
-      "name": "Interaktywny przedmiot",
-      "romanNumeral": "CXXIII",
-      "description": "Można interakcjonować z nim",
-      "paragraphId": null
+      "id": "CXXIII",
+      "paragraphId": null,
+      "description": "Można interakcjonować z nim"
     },
     {
-      "id": "137",
-      "name": "Przedmiot z cyfrą",
-      "romanNumeral": "CXXXVII",
-      "description": "Element warunkowy",
-      "paragraphId": null
+      "id": "CXXXVII",
+      "paragraphId": null,
+      "description": "Element warunkowy"
     },
     {
-      "id": "151",
-      "name": "Żeton priorytetu III",
-      "romanNumeral": "CLI",
-      "description": "Trzeci żeton priorytetu",
-      "paragraphId": null
+      "id": "CLI",
+      "paragraphId": null,
+      "description": "Trzeci żeton priorytetu"
     },
     {
-      "id": "173",
-      "name": "Przedmiot do wymiany",
-      "romanNumeral": "CLXXIII",
-      "description": "Element scenariuszy",
-      "paragraphId": null
+      "id": "CLXXIII",
+      "paragraphId": null,
+      "description": "Element scenariuszy"
     }
   ]
 }

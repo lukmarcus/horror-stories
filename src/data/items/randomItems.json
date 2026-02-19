@@ -1,32 +1,27 @@
 {
   "items": [
     {
-      "id": "random-1",
-      "name": "Tajemniczy przedmiot I",
+      "id": "tajemniczy-przedmiot-i",
       "romanNumeral": "I",
       "description": null
     },
     {
-      "id": "random-2",
-      "name": "Przedmiot losowy II",
+      "id": "przedmiot-losowy-ii",
       "romanNumeral": "II",
       "description": "Coś z worka"
     },
     {
-      "id": "random-3",
-      "name": "Losowy element III",
+      "id": "losowy-element-iii",
       "romanNumeral": "III",
       "description": null
     },
     {
-      "id": "random-4",
-      "name": "Przedmiot IV",
+      "id": "przedmiot-iv",
       "romanNumeral": "IV",
       "description": null
     },
     {
-      "id": "random-5",
-      "name": "Element V",
+      "id": "element-v",
       "romanNumeral": "V",
       "description": "Z czarnego worka"
     }

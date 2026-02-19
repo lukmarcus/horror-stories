@@ -1,28 +1,23 @@
 import storyItemsData from "./storyItems.json";
-import locationsData from "./locations.json";
+import roomItemsData from "./roomItems.json";
 import randomItemsData from "./randomItems.json";
 import symbolsData from "./symbols.json";
 
 // Types
 export interface StoryItem {
-  id: string;
-  name: string;
-  romanNumeral: string;
-  description: string | null;
-  paragraphId: number | null;
+  id: string; // Roman numeral
+  paragraphId?: number | null;
+  description?: string | null;
 }
 
-export interface Location {
-  id: string;
-  name: string;
-  paragraphId: number;
+export interface RoomItem {
+  id: number; // Paragraph number
 }
 
 export interface RandomItem {
-  id: string;
-  name: string;
-  romanNumeral: string;
-  description: string | null;
+  id: string; // Item name
+  romanNumeral?: string;
+  description?: string | null;
 }
 
 export interface Symbol {
@@ -32,22 +27,22 @@ export interface Symbol {
 
 // Exports
 export const storyItems: StoryItem[] = storyItemsData.items;
-export const locations: Location[] = locationsData.locations;
+export const roomItems: RoomItem[] = roomItemsData.items;
 export const randomItems: RandomItem[] = randomItemsData.items;
 export const symbols: Symbol[] = symbolsData.symbols;
 
 // Helpers
 const getImagePath = (
-  id: string,
-  type: "items" | "locations" | "randomItems" | "symbols",
+  id: string | number,
+  type: "storyItems" | "roomItems" | "randomItems" | "symbols",
 ): string => `/assets/images/${type}/${id}.png`;
 
 /**
  * Resolve image path: try .png first, fallback to .jpg
  */
 export const resolveImagePath = (
-  id: string,
-  type: "items" | "locations" | "randomItems" | "symbols",
+  id: string | number,
+  type: "storyItems" | "roomItems" | "randomItems" | "symbols",
 ): string => {
   // For now, return .png as primary. Component should handle 404 and fallback to .jpg
   return `/assets/images/${type}/${id}.png`;
@@ -57,8 +52,8 @@ export const resolveImagePath = (
  * Async helper to check image existence and return correct extension
  */
 export const getResolvedImagePath = async (
-  id: string,
-  type: "items" | "locations" | "randomItems" | "symbols",
+  id: string | number,
+  type: "storyItems" | "roomItems" | "randomItems" | "symbols",
 ): Promise<string> => {
   const pngPath = `/assets/images/${type}/${id}.png`;
   const jpgPath = `/assets/images/${type}/${id}.jpg`;
@@ -84,15 +79,15 @@ export const getStoryItem = (
   id: string,
 ): (StoryItem & { imagePath: string }) | undefined => {
   const item = storyItems.find((item) => item.id === id);
-  return item ? { ...item, imagePath: getImagePath(id, "items") } : undefined;
+  return item ? { ...item, imagePath: getImagePath(id, "storyItems") } : undefined;
 };
 
-export const getLocation = (
-  paragraphId: number,
-): (Location & { imagePath: string }) | undefined => {
-  const location = locations.find((loc) => loc.paragraphId === paragraphId);
-  return location
-    ? { ...location, imagePath: getImagePath(location.id, "locations") }
+export const getRoomItem = (
+  id: number,
+): (RoomItem & { imagePath: string }) | undefined => {
+  const roomItem = roomItems.find((item) => item.id === id);
+  return roomItem
+    ? { ...roomItem, imagePath: getImagePath(id, "roomItems") }
     : undefined;
 };
 
@@ -113,3 +108,4 @@ export const getRandomItem = (
     ? { ...item, imagePath: getImagePath(id, "randomItems") }
     : undefined;
 };
+
