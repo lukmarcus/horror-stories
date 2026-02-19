@@ -2,6 +2,9 @@ import storyItemsData from "./storyItems.json";
 import roomItemsData from "./roomItems.json";
 import randomItemsData from "./randomItems.json";
 import symbolsData from "./symbols.json";
+import statusesData from "./statuses.json";
+import personsData from "./persons.json";
+import lettersData from "./letters.json";
 
 // Types
 export interface StoryItem {
@@ -25,16 +28,40 @@ export interface Symbol {
   name: string;
 }
 
+export interface Status {
+  id: string;
+  description?: string | null;
+}
+
+export interface Person {
+  id: string;
+  paragraphId?: number | null;
+}
+
+export interface Letter {
+  id: string;
+}
+
 // Exports
 export const storyItems: StoryItem[] = storyItemsData.items;
 export const roomItems: RoomItem[] = roomItemsData.items;
 export const randomItems: RandomItem[] = randomItemsData.items;
 export const symbols: Symbol[] = symbolsData.symbols;
+export const statuses: Status[] = statusesData.items;
+export const persons: Person[] = personsData.items;
+export const letters: Letter[] = lettersData.items;
 
 // Helpers
 const getImagePath = (
   id: string | number,
-  type: "storyItems" | "roomItems" | "randomItems" | "symbols",
+  type:
+    | "storyItems"
+    | "roomItems"
+    | "randomItems"
+    | "symbols"
+    | "statuses"
+    | "persons"
+    | "letters",
 ): string => `/assets/images/${type}/${id}.png`;
 
 /**
@@ -42,7 +69,14 @@ const getImagePath = (
  */
 export const resolveImagePath = (
   id: string | number,
-  type: "storyItems" | "roomItems" | "randomItems" | "symbols",
+  type:
+    | "storyItems"
+    | "roomItems"
+    | "randomItems"
+    | "symbols"
+    | "statuses"
+    | "persons"
+    | "letters",
 ): string => {
   // For now, return .png as primary. Component should handle 404 and fallback to .jpg
   return `/assets/images/${type}/${id}.png`;
@@ -53,7 +87,14 @@ export const resolveImagePath = (
  */
 export const getResolvedImagePath = async (
   id: string | number,
-  type: "storyItems" | "roomItems" | "randomItems" | "symbols",
+  type:
+    | "storyItems"
+    | "roomItems"
+    | "randomItems"
+    | "symbols"
+    | "statuses"
+    | "persons"
+    | "letters",
 ): Promise<string> => {
   const pngPath = `/assets/images/${type}/${id}.png`;
   const jpgPath = `/assets/images/${type}/${id}.jpg`;
@@ -79,7 +120,9 @@ export const getStoryItem = (
   id: string,
 ): (StoryItem & { imagePath: string }) | undefined => {
   const item = storyItems.find((item) => item.id === id);
-  return item ? { ...item, imagePath: getImagePath(id, "storyItems") } : undefined;
+  return item
+    ? { ...item, imagePath: getImagePath(id, "storyItems") }
+    : undefined;
 };
 
 export const getRoomItem = (
@@ -109,3 +152,29 @@ export const getRandomItem = (
     : undefined;
 };
 
+export const getStatus = (
+  id: string,
+): (Status & { imagePath: string }) | undefined => {
+  const status = statuses.find((s) => s.id === id);
+  return status
+    ? { ...status, imagePath: getImagePath(id, "statuses") }
+    : undefined;
+};
+
+export const getPerson = (
+  id: string,
+): (Person & { imagePath: string }) | undefined => {
+  const person = persons.find((p) => p.id === id);
+  return person
+    ? { ...person, imagePath: getImagePath(id, "persons") }
+    : undefined;
+};
+
+export const getLetter = (
+  id: string,
+): (Letter & { imagePath: string }) | undefined => {
+  const letter = letters.find((l) => l.id === id);
+  return letter
+    ? { ...letter, imagePath: getImagePath(id, "letters") }
+    : undefined;
+};
