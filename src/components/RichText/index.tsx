@@ -1,5 +1,6 @@
 import React from "react";
 import type { ContentBlock } from "../../types";
+import { getPerson, getLetter } from "../../data/items";
 import "./rich-text.css";
 
 interface RichTextProps {
@@ -78,19 +79,18 @@ export const RichText: React.FC<RichTextProps> = ({
           />,
         );
       } else if (tag === "letter") {
-        const letterPath = new URL(
-          `../../assets/letters/${id}.png`,
-          import.meta.url,
-        ).href;
-        finalElements.push(
-          <img
-            key={key}
-            src={letterPath}
-            alt={id}
-            className="letter-image"
-            title={id}
-          />,
-        );
+        const letterData = getLetter(id);
+        if (letterData) {
+          finalElements.push(
+            <img
+              key={key}
+              src={letterData.imagePath}
+              alt={id}
+              className="letter-image"
+              title={id}
+            />,
+          );
+        }
       } else if (tag === "item") {
         finalElements.push(
           <span key={key} className="item">
@@ -98,19 +98,18 @@ export const RichText: React.FC<RichTextProps> = ({
           </span>,
         );
       } else if (tag === "person") {
-        const personPath = new URL(
-          `../../assets/persons/${id}.jpg`,
-          import.meta.url,
-        ).href;
-        finalElements.push(
-          <img
-            key={key}
-            src={personPath}
-            alt={id}
-            className="person-image"
-            title={id}
-          />,
-        );
+        const personData = getPerson(id);
+        if (personData) {
+          finalElements.push(
+            <img
+              key={key}
+              src={personData.imagePath}
+              alt={id}
+              className="person-image"
+              title={id}
+            />,
+          );
+        }
       }
 
       currentPos = customTagRegex.lastIndex;
@@ -235,7 +234,8 @@ export const RichText: React.FC<RichTextProps> = ({
       }
 
       // Handle new text format: {text: "html"} or old format: {type: "text", html: "..."}
-      const textContent = block.text || (block.type === "text" ? block.html : undefined);
+      const textContent =
+        block.text || (block.type === "text" ? block.html : undefined);
       if (textContent) {
         const classes = [
           "rich-text-block",
@@ -297,7 +297,9 @@ export const RichText: React.FC<RichTextProps> = ({
 
   // Backward compatibility: if text prop is provided, use old parser
   if (text && !content) {
-    const blockClass = noSpacing ? "rich-text-block spacing-none" : "rich-text-block";
+    const blockClass = noSpacing
+      ? "rich-text-block spacing-none"
+      : "rich-text-block";
     return (
       <div className="rich-text">
         <div className={blockClass}>{parseHtml(text)}</div>
