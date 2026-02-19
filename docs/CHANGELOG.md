@@ -12,6 +12,13 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Dodano
 
 - Favicon - ikona aplikacji w przeglądarce
+- Global game objects database - niezależna od scenariuszy baza przedmiotów, pomieszczeń, symboli i przedmiotów losowych
+  - Story items (storyItems) - identyfikowane przez liczby rzymskie (XIV, XXXVII)
+  - Room items (roomItems) - identyfikowane przez numery paragrafów (1, 37, 50)
+  - Random items - identyfikowane przez nazwy (tajemniczy-przedmiot-i, przedmiot-losowy-ii)
+  - Symbols - komponenty symboli i warunków warunkowych
+- TypeScript loader `src/data/items/index.ts` - helper functions do dostępu do obiektów z image path resolution
+- Organized asset structure: `public/assets/images/{storyItems,roomItems,randomItems,symbols}/`
 
 ### Poprawiono
 
