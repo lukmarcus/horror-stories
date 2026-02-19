@@ -62,7 +62,7 @@ const getImagePath = (
     | "statuses"
     | "persons"
     | "letters",
-): string => `/assets/images/${type}/${id}.png`;
+): string => `${import.meta.env.BASE_URL}assets/images/${type}/${id}.png`;
 
 /**
  * Resolve image path: try .png first, fallback to .jpg
@@ -79,7 +79,7 @@ export const resolveImagePath = (
     | "letters",
 ): string => {
   // For now, return .png as primary. Component should handle 404 and fallback to .jpg
-  return `/assets/images/${type}/${id}.png`;
+  return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.png`;
 };
 
 /**
@@ -96,8 +96,8 @@ export const getResolvedImagePath = async (
     | "persons"
     | "letters",
 ): Promise<string> => {
-  const pngPath = `/assets/images/${type}/${id}.png`;
-  const jpgPath = `/assets/images/${type}/${id}.jpg`;
+  const pngPath = `${import.meta.env.BASE_URL}assets/images/${type}/${id}.png`;
+  const jpgPath = `${import.meta.env.BASE_URL}assets/images/${type}/${id}.jpg`;
 
   try {
     const response = await fetch(pngPath, { method: "HEAD" });

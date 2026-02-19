@@ -1,6 +1,6 @@
 import React from "react";
 import type { ContentBlock } from "../../types";
-import { getPerson, getLetter } from "../../data/items";
+import { getPerson, getLetter, getSymbol } from "../../data/items";
 import "./rich-text.css";
 
 interface RichTextProps {
@@ -65,19 +65,18 @@ export const RichText: React.FC<RichTextProps> = ({
           );
         }
       } else if (tag === "symbol") {
-        const symbolPath = new URL(
-          `../../assets/symbols/${id}.png`,
-          import.meta.url,
-        ).href;
-        finalElements.push(
-          <img
-            key={key}
-            src={symbolPath}
-            alt={id}
-            className="symbol-image"
-            title={id}
-          />,
-        );
+        const symbolData = getSymbol(id);
+        if (symbolData) {
+          finalElements.push(
+            <img
+              key={key}
+              src={symbolData.imagePath}
+              alt={id}
+              className="symbol-image"
+              title={id}
+            />,
+          );
+        }
       } else if (tag === "letter") {
         const letterData = getLetter(id);
         if (letterData) {

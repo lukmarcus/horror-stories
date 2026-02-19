@@ -44,7 +44,7 @@
       "stepNumber": 4,
       "content": [
         {
-          "text": "Wyłóż planszę 12 (stroną <letter id='A'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>). Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
+          "text": "Wyłóż planszę 12 (stroną <letter id='a'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>). Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
         },
         {
           "image": "jessica-plansza"
