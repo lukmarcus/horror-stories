@@ -30,6 +30,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Asset paths - użycie `import.meta.env.BASE_URL` dla poprawnego działania na GitHub Pages `/horror-stories/`
 - Letter case sensitivity - naprawiono `<letter id='A'/>` na `<letter id='a'/>`
 - Renderowanie custom tagów (`<symbol>`, `<letter>`, `<person>`) - teraz dynamicznie ładuje obrazy z data loader
+- Dodano brakujące grafiki scenariusza "Droga Donikąd"
 
 ---
 
