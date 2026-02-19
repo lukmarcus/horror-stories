@@ -1,59 +1,24 @@
 {
   "items": [
     {
-      "id": "XIV",
-      "paragraphId": null,
-      "description": "Notatka z informacjami"
+      "id": "xiv",
+      "paragraphId": 61,
+      "description": "Odcięta męska ręka"
     },
     {
-      "id": "XXXVII",
-      "paragraphId": 1,
-      "description": "Żeton do śledzenia kolejności"
+      "id": "xiii",
+      "paragraphId": 48,
+      "description": "Zielony klucz"
     },
     {
-      "id": "XLVIII",
-      "paragraphId": null,
-      "description": "Tajemniczy przedmiot"
+      "id": "liii",
+      "paragraphId": 113,
+      "description": "Książka z pustymi kartkami"
     },
     {
-      "id": "LXXXIV",
-      "paragraphId": null,
-      "description": "Element scenariusza"
-    },
-    {
-      "id": "CX",
-      "paragraphId": null,
-      "description": "Dodatkowy żeton priorytetu"
-    },
-    {
-      "id": "CXI",
-      "paragraphId": null,
-      "description": "Rzeźba"
-    },
-    {
-      "id": "CXIII",
-      "paragraphId": null,
-      "description": "Przedmiot znaleziony w paragrafie"
-    },
-    {
-      "id": "CXXIII",
-      "paragraphId": null,
-      "description": "Można interakcjonować z nim"
-    },
-    {
-      "id": "CXXXVII",
-      "paragraphId": null,
-      "description": "Element warunkowy"
-    },
-    {
-      "id": "CLI",
-      "paragraphId": null,
-      "description": "Trzeci żeton priorytetu"
-    },
-    {
-      "id": "CLXXIII",
-      "paragraphId": null,
-      "description": "Element scenariuszy"
+      "id": "xvii",
+      "paragraphId": 84,
+      "description": "Czerwony klucz"
     }
   ]
 }
