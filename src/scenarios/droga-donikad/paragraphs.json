@@ -583,6 +583,18 @@
       "choices": []
     },
     {
+      "id": "51",
+      "accessibleFrom": ["12"],
+      "contentPages": [
+        [
+          {
+            "text": "Jeśli wskazano przedmiot z cyfrą rzymską <strong>XIII</strong> dobierz 1<symbol id='pd'/>, odrzuć <item id='12'/> i w jej miejscu połóż <symbol id='drzwi-zamkniete'/>. Odrzuć <item id='48'/>."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
       "id": "53",
       "contentPages": [
         [

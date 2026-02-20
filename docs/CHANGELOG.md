@@ -28,9 +28,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - Logo aplikacji - naprawa ścieżki asetu poprzez import zamiast hardcoded path (best practice)
 - Asset paths - użycie `import.meta.env.BASE_URL` dla poprawnego działania na GitHub Pages `/horror-stories/`
+- Extensje grafik w asset loader - persons/storyItems/roomItems teraz prawidłowo ładują `.jpg` zamiast `.png`
 - Letter case sensitivity - naprawiono `<letter id='A'/>` na `<letter id='a'/>`
 - Renderowanie custom tagów (`<symbol>`, `<letter>`, `<person>`) - teraz dynamicznie ładuje obrazy z data loader
-- Dodano brakujące grafiki scenariusza "Droga Donikąd"
+- Nazwy grafik w paragrafach - synchronizacja z rzeczywistymi plikami (karta_rozwoju.jpg, karty-akcji-ogolnych.jpg)
+- Dodano brakujące grafiki scenariusza "Droga Donikąd":
+  - patrick-talia.jpg
+  - podnies_przedmioty.jpg
+- Paragraf 51 - uzupełniony zagubiony node powiązany z paragrafem 12 (story branch z użyciem przedmiotu XIII)
 
 ---
 
