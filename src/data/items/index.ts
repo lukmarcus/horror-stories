@@ -62,7 +62,11 @@ const getImagePath = (
     | "statuses"
     | "persons"
     | "letters",
-): string => `${import.meta.env.BASE_URL}assets/images/${type}/${id}.png`;
+): string => {
+  // Determine extension based on type
+  const extension = type === "symbols" || type === "letters" ? "png" : "jpg";
+  return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
+};
 
 /**
  * Resolve image path: try .png first, fallback to .jpg
@@ -78,8 +82,8 @@ export const resolveImagePath = (
     | "persons"
     | "letters",
 ): string => {
-  // For now, return .png as primary. Component should handle 404 and fallback to .jpg
-  return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.png`;
+  const extension = type === "symbols" || type === "letters" ? "png" : "jpg";
+  return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
 };
 
 /**
@@ -96,24 +100,17 @@ export const getResolvedImagePath = async (
     | "persons"
     | "letters",
 ): Promise<string> => {
-  const pngPath = `${import.meta.env.BASE_URL}assets/images/${type}/${id}.png`;
-  const jpgPath = `${import.meta.env.BASE_URL}assets/images/${type}/${id}.jpg`;
+  const extension = type === "symbols" || type === "letters" ? "png" : "jpg";
+  const path = `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
 
   try {
-    const response = await fetch(pngPath, { method: "HEAD" });
-    if (response.ok) return pngPath;
+    const response = await fetch(path, { method: "HEAD" });
+    if (response.ok) return path;
   } catch {
-    // PNG not found, try JPG
+    // Path not found
   }
 
-  try {
-    const response = await fetch(jpgPath, { method: "HEAD" });
-    if (response.ok) return jpgPath;
-  } catch {
-    // JPG not found either, return PNG as fallback
-  }
-
-  return pngPath;
+  return path;
 };
 
 export const getStoryItem = (
