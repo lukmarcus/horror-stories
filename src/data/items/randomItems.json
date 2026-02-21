@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "id": "tajemniczy-przedmiot-i",
+      "romanNumeral": "I",
+      "description": null
+    },
+    {
+      "id": "przedmiot-losowy-ii",
+      "romanNumeral": "II",
+      "description": "Coś z worka"
+    },
+    {
+      "id": "losowy-element-iii",
+      "romanNumeral": "III",
+      "description": null
+    },
+    {
+      "id": "przedmiot-iv",
+      "romanNumeral": "IV",
+      "description": null
+    },
+    {
+      "id": "element-v",
+      "romanNumeral": "V",
+      "description": "Z czarnego worka"
+    }
+  ]
+}

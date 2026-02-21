@@ -22,7 +22,7 @@
         },
         {
           "size": "xl",
-          "text": "Dwóch <symbol id='karta1'/> + dwóch <symbol id='karta2'/> + dwóch <symbol id='karta3'/>"
+          "text": "Dwóch <image id='karta1'/> + dwóch <image id='karta2'/> + dwóch <image id='karta3'/>"
         }
       ]
     },
@@ -44,7 +44,7 @@
       "stepNumber": 4,
       "content": [
         {
-          "text": "Wyłóż planszę 12 (stroną <letter id='A'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>). Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
+          "text": "Wyłóż planszę 12 (stroną <letter id='a'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>). Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
         },
         {
           "image": "jessica-plansza"
@@ -70,7 +70,7 @@
           "text": "Dobierz dwustronną <strong>kartę akcji ogólnych</strong>. Stanowi spis możliwych akcji (spójrz na obrazek):"
         },
         {
-          "image": "karty-akcji-ogolnych"
+          "image": "karty-akcji"
         }
       ]
     },

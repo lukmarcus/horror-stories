@@ -1,5 +1,12 @@
 import React from "react";
 import type { ContentBlock } from "../../types";
+import {
+  getPerson,
+  getLetter,
+  getSymbol,
+  getStoryItem,
+  getRoomItem,
+} from "../../data/items";
 import "./rich-text.css";
 
 interface RichTextProps {
@@ -18,7 +25,7 @@ export const RichText: React.FC<RichTextProps> = ({
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode[] => {
     const customTagRegex =
-      /<(symbol|letter|item|image|person)\s+id=["']([^"']+)["']\s*\/>/g;
+      /<(symbol|letter|item|image|person|story|room)\s+id=["']([^"']+)["']\s*\/>/g;
     let currentPos = 0;
     const finalElements: React.ReactNode[] = [];
     let customElementCounter = 0;
@@ -51,66 +58,85 @@ export const RichText: React.FC<RichTextProps> = ({
 
         if (imagePath) {
           finalElements.push(
-            <div key={key} className="rich-image-block">
-              <img src={imagePath} alt={id} className="rich-image" />
-            </div>,
+            <img key={key} src={imagePath} alt={id} className="inline-image" />,
           );
         } else {
           finalElements.push(
-            <div key={key} className="rich-image-placeholder">
-              <div className="rich-image-icon">🖼️</div>
-              <div className="rich-image-text">{id}</div>
-            </div>,
+            <span key={key} className="rich-image-placeholder">
+              🖼️ {id}
+            </span>,
           );
         }
       } else if (tag === "symbol") {
-        const symbolPath = new URL(
-          `../../assets/symbols/${id}.png`,
-          import.meta.url,
-        ).href;
-        finalElements.push(
-          <img
-            key={key}
-            src={symbolPath}
-            alt={id}
-            className="symbol-image"
-            title={id}
-          />,
-        );
+        const symbolData = getSymbol(id);
+        if (symbolData) {
+          finalElements.push(
+            <img
+              key={key}
+              src={symbolData.imagePath}
+              alt={id}
+              className="symbol-image"
+              title={id}
+            />,
+          );
+        }
       } else if (tag === "letter") {
-        const letterPath = new URL(
-          `../../assets/letters/${id}.png`,
-          import.meta.url,
-        ).href;
-        finalElements.push(
-          <img
-            key={key}
-            src={letterPath}
-            alt={id}
-            className="letter-image"
-            title={id}
-          />,
-        );
+        const letterData = getLetter(id);
+        if (letterData) {
+          finalElements.push(
+            <img
+              key={key}
+              src={letterData.imagePath}
+              alt={id}
+              className="letter-image"
+              title={id}
+            />,
+          );
+        }
       } else if (tag === "item") {
         finalElements.push(
           <span key={key} className="item">
             [{id}]
           </span>,
         );
+      } else if (tag === "story") {
+        const storyItem = getStoryItem(id);
+        if (storyItem) {
+          finalElements.push(
+            <img
+              key={key}
+              src={storyItem.imagePath}
+              alt={storyItem.description || id}
+              className="story-item-image"
+              title={storyItem.description || undefined}
+            />,
+          );
+        }
+      } else if (tag === "room") {
+        const roomItem = getRoomItem(id);
+        if (roomItem) {
+          finalElements.push(
+            <img
+              key={key}
+              src={roomItem.imagePath}
+              alt={`Room ${id}`}
+              className="room-item-image"
+            />,
+          );
+        }
       } else if (tag === "person") {
-        const personPath = new URL(
-          `../../assets/persons/${id}.jpg`,
-          import.meta.url,
-        ).href;
-        finalElements.push(
-          <img
-            key={key}
-            src={personPath}
-            alt={id}
-            className="person-image"
-            title={id}
-          />,
-        );
+        const personData = getPerson(id);
+        if (personData) {
+          finalElements.push(
+            <img
+              key={key}
+              src={personData.imagePath}
+              alt={id}
+              className="person-image"
+              title={id}
+            />,
+          );
+        }
       }
 
       currentPos = customTagRegex.lastIndex;
@@ -235,7 +261,8 @@ export const RichText: React.FC<RichTextProps> = ({
       }
 
       // Handle new text format: {text: "html"} or old format: {type: "text", html: "..."}
-      const textContent = block.text || (block.type === "text" ? block.html : undefined);
+      const textContent =
+        block.text || (block.type === "text" ? block.html : undefined);
       if (textContent) {
         const classes = [
           "rich-text-block",
@@ -297,7 +324,9 @@ export const RichText: React.FC<RichTextProps> = ({
 
   // Backward compatibility: if text prop is provided, use old parser
   if (text && !content) {
-    const blockClass = noSpacing ? "rich-text-block spacing-none" : "rich-text-block";
+    const blockClass = noSpacing
+      ? "rich-text-block spacing-none"
+      : "rich-text-block";
     return (
       <div className="rich-text">
         <div className={blockClass}>{parseHtml(text)}</div>

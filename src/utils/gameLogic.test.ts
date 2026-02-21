@@ -10,13 +10,11 @@ describe("Game Logic - Accessibility", () => {
   const mockParagraph: Paragraph = {
     id: "1",
     text: "Test paragraph",
-    isDirect: true,
   };
 
   const nonDirectParagraph: Paragraph = {
     id: "2",
     text: "Non-direct paragraph",
-    isDirect: false,
     accessibleFrom: ["1", "3"],
   };
 

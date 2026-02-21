@@ -7,6 +7,22 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.11] - 2026-02-21
+
+### Dodano
+
+- Grafiki przedmiotów w paragrafach - przedmioty scenariusza wyświetlają się jako obrazki wprost w tekście opisu paragrafów
+- Favicon aplikacji - ikonka w zakładce przeglądarki
+- Uzupełniony brakujący paragraf 51 w scenariuszu Droga Donikąd
+
+### Poprawiono
+
+- Renderowanie grafik - wszystkie symbole, karty, osoby i przedmioty wyświetlają się prawidłowo
+- Ścieżkami grafik dla GitHub Pages - gra działa poprawnie wszędzie, gdzie jest hostowana
+- Brakujące grafiki scenariusza - dodane wszystkie potrzebne obrazki do pełnej rozgrywki
+
+---
+
 ## [0.0.10] - 2026-02-16
 
 ### Dodano

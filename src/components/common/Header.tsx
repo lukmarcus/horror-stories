@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import logo from "../../assets/logo.png";
 import "./Header.css";
 
 export interface HeaderProps {
@@ -16,7 +17,7 @@ export const Header: React.FC<HeaderProps> = ({ title = "Horror Stories" }) => {
       <div className="header__container">
         <Link to="/" className="header__logo-section">
           <img
-            src="/assets/images/logo.png"
+            src={logo}
             alt="Horror Stories"
             className="header__logo"
           />

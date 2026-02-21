@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": "xiv",
+      "paragraphId": 61,
+      "description": "Odcięta męska ręka"
+    },
+    {
+      "id": "xiii",
+      "paragraphId": 48,
+      "description": "Zielony klucz"
+    },
+    {
+      "id": "liii",
+      "paragraphId": 113,
+      "description": "Książka z pustymi kartkami"
+    },
+    {
+      "id": "xvii",
+      "paragraphId": 84,
+      "description": "Czerwony klucz"
+    }
+  ]
+}

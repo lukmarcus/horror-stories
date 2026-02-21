@@ -6,10 +6,10 @@
       "contentPages": [
         [
           {
-            "text": "Odrzuć żeton planszy <item id='37'/> (słowo odrzuć oznacza odłożenie tego elementu do puli z której pochodzi) i zastąp go żetonem otwartych drzwi (<symbol id='drzwi-otwarte'/>)."
+            "text": "Odrzuć żeton planszy <room id='37'/> (słowo odrzuć oznacza odłożenie tego elementu do puli z której pochodzi) i zastąp go żetonem otwartych drzwi (<symbol id='drzwi-otwarte'/>)."
           },
           {
-            "text": "Odrzuć również <item id='84'/> z ekwipunku."
+            "text": "Odrzuć również <story id='xvii'/> z ekwipunku."
           },
           {
             "text": "Czas przejść dalej przez nowo otwarte drzwi. W tym celu musisz <symbol id='paragraf'/> i dobrać wierzchnią <symbol id='rewers'/>. Dopiero po rozpatrzeniu karty (przez przechodzeniu do nowej planszy <symbol id='gwiazda'/> nie mają znaczenia; można mieć nawet 0<symbol id='gwiazda'/> i mniej) przejdź do <span class='color-green'>105</span>."
@@ -260,7 +260,7 @@
       "contentPages": [
         [
           {
-            "text": "Wyłóż planszę 3<letter id='b'/>, a na jej <span class='color-purple'>N</span> połóż <item id='69'/> (tak, aby leżało jednocześnie również na <span class='color-purple'>S</span> planszy 14)."
+            "text": "Wyłóż planszę 3<letter id='b'/>, a na jej <span class='color-purple'>N</span> połóż <room id='69'/> (tak, aby leżało jednocześnie również na <span class='color-purple'>S</span> planszy 14)."
           },
           {
             "style": "italic",
@@ -370,7 +370,7 @@
       "contentPages": [
         [
           {
-            "text": "Jeśli wskazano przedmiot z cyfrą rzymską LIII dobierz 1<symbol id='pd'/>, odrzuć <item id='137'/> i <item id='113'/>. Połóż <item id='48'/> do swojego ekwipunku (odrzuć ewentualnie nadmiarowe przedmioty odkryte na planszy)."
+            "text": "Jeśli wskazano przedmiot z cyfrą rzymską LIII dobierz 1<symbol id='pd'/>, odrzuć <room id='137'/> i <story id='liii'/>. Połóż <story id='xiii'/> do swojego ekwipunku (odrzuć ewentualnie nadmiarowe przedmioty odkryte na planszy)."
           }
         ]
       ],
@@ -381,7 +381,7 @@
       "contentPages": [
         [
           {
-            "text": "Wyłóż planszę 16<letter id='a'/>, a na jego środku <item id='173'/> oraz <item id='14'/>."
+            "text": "Wyłóż planszę 16<letter id='a'/>, a na jego środku <room id='173'/> oraz <room id='14'/>."
           },
           {
             "text": "Teraz się <span class='color-red'>SKUP</span>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
@@ -417,7 +417,7 @@
       "contentPages": [
         [
           {
-            "text": "Rzeźba przesuwa się na bok odsłaniając przejście prowadzące dalej. W miejscu rzeźby postaw <symbol id='drzwi-otwarte'/> (czyli <span class='color-purple'>W</span> planszy 1). <span class='color-blue'>Odrzuć</span> <item id='111'/>."
+            "text": "Rzeźba przesuwa się na bok odsłaniając przejście prowadzące dalej. W miejscu rzeźby postaw <symbol id='drzwi-otwarte'/> (czyli <span class='color-purple'>W</span> planszy 1). <span class='color-blue'>Odrzuć</span> <room id='111'/>."
           }
         ]
       ],
@@ -434,7 +434,7 @@
       ],
       "choices": [
         {
-          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='37'/>. Następnie przejdź do paragrafu <span class='color-green'>1</span>.",
+          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <room id='37'/>. Następnie przejdź do paragrafu <span class='color-green'>1</span>.",
           "nextParagraphId": "1"
         },
         {
@@ -463,7 +463,7 @@
       "contentPages": [
         [
           {
-            "text": "Jeśli dobrano co najmniej 6<symbol id='gwiazda'/>, odrzuć <item id='12'/> i w jej miejscu połóż <symbol id='drzwi-otwarte'/>."
+            "text": "Jeśli dobrano co najmniej 6<symbol id='gwiazda'/>, odrzuć <room id='12'/> i w jej miejscu połóż <symbol id='drzwi-otwarte'/>."
           }
         ]
       ],
@@ -510,7 +510,7 @@
             "text": "<person id='patrick'/> Poważnie nie wiem jak się tu znaleźliśmy."
           },
           {
-            "text": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <image id='1'/> + dwóch <image id='2'/> + dwóch <image id='3'/>"
+            "text": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <image id='karta1'/> + dwóch <image id='karta2'/> + dwóch <image id='karta3'/>"
           },
           {
             "image": "patrick-talia"
@@ -541,7 +541,7 @@
       "contentPages": [
         [
           {
-            "text": "Wyłóż planszę 13<letter id='a'/>, na jego <span class='color-purple'>W</span> wyłóż <item id='12'/>, a na środku <item id='38'/>."
+            "text": "Wyłóż planszę 13<letter id='a'/>, na jego <span class='color-purple'>W</span> wyłóż <room id='12'/>, a na środku <room id='38'/>."
           },
           {
             "text": "Teraz się <span class='color-red'>SKUP</span>! Dobierz jeden żeton punktu doświadczenia (<symbol id='pd'/>) i połóż obok swojego ekwipunku. Za chwilę wyjaśnimy czemu służą."
@@ -573,11 +573,22 @@
     },
     {
       "id": "50",
-      "accessibleFrom": ["123"],
       "contentPages": [
         [
           {
             "text": "Wielkie stalowe masywne drzwi. Może jest jakiś sposób ich otwarcia, bo próba siłowego otwarcia skończy się najwyżej złamaniem sobie czegoś. Paragraf nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
+          }
+        ]
+      ],
+      "choices": []
+    },
+    {
+      "id": "51",
+      "accessibleFrom": ["12"],
+      "contentPages": [
+        [
+          {
+            "text": "Jeśli wskazano przedmiot z cyfrą rzymską <strong>XIII</strong> dobierz 1<symbol id='pd'/>, odrzuć <room id='12'/> i w jej miejscu połóż <symbol id='drzwi-zamkniete'/>. Odrzuć <story id='xiii'/>."
           }
         ]
       ],
@@ -633,7 +644,6 @@
     },
     {
       "id": "61",
-      "accessibleFrom": ["40"],
       "contentPages": [
         [
           {
@@ -644,7 +654,7 @@
             "text": "Możesz ją podnieść używając akcji \"Podnieś przedmioty\" z <strong>karty akcji ogólnych</strong>."
           },
           {
-            "image": "podnies-przedmiot"
+            "image": "podnies-przedmioty"
           },
           {
             "text": "W razie potrzeby jest możliwości wymiany przedmiotami poprzez rozmowę z inną postacią. Paragraf nie prowadzi dalej co oznacza, że opuszczasz go (nie przywraca Ci to zużytej na sprawdzenie akcji)"
@@ -681,7 +691,7 @@
       "contentPages": [
         [
           {
-            "text": "Jeśli wskazano <item id='61'/>: Odrzuć: <item id='123'/>, <item id='61'/> i <item id='50'/>. W miejscu gdzie stały <item id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
+            "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
           }
         ]
       ],
@@ -717,10 +727,10 @@
       "contentPages": [
         [
           {
-            "text": "Odrzuć <item id='53'/> (oznacza to odłożenie do puli z której pochodzi)."
+            "text": "Odrzuć <room id='53'/> (oznacza to odłożenie do puli z której pochodzi)."
           },
           {
-            "text": "W szufladzie biurka znajdujesz klucz (<item id='84'/>). Dodaj go do swojego ekwipunku."
+            "text": "W szufladzie biurka znajdujesz klucz (<story id='xvii'/>). Dodaj go do swojego ekwipunku."
           },
           {
             "text": "Wszystkie kwadratowe żetony są przedmiotami, które można tam umieszczać."
@@ -785,7 +795,7 @@
             "text": "Połóż <symbol id='drzwi-otwarte'/> lub <symbol id='drzwi-wywazone'/> (w zależności jaki był efekt \"Otwarcia drzwi\") tak, aby łączyły obie plansze - żeton ma leżeć jednocześnie na <span class='color-purple'>E</span> planszy 12 i <span class='color-purple'>W</span> planszy 14. <span class='color-red'>Na każdym łączeniu, o ile nie napisano inaczej, leżeć może wyłącznie jeden element</span> (np. drzwi, żeton planszy itd)."
           },
           {
-            "text": "Na <span class='color-purple'>E</span> planszy 14 wyłóż żetony plansz: <item id='37'/>, <item id='53'/> oraz <item id='121'/>."
+            "text": "Na <span class='color-purple'>E</span> planszy 14 wyłóż żetony plansz: <room id='37'/>, <room id='53'/> oraz <room id='121'/>."
           },
           {
             "text": "Różne kształty żetonów plansz służą jedynie ich segregowaniu po kształtach, aby ich wykładanie było łatwiejsze w późniejszych etapach gry, gdy pojawi się ich więcej."
@@ -835,7 +845,7 @@
       "contentPages": [
         [
           {
-            "text": "Znajdujesz <item id='113'/>. Dodaj ją do swojego ekwipunku. Odrzuć <item id='173'/>."
+            "text": "Znajdujesz <story id='liii'/>. Dodaj ją do swojego ekwipunku. Odrzuć <room id='173'/>."
           }
         ]
       ],
@@ -868,7 +878,7 @@
       "contentPages": [
         [
           {
-            "text": "Wyłóż planszę 11<letter id='a'/>, a na jej środku <item id='137'/>, zaś na jej <span class='color-blue'>N</span> i <span class='color-blue'>S</span> wyłóż <symbol id='drzwi-zamkniete'/>."
+            "text": "Wyłóż planszę 11<letter id='a'/>, a na jej środku <room id='137'/>, zaś na jej <span class='color-blue'>N</span> i <span class='color-blue'>S</span> wyłóż <symbol id='drzwi-zamkniete'/>."
           },
           {
             "text": "Czas podkręcić nieco tempo. Otóż do tej pory nie groziło żadne realnie niebezpieczeństwo."
@@ -926,7 +936,7 @@
           "nextParagraphId": "112"
         },
         {
-          "text": "<strong>(Wybierz tylko jeśli na planszy znajduje się <item id='50'/>)</strong> Nakłoń go, aby pomógł Ci wyważyć drzwi stojące na drodze (przejdź do paragrafu <span class='color-green'>55</span>)",
+          "text": "<strong>(Wybierz tylko jeśli na planszy znajduje się <room id='50'/>)</strong> Nakłoń go, aby pomógł Ci wyważyć drzwi stojące na drodze (przejdź do paragrafu <span class='color-green'>55</span>)",
           "nextParagraphId": "55"
         },
         {
@@ -968,16 +978,16 @@
       "contentPages": [
         [
           {
-            "text": "Wyłóż planszę 2<letter id='a'/> na <span class='color-purple'>E</span>. Odrzuć <item id='121'/>."
+            "text": "Wyłóż planszę 2<letter id='a'/> na <span class='color-purple'>E</span>. Odrzuć <room id='121'/>."
           },
           {
             "text": "Pamiętaj o przestawieniu swojej figurki do nowo odkrytej planszy."
           },
           {
-            "text": "Na środku planszy 2 wyłóż: <item id='61'/> oraz <item id='123'/>."
+            "text": "Na środku planszy 2 wyłóż: <story id='xiv'/> oraz <room id='123'/>."
           },
           {
-            "text": "Na <span class='color-purple'>E</span> planszy 2 wyłóż żeton planszy <item id='50'/>."
+            "text": "Na <span class='color-purple'>E</span> planszy 2 wyłóż żeton planszy <room id='50'/>."
           },
           {
             "text": "Umieść żeton Patricka w plastikowej podstawce. Połóż jego figurkę leżącą na środku planszy 2. Posiada <symbol id='paragraf'/>, więc można go również wskazywać w ramach akcji (dobierając wierzchnią kartę z talii). Przedmioty (kwadratowe żetony) możesz również wskazywać zarówno, gdy leżą na planszy / w twoim ekwipunku / w cudzym ekwipunku postaci, która znajduje się na planszy z Twoją figurką."
@@ -1020,7 +1030,7 @@
             "text": "Wy ... wy chyba nie żyjecie. Na chwilę przed zderzeniem czołowym z autem jadącym swoim pasem wybudził Cię krzyk Patricka. Wiedziałaś, że wpuszczenie go do auta w tym stanie nie jest dobrym pomysłem, ale obiecał, że będzie jechał powoli. Na trasie miewał momenty, gdy bardziej kierowało go auto niż on sam. Miałaś jednak nadzieję, że skoro było niedaleko, to uznałaś, że będzie dobrze i zmęczona zabawą się zdrzemniesz."
           },
           {
-            "text": "Odrzuć <item id='110'/>. Jeśli masz niewykorzystane akcje, wykorzystaj je."
+            "text": "Odrzuć <room id='110'/>. Jeśli masz niewykorzystane akcje, wykorzystaj je."
           }
         ]
       ],
@@ -1119,7 +1129,7 @@
       "contentPages": [
         [
           {
-            "text": "Wyłóż planszę 1<letter id='a'/>. Na jego <span class='color-blue'>W</span> połóż <item id='111'/>. Na środku wyłóż 3 losowe <symbol id='losowe'/>."
+            "text": "Wyłóż planszę 1<letter id='a'/>. Na jego <span class='color-blue'>W</span> połóż <room id='111'/>. Na środku wyłóż 3 losowe <symbol id='losowe'/>."
           },
           {
             "text": "Zawsze są wykładane odkryte, chyba, że scenariusz powie inaczej. Użycie efektu <symbol id='losowe'/> zużywa jedną akcję."
@@ -1171,7 +1181,7 @@
       ],
       "choices": [
         {
-          "text": "Tylko jeśli na planszy znajdują się <item id='50'/> dowolna z postaci na tej planszy posiada przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='123'/>. Następnie przejdź do paragrafu <span class='color-green'>65</span>.",
+          "text": "Tylko jeśli na planszy znajdują się <room id='50'/> dowolna z postaci na tej planszy posiada przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <room id='123'/>. Następnie przejdź do paragrafu <span class='color-green'>65</span>.",
           "nextParagraphId": "65"
         },
         {
@@ -1195,7 +1205,7 @@
       ],
       "choices": [
         {
-          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w ekwipunku, wskaż ten którym chcesz wejść w interakcję z <item id='137'/>. Następnie przejdź do paragrafu <span class='color-green'>34</span>.",
+          "text": "Tylko jeśli posiadasz jakikolwiek przedmiot w ekwipunku, wskaż ten którym chcesz wejść w interakcję z <room id='137'/>. Następnie przejdź do paragrafu <span class='color-green'>34</span>.",
           "nextParagraphId": "34"
         },
         {
@@ -1272,19 +1282,19 @@
       "contentPages": [
         [
           {
-            "text": "Odrzuć wszystkie plansze <strong>inne</strong> niż 12,14 i 2. Odrzuć wszystkie elementy na odrzuconych planszach. Odrzuć <item id='69'/>. Połóż figurkę <person id='patrick'/> leżącą na planszy 2<letter id='a'/>."
+            "text": "Odrzuć wszystkie plansze <strong>inne</strong> niż 12,14 i 2. Odrzuć wszystkie elementy na odrzuconych planszach. Odrzuć <room id='69'/>. Połóż figurkę <person id='patrick'/> leżącą na planszy 2<letter id='a'/>."
           },
           {
             "text": "Na planszy 12<letter id='a'/> wyłóż stojącą figurkę <person id='jessica'/>, a na <span class='color-blue'>E</span> wyłóż <symbol id='drzwi-otwarte'/> (zastąp inny element jeśli był)."
           },
           {
-            "text": "Na środku planszy 14<letter id='a'/> wyłóż <item id='147'/>."
+            "text": "Na środku planszy 14<letter id='a'/> wyłóż <room id='147'/>."
           },
           {
             "text": "Na <span class='color-blue'>E</span> planszy 2<letter id='a'/> wyłóż <symbol id='drzwi-otwarte'/> (zastąp inny element jeśli był) i na środku połóż tam leżącą figurkę Patricka."
           },
           {
-            "text": "Na środku planszy 14<letter id='a'/> wyłóż żeton priorytetu <item id='110'/>, a na środku planszy 2<letter id='a'/> żeton priorytetu <item id='151'/> (o tym jak działają przeczytasz nieco niżej)."
+            "text": "Na środku planszy 14<letter id='a'/> wyłóż żeton priorytetu <room id='110'/>, a na środku planszy 2<letter id='a'/> żeton priorytetu <room id='151'/> (o tym jak działają przeczytasz nieco niżej)."
           },
           {
             "text": "Turę rozgrywa już wyłącznie Jessica."

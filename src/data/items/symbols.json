@@ -1,0 +1,56 @@
+{
+  "symbols": [
+    {
+      "id": "drzwi-otwarte",
+      "name": "Żeton otwartych drzwi"
+    },
+    {
+      "id": "drzwi-zamkniete",
+      "name": "Żeton zamkniętych drzwi"
+    },
+    {
+      "id": "drzwi-wywazone",
+      "name": "Żeton wyważonych drzwi"
+    },
+    {
+      "id": "zycie",
+      "name": "Żeton życia"
+    },
+    {
+      "id": "rewers",
+      "name": "Rewers karty akcji"
+    },
+    {
+      "id": "amunicja-pistolet",
+      "name": "Żeton amunicji do pistoletu"
+    },
+    {
+      "id": "amunicja-strzelba",
+      "name": "Żeton amunicji do strzelby"
+    },
+    {
+      "id": "losowe",
+      "name": "Żeton losowego przedmiotu"
+    },
+    {
+      "id": "pd",
+      "name": "Żeton punktu doświadczenia"
+    },
+    {
+      "id": "paragraf",
+      "name": "Paragraf scenariusza"
+    },
+    {
+      "id": "gwiazda",
+      "name": "Symbol gwiazdy"
+    },
+    {
+      "id": "czas",
+      "name": "Żeton czasu"
+    },
+    {
+      "id": "przeciwnik",
+      "name": "Przeciwnik"
+    }
+  ]
+}
