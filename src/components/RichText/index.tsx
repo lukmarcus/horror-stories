@@ -1,6 +1,12 @@
 import React from "react";
 import type { ContentBlock } from "../../types";
-import { getPerson, getLetter, getSymbol } from "../../data/items";
+import {
+  getPerson,
+  getLetter,
+  getSymbol,
+  getStoryItem,
+  getRoomItem,
+} from "../../data/items";
 import "./rich-text.css";
 
 interface RichTextProps {
@@ -19,7 +25,7 @@ export const RichText: React.FC<RichTextProps> = ({
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode[] => {
     const customTagRegex =
-      /<(symbol|letter|item|image|person)\s+id=["']([^"']+)["']\s*\/>/g;
+      /<(symbol|letter|item|image|person|story|room)\s+id=["']([^"']+)["']\s*\/>/g;
     let currentPos = 0;
     const finalElements: React.ReactNode[] = [];
     let customElementCounter = 0;
@@ -93,6 +99,31 @@ export const RichText: React.FC<RichTextProps> = ({
             [{id}]
           </span>,
         );
+      } else if (tag === "story") {
+        const storyItem = getStoryItem(id);
+        if (storyItem) {
+          finalElements.push(
+            <img
+              key={key}
+              src={storyItem.imagePath}
+              alt={storyItem.description || id}
+              className="story-item-image"
+              title={storyItem.description || undefined}
+            />,
+          );
+        }
+      } else if (tag === "room") {
+        const roomItem = getRoomItem(id);
+        if (roomItem) {
+          finalElements.push(
+            <img
+              key={key}
+              src={roomItem.imagePath}
+              alt={`Room ${id}`}
+              className="room-item-image"
+            />,
+          );
+        }
       } else if (tag === "person") {
         const personData = getPerson(id);
         if (personData) {

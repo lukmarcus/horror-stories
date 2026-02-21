@@ -123,11 +123,12 @@ export const getStoryItem = (
 };
 
 export const getRoomItem = (
-  id: number,
+  id: string | number,
 ): (RoomItem & { imagePath: string }) | undefined => {
-  const roomItem = roomItems.find((item) => item.id === id);
+  const numId = typeof id === "string" ? parseInt(id, 10) : id;
+  const roomItem = roomItems.find((item) => item.id === numId);
   return roomItem
-    ? { ...roomItem, imagePath: getImagePath(id, "roomItems") }
+    ? { ...roomItem, imagePath: getImagePath(numId, "roomItems") }
     : undefined;
 };
 

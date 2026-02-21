@@ -72,6 +72,8 @@
 .symbol-image,
 .letter-image,
 .person-image,
+.story-item-image,
+.room-item-image,
 .inline-image {
   height: 1.4em;
   width: auto;
