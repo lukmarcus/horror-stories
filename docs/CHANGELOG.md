@@ -7,35 +7,19 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.0.11] - Zaplanowana
+## [0.0.11] - 2026-02-21
 
 ### Dodano
 
-- Favicon - ikona aplikacji w przeglądarce
-- Global game objects database - niezależna od scenariuszy baza przedmiotów, pomieszczeń, symboli i przedmiotów losowych
-  - Story items (storyItems) - identyfikowane przez liczby rzymskie (XIV, XXXVII)
-  - Room items (roomItems) - identyfikowane przez numery paragrafów (1, 37, 50)
-  - Random items - identyfikowane przez nazwy (tajemniczy-przedmiot-i, przedmiot-losowy-ii)
-  - Symbols - komponenty symboli i warunków warunkowych
-  - Persons, Letters, Statuses - pełna baza obiektów gry
-- TypeScript loader `src/data/items/index.ts` - helper functions do dostępu do obiektów z image path resolution
-- Organized asset structure: `public/assets/images/{storyItems,roomItems,randomItems,symbols,persons,letters,statuses}/`
-- Dynamic asset loading dla osób, liter i symboli w komponencie RichText
-- Inline image rendering w tekście - obrazy wyświetlają się obok tekstu zamiast na nowych wierszach
-- Card images (karta1, karta2, karta3) - zamiana symboli na rzeczywiste obrazy kart w setup i paragrafach
+- Grafiki przedmiotów w paragrafach - przedmioty scenariusza wyświetlają się jako obrazki wprost w tekście opisu paragrafów
+- Favicon aplikacji - ikonka w zakładce przeglądarki
+- Uzupełniony brakujący paragraf 51 w scenariuszu Droga Donikąd
 
 ### Poprawiono
 
-- Logo aplikacji - naprawa ścieżki asetu poprzez import zamiast hardcoded path (best practice)
-- Asset paths - użycie `import.meta.env.BASE_URL` dla poprawnego działania na GitHub Pages `/horror-stories/`
-- Extensje grafik w asset loader - persons/storyItems/roomItems teraz prawidłowo ładują `.jpg` zamiast `.png`
-- Letter case sensitivity - naprawiono `<letter id='A'/>` na `<letter id='a'/>`
-- Renderowanie custom tagów (`<symbol>`, `<letter>`, `<person>`) - teraz dynamicznie ładuje obrazy z data loader
-- Nazwy grafik w paragrafach - synchronizacja z rzeczywistymi plikami (karta_rozwoju.jpg, karty-akcji-ogolnych.jpg)
-- Dodano brakujące grafiki scenariusza "Droga Donikąd":
-  - patrick-talia.jpg
-  - podnies_przedmioty.jpg
-- Paragraf 51 - uzupełniony zagubiony node powiązany z paragrafem 12 (story branch z użyciem przedmiotu XIII)
+- Renderowanie grafik - wszystkie symbole, karty, osoby i przedmioty wyświetlają się prawidłowo
+- Ścieżkami grafik dla GitHub Pages - gra działa poprawnie wszędzie, gdzie jest hostowana
+- Brakujące grafiki scenariusza - dodane wszystkie potrzebne obrazki do pełnej rozgrywki
 
 ---
 

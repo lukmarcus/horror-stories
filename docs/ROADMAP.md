@@ -6,34 +6,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.11 - Organizacja przedmiotów i grafik
-
-### Zakres
-
-- Kompletne spisanie wszystkich przedmiotów scenariusza
-- Posortowanie i kategoryzowanie przedmiotów
-- Dodanie grafik dla wszystkich przedmiotów
-- Integracja grafik przedmiotów w paragrafach
-- Podjęcie ostatecznej decyzji dotyczącej numeracji i nazewnictwa przedmiotów
-
-### Do zrobienia
-
-- ⏳ Spisanie wszystkich przedmiotów z paragrafów
-- ⏳ Kategoryzacja przedmiotów
-- ⏳ Tworzenie/pozyskanie grafik przedmiotów
-- ⏳ Integracja grafik w systemie renderowania
-- ⏳ Standaryzacja numeracji i nazewnictwa
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.0.12 - UI/UX Visual Improvements
 
 ### Zakres
 
+- **Powiększenie tekstu opcji wyboru** - Większa czcionka dla lepszej czytelności wyboru
 - **Stylizacja tekstu końcowego** - Dedykowany wyświetlanie ostatnich paragrafów scenariusza
 - **Refaktor ekranu direct: false** - Ulepszone UI dla ostrzeżenia dostępności (paragraf 77 itp)
 - **Wariantowe zawartość** - Zaawansowana obsługa wariantów (warianty postaci w jednym paragrafie)
@@ -43,6 +20,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Do zrobienia
 
+- ⏳ Larger choice text - powiększyć czcionkę w przyciskach wyboru dla lepszej czytelności
 - ⏳ End-game text styling - przeprojektować wyświetlanie tekstu końcowego (paragraf 151)
 - ⏳ Accessibility warning UI redesign - lepsze UI dla ekranu dostępności (direct: false)
 - ⏳ Variant content with merge logic - hierarchiczna struktura wariantów postaci
@@ -58,10 +36,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.0 - MVP Release - Visual Design
+## Milestone v0.1.0 - MVP Release - Visual Design & Features
 
 ### Zakres
 
+- **Przycisk rzucania kostką na ekranie input** - Możliwość rzucenia kostką w każdym momencie setupu scenariusza
 - Kompletny design wizualny aplikacji
 - Responsywny layout na wszystkich urządzeniach
 - Koherentna paleta barw i typografia
@@ -71,6 +50,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Do zrobienia
 
+- ⏳ Dice roller button on input screen - nowy przycisk do rzucania kostką k6 na stronie inputu scenariusza
 - ⏳ Design system - kolory, typografia, komponenty
 - ⏳ Responsywność - mobile, tablet, desktop
 - ⏳ Animacje i przejścia
@@ -147,7 +127,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ## Strategia gałęzi
 
 - **main** - Stabilne wydania (v0.1.0+)
-- **v0.0.10+** - Bieżący development
+- **v0.0.11+** - Bieżący development
 
 ## Legenda
 
@@ -158,4 +138,4 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-**Ostatnia aktualizacja:** 2026-02-16
+**Ostatnia aktualizacja:** 2026-02-21
