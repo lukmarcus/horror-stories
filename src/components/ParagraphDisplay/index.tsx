@@ -204,7 +204,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
                     onChoice(choice.nextParagraphId);
                   }
                 }}
-                className="button button--primary"
+                className="button button--primary button--lg"
                 aria-label={choice.text || ""}
               >
                 {choice.text && choice.text.includes("<") ? (

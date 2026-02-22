@@ -7,6 +7,16 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.12] - Zaplanowana
+
+### Dodano
+
+### Poprawiono
+
+- Rozmiar tekstu przycisków wyboru - przyciski choices teraz takie same jak rozmiar tekstu paragrafu (1.125rem)
+
+---
+
 ## [0.0.11] - 2026-02-21
 
 ### Dodano
