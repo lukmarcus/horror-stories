@@ -35,9 +35,8 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     (!paragraph.choices || paragraph.choices.length === 0) &&
     !paragraph.hasDiceRoll;
 
-  // Handle content pages
+  // Handle content pages - auto-detect if multiple pages exist
   const hasPages =
-    paragraph.isMultiPage &&
     paragraph.contentPages &&
     paragraph.contentPages.length > 1;
   const maxPage = paragraph.contentPages

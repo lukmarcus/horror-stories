@@ -272,7 +272,6 @@
     },
     {
       "id": "30",
-      "isMultiPage": true,
       "contentPages": [
         [
           {
@@ -782,7 +781,6 @@
     },
     {
       "id": "77",
-      "isMultiPage": true,
       "contentPages": [
         [
           {
@@ -1241,7 +1239,9 @@
           {
             "style": "italic",
             "text": "Płonęliście żywcem wiedząc, że nie ma wyjścia z tej sytuacji. Wiedzieliście, że to koniec, ale ten mimo waszych błagań nie chciał nadejść. Kiedy już więc do niego doszło, trafiliście tutaj. Wydaje się, że rozumiesz czym może być to miejsce. Nie jesteś złą osobą i nie powinno Cię tu być. Nie zamierzasz pokutować, ani przepraszać. Zamierasz zrobisz wszystko, aby opuścić to miejsce."
-          },
+          }
+        ],
+        [
           {
             "text": "<span class='size-xl color-red'>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</span>"
           }

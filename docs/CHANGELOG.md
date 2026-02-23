@@ -18,6 +18,8 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Tytuł scenariusza na wszystkich ekranach - nagłówek H1 widoczny spójnie na każdym ekranie gry (setup, input, paragraph, warning)
 - Ujednolicona szerokość ostrzeżenia dostępności - ostrzeżenie ma ustaloną szerokość zamiast pełnej szerokości ekranu
 - Spacing od paska nawigacji - spójny odstęp na wszystkich ekranach (setup, input, paragraph, warning)
+- Tekst końcowy scenariusza - ostatni paragraf (151) podzielony na 2 strony dla dramatyzmu
+- Auto-detekcja stronicowania - paragrafy z wieloma `contentPages` automatycznie włączają przycisków stronicowania (bez potrzeby `isMultiPage`)
 
 ---
 
