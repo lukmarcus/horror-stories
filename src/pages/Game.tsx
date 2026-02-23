@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useSearchParams } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
 import { Button } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
@@ -10,8 +10,24 @@ import "../styles/pages/game.css";
 
 export const Game: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const [searchParams, setSearchParams] = useSearchParams();
   const game = useGame();
   const gameActions = useGameActions();
+
+  // Initialize paragraph from URL on mount
+  React.useEffect(() => {
+    const parFromUrl = searchParams.get("par");
+    if (parFromUrl && !game.state.currentParagraphId) {
+      game.setParagraph(parFromUrl);
+    }
+  }, []); // Only run once on mount
+
+  // Update URL when paragraph changes
+  React.useEffect(() => {
+    if (game.state.currentParagraphId) {
+      setSearchParams({ par: game.state.currentParagraphId });
+    }
+  }, [game.state.currentParagraphId, setSearchParams]);
 
   // Use imported game data
   const scenarios = SCENARIOS;
