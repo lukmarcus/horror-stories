@@ -14,6 +14,10 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Poprawiono
 
 - Rozmiar tekstu przycisków wyboru - przyciski choices teraz takie same jak rozmiar tekstu paragrafu (1.125rem)
+- Wygląd ostrzeżenia dostępności - ekran ostrzeżeń (paragraf niedostępny) teraz wygląda jak zwykły paragraf zamiast alert box
+- Tytuł scenariusza na wszystkich ekranach - nagłówek H1 widoczny spójnie na każdym ekranie gry (setup, input, paragraph, warning)
+- Ujednolicona szerokość ostrzeżenia dostępności - ostrzeżenie ma ustaloną szerokość zamiast pełnej szerokości ekranu
+- Spacing od paska nawigacji - spójny odstęp na wszystkich ekranach (setup, input, paragraph, warning)
 
 ---
 

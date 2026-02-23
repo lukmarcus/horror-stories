@@ -21,8 +21,9 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ### Do zrobienia
 
 - ✅ Larger choice text - powiększyć czcionkę w przyciskach wyboru dla lepszej czytelności
+- ✅ Accessibility warning UI redesign - lepsze UI dla ekranu dostępności (direct: false)
+- ✅ Screen title unification - tytuł scenariusza widoczny na wszystkich ekranach
 - ⏳ End-game text styling - przeprojektować wyświetlanie tekstu końcowego (paragraf 151)
-- ⏳ Accessibility warning UI redesign - lepsze UI dla ekranu dostępności (direct: false)
 - ⏳ Variant content with merge logic - hierarchiczna struktura wariantów postaci
 - ⏳ Horizontal choices visual grouping - ramka/background dla choices poziomych
 - ⏳ Choice history tracking - wyświetlenie ostatnio dokonanego wyboru

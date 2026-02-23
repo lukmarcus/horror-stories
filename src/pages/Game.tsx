@@ -77,6 +77,13 @@ export const Game: React.FC = () => {
 
   return (
     <main className="game">
+      {/* Scenario Title - Visible on all screens */}
+      {currentScenario && (
+        <h1 className="game__scenario-title">
+          {currentScenario.title || "Scenariusz"}
+        </h1>
+      )}
+
       {/* Accessibility Warning Screen */}
       {game.state.showAccessibilityWarning && game.state.pendingParagraphId && (
         <section
@@ -84,11 +91,7 @@ export const Game: React.FC = () => {
           aria-label="Ostrzeżenie o dostępności paragrafu"
         >
           <div className="game__warning-content">
-            <h1 className="game__scenario-title">
-              {currentScenario?.title || "Scenariusz"}
-            </h1>
             <div className="game__warning-box">
-              <h2 className="game__warning-title">Ostrzeżenie</h2>
               <p className="game__warning-text">
                 Paragraf #{game.state.pendingParagraphId} jest dostępny tylko z:
               </p>
@@ -96,7 +99,7 @@ export const Game: React.FC = () => {
                 {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.map(
                   (source) => (
                     <div key={source} className="game__warning-source">
-                      • Paragraf #{source}
+                      Paragraf #{source}
                     </div>
                   ),
                 )}
@@ -140,9 +143,6 @@ export const Game: React.FC = () => {
             >
               ← Wróć do gry
             </Button>
-            <h1 className="game__scenario-title" style={{ margin: 0, flex: 1 }}>
-              Ustawienie: {currentScenario?.title || "Scenariusz"}
-            </h1>
           </div>
 
           {setupSteps.length > 0 ? (
@@ -243,9 +243,6 @@ export const Game: React.FC = () => {
                 aria-label="Panel wpisywania paragrafu"
               >
                 <div className="game__input-header">
-                  <h1 className="game__scenario-title">
-                    {currentScenario?.title || "Scenariusz"}
-                  </h1>
                   <p className="game__input-instruction">
                     Wprowadź poniżej numer wpisu, a następnie naciśnij
                     "PRZEJDŹ".
@@ -317,12 +314,6 @@ export const Game: React.FC = () => {
                   >
                     ← Wróć
                   </Button>
-                  <h1
-                    className="game__scenario-title"
-                    style={{ margin: 0, flex: 1 }}
-                  >
-                    Paragraf: {game.state.currentParagraphId}
-                  </h1>
                 </div>
                 {currentParagraph ? (
                   <ParagraphDisplay
