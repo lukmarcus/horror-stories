@@ -20,6 +20,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Spacing od paska nawigacji - spójny odstęp na wszystkich ekranach (setup, input, paragraph, warning)
 - Tekst końcowy scenariusza - ostatni paragraf (151) podzielony na 2 strony dla dramatyzmu
 - Auto-detekcja stronicowania - paragrafy z wieloma `contentPages` automatycznie włączają przycisków stronicowania (bez potrzeby `isMultiPage`)
+- Browser history support - URL parametr `?par=X` do nawigacji i sharowania linków do paragrafów, back button działa prawidłowo
 
 ---
 

@@ -12,7 +12,7 @@ export interface GameState {
 }
 
 type GameAction =
-  | { type: "SET_PARAGRAPH"; payload: string }
+  | { type: "SET_PARAGRAPH"; payload: string | null }
   | { type: "SET_INPUT"; payload: string }
   | { type: "SET_ERROR"; payload: string }
   | { type: "CLEAR_ERROR" }
@@ -84,7 +84,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 interface UseGameReturn {
   state: GameState;
   dispatch: React.Dispatch<GameAction>;
-  setParagraph: (id: string) => void;
+  setParagraph: (id: string | null) => void;
   setInput: (value: string) => void;
   setError: (error: string) => void;
   clearError: () => void;
@@ -106,7 +106,7 @@ export function useGame(): UseGameReturn {
     state,
     dispatch,
     // Convenience methods
-    setParagraph: (id: string) =>
+    setParagraph: (id: string | null) =>
       dispatch({ type: "SET_PARAGRAPH", payload: id }),
     setInput: (value: string) =>
       dispatch({ type: "SET_INPUT", payload: value }),

@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link, useSearchParams } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
 import { Button } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
@@ -10,24 +10,45 @@ import "../styles/pages/game.css";
 
 export const Game: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const game = useGame();
   const gameActions = useGameActions();
 
-  // Initialize paragraph from URL on mount
-  React.useEffect(() => {
-    const parFromUrl = searchParams.get("par");
-    if (parFromUrl && !game.state.currentParagraphId) {
-      game.setParagraph(parFromUrl);
-    }
-  }, []); // Only run once on mount
+  // Track previous paragraph ID to detect if change came from URL or user action
+  const prevParIdRef = React.useRef<string | null>(null);
 
-  // Update URL when paragraph changes
+  // Parse URL parameter
+  const params = new URLSearchParams(location.search);
+  const parFromUrl = params.get("par");
+
+  // Sync URL → State when back button is clicked or direct link is used
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(() => {
-    if (game.state.currentParagraphId) {
-      setSearchParams({ par: game.state.currentParagraphId });
+    // Only sync if URL changed (not during initial render or state-triggered URL update)
+    if (parFromUrl !== prevParIdRef.current) {
+      if (parFromUrl) {
+        game.setParagraph(parFromUrl);
+      } else {
+        game.setParagraph(null);
+      }
+      prevParIdRef.current = parFromUrl;
     }
-  }, [game.state.currentParagraphId, setSearchParams]);
+  }, [location.search]);
+
+  // Sync State → URL when user clicks on a choice
+  React.useEffect(() => {
+    const currentPar = game.state.currentParagraphId;
+    // Only update URL if state changed (not during initial load from URL)
+    if (currentPar !== prevParIdRef.current) {
+      if (currentPar) {
+        navigate(`?par=${currentPar}`, { replace: false });
+      } else {
+        navigate({ search: "" }, { replace: false });
+      }
+    }
+    prevParIdRef.current = currentPar;
+  }, [game.state.currentParagraphId, navigate]);
 
   // Use imported game data
   const scenarios = SCENARIOS;
