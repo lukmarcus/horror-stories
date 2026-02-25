@@ -15,40 +15,41 @@ export const Game: React.FC = () => {
   const game = useGame();
   const gameActions = useGameActions();
 
-  // Track previous paragraph ID to detect if change came from URL or user action
-  const prevParIdRef = React.useRef<string | null>(null);
+  // Flag: true when state change was triggered by URL (back/forward), not by user action
+  const isUrlDrivenChange = React.useRef(false);
 
-  // Parse URL parameter
-  const params = new URLSearchParams(location.search);
-  const parFromUrl = params.get("par");
-
-  // Sync URL → State when back button is clicked or direct link is used
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // Effect 1: URL → State (handles back/forward navigation)
   React.useEffect(() => {
-    // Only sync if URL changed (not during initial render or state-triggered URL update)
-    if (parFromUrl !== prevParIdRef.current) {
-      if (parFromUrl) {
-        game.setParagraph(parFromUrl);
-      } else {
-        game.setParagraph(null);
-      }
-      prevParIdRef.current = parFromUrl;
+    const parFromUrl = new URLSearchParams(location.search).get("par");
+    const currentPar = game.state.currentParagraphId;
+    if (parFromUrl !== currentPar) {
+      isUrlDrivenChange.current = true;
+      game.setParagraph(parFromUrl);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
-  // Sync State → URL when user clicks on a choice
+  // Effect 2: State → URL (handles user clicking a choice)
   React.useEffect(() => {
     const currentPar = game.state.currentParagraphId;
-    // Only update URL if state changed (not during initial load from URL)
-    if (currentPar !== prevParIdRef.current) {
-      if (currentPar) {
-        navigate(`?par=${currentPar}`, { replace: false });
-      } else {
-        navigate({ search: "" }, { replace: false });
-      }
+
+    // If the state change came from the URL (Effect 1), don't push a new URL
+    if (isUrlDrivenChange.current) {
+      isUrlDrivenChange.current = false;
+      return;
     }
-    prevParIdRef.current = currentPar;
-  }, [game.state.currentParagraphId, navigate]);
+
+    // Don't push URL if it already matches state (avoids duplicate history entries)
+    const parFromUrl = new URLSearchParams(location.search).get("par");
+    if (currentPar === parFromUrl) return;
+
+    if (currentPar) {
+      navigate(`?par=${currentPar}`, { replace: false });
+    } else {
+      navigate({ search: "" }, { replace: false });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game.state.currentParagraphId]);
 
   // Use imported game data
   const scenarios = SCENARIOS;

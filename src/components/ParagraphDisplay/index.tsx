@@ -180,11 +180,12 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
           aria-label="Dostępne wybory"
         >
           <legend className="sr-only">Wybierz następny paragraf</legend>
-          {paragraph.choices.map((choice) => {
+          {paragraph.choices.map((choice, idx) => {
+            const choiceKey = choice.id || `choice-${idx}`;
             if (choice.isConditional) {
               return (
                 <ConditionalChoice
-                  key={choice.id}
+                  key={choiceKey}
                   choice={choice}
                   onYes={() => choice.yesNextId && onChoice(choice.yesNextId)}
                   onNo={() => choice.noNextId && onChoice(choice.noNextId)}
@@ -193,7 +194,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
             }
             return (
               <button
-                key={choice.id}
+                key={choiceKey}
                 onClick={() => {
                   if (choice.nextParagraphId === "") {
                     onBack();
