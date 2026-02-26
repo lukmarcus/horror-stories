@@ -4,12 +4,14 @@ import { ParagraphText } from "../ParagraphText/ParagraphText";
 import { RichText } from "../RichText";
 import { DiceRoller } from "../DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../ConditionalChoice/ConditionalChoice";
+import { ParagraphInput } from "../ParagraphInput";
 import "./ParagraphDisplay.css";
 
 interface ParagraphDisplayProps {
   paragraph: Paragraph;
   lastDiceResult: number | null;
   onChoice: (nextId: string) => void;
+  onJumpToParagraph: (value: string) => string | null;
   onBack: () => void;
   scenarioId?: string;
 }
@@ -18,6 +20,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
   paragraph,
   lastDiceResult,
   onChoice,
+  onJumpToParagraph,
   onBack,
   scenarioId,
 }) => {
@@ -163,14 +166,20 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
 
       {isDeadEnd && currentPage === maxPage && (
         <div className="dead-end" role="status" aria-live="polite">
-          <button
-            onClick={onBack}
-            className="button button--primary button--md"
-            aria-label="Powrót do wyboru paragrafu"
-            style={{ width: "100%" }}
-          >
-            Powrót do gry
-          </button>
+          <ParagraphInput
+            onSubmit={onJumpToParagraph}
+            instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
+            autoFocus
+            errorId="dead-end-error"
+            actions={
+              <button
+                onClick={onBack}
+                className="button button--secondary button--sm"
+              >
+                ← Powrót do gry
+              </button>
+            }
+          />
         </div>
       )}
 

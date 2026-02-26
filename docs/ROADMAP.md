@@ -26,6 +26,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ End-game text styling - tekst końcowy (paragraf 151) podzielony na 2 strony
 - ✅ Auto-detect multipage paragraphs - paragrafy z wieloma stronami włączają stronicowanie automatycznie
 - ✅ Browser history support - URL state (`?par=X`) dla pełnej obsługi historii przeglądarki
+- ✅ Input instead of back button - inline input dla paragrafów bez choices (dead ends)
 - ⏳ Variant content with merge logic - hierarchiczna struktura wariantów postaci
 
 ### Status

@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
 import { Button } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
+import { ParagraphInput } from "../components/ParagraphInput";
 import { RichText } from "../components/RichText";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
@@ -26,7 +27,7 @@ export const Game: React.FC = () => {
       isUrlDrivenChange.current = true;
       game.setParagraph(parFromUrl);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
   // Effect 2: State → URL (handles user clicking a choice)
@@ -48,7 +49,7 @@ export const Game: React.FC = () => {
     } else {
       navigate({ search: "" }, { replace: false });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game.state.currentParagraphId]);
 
   // Use imported game data
@@ -63,33 +64,25 @@ export const Game: React.FC = () => {
     ? paragraphs[game.state.currentParagraphId]
     : null;
 
-  const handleJumpToParagraph = () => {
-    game.clearError();
-
-    const result = gameActions.jumpToParagraph(
-      game.state.inputValue,
-      paragraphs,
-    );
+  const handleMainInputSubmit = (value: string): string | null => {
+    const result = gameActions.jumpToParagraph(value, paragraphs);
 
     if (result.needsWarning && result.pendingId) {
       game.showWarning(result.pendingId);
-      return;
+      return null;
     }
 
     if (!result.valid) {
-      game.setError(result.error || "Błąd");
-      return;
+      return result.error || "Błąd";
     }
 
-    const nextId = game.state.inputValue.trim();
-    game.setParagraph(nextId);
-    game.setInput("");
+    game.setParagraph(value.trim());
+    return null;
   };
 
   const handleConfirmAccessibility = () => {
     if (game.state.pendingParagraphId) {
       game.setParagraph(game.state.pendingParagraphId);
-      game.setInput("");
     }
     game.closeWarning();
   };
@@ -98,14 +91,25 @@ export const Game: React.FC = () => {
     game.closeWarning();
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleJumpToParagraph();
-    }
-  };
-
   const handleBackToInput = () => {
     game.reset();
+  };
+
+  const handleJumpFromDeadEnd = (value: string): string | null => {
+    const result = gameActions.jumpToParagraph(value, paragraphs);
+
+    if (result.needsWarning && result.pendingId) {
+      game.showWarning(result.pendingId);
+      return null;
+    }
+
+    if (!result.valid) {
+      return result.error || "Błąd";
+    }
+
+    game.setParagraph(value.trim());
+    game.clearDiceResult();
+    return null;
   };
 
   const handleChoice = (nextId: string) => {
@@ -276,66 +280,29 @@ export const Game: React.FC = () => {
           <div className="game__container">
             {/* INPUT MODE - Show input panel */}
             {!game.state.currentParagraphId ? (
-              <section
-                className="game__input-panel"
-                aria-label="Panel wpisywania paragrafu"
-              >
-                <div className="game__input-header">
-                  <p className="game__input-instruction">
-                    Wprowadź poniżej numer wpisu, a następnie naciśnij
-                    "PRZEJDŹ".
-                  </p>
-                </div>
-
-                <div className="game__input-wrapper">
-                  <div className="game__input-group">
-                    <input
-                      type="text"
-                      value={game.state.inputValue}
-                      onChange={(e) => game.setInput(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                      placeholder="np. 1, 2, 3..."
-                      className="game__input"
-                      aria-label="Numer paragrafu do odwiedzenia"
-                      aria-describedby={
-                        game.state.error ? "input-error" : undefined
-                      }
-                      aria-invalid={!!game.state.error}
-                      autoFocus
-                    />
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      onClick={handleJumpToParagraph}
-                      className="game__input-btn"
-                      aria-label="Przejść do paragrafu"
-                    >
-                      PRZEJDŹ
-                    </Button>
-                  </div>
-                  {game.state.error && (
-                    <p id="input-error" className="game__error" role="alert">
-                      {game.state.error}
-                    </p>
-                  )}
-                </div>
-
-                {/* Options */}
-                <div className="game__options">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => game.toggleSetup()}
-                    className="game__option-btn"
-                  >
-                    ⚙️ Przygotuj Scenariusz
-                  </Button>
-                  <Link to="/scenarios" className="game__option-link">
-                    <Button variant="secondary" size="sm">
-                      ← Powrót do Menu
-                    </Button>
-                  </Link>
-                </div>
+              <section aria-label="Panel wpisywania paragrafu">
+                <ParagraphInput
+                  onSubmit={handleMainInputSubmit}
+                  instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
+                  autoFocus
+                  actions={
+                    <>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => game.toggleSetup()}
+                        className="game__option-btn"
+                      >
+                        ⚙️ Przygotuj Scenariusz
+                      </Button>
+                      <Link to="/scenarios" className="game__option-link">
+                        <Button variant="secondary" size="sm">
+                          ← Powrót do Menu
+                        </Button>
+                      </Link>
+                    </>
+                  }
+                />
               </section>
             ) : (
               /* PARAGRAPH MODE - Show paragraph */
@@ -358,6 +325,7 @@ export const Game: React.FC = () => {
                     paragraph={currentParagraph}
                     lastDiceResult={game.state.lastDiceResult}
                     onChoice={handleChoice}
+                    onJumpToParagraph={handleJumpFromDeadEnd}
                     onBack={handleBackToInput}
                     scenarioId={scenarioId}
                   />
