@@ -311,6 +311,39 @@ export const Game: React.FC = () => {
                 aria-label="Treść paragrafu"
               >
                 <div className="game__setup-header">
+                  {currentParagraph?.accessibleFrom &&
+                    currentParagraph.accessibleFrom.length > 0 && (
+                      <>
+                        {currentParagraph.accessibleFrom.length === 1 ? (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() =>
+                              handleChoice(currentParagraph.accessibleFrom![0])
+                            }
+                            aria-label={`Wróć do paragrafu ${
+                              currentParagraph.accessibleFrom[0]
+                            }`}
+                          >
+                          ← Wróć do #{currentParagraph.accessibleFrom[0]}
+                          </Button>
+                        ) : (
+                          <>
+                            {currentParagraph.accessibleFrom.map((paraId) => (
+                              <Button
+                                key={paraId}
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleChoice(paraId)}
+                                aria-label={`Wróć do paragrafu ${paraId}`}
+                              >
+                              ← Wróć do #{paraId}
+                              </Button>
+                            ))}
+                          </>
+                        )}
+                      </>
+                    )}
                   <Button
                     variant="outline"
                     size="sm"
