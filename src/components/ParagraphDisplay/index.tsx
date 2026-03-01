@@ -10,7 +10,7 @@ import "./ParagraphDisplay.css";
 interface ParagraphDisplayProps {
   paragraph: Paragraph;
   lastDiceResult: number | null;
-  onChoice: (nextId: string) => void;
+  onChoice: (nextId: string | undefined, isVariant?: boolean) => void;
   onJumpToParagraph: (value: string) => string | null;
   onBack: () => void;
   scenarioId?: string;
@@ -117,6 +117,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
                     isDiceRollSuccess
                       ? paragraph.diceResult!.successNextId
                       : paragraph.diceResult!.failNextId,
+                    false,
                   )
                 }
                 className="button button--primary"
@@ -196,8 +197,12 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
                 <ConditionalChoice
                   key={choiceKey}
                   choice={choice}
-                  onYes={() => choice.yesNextId && onChoice(choice.yesNextId)}
-                  onNo={() => choice.noNextId && onChoice(choice.noNextId)}
+                  onYes={() =>
+                    choice.yesNextId && onChoice(choice.yesNextId, false)
+                  }
+                  onNo={() =>
+                    choice.noNextId && onChoice(choice.noNextId, false)
+                  }
                 />
               );
             }
@@ -207,8 +212,10 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
                 onClick={() => {
                   if (choice.nextParagraphId === "") {
                     onBack();
+                  } else if (choice.nextVariantId) {
+                    onChoice(choice.nextVariantId, true);
                   } else if (choice.nextParagraphId) {
-                    onChoice(choice.nextParagraphId);
+                    onChoice(choice.nextParagraphId, false);
                   }
                 }}
                 className="button button--primary button--lg"

@@ -11,6 +11,7 @@ export interface Choice {
   text?: string;
   html?: string;
   nextParagraphId?: string;
+  nextVariantId?: string; // For variant content navigation
   isConditional?: boolean;
   yesText?: string;
   noText?: string;
@@ -53,6 +54,7 @@ export interface Paragraph {
   content?: ContentBlock[];
   contentPages?: ContentBlock[][];
   choices?: Choice[];
+  variants?: Record<string, Paragraph>; // For variant content
   image?: string;
   audio?: string;
   hasDiceRoll?: boolean;

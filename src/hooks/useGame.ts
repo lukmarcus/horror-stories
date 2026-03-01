@@ -2,6 +2,7 @@ import { useReducer } from "react";
 
 export interface GameState {
   currentParagraphId: string | null;
+  currentVariantId: string | null; // For variant content navigation
   inputValue: string;
   showSetup: boolean;
   currentSetupStep: number;
@@ -13,6 +14,7 @@ export interface GameState {
 
 type GameAction =
   | { type: "SET_PARAGRAPH"; payload: string | null }
+  | { type: "SET_VARIANT"; payload: string | null } // For variant content navigation
   | { type: "SET_INPUT"; payload: string }
   | { type: "SET_ERROR"; payload: string }
   | { type: "CLEAR_ERROR" }
@@ -28,6 +30,7 @@ type GameAction =
 
 const initialState: GameState = {
   currentParagraphId: null,
+  currentVariantId: null,
   inputValue: "",
   showSetup: false,
   currentSetupStep: 0,
@@ -40,7 +43,14 @@ const initialState: GameState = {
 function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case "SET_PARAGRAPH":
-      return { ...state, currentParagraphId: action.payload, error: "" };
+      return {
+        ...state,
+        currentParagraphId: action.payload,
+        currentVariantId: null,
+        error: "",
+      };
+    case "SET_VARIANT":
+      return { ...state, currentVariantId: action.payload };
     case "SET_INPUT":
       return { ...state, inputValue: action.payload };
     case "SET_ERROR":
@@ -85,6 +95,7 @@ interface UseGameReturn {
   state: GameState;
   dispatch: React.Dispatch<GameAction>;
   setParagraph: (id: string | null) => void;
+  setVariant: (id: string | null) => void;
   setInput: (value: string) => void;
   setError: (error: string) => void;
   clearError: () => void;
@@ -108,6 +119,8 @@ export function useGame(): UseGameReturn {
     // Convenience methods
     setParagraph: (id: string | null) =>
       dispatch({ type: "SET_PARAGRAPH", payload: id }),
+    setVariant: (id: string | null) =>
+      dispatch({ type: "SET_VARIANT", payload: id }),
     setInput: (value: string) =>
       dispatch({ type: "SET_INPUT", payload: value }),
     setError: (error: string) =>

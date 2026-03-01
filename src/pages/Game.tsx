@@ -64,6 +64,14 @@ export const Game: React.FC = () => {
     ? paragraphs[game.state.currentParagraphId]
     : null;
 
+  // If in a variant, display variant content instead of main paragraph
+  const displayParagraph =
+    currentParagraph &&
+    game.state.currentVariantId &&
+    currentParagraph.variants?.[game.state.currentVariantId]
+      ? currentParagraph.variants[game.state.currentVariantId]
+      : currentParagraph;
+
   const handleMainInputSubmit = (value: string): string | null => {
     const result = gameActions.jumpToParagraph(value, paragraphs);
 
@@ -112,8 +120,17 @@ export const Game: React.FC = () => {
     return null;
   };
 
-  const handleChoice = (nextId: string) => {
-    game.setParagraph(nextId);
+  const handleChoice = (
+    nextId: string | undefined,
+    isVariant: boolean = false,
+  ) => {
+    if (!nextId) return;
+
+    if (isVariant) {
+      game.setVariant(nextId);
+    } else {
+      game.setParagraph(nextId);
+    }
     game.clearDiceResult();
   };
 
@@ -325,7 +342,7 @@ export const Game: React.FC = () => {
                               currentParagraph.accessibleFrom[0]
                             }`}
                           >
-                          ← Wróć do #{currentParagraph.accessibleFrom[0]}
+                            ← Wróć do #{currentParagraph.accessibleFrom[0]}
                           </Button>
                         ) : (
                           <>
@@ -337,7 +354,7 @@ export const Game: React.FC = () => {
                                 onClick={() => handleChoice(paraId)}
                                 aria-label={`Wróć do paragrafu ${paraId}`}
                               >
-                              ← Wróć do #{paraId}
+                                ← Wróć do #{paraId}
                               </Button>
                             ))}
                           </>
@@ -355,7 +372,7 @@ export const Game: React.FC = () => {
                 </div>
                 {currentParagraph ? (
                   <ParagraphDisplay
-                    paragraph={currentParagraph}
+                    paragraph={displayParagraph || currentParagraph}
                     lastDiceResult={game.state.lastDiceResult}
                     onChoice={handleChoice}
                     onJumpToParagraph={handleJumpFromDeadEnd}
