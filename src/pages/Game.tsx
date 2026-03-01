@@ -328,6 +328,17 @@ export const Game: React.FC = () => {
                 aria-label="Treść paragrafu"
               >
                 <div className="game__setup-header">
+                  {currentParagraph?.variants &&
+                    game.state.currentVariantId && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => game.setVariant(null)}
+                        aria-label="Odśwież paragraf i dokonaj wyborów od nowa"
+                      >
+                        ↻ Odśwież
+                      </Button>
+                    )}
                   {currentParagraph?.accessibleFrom &&
                     currentParagraph.accessibleFrom.length > 0 && (
                       <>
