@@ -172,13 +172,13 @@ export const RichText: React.FC<RichTextProps> = ({
     return (
       <>
         {blocks.map((block, idx) => {
-          // Generate stable key from block content
+          // Generate stable key from block content + index to ensure uniqueness
           const blockKey = block.image
-            ? `img-${block.image}`
+            ? `img-${block.image}-${idx}`
             : block.text
-              ? `text-${block.text.substring(0, 20)}`
+              ? `text-${block.text.substring(0, 20)}-${idx}`
               : block.id
-                ? `id-${block.id}`
+                ? `id-${block.id}-${idx}`
                 : `block-${idx}`;
 
           // Handle new image format: {image: "id"}

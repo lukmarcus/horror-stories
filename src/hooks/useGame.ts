@@ -2,7 +2,7 @@ import { useReducer } from "react";
 
 export interface GameState {
   currentParagraphId: string | null;
-  currentVariantId: string | null; // For variant content navigation
+  variantPath: string[]; // Path of variant choices (for cumulative content)
   inputValue: string;
   showSetup: boolean;
   currentSetupStep: number;
@@ -14,7 +14,8 @@ export interface GameState {
 
 type GameAction =
   | { type: "SET_PARAGRAPH"; payload: string | null }
-  | { type: "SET_VARIANT"; payload: string | null } // For variant content navigation
+  | { type: "ADD_VARIANT"; payload: string } // Append variant to path
+  | { type: "CLEAR_VARIANTS" } // Reset variant path
   | { type: "SET_INPUT"; payload: string }
   | { type: "SET_ERROR"; payload: string }
   | { type: "CLEAR_ERROR" }
@@ -30,7 +31,7 @@ type GameAction =
 
 const initialState: GameState = {
   currentParagraphId: null,
-  currentVariantId: null,
+  variantPath: [],
   inputValue: "",
   showSetup: false,
   currentSetupStep: 0,
@@ -46,11 +47,13 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       return {
         ...state,
         currentParagraphId: action.payload,
-        currentVariantId: null,
+        variantPath: [],
         error: "",
       };
-    case "SET_VARIANT":
-      return { ...state, currentVariantId: action.payload };
+    case "ADD_VARIANT":
+      return { ...state, variantPath: [...state.variantPath, action.payload] };
+    case "CLEAR_VARIANTS":
+      return { ...state, variantPath: [] };
     case "SET_INPUT":
       return { ...state, inputValue: action.payload };
     case "SET_ERROR":
@@ -95,7 +98,8 @@ interface UseGameReturn {
   state: GameState;
   dispatch: React.Dispatch<GameAction>;
   setParagraph: (id: string | null) => void;
-  setVariant: (id: string | null) => void;
+  addVariant: (id: string) => void;
+  clearVariants: () => void;
   setInput: (value: string) => void;
   setError: (error: string) => void;
   clearError: () => void;
@@ -119,8 +123,8 @@ export function useGame(): UseGameReturn {
     // Convenience methods
     setParagraph: (id: string | null) =>
       dispatch({ type: "SET_PARAGRAPH", payload: id }),
-    setVariant: (id: string | null) =>
-      dispatch({ type: "SET_VARIANT", payload: id }),
+    addVariant: (id: string) => dispatch({ type: "ADD_VARIANT", payload: id }),
+    clearVariants: () => dispatch({ type: "CLEAR_VARIANTS" }),
     setInput: (value: string) =>
       dispatch({ type: "SET_INPUT", payload: value }),
     setError: (error: string) =>

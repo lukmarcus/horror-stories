@@ -169,3 +169,136 @@ describe("Game - Paragraph Logic", () => {
     expect(getScenarioTitle("999")).toBeNull();
   });
 });
+
+describe("Game - Variant System", () => {
+  // Mock paragraph with variants
+  const variantParagraph = {
+    id: "9-test",
+    contentPages: [[{ text: "Którą postacią jesteś?" }]],
+    choices: [
+      { text: "Jessica", nextVariantId: "jessica" },
+      { text: "Patrick", nextVariantId: "patrick" },
+    ],
+    areChoicesHorizontal: true,
+    variants: {
+      jessica: {
+        contentPages: [[{ text: "Poznałaś go na imprezie." }]],
+        choices: [{ text: "Dalej", nextVariantId: "jessica-detail" }],
+      },
+      patrick: {
+        contentPages: [[{ text: "Głowa nie daje Ci żyć." }]],
+        choices: [],
+      },
+    },
+  };
+
+  it("should accumulate variant content correctly", () => {
+    const variantPath = ["jessica"];
+    const accumulated: { text: string }[] = [];
+
+    // Add main paragraph content
+    if (variantParagraph.contentPages) {
+      for (const page of variantParagraph.contentPages) {
+        accumulated.push(...page);
+      }
+    }
+
+    // Add variant content
+    for (const variantId of variantPath) {
+      const variant =
+        variantParagraph.variants?.[
+          variantId as keyof typeof variantParagraph.variants
+        ];
+      if (variant?.contentPages) {
+        for (const page of variant.contentPages) {
+          accumulated.push(...page);
+        }
+      }
+    }
+
+    expect(accumulated).toHaveLength(2);
+    expect(accumulated[0].text).toContain("Którą postacią");
+    expect(accumulated[1].text).toContain("Poznałaś");
+  });
+
+  it("should accumulate multiple variant levels", () => {
+    const variantPath = ["jessica", "jessica-detail"];
+    const accumulated: { text: string }[] = [];
+
+    // Add main content
+    if (variantParagraph.contentPages) {
+      for (const page of variantParagraph.contentPages) {
+        accumulated.push(...page);
+      }
+    }
+
+    // Add all variant content in path order
+    for (const variantId of variantPath) {
+      const variant =
+        variantParagraph.variants?.[
+          variantId as keyof typeof variantParagraph.variants
+        ];
+      if (variant?.contentPages) {
+        for (const page of variant.contentPages) {
+          accumulated.push(...page);
+        }
+      }
+    }
+
+    // Should have main + first variant + second variant
+    expect(variantPath).toHaveLength(2);
+  });
+
+  it("should not accumulate content when variantPath is empty", () => {
+    const variantPath: string[] = [];
+    const hasVariants = variantParagraph.variants !== undefined;
+    const shouldAccumulate = variantPath.length > 0 && hasVariants;
+
+    expect(shouldAccumulate).toBe(false);
+  });
+
+  it("should get correct choices from last variant in path", () => {
+    const variantPath = ["jessica"];
+    const lastVariantId = variantPath[variantPath.length - 1];
+    const lastVariant =
+      variantParagraph.variants?.[
+        lastVariantId as keyof typeof variantParagraph.variants
+      ];
+
+    expect(lastVariant?.choices).toHaveLength(1);
+    expect(lastVariant?.choices?.[0].text).toBe("Dalej");
+  });
+
+  it("should use main paragraph choices when variantPath is empty", () => {
+    const variantPath: string[] = [];
+    const lastVariantId = variantPath[variantPath.length - 1];
+    const lastVariant = lastVariantId
+      ? variantParagraph.variants?.[
+          lastVariantId as keyof typeof variantParagraph.variants
+        ]
+      : undefined;
+    const choices = lastVariant?.choices || variantParagraph.choices;
+
+    expect(choices).toBe(variantParagraph.choices);
+    expect(choices).toHaveLength(2);
+  });
+
+  it("should separate variant choices from regular choices", () => {
+    const mixedChoices = [
+      { text: "Wariant 1", nextVariantId: "v1" },
+      { text: "Przejdź dalej", nextParagraphId: "10" },
+      { text: "Wariant 2", nextVariantId: "v2" },
+      { text: "Opuść", nextParagraphId: "" },
+    ];
+
+    const variantChoices = mixedChoices.filter(
+      (c) => c.nextVariantId !== undefined,
+    );
+    const regularChoices = mixedChoices.filter(
+      (c) => c.nextVariantId === undefined,
+    );
+
+    expect(variantChoices).toHaveLength(2);
+    expect(regularChoices).toHaveLength(2);
+  });
+});

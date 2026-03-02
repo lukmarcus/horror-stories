@@ -64,13 +64,69 @@ export const Game: React.FC = () => {
     ? paragraphs[game.state.currentParagraphId]
     : null;
 
-  // If in a variant, display variant content instead of main paragraph
-  const displayParagraph =
-    currentParagraph &&
-    game.state.currentVariantId &&
-    currentParagraph.variants?.[game.state.currentVariantId]
-      ? currentParagraph.variants[game.state.currentVariantId]
-      : currentParagraph;
+  // Effect: Auto-clear variants when navigating to a paragraph without variants
+  // This handles both manual navigation (handleChoice) and browser back/forward
+  React.useEffect(() => {
+    if (
+      game.state.variantPath.length > 0 &&
+      currentParagraph &&
+      !currentParagraph.variants
+    ) {
+      game.clearVariants();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game.state.currentParagraphId]);
+
+  // Helper: Accumulate content from main paragraph + all variants in path
+  const getAccumulatedParagraph = (): typeof currentParagraph | null => {
+    if (!currentParagraph) return null;
+
+    // IMPORTANT: Only apply variant accumulation if the paragraph has variants
+    // This prevents showing accumulated content from previous variant paragraphs
+    if (game.state.variantPath.length === 0 || !currentParagraph.variants) {
+      return currentParagraph;
+    }
+
+    // Accumulate all content blocks into a single page
+    const accumulatedBlocks: typeof currentParagraph.content = [];
+
+    // Add main paragraph content blocks
+    if (currentParagraph.contentPages) {
+      for (const page of currentParagraph.contentPages) {
+        accumulatedBlocks.push(...page);
+      }
+    } else if (currentParagraph.content) {
+      accumulatedBlocks.push(...currentParagraph.content);
+    }
+
+    // Add content blocks from each variant in path
+    for (const variantId of game.state.variantPath) {
+      const variant = currentParagraph.variants?.[variantId];
+      if (variant?.contentPages) {
+        for (const page of variant.contentPages) {
+          accumulatedBlocks.push(...page);
+        }
+      } else if (variant?.content) {
+        accumulatedBlocks.push(...variant.content);
+      }
+    }
+
+    // Return accumulated paragraph (all content on one page)
+    const lastVariantId =
+      game.state.variantPath[game.state.variantPath.length - 1];
+    const lastVariant = currentParagraph.variants?.[lastVariantId];
+
+    return {
+      ...currentParagraph,
+      contentPages:
+        accumulatedBlocks.length > 0
+          ? [accumulatedBlocks]
+          : currentParagraph.contentPages,
+      choices: lastVariant?.choices || currentParagraph.choices,
+    };
+  };
+
+  const displayParagraph = getAccumulatedParagraph();
 
   const handleMainInputSubmit = (value: string): string | null => {
     const result = gameActions.jumpToParagraph(value, paragraphs);
@@ -85,12 +141,14 @@ export const Game: React.FC = () => {
     }
 
     game.setParagraph(value.trim());
+    game.clearVariants();
     return null;
   };
 
   const handleConfirmAccessibility = () => {
     if (game.state.pendingParagraphId) {
       game.setParagraph(game.state.pendingParagraphId);
+      game.clearVariants();
     }
     game.closeWarning();
   };
@@ -116,6 +174,7 @@ export const Game: React.FC = () => {
     }
 
     game.setParagraph(value.trim());
+    game.clearVariants();
     game.clearDiceResult();
     return null;
   };
@@ -127,7 +186,7 @@ export const Game: React.FC = () => {
     if (!nextId) return;
 
     if (isVariant) {
-      game.setVariant(nextId);
+      game.addVariant(nextId);
     } else {
       game.setParagraph(nextId);
     }
@@ -329,14 +388,14 @@ export const Game: React.FC = () => {
               >
                 <div className="game__setup-header">
                   {currentParagraph?.variants &&
-                    game.state.currentVariantId && (
+                    game.state.variantPath.length > 0 && (
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => game.setVariant(null)}
-                        aria-label="Odśwież paragraf i dokonaj wyborów od nowa"
+                        onClick={() => game.clearVariants()}
+                        aria-label={`Odśwież paragraf ${currentParagraph.id} i dokonaj wyborów od nowa`}
                       >
-                        ↻ Odśwież
+                        ↻ Odśwież #{currentParagraph.id}
                       </Button>
                     )}
                   {currentParagraph?.accessibleFrom &&

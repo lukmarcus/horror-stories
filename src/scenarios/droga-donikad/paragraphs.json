@@ -568,7 +568,7 @@
     },
     {
       "id": "40",
-      "accessibleFrom": ["65"],
+      "accessibleFrom": ["9-test", "65"],
       "contentPages": [
         [
           {

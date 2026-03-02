@@ -38,6 +38,14 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     (!paragraph.choices || paragraph.choices.length === 0) &&
     !paragraph.hasDiceRoll;
 
+  // Separate variant choices (horizontal/within frame) from regular choices
+  const variantChoices =
+    paragraph.choices?.filter((choice) => choice.nextVariantId !== undefined) ||
+    [];
+  const regularChoices =
+    paragraph.choices?.filter((choice) => choice.nextVariantId === undefined) ||
+    [];
+
   // Handle content pages - auto-detect if multiple pages exist
   const hasPages = paragraph.contentPages && paragraph.contentPages.length > 1;
   const maxPage = paragraph.contentPages
@@ -163,6 +171,40 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
             </div>
           </div>
         )}
+
+        {variantChoices.length > 0 && paragraph.areChoicesHorizontal && (
+          <fieldset
+            className="choices choices--horizontal"
+            aria-label="Dostępne warianty"
+          >
+            <legend className="sr-only">Wybierz wariant</legend>
+            {variantChoices.map((choice, idx) => {
+              const choiceKey = choice.id || `choice-${idx}`;
+              return (
+                <button
+                  key={choiceKey}
+                  onClick={() => {
+                    if (choice.nextVariantId) {
+                      onChoice(choice.nextVariantId, true);
+                    }
+                  }}
+                  className="button button--primary button--lg"
+                  aria-label={choice.text || ""}
+                >
+                  {choice.text && choice.text.includes("<") ? (
+                    <RichText
+                      text={choice.text}
+                      scenarioId={scenarioId}
+                      noSpacing
+                    />
+                  ) : (
+                    choice.text
+                  )}
+                </button>
+              );
+            })}
+          </fieldset>
+        )}
       </article>
 
       {isDeadEnd && currentPage === maxPage && (
@@ -184,13 +226,13 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
         </div>
       )}
 
-      {paragraph.choices && paragraph.choices.length > 0 && (
+      {regularChoices.length > 0 && (
         <fieldset
-          className={`choices ${paragraph.areChoicesHorizontal ? "choices--horizontal" : "choices--vertical"}`}
+          className="choices choices--vertical"
           aria-label="Dostępne wybory"
         >
           <legend className="sr-only">Wybierz następny paragraf</legend>
-          {paragraph.choices.map((choice, idx) => {
+          {regularChoices.map((choice, idx) => {
             const choiceKey = choice.id || `choice-${idx}`;
             if (choice.isConditional) {
               return (
@@ -212,8 +254,6 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
                 onClick={() => {
                   if (choice.nextParagraphId === "") {
                     onBack();
-                  } else if (choice.nextVariantId) {
-                    onChoice(choice.nextVariantId, true);
                   } else if (choice.nextParagraphId) {
                     onChoice(choice.nextParagraphId, false);
                   }
