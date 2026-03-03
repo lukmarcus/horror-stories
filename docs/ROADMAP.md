@@ -28,7 +28,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Browser history support - URL state (`?par=X`) dla pełnej obsługi historii przeglądarki
 - ✅ Input instead of back button - inline input dla paragrafów bez choices (dead ends)
 - ✅ Back buttons with accessibleFrom - przyciski wracania na paragrafach w zależności od pola `accessibleFrom`
-- ✅ Variant content with reset display - hierarchiczna struktura wariantów postaci, każdy wariant czysty reset, separacja wyborów
+- ✅ Variant content with reset display - hierarchiczna struktura wariantów postaci/akcji, każdy wariant czysty reset, separacja wyborów, przemigracja paragrafów 9/26/65
 
 ### Status
 

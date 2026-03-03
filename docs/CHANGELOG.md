@@ -12,10 +12,11 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Dodano
 
 - Back buttons z `accessibleFrom` - przyciski "Wróć do #X" w nagłówku gry dla paragrafów dostępnych z innych paragrafów
-- Wariantowe zawartość z resetem - hierarchiczna struktura wariantów postaci, każdy wariant resetuje ekran do czystej zawartości wariantu (bez głównego tekstu)
+- Wariantowe zawartość z resetem - hierarchiczna struktura wariantów postaci, każdy wariant resetuje ekran do czystej zawartości wariantu (bez głównego tekstu), warianty mogą dotyczyć postaci, akcji lub decyzji
 - Separacja wyborów wariantowych - wariantowe wybory (z `nextVariantId`) wyświetlają się wewnątrz ramy paragrafu, zwykłe wybory poniżej
-- Przycisk "Odśwież" - reset wariantów w nagłówku gry z wyświetlaniem ID paragrafu (np. "↻ Odśwież #9-test")
+- Przycisk "Odśwież" - reset wariantów w nagłówku gry z wyświetlaniem ID paragrafu (np. "↻ Odśwież #9")
 - Testy wariantów - comprehensive test suite dla systemu wariantów i zarządzania `variantPath`
+- Przemigrowane paragrafy na system wariantów - paragrafy 9, 26, 65 teraz używają wariantów zamiast odrębnych podparagrafów
 
 ### Poprawiono
 

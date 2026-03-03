@@ -25,7 +25,7 @@
     },
     {
       "id": "2",
-      "accessibleFrom": ["26-patrick"],
+      "accessibleFrom": ["26"],
       "contentPages": [
         [
           {
@@ -50,110 +50,6 @@
     },
     {
       "id": "9",
-      "contentPages": [
-        [
-          {
-            "text": "Którą postacią jesteś?"
-          }
-        ]
-      ],
-      "choices": [
-        {
-          "text": "<person id='jessica'/><br />Jessica",
-          "nextParagraphId": "9-jessica"
-        },
-        {
-          "text": "<person id='patrick'/><br />Patrick",
-          "nextParagraphId": "9-patrick"
-        }
-      ],
-      "areChoicesHorizontal": true
-    },
-    {
-      "id": "9-jessica",
-      "accessibleFrom": ["9"],
-      "contentPages": [
-        [
-          {
-            "text": "Poznałaś go na imprezie. Wracaliście jednym autem."
-          },
-          {
-            "text": "Figurka Patricka leży czy stoi?"
-          }
-        ]
-      ],
-      "choices": [
-        {
-          "text": "Patrick leży",
-          "nextParagraphId": "9-patrick-lezy"
-        },
-        {
-          "text": "Patrick stoi",
-          "nextParagraphId": "9-patrick-stoi"
-        }
-      ],
-      "areChoicesHorizontal": true
-    },
-    {
-      "id": "9-patrick-lezy",
-      "accessibleFrom": ["9-jessica"],
-      "contentPages": [
-        [
-          {
-            "text": "Wybierz jedną z opcji spośród:"
-          }
-        ]
-      ],
-      "choices": [
-        {
-          "text": "Spróbuj go ocucić (przejdź do paragrafu <span class='color-green'>40</span>)",
-          "nextParagraphId": "40"
-        },
-        {
-          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-          "nextParagraphId": ""
-        }
-      ]
-    },
-    {
-      "id": "9-patrick-stoi",
-      "accessibleFrom": ["9-jessica"],
-      "contentPages": [
-        [
-          {
-            "text": "Wybierz jedną z opcji spośród:"
-          }
-        ]
-      ],
-      "choices": [
-        {
-          "text": "Spróbuj z nim porozmawiać (przejdź do paragrafu <span class='color-green'>99</span>)",
-          "nextParagraphId": "99"
-        },
-        {
-          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
-          "nextParagraphId": ""
-        },
-        {
-          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-          "nextParagraphId": ""
-        }
-      ]
-    },
-    {
-      "id": "9-patrick",
-      "accessibleFrom": ["9"],
-      "contentPages": [
-        [
-          {
-            "text": "... Głowa nie daje Ci żyć. Domyślasz się, że trochę przesadziłeś na imprezie. Możesz wtasować dowolną <symbol id='rewers'/> ze swojego stosu odrzuconego do talii."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "9-test",
       "contentPages": [
         [
           {
@@ -293,68 +189,6 @@
     },
     {
       "id": "26",
-      "contentPages": [
-        [
-          {
-            "text": "Kto robi ten ruch?"
-          },
-          {
-            "text": "Wybierz postać:"
-          }
-        ]
-      ],
-      "choices": [
-        {
-          "text": "<person id='jessica'/><br />Jessica",
-          "nextParagraphId": "26-jessica"
-        },
-        {
-          "text": "<person id='patrick'/><br />Patrick",
-          "nextParagraphId": "26-patrick"
-        }
-      ],
-      "areChoicesHorizontal": true
-    },
-    {
-      "id": "26-jessica",
-      "contentPages": [
-        [
-          {
-            "text": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='rewers'/> ze swojego stosu odrzuconego do talii."
-          }
-        ]
-      ],
-      "choices": []
-    },
-    {
-      "id": "26-patrick",
-      "contentPages": [
-        [
-          {
-            "text": "Poznałaś ją na imprezie i zaproponowałeś, że odwieziesz ją do domu. Co prawda nie byłeś w szczytowej formie, ale było niedaleko, a w nocy ruch był znikomy ruch."
-          },
-          {
-            "text": "Wybierz jedną z opcji spośród:"
-          }
-        ]
-      ],
-      "choices": [
-        {
-          "text": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
-          "nextParagraphId": "2"
-        },
-        {
-          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
-          "nextParagraphId": ""
-        },
-        {
-          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-          "nextParagraphId": ""
-        }
-      ]
-    },
-    {
-      "id": "26-test",
       "contentPages": [
         [
           {
@@ -630,7 +464,7 @@
     },
     {
       "id": "40",
-      "accessibleFrom": ["9-test", "65"],
+      "accessibleFrom": ["9", "65"],
       "contentPages": [
         [
           {
@@ -829,28 +663,6 @@
       "contentPages": [
         [
           {
-            "text": "Czy figurka <person id='patrick'/> leży?"
-          }
-        ]
-      ],
-      "choices": [
-        {
-          "text": "TAK",
-          "nextParagraphId": "40"
-        },
-        {
-          "text": "NIE",
-          "nextParagraphId": "65-61"
-        }
-      ]
-    },
-    {
-      "id": "65-test",
-      "accessibleFrom": ["123"],
-      "areChoicesHorizontal": true,
-      "contentPages": [
-        [
-          {
             "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
           },
           {
@@ -895,18 +707,6 @@
           "choices": []
         }
       }
-    },
-    {
-      "id": "65-61",
-      "accessibleFrom": ["65"],
-      "contentPages": [
-        [
-          {
-            "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
-          }
-        ]
-      ],
-      "choices": []
     },
     {
       "id": "69",
