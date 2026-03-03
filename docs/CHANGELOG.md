@@ -12,7 +12,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Dodano
 
 - Back buttons z `accessibleFrom` - przyciski "Wróć do #X" w nagłówku gry dla paragrafów dostępnych z innych paragrafów
-- Wariantowe zawartość z akumulacją - hierarchiczna struktura wariantów postaci, zawartość z głównego paragrafu i wszystkich wybranych wariantów się łączy na jednym ekranie
+- Wariantowe zawartość z resetem - hierarchiczna struktura wariantów postaci, każdy wariant resetuje ekran do czystej zawartości wariantu (bez głównego tekstu)
 - Separacja wyborów wariantowych - wariantowe wybory (z `nextVariantId`) wyświetlają się wewnątrz ramy paragrafu, zwykłe wybory poniżej
 - Przycisk "Odśwież" - reset wariantów w nagłówku gry z wyświetlaniem ID paragrafu (np. "↻ Odśwież #9-test")
 - Testy wariantów - comprehensive test suite dla systemu wariantów i zarządzania `variantPath`
@@ -28,6 +28,8 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Auto-detekcja stronicowania - paragrafy z wieloma `contentPages` automatycznie włączają przycisków stronicowania (bez potrzeby `isMultiPage`)
 - Browser history support - URL parametr `?par=X` do nawigacji i sharowania linków do paragrafów, back button działa prawidłowo
 - React keys w RichText - naprawiono kolizje kluczy (keye collisions) gdzie identyczne teksty w różnych blokach powodowały problemy z re-renderowaniem
+- Spacing końcowy bloków tekstowych - ostatni blok tekstu/obrazka nie ma marginesu dolnego (`:last-child`)
+- Margines wariantowych i zwykłych wyborów - usunięto nadmiarowy margin-top z choices
 - CSS wariantowych wyborów - border-top separator dla wariantowych wyborów wewnątrz paragrafu, margin-top dla zwykłych wyborów poniżej
 
 ---
