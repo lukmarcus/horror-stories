@@ -212,7 +212,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
           <ParagraphInput
             onSubmit={onJumpToParagraph}
             instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
-            autoFocus
+            autoFocus={false}
             errorId="dead-end-error"
             actions={
               <button

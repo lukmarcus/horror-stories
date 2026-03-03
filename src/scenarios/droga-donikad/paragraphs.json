@@ -59,11 +59,11 @@
       ],
       "choices": [
         {
-          "text": "<person id='jessica'/>\nJessica",
+          "text": "<person id='jessica'/><br />Jessica",
           "nextParagraphId": "9-jessica"
         },
         {
-          "text": "<person id='patrick'/>\nPatrick",
+          "text": "<person id='patrick'/><br />Patrick",
           "nextParagraphId": "9-patrick"
         }
       ],
@@ -163,11 +163,11 @@
       ],
       "choices": [
         {
-          "text": "<person id='jessica'/>\nJessica",
+          "text": "<person id='jessica'/><br />Jessica",
           "nextVariantId": "jessica"
         },
         {
-          "text": "<person id='patrick'/>\nPatrick",
+          "text": "<person id='patrick'/><br />Patrick",
           "nextVariantId": "patrick"
         }
       ],
@@ -305,11 +305,11 @@
       ],
       "choices": [
         {
-          "text": "<person id='jessica'/>\nJessica",
+          "text": "<person id='jessica'/><br />Jessica",
           "nextParagraphId": "26-jessica"
         },
         {
-          "text": "<person id='patrick'/>\nPatrick",
+          "text": "<person id='patrick'/><br />Patrick",
           "nextParagraphId": "26-patrick"
         }
       ],

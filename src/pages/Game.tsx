@@ -77,52 +77,34 @@ export const Game: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game.state.currentParagraphId]);
 
-  // Helper: Accumulate content from main paragraph + all variants in path
+  // Helper: Get variant content - shows only the last variant in path, not accumulated
   const getAccumulatedParagraph = (): typeof currentParagraph | null => {
     if (!currentParagraph) return null;
 
-    // IMPORTANT: Only apply variant accumulation if the paragraph has variants
-    // This prevents showing accumulated content from previous variant paragraphs
+    // If no variant selected, show main paragraph
     if (game.state.variantPath.length === 0 || !currentParagraph.variants) {
       return currentParagraph;
     }
 
-    // Accumulate all content blocks into a single page
-    const accumulatedBlocks: typeof currentParagraph.content = [];
-
-    // Add main paragraph content blocks
-    if (currentParagraph.contentPages) {
-      for (const page of currentParagraph.contentPages) {
-        accumulatedBlocks.push(...page);
-      }
-    } else if (currentParagraph.content) {
-      accumulatedBlocks.push(...currentParagraph.content);
-    }
-
-    // Add content blocks from each variant in path
-    for (const variantId of game.state.variantPath) {
-      const variant = currentParagraph.variants?.[variantId];
-      if (variant?.contentPages) {
-        for (const page of variant.contentPages) {
-          accumulatedBlocks.push(...page);
-        }
-      } else if (variant?.content) {
-        accumulatedBlocks.push(...variant.content);
-      }
-    }
-
-    // Return accumulated paragraph (all content on one page)
+    // Get the last variant in the path
     const lastVariantId =
       game.state.variantPath[game.state.variantPath.length - 1];
     const lastVariant = currentParagraph.variants?.[lastVariantId];
 
+    if (!lastVariant) {
+      return currentParagraph;
+    }
+
+    // Return only the last variant (not accumulated with main paragraph)
     return {
       ...currentParagraph,
       contentPages:
-        accumulatedBlocks.length > 0
-          ? [accumulatedBlocks]
-          : currentParagraph.contentPages,
-      choices: lastVariant?.choices || currentParagraph.choices,
+        lastVariant.contentPages ||
+        (lastVariant.content
+          ? [lastVariant.content]
+          : currentParagraph.contentPages),
+      content: lastVariant.content,
+      choices: lastVariant.choices || currentParagraph.choices,
     };
   };
 
