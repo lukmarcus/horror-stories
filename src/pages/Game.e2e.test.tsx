@@ -1,6 +1,33 @@
 import { describe, it, expect } from "vitest";
 import type { Paragraph } from "../types";
 
+interface MockVariant {
+  contentPages?: Array<Array<{ text: string }>>;
+  text?: string;
+  choices?: Array<{
+    text: string;
+    nextParagraphId?: string;
+    nextVariantId?: string;
+  }>;
+  variants?: Record<string, MockVariant>;
+}
+
+interface MockParagraph {
+  id: string;
+  text?: string;
+  contentPages?: Array<Array<{ text: string }>>;
+  choices?: Array<{
+    text: string;
+    nextParagraphId?: string;
+    nextVariantId?: string;
+  }>;
+  variants?: Record<string, MockVariant>;
+  isMultiPage?: boolean;
+  areChoicesHorizontal?: boolean;
+  direct?: boolean;
+  accessibleFrom?: string[];
+}
+
 describe("End-to-End Scenario - Droga Donikąd", () => {
   // Mock paragraph structure for testing
   const scenarioParagraphs: Record<string, Paragraph> = {
@@ -258,7 +285,6 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
 
     it("should show button text with paragraph ID (e.g. '← Wróć do #9')", () => {
       // Simulate button generation
-      const fromId = "26";
       const backButton = (toId: string) => `← Wróć do #${toId}`;
 
       expect(backButton("9")).toBe("← Wróć do #9");
@@ -336,7 +362,7 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
 
   describe("Refresh button and variant reset (v0.0.12)", () => {
     it("should clear variant path on refresh", () => {
-      let state = {
+      const state = {
         currentParagraphId: "9",
         variantPath: ["jessica", "option-a"],
       };
@@ -358,7 +384,7 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
 
     it("should reset to initial paragraph content after refresh", () => {
       // Simulate paragraph with variants
-      const paragraph = {
+      const paragraph: MockParagraph = {
         id: "9",
         contentPages: [[{ text: "Choose a character" }]],
         variants: {
@@ -367,12 +393,12 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
         },
       };
 
-      let variantPath = ["jessica"];
+      let variantPath: string[] = ["jessica"];
 
       // Get accumulated content
       let content = [...(paragraph.contentPages?.[0] ?? [])];
       if (variantPath.length > 0) {
-        const variant = paragraph.variants?.[variantPath[0]];
+        const variant = paragraph.variants?.[variantPath[0]] as MockVariant;
         if (variant?.contentPages) {
           content.push(...variant.contentPages[0]);
         }
@@ -456,7 +482,7 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
     });
 
     it("should display only selected variant (reset display, not accumulation)", () => {
-      const paragraph = {
+      const paragraph: MockParagraph = {
         id: "9",
         contentPages: [[{ text: "Main content" }]],
         variants: {
@@ -468,7 +494,7 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
 
       // Get content for display (reset mode - only last variant)
       const lastVariantId = variantPath[variantPath.length - 1];
-      const lastVariant = paragraph.variants?.[lastVariantId];
+      const lastVariant = paragraph.variants?.[lastVariantId] as MockVariant;
       const displayContent = lastVariant?.contentPages?.[0] ?? [];
 
       expect(displayContent).toHaveLength(1);
@@ -493,7 +519,7 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
     });
 
     it("should handle nested variants with multiple levels", () => {
-      const paragraph = {
+      const paragraph: MockParagraph = {
         id: "9",
         variants: {
           jessica: {
@@ -507,12 +533,12 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
         },
       };
 
-      let variantPath = ["jessica", "jessica-detail"];
+      const variantPath = ["jessica", "jessica-detail"];
 
       // Navigate through nested variants
-      let current: any = paragraph;
+      let current: MockVariant | MockParagraph | undefined = paragraph;
       for (const variantId of variantPath) {
-        current = current.variants?.[variantId];
+        current = current?.variants?.[variantId];
       }
 
       expect(current?.text).toBe("Jessica detailed");
