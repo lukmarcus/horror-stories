@@ -1,530 +1,185 @@
 # Code Quality Guidelines - Horror Stories
 
-Wytyczne dla utrzymania wysokiej jakości kodu w projekcie Horror Stories.
+Wytyczne dla utrzymania wysokiej jakości kodu w projekcie.
 
-## 1. Organizacja Plików
+## Quick Reference
 
-### Structure
+| Area           | Standard                                         |
+| -------------- | ------------------------------------------------ |
+| **Export**     | `export const` (nie `export default`)            |
+| **Imports**    | Barrel exports via `index.ts`                    |
+| **TypeScript** | Strict mode, no `any`, wszystko typowane         |
+| **Components** | PascalCase, props interface, style colocated     |
+| **Tests**      | `*.test.tsx` obok kodu, 167+ testów (v0.0.12)    |
+| **CSS**        | BEM naming, global + component-scoped            |
+| **Commits**    | Conventional: `feat:/fix:/refactor:/test:/docs:` |
 
-```
-src/
-├── components/        # Komponenty React
-│   ├── common/       # Komponenty UI (Header, Footer, Button)
-│   ├── ParagraphDisplay/
-│   ├── DiceRoller/
-│   └── ConditionalChoice/
-├── pages/            # Strony/Routy (Home, Game, About, Instructions, etc.)
-├── hooks/            # Custom React hooks (useGame, useGameActions)
-├── utils/            # Logika biznesowa i helpery
-├── types/            # TypeScript type definitions
-├── scenarios/        # Dane scenariuszy
-├── styles/           # CSS organizowany po warstwach
-│   ├── global.css
-│   ├── variables.css
-│   └── pages/        # CSS specyficzne dla stron
-└── assets/           # Statyczne zasoby (images, letters, symbols, persons)
-```
-
-### Zamykanie Importów
-
-Preferuj barrel exports (`index.ts`) do zamykania importów:
-
-```typescript
-// ✅ DOBRY STYL - używa barrel export
-import { useGame, useGameActions } from "../hooks";
-import { parseParagraphText, checkParagraphAccessibility } from "../utils";
-
-// ❌ ZŁY STYL - deep import
-import { useGame } from "../hooks/useGame";
-import { parseParagraphText } from "../utils/paragraphParser";
-```
-
-## 2. Export Consistency
-
-### Strony i Komponenty
-
-Wszystkie strony i komponenty powinny używać `export const`:
-
-```typescript
-// ✅ DOBRY STYL
-export const Home: React.FC = () => {
-  // ...
-};
-
-// ❌ ZŁY STYL - nie rób tego
-export default Home;
-```
-
-### Moduły Publiczne
-
-Dostarczaj barrel exports (`index.ts`) dla każdego publicznego modułu:
-
-```typescript
-// src/hooks/index.ts
-export { useGame } from "./useGame";
-export { useGameActions } from "./useGameActions";
-
-// src/utils/index.ts
-export { parseParagraphText } from "./paragraphParser";
-export { checkParagraphAccessibility } from "./gameLogic";
-```
-
-## 3. TypeScript
+## Principles
 
 ### Type Safety
-
-- Używaj `TypeScript` zamiast `any`
-- Definiuj interfejsy dla komponentów i funkcji
-- Eksportuj publiczne typy z modułów
 
 ```typescript
 // ✅ DOBRY STYL
 export interface ButtonProps {
-  variant: "primary" | "secondary" | "outline" | "text";
-  size: "sm" | "md" | "lg";
+  variant: "primary" | "secondary";
   onClick?: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ variant, size, onClick }) => {
-  // ...
-};
+export const Button: React.FC<ButtonProps> = ({ variant, onClick }) => (
+  <button className={`btn btn--${variant}`} onClick={onClick}>Click</button>
+);
+
+// ❌ ZŁY STYL
+const Button: React.FC<any> = (props: any) => <button {...props}>Click</button>;
 ```
 
-### Type Imports
-
-Używaj `type` imports dla type-only imports:
+Use `type` imports:
 
 ```typescript
-// ✅ DOBRY STYL
 import type { Paragraph, Choice } from "../types";
-import { parseParagraphText } from "../utils";
-
-// ❌ ZŁY STYL - mieszanie typów i wartości
-import { Paragraph, Choice, parseParagraphText } from "../types";
 ```
 
-## 4. Komponenty React
-
-### Nomenklatura
-
-- Komponenty: `PascalCase` (np. `MyComponent.tsx`)
-- Props interfaces: `ComponentNameProps` (np. `MyComponentProps`)
-- Hooks: `useHookName` (np. `useGame`)
-
-### Struktura Komponentu
+### Export Consistency
 
 ```typescript
-// 1. Importy
-import React from "react";
-import type { Props } from "./types";
+// ✅ Components & pages
+export const Home: React.FC = () => {};
 
-// 2. Interface definicji (jeśli komponent ma props)
-export interface MyComponentProps {
-  title: string;
-  onClick?: () => void;
-}
+// ✅ Modules - barrel exports
+export { useGame } from "./useGame";
+export { parseParagraphText } from "./paragraphParser";
 
-// 3. Komponent
-export const MyComponent: React.FC<MyComponentProps> = ({ title, onClick }) => {
-  // Logika komponentu
-  return (
-    <div>
-      {title}
-      <button onClick={onClick}>Click</button>
-    </div>
-  );
-};
+// ❌ Avoid
+export default Home;
 ```
 
-## 5. Testy
-
-### Test Files
-
-- Testy jednostkowe: `*.test.ts` lub `*.test.tsx`
-- Testy end-to-end: `*.e2e.test.tsx`
-- Testy powinny być w tym samym folderze co kod testowany
+### Project Structure
 
 ```
-src/utils/
-├── gameLogic.ts
-├── gameLogic.test.ts
-├── paragraphParser.ts
-└── paragraphParser.test.ts
+src/
+├── types/          # Type definitions only
+├── utils/          # Business logic (pure functions)
+├── hooks/          # State management & effects
+├── components/     # React components + Component.css
+├── pages/          # Route pages
+├── scenarios/      # Scenario data
+└── styles/         # Global CSS, variables, pages/
 ```
 
-### Coverage
+### Testing
 
-Każda publiczna funkcja/hook powinna mieć testy:
+**Structure:** `Component.test.tsx` next to code
+
+**Coverage:**
 
 - Happy path (normalne działanie)
 - Edge cases (przypadki graniczne)
 - Error handling (obsługa błędów)
 
-#### Obecne pokrycie testów (v0.0.12+)
+**Current:** 167 passing tests ✅
 
-**Funkcjonalności pokryte testami:**
+See [TESTING_GUIDE.md](TESTING_GUIDE.md) for patterns.
 
-- ✅ Logika gry (navigacja między paragrafami, walidacja dostępu)
-- ✅ System wariantów (akumulacja zawartości, separacja wyborów wariantowych)
-- ✅ Zarządzanie `variantPath` (dodawanie/czyszczenie wariantów)
-- ✅ Dostępność paragrafów (direct/indirect, accessibleFrom)
-- ✅ Browser history (URL state `?par=X`, synchronizacja)
-- ✅ Przyciski wracania (`accessibleFrom` buttons z polami numerów)
-- ✅ Reset wariantów (refresh button, czyszczenie variantPath)
-- ✅ Input dla dead-end paragrafów (walidacja, parsowanie)
-- ✅ Nowa struktura wariantów (warianty wewnątrz paragrafu zamiast odrębnych)
-- ✅ Multi-page support (stronicowanie, isMultiPage flag)
-- ✅ Parsing bogatego tekstu (RichText, special tags)
+### CSS & Styling
 
-**Status testów:**
+**Organization:**
 
-- **Game.test.tsx** - 141+ testy (unit testy logiki gry + system wariantów)
-- **Game.e2e.test.tsx** - End-to-end testy scenariuszy + v0.0.12 features
-- **useGame.test.ts** - Zarządzanie stanem (variant path, browser history)
-- **Utils/\*.test.ts** - Funkcje pomocnicze (parser, accessibility, layout flags)
+- `src/styles/global.css` - Reset, base styles
+- `src/styles/variables.css` - CSS variables (colors, spacing)
+- `src/styles/pages/` - Page-specific CSS
+- `Component.css` - Component styles (colocated)
 
-## 6. CSS i Styling
-
-### Organizacja
-
-- Globalne style: `src/styles/global.css`
-- CSS Variables: `src/styles/variables.css`
-- Style specyficzne dla stron: `src/styles/pages/`
-- CSS Modules: `src/components/ComponentName/ComponentName.module.css`
-
-### Nomenklatura
-
-Używaj BEM (Block Element Modifier):
+**BEM:**
 
 ```css
-/* Block */
 .button {
-}
-
-/* Element */
+} /* Block */
 .button__text {
-}
-
-/* Modifier */
+} /* Element */
 .button--primary {
-}
-.button--disabled {
-}
-
-/* State */
-.button.is-loading {
-}
+} /* Modifier */
 .button.is-active {
-}
+} /* State */
 ```
 
-### CSS Variables
+### Git Commits
 
-```css
-/* Definiuj w variables.css */
-:root {
-  --color-primary: #ff6b6b;
-  --color-text: #ffffff;
-  --spacing-sm: 0.5rem;
-  --border-radius-md: 4px;
-}
-
-/* Używaj wszędzie */
-.button {
-  background-color: var(--color-primary);
-  padding: var(--spacing-sm);
-  border-radius: var(--border-radius-md);
-}
-```
-
-## 7. Dead Code
-
-### Usuwanie
-
-Regularnie skanuj i usuwaj martwy kod:
-
-- Placeholder komponenty (bez implementacji)
-- Nieużywane zmienne i funkcje
-- Zakomentowany kod stary
-
-```typescript
-// ❌ USUNĄĆ
-// const oldFunction = () => {
-//   // stara implementacja
-// };
-
-// ❌ USUNĄĆ - placeholder
-export const Paragraph: React.FC = () => {
-  return <div>Placeholder</div>;
-};
-```
-
-## 8. Commitowanie
-
-### Commit Messages
-
-Używaj konwencji:
-
-- `feat: ` - nowa funkcjonalność
-- `fix: ` - naprawa buga
-- `refactor: ` - refaktoryzacja bez zmian funkcjonalności
-- `test: ` - dodawanie/modyfikacja testów
-- `docs: ` - dokumentacja
-- `chore: ` - zmiana build toolów, konfiguracji, etc.
+Use **Conventional Commits:**
 
 ```bash
-# ✅ DOBRY STYL
-git commit -m "refactor: Simplify paragraph parser logic"
-git commit -m "feat: Add support for multi-page paragraphs"
-git commit -m "fix: Correct routing in GitHub Pages"
-
-# ❌ ZŁY STYL
-git commit -m "fixes"
-git commit -m "updated stuff"
+feat:     # New feature
+fix:      # Bug fix
+refactor: # Code reorganization
+test:     # Tests
+docs:     # Documentation
+chore:    # Build, config, dependencies
 ```
 
-## 9. Performance
+Examples:
 
-### React Optimization
+```bash
+git commit -m "feat: add variant system with reset display"
+git commit -m "fix: resolve React key collision"
+git commit -m "refactor: extract paragraph parser"
+```
 
-- Unikaj renderowania bez potrzeby (memoization, useMemo)
-- Rozdzielaj komponenty na mniejsze części
-- Lazy-loaduj komponenty jeśli to możliwe
+### Dead Code
+
+Remove regularly:
+
+- Placeholder components
+- Unused variables/functions
+- Commented-out code
+- Old versions
+
+### Performance
 
 ```typescript
-// ✅ DOBRY STYL - memoization
-const ParagraphDisplay = React.memo(({ paragraph }: Props) => {
-  return <div>{paragraph.text}</div>;
-});
-
-// ✅ DOBRY STYL - useMemo na expensive computations
-const processedParagraph = useMemo(
-  () => parseParagraphText(paragraph),
+// Memoize expensive computations
+const processed = useMemo(
+  () => parseText(paragraph),
   [paragraph]
 );
+
+// Memoize components
+export const Display = React.memo(({ paragraph }: Props) => (
+  <div>{paragraph.text}</div>
+));
 ```
 
-## 10. Accessibility (a11y)
-
-### Wytyczne
-
-- Wszystkie przyciski powinny mieć labels
-- Elementy interaktywne powinny być dostępne z klawiatury
-- Kolory nie powinny być jedynym żródłem informacji
-- Alt text dla wszystkich obrazów
+### Error Handling
 
 ```typescript
-// ✅ DOBRY STYL
-<button aria-label="Close dialog" onClick={onClose}>
-  ✕
-</button>
-
-<img src="paragraph.jpg" alt="Scene from the story" />
-
-// ❌ ZŁY STYL
-<button onClick={onClose}>✕</button>
-<img src="paragraph.jpg" />
-```
-
-## 11. Error Handling
-
-### Try-Catch
-
-```typescript
-// ✅ DOBRY STYL
+// ✅ Always handle errors
 try {
-  const scenario = await loadScenario(id);
+  const para = await loadParagraph(id);
 } catch (error) {
-  console.error("Failed to load scenario:", error);
-  // Obsłuż błąd gracefully
-}
-
-// ❌ ZŁY STYL - brak error handling
-const scenario = await loadScenario(id);
-```
-
-### Error Boundaries
-
-Używaj Error Boundary dla niespodziewanych błędów:
-
-```typescript
-export class ErrorBoundary extends Component<Props, State> {
-  // Obsługa błędów React
+  console.error("Load failed:", error);
+  // Handle gracefully
 }
 ```
 
-## 12. Dokumentacja
+### Accessibility (a11y)
 
-### Komentarze
+- Buttons have labels (`aria-label`)
+- Keyboard navigation support
+- Alt text for images
+- Contrast ≥ 4.5:1
+- Semantic HTML
 
-- Dodawaj komentarze do skomplikowanej logiki
-- Nie komentuj oczywistego kodu
-- Utrzymuj komentarze aktualne
+### Documentation
 
-```typescript
-// ✅ DOBRY STYL - wyjaśnia WHY, nie WHAT
-// Paragraf może być dostępny tylko z określonych źródeł
-// dzięki systemie accessibleFrom, więc sprawdzamy zarówno
-// połączenia direct jak i indirect
-const isReachable = isDirect || hasValidAccessibleFrom;
-
-// ❌ ZŁY STYL - nie wyjaśnia nic nowego
-const isReachable = true; // isReachable is true
-```
-
-### JSDoc dla publicznych funkcji
-
-```typescript
-/**
- * Ładuje scenariusz z serwera
- * @param scenarioId - ID scenariusza do załadowania
- * @returns Promise z danymi scenariusza
- * @throws Error jeśli scenariusz nie istnieje
- */
-export async function loadScenario(scenarioId: string): Promise<Scenario> {
-  // ...
-}
-```
-
-## 13. Przyczyny Refactoringu
-
-### Kiedy refaktorować
-
-- Kod jest trudny do zrozumienia
-- Powtarzania się (DRY - Don't Repeat Yourself)
-- Potrzeba nowej funkcjonalności
-- Po naprawie bugu (jeśli ujawnił słabości)
-- Performance issues
-
-### Kiedy NIE refaktorować
-
-- Gdy robi to kod pracujący prawidłowo bez problemu
-- Bez testów (dodaj testy najpierw!)
-- Na ostatni moment przed deadline
-
-## 14. Scenario JSON Schema (v0.0.10+)
-
-### Struktura Paragrafu
-
-```typescript
-interface Paragraph {
-  id: string | string[]; // String lub array dla wielokrotnych ID-ów
-  text: string; // Główny tekst paragrafu
-  contentPages?: ContentBlock[][]; // Dla wielostronicowych paragrafów
-  content?: ContentBlock[]; // Zawartość paragrafów (tekst, obrazy, etc)
-  choices?: Choice[]; // Dostępne wybory dla gracza
-  accessibleFrom?: number[]; // ID-y paragrafów z których można tu dojść
-}
-
-interface ContentBlock {
-  text?: string; // Tekst (może zawierać tagi HTML: <em>, <strong>, itd)
-  size?: "small" | "normal" | "large";
-  style?: "italic" | "normal";
-  image?: string; // ID obrazu
-  spacing?: "none"; // Brak marginesu pod tym blokiem
-}
-
-interface Choice {
-  next: number; // ID paragrafu docelowego
-  text: string; // Tekst przycisku (może zawierać HTML)
-  condition?: string; // Warunek (np. diceThreshold)
-}
-```
-
-### Multi-ID Paragraphs
-
-Gdy ten sam tekst powinien być dostępny z wielu źródeł, używaj array ID:
-
-```json
-{
-  "id": [9, "9-jessica", "9-patrick"],
-  "text": "Historia dla obu postaci...",
-  "choices": [{ "next": 26, "text": "Idę do kuchni" }]
-}
-```
-
-**Zastosowanie:** Konsolidacja duplikatów paragrafów dla Jessica/Patrick.
-
-### Spacing Control
-
-Pole `spacing: "none"` wyłącza margines dolny bloku (ważne przed przyciskami):
-
-```json
-{
-  "id": 5,
-  "content": [
-    {
-      "text": "Ostatni akapit przed przyciskami"
-    },
-    {
-      "text": "Podpowiedź:",
-      "spacing": "none"
-    }
-  ],
-  "choices": [...]
-}
-```
-
-**Automatyka:** Ostatni blok w paragrafie automatycznie otrzymuje `spacing: "none"` przy ładowaniu (patrz `createParagraphMap()`).
-
-### Text Field Standardization
-
-**Stary format (przed v0.0.10):**
-
-```json
-{
-  "type": "text",
-  "html": "Tekst z <strong>HTML</strong>"
-}
-```
-
-**Nowy format (v0.0.10+):**
-
-```json
-{
-  "text": "Tekst z <strong>HTML</strong>"
-}
-```
-
-**Obsługiwane tagi HTML:**
-
-- `<em>` - kursywa
-- `<strong>` - pogrubienie
-- `<letter id="...">` - literka (symbol)
-- `<item id="...">` - przedmiot
-- `<image id="...">` - obrazek
-- `<span class="color-X">` - kolory (CSS klasy)
-
-### Choice Formatting
-
-Choices mogą zawierać HTML w polu `text`:
-
-```json
-{
-  "next": 26,
-  "text": "Idę do <strong>kuchni</strong>"
-}
-```
-
-Komponent automatycznie renderuje HTML jeśli `text` zawiera `<`.
+- JSDoc for public functions
+- Comments explain WHY (not WHAT)
+- Keep in sync with code
 
 ---
 
-## 15. Continuous Integration
+## Resources
 
-### Testy przed commitem
-
-```bash
-# Sprawdź TypeScript
-npm run build
-
-# Uruchom testy
-npm run test
-
-# Sprawdź linting
-npm run lint
-```
+- **[TESTING_GUIDE.md](TESTING_GUIDE.md)** - Test patterns & best practices
+- **[SCENARIO_SCHEMA.md](SCENARIO_SCHEMA.md)** - JSON paragraph format
 
 ---
 
-**Ostatnia aktualizacja:** 2026-02-16
+**Last Updated:** 2026-03-04 | v0.0.12
