@@ -4,12 +4,14 @@ import { ParagraphText } from "../ParagraphText/ParagraphText";
 import { RichText } from "../RichText";
 import { DiceRoller } from "../DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../ConditionalChoice/ConditionalChoice";
+import { ParagraphInput } from "../ParagraphInput";
 import "./ParagraphDisplay.css";
 
 interface ParagraphDisplayProps {
   paragraph: Paragraph;
   lastDiceResult: number | null;
-  onChoice: (nextId: string) => void;
+  onChoice: (nextId: string | undefined, isVariant?: boolean) => void;
+  onJumpToParagraph: (value: string) => string | null;
   onBack: () => void;
   scenarioId?: string;
 }
@@ -18,6 +20,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
   paragraph,
   lastDiceResult,
   onChoice,
+  onJumpToParagraph,
   onBack,
   scenarioId,
 }) => {
@@ -35,11 +38,16 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     (!paragraph.choices || paragraph.choices.length === 0) &&
     !paragraph.hasDiceRoll;
 
-  // Handle content pages
-  const hasPages =
-    paragraph.isMultiPage &&
-    paragraph.contentPages &&
-    paragraph.contentPages.length > 1;
+  // Separate variant choices (horizontal/within frame) from regular choices
+  const variantChoices =
+    paragraph.choices?.filter((choice) => choice.nextVariantId !== undefined) ||
+    [];
+  const regularChoices =
+    paragraph.choices?.filter((choice) => choice.nextVariantId === undefined) ||
+    [];
+
+  // Handle content pages - auto-detect if multiple pages exist
+  const hasPages = paragraph.contentPages && paragraph.contentPages.length > 1;
   const maxPage = paragraph.contentPages
     ? paragraph.contentPages.length - 1
     : 0;
@@ -117,6 +125,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
                     isDiceRollSuccess
                       ? paragraph.diceResult!.successNextId
                       : paragraph.diceResult!.failNextId,
+                    false,
                   )
                 }
                 className="button button--primary"
@@ -162,49 +171,94 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
             </div>
           </div>
         )}
+
+        {variantChoices.length > 0 && paragraph.areChoicesHorizontal && (
+          <fieldset
+            className="choices choices--horizontal"
+            aria-label="Dostępne warianty"
+          >
+            <legend className="sr-only">Wybierz wariant</legend>
+            {variantChoices.map((choice, idx) => {
+              const choiceKey = choice.id || `choice-${idx}`;
+              return (
+                <button
+                  key={choiceKey}
+                  onClick={() => {
+                    if (choice.nextVariantId) {
+                      onChoice(choice.nextVariantId, true);
+                    }
+                  }}
+                  className="button button--primary button--lg"
+                  aria-label={choice.text || ""}
+                >
+                  {choice.text && choice.text.includes("<") ? (
+                    <RichText
+                      text={choice.text}
+                      scenarioId={scenarioId}
+                      noSpacing
+                    />
+                  ) : (
+                    choice.text
+                  )}
+                </button>
+              );
+            })}
+          </fieldset>
+        )}
       </article>
 
       {isDeadEnd && currentPage === maxPage && (
         <div className="dead-end" role="status" aria-live="polite">
-          <button
-            onClick={onBack}
-            className="button button--primary button--md"
-            aria-label="Powrót do wyboru paragrafu"
-            style={{ width: "100%" }}
-          >
-            Powrót do gry
-          </button>
+          <ParagraphInput
+            onSubmit={onJumpToParagraph}
+            instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
+            autoFocus={false}
+            errorId="dead-end-error"
+            actions={
+              <button
+                onClick={onBack}
+                className="button button--secondary button--sm"
+              >
+                ← Powrót do gry
+              </button>
+            }
+          />
         </div>
       )}
 
-      {paragraph.choices && paragraph.choices.length > 0 && (
+      {regularChoices.length > 0 && (
         <fieldset
-          className={`choices ${paragraph.areChoicesHorizontal ? "choices--horizontal" : "choices--vertical"}`}
+          className="choices choices--vertical"
           aria-label="Dostępne wybory"
         >
           <legend className="sr-only">Wybierz następny paragraf</legend>
-          {paragraph.choices.map((choice) => {
+          {regularChoices.map((choice, idx) => {
+            const choiceKey = choice.id || `choice-${idx}`;
             if (choice.isConditional) {
               return (
                 <ConditionalChoice
-                  key={choice.id}
+                  key={choiceKey}
                   choice={choice}
-                  onYes={() => choice.yesNextId && onChoice(choice.yesNextId)}
-                  onNo={() => choice.noNextId && onChoice(choice.noNextId)}
+                  onYes={() =>
+                    choice.yesNextId && onChoice(choice.yesNextId, false)
+                  }
+                  onNo={() =>
+                    choice.noNextId && onChoice(choice.noNextId, false)
+                  }
                 />
               );
             }
             return (
               <button
-                key={choice.id}
+                key={choiceKey}
                 onClick={() => {
                   if (choice.nextParagraphId === "") {
                     onBack();
                   } else if (choice.nextParagraphId) {
-                    onChoice(choice.nextParagraphId);
+                    onChoice(choice.nextParagraphId, false);
                   }
                 }}
-                className="button button--primary"
+                className="button button--primary button--lg"
                 aria-label={choice.text || ""}
               >
                 {choice.text && choice.text.includes("<") ? (

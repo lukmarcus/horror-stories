@@ -2,6 +2,7 @@ import { useReducer } from "react";
 
 export interface GameState {
   currentParagraphId: string | null;
+  variantPath: string[]; // Path of variant choices (for cumulative content)
   inputValue: string;
   showSetup: boolean;
   currentSetupStep: number;
@@ -12,7 +13,9 @@ export interface GameState {
 }
 
 type GameAction =
-  | { type: "SET_PARAGRAPH"; payload: string }
+  | { type: "SET_PARAGRAPH"; payload: string | null }
+  | { type: "ADD_VARIANT"; payload: string } // Append variant to path
+  | { type: "CLEAR_VARIANTS" } // Reset variant path
   | { type: "SET_INPUT"; payload: string }
   | { type: "SET_ERROR"; payload: string }
   | { type: "CLEAR_ERROR" }
@@ -28,6 +31,7 @@ type GameAction =
 
 const initialState: GameState = {
   currentParagraphId: null,
+  variantPath: [],
   inputValue: "",
   showSetup: false,
   currentSetupStep: 0,
@@ -40,7 +44,16 @@ const initialState: GameState = {
 function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case "SET_PARAGRAPH":
-      return { ...state, currentParagraphId: action.payload, error: "" };
+      return {
+        ...state,
+        currentParagraphId: action.payload,
+        variantPath: [],
+        error: "",
+      };
+    case "ADD_VARIANT":
+      return { ...state, variantPath: [...state.variantPath, action.payload] };
+    case "CLEAR_VARIANTS":
+      return { ...state, variantPath: [] };
     case "SET_INPUT":
       return { ...state, inputValue: action.payload };
     case "SET_ERROR":
@@ -84,7 +97,9 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 interface UseGameReturn {
   state: GameState;
   dispatch: React.Dispatch<GameAction>;
-  setParagraph: (id: string) => void;
+  setParagraph: (id: string | null) => void;
+  addVariant: (id: string) => void;
+  clearVariants: () => void;
   setInput: (value: string) => void;
   setError: (error: string) => void;
   clearError: () => void;
@@ -106,8 +121,10 @@ export function useGame(): UseGameReturn {
     state,
     dispatch,
     // Convenience methods
-    setParagraph: (id: string) =>
+    setParagraph: (id: string | null) =>
       dispatch({ type: "SET_PARAGRAPH", payload: id }),
+    addVariant: (id: string) => dispatch({ type: "ADD_VARIANT", payload: id }),
+    clearVariants: () => dispatch({ type: "CLEAR_VARIANTS" }),
     setInput: (value: string) =>
       dispatch({ type: "SET_INPUT", payload: value }),
     setError: (error: string) =>

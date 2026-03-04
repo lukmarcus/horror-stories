@@ -1,8 +1,9 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
 import { Button } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
+import { ParagraphInput } from "../components/ParagraphInput";
 import { RichText } from "../components/RichText";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
@@ -10,8 +11,46 @@ import "../styles/pages/game.css";
 
 export const Game: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const location = useLocation();
   const game = useGame();
   const gameActions = useGameActions();
+
+  // Flag: true when state change was triggered by URL (back/forward), not by user action
+  const isUrlDrivenChange = React.useRef(false);
+
+  // Effect 1: URL → State (handles back/forward navigation)
+  React.useEffect(() => {
+    const parFromUrl = new URLSearchParams(location.search).get("par");
+    const currentPar = game.state.currentParagraphId;
+    if (parFromUrl !== currentPar) {
+      isUrlDrivenChange.current = true;
+      game.setParagraph(parFromUrl);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
+
+  // Effect 2: State → URL (handles user clicking a choice)
+  React.useEffect(() => {
+    const currentPar = game.state.currentParagraphId;
+
+    // If the state change came from the URL (Effect 1), don't push a new URL
+    if (isUrlDrivenChange.current) {
+      isUrlDrivenChange.current = false;
+      return;
+    }
+
+    // Don't push URL if it already matches state (avoids duplicate history entries)
+    const parFromUrl = new URLSearchParams(location.search).get("par");
+    if (currentPar === parFromUrl) return;
+
+    if (currentPar) {
+      navigate(`?par=${currentPar}`, { replace: false });
+    } else {
+      navigate({ search: "" }, { replace: false });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game.state.currentParagraphId]);
 
   // Use imported game data
   const scenarios = SCENARIOS;
@@ -25,33 +64,73 @@ export const Game: React.FC = () => {
     ? paragraphs[game.state.currentParagraphId]
     : null;
 
-  const handleJumpToParagraph = () => {
-    game.clearError();
+  // Effect: Auto-clear variants when navigating to a paragraph without variants
+  // This handles both manual navigation (handleChoice) and browser back/forward
+  React.useEffect(() => {
+    if (
+      game.state.variantPath.length > 0 &&
+      currentParagraph &&
+      !currentParagraph.variants
+    ) {
+      game.clearVariants();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game.state.currentParagraphId]);
 
-    const result = gameActions.jumpToParagraph(
-      game.state.inputValue,
-      paragraphs,
-    );
+  // Helper: Get variant content - shows only the last variant in path, not accumulated
+  const getAccumulatedParagraph = (): typeof currentParagraph | null => {
+    if (!currentParagraph) return null;
+
+    // If no variant selected, show main paragraph
+    if (game.state.variantPath.length === 0 || !currentParagraph.variants) {
+      return currentParagraph;
+    }
+
+    // Get the last variant in the path
+    const lastVariantId =
+      game.state.variantPath[game.state.variantPath.length - 1];
+    const lastVariant = currentParagraph.variants?.[lastVariantId];
+
+    if (!lastVariant) {
+      return currentParagraph;
+    }
+
+    // Return only the last variant (not accumulated with main paragraph)
+    return {
+      ...currentParagraph,
+      contentPages:
+        lastVariant.contentPages ||
+        (lastVariant.content
+          ? [lastVariant.content]
+          : currentParagraph.contentPages),
+      content: lastVariant.content,
+      choices: lastVariant.choices || currentParagraph.choices,
+    };
+  };
+
+  const displayParagraph = getAccumulatedParagraph();
+
+  const handleMainInputSubmit = (value: string): string | null => {
+    const result = gameActions.jumpToParagraph(value, paragraphs);
 
     if (result.needsWarning && result.pendingId) {
       game.showWarning(result.pendingId);
-      return;
+      return null;
     }
 
     if (!result.valid) {
-      game.setError(result.error || "Błąd");
-      return;
+      return result.error || "Błąd";
     }
 
-    const nextId = game.state.inputValue.trim();
-    game.setParagraph(nextId);
-    game.setInput("");
+    game.setParagraph(value.trim());
+    game.clearVariants();
+    return null;
   };
 
   const handleConfirmAccessibility = () => {
     if (game.state.pendingParagraphId) {
       game.setParagraph(game.state.pendingParagraphId);
-      game.setInput("");
+      game.clearVariants();
     }
     game.closeWarning();
   };
@@ -60,23 +139,51 @@ export const Game: React.FC = () => {
     game.closeWarning();
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleJumpToParagraph();
-    }
-  };
-
   const handleBackToInput = () => {
     game.reset();
   };
 
-  const handleChoice = (nextId: string) => {
-    game.setParagraph(nextId);
+  const handleJumpFromDeadEnd = (value: string): string | null => {
+    const result = gameActions.jumpToParagraph(value, paragraphs);
+
+    if (result.needsWarning && result.pendingId) {
+      game.showWarning(result.pendingId);
+      return null;
+    }
+
+    if (!result.valid) {
+      return result.error || "Błąd";
+    }
+
+    game.setParagraph(value.trim());
+    game.clearVariants();
+    game.clearDiceResult();
+    return null;
+  };
+
+  const handleChoice = (
+    nextId: string | undefined,
+    isVariant: boolean = false,
+  ) => {
+    if (!nextId) return;
+
+    if (isVariant) {
+      game.addVariant(nextId);
+    } else {
+      game.setParagraph(nextId);
+    }
     game.clearDiceResult();
   };
 
   return (
     <main className="game">
+      {/* Scenario Title - Visible on all screens */}
+      {currentScenario && (
+        <h1 className="game__scenario-title">
+          {currentScenario.title || "Scenariusz"}
+        </h1>
+      )}
+
       {/* Accessibility Warning Screen */}
       {game.state.showAccessibilityWarning && game.state.pendingParagraphId && (
         <section
@@ -84,11 +191,7 @@ export const Game: React.FC = () => {
           aria-label="Ostrzeżenie o dostępności paragrafu"
         >
           <div className="game__warning-content">
-            <h1 className="game__scenario-title">
-              {currentScenario?.title || "Scenariusz"}
-            </h1>
             <div className="game__warning-box">
-              <h2 className="game__warning-title">Ostrzeżenie</h2>
               <p className="game__warning-text">
                 Paragraf #{game.state.pendingParagraphId} jest dostępny tylko z:
               </p>
@@ -96,7 +199,7 @@ export const Game: React.FC = () => {
                 {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.map(
                   (source) => (
                     <div key={source} className="game__warning-source">
-                      • Paragraf #{source}
+                      Paragraf #{source}
                     </div>
                   ),
                 )}
@@ -140,9 +243,6 @@ export const Game: React.FC = () => {
             >
               ← Wróć do gry
             </Button>
-            <h1 className="game__scenario-title" style={{ margin: 0, flex: 1 }}>
-              Ustawienie: {currentScenario?.title || "Scenariusz"}
-            </h1>
           </div>
 
           {setupSteps.length > 0 ? (
@@ -238,69 +338,29 @@ export const Game: React.FC = () => {
           <div className="game__container">
             {/* INPUT MODE - Show input panel */}
             {!game.state.currentParagraphId ? (
-              <section
-                className="game__input-panel"
-                aria-label="Panel wpisywania paragrafu"
-              >
-                <div className="game__input-header">
-                  <h1 className="game__scenario-title">
-                    {currentScenario?.title || "Scenariusz"}
-                  </h1>
-                  <p className="game__input-instruction">
-                    Wprowadź poniżej numer wpisu, a następnie naciśnij
-                    "PRZEJDŹ".
-                  </p>
-                </div>
-
-                <div className="game__input-wrapper">
-                  <div className="game__input-group">
-                    <input
-                      type="text"
-                      value={game.state.inputValue}
-                      onChange={(e) => game.setInput(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                      placeholder="np. 1, 2, 3..."
-                      className="game__input"
-                      aria-label="Numer paragrafu do odwiedzenia"
-                      aria-describedby={
-                        game.state.error ? "input-error" : undefined
-                      }
-                      aria-invalid={!!game.state.error}
-                      autoFocus
-                    />
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      onClick={handleJumpToParagraph}
-                      className="game__input-btn"
-                      aria-label="Przejść do paragrafu"
-                    >
-                      PRZEJDŹ
-                    </Button>
-                  </div>
-                  {game.state.error && (
-                    <p id="input-error" className="game__error" role="alert">
-                      {game.state.error}
-                    </p>
-                  )}
-                </div>
-
-                {/* Options */}
-                <div className="game__options">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => game.toggleSetup()}
-                    className="game__option-btn"
-                  >
-                    ⚙️ Przygotuj Scenariusz
-                  </Button>
-                  <Link to="/scenarios" className="game__option-link">
-                    <Button variant="secondary" size="sm">
-                      ← Powrót do Menu
-                    </Button>
-                  </Link>
-                </div>
+              <section aria-label="Panel wpisywania paragrafu">
+                <ParagraphInput
+                  onSubmit={handleMainInputSubmit}
+                  instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
+                  autoFocus
+                  actions={
+                    <>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => game.toggleSetup()}
+                        className="game__option-btn"
+                      >
+                        ⚙️ Przygotuj Scenariusz
+                      </Button>
+                      <Link to="/scenarios" className="game__option-link">
+                        <Button variant="secondary" size="sm">
+                          ← Powrót do Menu
+                        </Button>
+                      </Link>
+                    </>
+                  }
+                />
               </section>
             ) : (
               /* PARAGRAPH MODE - Show paragraph */
@@ -309,6 +369,50 @@ export const Game: React.FC = () => {
                 aria-label="Treść paragrafu"
               >
                 <div className="game__setup-header">
+                  {currentParagraph?.variants &&
+                    game.state.variantPath.length > 0 && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => game.clearVariants()}
+                        aria-label={`Odśwież paragraf ${currentParagraph.id} i dokonaj wyborów od nowa`}
+                      >
+                        ↻ Odśwież #{currentParagraph.id}
+                      </Button>
+                    )}
+                  {currentParagraph?.accessibleFrom &&
+                    currentParagraph.accessibleFrom.length > 0 && (
+                      <>
+                        {currentParagraph.accessibleFrom.length === 1 ? (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() =>
+                              handleChoice(currentParagraph.accessibleFrom![0])
+                            }
+                            aria-label={`Wróć do paragrafu ${
+                              currentParagraph.accessibleFrom[0]
+                            }`}
+                          >
+                            ← Wróć do #{currentParagraph.accessibleFrom[0]}
+                          </Button>
+                        ) : (
+                          <>
+                            {currentParagraph.accessibleFrom.map((paraId) => (
+                              <Button
+                                key={paraId}
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleChoice(paraId)}
+                                aria-label={`Wróć do paragrafu ${paraId}`}
+                              >
+                                ← Wróć do #{paraId}
+                              </Button>
+                            ))}
+                          </>
+                        )}
+                      </>
+                    )}
                   <Button
                     variant="outline"
                     size="sm"
@@ -317,18 +421,13 @@ export const Game: React.FC = () => {
                   >
                     ← Wróć
                   </Button>
-                  <h1
-                    className="game__scenario-title"
-                    style={{ margin: 0, flex: 1 }}
-                  >
-                    Paragraf: {game.state.currentParagraphId}
-                  </h1>
                 </div>
                 {currentParagraph ? (
                   <ParagraphDisplay
-                    paragraph={currentParagraph}
+                    paragraph={displayParagraph || currentParagraph}
                     lastDiceResult={game.state.lastDiceResult}
                     onChoice={handleChoice}
+                    onJumpToParagraph={handleJumpFromDeadEnd}
                     onBack={handleBackToInput}
                     scenarioId={scenarioId}
                   />

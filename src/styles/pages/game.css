@@ -82,61 +82,56 @@
   margin-top: var(--spacing-lg);
 }
 
-/* Accessibility Warning Screen */
-.game__accessibility-warning {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: var(--spacing-xl);
-}
-
 .game__warning-content {
   width: 100%;
   max-width: 600px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
 }
 
 .game__warning-box {
-  background-color: var(--color-surface-secondary);
-  border: 2px solid var(--color-accent);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-2xl);
-  text-align: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  text-align: left;
 }
 
 .game__warning-title {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: var(--color-accent);
-  margin: 0 0 var(--spacing-lg) 0;
-  text-transform: uppercase;
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-md) 0;
+  text-transform: none;
 }
 
 .game__warning-text {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   margin: 0 0 var(--spacing-md) 0;
   color: var(--color-text);
+  line-height: var(--line-height-relaxed);
 }
 
 .game__warning-sources {
-  background-color: var(--color-primary);
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-md);
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
   margin: var(--spacing-md) 0;
   text-align: left;
 }
 
 .game__warning-source {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: var(--color-text);
   margin: var(--spacing-sm) 0;
 }
 
 .game__warning-question {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semi-bold);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-normal);
   margin: var(--spacing-lg) 0;
   color: var(--color-text);
+  line-height: var(--line-height-relaxed);
 }
 
 .game__warning-buttons {
@@ -212,9 +207,11 @@
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
-  margin: 0 0 var(--spacing-sm) 0;
+  margin: 0;
+  padding: var(--spacing-lg) 0 var(--spacing-xl) 0;
   text-transform: uppercase;
   letter-spacing: 3px;
+  text-align: center;
 }
 
 .game__input-instruction {
@@ -328,7 +325,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-  padding: var(--spacing-xl);
+  padding: 0 var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
   max-width: 900px;
   margin: 0 auto;
   width: 100%;

@@ -6,6 +6,10 @@
   margin-bottom: 1.5rem; /* Default spacing between content blocks */
 }
 
+.rich-text-block:last-child {
+  margin-bottom: 0; /* Remove spacing from last block */
+}
+
 .rich-text-block.spacing-none {
   margin-bottom: 0; /* Remove spacing when explicitly specified */
 }
@@ -119,6 +123,10 @@
   margin: var(--spacing-md) 0;
   display: flex;
   justify-content: center;
+}
+
+.rich-image-block:last-child {
+  margin-bottom: 0; /* Remove spacing from last image block */
 }
 
 .rich-image-block.spacing-none {

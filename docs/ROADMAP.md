@@ -6,36 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.12 - UI/UX Visual Improvements
-
-### Zakres
-
-- **Powiększenie tekstu opcji wyboru** - Większa czcionka dla lepszej czytelności wyboru
-- **Stylizacja tekstu końcowego** - Dedykowany wyświetlanie ostatnich paragrafów scenariusza
-- **Refaktor ekranu direct: false** - Ulepszone UI dla ostrzeżenia dostępności (paragraf 77 itp)
-- **Wariantowe zawartość** - Zaawansowana obsługa wariantów (warianty postaci w jednym paragrafie)
-- **Browser history / back button** - Przycisk wstecz przeglądarki powraca do poprzedniego paragrafu
-- **Powrót z paragrafów niedostępnych** - Button "Wróć" dla paragrafów bez dostępu (`direct: false`)
-- **Input zamiast powrotu** - Dla paragrafów bez choices pokazać input zamiast "powrotu do gry"
-
-### Do zrobienia
-
-- ⏳ Larger choice text - powiększyć czcionkę w przyciskach wyboru dla lepszej czytelności
-- ⏳ End-game text styling - przeprojektować wyświetlanie tekstu końcowego (paragraf 151)
-- ⏳ Accessibility warning UI redesign - lepsze UI dla ekranu dostępności (direct: false)
-- ⏳ Variant content with merge logic - hierarchiczna struktura wariantów postaci
-- ⏳ Horizontal choices visual grouping - ramka/background dla choices poziomych
-- ⏳ Choice history tracking - wyświetlenie ostatnio dokonanego wyboru
-- ⏳ Browser history support - Wdrożyć URL state (`?para=X`) dla pełnej obsługi historii przeglądarki
-- ⏳ Back button for inaccessible paragraphs - Button "Wróć" dla paragrafów z `direct: false`
-- ⏳ Input field for dead-end paragraphs - Zastąpić "powrót do gry" inputem dla paragrafów bez choices
-
-### Status
-
-- ⏳ Zaplanowana
-
----
-
 ## Milestone v0.1.0 - MVP Release - Visual Design & Features
 
 ### Zakres
@@ -138,4 +108,4 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-**Ostatnia aktualizacja:** 2026-02-21
+**Ostatnia aktualizacja:** 2026-03-04

@@ -7,6 +7,26 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.0.12] - 2026-03-04
+
+### Dodano
+
+- Warianty postaci i akcji w paragrafach - możliwość wyboru wariantu w obrębie jednego paragrafu, każdy wariant ma swoją zawartość
+- Przyciski wracania z numerami paragrafów - szybka nawigacja do poprzednio odwiedzonych paragrafów (np. "← Wróć do #9")
+- Przycisk odświeżania wariantów - reset wyborów wariantowych aby przejść ścieżkę od nowa (np. "↻ Odśwież #9")
+- Pełna obsługa historii przeglądarki - przycisk back/forward przeglądarki wraca i idzie do poprzednich paragrafów
+- Inline input w paragrafach bez wyborów - możliwość wpisania numeru paragrafu zamiast wracania do menu
+- Automatyczne stronicowanie - paragrafy z wieloma stronami automatycznie dodają przyciski do przechodzenia między stronami
+
+### Poprawiono
+
+- Większa czcionka przycisków wyboru - lepszą czytelność opcji
+- Wygląd ostrzeżeń dostępności paragrafów - wygląda teraz jak zwykły paragraf zamiast alertu
+- Konsystentny tytuł scenariusza - widoczny na wszystkich ekranach gry
+- Lepsze rozmieszczenie elementów - usunięcie nadmiarowych marginesów
+
+---
+
 ## [0.0.11] - 2026-02-21
 
 ### Dodano
