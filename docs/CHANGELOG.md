@@ -7,31 +7,23 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.0.12] - Zaplanowana
+## [0.0.12] - 2026-03-04
 
 ### Dodano
 
-- Back buttons z `accessibleFrom` - przyciski "Wróć do #X" w nagłówku gry dla paragrafów dostępnych z innych paragrafów
-- Wariantowe zawartość z resetem - hierarchiczna struktura wariantów postaci, każdy wariant resetuje ekran do czystej zawartości wariantu (bez głównego tekstu), warianty mogą dotyczyć postaci, akcji lub decyzji
-- Separacja wyborów wariantowych - wariantowe wybory (z `nextVariantId`) wyświetlają się wewnątrz ramy paragrafu, zwykłe wybory poniżej
-- Przycisk "Odśwież" - reset wariantów w nagłówku gry z wyświetlaniem ID paragrafu (np. "↻ Odśwież #9")
-- Testy wariantów - comprehensive test suite dla systemu wariantów i zarządzania `variantPath`
-- Przemigrowane paragrafy na system wariantów - paragrafy 9, 26, 65 teraz używają wariantów zamiast odrębnych podparagrafów
+- Warianty postaci i akcji w paragrafach - możliwość wyboru wariantu w obrębie jednego paragrafu, każdy wariant ma swoją zawartość
+- Przyciski wracania z numerami paragrafów - szybka nawigacja do poprzednio odwiedzonych paragrafów (np. "← Wróć do #9")
+- Przycisk odświeżania wariantów - reset wyborów wariantowych aby przejść ścieżkę od nowa (np. "↻ Odśwież #9")
+- Pełna obsługa historii przeglądarki - przycisk back/forward przeglądarki wraca i idzie do poprzednich paragrafów
+- Inline input w paragrafach bez wyborów - możliwość wpisania numeru paragrafu zamiast wracania do menu
+- Automatyczne stronicowanie - paragrafy z wieloma stronami automatycznie dodają przyciski do przechodzenia między stronami
 
 ### Poprawiono
 
-- Rozmiar tekstu przycisków wyboru - przyciski choices teraz takie samo jak rozmiar tekstu paragrafu (1.125rem)
-- Wygląd ostrzeżenia dostępności - ekran ostrzeżeń (paragraf niedostępny) teraz wygląda jak zwykły paragraf zamiast alert box
-- Tytuł scenariusza na wszystkich ekranach - nagłówek H1 widoczny spójnie na każdym ekranie gry (setup, input, paragraph, warning)
-- Ujednolicona szerokość ostrzeżenia dostępności - ostrzeżenie ma ustaloną szerokość zamiast pełnej szerokości ekranu
-- Spacing od paska nawigacji - spójny odstęp na wszystkich ekranach (setup, input, paragraph, warning)
-- Tekst końcowy scenariusza - ostatni paragraf (151) podzielony na 2 strony dla dramatyzmu
-- Auto-detekcja stronicowania - paragrafy z wieloma `contentPages` automatycznie włączają przycisków stronicowania (bez potrzeby `isMultiPage`)
-- Browser history support - URL parametr `?par=X` do nawigacji i sharowania linków do paragrafów, back button działa prawidłowo
-- React keys w RichText - naprawiono kolizje kluczy (keye collisions) gdzie identyczne teksty w różnych blokach powodowały problemy z re-renderowaniem
-- Spacing końcowy bloków tekstowych - ostatni blok tekstu/obrazka nie ma marginesu dolnego (`:last-child`)
-- Margines wariantowych i zwykłych wyborów - usunięto nadmiarowy margin-top z choices
-- CSS wariantowych wyborów - border-top separator dla wariantowych wyborów wewnątrz paragrafu, margin-top dla zwykłych wyborów poniżej
+- Większa czcionka przycisków wyboru - lepszą czytelność opcji
+- Wygląd ostrzeżeń dostępności paragrafów - wygląda teraz jak zwykły paragraf zamiast alertu
+- Konsystentny tytuł scenariusza - widoczny na wszystkich ekranach gry
+- Lepsze rozmieszczenie elementów - usunięcie nadmiarowych marginesów
 
 ---
 

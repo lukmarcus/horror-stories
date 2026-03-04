@@ -6,36 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.0.12 - UI/UX Visual Improvements
-
-### Zakres
-
-- **Powiększenie tekstu opcji wyboru** - Większa czcionka dla lepszej czytelności wyboru
-- **Stylizacja tekstu końcowego** - Dedykowany wyświetlanie ostatnich paragrafów scenariusza
-- **Refaktor ekranu direct: false** - Ulepszone UI dla ostrzeżenia dostępności (paragraf 77 itp)
-- **Wariantowe zawartość** - Zaawansowana obsługa wariantów (warianty postaci w jednym paragrafie)
-- **Browser history / back button** - Przycisk wstecz przeglądarki powraca do poprzedniego paragrafu
-- **Powrót z paragrafów niedostępnych** - Button "Wróć" dla paragrafów bez dostępu (`direct: false`)
-- **Input zamiast powrotu** - Dla paragrafów bez choices pokazać input zamiast "powrotu do gry"
-
-### Do zrobienia
-
-- ✅ Larger choice text - powiększyć czcionkę w przyciskach wyboru dla lepszej czytelności
-- ✅ Accessibility warning UI redesign - lepsze UI dla ekranu dostępności (direct: false)
-- ✅ Screen title unification - tytuł scenariusza widoczny na wszystkich ekranach
-- ✅ End-game text styling - tekst końcowy (paragraf 151) podzielony na 2 strony
-- ✅ Auto-detect multipage paragraphs - paragrafy z wieloma stronami włączają stronicowanie automatycznie
-- ✅ Browser history support - URL state (`?par=X`) dla pełnej obsługi historii przeglądarki
-- ✅ Input instead of back button - inline input dla paragrafów bez choices (dead ends)
-- ✅ Back buttons with accessibleFrom - przyciski wracania na paragrafach w zależności od pola `accessibleFrom`
-- ✅ Variant content with reset display - hierarchiczna struktura wariantów postaci/akcji, każdy wariant czysty reset, separacja wyborów, przemigracja paragrafów 9/26/65
-
-### Status
-
-- 🔄 W trakcie
-
----
-
 ## Milestone v0.1.0 - MVP Release - Visual Design & Features
 
 ### Zakres
@@ -138,4 +108,4 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-**Ostatnia aktualizacja:** 2026-02-21
+**Ostatnia aktualizacja:** 2026-03-04

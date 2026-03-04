@@ -160,6 +160,29 @@ Każda publiczna funkcja/hook powinna mieć testy:
 - Edge cases (przypadki graniczne)
 - Error handling (obsługa błędów)
 
+#### Obecne pokrycie testów (v0.0.12+)
+
+**Funkcjonalności pokryte testami:**
+
+- ✅ Logika gry (navigacja między paragrafami, walidacja dostępu)
+- ✅ System wariantów (akumulacja zawartości, separacja wyborów wariantowych)
+- ✅ Zarządzanie `variantPath` (dodawanie/czyszczenie wariantów)
+- ✅ Dostępność paragrafów (direct/indirect, accessibleFrom)
+- ✅ Browser history (URL state `?par=X`, synchronizacja)
+- ✅ Przyciski wracania (`accessibleFrom` buttons z polami numerów)
+- ✅ Reset wariantów (refresh button, czyszczenie variantPath)
+- ✅ Input dla dead-end paragrafów (walidacja, parsowanie)
+- ✅ Nowa struktura wariantów (warianty wewnątrz paragrafu zamiast odrębnych)
+- ✅ Multi-page support (stronicowanie, isMultiPage flag)
+- ✅ Parsing bogatego tekstu (RichText, special tags)
+
+**Status testów:**
+
+- **Game.test.tsx** - 141+ testy (unit testy logiki gry + system wariantów)
+- **Game.e2e.test.tsx** - End-to-end testy scenariuszy + v0.0.12 features
+- **useGame.test.ts** - Zarządzanie stanem (variant path, browser history)
+- **Utils/\*.test.ts** - Funkcje pomocnicze (parser, accessibility, layout flags)
+
 ## 6. CSS i Styling
 
 ### Organizacja
