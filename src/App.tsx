@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Header } from "./components/common/Header";
 import { Footer } from "./components/common/Footer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
@@ -14,7 +14,7 @@ import "./App.css";
 function App() {
   return (
     <ErrorBoundary>
-      <Router basename="/horror-stories/">
+      <Router>
         <div className="app">
           <Header />
           <main className="app__main">
