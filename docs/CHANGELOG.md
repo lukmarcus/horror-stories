@@ -7,6 +7,16 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.0] - 2026-03-07
+
+### Poprawiono
+
+- GitHub Pages routing – HashRouter zamiast BrowserRouter dla niezawodnego działania Single Page Application na GitHub Pages
+- Input field na wielostronowych paragrafach – `currentPage` teraz resetuje się przy zmianie paragrafu, zapobiegając braku pola input na paragrafach docelowych (bug #77→121)
+- Wsparcie dla linków z query parametrami – `?par=12` zachowywane przy routingu
+
+---
+
 ## [0.0.12] - 2026-03-04
 
 ### Dodano

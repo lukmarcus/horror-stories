@@ -26,6 +26,15 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
 
+  const paragraphIdStr = Array.isArray(paragraph.id)
+    ? paragraph.id.join(", ")
+    : paragraph.id;
+
+  // Reset page when paragraph changes
+  React.useEffect(() => {
+    setCurrentPage(0);
+  }, [paragraphIdStr]);
+
   // Check if dice roll was successful
   const isDiceRollSuccess =
     paragraph.hasDiceRoll &&
@@ -38,14 +47,6 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     (!paragraph.choices || paragraph.choices.length === 0) &&
     !paragraph.hasDiceRoll;
 
-  // Separate variant choices (horizontal/within frame) from regular choices
-  const variantChoices =
-    paragraph.choices?.filter((choice) => choice.nextVariantId !== undefined) ||
-    [];
-  const regularChoices =
-    paragraph.choices?.filter((choice) => choice.nextVariantId === undefined) ||
-    [];
-
   // Handle content pages - auto-detect if multiple pages exist
   const hasPages = paragraph.contentPages && paragraph.contentPages.length > 1;
   const maxPage = paragraph.contentPages
@@ -55,9 +56,16 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
     ? paragraph.contentPages[currentPage]
     : paragraph.content;
 
-  const paragraphIdStr = Array.isArray(paragraph.id)
-    ? paragraph.id.join(", ")
-    : paragraph.id;
+  // Show input only on last page of dead-end paragraphs
+  const showDeadEndInput = isDeadEnd && currentPage === maxPage;
+
+  // Separate variant choices (horizontal/within frame) from regular choices
+  const variantChoices =
+    paragraph.choices?.filter((choice) => choice.nextVariantId !== undefined) ||
+    [];
+  const regularChoices =
+    paragraph.choices?.filter((choice) => choice.nextVariantId === undefined) ||
+    [];
 
   return (
     <>
@@ -207,7 +215,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
         )}
       </article>
 
-      {isDeadEnd && currentPage === maxPage && (
+      {showDeadEndInput && (
         <div className="dead-end" role="status" aria-live="polite">
           <ParagraphInput
             onSubmit={onJumpToParagraph}

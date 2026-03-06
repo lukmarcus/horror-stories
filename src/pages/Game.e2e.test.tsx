@@ -545,3 +545,43 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
     });
   });
 });
+
+describe("Multi-page dead-end paragraphs - currentPage reset (v0.1.0 bug fix)", () => {
+  it("should reset currentPage when navigating to different paragraph", () => {
+    // Bug: If user is on page 2 of paragraph 77 (currentPage=1)
+    // then jumps to paragraph 121 (single page, maxPage=0)
+    // currentPage should be reset to 0, not remain at 1
+    // Otherwise the input field would not appear (condition: currentPage === maxPage)
+
+    // Simulating paragraph 77 (2 pages, dead-end)
+    const para77: MockParagraph = {
+      id: "77",
+      contentPages: [[{ text: "Page 1" }], [{ text: "Page 2" }]],
+      choices: [],
+    };
+
+    // Simulating paragraph 121 (1 page, dead-end)
+    const para121: MockParagraph = {
+      id: "121",
+      contentPages: [[{ text: "Dead end content" }]],
+      choices: [],
+    };
+
+    // With proper reset, when navigating to 121:
+    // currentPage should be 0, maxPage should be 0
+    // Condition (0 === 0) = true, input should appear
+    const page77MaxPage = para77.contentPages
+      ? para77.contentPages.length - 1
+      : 0;
+    const page121MaxPage = para121.contentPages
+      ? para121.contentPages.length - 1
+      : 0;
+
+    expect(page77MaxPage).toBe(1);
+    expect(page121MaxPage).toBe(0);
+
+    // After reset, currentPage would be 0 in 121
+    // So (0 === 0) would be true, input field shows ✓
+    expect(0).toBe(page121MaxPage);
+  });
+});

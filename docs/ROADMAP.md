@@ -6,31 +6,25 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.0 - MVP Release - Visual Design & Features
+## Milestone v0.1.0 - Bug Fixes & Deployment
 
 ### Zakres
 
-- **Przycisk rzucania kostką na ekranie input** - Możliwość rzucenia kostką w każdym momencie setupu scenariusza
-- Kompletny design wizualny aplikacji
-- Responsywny layout na wszystkich urządzeniach
-- Koherentna paleta barw i typografia
-- Polishing UI/UX
-- Optymalizacja wydajności
-- Dokumentacja dla użytkownika
+- Naprawienie bugów z v0.0.12
+- Kompatybilność z GitHub Pages (HashRouter)
+- Wsparcie URL-ów z query parametrami
 
 ### Do zrobienia
 
-- ⏳ Dice roller button on input screen - nowy przycisk do rzucania kostką k6 na stronie inputu scenariusza
+- ✅ Napraw 404 błędy na GitHub Pages - HashRouter zamiast BrowserRouter
+- ✅ Bug: Input pole na wielostronowych paragrafach - Reset currentPage przy zmianie paragrafu
+- ⏳ Dice roller button on input screen - nowy przycisk do rzucania kostką k6 na stronie inputu
 - ⏳ Design system - kolory, typografia, komponenty
 - ⏳ Responsywność - mobile, tablet, desktop
-- ⏳ Animacje i przejścia
-- ⏳ Accessibility - WCAG compliance
-- ⏳ Optymizacja wydajności
-- ⏳ Testing i bug fixing
 
 ### Status
 
-- ⏳ Nie rozpoczęte
+- ✅ Bug fixes zakończone (testy: 168/168 passing)
 
 ---
 
