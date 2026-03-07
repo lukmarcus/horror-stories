@@ -14,6 +14,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - GitHub Pages routing – HashRouter zamiast BrowserRouter dla niezawodnego działania Single Page Application na GitHub Pages
 - Input field na wielostronowych paragrafach – `currentPage` teraz resetuje się przy zmianie paragrafu, zapobiegając braku pola input na paragrafach docelowych (bug #77→121)
 - Wsparcie dla linków z query parametrami – `?par=12` zachowywane przy routingu
+- Drobne poprawki w scenariuszu "Droga Donikąd" – usunięty duplikat ID paragrafu (97→87), błędna dostępność (123), klarowniejsza instrukcja mechaniki gry
 
 ---
 
