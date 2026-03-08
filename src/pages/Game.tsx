@@ -241,7 +241,7 @@ export const Game: React.FC = () => {
               }}
               aria-label="Powrót do gry"
             >
-              ← Wróć do gry
+              ← Wróć do menu scenariusza
             </Button>
           </div>
 
@@ -355,7 +355,7 @@ export const Game: React.FC = () => {
                       </Button>
                       <Link to="/scenarios" className="game__option-link">
                         <Button variant="secondary" size="sm">
-                          ← Powrót do Menu
+                          ← Lista scenariuszy
                         </Button>
                       </Link>
                     </>
@@ -417,9 +417,9 @@ export const Game: React.FC = () => {
                     variant="outline"
                     size="sm"
                     onClick={handleBackToInput}
-                    aria-label="Powrót do wyboru paragrafu"
+                    aria-label="Powrót do menu scenariusza"
                   >
-                    ← Wróć
+                    ← Wróć do menu scenariusza
                   </Button>
                 </div>
                 {currentParagraph ? (

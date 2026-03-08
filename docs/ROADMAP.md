@@ -18,13 +18,23 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 - ✅ Napraw 404 błędy na GitHub Pages - HashRouter zamiast BrowserRouter
 - ✅ Bug: Input pole na wielostronowych paragrafach - Reset currentPage przy zmianie paragrafu
-- ⏳ Dice roller button on input screen - nowy przycisk do rzucania kostką k6 na stronie inputu
+- ✅ Zmiana nazw przycisków nawigacji - "Graj"→"Scenariusze", "Wróć do gry"→"Wróć do menu scenariusza", "Powrót do Menu"→"Lista scenariuszy"
+- ⏳ **UI Scenariuszy:**
+  - ⏳ Zmniejszyć kafelki scenariuszy (responsywny grid)
+  - ⏳ Dodać grafikę na tło kafelków (background-image)
+  - ⏳ Menu: "Graj" → "Scenariusze"
+- ⏳ **UI Setup scenariusza:**
+  - ⏳ Dodatkowe przełączniki kroków na dole
+  - ⏳ Zmienić wygląd button "Przygotuj scenariusz"
+- ⏳ **UI Input field:**
+  - ⏳ Dodać 3. button - Rzut kością (DiceRoller w input)
+  - ⏳ "← Powrót do Menu" → "← Lista scenariuszy"
 - ⏳ Design system - kolory, typografia, komponenty
 - ⏳ Responsywność - mobile, tablet, desktop
 
 ### Status
 
-- ✅ Bug fixes zakończone (testy: 168/168 passing)
+- 🟡 W trakcie (Bug fixes ✅, UI improvements pending)
 
 ---
 
