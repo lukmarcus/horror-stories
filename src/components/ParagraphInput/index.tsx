@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../common";
+import { DiceRoller } from "../DiceRoller/DiceRoller";
 
 interface ParagraphInputProps {
   /** Called on submit. Return an error string to show inline, or null on success. */
@@ -8,6 +9,8 @@ interface ParagraphInputProps {
   instruction?: string;
   /** Optional buttons rendered below the input (e.g. Setup, Back to Menu) */
   actions?: React.ReactNode;
+  /** Optional callback when dice is rolled */
+  onDiceRoll?: (result: number) => void;
   autoFocus?: boolean;
   errorId?: string;
 }
@@ -16,6 +19,7 @@ export const ParagraphInput: React.FC<ParagraphInputProps> = ({
   onSubmit,
   instruction,
   actions,
+  onDiceRoll,
   autoFocus = false,
   errorId = "paragraph-input-error",
 }) => {
@@ -69,6 +73,7 @@ export const ParagraphInput: React.FC<ParagraphInputProps> = ({
           >
             PRZEJDŹ
           </Button>
+          {onDiceRoll && <DiceRoller onRoll={onDiceRoll} />}
         </div>
         {error && (
           <p id={errorId} className="game__error" role="alert">

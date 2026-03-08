@@ -369,6 +369,7 @@ export const Game: React.FC = () => {
                   onSubmit={handleMainInputSubmit}
                   instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
                   autoFocus
+                  onDiceRoll={game.setDiceResult}
                   actions={
                     <>
                       <Button
