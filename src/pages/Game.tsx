@@ -288,6 +288,32 @@ export const Game: React.FC = () => {
                     />
                   )}
                 </div>
+                <div className="game__setup-step-footer">
+                  <div className="game__setup-step-number">
+                    Krok {game.state.currentSetupStep + 1} z {setupSteps.length}
+                  </div>
+                  <div className="game__setup-controls">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => game.prevSetupStep()}
+                      disabled={game.state.currentSetupStep === 0}
+                    >
+                      ← Poprzedni
+                    </Button>
+
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => game.nextSetupStep()}
+                      disabled={
+                        game.state.currentSetupStep === setupSteps.length - 1
+                      }
+                    >
+                      Następny →
+                    </Button>
+                  </div>
+                </div>
               </div>
 
               {game.state.currentSetupStep === setupSteps.length - 1 && (
