@@ -20,6 +20,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
   - "Wróć do gry" → "Wróć do menu scenariusza" (w setup)
   - "Wróć" → "Wróć do menu scenariusza" (w paragrafach bez wyborów)
   - "Powrót do Menu" → "Lista scenariuszy" (w input field)
+- **UI: Dodatkowe kontrolki setup'u na dole** – licznik kroku i przyciski Poprzedni/Następny dostępne na górze i dole ekranu
 ---
 
 ## [0.0.12] - 2026-03-04
