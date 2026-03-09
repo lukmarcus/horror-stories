@@ -357,117 +357,231 @@ export const Game: React.FC = () => {
         </section>
       )}
 
-      {/* Main Game View - Hidden when showing Setup or Warning */}
-      {!game.state.showSetup && !game.state.showAccessibilityWarning && (
-        <>
-          {/* Container */}
-          <div className="game__container">
-            {/* INPUT MODE - Show input panel */}
-            {!game.state.currentParagraphId ? (
-              <section aria-label="Panel wpisywania paragrafu">
-                <ParagraphInput
-                  onSubmit={handleMainInputSubmit}
-                  instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
-                  autoFocus
-                  onDiceRoll={game.setDiceResult}
-                  actions={
-                    <>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => game.toggleSetup()}
-                        className="game__option-btn"
-                      >
-                        ⚙️ Przygotuj Scenariusz
-                      </Button>
-                      <Link to="/scenarios" className="game__option-link">
-                        <Button variant="secondary" size="sm">
-                          ← Lista scenariuszy
-                        </Button>
-                      </Link>
-                    </>
-                  }
-                />
-              </section>
-            ) : (
-              /* PARAGRAPH MODE - Show paragraph */
-              <section
-                className="game__setup-fullscreen"
-                aria-label="Treść paragrafu"
-              >
-                <div className="game__setup-header">
-                  {currentParagraph?.variants &&
-                    game.state.variantPath.length > 0 && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => game.clearVariants()}
-                        aria-label={`Odśwież paragraf ${currentParagraph.id} i dokonaj wyborów od nowa`}
-                      >
-                        ↻ Odśwież #{currentParagraph.id}
-                      </Button>
-                    )}
-                  {currentParagraph?.accessibleFrom &&
-                    currentParagraph.accessibleFrom.length > 0 && (
-                      <>
-                        {currentParagraph.accessibleFrom.length === 1 ? (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() =>
-                              handleChoice(currentParagraph.accessibleFrom![0])
-                            }
-                            aria-label={`Wróć do paragrafu ${
-                              currentParagraph.accessibleFrom[0]
-                            }`}
-                          >
-                            ← Wróć do #{currentParagraph.accessibleFrom[0]}
-                          </Button>
-                        ) : (
-                          <>
-                            {currentParagraph.accessibleFrom.map((paraId) => (
-                              <Button
-                                key={paraId}
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleChoice(paraId)}
-                                aria-label={`Wróć do paragrafu ${paraId}`}
-                              >
-                                ← Wróć do #{paraId}
-                              </Button>
-                            ))}
-                          </>
-                        )}
-                      </>
-                    )}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleBackToInput}
-                    aria-label="Powrót do menu scenariusza"
-                  >
-                    ← Wróć do menu scenariusza
-                  </Button>
-                </div>
-                {currentParagraph ? (
-                  <ParagraphDisplay
-                    paragraph={displayParagraph || currentParagraph}
-                    lastDiceResult={game.state.lastDiceResult}
-                    onChoice={handleChoice}
-                    onJumpToParagraph={handleJumpFromDeadEnd}
-                    onBack={handleBackToInput}
-                    scenarioId={scenarioId}
-                  />
-                ) : (
-                  <p className="game__error-text" role="alert">
-                    Paragraf nie znaleziony
-                  </p>
-                )}
-              </section>
-            )}
+      {/* Dice View - Full Screen */}
+      {game.state.showDiceView && (
+        <section className="game__setup-fullscreen">
+          <div className="game__setup-header">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => game.toggleDiceView()}
+              aria-label="Powrót do menu"
+            >
+              ← Wróć do menu
+            </Button>
           </div>
-        </>
+
+          <div className="game__setup-step">
+            <div className="game__setup-step-header">
+              <div className="game__setup-step-number">Rzut kostką</div>
+            </div>
+            <div className="game__setup-step-content">
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "var(--spacing-lg)",
+                  padding: "var(--spacing-xl)",
+                }}
+              >
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontSize: "var(--font-size-lg)",
+                  }}
+                >
+                  Ile razy chcesz rzucić?
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "var(--spacing-md)",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  {[1, 2, 3].map((numDice) => (
+                    <Button
+                      key={numDice}
+                      variant="primary"
+                      size="lg"
+                      onClick={() => {
+                        const results: number[] = [];
+                        for (let i = 0; i < numDice; i++) {
+                          results.push(Math.floor(Math.random() * 6) + 1);
+                        }
+                        const sum = results.reduce((a, b) => a + b, 0);
+                        game.setDiceResult(sum);
+                      }}
+                    >
+                      {numDice}x kostka
+                    </Button>
+                  ))}
+                </div>
+                {game.state.lastDiceResult !== null && (
+                  <div
+                    style={{
+                      fontSize: "3rem",
+                      fontWeight: "bold",
+                      color: "var(--color-accent)",
+                      marginTop: "var(--spacing-xl)",
+                    }}
+                  >
+                    Wynik: {game.state.lastDiceResult}
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="game__setup-step-footer">
+              <Button
+                variant="secondary"
+                size="md"
+                onClick={() => {
+                  game.clearDiceResult();
+                  game.toggleDiceView();
+                }}
+              >
+                ← Wróć do menu
+              </Button>
+              {game.state.lastDiceResult !== null && (
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={() => {
+                    game.clearDiceResult();
+                  }}
+                >
+                  Rzuć ponownie
+                </Button>
+              )}
+            </div>
+          </div>
+        </section>
       )}
+
+      {/* Main Game View - Hidden when showing Setup, Dice or Warning */}
+      {!game.state.showSetup &&
+        !game.state.showDiceView &&
+        !game.state.showAccessibilityWarning && (
+          <>
+            {/* Container */}
+            <div className="game__container">
+              {/* INPUT MODE - Show input panel */}
+              {!game.state.currentParagraphId ? (
+                <section aria-label="Panel wpisywania paragrafu">
+                  <ParagraphInput
+                    onSubmit={handleMainInputSubmit}
+                    instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
+                    autoFocus
+                    actions={
+                      <>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => game.toggleSetup()}
+                          className="game__option-btn"
+                        >
+                          ⚙️ Przygotuj Scenariusz
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => game.toggleDiceView()}
+                          className="game__option-btn"
+                        >
+                          🎲 Rzut kością
+                        </Button>
+                        <Link to="/scenarios" className="game__option-link">
+                          <Button variant="secondary" size="sm">
+                            ← Lista scenariuszy
+                          </Button>
+                        </Link>
+                      </>
+                    }
+                  />
+                </section>
+              ) : (
+                /* PARAGRAPH MODE - Show paragraph */
+                <section
+                  className="game__setup-fullscreen"
+                  aria-label="Treść paragrafu"
+                >
+                  <div className="game__setup-header">
+                    {currentParagraph?.variants &&
+                      game.state.variantPath.length > 0 && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => game.clearVariants()}
+                          aria-label={`Odśwież paragraf ${currentParagraph.id} i dokonaj wyborów od nowa`}
+                        >
+                          ↻ Odśwież #{currentParagraph.id}
+                        </Button>
+                      )}
+                    {currentParagraph?.accessibleFrom &&
+                      currentParagraph.accessibleFrom.length > 0 && (
+                        <>
+                          {currentParagraph.accessibleFrom.length === 1 ? (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() =>
+                                handleChoice(
+                                  currentParagraph.accessibleFrom![0],
+                                )
+                              }
+                              aria-label={`Wróć do paragrafu ${
+                                currentParagraph.accessibleFrom[0]
+                              }`}
+                            >
+                              ← Wróć do #{currentParagraph.accessibleFrom[0]}
+                            </Button>
+                          ) : (
+                            <>
+                              {currentParagraph.accessibleFrom.map((paraId) => (
+                                <Button
+                                  key={paraId}
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => handleChoice(paraId)}
+                                  aria-label={`Wróć do paragrafu ${paraId}`}
+                                >
+                                  ← Wróć do #{paraId}
+                                </Button>
+                              ))}
+                            </>
+                          )}
+                        </>
+                      )}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleBackToInput}
+                      aria-label="Powrót do menu scenariusza"
+                    >
+                      ← Wróć do menu scenariusza
+                    </Button>
+                  </div>
+                  {currentParagraph ? (
+                    <ParagraphDisplay
+                      paragraph={displayParagraph || currentParagraph}
+                      lastDiceResult={game.state.lastDiceResult}
+                      onChoice={handleChoice}
+                      onJumpToParagraph={handleJumpFromDeadEnd}
+                      onBack={handleBackToInput}
+                      scenarioId={scenarioId}
+                    />
+                  ) : (
+                    <p className="game__error-text" role="alert">
+                      Paragraf nie znaleziony
+                    </p>
+                  )}
+                </section>
+              )}
+            </div>
+          </>
+        )}
     </main>
   );
 };

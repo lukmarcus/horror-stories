@@ -10,6 +10,7 @@ export interface GameState {
   lastDiceResult: number | null;
   pendingParagraphId: string | null;
   showAccessibilityWarning: boolean;
+  showDiceView: boolean;
 }
 
 type GameAction =
@@ -25,6 +26,7 @@ type GameAction =
   | { type: "RESET_SETUP_STEP" }
   | { type: "SHOW_WARNING"; payload: string }
   | { type: "CLOSE_WARNING" }
+  | { type: "TOGGLE_DICE_VIEW" }
   | { type: "SET_DICE_RESULT"; payload: number }
   | { type: "CLEAR_DICE_RESULT" }
   | { type: "RESET" };
@@ -38,6 +40,7 @@ const initialState: GameState = {
   error: "",
   lastDiceResult: null,
   pendingParagraphId: null,
+  showDiceView: false,
   showAccessibilityWarning: false,
 };
 
@@ -83,6 +86,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         showAccessibilityWarning: false,
         pendingParagraphId: null,
       };
+    case "TOGGLE_DICE_VIEW":
+      return { ...state, showDiceView: !state.showDiceView };
     case "SET_DICE_RESULT":
       return { ...state, lastDiceResult: action.payload };
     case "CLEAR_DICE_RESULT":
@@ -107,6 +112,7 @@ interface UseGameReturn {
   nextSetupStep: () => void;
   prevSetupStep: () => void;
   resetSetupStep: () => void;
+  toggleDiceView: () => void;
   showWarning: (id: string) => void;
   closeWarning: () => void;
   setDiceResult: (result: number) => void;
@@ -134,6 +140,7 @@ export function useGame(): UseGameReturn {
     nextSetupStep: () => dispatch({ type: "NEXT_SETUP_STEP" }),
     prevSetupStep: () => dispatch({ type: "PREV_SETUP_STEP" }),
     resetSetupStep: () => dispatch({ type: "RESET_SETUP_STEP" }),
+    toggleDiceView: () => dispatch({ type: "TOGGLE_DICE_VIEW" }),
     showWarning: (id: string) =>
       dispatch({ type: "SHOW_WARNING", payload: id }),
     closeWarning: () => dispatch({ type: "CLOSE_WARNING" }),
