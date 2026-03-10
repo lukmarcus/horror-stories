@@ -373,7 +373,7 @@ export const Game: React.FC = () => {
 
           <div className="game__setup-step">
             <div className="game__setup-step-header">
-              <div className="game__setup-step-number">Rzut kostką</div>
+              <div className="game__setup-step-number">Rzut kością</div>
             </div>
             <div className="game__setup-step-content">
               <div
@@ -382,7 +382,7 @@ export const Game: React.FC = () => {
                   flexDirection: "column",
                   alignItems: "center",
                   gap: "var(--spacing-lg)",
-                  padding: "var(--spacing-xl)",
+                  padding: "var(--spacing-md)",
                 }}
               >
                 <p
@@ -391,7 +391,7 @@ export const Game: React.FC = () => {
                     fontSize: "var(--font-size-lg)",
                   }}
                 >
-                  Ile razy chcesz rzucić?
+                  Ile razy chcesz rzucić kością?
                 </p>
                 <div
                   style={{
@@ -432,8 +432,9 @@ export const Game: React.FC = () => {
                         game.setDiceResult(sum);
                         game.setRollingDice(false);
                       }}
+                      title={`Rzuć ${numDice}x`}
                     >
-                      {numDice}x kostka
+                      {numDice}x 🎲
                     </Button>
                   ))}
                 </div>
@@ -444,7 +445,7 @@ export const Game: React.FC = () => {
                       fontSize: "3rem",
                       fontWeight: "bold",
                       color: "var(--color-accent)",
-                      marginTop: "var(--spacing-xl)",
+                      marginTop: 0,
                       textAlign: "center",
                       minHeight: "4rem",
                     }}
@@ -458,18 +459,6 @@ export const Game: React.FC = () => {
                   </div>
                 )}
               </div>
-            </div>
-            <div className="game__setup-step-footer">
-              <Button
-                variant="secondary"
-                size="md"
-                onClick={() => {
-                  game.clearDiceResult();
-                  game.toggleDiceView();
-                }}
-              >
-                ← Wróć do menu
-              </Button>
             </div>
           </div>
         </section>
