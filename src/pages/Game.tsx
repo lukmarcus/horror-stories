@@ -410,16 +410,23 @@ export const Game: React.FC = () => {
                       onClick={async () => {
                         game.setRollingDice(true);
                         game.setDiceRolls([]);
-                        
+                        game.clearDiceResult();
+
                         // Animate rolling
                         for (let frame = 0; frame < 10; frame++) {
-                          await new Promise(resolve => setTimeout(resolve, 80));
-                          const tempRolls = Array(numDice).fill(0).map(() => Math.floor(Math.random() * 6) + 1);
+                          await new Promise((resolve) =>
+                            setTimeout(resolve, 80),
+                          );
+                          const tempRolls = Array(numDice)
+                            .fill(0)
+                            .map(() => Math.floor(Math.random() * 6) + 1);
                           game.setDiceRolls(tempRolls);
                         }
-                        
+
                         // Final result
-                        const results = Array(numDice).fill(0).map(() => Math.floor(Math.random() * 6) + 1);
+                        const results = Array(numDice)
+                          .fill(0)
+                          .map(() => Math.floor(Math.random() * 6) + 1);
                         game.setDiceRolls(results);
                         const sum = results.reduce((a, b) => a + b, 0);
                         game.setDiceResult(sum);
@@ -430,26 +437,24 @@ export const Game: React.FC = () => {
                     </Button>
                   ))}
                 </div>
-                {game.state.lastDiceResult !== null && (
+                {(game.state.isRollingDice ||
+                  game.state.lastDiceResult !== null) && (
                   <div
                     style={{
-                      fontSize: "2rem",
+                      fontSize: "3rem",
                       fontWeight: "bold",
                       color: "var(--color-accent)",
                       marginTop: "var(--spacing-xl)",
                       textAlign: "center",
+                      minHeight: "4rem",
                     }}
                   >
-                    {game.state.diceRolls.length > 0 && (
-                      <>
-                        <div style={{ fontSize: "1.5rem", marginBottom: "var(--spacing-md)" }}>
-                          {game.state.diceRolls.join(" + ")} = {game.state.lastDiceResult}
-                        </div>
-                      </>
-                    )}
-                    <div style={{ fontSize: "3rem", marginTop: "var(--spacing-md)" }}>
-                      Wynik: {game.state.lastDiceResult}
-                    </div>
+                    Wynik:{" "}
+                    {game.state.diceRolls.length > 0
+                      ? game.state.diceRolls.length === 1
+                        ? `${game.state.diceRolls[0]}${game.state.lastDiceResult !== null ? "" : ""}`
+                        : `${game.state.diceRolls.join(" + ")}${game.state.lastDiceResult !== null ? ` = ${game.state.lastDiceResult}` : ""}`
+                      : ""}
                   </div>
                 )}
               </div>
@@ -465,18 +470,6 @@ export const Game: React.FC = () => {
               >
                 ← Wróć do menu
               </Button>
-              {game.state.lastDiceResult !== null && (
-                <Button
-                  variant="primary"
-                  size="md"
-                  onClick={() => {
-                    game.setDiceRolls([]);
-                    game.clearDiceResult();
-                  }}
-                >
-                  Rzuć ponownie
-                </Button>
-              )}
             </div>
           </div>
         </section>
