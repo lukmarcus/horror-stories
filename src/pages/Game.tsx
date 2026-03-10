@@ -406,13 +406,24 @@ export const Game: React.FC = () => {
                       key={numDice}
                       variant="primary"
                       size="lg"
-                      onClick={() => {
-                        const results: number[] = [];
-                        for (let i = 0; i < numDice; i++) {
-                          results.push(Math.floor(Math.random() * 6) + 1);
+                      disabled={game.state.isRollingDice}
+                      onClick={async () => {
+                        game.setRollingDice(true);
+                        game.setDiceRolls([]);
+                        
+                        // Animate rolling
+                        for (let frame = 0; frame < 10; frame++) {
+                          await new Promise(resolve => setTimeout(resolve, 80));
+                          const tempRolls = Array(numDice).fill(0).map(() => Math.floor(Math.random() * 6) + 1);
+                          game.setDiceRolls(tempRolls);
                         }
+                        
+                        // Final result
+                        const results = Array(numDice).fill(0).map(() => Math.floor(Math.random() * 6) + 1);
+                        game.setDiceRolls(results);
                         const sum = results.reduce((a, b) => a + b, 0);
                         game.setDiceResult(sum);
+                        game.setRollingDice(false);
                       }}
                     >
                       {numDice}x kostka
@@ -422,13 +433,23 @@ export const Game: React.FC = () => {
                 {game.state.lastDiceResult !== null && (
                   <div
                     style={{
-                      fontSize: "3rem",
+                      fontSize: "2rem",
                       fontWeight: "bold",
                       color: "var(--color-accent)",
                       marginTop: "var(--spacing-xl)",
+                      textAlign: "center",
                     }}
                   >
-                    Wynik: {game.state.lastDiceResult}
+                    {game.state.diceRolls.length > 0 && (
+                      <>
+                        <div style={{ fontSize: "1.5rem", marginBottom: "var(--spacing-md)" }}>
+                          {game.state.diceRolls.join(" + ")} = {game.state.lastDiceResult}
+                        </div>
+                      </>
+                    )}
+                    <div style={{ fontSize: "3rem", marginTop: "var(--spacing-md)" }}>
+                      Wynik: {game.state.lastDiceResult}
+                    </div>
                   </div>
                 )}
               </div>
@@ -449,6 +470,7 @@ export const Game: React.FC = () => {
                   variant="primary"
                   size="md"
                   onClick={() => {
+                    game.setDiceRolls([]);
                     game.clearDiceResult();
                   }}
                 >
