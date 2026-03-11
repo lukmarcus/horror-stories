@@ -17,15 +17,13 @@ function App() {
       <Router>
         <div className="app">
           <Header />
-          <main className="app__main">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/scenarios" element={<ScenariosList />} />
-              <Route path="/game/:id" element={<Game />} />
-              <Route path="/instructions" element={<Instructions />} />
-              <Route path="/about" element={<About />} />
-            </Routes>
-          </main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/scenarios" element={<ScenariosList />} />
+            <Route path="/game/:id" element={<Game />} />
+            <Route path="/instructions" element={<Instructions />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
           <Footer version={`v${packageJson.version}`} />
         </div>
       </Router>

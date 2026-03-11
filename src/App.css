@@ -6,13 +6,6 @@
   color: var(--color-text);
 }
 
-.app__main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-}
-
 /* Reset default styles */
 #root {
   height: 100%;
