@@ -177,13 +177,6 @@ export const Game: React.FC = () => {
 
   return (
     <main className="game">
-      {/* Scenario Title - Visible on all screens */}
-      {currentScenario && (
-        <h1 className="game__scenario-title">
-          {currentScenario.title || "Scenariusz"}
-        </h1>
-      )}
-
       {/* Accessibility Warning Screen */}
       {game.state.showAccessibilityWarning && game.state.pendingParagraphId && (
         <section
@@ -230,7 +223,12 @@ export const Game: React.FC = () => {
 
       {/* Setup Section - Full Screen View */}
       {game.state.showSetup && (
-        <section className="game__setup-fullscreen">
+        <>
+          {currentScenario && (
+            <h1 className="game__scenario-title">
+              {currentScenario.title || "Scenariusz"}
+            </h1>
+          )}
           <div className="game__setup-header">
             <Button
               variant="outline"
@@ -354,12 +352,17 @@ export const Game: React.FC = () => {
               Brak kroki przygotowania dla tego scenariusza.
             </p>
           )}
-        </section>
+        </>
       )}
 
       {/* Dice View */}
       {game.state.showDiceView && (
-        <section className="game__paragraph-section">
+        <>
+          {currentScenario && (
+            <h1 className="game__scenario-title">
+              {currentScenario.title || "Scenariusz"}
+            </h1>
+          )}
           <div className="game__setup-header">
             <Button
               variant="outline"
@@ -461,7 +464,7 @@ export const Game: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
+        </>
       )}
 
       {/* Main Game View - Hidden when showing Setup, Dice or Warning */}
@@ -506,9 +509,14 @@ export const Game: React.FC = () => {
             ) : (
               /* PARAGRAPH MODE - Show paragraph */
               <section
-                className="game__setup-fullscreen"
+                className="game__paragraph-section"
                 aria-label="Treść paragrafu"
               >
+                {currentScenario && (
+                  <h1 className="game__scenario-title">
+                    {currentScenario.title || "Scenariusz"}
+                  </h1>
+                )}
                 <div className="game__setup-header">
                   {currentParagraph?.variants &&
                     game.state.variantPath.length > 0 && (

@@ -4,7 +4,11 @@
   min-height: auto;
   background-color: var(--color-background);
   overflow: visible;
+  padding: var(--spacing-xl);
   padding-bottom: var(--spacing-2xl);
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* Dialog Overlay */
@@ -174,7 +178,7 @@
 /* Input Panel - Centered Full Height */
 .game__input-panel {
   background-color: var(--color-surface);
-  padding: var(--spacing-xl);
+  padding: 0;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -183,8 +187,11 @@
   align-items: center;
   min-height: 100%;
   width: 100%;
+}
+
+/* Main input panel on Game page */
+.game > .game__input-panel {
   max-width: 900px;
-  margin: 0 auto;
 }
 
 .game__input-header {
@@ -309,15 +316,12 @@
   gap: var(--spacing-sm);
 }
 
-.game__setup-fullscreen {
+.game__setup {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-lg);
-  padding: 0 var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
-  max-width: 900px;
-  margin: 0 auto;
-  width: 100%;
+  padding: 0;
 }
 
 .game__setup-header {
@@ -331,7 +335,7 @@
   background-color: var(--color-surface-secondary);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-md);
+  padding: 0;
   margin: 0;
   width: 100%;
   display: flex;
@@ -376,6 +380,7 @@
   justify-content: center;
   white-space: pre-wrap;
   word-wrap: break-word;
+  padding: var(--spacing-md);
 }
 
 .game__setup-controls {
@@ -399,10 +404,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-  padding: var(--spacing-xl);
-  max-width: 900px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 .game__text-box {
