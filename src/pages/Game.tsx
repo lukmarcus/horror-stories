@@ -474,7 +474,12 @@ export const Game: React.FC = () => {
           <>
             {/* INPUT MODE - Show input panel */}
             {!game.state.currentParagraphId ? (
-              <section aria-label="Panel wpisywania paragrafu">
+              <>
+                {currentScenario && (
+                  <h1 className="game__scenario-title">
+                    {currentScenario.title || "Scenariusz"}
+                  </h1>
+                )}
                 <ParagraphInput
                   onSubmit={handleMainInputSubmit}
                   instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
@@ -505,7 +510,7 @@ export const Game: React.FC = () => {
                     </>
                   }
                 />
-              </section>
+              </>
             ) : (
               /* PARAGRAPH MODE - Show paragraph */
               <section
