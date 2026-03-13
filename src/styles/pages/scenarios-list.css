@@ -44,7 +44,7 @@
     var(--color-surface-secondary) 100%
   );
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
@@ -118,7 +118,7 @@
 
 .scenarios-list__difficulty {
   padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   color: white;
