@@ -229,7 +229,7 @@ export const Game: React.FC = () => {
               {currentScenario.title || "Scenariusz"}
             </h1>
           )}
-          <div className="game__setup-header">
+          <div className="game__content-nav">
             <Button
               variant="outline"
               size="sm"
@@ -272,20 +272,18 @@ export const Game: React.FC = () => {
                     </Button>
                   </div>
                 </div>
-                <div className="game__setup-step-content">
-                  {setupSteps[game.state.currentSetupStep]?.content && (
-                    <RichText
-                      content={setupSteps[game.state.currentSetupStep].content}
-                      scenarioId={scenarioId}
-                    />
-                  )}
-                  {setupSteps[game.state.currentSetupStep]?.text && (
-                    <RichText
-                      text={setupSteps[game.state.currentSetupStep].text}
-                      scenarioId={scenarioId}
-                    />
-                  )}
-                </div>
+                {setupSteps[game.state.currentSetupStep]?.content && (
+                  <RichText
+                    content={setupSteps[game.state.currentSetupStep].content}
+                    scenarioId={scenarioId}
+                  />
+                )}
+                {setupSteps[game.state.currentSetupStep]?.text && (
+                  <RichText
+                    text={setupSteps[game.state.currentSetupStep].text}
+                    scenarioId={scenarioId}
+                  />
+                )}
                 <div className="game__setup-step-footer">
                   <div className="game__setup-step-number">
                     Krok {game.state.currentSetupStep + 1} z {setupSteps.length}
@@ -363,7 +361,7 @@ export const Game: React.FC = () => {
               {currentScenario.title || "Scenariusz"}
             </h1>
           )}
-          <div className="game__setup-header">
+          <div className="game__content-nav">
             <Button
               variant="outline"
               size="sm"
@@ -378,90 +376,86 @@ export const Game: React.FC = () => {
             <div className="game__setup-step-header">
               <div className="game__setup-step-number">Rzut kością</div>
             </div>
-            <div className="game__setup-step-content">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "var(--spacing-lg)",
+                padding: "var(--spacing-md)",
+              }}
+            >
+              <p
+                style={{
+                  textAlign: "center",
+                  fontSize: "var(--font-size-lg)",
+                }}
+              >
+                Ile razy chcesz rzucić kością?
+              </p>
               <div
                 style={{
                   display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: "var(--spacing-lg)",
-                  padding: "var(--spacing-md)",
+                  gap: "var(--spacing-md)",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
                 }}
               >
-                <p
-                  style={{
-                    textAlign: "center",
-                    fontSize: "var(--font-size-lg)",
-                  }}
-                >
-                  Ile razy chcesz rzucić kością?
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "var(--spacing-md)",
-                    justifyContent: "center",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {[1, 2, 3].map((numDice) => (
-                    <Button
-                      key={numDice}
-                      variant="primary"
-                      size="lg"
-                      disabled={game.state.isRollingDice}
-                      onClick={async () => {
-                        game.setRollingDice(true);
-                        game.setDiceRolls([]);
-                        game.clearDiceResult();
+                {[1, 2, 3].map((numDice) => (
+                  <Button
+                    key={numDice}
+                    variant="primary"
+                    size="lg"
+                    disabled={game.state.isRollingDice}
+                    onClick={async () => {
+                      game.setRollingDice(true);
+                      game.setDiceRolls([]);
+                      game.clearDiceResult();
 
-                        // Animate rolling
-                        for (let frame = 0; frame < 10; frame++) {
-                          await new Promise((resolve) =>
-                            setTimeout(resolve, 80),
-                          );
-                          const tempRolls = Array(numDice)
-                            .fill(0)
-                            .map(() => Math.floor(Math.random() * 6) + 1);
-                          game.setDiceRolls(tempRolls);
-                        }
-
-                        // Final result
-                        const results = Array(numDice)
+                      // Animate rolling
+                      for (let frame = 0; frame < 10; frame++) {
+                        await new Promise((resolve) => setTimeout(resolve, 80));
+                        const tempRolls = Array(numDice)
                           .fill(0)
                           .map(() => Math.floor(Math.random() * 6) + 1);
-                        game.setDiceRolls(results);
-                        const sum = results.reduce((a, b) => a + b, 0);
-                        game.setDiceResult(sum);
-                        game.setRollingDice(false);
-                      }}
-                      title={`Rzuć ${numDice}x`}
-                    >
-                      {numDice}x 🎲
-                    </Button>
-                  ))}
-                </div>
-                {(game.state.isRollingDice ||
-                  game.state.lastDiceResult !== null) && (
-                  <div
-                    style={{
-                      fontSize: "3rem",
-                      fontWeight: "bold",
-                      color: "var(--color-accent)",
-                      marginTop: 0,
-                      textAlign: "center",
-                      minHeight: "4rem",
+                        game.setDiceRolls(tempRolls);
+                      }
+
+                      // Final result
+                      const results = Array(numDice)
+                        .fill(0)
+                        .map(() => Math.floor(Math.random() * 6) + 1);
+                      game.setDiceRolls(results);
+                      const sum = results.reduce((a, b) => a + b, 0);
+                      game.setDiceResult(sum);
+                      game.setRollingDice(false);
                     }}
+                    title={`Rzuć ${numDice}x`}
                   >
-                    Wynik:{" "}
-                    {game.state.diceRolls.length > 0
-                      ? game.state.diceRolls.length === 1
-                        ? `${game.state.diceRolls[0]}${game.state.lastDiceResult !== null ? "" : ""}`
-                        : `${game.state.diceRolls.join(" + ")}${game.state.lastDiceResult !== null ? ` = ${game.state.lastDiceResult}` : ""}`
-                      : ""}
-                  </div>
-                )}
+                    {numDice}x 🎲
+                  </Button>
+                ))}
               </div>
+              {(game.state.isRollingDice ||
+                game.state.lastDiceResult !== null) && (
+                <div
+                  style={{
+                    fontSize: "3rem",
+                    fontWeight: "bold",
+                    color: "var(--color-accent)",
+                    marginTop: 0,
+                    textAlign: "center",
+                    minHeight: "4rem",
+                  }}
+                >
+                  Wynik:{" "}
+                  {game.state.diceRolls.length > 0
+                    ? game.state.diceRolls.length === 1
+                      ? `${game.state.diceRolls[0]}${game.state.lastDiceResult !== null ? "" : ""}`
+                      : `${game.state.diceRolls.join(" + ")}${game.state.lastDiceResult !== null ? ` = ${game.state.lastDiceResult}` : ""}`
+                    : ""}
+                </div>
+              )}
             </div>
           </div>
         </>
@@ -513,16 +507,13 @@ export const Game: React.FC = () => {
               </>
             ) : (
               /* PARAGRAPH MODE - Show paragraph */
-              <section
-                className="game__paragraph-section"
-                aria-label="Treść paragrafu"
-              >
+              <>
                 {currentScenario && (
                   <h1 className="game__scenario-title">
                     {currentScenario.title || "Scenariusz"}
                   </h1>
                 )}
-                <div className="game__setup-header">
+                <div className="game__content-nav">
                   {currentParagraph?.variants &&
                     game.state.variantPath.length > 0 && (
                       <Button
@@ -590,7 +581,7 @@ export const Game: React.FC = () => {
                     Paragraf nie znaleziony
                   </p>
                 )}
-              </section>
+              </>
             )}
           </>
         )}

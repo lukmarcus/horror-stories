@@ -22,10 +22,6 @@
   margin-bottom: 1.5rem;
 }
 
-.dead-end {
-  margin-top: 2rem;
-}
-
 .dice-result {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -76,6 +72,7 @@
 .choices--horizontal {
   flex-direction: row;
   flex-wrap: wrap;
+  padding-bottom: 0;
 }
 
 .choices--horizontal .button {
@@ -98,10 +95,6 @@
 @media (max-width: 600px) {
   .paragraph-display {
     padding: 1rem;
-  }
-
-  .dead-end {
-    padding: 1.5rem;
   }
 
   .dice-result {

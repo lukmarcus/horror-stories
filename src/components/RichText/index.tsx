@@ -285,15 +285,15 @@ export const RichText: React.FC<RichTextProps> = ({
       ? "rich-text-block spacing-none"
       : "rich-text-block";
     return (
-      <div className="rich-text">
+      <>
         <div className={blockClass}>{parseHtml(text)}</div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="rich-text">
+    <>
       {content ? renderContentBlocks(content) : null}
-    </div>
+    </>
   );
 };

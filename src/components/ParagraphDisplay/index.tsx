@@ -69,8 +69,9 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
 
   return (
     <>
-      <article
+      <div
         className="paragraph-display game__setup-step"
+        style={{ width: "100%" }}
         aria-label={`Paragraf ${paragraphIdStr}`}
       >
         {paragraph.image && (
@@ -110,12 +111,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
         {paragraph.text && <ParagraphText text={paragraph.text} />}
 
         {currentContent && (
-          <div
-            className="game__setup-step-content"
-            style={{ flexDirection: "column", alignItems: "flex-start" }}
-          >
-            <RichText content={currentContent} scenarioId={scenarioId} />
-          </div>
+          <RichText content={currentContent} scenarioId={scenarioId} />
         )}
 
         {paragraph.hasDiceRoll &&
@@ -213,10 +209,10 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
             })}
           </fieldset>
         )}
-      </article>
+      </div>
 
       {showDeadEndInput && (
-        <div className="dead-end" role="status" aria-live="polite">
+        <div role="status" aria-live="polite">
           <ParagraphInput
             onSubmit={onJumpToParagraph}
             instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
