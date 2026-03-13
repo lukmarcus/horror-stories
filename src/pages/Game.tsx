@@ -177,48 +177,54 @@ export const Game: React.FC = () => {
 
   return (
     <main className="game">
-      {/* Accessibility Warning Screen */}
+      {/* Indirect Paragraph Warning Screen */}
       {game.state.showAccessibilityWarning && game.state.pendingParagraphId && (
-        <section
-          className="game__accessibility-warning"
-          aria-label="Ostrzeżenie o dostępności paragrafu"
-        >
-          <div className="game__warning-content">
-            <div className="game__warning-box">
-              <p className="game__warning-text">
-                Paragraf #{game.state.pendingParagraphId} jest dostępny tylko z:
-              </p>
-              <div className="game__warning-sources">
-                {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.map(
-                  (source) => (
-                    <div key={source} className="game__warning-source">
-                      Paragraf #{source}
-                    </div>
-                  ),
-                )}
-              </div>
-              <p className="game__warning-question">
-                Czy chcesz mimo to przejść do tego paragrafu?
-              </p>
-              <div className="game__warning-buttons">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  onClick={handleConfirmAccessibility}
-                >
-                  Tak, rozumiem
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  onClick={handleCancelAccessibility}
-                >
-                  Powrót
-                </Button>
-              </div>
+        <>
+          {currentScenario && (
+            <h1 className="game__scenario-title">
+              {currentScenario.title || "Scenariusz"}
+            </h1>
+          )}
+          <div className="game__indirect-paragraph">
+            <div className="game__indirect-paragraph-header">
+              Ostrzeżenie o dostępności
             </div>
+
+            <p className="game__warning-text">
+              Paragraf #{game.state.pendingParagraphId} jest dostępny tylko z:
+            </p>
+            <div className="game__warning-sources">
+              {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.map(
+                (source) => (
+                  <div key={source} className="game__warning-source">
+                    Paragraf #{source}
+                  </div>
+                ),
+              )}
+            </div>
+
+            <p className="game__warning-question">
+              Czy chcesz mimo to przejść do tego paragrafu?
+            </p>
+            <fieldset className="choices choices--horizontal">
+              <legend className="sr-only">Wybierz akcję</legend>
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={handleConfirmAccessibility}
+              >
+                Tak, rozumiem
+              </Button>
+              <Button
+                variant="secondary"
+                size="lg"
+                onClick={handleCancelAccessibility}
+              >
+                Powrót
+              </Button>
+            </fieldset>
           </div>
-        </section>
+        </>
       )}
 
       {/* Setup Section - Full Screen View */}
