@@ -7,7 +7,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.1.0] - 2026-03-07
+## [0.1.0] - 2026-03-15
 
 ### Poprawiono
 
@@ -22,6 +22,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
   - "Powrót do Menu" → "Lista scenariuszy" (w input field)
 - **UI: Dodatkowe kontrolki setup'u na dole** – licznik kroku i przyciski Poprzedni/Następny dostępne na górze i dole ekranu
 - **UI: Rzut kością w fullscreen widoku** – dedykowany modal z opcjami 1x/2x/3x kości, animacje rzucania (10 klatek), wyświetlanie rozbicia wyników (np. "2 + 3 = 5"), możliwość wielokrotnego rzucania
+- **UI: Nagłówki sekcji** – "Paragraf #XX" na wyświetlaniu paragrafów i "Przygotowanie scenariusza" w sekcji setup, ujednoliconym stylem z separatorem granice
 - **Refactor: Stosowanie konsekwentnej szerokości** – wszystkie główne ekrany (input, setup, paragraf, dice) używają znormalizowanej szerokości 900px
 - **Refactor: Uproszczenie struktury HTML** – usunięte zbędne wrappery (`game__container`, `app__main`, `app-routes`), bezpośrednie zagnieżdżenie Routes w `.app`
 - **Refactor: Normalizacja paddingu** – usunięta kaskada podwójnych paddingów (`.game__setup-step` padding: 0, zawartość ma padding: md), wszystkie sekcje top-level mają uniform padding: xl (32px), paragraf mode zmieniony na `.game__paragraph-section`

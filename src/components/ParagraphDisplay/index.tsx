@@ -82,10 +82,18 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
           />
         )}
 
-        {hasPages && (
+        {hasPages ? (
           <div className="game__setup-step-header">
-            <div className="game__setup-step-number">
-              Część {currentPage + 1} z {maxPage + 1}
+            <div>
+              <div className="game__setup-step-number">
+                Paragraf {paragraphIdStr}
+              </div>
+              <div
+                className="game__setup-step-number"
+                style={{ marginTop: "var(--spacing-sm)" }}
+              >
+                Część {currentPage + 1} z {maxPage + 1}
+              </div>
             </div>
             <div className="game__setup-controls">
               <button
@@ -104,6 +112,12 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
               >
                 Następny →
               </button>
+            </div>
+          </div>
+        ) : (
+          <div className="game__setup-step-header">
+            <div className="game__setup-step-number">
+              Paragraf {paragraphIdStr}
             </div>
           </div>
         )}

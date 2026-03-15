@@ -26,6 +26,10 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ⏳ **UI Scenariuszy:**
   - ⏳ Zmniejszyć kafelki scenariuszy (responsywny grid)
   - ⏳ Dodać grafikę na tło kafelków (background-image)
+- ✅ **UI Headers (nagłówki sekcji):**
+  - ✅ Dodać "Paragraf #XX" nagłówek do wyświetlania paragrafów
+  - ✅ Dodać "Przygotowanie scenariusza" nagłówek do sekcji setup
+  - ✅ Ujednolicić styling między nagłówkami setup i paragrafów
 - ⏳ **UI Setup scenariusza:**
   - ⏳ Zmienić wygląd button "Przygotuj scenariusz"
 - ⏳ Design system - kolory, typografia, komponenty

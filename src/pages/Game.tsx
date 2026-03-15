@@ -253,8 +253,17 @@ export const Game: React.FC = () => {
             <>
               <div className="game__setup-step">
                 <div className="game__setup-step-header">
-                  <div className="game__setup-step-number">
-                    Krok {game.state.currentSetupStep + 1} z {setupSteps.length}
+                  <div>
+                    <div className="game__setup-step-number">
+                      Przygotowanie scenariusza
+                    </div>
+                    <div
+                      className="game__setup-step-number"
+                      style={{ marginTop: "var(--spacing-sm)" }}
+                    >
+                      Krok {game.state.currentSetupStep + 1} z{" "}
+                      {setupSteps.length}
+                    </div>
                   </div>
                   <div className="game__setup-controls">
                     <Button
@@ -278,6 +287,7 @@ export const Game: React.FC = () => {
                     </Button>
                   </div>
                 </div>
+
                 {setupSteps[game.state.currentSetupStep]?.content && (
                   <RichText
                     content={setupSteps[game.state.currentSetupStep].content}
