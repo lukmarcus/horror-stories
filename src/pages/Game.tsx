@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
-import { Button, SectionHeader } from "../components/common";
+import { Button } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
 import { ParagraphInput } from "../components/ParagraphInput";
-import { RichText } from "../components/RichText";
 import { DiceView } from "../components/DiceView";
+import { SetupStepContainer } from "../components/SetupStep";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
 import "../styles/pages/game.css";
@@ -275,92 +275,19 @@ export const Game: React.FC = () => {
           </div>
 
           {setupSteps.length > 0 ? (
-            <>
-              <div className="game__setup-step">
-                <SectionHeader
-                  title="Przygotowanie scenariusza"
-                  subtitle={`Krok ${game.state.currentSetupStep + 1} z ${setupSteps.length}`}
-                  controls={
-                    <>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => game.prevSetupStep()}
-                        disabled={game.state.currentSetupStep === 0}
-                      >
-                        ← Poprzedni
-                      </Button>
-
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => game.nextSetupStep()}
-                        disabled={
-                          game.state.currentSetupStep === setupSteps.length - 1
-                        }
-                      >
-                        Następny →
-                      </Button>
-                    </>
-                  }
-                />
-
-                {setupSteps[game.state.currentSetupStep]?.content && (
-                  <RichText
-                    content={setupSteps[game.state.currentSetupStep].content}
-                    scenarioId={scenarioId}
-                  />
-                )}
-                {setupSteps[game.state.currentSetupStep]?.text && (
-                  <RichText
-                    text={setupSteps[game.state.currentSetupStep].text}
-                    scenarioId={scenarioId}
-                  />
-                )}
-
-                <div className="game__section-footer">
-                  <div className="game__section-label">
-                    Krok {game.state.currentSetupStep + 1} z {setupSteps.length}
-                  </div>
-                  <div className="game__section-controls">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => game.prevSetupStep()}
-                      disabled={game.state.currentSetupStep === 0}
-                    >
-                      ← Poprzedni
-                    </Button>
-
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => game.nextSetupStep()}
-                      disabled={
-                        game.state.currentSetupStep === setupSteps.length - 1
-                      }
-                    >
-                      Następny →
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              {game.state.currentSetupStep === setupSteps.length - 1 && (
-                <Button
-                  variant="primary"
-                  size="md"
-                  onClick={() => {
-                    game.resetSetupStep();
-                    game.toggleSetup();
-                    game.setParagraph("77");
-                  }}
-                  style={{ width: "100%", marginTop: "var(--spacing-md)" }}
-                >
-                  Przejdź do paragrafu 77
-                </Button>
-              )}
-            </>
+            <SetupStepContainer
+              currentStep={game.state.currentSetupStep}
+              totalSteps={setupSteps.length}
+              setupSteps={setupSteps}
+              scenarioId={scenarioId}
+              onPrev={() => game.prevSetupStep()}
+              onNext={() => game.nextSetupStep()}
+              onStart={() => {
+                game.resetSetupStep();
+                game.toggleSetup();
+                game.setParagraph("77");
+              }}
+            />
           ) : (
             <p className="game__section-empty">
               Brak kroki przygotowania dla tego scenariusza.
