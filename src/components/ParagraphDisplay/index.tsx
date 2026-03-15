@@ -5,6 +5,7 @@ import { RichText } from "../RichText";
 import { DiceRoller } from "../DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../ConditionalChoice/ConditionalChoice";
 import { ParagraphInput } from "../ParagraphInput";
+import { SectionHeader } from "../common/SectionHeader";
 import "./ParagraphDisplay.css";
 
 interface ParagraphDisplayProps {
@@ -83,43 +84,32 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
         )}
 
         {hasPages ? (
-          <div className="game__setup-step-header">
-            <div>
-              <div className="game__setup-step-number">
-                Paragraf {paragraphIdStr}
-              </div>
-              <div
-                className="game__setup-step-number"
-                style={{ marginTop: "var(--spacing-sm)" }}
-              >
-                Część {currentPage + 1} z {maxPage + 1}
-              </div>
-            </div>
-            <div className="game__setup-controls">
-              <button
-                className="button button--secondary button--sm"
-                onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
-                disabled={currentPage === 0}
-              >
-                ← Poprzedni
-              </button>
-              <button
-                className="button button--secondary button--sm"
-                onClick={() =>
-                  setCurrentPage(Math.min(maxPage, currentPage + 1))
-                }
-                disabled={currentPage === maxPage}
-              >
-                Następny →
-              </button>
-            </div>
-          </div>
+          <SectionHeader
+            title={`Paragraf ${paragraphIdStr}`}
+            subtitle={`Część ${currentPage + 1} z ${maxPage + 1}`}
+            controls={
+              <>
+                <button
+                  className="button button--secondary button--sm"
+                  onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
+                  disabled={currentPage === 0}
+                >
+                  ← Poprzedni
+                </button>
+                <button
+                  className="button button--secondary button--sm"
+                  onClick={() =>
+                    setCurrentPage(Math.min(maxPage, currentPage + 1))
+                  }
+                  disabled={currentPage === maxPage}
+                >
+                  Następny →
+                </button>
+              </>
+            }
+          />
         ) : (
-          <div className="game__setup-step-header">
-            <div className="game__setup-step-number">
-              Paragraf {paragraphIdStr}
-            </div>
-          </div>
+          <SectionHeader title={`Paragraf ${paragraphIdStr}`} />
         )}
 
         {paragraph.text && <ParagraphText text={paragraph.text} />}
@@ -165,11 +155,11 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
         )}
 
         {hasPages && (
-          <div className="game__setup-step-footer">
-            <div className="game__setup-step-number">
-              Część {currentPage + 1} z {maxPage + 1}
+          <div className="game__section-footer">
+            <div className="game__section-label">
+              Strona {currentPage + 1} z {maxPage + 1}
             </div>
-            <div className="game__setup-controls">
+            <div className="game__section-controls">
               <button
                 className="button button--secondary button--sm"
                 onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
-import { Button } from "../components/common";
+import { Button, SectionHeader } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
 import { ParagraphInput } from "../components/ParagraphInput";
 import { RichText } from "../components/RichText";
@@ -252,41 +252,33 @@ export const Game: React.FC = () => {
           {setupSteps.length > 0 ? (
             <>
               <div className="game__setup-step">
-                <div className="game__setup-step-header">
-                  <div>
-                    <div className="game__setup-step-number">
-                      Przygotowanie scenariusza
-                    </div>
-                    <div
-                      className="game__setup-step-number"
-                      style={{ marginTop: "var(--spacing-sm)" }}
-                    >
-                      Krok {game.state.currentSetupStep + 1} z{" "}
-                      {setupSteps.length}
-                    </div>
-                  </div>
-                  <div className="game__setup-controls">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => game.prevSetupStep()}
-                      disabled={game.state.currentSetupStep === 0}
-                    >
-                      ← Poprzedni
-                    </Button>
+                <SectionHeader
+                  title="Przygotowanie scenariusza"
+                  subtitle={`Krok ${game.state.currentSetupStep + 1} z ${setupSteps.length}`}
+                  controls={
+                    <>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => game.prevSetupStep()}
+                        disabled={game.state.currentSetupStep === 0}
+                      >
+                        ← Poprzedni
+                      </Button>
 
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => game.nextSetupStep()}
-                      disabled={
-                        game.state.currentSetupStep === setupSteps.length - 1
-                      }
-                    >
-                      Następny →
-                    </Button>
-                  </div>
-                </div>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => game.nextSetupStep()}
+                        disabled={
+                          game.state.currentSetupStep === setupSteps.length - 1
+                        }
+                      >
+                        Następny →
+                      </Button>
+                    </>
+                  }
+                />
 
                 {setupSteps[game.state.currentSetupStep]?.content && (
                   <RichText
@@ -300,11 +292,12 @@ export const Game: React.FC = () => {
                     scenarioId={scenarioId}
                   />
                 )}
-                <div className="game__setup-step-footer">
-                  <div className="game__setup-step-number">
+
+                <div className="game__section-footer">
+                  <div className="game__section-label">
                     Krok {game.state.currentSetupStep + 1} z {setupSteps.length}
                   </div>
-                  <div className="game__setup-controls">
+                  <div className="game__section-controls">
                     <Button
                       variant="secondary"
                       size="sm"
@@ -337,14 +330,14 @@ export const Game: React.FC = () => {
                     game.toggleSetup();
                     game.setParagraph("77");
                   }}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", marginTop: "var(--spacing-md)" }}
                 >
                   Przejdź do paragrafu 77
                 </Button>
               )}
             </>
           ) : (
-            <p className="game__setup-empty">
+            <p className="game__section-empty">
               Brak kroki przygotowania dla tego scenariusza.
             </p>
           )}
@@ -371,8 +364,8 @@ export const Game: React.FC = () => {
           </div>
 
           <div className="game__setup-step">
-            <div className="game__setup-step-header">
-              <div className="game__setup-step-number">Rzut kością</div>
+            <div className="game__section-header">
+              <div className="game__section-label">Rzut kością</div>
             </div>
             <div
               style={{

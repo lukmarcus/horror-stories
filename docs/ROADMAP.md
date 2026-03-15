@@ -30,6 +30,10 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
   - ✅ Dodać "Paragraf #XX" nagłówek do wyświetlania paragrafów
   - ✅ Dodać "Przygotowanie scenariusza" nagłówek do sekcji setup
   - ✅ Ujednolicić styling między nagłówkami setup i paragrafów
+- ✅ **Refactor: CSS i komponenty:**
+  - ✅ Stworzony SectionHeader komponent dla deduplicacji
+  - ✅ Zmienione nazwy klas CSS na bardziej generyczne (section zamiast setup)
+  - ✅ Usunięte nieużywane CSS klasy (~700 bajtów)
 - ⏳ **UI Setup scenariusza:**
   - ⏳ Zmienić wygląd button "Przygotuj scenariusz"
 - ⏳ Design system - kolory, typografia, komponenty
