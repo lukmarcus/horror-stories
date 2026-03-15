@@ -6,6 +6,7 @@ import { DiceRoller } from "../DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../ConditionalChoice/ConditionalChoice";
 import { InputView } from "../InputView/InputView";
 import { SectionHeader } from "../common/SectionHeader";
+import { Button } from "../common";
 import "./ParagraphView.css";
 
 interface ParagraphViewProps {
@@ -15,6 +16,11 @@ interface ParagraphViewProps {
   onJumpToParagraph: (value: string) => string | null;
   onBack: () => void;
   scenarioId?: string;
+  hasVariants?: boolean;
+  variantPathLength?: number;
+  accessibleFrom?: string[];
+  onRefreshVariants?: () => void;
+  onNavigateToParagraph?: (paragraphId: string) => void;
 }
 
 export const ParagraphView: React.FC<ParagraphViewProps> = ({
@@ -24,6 +30,11 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   onJumpToParagraph,
   onBack,
   scenarioId,
+  hasVariants = false,
+  variantPathLength = 0,
+  accessibleFrom = [],
+  onRefreshVariants,
+  onNavigateToParagraph,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
 
@@ -70,6 +81,35 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
 
   return (
     <>
+      <nav className="game__content-nav">
+        {hasVariants && variantPathLength > 0 && onRefreshVariants && (
+          <Button variant="secondary" size="sm" onClick={onRefreshVariants}>
+            Odśwież warianty
+          </Button>
+        )}
+
+        {accessibleFrom &&
+          accessibleFrom.length > 0 &&
+          onNavigateToParagraph && (
+            <>
+              {accessibleFrom.map((paragraphId) => (
+                <Button
+                  key={`back-to-${paragraphId}`}
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => onNavigateToParagraph(paragraphId)}
+                >
+                  ← Powrót do paragrafu {paragraphId}
+                </Button>
+              ))}
+            </>
+          )}
+
+        <Button variant="secondary" size="sm" onClick={onBack}>
+          ← Powrót do menu
+        </Button>
+      </nav>
+
       <div
         className="paragraph-display game__setup-step"
         style={{ width: "100%" }}

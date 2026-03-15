@@ -7,7 +7,6 @@ import { InputView } from "../components/InputView/InputView";
 import { DiceView } from "../components/DiceView/DiceView";
 import { PrepareView } from "../components/PrepareView/PrepareView";
 import { IndirectView } from "../components/IndirectView/IndirectView";
-import { ParagraphNavigation } from "../components/ParagraphNavigation/ParagraphNavigation";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
 import "../styles/pages/game.css";
@@ -337,25 +336,21 @@ export const Game: React.FC = () => {
                     {currentScenario.title || "Scenariusz"}
                   </h1>
                 )}
-                <ParagraphNavigation
-                  currentParagraphId={currentParagraph?.id}
-                  hasVariants={Boolean(currentParagraph?.variants)}
-                  variantPathLength={game.state.variantPath.length}
-                  accessibleFrom={
-                    (currentParagraph?.accessibleFrom || []) as string[]
-                  }
-                  onRefreshVariants={() => game.clearVariants()}
-                  onNavigateToParagraph={handleChoice}
-                  onBackToInput={handleBackToInput}
-                />
                 {currentParagraph ? (
-                <ParagraphView
+                  <ParagraphView
                     paragraph={displayParagraph || currentParagraph}
                     lastDiceResult={game.state.lastDiceResult}
                     onChoice={handleChoice}
                     onJumpToParagraph={handleJumpFromDeadEnd}
                     onBack={handleBackToInput}
                     scenarioId={scenarioId}
+                    hasVariants={Boolean(currentParagraph?.variants)}
+                    variantPathLength={game.state.variantPath.length}
+                    accessibleFrom={
+                      (currentParagraph?.accessibleFrom || []) as string[]
+                    }
+                    onRefreshVariants={() => game.clearVariants()}
+                    onNavigateToParagraph={handleChoice}
                   />
                 ) : (
                   <p className="game__error-text" role="alert">
