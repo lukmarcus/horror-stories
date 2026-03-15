@@ -28,6 +28,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - **Refactor: Wydzielenie DiceView.tsx** – stworzony nowy komponent dla globalnego widoku rzutu kością (fullscreen modal z opcjami 1x/2x/3x i animacją), zmniejszył Game.tsx o ~70 linii
 - **Refactor: Wydzielenie SetupStepContainer.tsx** – stworzony komponent dla kroku setup'u (SectionHeader + RichText + footer + przyciski nawigacji), zmniejszył Game.tsx o ~100 linii
 - **Refactor: Wydzielenie IndirectParagraphWarning.tsx** – stworzony komponent dla ostrzeżenia o dostępności paragrafu (modal z listą źródeł dostępu), zmniejszył Game.tsx o ~40 linii
+- **Refactor: Wydzielenie ParagraphModeNav.tsx** – stworzony komponent dla nawigacji paragrafu (przyciski: odśwież wariant, wróć do źródła, wróć do menu), zmniejszył Game.tsx o ~30 linii
 - **Refactor: Stosowanie konsekwentnej szerokości** – wszystkie główne ekrany (input, setup, paragraf, dice) używają znormalizowanej szerokości 900px
 - **Refactor: Uproszczenie struktury HTML** – usunięte zbędne wrappery (`game__container`, `app__main`, `app-routes`), bezpośrednie zagnieżdżenie Routes w `.app`
 - **Refactor: Normalizacja paddingu** – usunięta kaskada podwójnych paddingów (`.game__setup-step` padding: 0, zawartość ma padding: md), wszystkie sekcje top-level mają uniform padding: xl (32px), paragraf mode zmieniony na `.game__paragraph-section`

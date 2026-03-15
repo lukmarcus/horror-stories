@@ -7,6 +7,7 @@ import { ParagraphInput } from "../components/ParagraphInput";
 import { DiceView } from "../components/DiceView";
 import { SetupStepContainer } from "../components/SetupStep";
 import { IndirectParagraphWarning } from "../components/IndirectParagraphWarning";
+import { ParagraphModeNav } from "../components/ParagraphModeNav";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
 import "../styles/pages/game.css";
@@ -336,60 +337,15 @@ export const Game: React.FC = () => {
                     {currentScenario.title || "Scenariusz"}
                   </h1>
                 )}
-                <div className="game__content-nav">
-                  {currentParagraph?.variants &&
-                    game.state.variantPath.length > 0 && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => game.clearVariants()}
-                        aria-label={`Odśwież paragraf ${currentParagraph.id} i dokonaj wyborów od nowa`}
-                      >
-                        ↻ Odśwież #{currentParagraph.id}
-                      </Button>
-                    )}
-                  {currentParagraph?.accessibleFrom &&
-                    currentParagraph.accessibleFrom.length > 0 && (
-                      <>
-                        {currentParagraph.accessibleFrom.length === 1 ? (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() =>
-                              handleChoice(currentParagraph.accessibleFrom![0])
-                            }
-                            aria-label={`Wróć do paragrafu ${
-                              currentParagraph.accessibleFrom[0]
-                            }`}
-                          >
-                            ← Wróć do #{currentParagraph.accessibleFrom[0]}
-                          </Button>
-                        ) : (
-                          <>
-                            {currentParagraph.accessibleFrom.map((paraId) => (
-                              <Button
-                                key={paraId}
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleChoice(paraId)}
-                                aria-label={`Wróć do paragrafu ${paraId}`}
-                              >
-                                ← Wróć do #{paraId}
-                              </Button>
-                            ))}
-                          </>
-                        )}
-                      </>
-                    )}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleBackToInput}
-                    aria-label="Powrót do menu scenariusza"
-                  >
-                    ← Wróć do menu scenariusza
-                  </Button>
-                </div>
+                <ParagraphModeNav
+                  currentParagraphId={currentParagraph?.id}
+                  hasVariants={Boolean(currentParagraph?.variants)}
+                  variantPathLength={game.state.variantPath.length}
+                  accessibleFrom={(currentParagraph?.accessibleFrom || []) as string[]}
+                  onRefreshVariants={() => game.clearVariants()}
+                  onNavigateToParagraph={handleChoice}
+                  onBackToInput={handleBackToInput}
+                />
                 {currentParagraph ? (
                   <ParagraphDisplay
                     paragraph={displayParagraph || currentParagraph}

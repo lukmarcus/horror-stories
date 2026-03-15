@@ -38,7 +38,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ **Refactor: Kolejne komponenty do wydzielenia:**
   - ✅ SetupStepContainer - dla kroku setup'u
   - ✅ IndirectParagraphWarning - dla ostrzeżenia dostępności
-  - ⏳ ParagraphModeNav - dla nawigacji paragrafu
+  - ✅ ParagraphModeNav - dla nawigacji paragrafu
 - ⏳ **UI Setup scenariusza:**
   - ⏳ Zmienić wygląd button "Przygotuj scenariusz"
 - ⏳ Design system - kolory, typografia, komponenty
