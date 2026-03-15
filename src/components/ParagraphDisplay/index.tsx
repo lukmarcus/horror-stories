@@ -4,7 +4,7 @@ import { ParagraphText } from "../ParagraphText/ParagraphText";
 import { RichText } from "../RichText";
 import { DiceRoller } from "../DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../ConditionalChoice/ConditionalChoice";
-import { ParagraphInput } from "../ParagraphInput";
+import { InputView } from "../InputView";
 import { SectionHeader } from "../common/SectionHeader";
 import "./ParagraphDisplay.css";
 
@@ -217,7 +217,7 @@ export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
 
       {showDeadEndInput && (
         <div role="status" aria-live="polite">
-          <ParagraphInput
+          <InputView
             onSubmit={onJumpToParagraph}
             instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
             autoFocus={false}

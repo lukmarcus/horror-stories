@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
 import { Button } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
-import { ParagraphInput } from "../components/ParagraphInput";
+import { InputView } from "../components/InputView";
 import { DiceView } from "../components/DiceView";
 import { SetupStepContainer } from "../components/SetupStep";
 import { IndirectParagraphWarning } from "../components/IndirectParagraphWarning";
@@ -298,7 +298,7 @@ export const Game: React.FC = () => {
                     {currentScenario.title || "Scenariusz"}
                   </h1>
                 )}
-                <ParagraphInput
+                <InputView
                   onSubmit={handleMainInputSubmit}
                   instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
                   autoFocus
@@ -341,7 +341,9 @@ export const Game: React.FC = () => {
                   currentParagraphId={currentParagraph?.id}
                   hasVariants={Boolean(currentParagraph?.variants)}
                   variantPathLength={game.state.variantPath.length}
-                  accessibleFrom={(currentParagraph?.accessibleFrom || []) as string[]}
+                  accessibleFrom={
+                    (currentParagraph?.accessibleFrom || []) as string[]
+                  }
                   onRefreshVariants={() => game.clearVariants()}
                   onNavigateToParagraph={handleChoice}
                   onBackToInput={handleBackToInput}
