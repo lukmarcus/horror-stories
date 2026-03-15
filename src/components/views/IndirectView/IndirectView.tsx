@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../common";
+import { Button } from "../../ui";
 
 interface IndirectViewProps {
   pendingParagraphId: string;

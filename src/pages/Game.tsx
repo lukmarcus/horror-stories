@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
-import { Button } from "../components/common";
-import { ParagraphView } from "../components/ParagraphView/ParagraphView";
-import { InputView } from "../components/InputView/InputView";
-import { DiceView } from "../components/DiceView/DiceView";
-import { PrepareView } from "../components/PrepareView/PrepareView";
-import { IndirectView } from "../components/IndirectView/IndirectView";
+import { Button } from "../components/ui";
+import { ParagraphView } from "../components/views/ParagraphView/ParagraphView";
+import { InputView } from "../components/views/InputView/InputView";
+import { DiceView } from "../components/views/DiceView/DiceView";
+import { PrepareView } from "../components/views/PrepareView/PrepareView";
+import { IndirectView } from "../components/views/IndirectView/IndirectView";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
 import "../styles/pages/game.css";

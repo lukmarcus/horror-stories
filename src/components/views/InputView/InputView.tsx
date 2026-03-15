@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../common";
+import { Button } from "../../ui";
 
 interface InputViewProps {
   /** Called on submit. Return an error string to show inline, or null on success. */

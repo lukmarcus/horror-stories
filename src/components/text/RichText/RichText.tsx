@@ -1,12 +1,12 @@
 import React from "react";
-import type { ContentBlock } from "../../types";
+import type { ContentBlock } from "../../../types";
 import {
   getPerson,
   getLetter,
   getSymbol,
   getStoryItem,
   getRoomItem,
-} from "../../data/items";
+} from "../../../data/items";
 import "./rich-text.css";
 
 interface RichTextProps {

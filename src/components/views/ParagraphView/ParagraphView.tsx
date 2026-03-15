@@ -1,12 +1,12 @@
 import React from "react";
-import type { Paragraph } from "../../types";
-import { ParagraphText } from "../ParagraphText/ParagraphText";
-import { RichText } from "../RichText/RichText";
-import { DiceRoller } from "../DiceRoller/DiceRoller";
-import { ConditionalChoice } from "../ConditionalChoice/ConditionalChoice";
+import type { Paragraph } from "../../../types";
+import { ParagraphText } from "../../text/ParagraphText/ParagraphText";
+import { RichText } from "../../text/RichText/RichText";
+import { DiceRoller } from "../../ui/DiceRoller/DiceRoller";
+import { ConditionalChoice } from "../../text/ConditionalChoice/ConditionalChoice";
 import { InputView } from "../InputView/InputView";
-import { SectionHeader } from "../common/SectionHeader";
-import { Button } from "../common";
+import { SectionHeader } from "../../ui/SectionHeader";
+import { Button } from "../../ui";
 import "./ParagraphView.css";
 
 interface ParagraphViewProps {

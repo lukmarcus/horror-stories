@@ -1,6 +1,6 @@
 import React from "react";
-import { parseParagraphText } from "../../utils/paragraphParser";
-import type { ParsedTag } from "../../utils/paragraphParser";
+import { parseParagraphText } from "../../../utils/paragraphParser";
+import type { ParsedTag } from "../../../utils/paragraphParser";
 import styles from "./ParagraphText.module.css";
 
 interface ParagraphTextProps {

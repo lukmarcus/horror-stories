@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, SectionHeader } from "../common";
-import { RichText } from "../RichText/RichText";
+import { Button, SectionHeader } from "../../ui";
+import { RichText } from "../../text/RichText/RichText";
 
 interface PrepareStep {
   stepNumber: number;
