@@ -6,6 +6,7 @@ import { ParagraphDisplay } from "../components/ParagraphDisplay";
 import { ParagraphInput } from "../components/ParagraphInput";
 import { DiceView } from "../components/DiceView";
 import { SetupStepContainer } from "../components/SetupStep";
+import { IndirectParagraphWarning } from "../components/IndirectParagraphWarning";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
 import "../styles/pages/game.css";
@@ -210,45 +211,14 @@ export const Game: React.FC = () => {
               {currentScenario.title || "Scenariusz"}
             </h1>
           )}
-          <div className="game__indirect-paragraph">
-            <div className="game__indirect-paragraph-header">
-              Ostrzeżenie o dostępności
-            </div>
-
-            <p className="game__warning-text">
-              Paragraf #{game.state.pendingParagraphId} jest dostępny tylko z:
-            </p>
-            <div className="game__warning-sources">
-              {paragraphs[game.state.pendingParagraphId]?.accessibleFrom?.map(
-                (source) => (
-                  <div key={source} className="game__warning-source">
-                    Paragraf #{source}
-                  </div>
-                ),
-              )}
-            </div>
-
-            <p className="game__warning-question">
-              Czy chcesz mimo to przejść do tego paragrafu?
-            </p>
-            <fieldset className="choices choices--horizontal">
-              <legend className="sr-only">Wybierz akcję</legend>
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={handleConfirmAccessibility}
-              >
-                Tak, rozumiem
-              </Button>
-              <Button
-                variant="secondary"
-                size="lg"
-                onClick={handleCancelAccessibility}
-              >
-                Powrót
-              </Button>
-            </fieldset>
-          </div>
+          <IndirectParagraphWarning
+            pendingParagraphId={game.state.pendingParagraphId}
+            sources={
+              paragraphs[game.state.pendingParagraphId]?.accessibleFrom || []
+            }
+            onConfirm={handleConfirmAccessibility}
+            onCancel={handleCancelAccessibility}
+          />
         </>
       )}
 

@@ -37,7 +37,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
   - ✅ Wydzielony DiceView komponent z Game.tsx (~70 linii)
 - ✅ **Refactor: Kolejne komponenty do wydzielenia:**
   - ✅ SetupStepContainer - dla kroku setup'u
-  - ⏳ AccessibilityWarning - dla ostrzeżenia dostępności
+  - ✅ IndirectParagraphWarning - dla ostrzeżenia dostępności
   - ⏳ ParagraphModeNav - dla nawigacji paragrafu
 - ⏳ **UI Setup scenariusza:**
   - ⏳ Zmienić wygląd button "Przygotuj scenariusz"
