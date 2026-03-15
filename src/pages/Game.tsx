@@ -319,36 +319,18 @@ export const Game: React.FC = () => {
               </div>
 
               {game.state.currentSetupStep === setupSteps.length - 1 && (
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "var(--spacing-md)",
-                    width: "100%",
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={() => {
+                    game.resetSetupStep();
+                    game.toggleSetup();
+                    game.setParagraph("77");
                   }}
+                  style={{ width: "100%" }}
                 >
-                  <Button
-                    variant="secondary"
-                    size="md"
-                    onClick={() => {
-                      game.resetSetupStep();
-                      game.toggleSetup();
-                    }}
-                  >
-                    ← Wróć do wyboru
-                  </Button>
-                  <Button
-                    variant="primary"
-                    size="md"
-                    onClick={() => {
-                      game.resetSetupStep();
-                      game.toggleSetup();
-                      game.setParagraph("77");
-                    }}
-                    style={{ flex: 1 }}
-                  >
-                    Przejdź do paragrafu 77
-                  </Button>
-                </div>
+                  Przejdź do paragrafu 77
+                </Button>
               )}
             </>
           ) : (

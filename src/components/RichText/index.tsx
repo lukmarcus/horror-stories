@@ -181,6 +181,8 @@ export const RichText: React.FC<RichTextProps> = ({
                 ? `id-${block.id}-${idx}`
                 : `block-${idx}`;
 
+          const isLastBlock = idx === blocks.length - 1;
+
           // Handle new image format: {image: "id"}
           if (block.image) {
             const imagePath = scenarioId
@@ -193,6 +195,7 @@ export const RichText: React.FC<RichTextProps> = ({
             const imageClasses = [
               "rich-image-block",
               block.spacing === "none" ? "spacing-none" : "",
+              isLastBlock ? "is-last-block" : "",
             ]
               .filter(Boolean)
               .join(" ");
@@ -224,6 +227,7 @@ export const RichText: React.FC<RichTextProps> = ({
               block.size ? `size-${block.size}` : "",
               block.color ? `color-${block.color}` : "",
               block.spacing === "none" ? "spacing-none" : "",
+              isLastBlock ? "is-last-block" : "",
             ]
               .filter(Boolean)
               .join(" ");
@@ -291,9 +295,5 @@ export const RichText: React.FC<RichTextProps> = ({
     );
   }
 
-  return (
-    <>
-      {content ? renderContentBlocks(content) : null}
-    </>
-  );
+  return <>{content ? renderContentBlocks(content) : null}</>;
 };
