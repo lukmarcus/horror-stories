@@ -34,6 +34,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
   - ✅ Stworzony SectionHeader komponent dla deduplicacji
   - ✅ Zmienione nazwy klas CSS na bardziej generyczne (section zamiast setup)
   - ✅ Usunięte nieużywane CSS klasy (~700 bajtów)
+  - ✅ Wydzielony DiceView komponent z Game.tsx (~70 linii)
+- ⏳ **Refactor: Kolejne komponenty do wydzielenia:**
+  - ⏳ SetupStepContainer - dla kroku setup'u
+  - ⏳ AccessibilityWarning - dla ostrzeżenia dostępności
+  - ⏳ ParagraphModeNav - dla nawigacji paragrafu
 - ⏳ **UI Setup scenariusza:**
   - ⏳ Zmienić wygląd button "Przygotuj scenariusz"
 - ⏳ Design system - kolory, typografia, komponenty

@@ -25,6 +25,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - **UI: Nagłówki sekcji** – "Paragraf #XX" na wyświetlaniu paragrafów i "Przygotowanie scenariusza" w sekcji setup, ujednoliconym stylem z separatorem granice
 - **Refactor: SectionHeader komponent** – stworzony wspólny komponent dla nagłówków setup, paragrafów wielostronicowych i jednostronicowych, eliminujący duplikację JSX
 - **Refactor: Czyszczenie CSS** – usunięte nieużywane klasy (`.game__setup-section`, `.game__setup-container`, `.game__setup-title`, `.game__setup-list`, `.game__setup`), zmienione nazwy klas na bardziej generyczne (`.game__setup-step-header` → `.game__section-header`, `.game__setup-step-number` → `.game__section-label`, `.game__setup-controls` → `.game__section-controls`, `.game__setup-empty` → `.game__section-empty`)
+- **Refactor: Wydzielenie DiceView.tsx** – stworzony nowy komponent dla globalnego widoku rzutu kością (fullscreen modal z opcjami 1x/2x/3x i animacją), zmniejszył Game.tsx o ~70 linii
 - **Refactor: Stosowanie konsekwentnej szerokości** – wszystkie główne ekrany (input, setup, paragraf, dice) używają znormalizowanej szerokości 900px
 - **Refactor: Uproszczenie struktury HTML** – usunięte zbędne wrappery (`game__container`, `app__main`, `app-routes`), bezpośrednie zagnieżdżenie Routes w `.app`
 - **Refactor: Normalizacja paddingu** – usunięta kaskada podwójnych paddingów (`.game__setup-step` padding: 0, zawartość ma padding: md), wszystkie sekcje top-level mają uniform padding: xl (32px), paragraf mode zmieniony na `.game__paragraph-section`

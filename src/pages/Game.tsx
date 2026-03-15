@@ -5,6 +5,7 @@ import { Button, SectionHeader } from "../components/common";
 import { ParagraphDisplay } from "../components/ParagraphDisplay";
 import { ParagraphInput } from "../components/ParagraphInput";
 import { RichText } from "../components/RichText";
+import { DiceView } from "../components/DiceView";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
 import "../styles/pages/game.css";
@@ -173,6 +174,30 @@ export const Game: React.FC = () => {
       game.setParagraph(nextId);
     }
     game.clearDiceResult();
+  };
+
+  const handleRollDice = async (numDice: number): Promise<void> => {
+    game.setRollingDice(true);
+    game.setDiceRolls([]);
+    game.clearDiceResult();
+
+    // Animate rolling
+    for (let frame = 0; frame < 10; frame++) {
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      const tempRolls = Array(numDice)
+        .fill(0)
+        .map(() => Math.floor(Math.random() * 6) + 1);
+      game.setDiceRolls(tempRolls);
+    }
+
+    // Final result
+    const results = Array(numDice)
+      .fill(0)
+      .map(() => Math.floor(Math.random() * 6) + 1);
+    game.setDiceRolls(results);
+    const sum = results.reduce((a, b) => a + b, 0);
+    game.setDiceResult(sum);
+    game.setRollingDice(false);
   };
 
   return (
@@ -352,103 +377,13 @@ export const Game: React.FC = () => {
               {currentScenario.title || "Scenariusz"}
             </h1>
           )}
-          <div className="game__content-nav">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => game.toggleDiceView()}
-              aria-label="Powrót do menu"
-            >
-              ← Wróć do menu
-            </Button>
-          </div>
-
-          <div className="game__setup-step">
-            <div className="game__section-header">
-              <div className="game__section-label">Rzut kością</div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "var(--spacing-lg)",
-                padding: "var(--spacing-md)",
-              }}
-            >
-              <p
-                style={{
-                  textAlign: "center",
-                  fontSize: "var(--font-size-lg)",
-                }}
-              >
-                Ile razy chcesz rzucić kością?
-              </p>
-              <div
-                style={{
-                  display: "flex",
-                  gap: "var(--spacing-md)",
-                  justifyContent: "center",
-                  flexWrap: "wrap",
-                }}
-              >
-                {[1, 2, 3].map((numDice) => (
-                  <Button
-                    key={numDice}
-                    variant="primary"
-                    size="lg"
-                    disabled={game.state.isRollingDice}
-                    onClick={async () => {
-                      game.setRollingDice(true);
-                      game.setDiceRolls([]);
-                      game.clearDiceResult();
-
-                      // Animate rolling
-                      for (let frame = 0; frame < 10; frame++) {
-                        await new Promise((resolve) => setTimeout(resolve, 80));
-                        const tempRolls = Array(numDice)
-                          .fill(0)
-                          .map(() => Math.floor(Math.random() * 6) + 1);
-                        game.setDiceRolls(tempRolls);
-                      }
-
-                      // Final result
-                      const results = Array(numDice)
-                        .fill(0)
-                        .map(() => Math.floor(Math.random() * 6) + 1);
-                      game.setDiceRolls(results);
-                      const sum = results.reduce((a, b) => a + b, 0);
-                      game.setDiceResult(sum);
-                      game.setRollingDice(false);
-                    }}
-                    title={`Rzuć ${numDice}x`}
-                  >
-                    {numDice}x 🎲
-                  </Button>
-                ))}
-              </div>
-              {(game.state.isRollingDice ||
-                game.state.lastDiceResult !== null) && (
-                <div
-                  style={{
-                    fontSize: "3rem",
-                    fontWeight: "bold",
-                    color: "var(--color-accent)",
-                    marginTop: 0,
-                    textAlign: "center",
-                    minHeight: "4rem",
-                  }}
-                >
-                  Wynik:{" "}
-                  {game.state.diceRolls.length > 0
-                    ? game.state.diceRolls.length === 1
-                      ? `${game.state.diceRolls[0]}${game.state.lastDiceResult !== null ? "" : ""}`
-                      : `${game.state.diceRolls.join(" + ")}${game.state.lastDiceResult !== null ? ` = ${game.state.lastDiceResult}` : ""}`
-                    : ""}
-                </div>
-              )}
-            </div>
-          </div>
+          <DiceView
+            onClose={() => game.toggleDiceView()}
+            isRolling={game.state.isRollingDice}
+            diceRolls={game.state.diceRolls}
+            lastDiceResult={game.state.lastDiceResult}
+            onRoll={handleRollDice}
+          />
         </>
       )}
 

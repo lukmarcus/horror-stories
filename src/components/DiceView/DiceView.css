@@ -1,0 +1,45 @@
+.dice-view__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+}
+
+.dice-view__instruction {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  margin: 0;
+}
+
+.dice-view__buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dice-view__result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--color-accent);
+  margin-top: 0;
+  text-align: center;
+  min-height: 4rem;
+}
+
+.dice-view__result-label {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+}
+
+.dice-view__result-value {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--color-accent);
+}
