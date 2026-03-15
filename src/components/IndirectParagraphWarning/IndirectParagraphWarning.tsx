@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "../common";
-import "./IndirectParagraphWarning.css";
 
 interface IndirectParagraphWarningProps {
   pendingParagraphId: string;

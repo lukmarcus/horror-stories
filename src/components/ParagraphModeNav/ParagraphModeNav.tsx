@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "../common";
-import "./ParagraphModeNav.css";
 
 interface ParagraphModeNavProps {
   currentParagraphId?: string | string[];

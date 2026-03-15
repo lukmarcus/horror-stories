@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, SectionHeader } from "../common";
-import { RichText } from "../RichText";
-import "./SetupStepContainer.css";
+import { RichText } from "../RichText/RichText";
 
 interface SetupStep {
   stepNumber: number;

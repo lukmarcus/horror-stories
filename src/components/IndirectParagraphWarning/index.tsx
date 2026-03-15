@@ -1,1 +1,0 @@
-export { IndirectParagraphWarning } from "./IndirectParagraphWarning";
