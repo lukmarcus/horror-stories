@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../common";
 
-interface ParagraphModeNavProps {
+interface ParagraphNavigationProps {
   currentParagraphId?: string | string[];
   hasVariants: boolean;
   variantPathLength: number;
@@ -11,7 +11,7 @@ interface ParagraphModeNavProps {
   onBackToInput: () => void;
 }
 
-export const ParagraphModeNav: React.FC<ParagraphModeNavProps> = ({
+export const ParagraphNavigation: React.FC<ParagraphNavigationProps> = ({
   currentParagraphId,
   hasVariants,
   variantPathLength,

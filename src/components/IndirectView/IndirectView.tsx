@@ -1,15 +1,15 @@
 import React from "react";
 import { Button } from "../common";
 
-interface IndirectParagraphWarningProps {
+interface IndirectViewProps {
   pendingParagraphId: string;
   sources: string[];
   onConfirm: () => void;
   onCancel: () => void;
 }
 
-export const IndirectParagraphWarning: React.FC<
-  IndirectParagraphWarningProps
+export const IndirectView: React.FC<
+  IndirectViewProps
 > = ({ pendingParagraphId, sources, onConfirm, onCancel }) => {
   return (
     <div className="game__indirect-paragraph">

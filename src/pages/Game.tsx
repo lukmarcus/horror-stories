@@ -2,12 +2,12 @@ import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
 import { Button } from "../components/common";
-import { ParagraphDisplay } from "../components/ParagraphDisplay/ParagraphDisplay";
+import { ParagraphView } from "../components/ParagraphView/ParagraphView";
 import { InputView } from "../components/InputView/InputView";
 import { DiceView } from "../components/DiceView/DiceView";
-import { SetupStepContainer } from "../components/SetupStep/SetupStepContainer";
-import { IndirectParagraphWarning } from "../components/IndirectParagraphWarning/IndirectParagraphWarning";
-import { ParagraphModeNav } from "../components/ParagraphModeNav/ParagraphModeNav";
+import { PrepareView } from "../components/PrepareView/PrepareView";
+import { IndirectView } from "../components/IndirectView/IndirectView";
+import { ParagraphNavigation } from "../components/ParagraphNavigation/ParagraphNavigation";
 import { useGame } from "../hooks/useGame";
 import { useGameActions } from "../hooks/useGameActions";
 import "../styles/pages/game.css";
@@ -212,7 +212,7 @@ export const Game: React.FC = () => {
               {currentScenario.title || "Scenariusz"}
             </h1>
           )}
-          <IndirectParagraphWarning
+          <IndirectView
             pendingParagraphId={game.state.pendingParagraphId}
             sources={
               paragraphs[game.state.pendingParagraphId]?.accessibleFrom || []
@@ -246,7 +246,7 @@ export const Game: React.FC = () => {
           </div>
 
           {setupSteps.length > 0 ? (
-            <SetupStepContainer
+            <PrepareView
               currentStep={game.state.currentSetupStep}
               totalSteps={setupSteps.length}
               setupSteps={setupSteps}
@@ -337,7 +337,7 @@ export const Game: React.FC = () => {
                     {currentScenario.title || "Scenariusz"}
                   </h1>
                 )}
-                <ParagraphModeNav
+                <ParagraphNavigation
                   currentParagraphId={currentParagraph?.id}
                   hasVariants={Boolean(currentParagraph?.variants)}
                   variantPathLength={game.state.variantPath.length}
@@ -349,7 +349,7 @@ export const Game: React.FC = () => {
                   onBackToInput={handleBackToInput}
                 />
                 {currentParagraph ? (
-                  <ParagraphDisplay
+                <ParagraphView
                     paragraph={displayParagraph || currentParagraph}
                     lastDiceResult={game.state.lastDiceResult}
                     onChoice={handleChoice}

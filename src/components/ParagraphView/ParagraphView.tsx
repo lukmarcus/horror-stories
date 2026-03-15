@@ -6,9 +6,9 @@ import { DiceRoller } from "../DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../ConditionalChoice/ConditionalChoice";
 import { InputView } from "../InputView/InputView";
 import { SectionHeader } from "../common/SectionHeader";
-import "./ParagraphDisplay.css";
+import "./ParagraphView.css";
 
-interface ParagraphDisplayProps {
+interface ParagraphViewProps {
   paragraph: Paragraph;
   lastDiceResult: number | null;
   onChoice: (nextId: string | undefined, isVariant?: boolean) => void;
@@ -17,7 +17,7 @@ interface ParagraphDisplayProps {
   scenarioId?: string;
 }
 
-export const ParagraphDisplay: React.FC<ParagraphDisplayProps> = ({
+export const ParagraphView: React.FC<ParagraphViewProps> = ({
   paragraph,
   lastDiceResult,
   onChoice,

@@ -2,7 +2,7 @@ import React from "react";
 import { Button, SectionHeader } from "../common";
 import { RichText } from "../RichText/RichText";
 
-interface SetupStep {
+interface PrepareStep {
   stepNumber: number;
   content?: Array<{
     type?: "image" | "letter" | "item";
@@ -15,17 +15,17 @@ interface SetupStep {
   text?: string;
 }
 
-interface SetupStepContainerProps {
+interface PrepareViewProps {
   currentStep: number;
   totalSteps: number;
-  setupSteps: SetupStep[];
+  setupSteps: PrepareStep[];
   scenarioId: string;
   onPrev: () => void;
   onNext: () => void;
   onStart: () => void;
 }
 
-export const SetupStepContainer: React.FC<SetupStepContainerProps> = ({
+export const PrepareView: React.FC<PrepareViewProps> = ({
   currentStep,
   totalSteps,
   setupSteps,
