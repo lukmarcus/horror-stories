@@ -61,7 +61,7 @@ export const RichText: React.FC<RichTextProps> = ({
       if (tag === "image") {
         const imagePath = scenarioId
           ? new URL(
-              `../../scenarios/${scenarioId}/images/${id}.jpg`,
+              `../../../scenarios/${scenarioId}/images/${id}.jpg`,
               import.meta.url,
             ).href
           : undefined;
@@ -187,7 +187,7 @@ export const RichText: React.FC<RichTextProps> = ({
           if (block.image) {
             const imagePath = scenarioId
               ? new URL(
-                  `../../scenarios/${scenarioId}/images/${block.image}.jpg`,
+                  `../../../scenarios/${scenarioId}/images/${block.image}.jpg`,
                   import.meta.url,
                 ).href
               : undefined;
