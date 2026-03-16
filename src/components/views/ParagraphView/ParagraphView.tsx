@@ -2,7 +2,6 @@ import React from "react";
 import type { Paragraph } from "../../../types";
 import { ParagraphText } from "../../text/ParagraphText/ParagraphText";
 import { RichText } from "../../text/RichText/RichText";
-import { DiceRoller } from "../../ui/DiceRoller/DiceRoller";
 import { ConditionalChoice } from "../../text/ConditionalChoice/ConditionalChoice";
 import { InputView } from "../InputView/InputView";
 import { SectionHeader } from "../../ui/SectionHeader";
@@ -183,16 +182,6 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
               </button>
             </div>
           )}
-
-        {paragraph.hasDiceRoll && lastDiceResult === null && (
-          <div
-            className="dice-roller-wrapper"
-            role="status"
-            aria-label="Kostka do gry"
-          >
-            <DiceRoller />
-          </div>
-        )}
 
         {hasPages && (
           <div className="game__section-footer">
