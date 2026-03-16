@@ -30,9 +30,9 @@ export const DiceView: React.FC<DiceViewProps> = ({
         </Button>
       </div>
 
-      <div className="game__setup-step">
-        <div className="game__section-header">
-          <div className="game__section-label">Rzut kością</div>
+      <div className="game__scenario">
+        <div className="game__scenario-header">
+          <div className="game__scenario-label">Rzut kością</div>
         </div>
         <div className="dice-view__container">
           <p className="dice-view__instruction">

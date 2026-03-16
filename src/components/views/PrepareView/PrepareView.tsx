@@ -39,7 +39,7 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
 
   return (
     <>
-      <div className="game__setup-step">
+      <div className="game__scenario">
         <SectionHeader
           title="Przygotowanie scenariusza"
           subtitle={`Krok ${currentStep + 1} z ${totalSteps}`}
@@ -76,11 +76,11 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
           <RichText text={currentSetupStep.text} scenarioId={scenarioId} />
         )}
 
-        <div className="game__section-footer">
-          <div className="game__section-label">
+        <div className="game__scenario-footer">
+          <div className="game__scenario-label">
             Krok {currentStep + 1} z {totalSteps}
           </div>
-          <div className="game__section-controls">
+          <div className="game__scenario-controls">
             <Button
               variant="secondary"
               size="sm"

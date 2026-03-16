@@ -110,7 +110,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
       </nav>
 
       <div
-        className="paragraph-display game__setup-step"
+        className="paragraph-display game__scenario"
         style={{ width: "100%" }}
         aria-label={`Paragraf ${paragraphIdStr}`}
       >
@@ -184,11 +184,11 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
           )}
 
         {hasPages && (
-          <div className="game__section-footer">
-            <div className="game__section-label">
+          <div className="game__scenario-footer">
+            <div className="game__scenario-label">
               Strona {currentPage + 1} z {maxPage + 1}
             </div>
-            <div className="game__section-controls">
+            <div className="game__scenario-controls">
               <button
                 className="button button--secondary button--sm"
                 onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}

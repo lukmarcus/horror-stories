@@ -259,7 +259,7 @@ export const Game: React.FC = () => {
               }}
             />
           ) : (
-            <p className="game__section-empty">
+            <p className="game__scenario-empty">
               Brak kroki przygotowania dla tego scenariusza.
             </p>
           )}

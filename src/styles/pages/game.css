@@ -289,7 +289,7 @@ fieldset {
   padding: var(--spacing-md) 0;
 }
 
-.game__setup-step {
+.game__scenario {
   background-color: var(--color-surface-secondary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -300,27 +300,27 @@ fieldset {
   flex-direction: column;
 }
 
-.game__section-header,
-.game__section-footer {
+.game__scenario-header,
+.game__scenario-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-md);
 }
 
-.game__section-header {
+.game__scenario-header {
   padding-bottom: var(--spacing-md);
   margin-bottom: var(--spacing-md);
   border-bottom: 1px solid var(--color-border);
 }
 
-.game__section-footer {
+.game__scenario-footer {
   margin-top: var(--spacing-md);
   padding-top: var(--spacing-md);
   border-top: 1px solid var(--color-border);
 }
 
-.game__section-label {
+.game__scenario-label {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   text-transform: uppercase;
@@ -329,13 +329,13 @@ fieldset {
   white-space: nowrap;
 }
 
-.game__section-controls {
+.game__scenario-controls {
   display: flex;
   gap: var(--spacing-sm);
   justify-content: flex-end;
 }
 
-.game__section-empty {
+.game__scenario-empty {
   color: var(--color-text-muted);
   font-size: var(--font-size-md);
   padding: var(--spacing-lg);

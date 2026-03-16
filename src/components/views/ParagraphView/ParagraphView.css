@@ -64,7 +64,7 @@
   word-wrap: break-word;
 }
 
-.game__setup-step .choices--horizontal {
+.game__scenario .choices--horizontal {
   flex-direction: row;
   flex-wrap: wrap;
 }
