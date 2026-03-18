@@ -35,6 +35,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
   - ✅ Zmienione nazwy klas CSS na bardziej generyczne (section zamiast setup)
   - ✅ Skonsolidowane wszystkie CSS klasy pod `.game__scenario-*` dla spójności
   - ✅ Usunięte nieużywane CSS klasy (~700 bajtów)
+  - ✅ Unified IndirectView z SectionHeader i RichText
   - ✅ Wydzielony DiceView komponent z Game.tsx (~70 linii)
 - ✅ **Refactor: Kolejne komponenty do wydzielenia:**
   - ✅ SetupStepContainer - dla kroku setup'u
