@@ -304,18 +304,16 @@ export const Game: React.FC = () => {
                   actions={
                     <>
                       <Button
-                        variant="outline"
+                        variant="secondary"
                         size="sm"
                         onClick={() => game.toggleSetup()}
-                        className="game__option-btn"
                       >
-                        ⚙️ Przygotuj Scenariusz
+                        ⚙️ Przygotowanie scenariusza
                       </Button>
                       <Button
-                        variant="outline"
+                        variant="secondary"
                         size="sm"
                         onClick={() => game.toggleDiceView()}
-                        className="game__option-btn"
                       >
                         🎲 Rzut kością
                       </Button>
