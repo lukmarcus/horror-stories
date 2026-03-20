@@ -64,7 +64,6 @@ export const InputView: React.FC<InputViewProps> = ({
             variant="primary"
             size="lg"
             onClick={handleSubmit}
-            className="game__input-btn"
             aria-label="Przejść do paragrafu"
           >
             PRZEJDŹ

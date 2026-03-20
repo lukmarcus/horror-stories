@@ -256,7 +256,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                 onClick={onBack}
                 className="button button--secondary button--sm"
               >
-                ← Powrót do gry
+                ← Powrót do menu scenariusza
               </button>
             }
           />
