@@ -6,60 +6,21 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.0 - Bug Fixes & Deployment
+## Milestone v0.1.1 - Technical Preparation
 
 ### Zakres
 
-- Naprawienie bugów z v0.0.12
-- Kompatybilność z GitHub Pages (HashRouter)
-- Wsparcie URL-ów z query parametrami
+- Szybkie refaktory przygotowujące kod do nowych scenariuszy
+- Centralizacja magicznych stringów (emoji, etykiety)
+- Czyszczenie duplikacji CSS
+- Ujednolicenie logiki handlowania zasobami
 
 ### Do zrobienia
 
-- ✅ Napraw 404 błędy na GitHub Pages - HashRouter zamiast BrowserRouter
-- ✅ Bug: Input pole na wielostronowych paragrafach - Reset currentPage przy zmianie paragrafu
-- ✅ Zmiana nazw przycisków nawigacji - "Graj"→"Scenariusze", "Wróć do gry"→"Wróć do menu scenariusza", "Powrót do Menu"→"Lista scenariuszy"
-- ✅ **UI Setup scenariusza:**
-  - ✅ Dodatkowe przełączniki kroków na dole (Poprzedni/Następny + licznik kroku)
-- ✅ **UI Input field:**
-  - ✅ Dodać 3. button - Rzut kością (fullscreen z opcjami 1x/2x/3x, animacje, rozbicie wyników)
-- ⏳ **UI Scenariuszy:**
-  - ⏳ Zmniejszyć kafelki scenariuszy (responsywny grid)
-  - ⏳ Dodać grafikę na tło kafelków (background-image)
-- ✅ **UI Headers (nagłówki sekcji):**
-  - ✅ Dodać "Paragraf #XX" nagłówek do wyświetlania paragrafów
-  - ✅ Dodać "Przygotowanie scenariusza" nagłówek do sekcji setup
-  - ✅ Ujednolicić styling między nagłówkami setup i paragrafów
-- ✅ **Refactor: CSS i komponenty:**
-  - ✅ Stworzony SectionHeader komponent dla deduplicacji
-  - ✅ Zmienione nazwy klas CSS na bardziej generyczne (section zamiast setup)
-  - ✅ Skonsolidowane wszystkie CSS klasy pod `.game__scenario-*` dla spójności
-  - ✅ Usunięte nieużywane CSS klasy (~700 bajtów)
-  - ✅ Unified IndirectView z SectionHeader i RichText
-  - ✅ Wydzielony DiceView komponent z Game.tsx (~70 linii)
-- ✅ **Refactor: Kolejne komponenty do wydzielenia:**
-  - ✅ SetupStepContainer - dla kroku setup'u
-  - ✅ IndirectParagraphWarning - dla ostrzeżenia dostępności
-  - ✅ ParagraphModeNav - dla nawigacji paragrafu
-- ⏳ **UI Setup scenariusza:**
-  - ⏳ Zmienić wygląd button "Przygotuj scenariusz"
-- ⏳ Design system - kolory, typografia, komponenty
-- ⏳ Responsywność - mobile, tablet, desktop
-
-### Status
-
-- 🟡 W trakcie (Bug fixes ✅, UI improvements pending)
-
----
-
-## Milestone v0.1.1+ - Pozostałe scenariusze
-
-### Zakres
-
-- Pełne implementacje dla pozostałych 3 scenariuszy:
-  - Tajemna Biblioteka
-  - Opuszczony Szpital
-  - Nocny Koszmar
+- Centralize emoji constants - ⚙️, 🎲, ↻, 🖼️ do stałych
+- Extract `.container` CSS utility class - zamiast duplikacji w 5 plikach
+- Create image path helper - ujednolicić logikę ścieżek zasobów
+- Remove unused exports - cleanup martwego kodu
 
 ### Status
 
@@ -67,32 +28,135 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.0 - Dźwięk i muzyka
+## Milestone v0.2.0 - Party time (Scenariusz 1)
 
 ### Zakres
+
+- Pełna implementacja scenariusza "Party time"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.3.0 - Eksperyment (Scenariusz 2)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Eksperyment"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.4.0 - Kolejny dzień w pracy (Scenariusz 3)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Kolejny dzień w pracy"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.5.0 - Śmiertelna zabawa (Scenariusz 4)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Śmiertelna zabawa"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.6.0 - Świnki trzy i wilk (Scenariusz 5)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Świnki trzy i wilk"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.7.0 - Do samego końca (Scenariusz 6)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Do samego końca"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.8.0 - (Nie) jesteśmy tu sami (Scenariusz 7)
+
+### Zakres
+
+- Pełna implementacja scenariusza "(Nie) jesteśmy tu sami"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.9.0 - Spotkanie (Scenariusz 8)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Spotkanie"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.10.0 - Finał (Scenariusz 9)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Finał"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Dodatkowe Features (do uwzględnienia w kolejnych wersjach)
+
+### Audio System
 
 - Odtwarzacz audio
 - Muzyka w tle dla scenariuszy
 - Dźwięki i dialogi
 
-### Status
+### Design System
 
-- ⏳ Nie rozpoczęte
+- Spójny system kolorów, typografii i komponentów
+- Pełna responsywność (mobile, tablet, desktop)
 
----
+### System Zapisu
 
-## Milestone v0.3.0+ - Zaawansowane funkcje
-
-### Zakres
-
-- Edytor scenariuszy
-- Wczytywanie własnych scenariuszy JSON
 - Zapis/odczyt postępu gry
+- Przechowywanie stanu postaci
+
+### Lokalizacja
+
 - Wsparcie dla wielu języków
-
-### Status
-
-- ⏳ Nie rozpoczęte
 
 ---
 
@@ -100,8 +164,9 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Zakres
 
-- Wszystkie 4 scenariusze w pełni działające
-- System audio i muzyki
+- Wszystkie 10 scenariuszy w pełni działające (Droga Donikąd + 9 kolejnych)
+- System audio
+- Design system w pełni wdrożony
 - Pełna dokumentacja
 - Optymizacja wydajności
 - Stabilna aplikacja gotowa do produkcji

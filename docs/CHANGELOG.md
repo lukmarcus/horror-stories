@@ -7,32 +7,26 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.1.0] - 2026-03-15
+## [0.1.0] - 2026-03-20
+
+### Dodano
+
+- Nowy widok rzutu kością z opcjami 1x/2x/3x, animacjami i wyświetleniem rozbicia wyników (np. "2 + 3 = 5")
+- Nagłówki sekcji - "Paragraf #XX" na ekranach paragrafów i "Przygotowanie scenariusza" w sekcji setup
+- Dodatkowe przyciski Poprzedni/Następny + licznik kroków na dole sekcji przygotowania scenariusza
+- Ujednolicone ostrzeżenie dostępności paragrafu - teraz wygląda jak normalna strona gry z przyciskiem powrotu
+
+### Zmieniono
+
+- Nazwy przycisków nawigacji - "Graj" → "Scenariusze", "Wróć do gry" → "Wróć do menu scenariusza", "Powrót do Menu" → "Lista scenariuszy"
+- Wygląd interface'u - wszystkie sekcje (setup, paragraf, rzut kością) mają teraz spójny design z ujednoliconymi przyciskami
+- Szerokość ekranów - wszystkie główne widoki (input, setup, paragraf, rzut) używają znormalizowanej szerokości dla lepszej czytelności
 
 ### Poprawiono
 
-- GitHub Pages routing – HashRouter zamiast BrowserRouter dla niezawodnego działania Single Page Application na GitHub Pages
-- Input field na wielostronowych paragrafach – `currentPage` teraz resetuje się przy zmianie paragrafu, zapobiegając braku pola input na paragrafach docelowych (bug #77→121)
-- Wsparcie dla linków z query parametrami – `?par=12` zachowywane przy routingu
-- Drobne poprawki w scenariuszu "Droga Donikąd" – usunięty duplikat ID paragrafu (97→87), błędna dostępność (123), klarowniejsza instrukcja mechaniki gry
-- **UI: Zmiana nazw przycisków nawigacji:**
-  - Menu "Graj" → "Scenariusze"
-  - "Wróć do gry" → "Wróć do menu scenariusza" (w setup)
-  - "Wróć" → "Wróć do menu scenariusza" (w paragrafach bez wyborów)
-  - "Powrót do Menu" → "Lista scenariuszy" (w input field)
-- **UI: Dodatkowe kontrolki setup'u na dole** – licznik kroku i przyciski Poprzedni/Następny dostępne na górze i dole ekranu
-- **UI: Rzut kością w fullscreen widoku** – dedykowany modal z opcjami 1x/2x/3x kości, animacje rzucania (10 klatek), wyświetlanie rozbicia wyników (np. "2 + 3 = 5"), możliwość wielokrotnego rzucania
-- **UI: Nagłówki sekcji** – "Paragraf #XX" na wyświetlaniu paragrafów i "Przygotowanie scenariusza" w sekcji setup, ujednoliconym stylem z separatorem granice
-- **Refactor: SectionHeader komponent** – stworzony wspólny komponent dla nagłówków setup, paragrafów wielostronicowych i jednostronicowych, eliminujący duplikację JSX
-- **Refactor: Czyszczenie CSS** – usunięte nieużywane klasy (`.game__setup-section`, `.game__setup-container`, `.game__setup-title`, `.game__setup-list`, `.game__setup`), zmienione nazwy klas na bardziej generyczne (`.game__setup-step-header` → `.game__section-header`, `.game__setup-step-number` → `.game__section-label`, `.game__setup-controls` → `.game__section-controls`, `.game__setup-empty` → `.game__section-empty`), a następnie skonsolidowane pod `.game__scenario-*` dla spójności nazewnictwa (wszystkie elementy `.game__section-*` → `.game__scenario-header`, `.game__scenario-footer`, `.game__scenario-label`, `.game__scenario-controls`, `.game__scenario-empty`)
-- **Refactor: Unifikacja IndirectView** – przepisana komponenta z użyciem `SectionHeader` i `RichText` dla jednolitego wyglądu z pozostałymi widokami, dodany przycisk "← Wróć do menu scenariusza" na górze, usunięte ~35 linii duplicate'owego kodu CSS
-- **Refactor: Wydzielenie DiceView.tsx** – stworzony nowy komponent dla globalnego widoku rzutu kością (fullscreen modal z opcjami 1x/2x/3x i animacją), zmniejszył Game.tsx o ~70 linii
-- **Refactor: Wydzielenie SetupStepContainer.tsx** – stworzony komponent dla kroku setup'u (SectionHeader + RichText + footer + przyciski nawigacji), zmniejszył Game.tsx o ~100 linii
-- **Refactor: Wydzielenie IndirectParagraphWarning.tsx** – stworzony komponent dla ostrzeżenia o dostępności paragrafu (modal z listą źródeł dostępu), zmniejszył Game.tsx o ~40 linii
-- **Refactor: Wydzielenie ParagraphModeNav.tsx** – stworzony komponent dla nawigacji paragrafu (przyciski: odśwież wariant, wróć do źródła, wróć do menu), zmniejszył Game.tsx o ~30 linii
-- **Refactor: Stosowanie konsekwentnej szerokości** – wszystkie główne ekrany (input, setup, paragraf, dice) używają znormalizowanej szerokości 900px
-- **Refactor: Uproszczenie struktury HTML** – usunięte zbędne wrappery (`game__container`, `app__main`, `app-routes`), bezpośrednie zagnieżdżenie Routes w `.app`
-- **Refactor: Normalizacja paddingu** – usunięta kaskada podwójnych paddingów (`.game__setup-step` padding: 0, zawartość ma padding: md), wszystkie sekcje top-level mają uniform padding: xl (32px), paragraf mode zmieniony na `.game__paragraph-section`
+- Routing aplikacji na GitHub Pages - HashRouter zapewnia niezawodne działanie linków na GitHub Pages
+- Input field na wieloetapowych paragrafach - pole do wpisania numeru paragrafu teraz się resetuje przy zmianie paragrafu
+- Błędne ID paragrafów w scenariuszu "Droga Donikąd" - usunięty duplikat (97→87) i naprawiona dostępność paragrafu 123
 
 ---
 
