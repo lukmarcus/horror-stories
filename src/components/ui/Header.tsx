@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({ title = "Horror Stories" }) => {
             to="/scenarios"
             className={`header__nav-link ${isActive("/scenarios") ? "header__nav-link--active" : ""}`}
           >
-            Graj
+            Scenariusze
           </Link>
           <Link
             to="/instructions"

@@ -7,6 +7,29 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.0] - 2026-03-20
+
+### Dodano
+
+- Nowy widok rzutu kością z opcjami 1x/2x/3x, animacjami i wyświetleniem rozbicia wyników (np. "2 + 3 = 5")
+- Nagłówki sekcji - "Paragraf #XX" na ekranach paragrafów i "Przygotowanie scenariusza" w sekcji setup
+- Dodatkowe przyciski Poprzedni/Następny + licznik kroków na dole sekcji przygotowania scenariusza
+- Ujednolicone ostrzeżenie dostępności paragrafu - teraz wygląda jak normalna strona gry z przyciskiem powrotu
+
+### Zmieniono
+
+- Nazwy przycisków nawigacji - "Graj" → "Scenariusze", "Wróć do gry" → "Wróć do menu scenariusza", "Powrót do Menu" → "Lista scenariuszy"
+- Wygląd interface'u - wszystkie sekcje (setup, paragraf, rzut kością) mają teraz spójny design z ujednoliconymi przyciskami
+- Szerokość ekranów - wszystkie główne widoki (input, setup, paragraf, rzut) używają znormalizowanej szerokości dla lepszej czytelności
+
+### Poprawiono
+
+- Routing aplikacji na GitHub Pages - HashRouter zapewnia niezawodne działanie linków na GitHub Pages
+- Input field na wieloetapowych paragrafach - pole do wpisania numeru paragrafu teraz się resetuje przy zmianie paragrafu
+- Błędne ID paragrafów w scenariuszu "Droga Donikąd" - usunięty duplikat (97→87) i naprawiona dostępność paragrafu 123
+
+---
+
 ## [0.0.12] - 2026-03-04
 
 ### Dodano

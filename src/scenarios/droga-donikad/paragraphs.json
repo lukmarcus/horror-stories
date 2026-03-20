@@ -884,7 +884,7 @@
       "choices": []
     },
     {
-      "id": "97",
+      "id": "87",
       "contentPages": [
         [
           {
@@ -1177,7 +1177,6 @@
     },
     {
       "id": "123",
-      "accessibleFrom": ["105"],
       "contentPages": [
         [
           {
@@ -1191,7 +1190,7 @@
       ],
       "choices": [
         {
-          "text": "Tylko jeśli na planszy znajdują się <room id='50'/> dowolna z postaci na tej planszy posiada przedmiot w swoim ekwipunku, wskaż ten którym chcesz wejść w interakcję z <room id='123'/>. Następnie przejdź do paragrafu <span class='color-green'>65</span>.",
+          "text": "Tylko jeśli na planszy znajdują się <room id='50'/> <span class='color-red'>dowolna z postaci</span> na tej planszy posiadająca przedmiot w swoim ekwipunku, wskazuje ten którym chcesz wejść w interakcję z <room id='123'/>. Następnie przejdź do paragrafu <span class='color-green'>65</span>.",
           "nextParagraphId": "65"
         },
         {

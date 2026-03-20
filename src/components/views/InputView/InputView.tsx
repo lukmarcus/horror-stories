@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "../common";
+import { Button } from "../../ui";
 
-interface ParagraphInputProps {
+interface InputViewProps {
   /** Called on submit. Return an error string to show inline, or null on success. */
   onSubmit: (value: string) => string | null;
   /** Instruction text shown above the input */
@@ -12,7 +12,7 @@ interface ParagraphInputProps {
   errorId?: string;
 }
 
-export const ParagraphInput: React.FC<ParagraphInputProps> = ({
+export const InputView: React.FC<InputViewProps> = ({
   onSubmit,
   instruction,
   actions,
@@ -64,7 +64,6 @@ export const ParagraphInput: React.FC<ParagraphInputProps> = ({
             variant="primary"
             size="lg"
             onClick={handleSubmit}
-            className="game__input-btn"
             aria-label="Przejść do paragrafu"
           >
             PRZEJDŹ

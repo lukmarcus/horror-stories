@@ -8,8 +8,11 @@ export interface GameState {
   currentSetupStep: number;
   error: string;
   lastDiceResult: number | null;
+  diceRolls: number[]; // Individual dice results for display
+  isRollingDice: boolean;
   pendingParagraphId: string | null;
   showAccessibilityWarning: boolean;
+  showDiceView: boolean;
 }
 
 type GameAction =
@@ -25,7 +28,10 @@ type GameAction =
   | { type: "RESET_SETUP_STEP" }
   | { type: "SHOW_WARNING"; payload: string }
   | { type: "CLOSE_WARNING" }
+  | { type: "TOGGLE_DICE_VIEW" }
   | { type: "SET_DICE_RESULT"; payload: number }
+  | { type: "SET_DICE_ROLLS"; payload: number[] }
+  | { type: "SET_ROLLING_DICE"; payload: boolean }
   | { type: "CLEAR_DICE_RESULT" }
   | { type: "RESET" };
 
@@ -35,9 +41,12 @@ const initialState: GameState = {
   inputValue: "",
   showSetup: false,
   currentSetupStep: 0,
+  diceRolls: [],
+  isRollingDice: false,
   error: "",
   lastDiceResult: null,
   pendingParagraphId: null,
+  showDiceView: false,
   showAccessibilityWarning: false,
 };
 
@@ -83,10 +92,16 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         showAccessibilityWarning: false,
         pendingParagraphId: null,
       };
+    case "TOGGLE_DICE_VIEW":
+      return { ...state, showDiceView: !state.showDiceView };
     case "SET_DICE_RESULT":
       return { ...state, lastDiceResult: action.payload };
+    case "SET_DICE_ROLLS":
+      return { ...state, diceRolls: action.payload };
+    case "SET_ROLLING_DICE":
+      return { ...state, isRollingDice: action.payload };
     case "CLEAR_DICE_RESULT":
-      return { ...state, lastDiceResult: null };
+      return { ...state, lastDiceResult: null, diceRolls: [] };
     case "RESET":
       return initialState;
     default:
@@ -107,9 +122,12 @@ interface UseGameReturn {
   nextSetupStep: () => void;
   prevSetupStep: () => void;
   resetSetupStep: () => void;
+  toggleDiceView: () => void;
   showWarning: (id: string) => void;
   closeWarning: () => void;
   setDiceResult: (result: number) => void;
+  setDiceRolls: (rolls: number[]) => void;
+  setRollingDice: (isRolling: boolean) => void;
   clearDiceResult: () => void;
   reset: () => void;
 }
@@ -134,11 +152,16 @@ export function useGame(): UseGameReturn {
     nextSetupStep: () => dispatch({ type: "NEXT_SETUP_STEP" }),
     prevSetupStep: () => dispatch({ type: "PREV_SETUP_STEP" }),
     resetSetupStep: () => dispatch({ type: "RESET_SETUP_STEP" }),
+    toggleDiceView: () => dispatch({ type: "TOGGLE_DICE_VIEW" }),
     showWarning: (id: string) =>
       dispatch({ type: "SHOW_WARNING", payload: id }),
     closeWarning: () => dispatch({ type: "CLOSE_WARNING" }),
     setDiceResult: (result: number) =>
       dispatch({ type: "SET_DICE_RESULT", payload: result }),
+    setDiceRolls: (rolls: number[]) =>
+      dispatch({ type: "SET_DICE_ROLLS", payload: rolls }),
+    setRollingDice: (isRolling: boolean) =>
+      dispatch({ type: "SET_ROLLING_DICE", payload: isRolling }),
     clearDiceResult: () => dispatch({ type: "CLEAR_DICE_RESULT" }),
     reset: () => dispatch({ type: "RESET" }),
   };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../common";
+import { Button } from "../../ui";
 import "./ConditionalChoice.css";
 
 interface ConditionalChoiceProps {

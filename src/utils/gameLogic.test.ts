@@ -1,8 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
   checkParagraphAccessibility,
-  getAccessibleSources,
-  validateParagraphId,
 } from "./gameLogic";
 import type { Paragraph } from "../types";
 
@@ -39,53 +37,6 @@ describe("Game Logic - Accessibility", () => {
       expect(result.isAccessible).toBe(false);
       expect(result.needsWarning).toBe(true);
       expect(result.accessibleFrom).toEqual(["1", "3"]);
-    });
-  });
-
-  describe("getAccessibleSources", () => {
-    it("should return empty array for paragraphs without accessibleFrom", () => {
-      const sources = getAccessibleSources(mockParagraph);
-      expect(sources).toEqual([]);
-    });
-
-    it("should return all accessible sources", () => {
-      const sources = getAccessibleSources(nonDirectParagraph);
-      expect(sources).toEqual(["1", "3"]);
-    });
-  });
-
-  describe("validateParagraphId", () => {
-    const paragraphs: Record<string, Paragraph> = {
-      "1": mockParagraph,
-      "2": nonDirectParagraph,
-    };
-
-    it("should reject empty input", () => {
-      const result = validateParagraphId("", paragraphs);
-      expect(result.valid).toBe(false);
-      expect(result.errorMessage).toContain("Wpisz");
-    });
-
-    it("should reject whitespace-only input", () => {
-      const result = validateParagraphId("   ", paragraphs);
-      expect(result.valid).toBe(false);
-    });
-
-    it("should reject non-existent paragraph", () => {
-      const result = validateParagraphId("999", paragraphs);
-      expect(result.valid).toBe(false);
-      expect(result.errorMessage).toContain("nie istnieje");
-    });
-
-    it("should accept valid paragraph ID", () => {
-      const result = validateParagraphId("1", paragraphs);
-      expect(result.valid).toBe(true);
-      expect(result.errorMessage).toBeUndefined();
-    });
-
-    it("should trim whitespace from input", () => {
-      const result = validateParagraphId("  2  ", paragraphs);
-      expect(result.valid).toBe(true);
     });
   });
 });

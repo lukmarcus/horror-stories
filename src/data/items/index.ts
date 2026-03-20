@@ -68,51 +68,6 @@ const getImagePath = (
   return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
 };
 
-/**
- * Resolve image path: try .png first, fallback to .jpg
- */
-export const resolveImagePath = (
-  id: string | number,
-  type:
-    | "storyItems"
-    | "roomItems"
-    | "randomItems"
-    | "symbols"
-    | "statuses"
-    | "persons"
-    | "letters",
-): string => {
-  const extension = type === "symbols" || type === "letters" ? "png" : "jpg";
-  return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
-};
-
-/**
- * Async helper to check image existence and return correct extension
- */
-export const getResolvedImagePath = async (
-  id: string | number,
-  type:
-    | "storyItems"
-    | "roomItems"
-    | "randomItems"
-    | "symbols"
-    | "statuses"
-    | "persons"
-    | "letters",
-): Promise<string> => {
-  const extension = type === "symbols" || type === "letters" ? "png" : "jpg";
-  const path = `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
-
-  try {
-    const response = await fetch(path, { method: "HEAD" });
-    if (response.ok) return path;
-  } catch {
-    // Path not found
-  }
-
-  return path;
-};
-
 export const getStoryItem = (
   id: string,
 ): (StoryItem & { imagePath: string }) | undefined => {
@@ -138,24 +93,6 @@ export const getSymbol = (
   const symbol = symbols.find((sym) => sym.id === id);
   return symbol
     ? { ...symbol, imagePath: getImagePath(id, "symbols") }
-    : undefined;
-};
-
-export const getRandomItem = (
-  id: string,
-): (RandomItem & { imagePath: string }) | undefined => {
-  const item = randomItems.find((item) => item.id === id);
-  return item
-    ? { ...item, imagePath: getImagePath(id, "randomItems") }
-    : undefined;
-};
-
-export const getStatus = (
-  id: string,
-): (Status & { imagePath: string }) | undefined => {
-  const status = statuses.find((s) => s.id === id);
-  return status
-    ? { ...status, imagePath: getImagePath(id, "statuses") }
     : undefined;
 };
 

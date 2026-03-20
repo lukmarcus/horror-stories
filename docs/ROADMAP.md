@@ -6,27 +6,21 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.0 - MVP Release - Visual Design & Features
+## Milestone v0.1.1 - Technical Preparation
 
 ### Zakres
 
-- **Przycisk rzucania kostką na ekranie input** - Możliwość rzucenia kostką w każdym momencie setupu scenariusza
-- Kompletny design wizualny aplikacji
-- Responsywny layout na wszystkich urządzeniach
-- Koherentna paleta barw i typografia
-- Polishing UI/UX
-- Optymalizacja wydajności
-- Dokumentacja dla użytkownika
+- Szybkie refaktory przygotowujące kod do nowych scenariuszy
+- Centralizacja magicznych stringów (emoji, etykiety)
+- Czyszczenie duplikacji CSS
+- Ujednolicenie logiki handlowania zasobami
 
 ### Do zrobienia
 
-- ⏳ Dice roller button on input screen - nowy przycisk do rzucania kostką k6 na stronie inputu scenariusza
-- ⏳ Design system - kolory, typografia, komponenty
-- ⏳ Responsywność - mobile, tablet, desktop
-- ⏳ Animacje i przejścia
-- ⏳ Accessibility - WCAG compliance
-- ⏳ Optymizacja wydajności
-- ⏳ Testing i bug fixing
+- Centralize emoji constants - ⚙️, 🎲, ↻, 🖼️ do stałych
+- Extract `.container` CSS utility class - zamiast duplikacji w 5 plikach
+- Create image path helper - ujednolicić logikę ścieżek zasobów
+- Remove unused exports - cleanup martwego kodu
 
 ### Status
 
@@ -34,14 +28,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.1+ - Pozostałe scenariusze
+## Milestone v0.2.0 - Party time (Scenariusz 1)
 
 ### Zakres
 
-- Pełne implementacje dla pozostałych 3 scenariuszy:
-  - Tajemna Biblioteka
-  - Opuszczony Szpital
-  - Nocny Koszmar
+- Pełna implementacja scenariusza "Party time"
 
 ### Status
 
@@ -49,32 +40,123 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.0 - Dźwięk i muzyka
+## Milestone v0.3.0 - Eksperyment (Scenariusz 2)
 
 ### Zakres
+
+- Pełna implementacja scenariusza "Eksperyment"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.4.0 - Kolejny dzień w pracy (Scenariusz 3)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Kolejny dzień w pracy"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.5.0 - Śmiertelna zabawa (Scenariusz 4)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Śmiertelna zabawa"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.6.0 - Świnki trzy i wilk (Scenariusz 5)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Świnki trzy i wilk"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.7.0 - Do samego końca (Scenariusz 6)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Do samego końca"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.8.0 - (Nie) jesteśmy tu sami (Scenariusz 7)
+
+### Zakres
+
+- Pełna implementacja scenariusza "(Nie) jesteśmy tu sami"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.9.0 - Spotkanie (Scenariusz 8)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Spotkanie"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.10.0 - Finał (Scenariusz 9)
+
+### Zakres
+
+- Pełna implementacja scenariusza "Finał"
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Dodatkowe Features (do uwzględnienia w kolejnych wersjach)
+
+### Audio System
 
 - Odtwarzacz audio
 - Muzyka w tle dla scenariuszy
 - Dźwięki i dialogi
 
-### Status
+### Design System
 
-- ⏳ Nie rozpoczęte
+- Spójny system kolorów, typografii i komponentów
+- Pełna responsywność (mobile, tablet, desktop)
 
----
+### System Zapisu
 
-## Milestone v0.3.0+ - Zaawansowane funkcje
-
-### Zakres
-
-- Edytor scenariuszy
-- Wczytywanie własnych scenariuszy JSON
 - Zapis/odczyt postępu gry
+- Przechowywanie stanu postaci
+
+### Lokalizacja
+
 - Wsparcie dla wielu języków
-
-### Status
-
-- ⏳ Nie rozpoczęte
 
 ---
 
@@ -82,8 +164,9 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Zakres
 
-- Wszystkie 4 scenariusze w pełni działające
-- System audio i muzyki
+- Wszystkie 10 scenariuszy w pełni działające (Droga Donikąd + 9 kolejnych)
+- System audio
+- Design system w pełni wdrożony
 - Pełna dokumentacja
 - Optymizacja wydajności
 - Stabilna aplikacja gotowa do produkcji

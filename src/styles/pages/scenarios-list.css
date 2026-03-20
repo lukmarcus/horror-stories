@@ -1,7 +1,7 @@
 .scenarios-list {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: var(--spacing-2xl) var(--spacing-lg);
+  padding: var(--spacing-xl);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2xl);
@@ -32,7 +32,7 @@
 /* Grid */
 .scenarios-list__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--spacing-lg);
 }
 
@@ -44,7 +44,7 @@
     var(--color-surface-secondary) 100%
   );
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
@@ -118,7 +118,7 @@
 
 .scenarios-list__difficulty {
   padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   color: white;
