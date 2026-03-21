@@ -68,6 +68,19 @@ Cały plik jest re-eksportowany z `utils/index.ts` — co sugeruje, że to jest 
 
 Testy te przejdą nawet jeśli cały `src/` zostanie usunięty.
 
+**Baseline pokrycia (przed v0.1.1):** 4.42% instrukcji
+
+**Docelowe pokrycie po naprawie:**
+
+| Warstwa | Cel |
+| --- | --- |
+| `gameLogic.ts`, `paragraphParser.ts`, `createParagraphMap` | ≥ 90% |
+| `useGame` reducer, `useGameActions` | ≥ 80% |
+| `data/items/index.ts` | ≥ 70% |
+| `RichText`, `ParagraphView`, `InputView`, `ConditionalChoice` | ≥ 60% |
+| Strony statyczne (`About`, `Home`, `Instructions`) | ~0% (brak logiki) |
+| **Ogólny cel** | **≥ 60%** |
+
 - **Nakład**: wysoki (1–2 dni)
 - **Ryzyko**: niskie, wysoka wartość długoterminowa
 

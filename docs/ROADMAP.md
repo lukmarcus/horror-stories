@@ -20,6 +20,19 @@ Naprawa testów jako pierwsza — zanim ruszy jakakolwiek struktura, muszą istn
 - Rename `getAccumulatedParagraph` → `getDisplayParagraph`
 - Usunięcie dead `validateInput` z `useGameActions`
 
+### Kryteria akceptacji — pokrycie testami
+
+Baseline: **4.42%** (stan przed v0.1.1)
+
+| Warstwa                                                       | Cel               |
+| ------------------------------------------------------------- | ----------------- |
+| `gameLogic.ts`, `paragraphParser.ts`, `createParagraphMap`    | ≥ 90%             |
+| `useGame` reducer, `useGameActions`                           | ≥ 80%             |
+| `RichText`, `ParagraphView`, `InputView`, `ConditionalChoice` | ≥ 60%             |
+| `data/items/index.ts`                                         | ≥ 70%             |
+| Strony statyczne (`About`, `Home`, `Instructions`)            | ~0% (brak logiki) |
+| **Ogólny cel**                                                | **≥ 60%**         |
+
 ### Status
 
 - ⏳ Nie rozpoczęte
