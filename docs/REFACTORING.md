@@ -147,22 +147,36 @@ Funkcja jest eksportowana, ale `Game.tsx` jej nigdy nie wywołuje. Walidacja inp
 
 ---
 
-## Priorytetyzacja
+## Plan wdrożenia
 
-| Priorytet         | Refaktor                                      | Ocena |
-| ----------------- | --------------------------------------------- | ----- |
-| 🔥 Teraz (v0.1.1) | #1 `GameState` duplikat                       | 9/10  |
-| 🔥 Teraz (v0.1.1) | #4 martwy `scenarioLoader` i walidacje        | 8/10  |
-| 🔥 Teraz (v0.1.1) | #7 rename `getAccumulatedParagraph`           | 7/10  |
-| 🔥 Teraz (v0.1.1) | #12 dead `validateInput`                      | 5/10  |
-| 📅 v0.1.1         | #2 image URL bug w `RichText`                 | 8/10  |
-| 📅 v0.1.1         | #3 hardcoded `"77"` → konfiguracja            | 8/10  |
-| 📅 v0.1.1         | #8 duplikacja paginacji w `ParagraphView`     | 7/10  |
-| 📅 v0.1.1         | #9 centralizacja `ContentBlock` / `SetupStep` | 7/10  |
-| 📅 v0.1.1         | #10 `useGameActions` → zwykły moduł           | 6/10  |
-| 🗓️ v0.2.0+        | #5 naprawa testów                             | 8/10  |
-| 🗓️ v0.2.0+        | #6 `handleRollDice` do hooka                  | 7/10  |
-| 🗓️ v0.2.0+        | #11 ujednolicenie `<Button>`                  | 5/10  |
+### v0.1.1 — Fundament (testy + zero-risk cleanup)
+
+Testy jako pierwsze — zanim ruszy jakakolwiek struktura, muszą istnieć testy które faktycznie coś łapią.
+
+| Kolejność | Refaktor                                   | Ocena |
+| --------- | ------------------------------------------ | ----- |
+| 1         | #5 naprawa testów (prawdziwe importy)      | 8/10  |
+| 2         | #1 `GameState` duplikat w `types/index.ts` | 9/10  |
+| 3         | #4 martwy `scenarioLoader` i walidacje     | 8/10  |
+| 4         | #7 rename `getAccumulatedParagraph`        | 7/10  |
+| 5         | #12 dead `validateInput`                   | 5/10  |
+
+### v0.1.2 — Strukturalne refaktory (z safety netem po v0.1.1)
+
+| Kolejność | Refaktor                                       | Ocena |
+| --------- | ---------------------------------------------- | ----- |
+| 1         | #3 hardcoded `"77"` → konfiguracja scenariusza | 8/10  |
+| 2         | #9 centralizacja `ContentBlock` / `SetupStep`  | 7/10  |
+| 3         | #10 `useGameActions` → zwykły moduł            | 6/10  |
+| 4         | #8 duplikacja paginacji w `ParagraphView`      | 7/10  |
+| 5         | #11 ujednolicenie `<Button>`                   | 5/10  |
+
+### v0.1.3 — Architektura (najbardziej ryzykowne zmiany)
+
+| Kolejność | Refaktor                                     | Ocena |
+| --------- | -------------------------------------------- | ----- |
+| 1         | #2 naprawa image URL w `RichText`            | 8/10  |
+| 2         | #6 `handleRollDice` do hooka / `useDiceRoll` | 7/10  |
 
 ---
 

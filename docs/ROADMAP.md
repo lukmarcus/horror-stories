@@ -6,21 +6,56 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.1 - Technical Preparation
+## Milestone v0.1.1 - Fundament (testy + zero-risk cleanup)
 
 ### Zakres
 
-- Szybkie refaktory przygotowujące kod do nowych scenariuszy
-- Centralizacja magicznych stringów (emoji, etykiety)
-- Czyszczenie duplikacji CSS
-- Ujednolicenie logiki handlowania zasobami
+Naprawa testów jako pierwsza — zanim ruszy jakakolwiek struktura, muszą istnieć testy które faktycznie importują i weryfikują prawdziwy kod. Następnie szybkie usunięcie dead code i dezinformujących typów.
 
 ### Do zrobienia
 
-- Centralize emoji constants - ⚙️, 🎲, ↻, 🖼️ do stałych
-- Extract `.container` CSS utility class - zamiast duplikacji w 5 plikach
-- Create image path helper - ujednolicić logikę ścieżek zasobów
-- Remove unused exports - cleanup martwego kodu
+- Naprawa testów — zastąpienie inline re-implementacji prawdziwymi importami z `src/`
+- Usunięcie zduplikowanego `GameState` z `types/index.ts`
+- Usunięcie martwego `scenarioLoader.ts` i błędnych walidacji
+- Rename `getAccumulatedParagraph` → `getDisplayParagraph`
+- Usunięcie dead `validateInput` z `useGameActions`
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.1.2 - Strukturalne refaktory
+
+### Zakres
+
+Strukturalne zmiany możliwe dzięki safety netowi z v0.1.1. Ujednolicenie typów, ekstrakcja konfiguracji, usunięcie duplikacji.
+
+### Do zrobienia
+
+- Ekstrakcja hardcoded `"77"` (paragraf startowy) do konfiguracji scenariusza
+- Centralizacja `ContentBlock` / `SetupStep` (trzy osobne definicje tej samej struktury)
+- Konwersja `useGameActions` na zwykły moduł (brak logiki hookowej)
+- Usunięcie duplikacji paginacji w `ParagraphView`
+- Ujednolicenie `<Button>` vs raw `<button className="...">` w `ParagraphView`
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.1.3 - Architektura
+
+### Zakres
+
+Najbardziej ryzykowne zmiany, wymagające starannego testowania.
+
+### Do zrobienia
+
+- Naprawa ścieżek obrazów w `RichText.tsx` (dwa conflicting URL patterns)
+- Przeniesienie logiki `handleRollDice` z `Game.tsx` do hooka / `useDiceRoll`
 
 ### Status
 
