@@ -11,7 +11,9 @@ describe("InputView", () => {
   });
 
   it("should render instruction text when provided", () => {
-    render(<InputView onSubmit={vi.fn()} instruction="Wpisz numer paragrafu" />);
+    render(
+      <InputView onSubmit={vi.fn()} instruction="Wpisz numer paragrafu" />,
+    );
     expect(screen.getByText("Wpisz numer paragrafu")).toBeDefined();
   });
 
@@ -75,12 +77,7 @@ describe("InputView", () => {
   });
 
   it("should render actions slot when provided", () => {
-    render(
-      <InputView
-        onSubmit={vi.fn()}
-        actions={<button>Powrót</button>}
-      />
-    );
+    render(<InputView onSubmit={vi.fn()} actions={<button>Powrót</button>} />);
     expect(screen.getByText("Powrót")).toBeDefined();
   });
 });

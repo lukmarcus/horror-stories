@@ -80,7 +80,7 @@ export const Game: React.FC = () => {
   }, [game.state.currentParagraphId]);
 
   // Helper: Get variant content - shows only the last variant in path, not accumulated
-  const getAccumulatedParagraph = (): typeof currentParagraph | null => {
+  const getDisplayParagraph = (): typeof currentParagraph | null => {
     if (!currentParagraph) return null;
 
     // If no variant selected, show main paragraph
@@ -110,7 +110,7 @@ export const Game: React.FC = () => {
     };
   };
 
-  const displayParagraph = getAccumulatedParagraph();
+  const displayParagraph = getDisplayParagraph();
 
   const handleMainInputSubmit = (value: string): string | null => {
     const result = gameActions.jumpToParagraph(value, paragraphs);

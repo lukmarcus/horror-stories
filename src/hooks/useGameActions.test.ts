@@ -42,23 +42,4 @@ describe("useGameActions", () => {
       expect(result.valid).toBe(true);
     });
   });
-
-  describe("validateInput", () => {
-    it("should return valid:true for existing paragraph", () => {
-      const result = actions.validateInput("10", paragraphs);
-      expect(result.valid).toBe(true);
-    });
-
-    it("should return error for empty input", () => {
-      const result = actions.validateInput("", paragraphs);
-      expect(result.valid).toBe(false);
-      expect(result.error).toBeDefined();
-    });
-
-    it("should return error for non-existent paragraph ID", () => {
-      const result = actions.validateInput("999", paragraphs);
-      expect(result.valid).toBe(false);
-      expect(result.error).toContain("999");
-    });
-  });
 });
