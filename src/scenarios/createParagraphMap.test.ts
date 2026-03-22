@@ -45,12 +45,12 @@ describe("createParagraphMap", () => {
       {
         id: "1",
         text: "test",
-        content: [{ type: "text", html: "Block 1", spacing: "lg" }],
+        content: [{ type: "text", html: "Block 1", spacing: "none" as const }],
       },
     ];
     const map = createParagraphMap(paragraphs);
     const lastBlock = map["1"].content![0];
-    expect(lastBlock.spacing).toBe("lg");
+    expect(lastBlock.spacing).toBe("none");
   });
 
   it("should add spacing:none to last block of last page in contentPages", () => {

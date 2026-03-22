@@ -1,6 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import React from "react";
 import { InputView } from "./InputView";
 
 describe("InputView", () => {
@@ -19,7 +18,7 @@ describe("InputView", () => {
 
   it("should not render instruction when not provided", () => {
     render(<InputView onSubmit={vi.fn()} />);
-    expect(screen.queryByClass?.("game__input-instruction")).toBeUndefined();
+    expect(document.querySelector(".game__input-instruction")).toBeNull();
   });
 
   it("should call onSubmit with trimmed input value on button click", () => {
