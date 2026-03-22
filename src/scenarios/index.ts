@@ -26,7 +26,7 @@ export const SCENARIOS: Record<string, Scenario> = Object.fromEntries(
  * Supports single IDs and array of IDs - creates entries for each ID
  * Automatically adds spacing: "none" to the last content block in each paragraph
  */
-const createParagraphMap = (
+export const createParagraphMap = (
   paragraphs: Paragraph[],
 ): Record<string, Paragraph> => {
   const map: Record<string, Paragraph> = {};
@@ -43,10 +43,7 @@ const createParagraphMap = (
       const lastPageIndex = paragraph.contentPages.length - 1;
       const lastPage = paragraph.contentPages[lastPageIndex];
 
-      if (
-        Array.isArray(lastPage) &&
-        lastPage.length > 0
-      ) {
+      if (Array.isArray(lastPage) && lastPage.length > 0) {
         const lastBlockIndex = lastPage.length - 1;
         const lastBlock = lastPage[lastBlockIndex];
 
@@ -79,9 +76,7 @@ const createParagraphMap = (
       }
     }
 
-    const ids = Array.isArray(paragraph.id)
-      ? paragraph.id
-      : [paragraph.id];
+    const ids = Array.isArray(paragraph.id) ? paragraph.id : [paragraph.id];
     for (const id of ids) {
       map[id.toString()] = paragraph;
     }

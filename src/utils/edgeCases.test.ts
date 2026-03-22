@@ -1,4 +1,6 @@
 import { describe, it, expect } from "vitest";
+import { checkParagraphAccessibility } from "./gameLogic";
+import type { Paragraph } from "../types";
 
 describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
   describe("DiceRoller - Advanced Flows", () => {
@@ -69,60 +71,55 @@ describe("Extended Test Suite - Edge Cases & Advanced Flows", () => {
 
   describe("Paragraph Accessibility - Complex Scenarios", () => {
     it("should handle paragraph accessible from multiple sources", () => {
-      const paragraph = {
+      const paragraph: Paragraph = {
         id: "5",
         text: "Complex paragraph",
         accessibleFrom: ["1", "2", "3", "4"],
       };
-
-      const sources = paragraph.accessibleFrom;
-      expect(sources).toHaveLength(4);
-      expect(sources).toContain("1");
-      expect(sources).toContain("4");
+      const result = checkParagraphAccessibility("5", paragraph);
+      expect(result.accessibleFrom).toHaveLength(4);
+      expect(result.accessibleFrom).toContain("1");
+      expect(result.accessibleFrom).toContain("4");
     });
 
     it("should validate chain of accessible paragraphs", () => {
-      const paragraphs: Record<string, { accessibleFrom?: string[] }> = {
-        "1": {},
-        "2": { accessibleFrom: ["1"] },
-        "3": { accessibleFrom: ["2"] },
+      const p1: Paragraph = { id: "1", text: "Direct" };
+      const p2: Paragraph = {
+        id: "2",
+        text: "Restricted",
+        accessibleFrom: ["1"],
+      };
+      const p3: Paragraph = {
+        id: "3",
+        text: "Restricted",
+        accessibleFrom: ["2"],
       };
 
-      // Can we trace 1 -> 2 -> 3?
-      const p1Accessible = true; // Direct
-      const p2Accessible =
-        p1Accessible && paragraphs["2"]?.accessibleFrom?.includes("1");
-      const p3Accessible =
-        p2Accessible && paragraphs["3"]?.accessibleFrom?.includes("2");
-
-      expect(p1Accessible).toBe(true);
-      expect(p2Accessible).toBe(true);
-      expect(p3Accessible).toBe(true);
+      expect(checkParagraphAccessibility("1", p1).isAccessible).toBe(true);
+      expect(checkParagraphAccessibility("2", p2).needsWarning).toBe(true);
+      expect(checkParagraphAccessibility("3", p3).needsWarning).toBe(true);
     });
 
-    it("should reject circular accessibility references", () => {
-      // This would be bad data, but should be detected
-      const paragraph = {
+    it("should detect self-referential accessibleFrom (circular reference)", () => {
+      const paragraph: Paragraph = {
         id: "1",
-        accessibleFrom: ["1"], // Self-referential
+        text: "Self-referential",
+        accessibleFrom: ["1"],
       };
-
-      const idStr = Array.isArray(paragraph.id)
-        ? paragraph.id[0]
-        : paragraph.id;
-      const hasSelfReference =
-        paragraph.accessibleFrom && paragraph.accessibleFrom.includes(idStr);
-      expect(hasSelfReference).toBe(true);
+      const result = checkParagraphAccessibility("1", paragraph);
+      expect(result.needsWarning).toBe(true);
+      expect(result.accessibleFrom).toContain("1");
     });
 
-    it("should handle empty accessibleFrom array", () => {
-      const paragraph = {
+    it("should handle empty accessibleFrom array as direct paragraph", () => {
+      const paragraph: Paragraph = {
         id: "X",
+        text: "Empty list",
         accessibleFrom: [],
       };
-
-      const canAccess = paragraph.accessibleFrom.length > 0;
-      expect(canAccess).toBe(false);
+      const result = checkParagraphAccessibility("X", paragraph);
+      expect(result.isAccessible).toBe(true);
+      expect(result.needsWarning).toBe(false);
     });
   });
 

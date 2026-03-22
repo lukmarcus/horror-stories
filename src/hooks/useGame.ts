@@ -35,7 +35,7 @@ type GameAction =
   | { type: "CLEAR_DICE_RESULT" }
   | { type: "RESET" };
 
-const initialState: GameState = {
+export const initialState: GameState = {
   currentParagraphId: null,
   variantPath: [],
   inputValue: "",
@@ -50,7 +50,7 @@ const initialState: GameState = {
   showAccessibilityWarning: false,
 };
 
-function gameReducer(state: GameState, action: GameAction): GameState {
+export function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case "SET_PARAGRAPH":
       return {

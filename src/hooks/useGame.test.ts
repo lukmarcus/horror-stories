@@ -1,221 +1,216 @@
 import { describe, it, expect } from "vitest";
+import { gameReducer, initialState } from "./useGame";
 
-describe("useGame - Variant Path Management", () => {
-  it("should add variant to path", () => {
-    let variantPath: string[] = [];
-    const addVariant = (id: string) => {
-      variantPath = [...variantPath, id];
-    };
+describe("gameReducer", () => {
+  describe("SET_PARAGRAPH", () => {
+    it("should set currentParagraphId and reset variantPath and error", () => {
+      const state = { ...initialState, variantPath: ["jessica"], error: "err" };
+      const result = gameReducer(state, {
+        type: "SET_PARAGRAPH",
+        payload: "42",
+      });
+      expect(result.currentParagraphId).toBe("42");
+      expect(result.variantPath).toEqual([]);
+      expect(result.error).toBe("");
+    });
 
-    addVariant("jessica");
-    expect(variantPath).toEqual(["jessica"]);
-
-    addVariant("patrick-lezy");
-    expect(variantPath).toEqual(["jessica", "patrick-lezy"]);
+    it("should accept null payload", () => {
+      const state = { ...initialState, currentParagraphId: "1" };
+      const result = gameReducer(state, {
+        type: "SET_PARAGRAPH",
+        payload: null,
+      });
+      expect(result.currentParagraphId).toBeNull();
+    });
   });
 
-  it("should clear variant path", () => {
-    let variantPath = ["jessica", "patrick-lezy"];
-    const clearVariants = () => {
-      variantPath = [];
-    };
+  describe("ADD_VARIANT", () => {
+    it("should append variant to path", () => {
+      const state = { ...initialState, variantPath: ["jessica"] };
+      const result = gameReducer(state, {
+        type: "ADD_VARIANT",
+        payload: "option-a",
+      });
+      expect(result.variantPath).toEqual(["jessica", "option-a"]);
+    });
 
-    clearVariants();
-    expect(variantPath).toEqual([]);
+    it("should start from empty path", () => {
+      const result = gameReducer(initialState, {
+        type: "ADD_VARIANT",
+        payload: "jessica",
+      });
+      expect(result.variantPath).toEqual(["jessica"]);
+    });
   });
 
-  it("should maintain variant path order", () => {
-    let variantPath: string[] = [];
-    const addVariant = (id: string) => {
-      variantPath = [...variantPath, id];
-    };
-
-    addVariant("jessica");
-    addVariant("option-a");
-    addVariant("option-b");
-
-    expect(variantPath[0]).toBe("jessica");
-    expect(variantPath[1]).toBe("option-a");
-    expect(variantPath[2]).toBe("option-b");
+  describe("CLEAR_VARIANTS", () => {
+    it("should reset variantPath to empty array", () => {
+      const state = { ...initialState, variantPath: ["jessica", "patrick"] };
+      const result = gameReducer(state, { type: "CLEAR_VARIANTS" });
+      expect(result.variantPath).toEqual([]);
+    });
   });
 
-  it("should reset variantPath when navigating to different paragraph", () => {
-    let currentParagraphId: string | null = "9-test";
-    let variantPath = ["jessica", "patrick-lezy"];
+  describe("SET_INPUT / SET_ERROR / CLEAR_ERROR", () => {
+    it("SET_INPUT should update inputValue", () => {
+      const result = gameReducer(initialState, {
+        type: "SET_INPUT",
+        payload: "42",
+      });
+      expect(result.inputValue).toBe("42");
+    });
 
-    // Simulate SET_PARAGRAPH action
-    const setParagraph = (id: string | null) => {
-      currentParagraphId = id;
-      variantPath = []; // Reset variants on navigation
-    };
+    it("SET_ERROR should set error string", () => {
+      const result = gameReducer(initialState, {
+        type: "SET_ERROR",
+        payload: "Nie istnieje",
+      });
+      expect(result.error).toBe("Nie istnieje");
+    });
 
-    setParagraph("40");
-    expect(currentParagraphId).toBe("40");
-    expect(variantPath).toEqual([]);
+    it("CLEAR_ERROR should reset error to empty string", () => {
+      const state = { ...initialState, error: "Błąd" };
+      const result = gameReducer(state, { type: "CLEAR_ERROR" });
+      expect(result.error).toBe("");
+    });
   });
 
-  it("should track variant path independently from paragraph changes", () => {
-    let state = {
-      currentParagraphId: "9-test",
-      variantPath: [] as string[],
-    };
+  describe("Setup steps", () => {
+    it("TOGGLE_SETUP should flip showSetup", () => {
+      expect(
+        gameReducer(initialState, { type: "TOGGLE_SETUP" }).showSetup,
+      ).toBe(true);
+      const open = { ...initialState, showSetup: true };
+      expect(gameReducer(open, { type: "TOGGLE_SETUP" }).showSetup).toBe(false);
+    });
 
-    // Navigate to variant
-    state.variantPath.push("jessica");
-    expect(state.variantPath).toContain("jessica");
+    it("NEXT_SETUP_STEP should increment currentSetupStep", () => {
+      const result = gameReducer(initialState, { type: "NEXT_SETUP_STEP" });
+      expect(result.currentSetupStep).toBe(1);
+    });
 
-    // Add another variant level
-    state.variantPath.push("patrick-lezy");
-    expect(state.variantPath).toHaveLength(2);
+    it("PREV_SETUP_STEP should decrement but not go below 0", () => {
+      const atOne = { ...initialState, currentSetupStep: 1 };
+      expect(
+        gameReducer(atOne, { type: "PREV_SETUP_STEP" }).currentSetupStep,
+      ).toBe(0);
+      expect(
+        gameReducer(initialState, { type: "PREV_SETUP_STEP" }).currentSetupStep,
+      ).toBe(0);
+    });
 
-    // Paragraph change should clear variants
-    state = {
-      ...state,
-      currentParagraphId: "40",
-      variantPath: [],
-    };
-
-    expect(state.currentParagraphId).toBe("40");
-    expect(state.variantPath).toHaveLength(0);
+    it("RESET_SETUP_STEP should return to 0", () => {
+      const state = { ...initialState, currentSetupStep: 5 };
+      expect(
+        gameReducer(state, { type: "RESET_SETUP_STEP" }).currentSetupStep,
+      ).toBe(0);
+    });
   });
 
-  it("should not accumulate variants from previous paragraphs", () => {
-    // Scenario: user goes through variants in 9-test, then navigates to paragraph 40
-    let state = {
-      currentParagraphId: "9-test",
-      variantPath: ["jessica", "patrick-lezy"],
-    };
+  describe("Accessibility warning", () => {
+    it("SHOW_WARNING should set showAccessibilityWarning and pendingParagraphId", () => {
+      const result = gameReducer(initialState, {
+        type: "SHOW_WARNING",
+        payload: "15",
+      });
+      expect(result.showAccessibilityWarning).toBe(true);
+      expect(result.pendingParagraphId).toBe("15");
+    });
 
-    // Navigate away triggers SET_PARAGRAPH which resets variants
-    state = {
-      currentParagraphId: "40",
-      variantPath: [],
-    };
-
-    // Now if paragraph 40 doesn't have variants, accumulation shouldn't happen
-    const paragraphHasVariants = false; // paragraph 40 has no variants
-    const shouldAccumulate =
-      state.variantPath.length > 0 && paragraphHasVariants;
-
-    expect(shouldAccumulate).toBe(false);
-  });
-});
-
-describe("Game State - Browser History & URL (v0.0.12)", () => {
-  it("should sync paragraph ID to URL state", () => {
-    const getUrlParam = (paragraphId: string) => `?par=${paragraphId}`;
-
-    const url1 = getUrlParam("9");
-    const url2 = getUrlParam("26");
-
-    expect(url1).toBe("?par=9");
-    expect(url2).toBe("?par=26");
-  });
-
-  it("should extract paragraph ID from URL parameter", () => {
-    const extractParamFromUrl = (urlParam: string): string | null => {
-      const match = urlParam.match(/\?par=(.+)/);
-      return match ? match[1] : null;
-    };
-
-    expect(extractParamFromUrl("?par=9")).toBe("9");
-    expect(extractParamFromUrl("?par=26")).toBe("26");
-    expect(extractParamFromUrl("")).toBeNull();
-    expect(extractParamFromUrl("?page=9")).toBeNull();
-  });
-
-  it("should maintain URL state when navigating", () => {
-    let currentState = {
-      paragraphId: "1",
-      url: "?par=1",
-    };
-
-    const navigate = (id: string) => {
-      currentState = {
-        paragraphId: id,
-        url: `?par=${id}`,
+    it("CLOSE_WARNING should clear warning state", () => {
+      const state = {
+        ...initialState,
+        showAccessibilityWarning: true,
+        pendingParagraphId: "15",
       };
-    };
-
-    navigate("9");
-    expect(currentState.paragraphId).toBe("9");
-    expect(currentState.url).toBe("?par=9");
-
-    navigate("26");
-    expect(currentState.paragraphId).toBe("26");
-    expect(currentState.url).toBe("?par=26");
+      const result = gameReducer(state, { type: "CLOSE_WARNING" });
+      expect(result.showAccessibilityWarning).toBe(false);
+      expect(result.pendingParagraphId).toBeNull();
+    });
   });
 
-  it("should update URL when variant path changes", () => {
-    let gameState = {
-      paragraphId: "9",
-      variantPath: [] as string[],
-      url: "?par=9",
-    };
+  describe("Dice", () => {
+    it("TOGGLE_DICE_VIEW should flip showDiceView", () => {
+      expect(
+        gameReducer(initialState, { type: "TOGGLE_DICE_VIEW" }).showDiceView,
+      ).toBe(true);
+    });
 
-    // Add variant
-    gameState.variantPath.push("jessica");
-    // URL still tracks current paragraph, not variant path
-    expect(gameState.url).toBe("?par=9");
+    it("SET_DICE_RESULT should set lastDiceResult", () => {
+      const result = gameReducer(initialState, {
+        type: "SET_DICE_RESULT",
+        payload: 5,
+      });
+      expect(result.lastDiceResult).toBe(5);
+    });
 
-    // Navigate to next paragraph resets variant path
-    gameState = {
-      paragraphId: "26",
-      variantPath: [],
-      url: "?par=26",
-    };
+    it("SET_DICE_ROLLS should set diceRolls array", () => {
+      const result = gameReducer(initialState, {
+        type: "SET_DICE_ROLLS",
+        payload: [3, 5],
+      });
+      expect(result.diceRolls).toEqual([3, 5]);
+    });
 
-    expect(gameState.url).toBe("?par=26");
+    it("SET_ROLLING_DICE should set isRollingDice flag", () => {
+      expect(
+        gameReducer(initialState, { type: "SET_ROLLING_DICE", payload: true })
+          .isRollingDice,
+      ).toBe(true);
+    });
+
+    it("CLEAR_DICE_RESULT should reset lastDiceResult and diceRolls", () => {
+      const state = { ...initialState, lastDiceResult: 4, diceRolls: [2, 4] };
+      const result = gameReducer(state, { type: "CLEAR_DICE_RESULT" });
+      expect(result.lastDiceResult).toBeNull();
+      expect(result.diceRolls).toEqual([]);
+    });
   });
 
-  it("should support browser back button via URL history", () => {
-    const navigationHistory = [
-      { id: "1", url: "?par=1" },
-      { id: "9", url: "?par=9" },
-      { id: "26", url: "?par=26" },
-    ];
-
-    let currentIndex = navigationHistory.length - 1;
-    expect(navigationHistory[currentIndex].id).toBe("26");
-
-    // Go back
-    currentIndex--;
-    expect(navigationHistory[currentIndex].id).toBe("9");
-
-    // Go back again
-    currentIndex--;
-    expect(navigationHistory[currentIndex].id).toBe("1");
+  describe("RESET", () => {
+    it("should return initialState", () => {
+      const dirty = {
+        ...initialState,
+        currentParagraphId: "99",
+        variantPath: ["jessica"],
+        error: "err",
+        showSetup: true,
+        currentSetupStep: 3,
+        lastDiceResult: 6,
+      };
+      const result = gameReducer(dirty, { type: "RESET" });
+      expect(result.currentParagraphId).toBeNull();
+      expect(result.variantPath).toEqual([]);
+      expect(result.error).toBe("");
+      expect(result.showSetup).toBe(false);
+      expect(result.currentSetupStep).toBe(0);
+      expect(result.lastDiceResult).toBeNull();
+    });
   });
 
-  it("should prevent navigation to invalid paragraph from URL", () => {
-    const validateParagraphId = (id: string): boolean => {
-      const parsed = parseInt(id, 10);
-      return !isNaN(parsed) && parsed > 0;
-    };
+  describe("SET_PARAGRAPH clears variants (integration)", () => {
+    it("should add variant to path", () => {
+      let variantPath: string[] = [];
+      const addVariant = (id: string) => {
+        variantPath = [...variantPath, id];
+      };
 
-    expect(validateParagraphId("9")).toBe(true);
-    expect(validateParagraphId("26")).toBe(true);
-    expect(validateParagraphId("abc")).toBe(false);
-    expect(validateParagraphId("0")).toBe(false);
-    expect(validateParagraphId("-5")).toBe(false);
-  });
+      addVariant("jessica");
+      expect(variantPath).toEqual(["jessica"]);
 
-  it("should handle shared URL across users", () => {
-    // User A sends link to User B
-    const shareLink = (paragraphId: string): string => {
-      const baseUrl = "https://horror-stories.app";
-      return `${baseUrl}?par=${paragraphId}`;
-    };
+      const s1 = gameReducer(initialState, {
+        type: "ADD_VARIANT",
+        payload: "jessica",
+      });
+      const s2 = gameReducer(s1, {
+        type: "ADD_VARIANT",
+        payload: "patrick-lezy",
+      });
+      expect(s2.variantPath).toEqual(["jessica", "patrick-lezy"]);
 
-    const linkFromUserA = shareLink("26");
-    expect(linkFromUserA).toBe("https://horror-stories.app?par=26");
-
-    // User B opens the link - should navigate to same paragraph
-    const extractFromLink = (url: string): string | null => {
-      const match = url.match(/\?par=(.+)/);
-      return match ? match[1] : null;
-    };
-
-    expect(extractFromLink(linkFromUserA)).toBe("26");
+      const s3 = gameReducer(s2, { type: "SET_PARAGRAPH", payload: "40" });
+      expect(s3.currentParagraphId).toBe("40");
+      expect(s3.variantPath).toEqual([]);
+    });
   });
 });
