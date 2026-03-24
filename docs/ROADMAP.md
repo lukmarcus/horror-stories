@@ -35,7 +35,7 @@ Baseline: **4.42%** (stan przed v0.1.1)
 
 ### Status
 
-- ⏳ Nie rozpoczęte
+- ✅ Ukończone — pokrycie 4.42% → 62.14% (298 testów, 22 pliki)
 
 ---
 
