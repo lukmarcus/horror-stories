@@ -1,11 +1,11 @@
 # Horror Stories - Aplikacja Towarzysząca
 
-Interaktywna aplikacja webowa dla gry planszowej Horror Stories, stworzona w React 18 + TypeScript + Vite. Aplikacja umożliwia zarządzanie scenariuszami, śledzenie stanu gry i bogatą narracyjną doświadczenie.
+Interaktywna aplikacja webowa dla gry planszowej Horror Stories, stworzona w React 19 + TypeScript + Vite. Aplikacja umożliwia zarządzanie scenariuszami, śledzenie stanu gry i bogatą narracyjną doświadczenie.
 
 ## Informacje o projekcie
 
 - **Nazwa**: Horror Stories
-- **Wersja**: 0.1.0
+- **Wersja**: 0.1.1
 - **Autor**: Marek Szumny
 - **Licencja**: MIT
 - **Opis**: Aplikacja towarzysząca grze planszowej Horror Stories
@@ -22,7 +22,7 @@ Interaktywna aplikacja webowa dla gry planszowej Horror Stories, stworzona w Rea
 
 ## Stack technologiczny
 
-- **Frontend**: React 18+
+- **Frontend**: React 19
 - **Narzędzie budowania**: Vite
 - **Język**: TypeScript (tryb strict)
 - **Routing**: React Router v7
@@ -47,9 +47,9 @@ Projekt jest zorganizowany wg. czytelnych warstw:
 
 - **Type Safety**: Wszystkie typy w TypeScript strict mode
 - **Game Logic**: Oddzielona od komponentów (src/utils/gameLogic.ts)
-- **Data-driven**: Dane gry w src/data/scenarios.ts, nie w komponentach
+  - **Data-driven**: Dane gry w src/scenarios/ i src/data/items/, nie w komponentach
 - **Accessible**: Walidacja dostępności paragrafów z warningami użytkownika
-- **Tested**: 151+ testów pokrywających logikę gry, komponenty i utility functions
+- **Tested**: 298+ testów pokrywających logikę gry, komponenty i utility functions (62% coverage)
 
 ## Struktura projektu
 
@@ -121,6 +121,5 @@ npm run preview
 
 ## Dokumentacja
 
-- [SPECIFICATION.md](docs/SPECIFICATION.md) - Szczegółowa specyfikacja funkcjonalności
 - [ROADMAP.md](docs/ROADMAP.md) - Plan rozwoju i wersji
 - [CHANGELOG.md](docs/CHANGELOG.md) - Historia zmian

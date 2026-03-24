@@ -6,39 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.1 - Fundament (testy + zero-risk cleanup)
-
-### Zakres
-
-Naprawa testów jako pierwsza — zanim ruszy jakakolwiek struktura, muszą istnieć testy które faktycznie importują i weryfikują prawdziwy kod. Następnie szybkie usunięcie dead code i dezinformujących typów.
-
-### Do zrobienia
-
-- Naprawa testów — zastąpienie inline re-implementacji prawdziwymi importami z `src/`
-- Usunięcie zduplikowanego `GameState` z `types/index.ts`
-- Usunięcie martwego `scenarioLoader.ts` i błędnych walidacji
-- Rename `getAccumulatedParagraph` → `getDisplayParagraph`
-- Usunięcie dead `validateInput` z `useGameActions`
-
-### Kryteria akceptacji — pokrycie testami
-
-Baseline: **4.42%** (stan przed v0.1.1)
-
-| Warstwa                                                       | Cel               |
-| ------------------------------------------------------------- | ----------------- |
-| `gameLogic.ts`, `paragraphParser.ts`, `createParagraphMap`    | ≥ 90%             |
-| `useGame` reducer, `useGameActions`                           | ≥ 80%             |
-| `RichText`, `ParagraphView`, `InputView`, `ConditionalChoice` | ≥ 60%             |
-| `data/items/index.ts`                                         | ≥ 70%             |
-| Strony statyczne (`About`, `Home`, `Instructions`)            | ~0% (brak logiki) |
-| **Ogólny cel**                                                | **≥ 60%**         |
-
-### Status
-
-- ✅ Ukończone — pokrycie 4.42% → 62.14% (298 testów, 22 pliki)
-
----
-
 ## Milestone v0.1.2 - Strukturalne refaktory
 
 ### Zakres
@@ -196,6 +163,12 @@ Najbardziej ryzykowne zmiany, wymagające starannego testowania.
 
 - Spójny system kolorów, typografii i komponentów
 - Pełna responsywność (mobile, tablet, desktop)
+
+### Własne scenariusze
+
+- Upload własnego pliku JSON z paragrafami
+- Scenariusz dostępny w bieżącej sesji (bez zapisu na serwerze)
+- Edytor scenariuszy (osobny projekt, długoterminowo)
 
 ### System Zapisu
 

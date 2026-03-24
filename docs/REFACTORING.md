@@ -1,19 +1,10 @@
-# REFACTORING.md - Horror Stories v0.1.1
+# REFACTORING.md - Horror Stories
 
-Analiza techniczna kodu i propozycje refaktorów przygotowane przed wdrożeniem kolejnych scenariuszy.
-
----
-
-## Propozycje refaktorów (ocena 0–10)
-
-### 1. Usunięcie zduplikowanego `GameState` z `types/index.ts` — 9/10
-
-`src/types/index.ts` eksportuje `GameState` z polami `{history, isComplete, scenarioId, currentParagraphId}`, który nigdzie nie jest używany. `src/hooks/useGame.ts` definiuje własny `GameState` z zupełnie inną strukturą (12 pól). Ta kolizja nazw aktywnie myli — ktoś czytając `types/index.ts` myśli, że rozumie stan gry, a czyta fikcję.
-
-- **Nakład**: 5 minut
-- **Ryzyko**: zero
+Pendujące refaktory techniczne. Ukończone trafiają do CHANGELOG.md.
 
 ---
+
+## Otwarte refaktory
 
 ### 2. Naprawa ścieżek obrazów w `RichText.tsx` — 8/10
 
@@ -43,64 +34,12 @@ Każdy nowy scenariusz z innym numerem startowym wymaga edycji kodu komponentów
 
 ---
 
-### 4. Usunięcie martwego `scenarioLoader.ts` i błędnych walidacji — 8/10
-
-- `loadScenario()` fetchuje z `/scenarios/${id}.json` (endpoint nie istnieje)
-- `loadScenarios()` zwraca `[]`
-- `validateParagraph` uznaje każdy realny paragraf za invalid (sprawdza `paragraph.text` jako required, ale dane używają `contentPages`/`content`)
-
-Cały plik jest re-eksportowany z `utils/index.ts` — co sugeruje, że to jest architektura projektu. To dezinformacja.
-
-- **Nakład**: 15 minut
-- **Ryzyko**: zero (dead code)
-
----
-
-### 5. Naprawa testów — importowanie kodu który testują — 8/10
-
-~80% testów re-implementuje logikę inline zamiast importować prawdziwy kod. Żaden z poniższych plików nie ma `import` z `src/`:
-
-- `edgeCases.test.ts`
-- `paragraphAccessibility.test.ts`
-- `variantParagraphs.test.ts`
-- `ConditionalChoice.test.ts`
-- `layoutFlags.test.ts`
-
-Testy te przejdą nawet jeśli cały `src/` zostanie usunięty.
-
-**Baseline pokrycia (przed v0.1.1):** 4.42% instrukcji
-
-**Docelowe pokrycie po naprawie:**
-
-| Warstwa | Cel |
-| --- | --- |
-| `gameLogic.ts`, `paragraphParser.ts`, `createParagraphMap` | ≥ 90% |
-| `useGame` reducer, `useGameActions` | ≥ 80% |
-| `data/items/index.ts` | ≥ 70% |
-| `RichText`, `ParagraphView`, `InputView`, `ConditionalChoice` | ≥ 60% |
-| Strony statyczne (`About`, `Home`, `Instructions`) | ~0% (brak logiki) |
-| **Ogólny cel** | **≥ 60%** |
-
-- **Nakład**: wysoki (1–2 dni)
-- **Ryzyko**: niskie, wysoka wartość długoterminowa
-
----
-
 ### 6. Przeniesienie logiki `handleRollDice` z `Game.tsx` do hooka — 7/10
 
 Animacja kości (pętla `setTimeout` × 10, `Math.random()`, aktualizacje stanu) siedzi bezpośrednio w page component. Powinna trafić do `useGame` jako akcja `ROLL_DICE` + efekt, albo do osobnego `useDiceRoll`.
 
 - **Nakład**: 45 minut
 - **Ryzyko**: średnie (logika animacji + testowanie)
-
----
-
-### 7. Rename `getAccumulatedParagraph` → `getDisplayParagraph` — 7/10
-
-Funkcja **nie** akumuluje — zwraca tylko ostatni wariant ze ścieżki. Komentarz w kodzie explicite mówi, że nazwa jest myląca. Każdy kto szuka logiki "akumulacji" traci czas.
-
-- **Nakład**: 2 minuty
-- **Ryzyko**: zero
 
 ---
 
@@ -151,28 +90,7 @@ Komponent `Button` istnieje właśnie po to, żeby nie pisać `className="button
 
 ---
 
-### 12. Usunięcie `validateInput` z `useGameActions` — 5/10
-
-Funkcja jest eksportowana, ale `Game.tsx` jej nigdy nie wywołuje. Walidacja inputu odbywa się bezpośrednio w `InputView`. Dead code w publicznym API hooka.
-
-- **Nakład**: 5 minut
-- **Ryzyko**: zero
-
----
-
 ## Plan wdrożenia
-
-### v0.1.1 — Fundament (testy + zero-risk cleanup)
-
-Testy jako pierwsze — zanim ruszy jakakolwiek struktura, muszą istnieć testy które faktycznie coś łapią.
-
-| Kolejność | Refaktor                                   | Ocena |
-| --------- | ------------------------------------------ | ----- |
-| 1         | #5 naprawa testów (prawdziwe importy)      | 8/10  |
-| 2         | #1 `GameState` duplikat w `types/index.ts` | 9/10  |
-| 3         | #4 martwy `scenarioLoader` i walidacje     | 8/10  |
-| 4         | #7 rename `getAccumulatedParagraph`        | 7/10  |
-| 5         | #12 dead `validateInput`                   | 5/10  |
 
 ### v0.1.2 — Strukturalne refaktory (z safety netem po v0.1.1)
 

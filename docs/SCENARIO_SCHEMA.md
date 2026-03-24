@@ -7,28 +7,36 @@ Struktura i format plików JSON scenariuszy.
 ```typescript
 export interface Paragraph {
   // Identyfikacja
-  id: string; // Unikatowy ID (number-like string)
+  id: string | string[]; // Unikatowy ID — string lub tablica stringów
 
   // Zawartość
-  text?: string; // Stary format (v0.0.9 i wcześniej)
-  contentPages?: ContentBlock[][]; // Multi-page (v0.0.10+)
-  content?: ContentBlock[]; // Alternatywa do contentPages
+  text?: string; // Stary format tekstu
+  content?: ContentBlock[]; // Jedna strona treści
+  contentPages?: ContentBlock[][]; // Wielostronicowa treść
 
   // Nawigacja
-  choices?: Choice[]; // Zwykłe choices
-  nextParagraphId?: string; // Auto-navigate (jeśli brak choices)
+  choices?: Choice[];
 
   // Warianty (v0.0.12+)
-  variants?: Record<string, Paragraph>; // Warianty zawartości
+  variants?: Record<string, Paragraph>;
+
+  // Media
+  image?: string; // URL obrazu paragrafu
+  audio?: string;
+
+  // Rzut kością
+  hasDiceRoll?: boolean;
+  diceRollDescription?: string;
+  diceResult?: DiceResult;
 
   // Dostępność
-  direct?: boolean; // Czy dostępny bez linku? (default: true)
-  accessibleFrom?: string[]; // Back buttons - skąd można dojść?
+  // Jeśli accessibleFrom jest puste/undefined — paragraf jest bezpośredni (isDirect=true)
+  accessibleFrom?: string[];
 
   // Layout flags
-  isParagraph?: boolean;
-  areChoicesHorizontal?: boolean; // Wariantowe choices (horizontal)
-  isMultiPage?: boolean; // Legacy flag (auto-detect teraz)
+  areChoicesHorizontal?: boolean; // Wariantowe choices wyświetlane poziomo
+  isMultiPage?: boolean; // Legacy flag
+  items?: string[];
 }
 ```
 
@@ -36,14 +44,20 @@ export interface Paragraph {
 
 ```typescript
 export interface ContentBlock {
-  text?: string; // Tekst (może zawierać HTML/tags)
-  type?: string; // text, image, symbol, person
-  html?: string; // Legacy - zamiast `text`
-  image?: string; // Image ID reference
-  imageUrl?: string; // Direct image URL
-  spacing?: "none"; // Brak marginesu dolnego
-  size?: "small" | "normal" | "large";
-  style?: "italic" | "normal";
+  // Nowy format
+  text?: string;           // Tekst (może zawierać HTML/tagi)
+  image?: string;          // ID obrazu (bez rozszerzenia)
+
+  // Stary format (kompatybilność wsteczna)
+  type?: "text" | "image" | "letter" | "item";
+  html?: string;           // Zamiast `text` (stary format)
+  id?: string;             // ID elementu (stary format image/letter)
+
+  // Opcje formatowania
+  size?: "xs" | "sm" | "lg" | "xl";
+  style?: "bold" | "italic" | "underline";
+  color?: "yellow" | "red" | "purple" | "green";
+  spacing?: "none";        // Usuwa dolny margines bloku
 }
 ```
 
@@ -51,11 +65,25 @@ export interface ContentBlock {
 
 ```typescript
 export interface Choice {
-  id?: string; // Unique ID (optional)
-  text: string; // Button text
-  nextParagraphId?: string; // Navigate to paragraph
-  nextVariantId?: string; // Enter variant
-  condition?: string; // Conditional logic (future)
+  id: string;              // Wymagane unikatowe ID
+  text?: string;           // Tekst przycisku
+  nextParagraphId?: string; // Przejdź do paragrafu
+  nextVariantId?: string;  // Wejdź w wariant
+
+  // Wybory warunkowe
+  isConditional?: boolean;
+  yesText?: string;        // Tekst po kliknięciu Tak
+  noText?: string;         // Tekst po kliknięciu Nie
+  yesNextId?: string;
+  noNextId?: string;
+}
+
+export interface DiceResult {
+  threshold: number;       // Wynik > threshold = sukces
+  successText: string;
+  successNextId: string;
+  failText: string;
+  failNextId: string;
 }
 ```
 
@@ -275,26 +303,27 @@ Dla wariantów - wyświetla choices w linii zamiast stosu:
 }
 ```
 
-### direct
+### accessibleFrom
 
-Czy paragraf jest dostępny bezpośrednio czy tylko przez linki?
+Czy paragraf jest dostępny bezpośrednio czy tylko przez linki? Jeśli `accessibleFrom` jest pustą tablicą lub `undefined` — paragraf jest bezpośredni (można wpisać numer). Jeśli zawiera ID — pojawia się ostrzeżenie "Niebezpośredni paragraf".
 
 ```json
 {
   "id": "77",
-  "text": "Paragraf niedostępny",
-  "direct": false, // Nie można wpisać liczby w linii komendy
-  "accessibleFrom": ["15", "20"] // Tylko z tych paragrafów
+  "content": [{ "text": "Paragraf niedostępny bezpośrednio" }],
+  "accessibleFrom": ["15", "20"]
 }
 ```
 
 ## Version History
 
-| Version | Change                  | Example                   |
-| ------- | ----------------------- | ------------------------- |
-| v0.0.9  | Initial format          | `"text": "..."`           |
-| v0.0.10 | Multi-page, Rich text   | `"contentPages": [[...]]` |
-| v0.0.12 | Variants, Reset display | `"variants": {...}`       |
+| Version | Change                            | Example                             |
+| ------- | --------------------------------- | ----------------------------------- |
+| v0.0.9  | Initial format                    | `"text": "..."`                     |
+| v0.0.10 | Multi-page, Rich text             | `"contentPages": [[...]]`           |
+| v0.0.12 | Variants, Reset display           | `"variants": {...}`                 |
+| v0.1.0  | DiceResult, content (single-page) | `"hasDiceRoll": true`               |
+| v0.1.1  | id jako tablica, isConditional    | `"id": ["5", "6"]`, `"isConditional": true` |
 
 ## Best Practices
 
