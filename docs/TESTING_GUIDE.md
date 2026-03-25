@@ -181,16 +181,19 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 - ✅ Multi-page support
 - ✅ Rich text parsing
 
-### Current Coverage (v0.0.12+)
+### Current Coverage (v0.1.1+)
 
-| Category        | Tests   | Status |
-| --------------- | ------- | ------ |
-| Game Logic      | 14      | ✅     |
-| Variant System  | 31      | ✅     |
-| Hooks (State)   | 13      | ✅     |
-| Utils (Parsing) | 58      | ✅     |
-| Components      | 46      | ✅     |
-| **Total**       | **167** | **✅** |
+| Category        | Tests   | Coverage | Status |
+| --------------- | ------- | -------- | ------ |
+| Game Logic      | 3       | 100%     | ✅     |
+| Variant System  | 18      | 100%     | ✅     |
+| Hooks (State)   | 26      | ~80%     | ✅     |
+| Utils (Parsing) | 40      | ~100%    | ✅     |
+| Components      | 93      | ~95%     | ✅     |
+| Data / Items    | 11      | 100%     | ✅     |
+| Pages           | 53      | mixed    | ✅     |
+| E2E             | 54      | —        | ✅     |
+| **Total**       | **298** | **62%**  | **✅** |
 
 ## Running Tests
 

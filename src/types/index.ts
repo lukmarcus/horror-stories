@@ -79,13 +79,3 @@ export interface Scenario {
   tokens?: Record<string, number>;
   notes?: string;
 }
-
-/**
- * Game state tracking during gameplay
- */
-export interface GameState {
-  scenarioId: string;
-  currentParagraphId: string;
-  history: string[];
-  isComplete: boolean;
-}

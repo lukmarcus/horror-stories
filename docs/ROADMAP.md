@@ -6,21 +6,36 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.1 - Technical Preparation
+## Milestone v0.1.2 - Strukturalne refaktory
 
 ### Zakres
 
-- Szybkie refaktory przygotowujące kod do nowych scenariuszy
-- Centralizacja magicznych stringów (emoji, etykiety)
-- Czyszczenie duplikacji CSS
-- Ujednolicenie logiki handlowania zasobami
+Strukturalne zmiany możliwe dzięki safety netowi z v0.1.1. Ujednolicenie typów, ekstrakcja konfiguracji, usunięcie duplikacji.
 
 ### Do zrobienia
 
-- Centralize emoji constants - ⚙️, 🎲, ↻, 🖼️ do stałych
-- Extract `.container` CSS utility class - zamiast duplikacji w 5 plikach
-- Create image path helper - ujednolicić logikę ścieżek zasobów
-- Remove unused exports - cleanup martwego kodu
+- Ekstrakcja hardcoded `"77"` (paragraf startowy) do konfiguracji scenariusza
+- Centralizacja `ContentBlock` / `SetupStep` (trzy osobne definicje tej samej struktury)
+- Konwersja `useGameActions` na zwykły moduł (brak logiki hookowej)
+- Usunięcie duplikacji paginacji w `ParagraphView`
+- Ujednolicenie `<Button>` vs raw `<button className="...">` w `ParagraphView`
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.1.3 - Architektura
+
+### Zakres
+
+Najbardziej ryzykowne zmiany, wymagające starannego testowania.
+
+### Do zrobienia
+
+- Naprawa ścieżek obrazów w `RichText.tsx` (dwa conflicting URL patterns)
+- Przeniesienie logiki `handleRollDice` z `Game.tsx` do hooka / `useDiceRoll`
 
 ### Status
 
@@ -148,6 +163,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 - Spójny system kolorów, typografii i komponentów
 - Pełna responsywność (mobile, tablet, desktop)
+
+### Własne scenariusze
+
+- Upload własnego pliku JSON z paragrafami
+- Scenariusz dostępny w bieżącej sesji (bez zapisu na serwerze)
+- Edytor scenariuszy (osobny projekt, długoterminowo)
 
 ### System Zapisu
 
