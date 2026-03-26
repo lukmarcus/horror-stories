@@ -1,24 +1,12 @@
 import React from "react";
 import { Button, SectionHeader } from "../../ui";
 import { RichText } from "../../text/RichText/RichText";
-
-interface PrepareStep {
-  stepNumber: number;
-  content?: Array<{
-    type?: "image" | "letter" | "item";
-    text?: string;
-    id?: string;
-    size?: "xs" | "sm" | "lg" | "xl";
-    style?: "bold" | "italic" | "underline";
-    color?: "yellow" | "red" | "purple" | "green";
-  }>;
-  text?: string;
-}
+import type { SetupStep } from "../../../types";
 
 interface PrepareViewProps {
   currentStep: number;
   totalSteps: number;
-  setupSteps: PrepareStep[];
+  setupSteps: SetupStep[];
   scenarioId: string;
   onPrev: () => void;
   onNext: () => void;
