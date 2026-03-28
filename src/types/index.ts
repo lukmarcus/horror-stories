@@ -87,4 +87,5 @@ export interface Scenario {
   characters?: string[];
   tokens?: Record<string, number>;
   notes?: string;
+  startParagraphId?: string;
 }

@@ -17,6 +17,7 @@ const makeProps = (overrides = {}) => ({
   totalSteps: 3,
   setupSteps: [makeStep("Krok 1"), makeStep("Krok 2"), makeStep("Krok 3")],
   scenarioId: "test-scenario",
+  startParagraphId: "77",
   onPrev: vi.fn(),
   onNext: vi.fn(),
   onStart: vi.fn(),
@@ -75,6 +76,15 @@ describe("PrepareView", () => {
     render(<PrepareView {...props} />);
     fireEvent.click(screen.getByText("Przejdź do paragrafu 77"));
     expect(props.onStart).toHaveBeenCalled();
+  });
+
+  it("uses startParagraphId in Start button text", () => {
+    render(
+      <PrepareView
+        {...makeProps({ currentStep: 2, totalSteps: 3, startParagraphId: "42" })}
+      />,
+    );
+    expect(screen.getByText("Przejdź do paragrafu 42")).toBeDefined();
   });
 
   it("renders step content via RichText", () => {

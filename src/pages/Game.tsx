@@ -248,12 +248,13 @@ export const Game: React.FC = () => {
               totalSteps={setupSteps.length}
               setupSteps={setupSteps}
               scenarioId={scenarioId}
+              startParagraphId={currentScenario?.startParagraphId ?? "1"}
               onPrev={() => game.prevSetupStep()}
               onNext={() => game.nextSetupStep()}
               onStart={() => {
                 game.resetSetupStep();
                 game.toggleSetup();
-                game.setParagraph("77");
+                game.setParagraph(currentScenario?.startParagraphId ?? "1");
               }}
             />
           ) : (

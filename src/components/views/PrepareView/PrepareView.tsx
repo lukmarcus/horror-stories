@@ -8,6 +8,7 @@ interface PrepareViewProps {
   totalSteps: number;
   setupSteps: SetupStep[];
   scenarioId: string;
+  startParagraphId: string;
   onPrev: () => void;
   onNext: () => void;
   onStart: () => void;
@@ -18,6 +19,7 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
   totalSteps,
   setupSteps,
   scenarioId,
+  startParagraphId,
   onPrev,
   onNext,
   onStart,
@@ -97,7 +99,7 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
           onClick={onStart}
           style={{ width: "100%", marginTop: "var(--spacing-md)" }}
         >
-          Przejdź do paragrafu 77
+          Przejdź do paragrafu {startParagraphId}
         </Button>
       )}
     </>
