@@ -29,20 +29,22 @@ const PaginationControls: React.FC<{
   onNext: () => void;
 }> = ({ currentPage, maxPage, onPrev, onNext }) => (
   <>
-    <button
-      className="button button--secondary button--sm"
+    <Button
+      variant="secondary"
+      size="sm"
       onClick={onPrev}
       disabled={currentPage === 0}
     >
       ← Poprzedni
-    </button>
-    <button
-      className="button button--secondary button--sm"
+    </Button>
+    <Button
+      variant="secondary"
+      size="sm"
       onClick={onNext}
       disabled={currentPage === maxPage}
     >
       Następny →
-    </button>
+    </Button>
   </>
 );
 
@@ -180,7 +182,8 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                   ? paragraph.diceResult.successText
                   : paragraph.diceResult.failText}
               </p>
-              <button
+              <Button
+                variant="primary"
                 onClick={() =>
                   onChoice(
                     isDiceRollSuccess
@@ -189,11 +192,10 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                     false,
                   )
                 }
-                className="button button--primary"
                 aria-label="Przejść do następnego paragrafu"
               >
                 PRZEJDŹ
-              </button>
+              </Button>
             </div>
           )}
 
@@ -224,14 +226,15 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             {variantChoices.map((choice, idx) => {
               const choiceKey = choice.id || `choice-${idx}`;
               return (
-                <button
+                <Button
                   key={choiceKey}
+                  variant="primary"
+                  size="lg"
                   onClick={() => {
                     if (choice.nextVariantId) {
                       onChoice(choice.nextVariantId, true);
                     }
                   }}
-                  className="button button--primary button--lg"
                   aria-label={choice.text || ""}
                 >
                   {choice.text && choice.text.includes("<") ? (
@@ -243,7 +246,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                   ) : (
                     choice.text
                   )}
-                </button>
+                </Button>
               );
             })}
           </fieldset>
@@ -258,12 +261,9 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             autoFocus={false}
             errorId="dead-end-error"
             actions={
-              <button
-                onClick={onBack}
-                className="button button--secondary button--sm"
-              >
+              <Button variant="secondary" size="sm" onClick={onBack}>
                 ← Powrót do menu scenariusza
-              </button>
+              </Button>
             }
           />
         </div>
@@ -292,8 +292,10 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
               );
             }
             return (
-              <button
+              <Button
                 key={choiceKey}
+                variant="primary"
+                size="lg"
                 onClick={() => {
                   if (choice.nextParagraphId === "") {
                     onBack();
@@ -301,7 +303,6 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                     onChoice(choice.nextParagraphId, false);
                   }
                 }}
-                className="button button--primary button--lg"
                 aria-label={choice.text || ""}
               >
                 {choice.text && choice.text.includes("<") ? (
@@ -313,7 +314,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                 ) : (
                   choice.text
                 )}
-              </button>
+              </Button>
             );
           })}
         </fieldset>
