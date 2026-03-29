@@ -22,6 +22,30 @@ interface ParagraphViewProps {
   onNavigateToParagraph?: (paragraphId: string) => void;
 }
 
+const PaginationControls: React.FC<{
+  currentPage: number;
+  maxPage: number;
+  onPrev: () => void;
+  onNext: () => void;
+}> = ({ currentPage, maxPage, onPrev, onNext }) => (
+  <>
+    <button
+      className="button button--secondary button--sm"
+      onClick={onPrev}
+      disabled={currentPage === 0}
+    >
+      ← Poprzedni
+    </button>
+    <button
+      className="button button--secondary button--sm"
+      onClick={onNext}
+      disabled={currentPage === maxPage}
+    >
+      Następny →
+    </button>
+  </>
+);
+
 export const ParagraphView: React.FC<ParagraphViewProps> = ({
   paragraph,
   lastDiceResult,
@@ -127,24 +151,14 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             title={`Paragraf ${paragraphIdStr}`}
             subtitle={`Część ${currentPage + 1} z ${maxPage + 1}`}
             controls={
-              <>
-                <button
-                  className="button button--secondary button--sm"
-                  onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
-                  disabled={currentPage === 0}
-                >
-                  ← Poprzedni
-                </button>
-                <button
-                  className="button button--secondary button--sm"
-                  onClick={() =>
-                    setCurrentPage(Math.min(maxPage, currentPage + 1))
-                  }
-                  disabled={currentPage === maxPage}
-                >
-                  Następny →
-                </button>
-              </>
+              <PaginationControls
+                currentPage={currentPage}
+                maxPage={maxPage}
+                onPrev={() => setCurrentPage(Math.max(0, currentPage - 1))}
+                onNext={() =>
+                  setCurrentPage(Math.min(maxPage, currentPage + 1))
+                }
+              />
             }
           />
         ) : (
@@ -189,22 +203,14 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
               Strona {currentPage + 1} z {maxPage + 1}
             </div>
             <div className="game__scenario-controls">
-              <button
-                className="button button--secondary button--sm"
-                onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
-                disabled={currentPage === 0}
-              >
-                ← Poprzedni
-              </button>
-              <button
-                className="button button--secondary button--sm"
-                onClick={() =>
+              <PaginationControls
+                currentPage={currentPage}
+                maxPage={maxPage}
+                onPrev={() => setCurrentPage(Math.max(0, currentPage - 1))}
+                onNext={() =>
                   setCurrentPage(Math.min(maxPage, currentPage + 1))
                 }
-                disabled={currentPage === maxPage}
-              >
-                Następny →
-              </button>
+              />
             </div>
           </div>
         )}
