@@ -10,6 +10,7 @@ import "./ParagraphView.css";
 
 interface ParagraphViewProps {
   paragraph: Paragraph;
+  currentParagraphId: string;
   lastDiceResult: number | null;
   onChoice: (nextId: string | undefined, isVariant?: boolean) => void;
   onJumpToParagraph: (value: string) => string | null;
@@ -50,6 +51,7 @@ const PaginationControls: React.FC<{
 
 export const ParagraphView: React.FC<ParagraphViewProps> = ({
   paragraph,
+  currentParagraphId,
   lastDiceResult,
   onChoice,
   onJumpToParagraph,
@@ -70,7 +72,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   // Reset page when paragraph changes
   React.useEffect(() => {
     setCurrentPage(0);
-  }, [paragraphIdStr]);
+  }, [currentParagraphId]);
 
   // Check if dice roll was successful
   const isDiceRollSuccess =
@@ -109,7 +111,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
       <nav className="game__content-nav">
         {hasVariants && variantPathLength > 0 && onRefreshVariants && (
           <Button variant="outline" size="sm" onClick={onRefreshVariants}>
-            ↻ Odśwież #{paragraph.id}
+            ↻ Odśwież #{currentParagraphId}
           </Button>
         )}
 
@@ -138,7 +140,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
       <div
         className="paragraph-display game__scenario"
         style={{ width: "100%" }}
-        aria-label={`Paragraf ${paragraphIdStr}`}
+        aria-label={`Paragraf ${currentParagraphId}`}
       >
         {paragraph.image && (
           <img
@@ -150,7 +152,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
 
         {hasPages ? (
           <SectionHeader
-            title={`Paragraf ${paragraphIdStr}`}
+            title={`Paragraf ${currentParagraphId}`}
             subtitle={`Część ${currentPage + 1} z ${maxPage + 1}`}
             controls={
               <PaginationControls
@@ -164,7 +166,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             }
           />
         ) : (
-          <SectionHeader title={`Paragraf ${paragraphIdStr}`} />
+          <SectionHeader title={`Paragraf ${currentParagraphId}`} />
         )}
 
         {paragraph.text && <ParagraphText text={paragraph.text} />}

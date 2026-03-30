@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+﻿import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { ParagraphView } from "./ParagraphView";
 import type { Paragraph } from "../../../types";
@@ -28,6 +28,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -35,22 +36,24 @@ describe("ParagraphView", () => {
     expect(screen.getByText("Paragraf 1")).toBeDefined();
   });
 
-  it("formats array paragraph ID as comma-separated string", () => {
+  it("shows the navigated-to ID even when paragraph has multiple IDs", () => {
     const para: Paragraph = { ...baseParagraph, id: ["1", "2"] };
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="2"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
     );
-    expect(screen.getByText("Paragraf 1, 2")).toBeDefined();
+    expect(screen.getByText("Paragraf 2")).toBeDefined();
   });
 
   it("always shows back-to-menu button", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -63,6 +66,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...callbacks}
       />,
@@ -79,6 +83,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -94,6 +99,7 @@ describe("ParagraphView", () => {
     const { container } = render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -108,6 +114,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -126,6 +133,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -144,6 +152,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -162,6 +171,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -181,6 +191,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -196,6 +207,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -211,6 +223,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -234,6 +247,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -252,6 +266,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -266,7 +281,7 @@ describe("ParagraphView", () => {
       choices: [{ id: "c1", text: "Do paragrafu 5", nextParagraphId: "5" }],
     };
     render(
-      <ParagraphView paragraph={para} lastDiceResult={null} {...callbacks} />,
+      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={null} {...callbacks} />,
     );
     fireEvent.click(screen.getByText("Do paragrafu 5"));
     expect(callbacks.onChoice).toHaveBeenCalledWith("5", false);
@@ -279,7 +294,7 @@ describe("ParagraphView", () => {
       choices: [{ id: "c1", text: "Powrót", nextParagraphId: "" }],
     };
     render(
-      <ParagraphView paragraph={para} lastDiceResult={null} {...callbacks} />,
+      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={null} {...callbacks} />,
     );
     fireEvent.click(screen.getByText("Powrót"));
     expect(callbacks.onBack).toHaveBeenCalled();
@@ -301,6 +316,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -318,7 +334,7 @@ describe("ParagraphView", () => {
       choices: [{ id: "v1", text: "Wariant A", nextVariantId: "variant-1" }],
     };
     render(
-      <ParagraphView paragraph={para} lastDiceResult={null} {...callbacks} />,
+      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={null} {...callbacks} />,
     );
     fireEvent.click(screen.getByText("Wariant A"));
     expect(callbacks.onChoice).toHaveBeenCalledWith("variant-1", true);
@@ -343,6 +359,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={5}
         {...makeCallbacks()}
       />,
@@ -366,6 +383,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={3}
         {...makeCallbacks()}
       />,
@@ -389,6 +407,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={para}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...makeCallbacks()}
       />,
@@ -412,7 +431,7 @@ describe("ParagraphView", () => {
       choices: [],
     };
     render(
-      <ParagraphView paragraph={para} lastDiceResult={5} {...callbacks} />,
+      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={5} {...callbacks} />,
     );
     fireEvent.click(screen.getByText("PRZEJDŹ"));
     expect(callbacks.onChoice).toHaveBeenCalledWith("10", false);
@@ -433,7 +452,7 @@ describe("ParagraphView", () => {
       choices: [],
     };
     render(
-      <ParagraphView paragraph={para} lastDiceResult={2} {...callbacks} />,
+      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={2} {...callbacks} />,
     );
     fireEvent.click(screen.getByText("PRZEJDŹ"));
     expect(callbacks.onChoice).toHaveBeenCalledWith("20", false);
@@ -447,6 +466,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...callbacks}
         accessibleFrom={["3", "7"]}
@@ -461,6 +481,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...callbacks}
         accessibleFrom={["3"]}
@@ -475,6 +496,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...callbacks}
         hasVariants
@@ -489,6 +511,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...callbacks}
         hasVariants
@@ -504,6 +527,7 @@ describe("ParagraphView", () => {
     render(
       <ParagraphView
         paragraph={baseParagraph}
+        currentParagraphId="1"
         lastDiceResult={null}
         {...callbacks}
         hasVariants

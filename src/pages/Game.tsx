@@ -336,6 +336,7 @@ export const Game: React.FC = () => {
                 {currentParagraph ? (
                   <ParagraphView
                     paragraph={displayParagraph || currentParagraph}
+                    currentParagraphId={game.state.currentParagraphId!}
                     lastDiceResult={game.state.lastDiceResult}
                     onChoice={handleChoice}
                     onJumpToParagraph={handleJumpFromDeadEnd}
