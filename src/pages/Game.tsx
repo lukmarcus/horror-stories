@@ -349,6 +349,7 @@ export const Game: React.FC = () => {
                     }
                     onRefreshVariants={() => game.clearVariants()}
                     onNavigateToParagraph={handleChoice}
+                    onShowDice={() => game.toggleDiceView()}
                   />
                 ) : (
                   <p className="game__error-text" role="alert">

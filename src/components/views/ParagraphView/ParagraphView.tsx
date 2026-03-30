@@ -21,6 +21,7 @@ interface ParagraphViewProps {
   accessibleFrom?: string[];
   onRefreshVariants?: () => void;
   onNavigateToParagraph?: (paragraphId: string) => void;
+  onShowDice?: () => void;
 }
 
 const PaginationControls: React.FC<{
@@ -62,6 +63,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   accessibleFrom = [],
   onRefreshVariants,
   onNavigateToParagraph,
+  onShowDice,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
 
@@ -263,9 +265,16 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             autoFocus={false}
             errorId="dead-end-error"
             actions={
-              <Button variant="secondary" size="sm" onClick={onBack}>
-                ← Powrót do menu scenariusza
-              </Button>
+              <>
+                {onShowDice && (
+                  <Button variant="secondary" size="sm" onClick={onShowDice}>
+                    🎲 Rzut kością
+                  </Button>
+                )}
+                <Button variant="secondary" size="sm" onClick={onBack}>
+                  ← Powrót do menu scenariusza
+                </Button>
+              </>
             }
           />
         </div>
