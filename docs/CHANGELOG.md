@@ -7,6 +7,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.3] - 2026-04-02
+
+### Dodano
+
+- Grafika okładkowa na kafelku scenariusza "Droga donikąd" na liście scenariuszy
+
+---
+
 ## [0.1.2] - 2026-03-30
 
 ### Dodano

@@ -20,7 +20,22 @@ export const ScenariosList: React.FC = () => {
       {/* Scenarios Grid */}
       <section className="scenarios-list__grid">
         {scenarios.map((scenario) => (
-          <article key={scenario.id} className="scenarios-list__card">
+          <article
+            key={scenario.id}
+            className={`scenarios-list__card${
+              scenario.coverImage ? " scenarios-list__card--has-cover" : ""
+            }`}
+            style={
+              scenario.coverImage
+                ? {
+                    backgroundImage: `url(${import.meta.env.BASE_URL}${scenario.coverImage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center top",
+                    backgroundRepeat: "no-repeat",
+                  }
+                : undefined
+            }
+          >
             <div className="scenarios-list__card-header">
               <h2 className="scenarios-list__card-title">{scenario.title}</h2>
             </div>
