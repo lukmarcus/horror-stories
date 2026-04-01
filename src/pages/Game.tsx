@@ -8,7 +8,7 @@ import { DiceView } from "../components/views/DiceView/DiceView";
 import { PrepareView } from "../components/views/PrepareView/PrepareView";
 import { IndirectView } from "../components/views/IndirectView/IndirectView";
 import { useGame } from "../hooks/useGame";
-import { useGameActions } from "../hooks/useGameActions";
+import { jumpToParagraph } from "../utils/gameActions";
 import "../styles/pages/game.css";
 
 export const Game: React.FC = () => {
@@ -16,8 +16,6 @@ export const Game: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const game = useGame();
-  const gameActions = useGameActions();
-
   // Flag: true when state change was triggered by URL (back/forward), not by user action
   const isUrlDrivenChange = React.useRef(false);
 
@@ -113,7 +111,7 @@ export const Game: React.FC = () => {
   const displayParagraph = getDisplayParagraph();
 
   const handleMainInputSubmit = (value: string): string | null => {
-    const result = gameActions.jumpToParagraph(value, paragraphs);
+    const result = jumpToParagraph(value, paragraphs);
 
     if (result.needsWarning && result.pendingId) {
       game.showWarning(result.pendingId);
@@ -146,7 +144,7 @@ export const Game: React.FC = () => {
   };
 
   const handleJumpFromDeadEnd = (value: string): string | null => {
-    const result = gameActions.jumpToParagraph(value, paragraphs);
+    const result = jumpToParagraph(value, paragraphs);
 
     if (result.needsWarning && result.pendingId) {
       game.showWarning(result.pendingId);
@@ -250,12 +248,13 @@ export const Game: React.FC = () => {
               totalSteps={setupSteps.length}
               setupSteps={setupSteps}
               scenarioId={scenarioId}
+              startParagraphId={currentScenario?.startParagraphId ?? "1"}
               onPrev={() => game.prevSetupStep()}
               onNext={() => game.nextSetupStep()}
               onStart={() => {
                 game.resetSetupStep();
                 game.toggleSetup();
-                game.setParagraph("77");
+                game.setParagraph(currentScenario?.startParagraphId ?? "1");
               }}
             />
           ) : (
@@ -337,6 +336,7 @@ export const Game: React.FC = () => {
                 {currentParagraph ? (
                   <ParagraphView
                     paragraph={displayParagraph || currentParagraph}
+                    currentParagraphId={game.state.currentParagraphId!}
                     lastDiceResult={game.state.lastDiceResult}
                     onChoice={handleChoice}
                     onJumpToParagraph={handleJumpFromDeadEnd}
@@ -349,6 +349,7 @@ export const Game: React.FC = () => {
                     }
                     onRefreshVariants={() => game.clearVariants()}
                     onNavigateToParagraph={handleChoice}
+                    onShowDice={() => game.toggleDiceView()}
                   />
                 ) : (
                   <p className="game__error-text" role="alert">

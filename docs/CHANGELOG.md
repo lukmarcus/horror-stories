@@ -7,6 +7,18 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.2] - 2026-03-30
+
+### Dodano
+
+- Przycisk rzutu kością dostępny teraz również w paragrafach bez wyborów (dead-end), nie trzeba wracać do menu
+
+### Poprawiono
+
+- Nagłówek paragrafu pokazuje teraz właściwy numer zamiast listy wszystkich numerów (np. "Paragraf 3" zamiast "Paragraf 3, 15, 52, 62...")
+
+---
+
 ## [0.1.1] - 2026-03-24
 
 - Wersja techniczna — brak zmian widocznych dla użytkownika

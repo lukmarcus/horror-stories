@@ -1,25 +1,14 @@
 import React from "react";
 import { Button, SectionHeader } from "../../ui";
 import { RichText } from "../../text/RichText/RichText";
-
-interface PrepareStep {
-  stepNumber: number;
-  content?: Array<{
-    type?: "image" | "letter" | "item";
-    text?: string;
-    id?: string;
-    size?: "xs" | "sm" | "lg" | "xl";
-    style?: "bold" | "italic" | "underline";
-    color?: "yellow" | "red" | "purple" | "green";
-  }>;
-  text?: string;
-}
+import type { SetupStep } from "../../../types";
 
 interface PrepareViewProps {
   currentStep: number;
   totalSteps: number;
-  setupSteps: PrepareStep[];
+  setupSteps: SetupStep[];
   scenarioId: string;
+  startParagraphId: string;
   onPrev: () => void;
   onNext: () => void;
   onStart: () => void;
@@ -30,6 +19,7 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
   totalSteps,
   setupSteps,
   scenarioId,
+  startParagraphId,
   onPrev,
   onNext,
   onStart,
@@ -109,7 +99,7 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
           onClick={onStart}
           style={{ width: "100%", marginTop: "var(--spacing-md)" }}
         >
-          Przejdź do paragrafu 77
+          Przejdź do paragrafu {startParagraphId}
         </Button>
       )}
     </>

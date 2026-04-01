@@ -10,6 +10,7 @@ import "./ParagraphView.css";
 
 interface ParagraphViewProps {
   paragraph: Paragraph;
+  currentParagraphId: string;
   lastDiceResult: number | null;
   onChoice: (nextId: string | undefined, isVariant?: boolean) => void;
   onJumpToParagraph: (value: string) => string | null;
@@ -20,10 +21,38 @@ interface ParagraphViewProps {
   accessibleFrom?: string[];
   onRefreshVariants?: () => void;
   onNavigateToParagraph?: (paragraphId: string) => void;
+  onShowDice?: () => void;
 }
+
+const PaginationControls: React.FC<{
+  currentPage: number;
+  maxPage: number;
+  onPrev: () => void;
+  onNext: () => void;
+}> = ({ currentPage, maxPage, onPrev, onNext }) => (
+  <>
+    <Button
+      variant="secondary"
+      size="sm"
+      onClick={onPrev}
+      disabled={currentPage === 0}
+    >
+      ← Poprzedni
+    </Button>
+    <Button
+      variant="secondary"
+      size="sm"
+      onClick={onNext}
+      disabled={currentPage === maxPage}
+    >
+      Następny →
+    </Button>
+  </>
+);
 
 export const ParagraphView: React.FC<ParagraphViewProps> = ({
   paragraph,
+  currentParagraphId,
   lastDiceResult,
   onChoice,
   onJumpToParagraph,
@@ -34,6 +63,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   accessibleFrom = [],
   onRefreshVariants,
   onNavigateToParagraph,
+  onShowDice,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
 
@@ -44,7 +74,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   // Reset page when paragraph changes
   React.useEffect(() => {
     setCurrentPage(0);
-  }, [paragraphIdStr]);
+  }, [currentParagraphId]);
 
   // Check if dice roll was successful
   const isDiceRollSuccess =
@@ -83,7 +113,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
       <nav className="game__content-nav">
         {hasVariants && variantPathLength > 0 && onRefreshVariants && (
           <Button variant="outline" size="sm" onClick={onRefreshVariants}>
-            ↻ Odśwież #{paragraph.id}
+            ↻ Odśwież #{currentParagraphId}
           </Button>
         )}
 
@@ -112,7 +142,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
       <div
         className="paragraph-display game__scenario"
         style={{ width: "100%" }}
-        aria-label={`Paragraf ${paragraphIdStr}`}
+        aria-label={`Paragraf ${currentParagraphId}`}
       >
         {paragraph.image && (
           <img
@@ -124,31 +154,21 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
 
         {hasPages ? (
           <SectionHeader
-            title={`Paragraf ${paragraphIdStr}`}
+            title={`Paragraf ${currentParagraphId}`}
             subtitle={`Część ${currentPage + 1} z ${maxPage + 1}`}
             controls={
-              <>
-                <button
-                  className="button button--secondary button--sm"
-                  onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
-                  disabled={currentPage === 0}
-                >
-                  ← Poprzedni
-                </button>
-                <button
-                  className="button button--secondary button--sm"
-                  onClick={() =>
-                    setCurrentPage(Math.min(maxPage, currentPage + 1))
-                  }
-                  disabled={currentPage === maxPage}
-                >
-                  Następny →
-                </button>
-              </>
+              <PaginationControls
+                currentPage={currentPage}
+                maxPage={maxPage}
+                onPrev={() => setCurrentPage(Math.max(0, currentPage - 1))}
+                onNext={() =>
+                  setCurrentPage(Math.min(maxPage, currentPage + 1))
+                }
+              />
             }
           />
         ) : (
-          <SectionHeader title={`Paragraf ${paragraphIdStr}`} />
+          <SectionHeader title={`Paragraf ${currentParagraphId}`} />
         )}
 
         {paragraph.text && <ParagraphText text={paragraph.text} />}
@@ -166,7 +186,8 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                   ? paragraph.diceResult.successText
                   : paragraph.diceResult.failText}
               </p>
-              <button
+              <Button
+                variant="primary"
                 onClick={() =>
                   onChoice(
                     isDiceRollSuccess
@@ -175,11 +196,10 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                     false,
                   )
                 }
-                className="button button--primary"
                 aria-label="Przejść do następnego paragrafu"
               >
                 PRZEJDŹ
-              </button>
+              </Button>
             </div>
           )}
 
@@ -189,22 +209,14 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
               Strona {currentPage + 1} z {maxPage + 1}
             </div>
             <div className="game__scenario-controls">
-              <button
-                className="button button--secondary button--sm"
-                onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
-                disabled={currentPage === 0}
-              >
-                ← Poprzedni
-              </button>
-              <button
-                className="button button--secondary button--sm"
-                onClick={() =>
+              <PaginationControls
+                currentPage={currentPage}
+                maxPage={maxPage}
+                onPrev={() => setCurrentPage(Math.max(0, currentPage - 1))}
+                onNext={() =>
                   setCurrentPage(Math.min(maxPage, currentPage + 1))
                 }
-                disabled={currentPage === maxPage}
-              >
-                Następny →
-              </button>
+              />
             </div>
           </div>
         )}
@@ -218,14 +230,15 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             {variantChoices.map((choice, idx) => {
               const choiceKey = choice.id || `choice-${idx}`;
               return (
-                <button
+                <Button
                   key={choiceKey}
+                  variant="primary"
+                  size="lg"
                   onClick={() => {
                     if (choice.nextVariantId) {
                       onChoice(choice.nextVariantId, true);
                     }
                   }}
-                  className="button button--primary button--lg"
                   aria-label={choice.text || ""}
                 >
                   {choice.text && choice.text.includes("<") ? (
@@ -237,7 +250,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                   ) : (
                     choice.text
                   )}
-                </button>
+                </Button>
               );
             })}
           </fieldset>
@@ -252,12 +265,16 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             autoFocus={false}
             errorId="dead-end-error"
             actions={
-              <button
-                onClick={onBack}
-                className="button button--secondary button--sm"
-              >
-                ← Powrót do menu scenariusza
-              </button>
+              <>
+                {onShowDice && (
+                  <Button variant="secondary" size="sm" onClick={onShowDice}>
+                    🎲 Rzut kością
+                  </Button>
+                )}
+                <Button variant="secondary" size="sm" onClick={onBack}>
+                  ← Powrót do menu scenariusza
+                </Button>
+              </>
             }
           />
         </div>
@@ -286,8 +303,10 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
               );
             }
             return (
-              <button
+              <Button
                 key={choiceKey}
+                variant="primary"
+                size="lg"
                 onClick={() => {
                   if (choice.nextParagraphId === "") {
                     onBack();
@@ -295,7 +314,6 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                     onChoice(choice.nextParagraphId, false);
                   }
                 }}
-                className="button button--primary button--lg"
                 aria-label={choice.text || ""}
               >
                 {choice.text && choice.text.includes("<") ? (
@@ -307,7 +325,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                 ) : (
                   choice.text
                 )}
-              </button>
+              </Button>
             );
           })}
         </fieldset>

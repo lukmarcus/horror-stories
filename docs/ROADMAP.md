@@ -6,26 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.2 - Strukturalne refaktory
-
-### Zakres
-
-Strukturalne zmiany możliwe dzięki safety netowi z v0.1.1. Ujednolicenie typów, ekstrakcja konfiguracji, usunięcie duplikacji.
-
-### Do zrobienia
-
-- Ekstrakcja hardcoded `"77"` (paragraf startowy) do konfiguracji scenariusza
-- Centralizacja `ContentBlock` / `SetupStep` (trzy osobne definicje tej samej struktury)
-- Konwersja `useGameActions` na zwykły moduł (brak logiki hookowej)
-- Usunięcie duplikacji paginacji w `ParagraphView`
-- Ujednolicenie `<Button>` vs raw `<button className="...">` w `ParagraphView`
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.1.3 - Architektura
 
 ### Zakres

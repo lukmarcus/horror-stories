@@ -67,6 +67,15 @@ export interface Paragraph {
 }
 
 /**
+ * Single step in the scenario setup/preparation flow
+ */
+export interface SetupStep {
+  stepNumber: number;
+  content?: ContentBlock[];
+  text?: string;
+}
+
+/**
  * Game scenario containing title, description, and game data
  */
 export interface Scenario {
@@ -78,4 +87,5 @@ export interface Scenario {
   characters?: string[];
   tokens?: Record<string, number>;
   notes?: string;
+  startParagraphId?: string;
 }
