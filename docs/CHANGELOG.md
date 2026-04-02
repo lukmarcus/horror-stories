@@ -259,7 +259,3 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Wsparcie dla języka polskiego
 - Nawigacja w aplikacji
 - Sample scenariusz w JSON
-
----
-
-**Ostatnia aktualizacja:** 2026-02-01
