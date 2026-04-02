@@ -88,5 +88,4 @@ export interface Scenario {
   tokens?: Record<string, number>;
   notes?: string;
   startParagraphId?: string;
-  coverImage?: string;
 }

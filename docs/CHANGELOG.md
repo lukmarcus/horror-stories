@@ -11,7 +11,8 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ### Dodano
 
-- Grafika okładkowa na kafelku scenariusza "Droga donikąd" na liście scenariuszy
+- Grafiki okładkowe na kafelkach scenariuszy "Droga donikąd" i "Party time" na liście scenariuszy
+- 5 nowych scenariuszy na liście (bez zawartości): Party time, Eksperyment, Kolejny dzień w pracy, Śmiertelna zabawa, Świnki trzy i wilk
 
 ---
 

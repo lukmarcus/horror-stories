@@ -4,8 +4,20 @@ import { SCENARIOS } from "../scenarios";
 import { Button } from "../components/ui";
 import "../styles/pages/scenarios-list.css";
 
+const covers = import.meta.glob(
+  "../scenarios/*/images/cover.{jpg,jpeg,png,webp}",
+  { eager: true, import: "default" }
+) as Record<string, string>;
+
+function getCoverUrl(scenarioId: string): string | undefined {
+  for (const ext of ["jpg", "jpeg", "png", "webp"]) {
+    const url = covers[`../scenarios/${scenarioId}/images/cover.${ext}`];
+    if (url) return url;
+  }
+  return undefined;
+}
+
 export const ScenariosList: React.FC = () => {
-  // Load scenarios from data
   const scenarios = Object.values(SCENARIOS);
 
   return (
@@ -23,18 +35,19 @@ export const ScenariosList: React.FC = () => {
           <article
             key={scenario.id}
             className={`scenarios-list__card${
-              scenario.coverImage ? " scenarios-list__card--has-cover" : ""
+              getCoverUrl(scenario.id) ? " scenarios-list__card--has-cover" : ""
             }`}
-            style={
-              scenario.coverImage
+            style={(() => {
+              const cover = getCoverUrl(scenario.id);
+              return cover
                 ? {
-                    backgroundImage: `url(${import.meta.env.BASE_URL}${scenario.coverImage})`,
+                    backgroundImage: `url(${cover})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center top",
                     backgroundRepeat: "no-repeat",
                   }
-                : undefined
-            }
+                : undefined;
+            })()}
           >
             <div className="scenarios-list__card-header">
               <h2 className="scenarios-list__card-title">{scenario.title}</h2>
