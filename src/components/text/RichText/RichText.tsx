@@ -252,7 +252,7 @@ export const RichText: React.FC<RichTextProps> = ({
             const imageId = block.image || block.id;
             const imagePath = scenarioId
               ? new URL(
-                  `../../scenarios/${scenarioId}/images/${imageId}.jpg`,
+                  `../../../scenarios/${scenarioId}/images/${imageId}.jpg`,
                   import.meta.url,
                 ).href
               : undefined;

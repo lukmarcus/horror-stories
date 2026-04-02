@@ -15,7 +15,7 @@ export interface GameState {
   showDiceView: boolean;
 }
 
-type GameAction =
+export type GameAction =
   | { type: "SET_PARAGRAPH"; payload: string | null }
   | { type: "ADD_VARIANT"; payload: string } // Append variant to path
   | { type: "CLEAR_VARIANTS" } // Reset variant path

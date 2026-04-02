@@ -8,6 +8,7 @@ import { DiceView } from "../components/views/DiceView/DiceView";
 import { PrepareView } from "../components/views/PrepareView/PrepareView";
 import { IndirectView } from "../components/views/IndirectView/IndirectView";
 import { useGame } from "../hooks/useGame";
+import { useDiceRoll } from "../hooks/useDiceRoll";
 import { jumpToParagraph } from "../utils/gameActions";
 import "../styles/pages/game.css";
 
@@ -175,29 +176,7 @@ export const Game: React.FC = () => {
     game.clearDiceResult();
   };
 
-  const handleRollDice = async (numDice: number): Promise<void> => {
-    game.setRollingDice(true);
-    game.setDiceRolls([]);
-    game.clearDiceResult();
-
-    // Animate rolling
-    for (let frame = 0; frame < 10; frame++) {
-      await new Promise((resolve) => setTimeout(resolve, 80));
-      const tempRolls = Array(numDice)
-        .fill(0)
-        .map(() => Math.floor(Math.random() * 6) + 1);
-      game.setDiceRolls(tempRolls);
-    }
-
-    // Final result
-    const results = Array(numDice)
-      .fill(0)
-      .map(() => Math.floor(Math.random() * 6) + 1);
-    game.setDiceRolls(results);
-    const sum = results.reduce((a, b) => a + b, 0);
-    game.setDiceResult(sum);
-    game.setRollingDice(false);
-  };
+  const handleRollDice = useDiceRoll(game.dispatch);
 
   return (
     <main className="game">

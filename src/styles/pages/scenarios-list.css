@@ -259,3 +259,18 @@
     gap: var(--spacing-md);
   }
 }
+
+.scenarios-list__card--has-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scenarios-list__card--has-cover > * {
+  position: relative;
+  z-index: 2;
+}

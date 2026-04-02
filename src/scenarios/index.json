@@ -15,6 +15,41 @@
       "startParagraphId": "77"
     },
     {
+      "id": "party-time",
+      "title": "Party time",
+      "description": "",
+      "playerCount": "",
+      "duration": ""
+    },
+    {
+      "id": "eksperyment",
+      "title": "Eksperyment",
+      "description": "",
+      "playerCount": "",
+      "duration": ""
+    },
+    {
+      "id": "kolejny-dzien-w-pracy",
+      "title": "Kolejny dzień w pracy",
+      "description": "",
+      "playerCount": "",
+      "duration": ""
+    },
+    {
+      "id": "smiertelna-zabawa",
+      "title": "Śmiertelna zabawa",
+      "description": "",
+      "playerCount": "",
+      "duration": ""
+    },
+    {
+      "id": "swinki-trzy-i-wilk",
+      "title": "Świnki trzy i wilk",
+      "description": "",
+      "playerCount": "",
+      "duration": ""
+    },
+    {
       "id": "tajemna-biblioteka",
       "title": "Tajemna Biblioteka",
       "description": "Zaginęła księga starożytnych zaklęć. Musisz ją znaleźć.",
@@ -37,5 +72,3 @@
     }
   ]
 }
-
-
