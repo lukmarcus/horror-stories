@@ -7,6 +7,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.4] - 2026-04-04
+
+### Dodano
+
+- Grafiki okładkowe na kafelkach scenariuszy "Eksperyment" i "Kolejny dzień w pracy"
+
+---
+
 ## [0.1.3] - 2026-04-02
 
 ### Dodano
