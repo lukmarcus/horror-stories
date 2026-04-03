@@ -6,16 +6,18 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.3 - Architektura
+## Milestone v0.1.4 - Nawigacja i UI
+
+### Kontekst
+
+Aplikacja używana w trybie "wybierz scenariusz → graj do końca". Globalny header z nawigacją nie jest potrzebny podczas rozgrywki i na mobile wygląda źle. Wzorzec: aplikacja Forgotten Waters (fwcrossroads.plaidhatgames.com) — logo + jedna główna akcja + drugorzędne linki pomocnicze.
 
 ### Zakres
 
-Najbardziej ryzykowne zmiany, wymagające starannego testowania.
-
-### Do zrobienia
-
-- Naprawa ścieżek obrazów w `RichText.tsx` (dwa conflicting URL patterns)
-- Przeniesienie logiki `handleRollDice` z `Game.tsx` do hooka / `useDiceRoll`
+- Usunięcie globalnego headera ze wszystkich stron
+- Strona główna: logo/tytuł na środku, duży przycisk "Wybierz scenariusz" jako główna akcja, pod spodem mniejsze linki Instrukcja · O grze
+- Footer uproszczony do jednej linii: copyright + wersja
+- Podstrony nawigują przez przycisk "← Wróć" (spójnie z tym co już działa w grze)
 
 ### Status
 
