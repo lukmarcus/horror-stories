@@ -154,6 +154,13 @@
   font-size: var(--font-size-xl);
 }
 
+.home__footer-text {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+  opacity: 0.6;
+}
+
 @media (max-width: 480px) {
   .home__logo {
     max-height: 180px;

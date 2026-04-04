@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import packageJson from "../../package.json";
 import "../styles/pages/home.css";
 
 export const Home: React.FC = () => {
@@ -34,6 +35,11 @@ export const Home: React.FC = () => {
             <span>O grze</span>
           </Link>
         </nav>
+
+        <p className="home__footer-text">
+          Horror Stories v{packageJson.version} · Marek Szumny ·{" "}
+          {new Date().getFullYear()}
+        </p>
       </div>
     </main>
   );

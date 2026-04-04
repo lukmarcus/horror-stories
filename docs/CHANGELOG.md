@@ -17,7 +17,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - Strona główna przeprojektowana: duże logo z czerwonym glow, animowane tło, przycisk "Wybierz scenariusz" oraz kafelki Instrukcja / O grze
 - Usunięty globalny header z nawigacją — podstrony nawigują przyciskiem "← Menu główne"
-- Footer uproszczony do jednej linii: Horror Stories · autor · rok
+- Footer uproszczony do jednej linii: Horror Stories · autor · rok — przeniesiony bezpośrednio na stronę główną, komponent Footer usunięty
 
 ---
 
