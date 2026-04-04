@@ -1,5 +1,4 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { Header } from "./components/ui/Header";
 import { Footer } from "./components/ui/Footer";
 import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
 import { Home } from "./pages/Home";
@@ -16,7 +15,6 @@ function App() {
     <ErrorBoundary>
       <Router>
         <div className="app">
-          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/scenarios" element={<ScenariosList />} />

@@ -13,6 +13,12 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - Grafiki okładkowe na kafelkach scenariuszy "Eksperyment" i "Kolejny dzień w pracy"
 
+### Zmieniono
+
+- Strona główna przeprojektowana: duże logo z czerwonym glow, animowane tło, przycisk "Wybierz scenariusz" oraz kafelki Instrukcja / O grze
+- Usunięty globalny header z nawigacją — podstrony nawigują przyciskiem "← Menu główne"
+- Footer uproszczony do jednej linii: Horror Stories · autor · rok
+
 ---
 
 ## [0.1.3] - 2026-04-02

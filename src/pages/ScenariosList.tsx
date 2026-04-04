@@ -6,7 +6,7 @@ import "../styles/pages/scenarios-list.css";
 
 const covers = import.meta.glob(
   "../scenarios/*/images/cover.{jpg,jpeg,png,webp}",
-  { eager: true, import: "default" }
+  { eager: true, import: "default" },
 ) as Record<string, string>;
 
 function getCoverUrl(scenarioId: string): string | undefined {
@@ -23,6 +23,11 @@ export const ScenariosList: React.FC = () => {
   return (
     <main className="scenarios-list">
       <section className="scenarios-list__header">
+        <div className="page-back">
+          <Link to="/" className="page-back__link">
+            ← Menu główne
+          </Link>
+        </div>
         <h1 className="scenarios-list__title">Dostępne Scenariusze</h1>
         <p className="scenarios-list__subtitle">
           Wybierz scenariusz i zacznij swoją przygodę
