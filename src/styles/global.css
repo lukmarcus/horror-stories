@@ -15,6 +15,11 @@ html {
 body {
   font-family: var(--font-family-base);
   background-color: var(--color-background);
+  background-image: url("../assets/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--color-text);
   line-height: var(--line-height-normal);
   font-size: var(--font-size-base);
