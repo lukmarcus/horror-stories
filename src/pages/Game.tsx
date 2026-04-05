@@ -301,7 +301,7 @@ export const Game: React.FC = () => {
                           ← Lista scenariuszy
                         </Button>
                       </Link>
-                      <BackToMenu variant="inline" />
+                      <BackToMenu />
                     </>
                   }
                 />
