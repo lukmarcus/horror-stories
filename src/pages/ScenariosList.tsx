@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SCENARIOS } from "../scenarios";
-import { Button } from "../components/ui";
+import { Button, BackToMenu } from "../components/ui";
 import "../styles/pages/scenarios-list.css";
 
 const covers = import.meta.glob(
@@ -22,12 +22,8 @@ export const ScenariosList: React.FC = () => {
 
   return (
     <main className="scenarios-list">
+      <BackToMenu />
       <section className="scenarios-list__header">
-        <div className="page-back">
-          <Link to="/" className="page-back__link">
-            ← Menu główne
-          </Link>
-        </div>
         <h1 className="scenarios-list__title">Dostępne Scenariusze</h1>
         <p className="scenarios-list__subtitle">
           Wybierz scenariusz i zacznij swoją przygodę

@@ -1,16 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import packageJson from "../../package.json";
+import { BackToMenu } from "../components/ui";
 import "../styles/pages/about.css";
 
 export const About: React.FC = () => {
   return (
     <main className="about">
-      <div className="page-back">
-        <Link to="/" className="page-back__link">
-          ← Menu główne
-        </Link>
-      </div>
+      <BackToMenu />
       <section className="about__hero">
         <h1 className="about__title">O Grze</h1>
         <p className="about__subtitle">

@@ -9,6 +9,7 @@ import { PrepareView } from "../components/views/PrepareView/PrepareView";
 import { IndirectView } from "../components/views/IndirectView/IndirectView";
 import { useGame } from "../hooks/useGame";
 import { useDiceRoll } from "../hooks/useDiceRoll";
+import { BackToMenu } from "../components/ui";
 import { jumpToParagraph } from "../utils/gameActions";
 import "../styles/pages/game.css";
 
@@ -300,6 +301,7 @@ export const Game: React.FC = () => {
                           ← Lista scenariuszy
                         </Button>
                       </Link>
+                      <BackToMenu variant="inline" />
                     </>
                   }
                 />

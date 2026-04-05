@@ -1,15 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { BackToMenu } from "../components/ui";
 import "../styles/pages/instructions.css";
 
 export const Instructions: React.FC = () => {
   return (
     <main className="instructions">
-      <div className="page-back">
-        <Link to="/" className="page-back__link">
-          ← Menu główne
-        </Link>
-      </div>
+      <BackToMenu />
       <section className="instructions__hero">
         <h1 className="instructions__title">Instrukcja Obsługi</h1>
         <p className="instructions__subtitle">
