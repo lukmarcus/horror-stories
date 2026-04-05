@@ -7,8 +7,6 @@ import "../styles/pages/home.css";
 export const Home: React.FC = () => {
   return (
     <main className="home">
-      <div className="home__glow" aria-hidden="true" />
-
       <div className="home__content">
         <div className="home__logo-wrap">
           <img src={logo} alt="Horror Stories" className="home__logo" />

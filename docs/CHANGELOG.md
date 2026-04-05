@@ -12,13 +12,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Dodano
 
 - Grafiki okładkowe na kafelkach scenariuszy "Eksperyment" i "Kolejny dzień w pracy"
+- Przycisk "← Menu główne" widoczny w lewym górnym rogu na podstronach (Scenariusze, Instrukcja, O grze) oraz wśród przycisków w menu gry
 
 ### Zmieniono
 
-- Strona główna przeprojektowana: duże logo z czerwonym glow, animowane tło, przycisk "Wybierz scenariusz" oraz kafelki Instrukcja / O grze
-- Usunięty globalny header z nawigacją — podstrony nawigują przyciskiem "← Menu główne"
-- Footer uproszczony do jednej linii: Horror Stories · autor · rok — przeniesiony bezpośrednio na stronę główną, komponent Footer usunięty
-- Grafika tła aplikacji widoczna na wszystkich podstronach
+- Strona główna przeprojektowana: duże logo, przycisk "Wybierz scenariusz" oraz skróty do Instrukcji i O grze
+- Pasek nawigacyjny usunięty — powrót do menu głównego przez przycisk "← Menu główne"
+- Stopka uproszczona do jednej linii z autorem i rokiem — widoczna wyłącznie na stronie głównej
+- Grafika tła widoczna na wszystkich podstronach
 
 ---
 
