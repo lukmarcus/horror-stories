@@ -1,57 +1,3 @@
-.instructions {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--spacing-2xl) var(--spacing-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2xl);
-}
-
-.instructions__hero {
-  text-align: center;
-  padding: var(--spacing-xl) 0;
-  border-bottom: 2px solid var(--color-border);
-}
-
-.instructions__title {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: white;
-  margin: 0 0 var(--spacing-md) 0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.instructions__subtitle {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  margin: 0;
-  line-height: var(--line-height-relaxed);
-}
-
-.instructions__content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2xl);
-}
-
-.instructions__section {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-lg);
-}
-
-.instructions__heading {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary-light);
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid var(--color-border);
-}
-
 /* Steps */
 .instructions__step {
   display: flex;
@@ -193,23 +139,6 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .instructions {
-    padding: var(--spacing-lg) var(--spacing-md);
-    gap: var(--spacing-lg);
-  }
-
-  .instructions__title {
-    font-size: var(--font-size-2xl);
-  }
-
-  .instructions__subtitle {
-    font-size: var(--font-size-base);
-  }
-
-  .instructions__heading {
-    font-size: var(--font-size-lg);
-  }
-
   .instructions__step {
     flex-direction: column;
     gap: var(--spacing-md);

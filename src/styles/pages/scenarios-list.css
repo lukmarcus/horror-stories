@@ -1,35 +1,3 @@
-.scenarios-list {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--spacing-2xl) var(--spacing-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2xl);
-}
-
-.scenarios-list__header {
-  text-align: center;
-  padding: var(--spacing-xl) 0;
-  border-bottom: 2px solid var(--color-border);
-}
-
-.scenarios-list__title {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: white;
-  margin: 0 0 var(--spacing-md) 0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.scenarios-list__subtitle {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  margin: 0;
-  line-height: var(--line-height-relaxed);
-}
-
 /* Grid */
 .scenarios-list__grid {
   display: grid;
@@ -74,30 +42,6 @@
     border-color: var(--color-primary-light);
     box-shadow: 0 12px 32px rgba(139, 0, 0, 0.2);
   }
-
-  &--easy {
-    border-top: 3px solid var(--color-success);
-
-    .scenarios-list__difficulty {
-      background-color: var(--color-success);
-    }
-  }
-
-  &--medium {
-    border-top: 3px solid var(--color-warning);
-
-    .scenarios-list__difficulty {
-      background-color: var(--color-warning);
-    }
-  }
-
-  &--hard {
-    border-top: 3px solid var(--color-error);
-
-    .scenarios-list__difficulty {
-      background-color: var(--color-error);
-    }
-  }
 }
 
 .scenarios-list__card-header {
@@ -115,18 +59,6 @@
   color: white;
   margin: 0;
   flex: 1;
-}
-
-.scenarios-list__difficulty {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .scenarios-list__card-description {
@@ -216,36 +148,6 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .scenarios-list {
-    padding: var(--spacing-lg) var(--spacing-md);
-    gap: var(--spacing-lg);
-  }
-
-  .scenarios-list__title {
-    font-size: var(--font-size-2xl);
-  }
-
-  .scenarios-list__subtitle {
-    font-size: var(--font-size-base);
-  }
-
-  .scenarios-list__filters {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .scenarios-list__filter-group {
-    width: 100%;
-  }
-
-  .scenarios-list__filter-buttons {
-    width: 100%;
-  }
-
-  .scenarios-list__filter-btn {
-    flex: 1;
-  }
-
   .scenarios-list__grid {
     grid-template-columns: 1fr;
   }

@@ -21,11 +21,11 @@ export const ScenariosList: React.FC = () => {
   const scenarios = Object.values(SCENARIOS);
 
   return (
-    <main className="scenarios-list">
+    <main className="page-layout">
       <BackToMenu />
-      <section className="scenarios-list__header">
-        <h1 className="scenarios-list__title">Dostępne Scenariusze</h1>
-        <p className="scenarios-list__subtitle">
+      <section className="page-header">
+        <h1 className="page-header__title">Dostępne Scenariusze</h1>
+        <p className="page-header__subtitle">
           Wybierz scenariusz i zacznij swoją przygodę
         </p>
       </section>

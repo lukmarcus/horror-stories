@@ -5,18 +5,18 @@ import "../styles/pages/about.css";
 
 export const About: React.FC = () => {
   return (
-    <main className="about">
+    <main className="page-layout">
       <BackToMenu />
-      <section className="about__hero">
-        <h1 className="about__title">O Grze</h1>
-        <p className="about__subtitle">
+      <section className="page-header">
+        <h1 className="page-header__title">O Grze</h1>
+        <p className="page-header__subtitle">
           Historia i inspiracja stojące za Horror Stories
         </p>
       </section>
 
-      <section className="about__content">
-        <div className="about__section">
-          <h2 className="about__heading">Czym Jest Horror Stories?</h2>
+      <section className="page-content">
+        <div className="page-section">
+          <h2 className="page-section__heading">Czym Jest Horror Stories?</h2>
           <p>
             Horror Stories to gra planszowa, która łączy element przygody
             tekstowej z mechaniką gry planszowej. Gracze pracują wspólnie, aby
@@ -30,8 +30,8 @@ export const About: React.FC = () => {
           </p>
         </div>
 
-        <div className="about__section">
-          <h2 className="about__heading">Ta Aplikacja</h2>
+        <div className="page-section">
+          <h2 className="page-section__heading">Ta Aplikacja</h2>
           <p>
             Horror Stories Companion App to cyfrowy pomocnik dla fizycznej gry.
             Jego rol to:
@@ -56,8 +56,8 @@ export const About: React.FC = () => {
           </ul>
         </div>
 
-        <div className="about__section">
-          <h2 className="about__heading">Technologia</h2>
+        <div className="page-section">
+          <h2 className="page-section__heading">Technologia</h2>
           <p>Aplikacja zbudowana jest z wykorzystaniem:</p>
           <div className="about__tech-grid">
             <div className="about__tech-item">
@@ -79,8 +79,8 @@ export const About: React.FC = () => {
           </div>
         </div>
 
-        <div className="about__section">
-          <h2 className="about__heading">O Autorze</h2>
+        <div className="page-section">
+          <h2 className="page-section__heading">O Autorze</h2>
           <div className="about__author">
             <div className="about__author-name">Marek Szumny</div>
             <p>
@@ -90,8 +90,8 @@ export const About: React.FC = () => {
           </div>
         </div>
 
-        <div className="about__section about__section--highlight">
-          <h2 className="about__heading">Licencja i Open Source</h2>
+        <div className="page-section page-section--highlight">
+          <h2 className="page-section__heading">Licencja i Open Source</h2>
           <p>
             Ta aplikacja jest dostępna na licencji <strong>MIT</strong>, co
             oznacza, że jest wolnym i otwartym oprogramowaniem. Możesz jej
@@ -103,8 +103,8 @@ export const About: React.FC = () => {
           </p>
         </div>
 
-        <div className="about__section">
-          <h2 className="about__heading">Wersja Aplikacji</h2>
+        <div className="page-section">
+          <h2 className="page-section__heading">Wersja Aplikacji</h2>
           <div className="about__info-grid">
             <div className="about__info-item">
               <span className="about__info-label">Wersja:</span>
