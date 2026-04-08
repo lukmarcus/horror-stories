@@ -19,7 +19,8 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Strona główna przeprojektowana: duże logo, przycisk "Wybierz scenariusz" oraz skróty do Instrukcji i O grze
 - Pasek nawigacyjny usunięty — powrót do menu głównego przez przycisk "← Menu główne"
 - Stopka uproszczona do jednej linii z autorem i rokiem — widoczna wyłącznie na stronie głównej
-- Grafika tła widoczna na wszystkich podstronach
+- Grafika tła widoczna na wszystkich podstronach, w tym podczas rozgrywki
+- Przyciski nawigacyjne w grze mają spójny wygląd z resztą aplikacji
 
 ---
 

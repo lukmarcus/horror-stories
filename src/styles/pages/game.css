@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   min-height: auto;
-  background-color: var(--color-background);
   overflow: visible;
   padding: var(--spacing-xl);
   max-width: 900px;

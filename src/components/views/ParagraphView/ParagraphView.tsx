@@ -112,7 +112,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
     <>
       <nav className="game__content-nav">
         {hasVariants && variantPathLength > 0 && onRefreshVariants && (
-          <Button variant="outline" size="sm" onClick={onRefreshVariants}>
+          <Button variant="secondary" size="sm" onClick={onRefreshVariants}>
             ↻ Odśwież #{currentParagraphId}
           </Button>
         )}
@@ -124,7 +124,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
               {accessibleFrom.map((paragraphId) => (
                 <Button
                   key={`back-to-${paragraphId}`}
-                  variant="outline"
+                  variant="secondary"
                   size="sm"
                   onClick={() => onNavigateToParagraph(paragraphId)}
                 >
@@ -134,7 +134,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             </>
           )}
 
-        <Button variant="outline" size="sm" onClick={onBack}>
+        <Button variant="secondary" size="sm" onClick={onBack}>
           ← Wróć do menu scenariusza
         </Button>
       </nav>

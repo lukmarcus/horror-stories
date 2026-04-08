@@ -210,7 +210,7 @@ export const Game: React.FC = () => {
           )}
           <div className="game__content-nav">
             <Button
-              variant="outline"
+              variant="secondary"
               size="sm"
               onClick={() => {
                 game.resetSetupStep();

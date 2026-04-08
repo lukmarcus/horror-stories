@@ -154,7 +154,6 @@ input::placeholder {
 .page-header {
   text-align: center;
   padding: var(--spacing-xl) 0;
-  border-bottom: 2px solid var(--color-border);
 }
 
 .page-header__title {
