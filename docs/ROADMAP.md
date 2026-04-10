@@ -6,23 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.3 - Architektura
-
-### Zakres
-
-Najbardziej ryzykowne zmiany, wymagające starannego testowania.
-
-### Do zrobienia
-
-- Naprawa ścieżek obrazów w `RichText.tsx` (dwa conflicting URL patterns)
-- Przeniesienie logiki `handleRollDice` z `Game.tsx` do hooka / `useDiceRoll`
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.2.0 - Party time (Scenariusz 1)
 
 ### Zakres

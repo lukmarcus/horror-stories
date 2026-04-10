@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SCENARIOS } from "../scenarios";
-import { Button } from "../components/ui";
+import { Button, BackToMenu } from "../components/ui";
 import "../styles/pages/scenarios-list.css";
 
 const covers = import.meta.glob(
   "../scenarios/*/images/cover.{jpg,jpeg,png,webp}",
-  { eager: true, import: "default" }
+  { eager: true, import: "default" },
 ) as Record<string, string>;
 
 function getCoverUrl(scenarioId: string): string | undefined {
@@ -21,10 +21,11 @@ export const ScenariosList: React.FC = () => {
   const scenarios = Object.values(SCENARIOS);
 
   return (
-    <main className="scenarios-list">
-      <section className="scenarios-list__header">
-        <h1 className="scenarios-list__title">Dostępne Scenariusze</h1>
-        <p className="scenarios-list__subtitle">
+    <main className="page-layout">
+      <BackToMenu />
+      <section className="page-header">
+        <h1 className="page-header__title">Dostępne Scenariusze</h1>
+        <p className="page-header__subtitle">
           Wybierz scenariusz i zacznij swoją przygodę
         </p>
       </section>

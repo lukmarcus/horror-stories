@@ -32,7 +32,7 @@ export const IndirectView: React.FC<IndirectViewProps> = ({
   return (
     <>
       <nav className="game__content-nav">
-        <Button variant="outline" size="sm" onClick={onCancel}>
+        <Button variant="secondary" size="sm" onClick={onCancel}>
           ← Wróć do menu scenariusza
         </Button>
       </nav>

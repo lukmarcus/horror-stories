@@ -1,19 +1,21 @@
 import React from "react";
+import { BackToMenu } from "../components/ui";
 import "../styles/pages/instructions.css";
 
 export const Instructions: React.FC = () => {
   return (
-    <main className="instructions">
-      <section className="instructions__hero">
-        <h1 className="instructions__title">Instrukcja Obsługi</h1>
-        <p className="instructions__subtitle">
+    <main className="page-layout">
+      <BackToMenu />
+      <section className="page-header">
+        <h1 className="page-header__title">Instrukcja Obsługi</h1>
+        <p className="page-header__subtitle">
           Dowiedz się, jak grać w aplikacji Horror Stories
         </p>
       </section>
 
-      <section className="instructions__content">
-        <div className="instructions__section">
-          <h2 className="instructions__heading">Początek Gry</h2>
+      <section className="page-content">
+        <div className="page-section">
+          <h2 className="page-section__heading">Początek Gry</h2>
           <div className="instructions__step">
             <span className="instructions__step-number">1</span>
             <div className="instructions__step-content">
@@ -48,8 +50,8 @@ export const Instructions: React.FC = () => {
           </div>
         </div>
 
-        <div className="instructions__section">
-          <h2 className="instructions__heading">Mechaniki Gry</h2>
+        <div className="page-section">
+          <h2 className="page-section__heading">Mechaniki Gry</h2>
 
           <div className="instructions__mechanic">
             <h3 className="instructions__mechanic-title">🎲 Rzuty Kością</h3>
@@ -88,8 +90,8 @@ export const Instructions: React.FC = () => {
           </div>
         </div>
 
-        <div className="instructions__section">
-          <h2 className="instructions__heading">Porady i Wskazówki</h2>
+        <div className="page-section">
+          <h2 className="page-section__heading">Porady i Wskazówki</h2>
           <ul className="instructions__tips">
             <li>
               Czytaj wszystkie paragrafy uważnie — mogą zawierać ważne detale.
@@ -109,8 +111,8 @@ export const Instructions: React.FC = () => {
           </ul>
         </div>
 
-        <div className="instructions__section">
-          <h2 className="instructions__heading">Najczęstsze Pytania</h2>
+        <div className="page-section">
+          <h2 className="page-section__heading">Najczęstsze Pytania</h2>
           <div className="instructions__faq">
             <div className="instructions__faq-item">
               <h3>Czy mogę grać samodzielnie?</h3>

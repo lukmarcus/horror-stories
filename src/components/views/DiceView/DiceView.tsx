@@ -21,7 +21,7 @@ export const DiceView: React.FC<DiceViewProps> = ({
     <>
       <div className="game__content-nav">
         <Button
-          variant="outline"
+          variant="secondary"
           size="sm"
           onClick={onClose}
           aria-label="Powrót do menu"

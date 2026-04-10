@@ -7,6 +7,23 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.4] - 2026-04-09
+
+### Dodano
+
+- Grafiki okładkowe na kafelkach scenariuszy "Eksperyment" i "Kolejny dzień w pracy"
+- Przycisk "← Menu główne" widoczny w lewym górnym rogu na podstronach (Scenariusze, Instrukcja, O grze) oraz wśród przycisków w menu gry
+
+### Zmieniono
+
+- Strona główna przeprojektowana: duże logo, przycisk "Wybierz scenariusz" oraz skróty do Instrukcji i O grze
+- Pasek nawigacyjny usunięty — powrót do menu głównego przez przycisk "← Menu główne"
+- Stopka uproszczona do jednej linii z autorem i rokiem — widoczna wyłącznie na stronie głównej
+- Grafika tła widoczna na wszystkich podstronach, w tym podczas rozgrywki
+- Przyciski nawigacyjne w grze mają spójny wygląd z resztą aplikacji
+
+---
+
 ## [0.1.3] - 2026-04-02
 
 ### Dodano
