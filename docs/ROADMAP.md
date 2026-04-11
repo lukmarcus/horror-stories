@@ -6,6 +6,21 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
+## Milestone v0.1.5 - Poprawki i nowe mechaniki w menu gry
+
+### Zakres
+
+- Poprawka grafik w paragrafie 30 scenariusza "Droga donikąd" + przegląd innych paragrafów pod kątem podobnych błędów
+- Przycisk żetonów alfabetu w menu gry: widok z literami dostępnymi w scenariuszu (np. A i B w "Droga donikąd"), kliknięcie przenosi do odpowiedniego paragrafu
+- Przycisk przeciwnika w menu gry: rzut kością i wyświetlenie wyniku dla przeciwnika wraz z pytaniami o aktualną sytuację
+- Poprawka wyświetlania przycisków na mobile: gdy przyciski mogą wyjść poza ekran, zawijają się w kolumnę
+
+### Status
+
+- 🔄 W trakcie
+
+---
+
 ## Milestone v0.2.0 - Party time (Scenariusz 1)
 
 ### Zakres
