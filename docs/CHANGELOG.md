@@ -7,6 +7,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [Unreleased] - 0.1.5
+
+### Naprawiono
+
+- Obrazki w paragrafie 30 scenariusza "Droga donikąd" nie wyświetlały się poprawnie — nieprawidłowy format `{"text": "<image id='...'/>"}` zastąpiony poprawnym `{"image": "..."}`
+
+---
+
 ## [0.1.4] - 2026-04-09
 
 ### Dodano
