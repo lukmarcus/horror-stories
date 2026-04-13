@@ -11,7 +11,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ### Naprawiono
 
-- Obrazki w paragrafie 30 scenariusza "Droga donikąd" nie wyświetlały się poprawnie — nieprawidłowy format `{"text": "<image id='...'/>"}` zastąpiony poprawnym `{"image": "..."}`
+- Obrazki w paragrafie 30 scenariusza "Droga donikąd" nie wyświetlały się poprawnie jako duże grafiki
 
 ---
 

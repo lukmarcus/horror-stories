@@ -13,6 +13,7 @@ export interface GameState {
   pendingParagraphId: string | null;
   showAccessibilityWarning: boolean;
   showDiceView: boolean;
+  showAlphabetView: boolean;
 }
 
 export type GameAction =
@@ -29,6 +30,7 @@ export type GameAction =
   | { type: "SHOW_WARNING"; payload: string }
   | { type: "CLOSE_WARNING" }
   | { type: "TOGGLE_DICE_VIEW" }
+  | { type: "TOGGLE_ALPHABET_VIEW" }
   | { type: "SET_DICE_RESULT"; payload: number }
   | { type: "SET_DICE_ROLLS"; payload: number[] }
   | { type: "SET_ROLLING_DICE"; payload: boolean }
@@ -47,6 +49,7 @@ export const initialState: GameState = {
   lastDiceResult: null,
   pendingParagraphId: null,
   showDiceView: false,
+  showAlphabetView: false,
   showAccessibilityWarning: false,
 };
 
@@ -94,6 +97,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       };
     case "TOGGLE_DICE_VIEW":
       return { ...state, showDiceView: !state.showDiceView };
+    case "TOGGLE_ALPHABET_VIEW":
+      return { ...state, showAlphabetView: !state.showAlphabetView };
     case "SET_DICE_RESULT":
       return { ...state, lastDiceResult: action.payload };
     case "SET_DICE_ROLLS":
@@ -123,6 +128,7 @@ interface UseGameReturn {
   prevSetupStep: () => void;
   resetSetupStep: () => void;
   toggleDiceView: () => void;
+  toggleAlphabetView: () => void;
   showWarning: (id: string) => void;
   closeWarning: () => void;
   setDiceResult: (result: number) => void;
@@ -153,6 +159,7 @@ export function useGame(): UseGameReturn {
     prevSetupStep: () => dispatch({ type: "PREV_SETUP_STEP" }),
     resetSetupStep: () => dispatch({ type: "RESET_SETUP_STEP" }),
     toggleDiceView: () => dispatch({ type: "TOGGLE_DICE_VIEW" }),
+    toggleAlphabetView: () => dispatch({ type: "TOGGLE_ALPHABET_VIEW" }),
     showWarning: (id: string) =>
       dispatch({ type: "SHOW_WARNING", payload: id }),
     closeWarning: () => dispatch({ type: "CLOSE_WARNING" }),
