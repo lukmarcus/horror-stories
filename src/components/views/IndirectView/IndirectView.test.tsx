@@ -35,9 +35,7 @@ describe("IndirectView", () => {
 
   it("renders cancel button", () => {
     render(<IndirectView {...makeProps()} />);
-    expect(
-      screen.getAllByText("Wróć do menu scenariusza").length,
-    ).toBeGreaterThan(0);
+    expect(screen.getAllByText("Menu scenariusza").length).toBeGreaterThan(0);
   });
 
   it("calls onConfirm when confirm button clicked", () => {
@@ -50,7 +48,7 @@ describe("IndirectView", () => {
   it("calls onCancel when nav back button clicked", () => {
     const props = makeProps();
     render(<IndirectView {...props} />);
-    fireEvent.click(screen.getByText("← Wróć do menu scenariusza"));
+    fireEvent.click(screen.getByText("← Menu scenariusza"));
     expect(props.onCancel).toHaveBeenCalled();
   });
 

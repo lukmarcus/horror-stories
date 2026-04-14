@@ -33,7 +33,7 @@ export const IndirectView: React.FC<IndirectViewProps> = ({
     <>
       <nav className="game__content-nav">
         <Button variant="secondary" size="sm" onClick={onCancel}>
-          ← Wróć do menu scenariusza
+          ← Menu scenariusza
         </Button>
       </nav>
 
@@ -47,7 +47,7 @@ export const IndirectView: React.FC<IndirectViewProps> = ({
             Tak, przejdź do paragrafu #{pendingParagraphId}
           </Button>
           <Button variant="secondary" size="lg" onClick={onCancel}>
-            Wróć do menu scenariusza
+            Menu scenariusza
           </Button>
         </fieldset>
       </div>

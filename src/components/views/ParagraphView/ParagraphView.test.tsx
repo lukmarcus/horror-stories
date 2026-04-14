@@ -58,7 +58,7 @@ describe("ParagraphView", () => {
         {...makeCallbacks()}
       />,
     );
-    expect(screen.getByText("← Wróć do menu scenariusza")).toBeDefined();
+    expect(screen.getByText("← Menu scenariusza")).toBeDefined();
   });
 
   it("calls onBack when back-to-menu button clicked", () => {
@@ -71,7 +71,7 @@ describe("ParagraphView", () => {
         {...callbacks}
       />,
     );
-    fireEvent.click(screen.getByText("← Wróć do menu scenariusza"));
+    fireEvent.click(screen.getByText("← Menu scenariusza"));
     expect(callbacks.onBack).toHaveBeenCalled();
   });
 

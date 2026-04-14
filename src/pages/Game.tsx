@@ -220,7 +220,7 @@ export const Game: React.FC = () => {
               }}
               aria-label="Powrót do gry"
             >
-              ← Wróć do menu scenariusza
+              ← Menu scenariusza
             </Button>
           </div>
 
@@ -241,7 +241,7 @@ export const Game: React.FC = () => {
             />
           ) : (
             <p className="game__scenario-empty">
-              Brak kroki przygotowania dla tego scenariusza.
+              Brak kroków przygotowania dla tego scenariusza.
             </p>
           )}
         </>

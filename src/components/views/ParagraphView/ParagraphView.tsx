@@ -121,7 +121,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
 
         {onBackToAlphabet && (
           <Button variant="secondary" size="sm" onClick={onBackToAlphabet}>
-            ← Powrót do żetonów alfabetu
+            ← Żetony alfabetu
           </Button>
         )}
 
@@ -143,7 +143,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
           )}
 
         <Button variant="secondary" size="sm" onClick={onBack}>
-          ← Wróć do menu scenariusza
+          ← Menu scenariusza
         </Button>
       </nav>
 

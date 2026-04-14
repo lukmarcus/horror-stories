@@ -24,7 +24,7 @@ export const AlphabetView: React.FC<AlphabetViewProps> = ({
           onClick={onClose}
           aria-label="Powrót do menu"
         >
-          ← Wróć do menu scenariusza
+          ← Menu scenariusza
         </Button>
       </div>
 

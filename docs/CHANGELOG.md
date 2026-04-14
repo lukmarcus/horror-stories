@@ -9,6 +9,15 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [Unreleased] - 0.1.5
 
+### Dodano
+
+- Widok żetonów alfabetu w menu gry: kafelki z grafikami liter, kliknięcie przenosi do odpowiedniego paragrafu
+- Przycisk powrotu do widoku żetonów alfabetu z poziomu paragrafu
+
+### Zmieniono
+
+- Etykiety przycisków powrotu skrócone: "← Wróć do menu scenariusza" → "← Menu scenariusza", "← Powrót do żetonów alfabetu" → "← Żetony alfabetu"
+
 ### Naprawiono
 
 - Obrazki w paragrafie 30 scenariusza "Droga donikąd" nie wyświetlały się poprawnie jako duże grafiki
