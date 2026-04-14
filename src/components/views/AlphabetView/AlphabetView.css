@@ -12,3 +12,25 @@
   color: var(--color-text-muted);
   margin: 0;
 }
+
+.alphabet-view__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 400px;
+}
+
+.alphabet-view__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.alphabet-view__letter {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  min-width: 2.5rem;
+  text-align: center;
+}

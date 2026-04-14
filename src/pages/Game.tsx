@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
-import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
+import { SCENARIOS, PARAGRAPHS, SETUP_DATA, LETTERS_DATA } from "../scenarios";
 import { Button } from "../components/ui";
 import { ParagraphView } from "../components/views/ParagraphView/ParagraphView";
 import { InputView } from "../components/views/InputView/InputView";
@@ -63,6 +63,7 @@ export const Game: React.FC = () => {
 
   const currentScenario = scenarios[scenarioId];
   const setupSteps = SETUP_DATA[scenarioId]?.steps || [];
+  const letters = LETTERS_DATA[scenarioId]?.letters || [];
   const currentParagraph = game.state.currentParagraphId
     ? paragraphs[game.state.currentParagraphId]
     : null;
@@ -272,7 +273,14 @@ export const Game: React.FC = () => {
               {currentScenario.title || "Scenariusz"}
             </h1>
           )}
-          <AlphabetView onClose={() => game.toggleAlphabetView()} />
+          <AlphabetView
+            onClose={() => game.toggleAlphabetView()}
+            letters={letters}
+            onGoToParagraph={(id) => {
+              game.setParagraph(id);
+              game.clearVariants();
+            }}
+          />
         </>
       )}
 

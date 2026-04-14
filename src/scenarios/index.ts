@@ -3,10 +3,11 @@
  * Central data repository for all game content
  */
 
-import type { Scenario, Paragraph, SetupStep } from "../types";
+import type { Scenario, Paragraph, SetupStep, LetterToken } from "../types";
 import scenariosIndex from "./index.json";
 import droga from "./droga-donikad/paragraphs.json";
 import drogaSetup from "./droga-donikad/setup.json";
+import drogaLetters from "./droga-donikad/letters.json";
 import biblioteka from "./tajemna-biblioteka/paragraphs.json";
 import szpital from "./opuszczony-szpital/paragraphs.json";
 import koszmar from "./nocny-koszmar/paragraphs.json";
@@ -104,4 +105,11 @@ export const PARAGRAPHS: Record<string, Record<string, Paragraph>> = {
  */
 export const SETUP_DATA: Record<string, { steps: SetupStep[] }> = {
   "droga-donikad": drogaSetup as { steps: SetupStep[] },
+};
+
+/**
+ * Alphabet letter tokens for each scenario
+ */
+export const LETTERS_DATA: Record<string, { letters: LetterToken[] }> = {
+  "droga-donikad": drogaLetters as { letters: LetterToken[] },
 };
