@@ -22,6 +22,7 @@ interface ParagraphViewProps {
   onRefreshVariants?: () => void;
   onNavigateToParagraph?: (paragraphId: string) => void;
   onShowDice?: () => void;
+  onBackToAlphabet?: () => void;
 }
 
 const PaginationControls: React.FC<{
@@ -64,6 +65,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   onRefreshVariants,
   onNavigateToParagraph,
   onShowDice,
+  onBackToAlphabet,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
 
@@ -114,6 +116,12 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
         {hasVariants && variantPathLength > 0 && onRefreshVariants && (
           <Button variant="secondary" size="sm" onClick={onRefreshVariants}>
             ↻ Odśwież #{currentParagraphId}
+          </Button>
+        )}
+
+        {onBackToAlphabet && (
+          <Button variant="secondary" size="sm" onClick={onBackToAlphabet}>
+            ← Powrót do żetonów alfabetu
           </Button>
         )}
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../../ui";
+import { getLetter } from "../../../data/items";
 import type { LetterToken } from "../../../types";
 import "./AlphabetView.css";
 
@@ -37,24 +38,36 @@ export const AlphabetView: React.FC<AlphabetViewProps> = ({
               Ten scenariusz nie posiada żetonów alfabetu.
             </p>
           ) : (
-            <div className="alphabet-view__list">
-              {letters.map((letter) => (
-                <div key={letter.id} className="alphabet-view__item">
-                  <span className="alphabet-view__letter">
-                    {letter.id.toUpperCase()}
-                  </span>
+            <div className="alphabet-view__tiles">
+              {letters.map((letter) => {
+                const letterData = getLetter(letter.id);
+                return (
                   <Button
+                    key={letter.id}
                     variant="secondary"
-                    size="sm"
                     onClick={() => {
                       onGoToParagraph(letter.paragraphId);
                       onClose();
                     }}
+                    aria-label={`Żeton ${letter.id.toUpperCase()} — paragraf ${letter.paragraphId}`}
                   >
-                    Paragraf {letter.paragraphId}
+                    {letterData ? (
+                      <img
+                        src={letterData.imagePath}
+                        alt={letter.id.toUpperCase()}
+                        className="alphabet-view__letter-img"
+                      />
+                    ) : (
+                      <span className="alphabet-view__letter-fallback">
+                        {letter.id.toUpperCase()}
+                      </span>
+                    )}
+                    <span className="alphabet-view__paragraph-label">
+                      Paragraf {letter.paragraphId}
+                    </span>
                   </Button>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>

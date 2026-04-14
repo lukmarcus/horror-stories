@@ -14,10 +14,12 @@ export interface GameState {
   showAccessibilityWarning: boolean;
   showDiceView: boolean;
   showAlphabetView: boolean;
+  fromAlphabet: boolean;
 }
 
 export type GameAction =
   | { type: "SET_PARAGRAPH"; payload: string | null }
+  | { type: "SET_PARAGRAPH_FROM_ALPHABET"; payload: string }
   | { type: "ADD_VARIANT"; payload: string } // Append variant to path
   | { type: "CLEAR_VARIANTS" } // Reset variant path
   | { type: "SET_INPUT"; payload: string }
@@ -50,6 +52,7 @@ export const initialState: GameState = {
   pendingParagraphId: null,
   showDiceView: false,
   showAlphabetView: false,
+  fromAlphabet: false,
   showAccessibilityWarning: false,
 };
 
@@ -61,6 +64,15 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         currentParagraphId: action.payload,
         variantPath: [],
         error: "",
+        fromAlphabet: false,
+      };
+    case "SET_PARAGRAPH_FROM_ALPHABET":
+      return {
+        ...state,
+        currentParagraphId: action.payload,
+        variantPath: [],
+        error: "",
+        fromAlphabet: true,
       };
     case "ADD_VARIANT":
       return { ...state, variantPath: [...state.variantPath, action.payload] };
@@ -118,6 +130,7 @@ interface UseGameReturn {
   state: GameState;
   dispatch: React.Dispatch<GameAction>;
   setParagraph: (id: string | null) => void;
+  setParagraphFromAlphabet: (id: string) => void;
   addVariant: (id: string) => void;
   clearVariants: () => void;
   setInput: (value: string) => void;
@@ -147,6 +160,8 @@ export function useGame(): UseGameReturn {
     // Convenience methods
     setParagraph: (id: string | null) =>
       dispatch({ type: "SET_PARAGRAPH", payload: id }),
+    setParagraphFromAlphabet: (id: string) =>
+      dispatch({ type: "SET_PARAGRAPH_FROM_ALPHABET", payload: id }),
     addVariant: (id: string) => dispatch({ type: "ADD_VARIANT", payload: id }),
     clearVariants: () => dispatch({ type: "CLEAR_VARIANTS" }),
     setInput: (value: string) =>

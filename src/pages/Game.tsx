@@ -277,7 +277,7 @@ export const Game: React.FC = () => {
             onClose={() => game.toggleAlphabetView()}
             letters={letters}
             onGoToParagraph={(id) => {
-              game.setParagraph(id);
+              game.setParagraphFromAlphabet(id);
               game.clearVariants();
             }}
           />
@@ -360,6 +360,11 @@ export const Game: React.FC = () => {
                     onRefreshVariants={() => game.clearVariants()}
                     onNavigateToParagraph={handleChoice}
                     onShowDice={() => game.toggleDiceView()}
+                    onBackToAlphabet={
+                      game.state.fromAlphabet
+                        ? () => game.toggleAlphabetView()
+                        : undefined
+                    }
                   />
                 ) : (
                   <p className="game__error-text" role="alert">
