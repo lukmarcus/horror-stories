@@ -188,6 +188,50 @@ describe("gameReducer", () => {
     });
   });
 
+  describe("TOGGLE_ALPHABET_VIEW", () => {
+    it("should flip showAlphabetView", () => {
+      expect(
+        gameReducer(initialState, { type: "TOGGLE_ALPHABET_VIEW" })
+          .showAlphabetView,
+      ).toBe(true);
+      const open = { ...initialState, showAlphabetView: true };
+      expect(
+        gameReducer(open, { type: "TOGGLE_ALPHABET_VIEW" }).showAlphabetView,
+      ).toBe(false);
+    });
+  });
+
+  describe("SET_PARAGRAPH_FROM_ALPHABET", () => {
+    it("should set currentParagraphId and mark fromAlphabet as true", () => {
+      const result = gameReducer(initialState, {
+        type: "SET_PARAGRAPH_FROM_ALPHABET",
+        payload: "30",
+      });
+      expect(result.currentParagraphId).toBe("30");
+      expect(result.fromAlphabet).toBe(true);
+      expect(result.variantPath).toEqual([]);
+      expect(result.error).toBe("");
+    });
+
+    it("SET_PARAGRAPH should clear fromAlphabet flag", () => {
+      const state = {
+        ...initialState,
+        fromAlphabet: true,
+        currentParagraphId: "30",
+      };
+      const result = gameReducer(state, {
+        type: "SET_PARAGRAPH",
+        payload: "5",
+      });
+      expect(result.fromAlphabet).toBe(false);
+      expect(result.currentParagraphId).toBe("5");
+    });
+
+    it("fromAlphabet is false in initialState", () => {
+      expect(initialState.fromAlphabet).toBe(false);
+    });
+  });
+
   describe("SET_PARAGRAPH clears variants (integration)", () => {
     it("should add variant to path", () => {
       let variantPath: string[] = [];

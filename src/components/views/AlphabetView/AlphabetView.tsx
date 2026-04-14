@@ -6,12 +6,14 @@ import "./AlphabetView.css";
 
 interface AlphabetViewProps {
   onClose: () => void;
+  onBackToMenu: () => void;
   letters: LetterToken[];
   onGoToParagraph: (paragraphId: string) => void;
 }
 
 export const AlphabetView: React.FC<AlphabetViewProps> = ({
   onClose,
+  onBackToMenu,
   letters,
   onGoToParagraph,
 }) => {
@@ -21,7 +23,7 @@ export const AlphabetView: React.FC<AlphabetViewProps> = ({
         <Button
           variant="secondary"
           size="sm"
-          onClick={onClose}
+          onClick={onBackToMenu}
           aria-label="Powrót do menu"
         >
           ← Menu scenariusza

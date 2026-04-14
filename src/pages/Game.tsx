@@ -275,6 +275,10 @@ export const Game: React.FC = () => {
           )}
           <AlphabetView
             onClose={() => game.toggleAlphabetView()}
+            onBackToMenu={() => {
+              game.toggleAlphabetView();
+              game.setParagraph(null);
+            }}
             letters={letters}
             onGoToParagraph={(id) => {
               game.setParagraphFromAlphabet(id);
