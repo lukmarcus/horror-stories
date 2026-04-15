@@ -10,13 +10,14 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Zakres
 
-- Poprawka grafik w paragrafie 30 scenariusza "Droga donikąd" + przegląd innych paragrafów pod kątem podobnych błędów
-- Przycisk żetonów alfabetu w menu gry: widok z literami dostępnymi w scenariuszu (np. A i B w "Droga donikąd"), kliknięcie przenosi do odpowiedniego paragrafu
-- Przycisk przeciwnika w menu gry: rzut kością i wyświetlenie wyniku dla przeciwnika wraz z pytaniami o aktualną sytuację
-- Poprawka wyświetlania przycisków na mobile: gdy przyciski mogą wyjść poza ekran, zawijają się w kolumnę
-- Przycisk śmierci w menu gry: szybkie przejście do paragrafu 100
-- Opcje w paragrafie 100 (śmierć postaci/przeciwnika)
-- Grafiki żetonów stanów (np. żeton z paragrafu 83)
+- ✅ Poprawka grafik w paragrafie 30 scenariusza "Droga donikąd" + przegląd innych paragrafów pod kątem podobnych błędów
+- ✅ Przycisk żetonów alfabetu w menu gry: widok z literami dostępnymi w scenariuszu (np. A i B w "Droga donikąd"), kliknięcie przenosi do odpowiedniego paragrafu
+- ⏳ Przycisk śmierci w menu gry: szybkie przejście do paragrafu 100
+- ⏳ Przycisk przeciwnika w menu gry: rzut kością i wyświetlenie wyniku dla przeciwnika wraz z pytaniami o aktualną sytuację
+- ⏳ Poprawka wyświetlania przycisków na mobile: gdy przyciski mogą wyjść poza ekran, zawijają się w kolumnę
+- ⏳ Opcje w paragrafie 100 (śmierć postaci/przeciwnika)
+- ⏳ Grafiki żetonów stanów (np. żeton z paragrafu 83)
+- ⏳ Więcej przycisków akcji w widoku dead-end (analogicznie do menu głównego gry: rzut kością, żetony alfabetu, śmierć)
 
 ### Status
 
