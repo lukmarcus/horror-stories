@@ -13,6 +13,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - Widok żetonów alfabetu w menu gry: kafelki z grafikami liter, kliknięcie przenosi do odpowiedniego paragrafu
 - Przycisk powrotu do widoku żetonów alfabetu z poziomu paragrafu
+- Przycisk "💀 Śmierć" w menu gry: po potwierdzeniu przechodzi do paragrafu 100
 
 ### Zmieniono
 

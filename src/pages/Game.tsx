@@ -6,6 +6,7 @@ import { ParagraphView } from "../components/views/ParagraphView/ParagraphView";
 import { InputView } from "../components/views/InputView/InputView";
 import { DiceView } from "../components/views/DiceView/DiceView";
 import { AlphabetView } from "../components/views/AlphabetView/AlphabetView";
+import { DeathView } from "../components/views/DeathView/DeathView";
 import { PrepareView } from "../components/views/PrepareView/PrepareView";
 import { IndirectView } from "../components/views/IndirectView/IndirectView";
 import { useGame } from "../hooks/useGame";
@@ -288,10 +289,30 @@ export const Game: React.FC = () => {
         </>
       )}
 
+      {/* Death View */}
+      {game.state.showDeathView && (
+        <>
+          {currentScenario && (
+            <h1 className="game__scenario-title">
+              {currentScenario.title || "Scenariusz"}
+            </h1>
+          )}
+          <DeathView
+            onConfirm={() => {
+              game.toggleDeathView();
+              game.setParagraph("100");
+              game.clearVariants();
+            }}
+            onCancel={() => game.toggleDeathView()}
+          />
+        </>
+      )}
+
       {/* Main Game View - Hidden when showing Setup, Dice or Warning */}
       {!game.state.showSetup &&
         !game.state.showDiceView &&
         !game.state.showAlphabetView &&
+        !game.state.showDeathView &&
         !game.state.showAccessibilityWarning && (
           <>
             {/* INPUT MODE - Show input panel */}
@@ -328,6 +349,13 @@ export const Game: React.FC = () => {
                         onClick={() => game.toggleAlphabetView()}
                       >
                         🔤 Żetony alfabetu
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => game.toggleDeathView()}
+                      >
+                        💀 Śmierć
                       </Button>
                       <Link to="/scenarios" className="game__option-link">
                         <Button variant="secondary" size="sm">
