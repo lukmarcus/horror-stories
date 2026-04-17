@@ -22,6 +22,8 @@ interface ParagraphViewProps {
   onRefreshVariants?: () => void;
   onNavigateToParagraph?: (paragraphId: string) => void;
   onShowDice?: () => void;
+  onShowAlphabet?: () => void;
+  onShowDeath?: () => void;
   onBackToAlphabet?: () => void;
 }
 
@@ -65,6 +67,8 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   onRefreshVariants,
   onNavigateToParagraph,
   onShowDice,
+  onShowAlphabet,
+  onShowDeath,
   onBackToAlphabet,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
@@ -279,8 +283,22 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                     🎲 Rzut kością
                   </Button>
                 )}
+                {onShowAlphabet && (
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={onShowAlphabet}
+                  >
+                    🔤 Żetony alfabetu
+                  </Button>
+                )}
+                {onShowDeath && (
+                  <Button variant="secondary" size="sm" onClick={onShowDeath}>
+                    💀 Śmierć
+                  </Button>
+                )}
                 <Button variant="secondary" size="sm" onClick={onBack}>
-                  ← Powrót do menu scenariusza
+                  ← Menu scenariusza
                 </Button>
               </>
             }

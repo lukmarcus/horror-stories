@@ -392,6 +392,8 @@ export const Game: React.FC = () => {
                     onRefreshVariants={() => game.clearVariants()}
                     onNavigateToParagraph={handleChoice}
                     onShowDice={() => game.toggleDiceView()}
+                    onShowAlphabet={() => game.toggleAlphabetView()}
+                    onShowDeath={() => game.toggleDeathView()}
                     onBackToAlphabet={
                       game.state.fromAlphabet
                         ? () => game.toggleAlphabetView()
