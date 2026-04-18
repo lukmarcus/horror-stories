@@ -334,32 +334,52 @@ export const Game: React.FC = () => {
                         size="sm"
                         onClick={() => game.toggleSetup()}
                       >
-                        ⚙️ Przygotowanie scenariusza
+                        <span className="game__option-icon">⚙️</span>
+                        <span className="game__option-text">
+                          <span>Przygotowanie</span>
+                          <span>scenariusza</span>
+                        </span>
                       </Button>
                       <Button
                         variant="secondary"
                         size="sm"
                         onClick={() => game.toggleDiceView()}
                       >
-                        🎲 Rzut kością
+                        <span className="game__option-icon">🎲</span>
+                        <span className="game__option-text">
+                          <span>Rzut</span>
+                          <span>kością</span>
+                        </span>
                       </Button>
                       <Button
                         variant="secondary"
                         size="sm"
                         onClick={() => game.toggleAlphabetView()}
                       >
-                        🔤 Żetony alfabetu
+                        <span className="game__option-icon">🆎</span>
+                        <span className="game__option-text">
+                          <span>Żetony</span>
+                          <span>alfabetu</span>
+                        </span>
                       </Button>
                       <Button
                         variant="secondary"
                         size="sm"
                         onClick={() => game.toggleDeathView()}
                       >
-                        💀 Śmierć
+                        <span className="game__option-icon">💀</span>
+                        <span className="game__option-text">
+                          <span>Śmierć</span>
+                          <span>(§100)</span>
+                        </span>
                       </Button>
                       <Link to="/scenarios" className="game__option-link">
                         <Button variant="secondary" size="sm">
-                          ← Lista scenariuszy
+                          <span className="game__option-icon">◀️</span>
+                          <span className="game__option-text">
+                            <span>Lista</span>
+                            <span>scenariuszy</span>
+                          </span>
                         </Button>
                       </Link>
                       <BackToMenu />

@@ -227,6 +227,32 @@ fieldset {
   padding: var(--spacing-lg) 0;
 }
 
+/* Two-line icon+text layout for option buttons */
+.game__options .button {
+  white-space: normal;
+  gap: var(--spacing-sm);
+  align-items: center;
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+}
+
+.game__options .game__option-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.game__options .game__option-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  font-size: 0.85em;
+  min-height: 2.6em;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .game__option-btn {
   font-size: var(--font-size-sm);
 }
