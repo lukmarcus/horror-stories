@@ -280,7 +280,11 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
               <>
                 {onShowDice && (
                   <Button variant="secondary" size="sm" onClick={onShowDice}>
-                    🎲 Rzut kością
+                    <span className="game__option-icon">🎲</span>
+                    <span className="game__option-text">
+                      <span>Rzut</span>
+                      <span>kością</span>
+                    </span>
                   </Button>
                 )}
                 {onShowAlphabet && (
@@ -289,16 +293,28 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                     size="sm"
                     onClick={onShowAlphabet}
                   >
-                    🔤 Żetony alfabetu
+                    <span className="game__option-icon">🆎</span>
+                    <span className="game__option-text">
+                      <span>Żetony</span>
+                      <span>alfabetu</span>
+                    </span>
                   </Button>
                 )}
                 {onShowDeath && (
                   <Button variant="secondary" size="sm" onClick={onShowDeath}>
-                    💀 Śmierć
+                    <span className="game__option-icon">💀</span>
+                    <span className="game__option-text">
+                      <span>Śmierć</span>
+                      <span>(§100)</span>
+                    </span>
                   </Button>
                 )}
                 <Button variant="secondary" size="sm" onClick={onBack}>
-                  ← Menu scenariusza
+                  <span className="game__option-icon">◀️</span>
+                  <span className="game__option-text">
+                    <span>Menu</span>
+                    <span>scenariusza</span>
+                  </span>
                 </Button>
               </>
             }
