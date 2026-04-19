@@ -5,7 +5,7 @@ import { RichText } from "../../text/RichText/RichText";
 import { ConditionalChoice } from "../../text/ConditionalChoice/ConditionalChoice";
 import { InputView } from "../InputView/InputView";
 import { SectionHeader } from "../../ui/SectionHeader";
-import { Button } from "../../ui";
+import { Button, OptionButton } from "../../ui";
 import "./ParagraphView.css";
 
 interface ParagraphViewProps {
@@ -279,43 +279,15 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             actions={
               <>
                 {onShowDice && (
-                  <Button variant="secondary" size="sm" onClick={onShowDice}>
-                    <span className="game__option-icon">🎲</span>
-                    <span className="game__option-text">
-                      <span>Rzut</span>
-                      <span>kością</span>
-                    </span>
-                  </Button>
+                  <OptionButton icon="🎲" line1="Rzut" line2="kością" onClick={onShowDice} />
                 )}
                 {onShowAlphabet && (
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    onClick={onShowAlphabet}
-                  >
-                    <span className="game__option-icon">🆎</span>
-                    <span className="game__option-text">
-                      <span>Żetony</span>
-                      <span>alfabetu</span>
-                    </span>
-                  </Button>
+                  <OptionButton icon="🆎" line1="Żetony" line2="alfabetu" onClick={onShowAlphabet} />
                 )}
                 {onShowDeath && (
-                  <Button variant="secondary" size="sm" onClick={onShowDeath}>
-                    <span className="game__option-icon">💀</span>
-                    <span className="game__option-text">
-                      <span>Śmierć</span>
-                      <span>(§100)</span>
-                    </span>
-                  </Button>
+                  <OptionButton icon="💀" line1="Śmierć" line2="(§100)" onClick={onShowDeath} />
                 )}
-                <Button variant="secondary" size="sm" onClick={onBack}>
-                  <span className="game__option-icon">◀️</span>
-                  <span className="game__option-text">
-                    <span>Menu</span>
-                    <span>scenariusza</span>
-                  </span>
-                </Button>
+                <OptionButton icon="◀️" line1="Menu" line2="scenariusza" onClick={onBack} />
               </>
             }
           />

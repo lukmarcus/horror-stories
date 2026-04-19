@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA, LETTERS_DATA } from "../scenarios";
 import { Button } from "../components/ui";
+import { OptionButton } from "../components/ui";
 import { ParagraphView } from "../components/views/ParagraphView/ParagraphView";
 import { InputView } from "../components/views/InputView/InputView";
 import { DiceView } from "../components/views/DiceView/DiceView";
@@ -329,58 +330,12 @@ export const Game: React.FC = () => {
                   autoFocus
                   actions={
                     <>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => game.toggleSetup()}
-                      >
-                        <span className="game__option-icon">⚙️</span>
-                        <span className="game__option-text">
-                          <span>Przygotowanie</span>
-                          <span>scenariusza</span>
-                        </span>
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => game.toggleDiceView()}
-                      >
-                        <span className="game__option-icon">🎲</span>
-                        <span className="game__option-text">
-                          <span>Rzut</span>
-                          <span>kością</span>
-                        </span>
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => game.toggleAlphabetView()}
-                      >
-                        <span className="game__option-icon">🆎</span>
-                        <span className="game__option-text">
-                          <span>Żetony</span>
-                          <span>alfabetu</span>
-                        </span>
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => game.toggleDeathView()}
-                      >
-                        <span className="game__option-icon">💀</span>
-                        <span className="game__option-text">
-                          <span>Śmierć</span>
-                          <span>(§100)</span>
-                        </span>
-                      </Button>
+                      <OptionButton icon="⚙️" line1="Przygotowanie" line2="scenariusza" onClick={() => game.toggleSetup()} />
+                      <OptionButton icon="🎲" line1="Rzut" line2="kością" onClick={() => game.toggleDiceView()} />
+                      <OptionButton icon="🆎" line1="Żetony" line2="alfabetu" onClick={() => game.toggleAlphabetView()} />
+                      <OptionButton icon="💀" line1="Śmierć" line2="(§100)" onClick={() => game.toggleDeathView()} />
                       <Link to="/scenarios" className="game__option-link">
-                        <Button variant="secondary" size="sm">
-                          <span className="game__option-icon">◀️</span>
-                          <span className="game__option-text">
-                            <span>Lista</span>
-                            <span>scenariuszy</span>
-                          </span>
-                        </Button>
+                        <OptionButton icon="◀️" line1="Lista" line2="scenariuszy" />
                       </Link>
                       <BackToMenu />
                     </>

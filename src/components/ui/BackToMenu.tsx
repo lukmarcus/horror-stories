@@ -1,17 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "./Button";
+import { OptionButton } from "./OptionButton";
 
-export const BackToMenu: React.FC = () => {
-  return (
-    <Link to="/" aria-label="Wróć do menu głównego">
-      <Button variant="secondary" size="sm">
-        <span className="game__option-icon">⬅️</span>
-        <span className="game__option-text">
-          <span>Menu</span>
-          <span>główne</span>
-        </span>
-      </Button>
-    </Link>
-  );
-};
+export const BackToMenu: React.FC = () => (
+  <Link to="/" aria-label="Wróć do menu głównego">
+    <OptionButton icon="⬅️" line1="Menu" line2="główne" />
+  </Link>
+);
