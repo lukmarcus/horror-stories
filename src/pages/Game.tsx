@@ -1,15 +1,16 @@
 import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
-import { SCENARIOS, PARAGRAPHS, SETUP_DATA } from "../scenarios";
-import { Button } from "../components/ui";
+import { SCENARIOS, PARAGRAPHS, SETUP_DATA, LETTERS_DATA } from "../scenarios";
+import { OptionButton, BackToMenu } from "../components/ui";
 import { ParagraphView } from "../components/views/ParagraphView/ParagraphView";
 import { InputView } from "../components/views/InputView/InputView";
 import { DiceView } from "../components/views/DiceView/DiceView";
+import { AlphabetView } from "../components/views/AlphabetView/AlphabetView";
+import { DeathView } from "../components/views/DeathView/DeathView";
 import { PrepareView } from "../components/views/PrepareView/PrepareView";
 import { IndirectView } from "../components/views/IndirectView/IndirectView";
 import { useGame } from "../hooks/useGame";
 import { useDiceRoll } from "../hooks/useDiceRoll";
-import { BackToMenu } from "../components/ui";
 import { jumpToParagraph } from "../utils/gameActions";
 import "../styles/pages/game.css";
 
@@ -62,6 +63,7 @@ export const Game: React.FC = () => {
 
   const currentScenario = scenarios[scenarioId];
   const setupSteps = SETUP_DATA[scenarioId]?.steps || [];
+  const letters = LETTERS_DATA[scenarioId]?.letters || [];
   const currentParagraph = game.state.currentParagraphId
     ? paragraphs[game.state.currentParagraphId]
     : null;
@@ -209,17 +211,15 @@ export const Game: React.FC = () => {
             </h1>
           )}
           <div className="game__content-nav">
-            <Button
-              variant="secondary"
-              size="sm"
+            <OptionButton
+              icon="◀️"
+              line1="Menu"
+              line2="scenariusza"
               onClick={() => {
                 game.resetSetupStep();
                 game.toggleSetup();
               }}
-              aria-label="Powrót do gry"
-            >
-              ← Wróć do menu scenariusza
-            </Button>
+            />
           </div>
 
           {setupSteps.length > 0 ? (
@@ -239,7 +239,7 @@ export const Game: React.FC = () => {
             />
           ) : (
             <p className="game__scenario-empty">
-              Brak kroki przygotowania dla tego scenariusza.
+              Brak kroków przygotowania dla tego scenariusza.
             </p>
           )}
         </>
@@ -263,9 +263,53 @@ export const Game: React.FC = () => {
         </>
       )}
 
+      {/* Alphabet View */}
+      {game.state.showAlphabetView && (
+        <>
+          {currentScenario && (
+            <h1 className="game__scenario-title">
+              {currentScenario.title || "Scenariusz"}
+            </h1>
+          )}
+          <AlphabetView
+            onClose={() => game.toggleAlphabetView()}
+            onBackToMenu={() => {
+              game.toggleAlphabetView();
+              game.setParagraph(null);
+            }}
+            letters={letters}
+            onGoToParagraph={(id) => {
+              game.setParagraphFromAlphabet(id);
+              game.clearVariants();
+            }}
+          />
+        </>
+      )}
+
+      {/* Death View */}
+      {game.state.showDeathView && (
+        <>
+          {currentScenario && (
+            <h1 className="game__scenario-title">
+              {currentScenario.title || "Scenariusz"}
+            </h1>
+          )}
+          <DeathView
+            onConfirm={() => {
+              game.toggleDeathView();
+              game.setParagraph("100");
+              game.clearVariants();
+            }}
+            onCancel={() => game.toggleDeathView()}
+          />
+        </>
+      )}
+
       {/* Main Game View - Hidden when showing Setup, Dice or Warning */}
       {!game.state.showSetup &&
         !game.state.showDiceView &&
+        !game.state.showAlphabetView &&
+        !game.state.showDeathView &&
         !game.state.showAccessibilityWarning && (
           <>
             {/* INPUT MODE - Show input panel */}
@@ -282,24 +326,36 @@ export const Game: React.FC = () => {
                   autoFocus
                   actions={
                     <>
-                      <Button
-                        variant="secondary"
-                        size="sm"
+                      <OptionButton
+                        icon="⚙️"
+                        line1="Przygotowanie"
+                        line2="scenariusza"
                         onClick={() => game.toggleSetup()}
-                      >
-                        ⚙️ Przygotowanie scenariusza
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
+                      />
+                      <OptionButton
+                        icon="🎲"
+                        line1="Rzut"
+                        line2="kością"
                         onClick={() => game.toggleDiceView()}
-                      >
-                        🎲 Rzut kością
-                      </Button>
+                      />
+                      <OptionButton
+                        icon="🆎"
+                        line1="Żetony"
+                        line2="alfabetu"
+                        onClick={() => game.toggleAlphabetView()}
+                      />
+                      <OptionButton
+                        icon="💀"
+                        line1="Śmierć"
+                        line2="(§100)"
+                        onClick={() => game.toggleDeathView()}
+                      />
                       <Link to="/scenarios" className="game__option-link">
-                        <Button variant="secondary" size="sm">
-                          ← Lista scenariuszy
-                        </Button>
+                        <OptionButton
+                          icon="◀️"
+                          line1="Lista"
+                          line2="scenariuszy"
+                        />
                       </Link>
                       <BackToMenu />
                     </>
@@ -331,6 +387,13 @@ export const Game: React.FC = () => {
                     onRefreshVariants={() => game.clearVariants()}
                     onNavigateToParagraph={handleChoice}
                     onShowDice={() => game.toggleDiceView()}
+                    onShowAlphabet={() => game.toggleAlphabetView()}
+                    onShowDeath={() => game.toggleDeathView()}
+                    onBackToAlphabet={
+                      game.state.fromAlphabet
+                        ? () => game.toggleAlphabetView()
+                        : undefined
+                    }
                   />
                 ) : (
                   <p className="game__error-text" role="alert">

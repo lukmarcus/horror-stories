@@ -7,6 +7,30 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.5] - 2026-04-19
+
+### Dodano
+
+- Widok żetonów alfabetu w menu scenariusza: kafelki z grafikami liter, kliknięcie przenosi bezpośrednio do odpowiedniego paragrafu
+- Przycisk powrotu do widoku żetonów alfabetu z poziomu paragrafu
+- Przycisk "💀 Śmierć" w menu scenariusza: po potwierdzeniu przechodzi do paragrafu 100
+- Przyciski rzutu kością, żetonów alfabetu i śmierci dostępne teraz również gdy paragraf nie ma wyborów (tzw. dead-end) — nie trzeba wracać do menu
+
+### Zmieniono
+
+- Wszystkie przyciski nawigacyjne mają teraz spójny wygląd: ikona + dwuwierszowy opis
+- Strzałki w przyciskach zmienione z tekstowych (← →) na emoji (◀️ ▶️ 🔄)
+- Przycisk "Następny" ma strzałkę ▶️ po prawej stronie, "Poprzedni" — ◀️ po lewej
+- Skrócone etykiety przycisków powrotu: "Menu scenariusza", "Żetony alfabetu", "§X" zamiast "Wróć do §X"
+- Na małych ekranach (poniżej 576px) widok przygotowania scenariusza wyświetla tytuł, numer kroku i przyciski wyśrodkowane w kolumnie
+- Na małych ekranach (poniżej 576px) treść zajmuje pełną szerokość ekranu
+
+### Naprawiono
+
+- Obrazki w paragrafie 30 scenariusza "Droga donikąd" nie wyświetlały się poprawnie
+
+---
+
 ## [0.1.4] - 2026-04-09
 
 ### Dodano

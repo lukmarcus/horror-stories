@@ -58,7 +58,9 @@ describe("ParagraphView", () => {
         {...makeCallbacks()}
       />,
     );
-    expect(screen.getByText("← Wróć do menu scenariusza")).toBeDefined();
+    expect(
+      screen.getAllByRole("button", { name: /Menu scenariusza/ }).length,
+    ).toBeGreaterThan(0);
   });
 
   it("calls onBack when back-to-menu button clicked", () => {
@@ -71,7 +73,9 @@ describe("ParagraphView", () => {
         {...callbacks}
       />,
     );
-    fireEvent.click(screen.getByText("← Wróć do menu scenariusza"));
+    fireEvent.click(
+      screen.getAllByRole("button", { name: /Menu scenariusza/ })[0],
+    );
     expect(callbacks.onBack).toHaveBeenCalled();
   });
 
@@ -119,7 +123,7 @@ describe("ParagraphView", () => {
         {...makeCallbacks()}
       />,
     );
-    expect(screen.queryByText("Następny →")).toBeNull();
+    expect(screen.queryByText("▶️ Następny")).toBeNull();
   });
 
   it("shows page controls for multi-page paragraph", () => {
@@ -138,7 +142,9 @@ describe("ParagraphView", () => {
         {...makeCallbacks()}
       />,
     );
-    expect(screen.getAllByText("Następny →").length).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("button", { name: /Następny/ }).length,
+    ).toBeGreaterThan(0);
   });
 
   it("starts on first page and shows subtitle", () => {
@@ -176,7 +182,7 @@ describe("ParagraphView", () => {
         {...makeCallbacks()}
       />,
     );
-    fireEvent.click(screen.getAllByText("Następny →")[0]);
+    fireEvent.click(screen.getAllByRole("button", { name: /Następny/ })[0]);
     expect(screen.getByText("Część 2 z 2")).toBeDefined();
   });
 
@@ -196,7 +202,7 @@ describe("ParagraphView", () => {
         {...makeCallbacks()}
       />,
     );
-    const prevButtons = screen.getAllByText("← Poprzedni");
+    const prevButtons = screen.getAllByRole("button", { name: /Poprzedni/ });
     expect(prevButtons[0].hasAttribute("disabled")).toBe(true);
   });
 
@@ -281,7 +287,12 @@ describe("ParagraphView", () => {
       choices: [{ id: "c1", text: "Do paragrafu 5", nextParagraphId: "5" }],
     };
     render(
-      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={null} {...callbacks} />,
+      <ParagraphView
+        paragraph={para}
+        currentParagraphId="1"
+        lastDiceResult={null}
+        {...callbacks}
+      />,
     );
     fireEvent.click(screen.getByText("Do paragrafu 5"));
     expect(callbacks.onChoice).toHaveBeenCalledWith("5", false);
@@ -294,7 +305,12 @@ describe("ParagraphView", () => {
       choices: [{ id: "c1", text: "Powrót", nextParagraphId: "" }],
     };
     render(
-      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={null} {...callbacks} />,
+      <ParagraphView
+        paragraph={para}
+        currentParagraphId="1"
+        lastDiceResult={null}
+        {...callbacks}
+      />,
     );
     fireEvent.click(screen.getByText("Powrót"));
     expect(callbacks.onBack).toHaveBeenCalled();
@@ -334,7 +350,12 @@ describe("ParagraphView", () => {
       choices: [{ id: "v1", text: "Wariant A", nextVariantId: "variant-1" }],
     };
     render(
-      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={null} {...callbacks} />,
+      <ParagraphView
+        paragraph={para}
+        currentParagraphId="1"
+        lastDiceResult={null}
+        {...callbacks}
+      />,
     );
     fireEvent.click(screen.getByText("Wariant A"));
     expect(callbacks.onChoice).toHaveBeenCalledWith("variant-1", true);
@@ -431,7 +452,12 @@ describe("ParagraphView", () => {
       choices: [],
     };
     render(
-      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={5} {...callbacks} />,
+      <ParagraphView
+        paragraph={para}
+        currentParagraphId="1"
+        lastDiceResult={5}
+        {...callbacks}
+      />,
     );
     fireEvent.click(screen.getByText("PRZEJDŹ"));
     expect(callbacks.onChoice).toHaveBeenCalledWith("10", false);
@@ -452,7 +478,12 @@ describe("ParagraphView", () => {
       choices: [],
     };
     render(
-      <ParagraphView paragraph={para} currentParagraphId="1" lastDiceResult={2} {...callbacks} />,
+      <ParagraphView
+        paragraph={para}
+        currentParagraphId="1"
+        lastDiceResult={2}
+        {...callbacks}
+      />,
     );
     fireEvent.click(screen.getByText("PRZEJDŹ"));
     expect(callbacks.onChoice).toHaveBeenCalledWith("20", false);
@@ -472,8 +503,8 @@ describe("ParagraphView", () => {
         accessibleFrom={["3", "7"]}
       />,
     );
-    expect(screen.getByText("← Wróć do §3")).toBeDefined();
-    expect(screen.getByText("← Wróć do §7")).toBeDefined();
+    expect(screen.getByRole("button", { name: /§3/ })).toBeDefined();
+    expect(screen.getByRole("button", { name: /§7/ })).toBeDefined();
   });
 
   it("calls onNavigateToParagraph when accessibleFrom button clicked", () => {
@@ -487,7 +518,7 @@ describe("ParagraphView", () => {
         accessibleFrom={["3"]}
       />,
     );
-    fireEvent.click(screen.getByText("← Wróć do §3"));
+    fireEvent.click(screen.getByRole("button", { name: /§3/ }));
     expect(callbacks.onNavigateToParagraph).toHaveBeenCalledWith("3");
   });
 

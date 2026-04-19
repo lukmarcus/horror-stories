@@ -6,6 +6,31 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
+## Milestone v0.1.6 - Mechaniki śmierci i żetony stanów
+
+### Zakres
+
+- Opcje w paragrafie 100 (śmierć postaci/przeciwnika)
+- Grafiki żetonów stanów (np. żeton z paragrafu 83)
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.1.7 - Przeciwnik
+
+### Zakres
+
+- Przycisk przeciwnika w menu gry: rzut kością i wyświetlenie wyniku dla przeciwnika wraz z pytaniami o aktualną sytuację
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
 ## Milestone v0.2.0 - Party time (Scenariusz 1)
 
 ### Zakres

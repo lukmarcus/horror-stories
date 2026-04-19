@@ -13,10 +13,14 @@ export interface GameState {
   pendingParagraphId: string | null;
   showAccessibilityWarning: boolean;
   showDiceView: boolean;
+  showAlphabetView: boolean;
+  showDeathView: boolean;
+  fromAlphabet: boolean;
 }
 
 export type GameAction =
   | { type: "SET_PARAGRAPH"; payload: string | null }
+  | { type: "SET_PARAGRAPH_FROM_ALPHABET"; payload: string }
   | { type: "ADD_VARIANT"; payload: string } // Append variant to path
   | { type: "CLEAR_VARIANTS" } // Reset variant path
   | { type: "SET_INPUT"; payload: string }
@@ -29,6 +33,8 @@ export type GameAction =
   | { type: "SHOW_WARNING"; payload: string }
   | { type: "CLOSE_WARNING" }
   | { type: "TOGGLE_DICE_VIEW" }
+  | { type: "TOGGLE_ALPHABET_VIEW" }
+  | { type: "TOGGLE_DEATH_VIEW" }
   | { type: "SET_DICE_RESULT"; payload: number }
   | { type: "SET_DICE_ROLLS"; payload: number[] }
   | { type: "SET_ROLLING_DICE"; payload: boolean }
@@ -47,6 +53,9 @@ export const initialState: GameState = {
   lastDiceResult: null,
   pendingParagraphId: null,
   showDiceView: false,
+  showAlphabetView: false,
+  showDeathView: false,
+  fromAlphabet: false,
   showAccessibilityWarning: false,
 };
 
@@ -58,6 +67,15 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         currentParagraphId: action.payload,
         variantPath: [],
         error: "",
+        fromAlphabet: false,
+      };
+    case "SET_PARAGRAPH_FROM_ALPHABET":
+      return {
+        ...state,
+        currentParagraphId: action.payload,
+        variantPath: [],
+        error: "",
+        fromAlphabet: true,
       };
     case "ADD_VARIANT":
       return { ...state, variantPath: [...state.variantPath, action.payload] };
@@ -94,6 +112,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       };
     case "TOGGLE_DICE_VIEW":
       return { ...state, showDiceView: !state.showDiceView };
+    case "TOGGLE_ALPHABET_VIEW":
+      return { ...state, showAlphabetView: !state.showAlphabetView };
+    case "TOGGLE_DEATH_VIEW":
+      return { ...state, showDeathView: !state.showDeathView };
     case "SET_DICE_RESULT":
       return { ...state, lastDiceResult: action.payload };
     case "SET_DICE_ROLLS":
@@ -113,6 +135,7 @@ interface UseGameReturn {
   state: GameState;
   dispatch: React.Dispatch<GameAction>;
   setParagraph: (id: string | null) => void;
+  setParagraphFromAlphabet: (id: string) => void;
   addVariant: (id: string) => void;
   clearVariants: () => void;
   setInput: (value: string) => void;
@@ -123,6 +146,8 @@ interface UseGameReturn {
   prevSetupStep: () => void;
   resetSetupStep: () => void;
   toggleDiceView: () => void;
+  toggleAlphabetView: () => void;
+  toggleDeathView: () => void;
   showWarning: (id: string) => void;
   closeWarning: () => void;
   setDiceResult: (result: number) => void;
@@ -141,6 +166,8 @@ export function useGame(): UseGameReturn {
     // Convenience methods
     setParagraph: (id: string | null) =>
       dispatch({ type: "SET_PARAGRAPH", payload: id }),
+    setParagraphFromAlphabet: (id: string) =>
+      dispatch({ type: "SET_PARAGRAPH_FROM_ALPHABET", payload: id }),
     addVariant: (id: string) => dispatch({ type: "ADD_VARIANT", payload: id }),
     clearVariants: () => dispatch({ type: "CLEAR_VARIANTS" }),
     setInput: (value: string) =>
@@ -153,6 +180,8 @@ export function useGame(): UseGameReturn {
     prevSetupStep: () => dispatch({ type: "PREV_SETUP_STEP" }),
     resetSetupStep: () => dispatch({ type: "RESET_SETUP_STEP" }),
     toggleDiceView: () => dispatch({ type: "TOGGLE_DICE_VIEW" }),
+    toggleAlphabetView: () => dispatch({ type: "TOGGLE_ALPHABET_VIEW" }),
+    toggleDeathView: () => dispatch({ type: "TOGGLE_DEATH_VIEW" }),
     showWarning: (id: string) =>
       dispatch({ type: "SHOW_WARNING", payload: id }),
     closeWarning: () => dispatch({ type: "CLOSE_WARNING" }),

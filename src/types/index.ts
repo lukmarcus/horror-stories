@@ -76,6 +76,14 @@ export interface SetupStep {
 }
 
 /**
+ * Alphabet token linking a letter to its trigger paragraph
+ */
+export interface LetterToken {
+  id: string;
+  paragraphId: string;
+}
+
+/**
  * Game scenario containing title, description, and game data
  */
 export interface Scenario {

@@ -305,7 +305,7 @@
             "text": "Postaw figurkę <person id='klaun'/> na planszy 12<letter id='a'/>. Wyciągnij jego planszetkę i połóż stroną dla 1-2 graczy (widać to w lewym górnym rogu)."
           },
           {
-            "text": "<image id='klaun-planszetka'/>"
+            "image": "klaun-planszetka"
           },
           {
             "text": "<span class='color-red'>Od momentu pojawienia się</span> <symbol id='przeciwnik'/> <span class='color-red'>po turach postaci kontrolowanych przez graczy, swoją turę rozpoczynają wszystkie</span> <symbol id='przeciwnik'/>."
@@ -314,7 +314,7 @@
             "text": "Żeby było to jeszcze jaśniejsze, ostatnią postacią graczy jest ta, która wykonuje swoją turę tuż przed posiadaczem znacznika 1 gracza (patrz obrazek po prawej)."
           },
           {
-            "text": "<image id='rip'/>"
+            "image": "rip"
           },
           {
             "text": "W tym scenariuszu będzie miało to miejsce zawsze po <person id='patrick'/>."
@@ -325,7 +325,7 @@
             "text": "Tura <symbol id='przeciwnik'/> polega na rzucie określoną na karcie liczbą kości i rozpatrzeniu odpowiedniego wyniku z jej planszetki. <span class='color-red'>Jeśli spełniony zostanie warunek zagrania efektu (o czym za moment), zużywa to jedną akcję</span>. To ile akcji posiada, wyznacza planszetka (patrz obrazek po prawej). W przypadku klauna będą to dwie akcje. Jego tura kończy się natychmiast w chwili zużycia obu."
           },
           {
-            "text": "<image id='klaun-akcje'/>"
+            "image": "klaun-akcje"
           },
           {
             "text": "Sumujemy wyniki na kościach i sprawdzamy, który efekt zostanie rozpatrzony. Jeśli zostanie spełniony warunek opisany <span class='color-red'>na czerwono</span>, wtedy efekt zostaje aktywowany."
@@ -345,7 +345,7 @@
             "text": "Jeden z efektów może dodawać Ci do talii negatywne karty. Jeśli nie ma tam słowa \"możesz\", oznacza to, że <span class='color-red'>musisz je rozpatrzyć</span> (patrz karta po prawej)."
           },
           {
-            "text": "<image id='karta-negatywna'/>"
+            "image": "karta-negatywna"
           },
           {
             "text": "Połóż obok planszetki klauna 7<symbol id='zycie'/>. Symbolizują jego zdrowie. Gdyby utracił je wszystkie, podobnie jak wy, przechodzi się na końcu tury do paragrafu <span class='color-green'>100</span>."

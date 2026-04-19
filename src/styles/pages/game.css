@@ -227,6 +227,32 @@ fieldset {
   padding: var(--spacing-lg) 0;
 }
 
+/* Two-line icon+text layout for option buttons */
+.button.option-button {
+  white-space: normal;
+  gap: var(--spacing-sm);
+  align-items: center;
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+}
+
+.option-button .game__option-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.option-button .game__option-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  font-size: 0.85em;
+  min-height: 2.6em;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .game__option-btn {
   font-size: var(--font-size-sm);
 }
@@ -237,6 +263,7 @@ fieldset {
 
 .game__content-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   align-self: flex-start;
   gap: var(--spacing-md);
@@ -386,6 +413,24 @@ fieldset {
   .game__input-panel {
     max-width: 100%;
     padding: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 576px) {
+  .game__scenario-header,
+  .game__scenario-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .game__scenario-controls {
+    justify-content: center;
+  }
+
+  .game {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../ui";
+import { Button, OptionButton } from "../../ui";
 import "./DiceView.css";
 
 interface DiceViewProps {
@@ -20,14 +20,12 @@ export const DiceView: React.FC<DiceViewProps> = ({
   return (
     <>
       <div className="game__content-nav">
-        <Button
-          variant="secondary"
-          size="sm"
+        <OptionButton
+          icon="◀️"
+          line1="Menu"
+          line2="scenariusza"
           onClick={onClose}
-          aria-label="Powrót do menu"
-        >
-          ← Wróć do menu scenariusza
-        </Button>
+        />
       </div>
 
       <div className="game__scenario">

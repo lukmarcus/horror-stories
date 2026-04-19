@@ -283,12 +283,12 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
       expect(paragraph.accessibleFrom).toBeUndefined();
     });
 
-    it("should show button text with paragraph ID (e.g. '← Wróć do #9')", () => {
+    it("should show button text with paragraph ID (e.g. '◀️ §9')", () => {
       // Simulate button generation
-      const backButton = (toId: string) => `← Wróć do #${toId}`;
+      const backButton = (toId: string) => `◀️ §${toId}`;
 
-      expect(backButton("9")).toBe("← Wróć do #9");
-      expect(backButton("26")).toBe("← Wróć do #26");
+      expect(backButton("9")).toBe("◀️ §9");
+      expect(backButton("26")).toBe("◀️ §26");
     });
 
     it("should validate back button targets exist", () => {

@@ -5,7 +5,7 @@ import { RichText } from "../../text/RichText/RichText";
 import { ConditionalChoice } from "../../text/ConditionalChoice/ConditionalChoice";
 import { InputView } from "../InputView/InputView";
 import { SectionHeader } from "../../ui/SectionHeader";
-import { Button } from "../../ui";
+import { Button, OptionButton } from "../../ui";
 import "./ParagraphView.css";
 
 interface ParagraphViewProps {
@@ -22,6 +22,9 @@ interface ParagraphViewProps {
   onRefreshVariants?: () => void;
   onNavigateToParagraph?: (paragraphId: string) => void;
   onShowDice?: () => void;
+  onShowAlphabet?: () => void;
+  onShowDeath?: () => void;
+  onBackToAlphabet?: () => void;
 }
 
 const PaginationControls: React.FC<{
@@ -31,22 +34,19 @@ const PaginationControls: React.FC<{
   onNext: () => void;
 }> = ({ currentPage, maxPage, onPrev, onNext }) => (
   <>
-    <Button
-      variant="secondary"
-      size="sm"
+    <OptionButton
+      icon="◀️"
+      line1="Poprzedni"
       onClick={onPrev}
       disabled={currentPage === 0}
-    >
-      ← Poprzedni
-    </Button>
-    <Button
-      variant="secondary"
-      size="sm"
+    />
+    <OptionButton
+      icon="▶️"
+      line1="Następny"
+      iconPosition="right"
       onClick={onNext}
       disabled={currentPage === maxPage}
-    >
-      Następny →
-    </Button>
+    />
   </>
 );
 
@@ -64,6 +64,9 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   onRefreshVariants,
   onNavigateToParagraph,
   onShowDice,
+  onShowAlphabet,
+  onShowDeath,
+  onBackToAlphabet,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
 
@@ -112,9 +115,21 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
     <>
       <nav className="game__content-nav">
         {hasVariants && variantPathLength > 0 && onRefreshVariants && (
-          <Button variant="secondary" size="sm" onClick={onRefreshVariants}>
-            ↻ Odśwież #{currentParagraphId}
-          </Button>
+          <OptionButton
+            icon="🔄"
+            line1="Odśwież"
+            line2={`#${currentParagraphId}`}
+            onClick={onRefreshVariants}
+          />
+        )}
+
+        {onBackToAlphabet && (
+          <OptionButton
+            icon="◀️"
+            line1="Żetony"
+            line2="alfabetu"
+            onClick={onBackToAlphabet}
+          />
         )}
 
         {accessibleFrom &&
@@ -122,21 +137,22 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
           onNavigateToParagraph && (
             <>
               {accessibleFrom.map((paragraphId) => (
-                <Button
+                <OptionButton
                   key={`back-to-${paragraphId}`}
-                  variant="secondary"
-                  size="sm"
+                  icon="◀️"
+                  line1={`§${paragraphId}`}
                   onClick={() => onNavigateToParagraph(paragraphId)}
-                >
-                  ← Wróć do §{paragraphId}
-                </Button>
+                />
               ))}
             </>
           )}
 
-        <Button variant="secondary" size="sm" onClick={onBack}>
-          ← Wróć do menu scenariusza
-        </Button>
+        <OptionButton
+          icon="◀️"
+          line1="Menu"
+          line2="scenariusza"
+          onClick={onBack}
+        />
       </nav>
 
       <div
@@ -267,13 +283,35 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             actions={
               <>
                 {onShowDice && (
-                  <Button variant="secondary" size="sm" onClick={onShowDice}>
-                    🎲 Rzut kością
-                  </Button>
+                  <OptionButton
+                    icon="🎲"
+                    line1="Rzut"
+                    line2="kością"
+                    onClick={onShowDice}
+                  />
                 )}
-                <Button variant="secondary" size="sm" onClick={onBack}>
-                  ← Powrót do menu scenariusza
-                </Button>
+                {onShowAlphabet && (
+                  <OptionButton
+                    icon="🆎"
+                    line1="Żetony"
+                    line2="alfabetu"
+                    onClick={onShowAlphabet}
+                  />
+                )}
+                {onShowDeath && (
+                  <OptionButton
+                    icon="💀"
+                    line1="Śmierć"
+                    line2="(§100)"
+                    onClick={onShowDeath}
+                  />
+                )}
+                <OptionButton
+                  icon="◀️"
+                  line1="Menu"
+                  line2="scenariusza"
+                  onClick={onBack}
+                />
               </>
             }
           />
