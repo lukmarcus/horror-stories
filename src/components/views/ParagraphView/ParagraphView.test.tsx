@@ -58,7 +58,7 @@ describe("ParagraphView", () => {
         {...makeCallbacks()}
       />,
     );
-    expect(screen.getByText("← Menu scenariusza")).toBeDefined();
+    expect(screen.getByText("◀️ Menu scenariusza")).toBeDefined();
   });
 
   it("calls onBack when back-to-menu button clicked", () => {
@@ -71,7 +71,7 @@ describe("ParagraphView", () => {
         {...callbacks}
       />,
     );
-    fireEvent.click(screen.getByText("← Menu scenariusza"));
+    fireEvent.click(screen.getByText("◀️ Menu scenariusza"));
     expect(callbacks.onBack).toHaveBeenCalled();
   });
 
@@ -196,7 +196,7 @@ describe("ParagraphView", () => {
         {...makeCallbacks()}
       />,
     );
-    const prevButtons = screen.getAllByText("← Poprzedni");
+    const prevButtons = screen.getAllByText("◀️ Poprzedni");
     expect(prevButtons[0].hasAttribute("disabled")).toBe(true);
   });
 
@@ -472,8 +472,8 @@ describe("ParagraphView", () => {
         accessibleFrom={["3", "7"]}
       />,
     );
-    expect(screen.getByText("← Wróć do §3")).toBeDefined();
-    expect(screen.getByText("← Wróć do §7")).toBeDefined();
+    expect(screen.getByText("◀️ Wróć do §3")).toBeDefined();
+    expect(screen.getByText("◀️ Wróć do §7")).toBeDefined();
   });
 
   it("calls onNavigateToParagraph when accessibleFrom button clicked", () => {
@@ -487,7 +487,7 @@ describe("ParagraphView", () => {
         accessibleFrom={["3"]}
       />,
     );
-    fireEvent.click(screen.getByText("← Wróć do §3"));
+    fireEvent.click(screen.getByText("◀️ Wróć do §3"));
     expect(callbacks.onNavigateToParagraph).toHaveBeenCalledWith("3");
   });
 

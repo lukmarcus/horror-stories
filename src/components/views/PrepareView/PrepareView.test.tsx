@@ -37,7 +37,7 @@ describe("PrepareView", () => {
 
   it("disables Poprzedni button on first step", () => {
     render(<PrepareView {...makeProps({ currentStep: 0 })} />);
-    const prevButtons = screen.getAllByText("← Poprzedni");
+    const prevButtons = screen.getAllByText("◀️ Poprzedni");
     expect(prevButtons[0].hasAttribute("disabled")).toBe(true);
   });
 
@@ -57,7 +57,7 @@ describe("PrepareView", () => {
   it("calls onPrev when Poprzedni button clicked on non-first step", () => {
     const props = makeProps({ currentStep: 1 });
     render(<PrepareView {...props} />);
-    fireEvent.click(screen.getAllByText("← Poprzedni")[0]);
+    fireEvent.click(screen.getAllByText("◀️ Poprzedni")[0]);
     expect(props.onPrev).toHaveBeenCalled();
   });
 

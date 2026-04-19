@@ -41,7 +41,7 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
                 onClick={onPrev}
                 disabled={currentStep === 0}
               >
-                ← Poprzedni
+                ◀️ Poprzedni
               </Button>
 
               <Button
@@ -50,7 +50,7 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
                 onClick={onNext}
                 disabled={isLastStep}
               >
-                Następny →
+                Następny ▶️
               </Button>
             </>
           }
@@ -77,7 +77,7 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
               onClick={onPrev}
               disabled={currentStep === 0}
             >
-              ← Poprzedni
+              ◀️ Poprzedni
             </Button>
 
             <Button
@@ -86,7 +86,7 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
               onClick={onNext}
               disabled={isLastStep}
             >
-              Następny →
+              Następny ▶️
             </Button>
           </div>
         </div>

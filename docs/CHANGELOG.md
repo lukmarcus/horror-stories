@@ -14,10 +14,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Widok żetonów alfabetu w menu gry: kafelki z grafikami liter, kliknięcie przenosi do odpowiedniego paragrafu
 - Przycisk powrotu do widoku żetonów alfabetu z poziomu paragrafu
 - Przycisk "💀 Śmierć" w menu gry: po potwierdzeniu przechodzi do paragrafu 100
+- Przyciski kostki, alfabetu i śmierci dostępne teraz również w widoku dead-end (paragraf bez wyborów)
 
 ### Zmieniono
 
 - Etykiety przycisków powrotu skrócone: "← Wróć do menu scenariusza" → "← Menu scenariusza", "← Powrót do żetonów alfabetu" → "← Żetony alfabetu"
+- Przyciski opcji w menu gry oraz widoku dead-end mają teraz układ dwuwierszowy: ikona + tekst
+- Strzałki ASCII w przyciskach nawigacyjnych zastąpione emoji: ◀️ i ▶️
+- Widok przygotowania scenariusza na ekranach <576px: tytuł, krok i przyciski wyśrodkowane i ułożone pionowo
 
 ### Naprawiono
 

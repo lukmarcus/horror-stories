@@ -26,7 +26,7 @@ export const DiceView: React.FC<DiceViewProps> = ({
           onClick={onClose}
           aria-label="Powrót do menu"
         >
-          ← Menu scenariusza
+          ◀️ Menu scenariusza
         </Button>
       </div>
 

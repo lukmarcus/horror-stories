@@ -14,7 +14,7 @@ export const DeathView: React.FC<DeathViewProps> = ({
     <>
       <nav className="game__content-nav">
         <Button variant="secondary" size="sm" onClick={onCancel}>
-          ← Menu scenariusza
+          ◀️ Menu scenariusza
         </Button>
       </nav>
 

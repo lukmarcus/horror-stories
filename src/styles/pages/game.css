@@ -415,6 +415,19 @@ fieldset {
   }
 }
 
+@media (max-width: 576px) {
+  .game__scenario-header,
+  .game__scenario-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .game__scenario-controls {
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
   .game {
     height: auto;

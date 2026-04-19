@@ -40,7 +40,7 @@ const PaginationControls: React.FC<{
       onClick={onPrev}
       disabled={currentPage === 0}
     >
-      ← Poprzedni
+      ◀️ Poprzedni
     </Button>
     <Button
       variant="secondary"
@@ -48,7 +48,7 @@ const PaginationControls: React.FC<{
       onClick={onNext}
       disabled={currentPage === maxPage}
     >
-      Następny →
+      Następny ▶️
     </Button>
   </>
 );
@@ -125,7 +125,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
 
         {onBackToAlphabet && (
           <Button variant="secondary" size="sm" onClick={onBackToAlphabet}>
-            ← Żetony alfabetu
+            ◀️ Żetony alfabetu
           </Button>
         )}
 
@@ -140,14 +140,14 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                   size="sm"
                   onClick={() => onNavigateToParagraph(paragraphId)}
                 >
-                  ← Wróć do §{paragraphId}
+                  ◀️ Wróć do §{paragraphId}
                 </Button>
               ))}
             </>
           )}
 
         <Button variant="secondary" size="sm" onClick={onBack}>
-          ← Menu scenariusza
+          ◀️ Menu scenariusza
         </Button>
       </nav>
 

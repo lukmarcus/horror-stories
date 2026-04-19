@@ -50,7 +50,7 @@ describe("DiceView", () => {
   it("calls onClose when back button clicked", () => {
     const props = makeProps();
     render(<DiceView {...props} />);
-    fireEvent.click(screen.getByText("← Menu scenariusza"));
+    fireEvent.click(screen.getByText("◀️ Menu scenariusza"));
     expect(props.onClose).toHaveBeenCalled();
   });
 
