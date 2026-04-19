@@ -19,7 +19,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Zmieniono
 
 - Etykiety przycisków powrotu skrócone: "← Wróć do menu scenariusza" → "← Menu scenariusza", "← Powrót do żetonów alfabetu" → "← Żetony alfabetu"
-- Przyciski opcji w menu gry oraz widoku dead-end mają teraz układ dwuwierszowy: ikona + tekst
+- Przyciski opcji (ikona + tekst dwuwierszowy) działają teraz wszędzie, nie tylko w obrębie menu gry
 - Strzałki ASCII w przyciskach nawigacyjnych zastąpione emoji: ◀️ i ▶️
 - Widok przygotowania scenariusza na ekranach <576px: tytuł, krok i przyciski wyśrodkowane i ułożone pionowo
 

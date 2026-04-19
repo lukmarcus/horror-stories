@@ -16,7 +16,13 @@ export const OptionButton: React.FC<OptionButtonProps> = ({
   onClick,
   disabled,
 }) => (
-  <Button variant="secondary" size="sm" onClick={onClick} disabled={disabled}>
+  <Button
+    variant="secondary"
+    size="sm"
+    onClick={onClick}
+    disabled={disabled}
+    className="option-button"
+  >
     <span className="game__option-icon">{icon}</span>
     <span className="game__option-text">
       <span>{line1}</span>

@@ -15,6 +15,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size = "md",
       isLoading = false,
       disabled,
+      className,
       children,
       ...props
     },
@@ -23,7 +24,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={`button button--${variant} button--${size}`}
+        className={[`button button--${variant} button--${size}`, className]
+          .filter(Boolean)
+          .join(" ")}
         disabled={disabled || isLoading}
         {...props}
       >
