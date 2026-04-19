@@ -22,6 +22,10 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Przyciski opcji (ikona + tekst dwuwierszowy) działają teraz wszędzie, nie tylko w obrębie menu gry
 - Strzałki ASCII w przyciskach nawigacyjnych zastąpione emoji: ◀️ i ▶️
 - Widok przygotowania scenariusza na ekranach <576px: tytuł, krok i przyciski wyśrodkowane i ułożone pionowo
+- Boczne paddingi widoku gry usunięte na ekranach <576px dla większego obszaru treści
+- Wszystkie przyciski nawigacyjne (nav, paginacja, przygotowanie) używają teraz spójnego układu dwuwierszowego OptionButton
+- Przycisk "Wróć do §X" skrócony do "§X", ikona odświeżania zmieniona na 🔄
+- Przycisk "Następny" ma ikonę ▶️ po prawej stronie tekstu
 
 ### Naprawiono
 

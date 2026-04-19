@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, SectionHeader } from "../../ui";
+import { Button, OptionButton, SectionHeader } from "../../ui";
 import { RichText } from "../../text/RichText/RichText";
 import type { ContentBlock } from "../../../types";
 
@@ -32,9 +32,12 @@ export const IndirectView: React.FC<IndirectViewProps> = ({
   return (
     <>
       <nav className="game__content-nav">
-        <Button variant="secondary" size="sm" onClick={onCancel}>
-          ← Menu scenariusza
-        </Button>
+        <OptionButton
+          icon="◀️"
+          line1="Menu"
+          line2="scenariusza"
+          onClick={onCancel}
+        />
       </nav>
 
       <div className="game__scenario">

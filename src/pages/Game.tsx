@@ -222,7 +222,7 @@ export const Game: React.FC = () => {
               }}
               aria-label="Powrót do gry"
             >
-              ← Menu scenariusza
+              ◀️ Menu scenariusza
             </Button>
           </div>
 
@@ -330,12 +330,36 @@ export const Game: React.FC = () => {
                   autoFocus
                   actions={
                     <>
-                      <OptionButton icon="⚙️" line1="Przygotowanie" line2="scenariusza" onClick={() => game.toggleSetup()} />
-                      <OptionButton icon="🎲" line1="Rzut" line2="kością" onClick={() => game.toggleDiceView()} />
-                      <OptionButton icon="🆎" line1="Żetony" line2="alfabetu" onClick={() => game.toggleAlphabetView()} />
-                      <OptionButton icon="💀" line1="Śmierć" line2="(§100)" onClick={() => game.toggleDeathView()} />
+                      <OptionButton
+                        icon="⚙️"
+                        line1="Przygotowanie"
+                        line2="scenariusza"
+                        onClick={() => game.toggleSetup()}
+                      />
+                      <OptionButton
+                        icon="🎲"
+                        line1="Rzut"
+                        line2="kością"
+                        onClick={() => game.toggleDiceView()}
+                      />
+                      <OptionButton
+                        icon="🆎"
+                        line1="Żetony"
+                        line2="alfabetu"
+                        onClick={() => game.toggleAlphabetView()}
+                      />
+                      <OptionButton
+                        icon="💀"
+                        line1="Śmierć"
+                        line2="(§100)"
+                        onClick={() => game.toggleDeathView()}
+                      />
                       <Link to="/scenarios" className="game__option-link">
-                        <OptionButton icon="◀️" line1="Lista" line2="scenariuszy" />
+                        <OptionButton
+                          icon="◀️"
+                          line1="Lista"
+                          line2="scenariuszy"
+                        />
                       </Link>
                       <BackToMenu />
                     </>

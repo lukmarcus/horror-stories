@@ -54,7 +54,7 @@ describe("AlphabetView", () => {
   it("calls onBackToMenu (not onClose) when back button clicked", () => {
     const props = makeProps();
     render(<AlphabetView {...props} />);
-    fireEvent.click(screen.getByText("← Menu scenariusza"));
+    fireEvent.click(screen.getByRole("button", { name: /Menu scenariusza/ }));
     expect(props.onBackToMenu).toHaveBeenCalled();
     expect(props.onClose).not.toHaveBeenCalled();
   });

@@ -34,22 +34,19 @@ const PaginationControls: React.FC<{
   onNext: () => void;
 }> = ({ currentPage, maxPage, onPrev, onNext }) => (
   <>
-    <Button
-      variant="secondary"
-      size="sm"
+    <OptionButton
+      icon="◀️"
+      line1="Poprzedni"
       onClick={onPrev}
       disabled={currentPage === 0}
-    >
-      ◀️ Poprzedni
-    </Button>
-    <Button
-      variant="secondary"
-      size="sm"
+    />
+    <OptionButton
+      icon="▶️"
+      line1="Następny"
+      iconPosition="right"
       onClick={onNext}
       disabled={currentPage === maxPage}
-    >
-      Następny ▶️
-    </Button>
+    />
   </>
 );
 
@@ -118,15 +115,21 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
     <>
       <nav className="game__content-nav">
         {hasVariants && variantPathLength > 0 && onRefreshVariants && (
-          <Button variant="secondary" size="sm" onClick={onRefreshVariants}>
-            ↻ Odśwież #{currentParagraphId}
-          </Button>
+          <OptionButton
+            icon="🔄"
+            line1="Odśwież"
+            line2={`#${currentParagraphId}`}
+            onClick={onRefreshVariants}
+          />
         )}
 
         {onBackToAlphabet && (
-          <Button variant="secondary" size="sm" onClick={onBackToAlphabet}>
-            ◀️ Żetony alfabetu
-          </Button>
+          <OptionButton
+            icon="◀️"
+            line1="Żetony"
+            line2="alfabetu"
+            onClick={onBackToAlphabet}
+          />
         )}
 
         {accessibleFrom &&
@@ -134,21 +137,22 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
           onNavigateToParagraph && (
             <>
               {accessibleFrom.map((paragraphId) => (
-                <Button
+                <OptionButton
                   key={`back-to-${paragraphId}`}
-                  variant="secondary"
-                  size="sm"
+                  icon="◀️"
+                  line1={`§${paragraphId}`}
                   onClick={() => onNavigateToParagraph(paragraphId)}
-                >
-                  ◀️ Wróć do §{paragraphId}
-                </Button>
+                />
               ))}
             </>
           )}
 
-        <Button variant="secondary" size="sm" onClick={onBack}>
-          ◀️ Menu scenariusza
-        </Button>
+        <OptionButton
+          icon="◀️"
+          line1="Menu"
+          line2="scenariusza"
+          onClick={onBack}
+        />
       </nav>
 
       <div
@@ -279,15 +283,35 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
             actions={
               <>
                 {onShowDice && (
-                  <OptionButton icon="🎲" line1="Rzut" line2="kością" onClick={onShowDice} />
+                  <OptionButton
+                    icon="🎲"
+                    line1="Rzut"
+                    line2="kością"
+                    onClick={onShowDice}
+                  />
                 )}
                 {onShowAlphabet && (
-                  <OptionButton icon="🆎" line1="Żetony" line2="alfabetu" onClick={onShowAlphabet} />
+                  <OptionButton
+                    icon="🆎"
+                    line1="Żetony"
+                    line2="alfabetu"
+                    onClick={onShowAlphabet}
+                  />
                 )}
                 {onShowDeath && (
-                  <OptionButton icon="💀" line1="Śmierć" line2="(§100)" onClick={onShowDeath} />
+                  <OptionButton
+                    icon="💀"
+                    line1="Śmierć"
+                    line2="(§100)"
+                    onClick={onShowDeath}
+                  />
                 )}
-                <OptionButton icon="◀️" line1="Menu" line2="scenariusza" onClick={onBack} />
+                <OptionButton
+                  icon="◀️"
+                  line1="Menu"
+                  line2="scenariusza"
+                  onClick={onBack}
+                />
               </>
             }
           />

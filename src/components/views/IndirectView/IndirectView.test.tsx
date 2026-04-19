@@ -48,7 +48,9 @@ describe("IndirectView", () => {
   it("calls onCancel when nav back button clicked", () => {
     const props = makeProps();
     render(<IndirectView {...props} />);
-    fireEvent.click(screen.getByText("← Menu scenariusza"));
+    fireEvent.click(
+      screen.getAllByRole("button", { name: /Menu scenariusza/ })[0],
+    );
     expect(props.onCancel).toHaveBeenCalled();
   });
 

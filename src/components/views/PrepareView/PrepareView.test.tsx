@@ -37,27 +37,27 @@ describe("PrepareView", () => {
 
   it("disables Poprzedni button on first step", () => {
     render(<PrepareView {...makeProps({ currentStep: 0 })} />);
-    const prevButtons = screen.getAllByText("◀️ Poprzedni");
+    const prevButtons = screen.getAllByRole("button", { name: /Poprzedni/ });
     expect(prevButtons[0].hasAttribute("disabled")).toBe(true);
   });
 
   it("disables Następny button on last step", () => {
     render(<PrepareView {...makeProps({ currentStep: 2, totalSteps: 3 })} />);
-    const nextButtons = screen.getAllByText("Następny →");
+    const nextButtons = screen.getAllByRole("button", { name: /Następny/ });
     expect(nextButtons[0].hasAttribute("disabled")).toBe(true);
   });
 
   it("calls onNext when Następny button clicked", () => {
     const props = makeProps({ currentStep: 0 });
     render(<PrepareView {...props} />);
-    fireEvent.click(screen.getAllByText("Następny →")[0]);
+    fireEvent.click(screen.getAllByRole("button", { name: /Następny/ })[0]);
     expect(props.onNext).toHaveBeenCalled();
   });
 
   it("calls onPrev when Poprzedni button clicked on non-first step", () => {
     const props = makeProps({ currentStep: 1 });
     render(<PrepareView {...props} />);
-    fireEvent.click(screen.getAllByText("◀️ Poprzedni")[0]);
+    fireEvent.click(screen.getAllByRole("button", { name: /Poprzedni/ })[0]);
     expect(props.onPrev).toHaveBeenCalled();
   });
 
@@ -81,7 +81,11 @@ describe("PrepareView", () => {
   it("uses startParagraphId in Start button text", () => {
     render(
       <PrepareView
-        {...makeProps({ currentStep: 2, totalSteps: 3, startParagraphId: "42" })}
+        {...makeProps({
+          currentStep: 2,
+          totalSteps: 3,
+          startParagraphId: "42",
+        })}
       />,
     );
     expect(screen.getByText("Przejdź do paragrafu 42")).toBeDefined();

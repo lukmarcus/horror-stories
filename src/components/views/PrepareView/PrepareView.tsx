@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, SectionHeader } from "../../ui";
+import { Button, OptionButton, SectionHeader } from "../../ui";
 import { RichText } from "../../text/RichText/RichText";
 import type { SetupStep } from "../../../types";
 
@@ -35,23 +35,19 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
           subtitle={`Krok ${currentStep + 1} z ${totalSteps}`}
           controls={
             <>
-              <Button
-                variant="secondary"
-                size="sm"
+              <OptionButton
+                icon="◀️"
+                line1="Poprzedni"
                 onClick={onPrev}
                 disabled={currentStep === 0}
-              >
-                ◀️ Poprzedni
-              </Button>
-
-              <Button
-                variant="secondary"
-                size="sm"
+              />
+              <OptionButton
+                icon="▶️"
+                line1="Następny"
+                iconPosition="right"
                 onClick={onNext}
                 disabled={isLastStep}
-              >
-                Następny ▶️
-              </Button>
+              />
             </>
           }
         />
@@ -71,23 +67,19 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
             Krok {currentStep + 1} z {totalSteps}
           </div>
           <div className="game__scenario-controls">
-            <Button
-              variant="secondary"
-              size="sm"
+            <OptionButton
+              icon="◀️"
+              line1="Poprzedni"
               onClick={onPrev}
               disabled={currentStep === 0}
-            >
-              ◀️ Poprzedni
-            </Button>
-
-            <Button
-              variant="secondary"
-              size="sm"
+            />
+            <OptionButton
+              icon="▶️"
+              line1="Następny"
+              iconPosition="right"
               onClick={onNext}
               disabled={isLastStep}
-            >
-              Następny ▶️
-            </Button>
+            />
           </div>
         </div>
       </div>

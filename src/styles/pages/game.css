@@ -228,7 +228,7 @@ fieldset {
 }
 
 /* Two-line icon+text layout for option buttons */
-.option-button {
+.button.option-button {
   white-space: normal;
   gap: var(--spacing-sm);
   align-items: center;
@@ -263,6 +263,7 @@ fieldset {
 
 .game__content-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   align-self: flex-start;
   gap: var(--spacing-md);
@@ -425,6 +426,11 @@ fieldset {
 
   .game__scenario-controls {
     justify-content: center;
+  }
+
+  .game {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../ui";
+import { Button, OptionButton } from "../../ui";
 import { getLetter } from "../../../data/items";
 import type { LetterToken } from "../../../types";
 import "./AlphabetView.css";
@@ -20,14 +20,13 @@ export const AlphabetView: React.FC<AlphabetViewProps> = ({
   return (
     <>
       <div className="game__content-nav">
-        <Button
-          variant="secondary"
-          size="sm"
+        <OptionButton
+          icon="◀️"
+          line1="Menu"
+          line2="scenariusza"
           onClick={onBackToMenu}
           aria-label="Powrót do menu"
-        >
-          ← Menu scenariusza
-        </Button>
+        />
       </div>
 
       <div className="game__scenario">
