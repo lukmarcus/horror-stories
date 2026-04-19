@@ -1,8 +1,7 @@
 import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA, LETTERS_DATA } from "../scenarios";
-import { Button } from "../components/ui";
-import { OptionButton } from "../components/ui";
+import { OptionButton, BackToMenu } from "../components/ui";
 import { ParagraphView } from "../components/views/ParagraphView/ParagraphView";
 import { InputView } from "../components/views/InputView/InputView";
 import { DiceView } from "../components/views/DiceView/DiceView";
@@ -12,7 +11,6 @@ import { PrepareView } from "../components/views/PrepareView/PrepareView";
 import { IndirectView } from "../components/views/IndirectView/IndirectView";
 import { useGame } from "../hooks/useGame";
 import { useDiceRoll } from "../hooks/useDiceRoll";
-import { BackToMenu } from "../components/ui";
 import { jumpToParagraph } from "../utils/gameActions";
 import "../styles/pages/game.css";
 
@@ -213,17 +211,15 @@ export const Game: React.FC = () => {
             </h1>
           )}
           <div className="game__content-nav">
-            <Button
-              variant="secondary"
-              size="sm"
+            <OptionButton
+              icon="◀️"
+              line1="Menu"
+              line2="scenariusza"
               onClick={() => {
                 game.resetSetupStep();
                 game.toggleSetup();
               }}
-              aria-label="Powrót do gry"
-            >
-              ◀️ Menu scenariusza
-            </Button>
+            />
           </div>
 
           {setupSteps.length > 0 ? (

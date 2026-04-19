@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, SectionHeader } from "../../ui";
+import { Button, OptionButton, SectionHeader } from "../../ui";
 
 interface DeathViewProps {
   onConfirm: () => void;
@@ -13,9 +13,12 @@ export const DeathView: React.FC<DeathViewProps> = ({
   return (
     <>
       <nav className="game__content-nav">
-        <Button variant="secondary" size="sm" onClick={onCancel}>
-          ◀️ Menu scenariusza
-        </Button>
+        <OptionButton
+          icon="◀️"
+          line1="Menu"
+          line2="scenariusza"
+          onClick={onCancel}
+        />
       </nav>
 
       <div className="game__scenario">
