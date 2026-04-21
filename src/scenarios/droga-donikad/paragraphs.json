@@ -998,33 +998,99 @@
           "contentPages": [
             [
               {
-                "text": "<person id='jessica'/> / <person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+                "text": "<person id='jessica'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
               },
               {
                 "image": "rana-ciezka"
-              },
-              {
-                "text": "Jeśli obie postacie takowy posiadają przejdź do <span class='color-green'>180</span>."
               }
             ]
           ],
-          "choices": []
+          "choices": [
+            {
+              "text": "Obie postacie posiadają żeton ciężkiej rany.",
+              "nextVariantId": "jessica-obie"
+            },
+            {
+              "text": "Tylko Jessica ma żeton ciężkiej rany.",
+              "nextVariantId": "jessica-tylko"
+            }
+          ],
+          "variants": {
+            "jessica-obie": {
+              "contentPages": [
+                [
+                  {
+                    "text": "Przejdź do paragrafu <span class='color-green'>180</span>."
+                  }
+                ]
+              ],
+              "choices": [
+                {
+                  "text": "Przejdź do paragrafu 180",
+                  "nextParagraphId": "180"
+                }
+              ]
+            },
+            "jessica-tylko": {
+              "contentPages": [
+                [
+                  {
+                    "text": "Gra toczy się dalej."
+                  }
+                ]
+              ],
+              "choices": []
+            }
+          }
         },
         "patrick": {
           "contentPages": [
             [
               {
-                "text": "<person id='jessica'/> / <person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+                "text": "<person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
               },
               {
                 "image": "rana-ciezka"
-              },
-              {
-                "text": "Jeśli obie postacie takowy posiadają przejdź do <span class='color-green'>180</span>."
               }
             ]
           ],
-          "choices": []
+          "choices": [
+            {
+              "text": "Obie postacie posiadają żeton ciężkiej rany.",
+              "nextVariantId": "patrick-obie"
+            },
+            {
+              "text": "Tylko Patrick ma żeton ciężkiej rany.",
+              "nextVariantId": "patrick-tylko"
+            }
+          ],
+          "variants": {
+            "patrick-obie": {
+              "contentPages": [
+                [
+                  {
+                    "text": "Przejdź do paragrafu <span class='color-green'>180</span>."
+                  }
+                ]
+              ],
+              "choices": [
+                {
+                  "text": "Przejdź do paragrafu 180",
+                  "nextParagraphId": "180"
+                }
+              ]
+            },
+            "patrick-tylko": {
+              "contentPages": [
+                [
+                  {
+                    "text": "Gra toczy się dalej."
+                  }
+                ]
+              ],
+              "choices": []
+            }
+          }
         }
       }
     },
