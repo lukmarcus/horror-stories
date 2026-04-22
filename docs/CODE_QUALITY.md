@@ -10,7 +10,7 @@ Wytyczne dla utrzymania wysokiej jakości kodu w projekcie.
 | **Imports**    | Barrel exports via `index.ts`                    |
 | **TypeScript** | Strict mode, no `any`, wszystko typowane         |
 | **Components** | PascalCase, props interface, style colocated     |
-| **Tests**      | `*.test.tsx` obok kodu, 299+ testów (v0.1.2)    |
+| **Tests**      | `*.test.tsx` obok kodu, 313+ testów (v0.1.6)     |
 | **CSS**        | BEM naming, global + component-scoped            |
 | **Commits**    | Conventional: `feat:/fix:/refactor:/test:/docs:` |
 
@@ -182,4 +182,4 @@ try {
 
 ---
 
-**Last Updated:** 2026-03-04 | v0.0.12
+**Last Updated:** 2026-04-23 | v0.1.6

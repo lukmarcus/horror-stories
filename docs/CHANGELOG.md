@@ -7,6 +7,18 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.6] - 2026-04-22
+
+### Dodano
+
+- Paragraf 100 w "Droga donikąd": warianty dla śmierci postaci — Klaun, Jessica, Patrick; możliwość wskazania czy ciężką ranę ma jedna czy obie postacie
+
+### Naprawiono
+
+- Żetony stanu (`<status id='...'/>`) teraz wyświetlają się jako ikony inline w treści paragrafów
+
+---
+
 ## [0.1.5] - 2026-04-19
 
 ### Dodano

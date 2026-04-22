@@ -866,7 +866,7 @@
       "contentPages": [
         [
           {
-            "text": "Odrzuć <letter id='b'/> z toru czasu. Połóż obok planszy <person id='klaun'/> żeton <effect id='plus-jedna-kosc'/>. Od tej pory rzuca do końca scenariusza jedną kością więcej."
+            "text": "Odrzuć <letter id='b'/> z toru czasu. Połóż obok planszy <person id='klaun'/> żeton <status id='zielony'/>. Od tej pory rzuca do końca scenariusza jedną kością więcej."
           }
         ]
       ],
@@ -965,22 +965,102 @@
         [
           {
             "text": "Śmierć. Sprawdź kogo dotyczy."
-          },
-          {
-            "text": "<person id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
-          },
-          {
-            "text": "<person id='jessica'/> / <person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
-          },
-          {
-            "image": "rana-ciezka"
-          },
-          {
-            "text": "Jeśli obie postacie takowy posiadają przejdź do <span class='color-green'>180</span>."
           }
         ]
       ],
-      "choices": []
+      "choices": [
+        {
+          "text": "<person id='klaun'/><br />Klaun",
+          "nextVariantId": "klaun"
+        },
+        {
+          "text": "<person id='jessica'/><br />Jessica",
+          "nextVariantId": "jessica"
+        },
+        {
+          "text": "<person id='patrick'/><br />Patrick",
+          "nextVariantId": "patrick"
+        }
+      ],
+      "areChoicesHorizontal": true,
+      "variants": {
+        "klaun": {
+          "contentPages": [
+            [
+              {
+                "text": "<person id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
+              }
+            ]
+          ],
+          "choices": []
+        },
+        "jessica": {
+          "contentPages": [
+            [
+              {
+                "text": "<person id='jessica'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+              },
+              {
+                "image": "rana-ciezka"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Obie postacie posiadają żeton ciężkiej rany.",
+              "nextParagraphId": "180"
+            },
+            {
+              "text": "Tylko Jessica posiada żeton ciężkiej rany.",
+              "nextVariantId": "jessica-tylko"
+            }
+          ],
+          "areChoicesHorizontal": true
+        },
+        "patrick": {
+          "contentPages": [
+            [
+              {
+                "text": "<person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+              },
+              {
+                "image": "rana-ciezka"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Obie postacie posiadają żeton ciężkiej rany.",
+              "nextParagraphId": "180"
+            },
+            {
+              "text": "Tylko Patrick posiada żeton ciężkiej rany.",
+              "nextVariantId": "patrick-tylko"
+            }
+          ],
+          "areChoicesHorizontal": true
+        },
+        "jessica-tylko": {
+          "contentPages": [
+            [
+              {
+                "text": "Gra toczy się dalej."
+              }
+            ]
+          ],
+          "choices": []
+        },
+        "patrick-tylko": {
+          "contentPages": [
+            [
+              {
+                "text": "Gra toczy się dalej."
+              }
+            ]
+          ],
+          "choices": []
+        }
+      }
     },
     {
       "id": "105",

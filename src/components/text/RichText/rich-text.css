@@ -97,6 +97,7 @@
 .symbol-image,
 .letter-image,
 .person-image,
+.status-image,
 .inline-image {
   height: 1.4em;
   width: auto;
