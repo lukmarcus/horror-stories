@@ -1011,23 +1011,11 @@
               "nextParagraphId": "180"
             },
             {
-              "text": "Tylko Jessica ma żeton ciężkiej rany.",
+              "text": "Tylko Jessica posiada żeton ciężkiej rany.",
               "nextVariantId": "jessica-tylko"
             }
           ],
-          "areChoicesHorizontal": true,
-          "variants": {
-            "jessica-tylko": {
-              "contentPages": [
-                [
-                  {
-                    "text": "Gra toczy się dalej."
-                  }
-                ]
-              ],
-              "choices": []
-            }
-          }
+          "areChoicesHorizontal": true
         },
         "patrick": {
           "contentPages": [
@@ -1046,23 +1034,31 @@
               "nextParagraphId": "180"
             },
             {
-              "text": "Tylko Patrick ma żeton ciężkiej rany.",
+              "text": "Tylko Patrick posiada żeton ciężkiej rany.",
               "nextVariantId": "patrick-tylko"
             }
           ],
-          "areChoicesHorizontal": true,
-          "variants": {
-            "patrick-tylko": {
-              "contentPages": [
-                [
-                  {
-                    "text": "Gra toczy się dalej."
-                  }
-                ]
-              ],
-              "choices": []
-            }
-          }
+          "areChoicesHorizontal": true
+        },
+        "jessica-tylko": {
+          "contentPages": [
+            [
+              {
+                "text": "Gra toczy się dalej."
+              }
+            ]
+          ],
+          "choices": []
+        },
+        "patrick-tylko": {
+          "contentPages": [
+            [
+              {
+                "text": "Gra toczy się dalej."
+              }
+            ]
+          ],
+          "choices": []
         }
       }
     },
