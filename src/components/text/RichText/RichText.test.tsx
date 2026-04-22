@@ -65,6 +65,18 @@ describe("RichText", () => {
       expect(container.querySelector("img.room-item-image")).not.toBeNull();
     });
 
+    it("renders status image for known <status> tag", () => {
+      const { container } = render(<RichText text='<status id="zielony"/>' />);
+      expect(container.querySelector("img.status-image")).not.toBeNull();
+    });
+
+    it("renders nothing for unknown <status> tag", () => {
+      const { container } = render(
+        <RichText text='<status id="nonexistent-status"/>' />,
+      );
+      expect(container.querySelector("img")).toBeNull();
+    });
+
     it("renders image placeholder when no scenarioId", () => {
       const { container } = render(<RichText text='<image id="map"/>' />);
       expect(container.querySelector(".rich-image-placeholder")).not.toBeNull();

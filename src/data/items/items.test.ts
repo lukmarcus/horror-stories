@@ -5,11 +5,13 @@ import {
   getSymbol,
   getPerson,
   getLetter,
+  getStatus,
   storyItems,
   roomItems,
   symbols,
   persons,
   letters,
+  statuses,
 } from "./index";
 
 describe("data/items getters", () => {
@@ -92,6 +94,21 @@ describe("data/items getters", () => {
 
     it("should return undefined for non-existent id", () => {
       expect(getLetter("__nonexistent__")).toBeUndefined();
+    });
+  });
+
+  describe("getStatus", () => {
+    it("should return status with imagePath for existing id", () => {
+      const firstStatus = statuses[0];
+      const result = getStatus(firstStatus.id);
+      expect(result).toBeDefined();
+      expect(result!.id).toBe(firstStatus.id);
+      expect(result!.imagePath).toContain("statuses");
+      expect(result!.imagePath).toContain(".jpg");
+    });
+
+    it("should return undefined for non-existent id", () => {
+      expect(getStatus("__nonexistent__")).toBeUndefined();
     });
   });
 });
