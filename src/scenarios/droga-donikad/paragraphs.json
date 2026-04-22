@@ -866,7 +866,7 @@
       "contentPages": [
         [
           {
-            "text": "Odrzuć <letter id='b'/> z toru czasu. Połóż obok planszy <person id='klaun'/> żeton <effect id='plus-jedna-kosc'/>. Od tej pory rzuca do końca scenariusza jedną kością więcej."
+            "text": "Odrzuć <letter id='b'/> z toru czasu. Połóż obok planszy <person id='klaun'/> żeton <status id='zielony'/>. Od tej pory rzuca do końca scenariusza jedną kością więcej."
           }
         ]
       ],

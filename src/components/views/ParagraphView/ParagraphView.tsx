@@ -281,7 +281,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
         <div role="status" aria-live="polite">
           <InputView
             onSubmit={onJumpToParagraph}
-            instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
+            instruction='Wprowadź poniżej numer paragrafu, a następnie naciśnij "PRZEJDŹ".'
             autoFocus={false}
             errorId="dead-end-error"
             actions={

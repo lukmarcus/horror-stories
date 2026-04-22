@@ -113,3 +113,12 @@ export const getLetter = (
     ? { ...letter, imagePath: getImagePath(id, "letters") }
     : undefined;
 };
+
+export const getStatus = (
+  id: string,
+): (Status & { imagePath: string }) | undefined => {
+  const status = statuses.find((s) => s.id === id);
+  return status
+    ? { ...status, imagePath: getImagePath(id, "statuses") }
+    : undefined;
+};

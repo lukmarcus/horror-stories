@@ -323,7 +323,7 @@ export const Game: React.FC = () => {
                 )}
                 <InputView
                   onSubmit={handleMainInputSubmit}
-                  instruction='Wprowadź poniżej numer wpisu, a następnie naciśnij "PRZEJDŹ".'
+                  instruction='Wprowadź poniżej numer paragrafu, a następnie naciśnij "PRZEJDŹ".'
                   autoFocus
                   actions={
                     <>

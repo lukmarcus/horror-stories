@@ -6,6 +6,7 @@ import {
   getSymbol,
   getStoryItem,
   getRoomItem,
+  getStatus,
 } from "../../../data/items";
 import "./rich-text.css";
 
@@ -25,7 +26,7 @@ export const RichText: React.FC<RichTextProps> = ({
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode => {
     const customTagRegex =
-      /<(symbol|letter|item|image|person|story|room)\s+id=["']([^"']+)["']\s*\/>/g;
+      /<(symbol|letter|item|image|person|story|room|status)\s+id=["']([^"']+)["']\s*\/>/g;
 
     // Check if there are any custom tags at all
     if (!customTagRegex.test(html)) {
@@ -143,6 +144,19 @@ export const RichText: React.FC<RichTextProps> = ({
               alt={id}
               className="person-image"
               title={id}
+            />,
+          );
+        }
+      } else if (tag === "status") {
+        const statusData = getStatus(id);
+        if (statusData) {
+          segments.push(
+            <img
+              key={key}
+              src={statusData.imagePath}
+              alt={statusData.description || id}
+              className="status-image"
+              title={statusData.description || id}
             />,
           );
         }
