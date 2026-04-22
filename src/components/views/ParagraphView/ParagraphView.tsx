@@ -104,12 +104,12 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   const showDeadEndInput = isDeadEnd && currentPage === maxPage;
 
   // Separate variant choices (horizontal/within frame) from regular choices
-  const variantChoices =
-    paragraph.choices?.filter((choice) => choice.nextVariantId !== undefined) ||
-    [];
-  const regularChoices =
-    paragraph.choices?.filter((choice) => choice.nextVariantId === undefined) ||
-    [];
+  const variantChoices = paragraph.areChoicesHorizontal
+    ? paragraph.choices || []
+    : [];
+  const regularChoices = paragraph.areChoicesHorizontal
+    ? []
+    : paragraph.choices || [];
 
   return (
     <>
@@ -253,6 +253,10 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                   onClick={() => {
                     if (choice.nextVariantId) {
                       onChoice(choice.nextVariantId, true);
+                    } else if (choice.nextParagraphId === "") {
+                      onBack();
+                    } else if (choice.nextParagraphId) {
+                      onChoice(choice.nextParagraphId, false);
                     }
                   }}
                   aria-label={choice.text || ""}
@@ -346,7 +350,9 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                 variant="primary"
                 size="lg"
                 onClick={() => {
-                  if (choice.nextParagraphId === "") {
+                  if (choice.nextVariantId) {
+                    onChoice(choice.nextVariantId, true);
+                  } else if (choice.nextParagraphId === "") {
                     onBack();
                   } else if (choice.nextParagraphId) {
                     onChoice(choice.nextParagraphId, false);

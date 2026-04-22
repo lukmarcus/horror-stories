@@ -1008,29 +1008,15 @@
           "choices": [
             {
               "text": "Obie postacie posiadają żeton ciężkiej rany.",
-              "nextVariantId": "jessica-obie"
+              "nextParagraphId": "180"
             },
             {
               "text": "Tylko Jessica ma żeton ciężkiej rany.",
               "nextVariantId": "jessica-tylko"
             }
           ],
+          "areChoicesHorizontal": true,
           "variants": {
-            "jessica-obie": {
-              "contentPages": [
-                [
-                  {
-                    "text": "Przejdź do paragrafu <span class='color-green'>180</span>."
-                  }
-                ]
-              ],
-              "choices": [
-                {
-                  "text": "Przejdź do paragrafu 180",
-                  "nextParagraphId": "180"
-                }
-              ]
-            },
             "jessica-tylko": {
               "contentPages": [
                 [
@@ -1057,29 +1043,15 @@
           "choices": [
             {
               "text": "Obie postacie posiadają żeton ciężkiej rany.",
-              "nextVariantId": "patrick-obie"
+              "nextParagraphId": "180"
             },
             {
               "text": "Tylko Patrick ma żeton ciężkiej rany.",
               "nextVariantId": "patrick-tylko"
             }
           ],
+          "areChoicesHorizontal": true,
           "variants": {
-            "patrick-obie": {
-              "contentPages": [
-                [
-                  {
-                    "text": "Przejdź do paragrafu <span class='color-green'>180</span>."
-                  }
-                ]
-              ],
-              "choices": [
-                {
-                  "text": "Przejdź do paragrafu 180",
-                  "nextParagraphId": "180"
-                }
-              ]
-            },
             "patrick-tylko": {
               "contentPages": [
                 [

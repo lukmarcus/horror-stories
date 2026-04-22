@@ -109,6 +109,7 @@ export const Game: React.FC = () => {
           : currentParagraph.contentPages),
       content: lastVariant.content,
       choices: lastVariant.choices || currentParagraph.choices,
+      areChoicesHorizontal: lastVariant.areChoicesHorizontal,
     };
   };
 
