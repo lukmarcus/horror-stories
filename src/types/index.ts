@@ -116,6 +116,7 @@ export interface EnemyPlayerVariant {
   players: string;
   actionsPerTurn: number;
   diceCount: number;
+  maxDiceCount?: number;
   actions: EnemyAction[];
 }
 

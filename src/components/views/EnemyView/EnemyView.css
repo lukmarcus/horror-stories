@@ -1,0 +1,108 @@
+.enemy-view__tiles {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--spacing-md) 0;
+}
+
+.enemy-view__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: var(--color-surface);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.enemy-view__tile--selected {
+  border-color: var(--color-accent);
+}
+
+.enemy-view__tile-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.enemy-view__tile-name {
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.enemy-view__dice-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--spacing-md) 0;
+}
+
+.enemy-view__dice-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.enemy-view__dice-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.enemy-view__dice-players {
+  font-size: var(--font-size-sm);
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+.enemy-view__result {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--color-accent);
+  padding: var(--spacing-sm) 0;
+}
+
+.enemy-view__action {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.enemy-view__action-name {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--color-accent);
+}
+
+.enemy-view__action-condition {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.enemy-view__action-description {
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+}

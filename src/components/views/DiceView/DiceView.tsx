@@ -46,7 +46,7 @@ export const DiceView: React.FC<DiceViewProps> = ({
                 onClick={() => onRoll(numDice)}
                 title={`Rzuć ${numDice}x`}
               >
-                {numDice}x 🎲
+                {numDice} × 🎲
               </Button>
             ))}
           </div>

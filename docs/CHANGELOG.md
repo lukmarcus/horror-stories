@@ -7,6 +7,22 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.7] - 2026-04-24
+
+### Dodano
+
+- System przeciwników: typy `Enemy`, `EnemyPlayerVariant`, `EnemyAction` oraz opcjonalne pole `enemyId` w scenariuszu
+- Dane przeciwnika Klaun (`klaun.json`) z wariantem 1-2 graczy: 6 akcji, bazowo 2 kości (maks. 3 z żetonem)
+- Widok EnemyView: wybór kafelka przeciwnika, przyciski rzutu (2× 🎲 / 3× 🎲), wyświetlanie akcji z warunkiem i opisem w RichText
+- Przycisk "👽 Przeciwnik" w menu scenariusza i na dead-endach (scenariusz "Droga donikąd")
+- Symbol `rana-ciezka` z grafiką
+
+### Zmieniono
+
+- Oznaczenie liczby kości zmienione z `x` na `×` (np. `2× 🎲`) w widoku rzutu kością i widoku przeciwnika
+
+---
+
 ## [0.1.6] - 2026-04-22
 
 ### Dodano

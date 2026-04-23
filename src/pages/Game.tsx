@@ -9,8 +9,10 @@ import { AlphabetView } from "../components/views/AlphabetView/AlphabetView";
 import { DeathView } from "../components/views/DeathView/DeathView";
 import { PrepareView } from "../components/views/PrepareView/PrepareView";
 import { IndirectView } from "../components/views/IndirectView/IndirectView";
+import { EnemyView } from "../components/views/EnemyView/EnemyView";
 import { useGame } from "../hooks/useGame";
 import { useDiceRoll } from "../hooks/useDiceRoll";
+import { getEnemy } from "../data/enemies";
 import { jumpToParagraph } from "../utils/gameActions";
 import "../styles/pages/game.css";
 
@@ -64,6 +66,9 @@ export const Game: React.FC = () => {
   const currentScenario = scenarios[scenarioId];
   const setupSteps = SETUP_DATA[scenarioId]?.steps || [];
   const letters = LETTERS_DATA[scenarioId]?.letters || [];
+  const enemies = currentScenario?.enemyId
+    ? [getEnemy(currentScenario.enemyId)].filter(Boolean)
+    : [];
   const currentParagraph = game.state.currentParagraphId
     ? paragraphs[game.state.currentParagraphId]
     : null;
@@ -306,11 +311,34 @@ export const Game: React.FC = () => {
         </>
       )}
 
+      {/* Enemy View */}
+      {game.state.showEnemyView && (
+        <>
+          {currentScenario && (
+            <h1 className="game__scenario-title">
+              {currentScenario.title || "Scenariusz"}
+            </h1>
+          )}
+          <EnemyView
+            enemies={enemies as import("../types").Enemy[]}
+            onClose={() => {
+              game.toggleEnemyView();
+              game.clearDiceResult();
+            }}
+            isRolling={game.state.isRollingDice}
+            diceRolls={game.state.diceRolls}
+            lastDiceResult={game.state.lastDiceResult}
+            onRoll={handleRollDice}
+          />
+        </>
+      )}
+
       {/* Main Game View - Hidden when showing Setup, Dice or Warning */}
       {!game.state.showSetup &&
         !game.state.showDiceView &&
         !game.state.showAlphabetView &&
         !game.state.showDeathView &&
+        !game.state.showEnemyView &&
         !game.state.showAccessibilityWarning && (
           <>
             {/* INPUT MODE - Show input panel */}
@@ -355,7 +383,7 @@ export const Game: React.FC = () => {
                         icon="👽"
                         line1="Przeciwnik"
                         line2=""
-                        onClick={() => {}}
+                        onClick={() => game.toggleEnemyView()}
                       />
                       <Link to="/scenarios" className="game__option-link">
                         <OptionButton
@@ -396,7 +424,7 @@ export const Game: React.FC = () => {
                     onShowDice={() => game.toggleDiceView()}
                     onShowAlphabet={() => game.toggleAlphabetView()}
                     onShowDeath={() => game.toggleDeathView()}
-                    onShowEnemy={() => {}}
+                    onShowEnemy={() => game.toggleEnemyView()}
                     onBackToAlphabet={
                       game.state.fromAlphabet
                         ? () => game.toggleAlphabetView()

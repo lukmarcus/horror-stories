@@ -15,6 +15,7 @@ export interface GameState {
   showDiceView: boolean;
   showAlphabetView: boolean;
   showDeathView: boolean;
+  showEnemyView: boolean;
   fromAlphabet: boolean;
 }
 
@@ -35,6 +36,7 @@ export type GameAction =
   | { type: "TOGGLE_DICE_VIEW" }
   | { type: "TOGGLE_ALPHABET_VIEW" }
   | { type: "TOGGLE_DEATH_VIEW" }
+  | { type: "TOGGLE_ENEMY_VIEW" }
   | { type: "SET_DICE_RESULT"; payload: number }
   | { type: "SET_DICE_ROLLS"; payload: number[] }
   | { type: "SET_ROLLING_DICE"; payload: boolean }
@@ -55,6 +57,7 @@ export const initialState: GameState = {
   showDiceView: false,
   showAlphabetView: false,
   showDeathView: false,
+  showEnemyView: false,
   fromAlphabet: false,
   showAccessibilityWarning: false,
 };
@@ -116,6 +119,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       return { ...state, showAlphabetView: !state.showAlphabetView };
     case "TOGGLE_DEATH_VIEW":
       return { ...state, showDeathView: !state.showDeathView };
+    case "TOGGLE_ENEMY_VIEW":
+      return { ...state, showEnemyView: !state.showEnemyView };
     case "SET_DICE_RESULT":
       return { ...state, lastDiceResult: action.payload };
     case "SET_DICE_ROLLS":
@@ -148,6 +153,7 @@ interface UseGameReturn {
   toggleDiceView: () => void;
   toggleAlphabetView: () => void;
   toggleDeathView: () => void;
+  toggleEnemyView: () => void;
   showWarning: (id: string) => void;
   closeWarning: () => void;
   setDiceResult: (result: number) => void;
@@ -182,6 +188,7 @@ export function useGame(): UseGameReturn {
     toggleDiceView: () => dispatch({ type: "TOGGLE_DICE_VIEW" }),
     toggleAlphabetView: () => dispatch({ type: "TOGGLE_ALPHABET_VIEW" }),
     toggleDeathView: () => dispatch({ type: "TOGGLE_DEATH_VIEW" }),
+    toggleEnemyView: () => dispatch({ type: "TOGGLE_ENEMY_VIEW" }),
     showWarning: (id: string) =>
       dispatch({ type: "SHOW_WARNING", payload: id }),
     closeWarning: () => dispatch({ type: "CLOSE_WARNING" }),

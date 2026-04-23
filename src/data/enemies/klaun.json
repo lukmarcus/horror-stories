@@ -7,6 +7,7 @@
       "players": "1-2",
       "actionsPerTurn": 2,
       "diceCount": 2,
+      "maxDiceCount": 3,
       "actions": [
         {
           "value": [1, 2],
@@ -17,32 +18,32 @@
         {
           "value": [3],
           "name": "Ruch",
-          "condition": "JEŚLI NA PLANSZY Z TOBĄ SĄ WYŁĄCZNIE FIGURKI <symbol id='przeciwnik'/> I/LUB FIGURKI Z ŻETONEM <status id='rana-ciezka'/>",
-          "description": "Rzuć 1<symbol id='kosc'/>. Porusz się przez tyle odkrytych plansz przez <symbol id='drzwi-wywazone'/> i / lub <symbol id='drzwi-otwarte'/> w kierunku najbliższej figurki (INNEJ niż tej z <status id='rana-ciezka'/> oraz <symbol id='przeciwnik'/>) ile wyniósł wynik na <symbol id='kosc'/> minus jeden. W przypadku remisu w odległości, do tej z większą liczbą <symbol id='zycie'/>.\nW przypadku dalszego remisu, do tej z mniejszą ilością <symbol id='drzwi-zamkniete'/> na drodze. W ostateczności do posiadacza żetonu 1. gracza.\nJeśli masz się przemieścić, ale drogę blokują <symbol id='drzwi-zamkniete'/>, a pozostały Ci co najmniej dwa niewykorzystane punkty ruchu (z rzutu <symbol id='kosc'/>) zamień blokujące <symbol id='drzwi-zamkniete'/> na <symbol id='drzwi-otwarte'/> i zakończ akcję. W innym wypadku zakończ ruch."
+          "condition": "JEŚLI NA PLANSZY Z TOBĄ SĄ WYŁĄCZNIE FIGURKI <symbol id='przeciwnik'/> I/LUB FIGURKI Z ŻETONEM <symbol id='rana-ciezka'/>",
+          "description": "Rzuć 1<symbol id='kosc'/>. Porusz się przez tyle odkrytych plansz przez <symbol id='drzwi-wywazone'/> i / lub <symbol id='drzwi-otwarte'/> w kierunku najbliższej figurki (INNEJ niż tej z <symbol id='rana-ciezka'/> oraz <symbol id='przeciwnik'/>) ile wyniósł wynik na <symbol id='kosc'/> minus jeden. W przypadku remisu w odległości, do tej z większą liczbą <symbol id='zycie'/>.\nW przypadku dalszego remisu, do tej z mniejszą ilością <symbol id='drzwi-zamkniete'/> na drodze. W ostateczności do posiadacza żetonu 1. gracza.\nJeśli masz się przemieścić, ale drogę blokują <symbol id='drzwi-zamkniete'/>, a pozostały Ci co najmniej dwa niewykorzystane punkty ruchu (z rzutu <symbol id='kosc'/>) zamień blokujące <symbol id='drzwi-zamkniete'/> na <symbol id='drzwi-otwarte'/> i zakończ akcję. W innym wypadku zakończ ruch."
         },
         {
           "value": [4, 5],
           "name": "Zabawa z nożem",
-          "condition": "JEŚLI NA PLANSZY Z TOBĄ SĄ FIGURKI BEZ <status id='rana-ciezka'/> I INNE NIŻ <symbol id='przeciwnik'/>",
-          "description": "Rzuć 1<symbol id='kosc'/>. Wynik 3 lub więcej oznacza, że każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> oraz NIE posiadająca <status id='rana-ciezka'/> odrzuca 1<symbol id='zycie'/>."
+          "condition": "JEŚLI NA PLANSZY Z TOBĄ SĄ FIGURKI BEZ <symbol id='rana-ciezka'/> I INNE NIŻ <symbol id='przeciwnik'/>",
+          "description": "Rzuć 1<symbol id='kosc'/>. Wynik 3 lub więcej oznacza, że każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> oraz NIE posiadająca <symbol id='rana-ciezka'/> odrzuca 1<symbol id='zycie'/>."
         },
         {
           "value": [6, 7],
           "name": "Śmiertelna zabawa",
-          "condition": "JEŚLI NA PLANSZY Z TOBĄ SĄ FIGURKI BEZ <status id='rana-ciezka'/> I INNE NIŻ <symbol id='przeciwnik'/>",
-          "description": "Rzuć 1<symbol id='kosc'/>. Wynik 2 lub więcej oznacza, że każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> i bez <status id='rana-ciezka'/>, dodaje do swojego stosu odrzuconego kartę <symbol id='karta-osłabienie'/> z puli ogólnej."
+          "condition": "JEŚLI NA PLANSZY Z TOBĄ SĄ FIGURKI BEZ <symbol id='rana-ciezka'/> I INNE NIŻ <symbol id='przeciwnik'/>",
+          "description": "Rzuć 1<symbol id='kosc'/>. Wynik 2 lub więcej oznacza, że każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/>, dodaje do swojego stosu odrzuconego kartę <symbol id='karta-osłabienie'/> z puli ogólnej."
         },
         {
           "value": [8, 9],
           "name": "Zabawa w chowanego",
-          "condition": "JEŚLI NA PLANSZY Z TOBĄ SĄ WYŁĄCZNIE FIGURKI <symbol id='przeciwnik'/> I/LUB FIGURKI Z ŻETONEM <status id='rana-ciezka'/>",
-          "description": "Przestaw <person id='klaun'/> do figurki gracza bez <status id='rana-ciezka'/> na planszy z najwyższą cyfrą."
+          "condition": "JEŚLI NA PLANSZY Z TOBĄ SĄ WYŁĄCZNIE FIGURKI <symbol id='przeciwnik'/> I/LUB FIGURKI Z ŻETONEM <symbol id='rana-ciezka'/>",
+          "description": "Przestaw <person id='klaun'/> do figurki gracza bez <symbol id='rana-ciezka'/> na planszy z najwyższą cyfrą."
         },
         {
           "value": [10, 11, 12, 13, 14, 15, 16, 17, 18],
           "name": "Hipnoza",
           "condition": "JEŚLI W TWOIM POMIESZCZENIU BRAK WSZYSTKICH FIGUREK KONTROLOWANYCH PRZEZ GRACZY",
-          "description": "Wszyscy gracze oprócz tych z żetonem <status id='rana-ciezka'/> (począwszy od 1 gracza i dalej wg. wskazówek zegara) muszą przemieścić się do dwóch pomieszczeń w kierunku <person id='klaun'/> i zakończyć ruch na polu z <person id='klaun'/> jeśli to możliwe.\nJeśli na drodze znajdują się <symbol id='drzwi-zamkniete'/>, przekręca się je na drugą stronę i przechodzi dalej."
+          "description": "Wszyscy gracze oprócz tych z żetonem <symbol id='rana-ciezka'/> (począwszy od 1 gracza i dalej wg. wskazówek zegara) muszą przemieścić się do dwóch pomieszczeń w kierunku <person id='klaun'/> i zakończyć ruch na polu z <person id='klaun'/> jeśli to możliwe.\nJeśli na drodze znajdują się <symbol id='drzwi-zamkniete'/>, przekręca się je na drugą stronę i przechodzi dalej."
         }
       ]
     }
