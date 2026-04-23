@@ -311,14 +311,16 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                     line2="(§100)"
                     onClick={onShowDeath}
                   />
-                )}                {onShowEnemy && (
+                )}{" "}
+                {onShowEnemy && (
                   <OptionButton
                     icon="👽"
                     line1="Przeciwnik"
                     line2=""
                     onClick={onShowEnemy}
                   />
-                )}                <OptionButton
+                )}{" "}
+                <OptionButton
                   icon="◀️"
                   line1="Menu"
                   line2="scenariusza"

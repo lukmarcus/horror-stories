@@ -96,4 +96,35 @@ export interface Scenario {
   tokens?: Record<string, number>;
   notes?: string;
   startParagraphId?: string;
+  enemyId?: string;
+}
+
+/**
+ * Single action in an enemy's action table
+ */
+export interface EnemyAction {
+  value: number[];
+  name: string;
+  condition: string;
+  description: string;
+}
+
+/**
+ * Enemy stats for a specific player count
+ */
+export interface EnemyPlayerVariant {
+  players: string;
+  actionsPerTurn: number;
+  diceCount: number;
+  actions: EnemyAction[];
+}
+
+/**
+ * Enemy definition
+ */
+export interface Enemy {
+  id: string;
+  name: string;
+  image: string;
+  playerVariants: EnemyPlayerVariant[];
 }
