@@ -351,6 +351,12 @@ export const Game: React.FC = () => {
                         line2="(§100)"
                         onClick={() => game.toggleDeathView()}
                       />
+                      <OptionButton
+                        icon="👽"
+                        line1="Przeciwnik"
+                        line2=""
+                        onClick={() => {}}
+                      />
                       <Link to="/scenarios" className="game__option-link">
                         <OptionButton
                           icon="◀️"
@@ -390,6 +396,7 @@ export const Game: React.FC = () => {
                     onShowDice={() => game.toggleDiceView()}
                     onShowAlphabet={() => game.toggleAlphabetView()}
                     onShowDeath={() => game.toggleDeathView()}
+                    onShowEnemy={() => {}}
                     onBackToAlphabet={
                       game.state.fromAlphabet
                         ? () => game.toggleAlphabetView()

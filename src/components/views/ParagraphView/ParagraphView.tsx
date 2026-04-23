@@ -24,6 +24,7 @@ interface ParagraphViewProps {
   onShowDice?: () => void;
   onShowAlphabet?: () => void;
   onShowDeath?: () => void;
+  onShowEnemy?: () => void;
   onBackToAlphabet?: () => void;
 }
 
@@ -66,6 +67,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   onShowDice,
   onShowAlphabet,
   onShowDeath,
+  onShowEnemy,
   onBackToAlphabet,
 }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
@@ -309,8 +311,14 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                     line2="(§100)"
                     onClick={onShowDeath}
                   />
-                )}
-                <OptionButton
+                )}                {onShowEnemy && (
+                  <OptionButton
+                    icon="👽"
+                    line1="Przeciwnik"
+                    line2=""
+                    onClick={onShowEnemy}
+                  />
+                )}                <OptionButton
                   icon="◀️"
                   line1="Menu"
                   line2="scenariusza"
