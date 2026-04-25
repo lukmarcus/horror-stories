@@ -102,11 +102,18 @@ export interface Scenario {
 /**
  * Single action in an enemy's action table
  */
+export interface ActionOutcome {
+  values: number[];
+  description: string;
+}
+
 export interface EnemyAction {
   value: number[];
   name: string;
   condition: string;
   description: string;
+  actionDiceCount?: number;
+  actionOutcomes?: ActionOutcome[];
 }
 
 /**

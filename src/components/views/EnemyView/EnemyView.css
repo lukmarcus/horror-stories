@@ -102,6 +102,14 @@
   font-style: italic;
 }
 
+.enemy-view__action-dice-result {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-accent);
+  text-align: center;
+  padding: var(--spacing-sm) 0;
+}
+
 .enemy-view__action-description {
   font-size: var(--font-size-md);
   color: var(--color-text);

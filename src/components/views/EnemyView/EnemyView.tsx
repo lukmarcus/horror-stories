@@ -1,5 +1,5 @@
 import React from "react";
-import type { Enemy } from "../../../types";
+import type { Enemy, ActionOutcome } from "../../../types";
 import { RichText } from "../../text/RichText/RichText";
 import { OptionButton } from "../../ui";
 import "./EnemyView.css";
@@ -28,6 +28,27 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
     number | null
   >(null);
   const [conditionConfirmed, setConditionConfirmed] = React.useState(false);
+  const [actionDiceResult, setActionDiceResult] = React.useState<
+    number[] | null
+  >(null);
+  const [actionDiceRolling, setActionDiceRolling] = React.useState(false);
+
+  const rollActionDice = async (count: number): Promise<void> => {
+    setActionDiceRolling(true);
+    setActionDiceResult(null);
+    for (let frame = 0; frame < 10; frame++) {
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      setActionDiceResult(
+        Array.from({ length: count }, () => Math.floor(Math.random() * 6) + 1),
+      );
+    }
+    const final = Array.from(
+      { length: count },
+      () => Math.floor(Math.random() * 6) + 1,
+    );
+    setActionDiceResult(final);
+    setActionDiceRolling(false);
+  };
 
   const selectedEnemy = enemies.find((e) => e.id === selectedEnemyId);
 
@@ -41,6 +62,8 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
         );
         setCurrentActionIndex(idx >= 0 ? idx : null);
         setConditionConfirmed(false);
+        setActionDiceResult(null);
+        setActionDiceRolling(false);
       }
     } else {
       setCurrentActionIndex(null);
@@ -53,6 +76,8 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
     if (isRolling) {
       setCurrentActionIndex(null);
       setConditionConfirmed(false);
+      setActionDiceResult(null);
+      setActionDiceRolling(false);
     }
   }, [isRolling]);
 
@@ -60,6 +85,8 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
   React.useEffect(() => {
     setCurrentActionIndex(null);
     setConditionConfirmed(false);
+    setActionDiceResult(null);
+    setActionDiceRolling(false);
   }, [selectedEnemyId]);
 
   return (
@@ -157,7 +184,12 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
                       <div className="enemy-view__action-condition-buttons">
                         <button
                           className="enemy-view__condition-btn enemy-view__condition-btn--yes"
-                          onClick={() => setConditionConfirmed(true)}
+                          onClick={() => {
+                            setConditionConfirmed(true);
+                            if (action.actionDiceCount) {
+                              void rollActionDice(action.actionDiceCount);
+                            }
+                          }}
                         >
                           Prawda
                         </button>
@@ -166,6 +198,7 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
                           onClick={() => {
                             setCurrentActionIndex(currentActionIndex - 1);
                             setConditionConfirmed(false);
+                            setActionDiceResult(null);
                           }}
                         >
                           Fałsz
@@ -178,11 +211,31 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
                 return (
                   <div className="enemy-view__action">
                     <div className="enemy-view__action-name">{action.name}</div>
-                    {action.description && (
-                      <div className="enemy-view__action-description">
-                        <RichText text={action.description} />
+                    {actionDiceResult !== null && (
+                      <div className="enemy-view__action-dice-result">
+                        {actionDiceResult.length > 1
+                          ? `${actionDiceResult.join(" + ")} = ${actionDiceResult.reduce((a, b) => a + b, 0)}`
+                          : `${actionDiceResult[0]}`}
                       </div>
                     )}
+                    {!actionDiceRolling && (!action.actionDiceCount || actionDiceResult !== null) && (() => {
+                      if (action.actionOutcomes && actionDiceResult !== null) {
+                        const total = actionDiceResult.reduce((a, b) => a + b, 0);
+                        const outcome: ActionOutcome | undefined = action.actionOutcomes.find((o) =>
+                          o.values.includes(total),
+                        );
+                        return outcome ? (
+                          <div className="enemy-view__action-description">
+                            <RichText text={outcome.description} />
+                          </div>
+                        ) : null;
+                      }
+                      return action.description ? (
+                        <div className="enemy-view__action-description">
+                          <RichText text={action.description} />
+                        </div>
+                      ) : null;
+                    })()}
                   </div>
                 );
               })()}
