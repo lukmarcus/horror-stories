@@ -1,5 +1,5 @@
 import React from "react";
-import type { Enemy, EnemyAction } from "../../../types";
+import type { Enemy } from "../../../types";
 import { RichText } from "../../text/RichText/RichText";
 import { OptionButton } from "../../ui";
 import "./EnemyView.css";
@@ -24,18 +24,43 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
   const [selectedEnemyId, setSelectedEnemyId] = React.useState<string>(
     enemies[0]?.id ?? "",
   );
+  const [currentActionIndex, setCurrentActionIndex] = React.useState<
+    number | null
+  >(null);
+  const [conditionConfirmed, setConditionConfirmed] = React.useState(false);
 
   const selectedEnemy = enemies.find((e) => e.id === selectedEnemyId);
 
-  const getMatchingAction = (
-    enemy: Enemy,
-    total: number,
-  ): EnemyAction | undefined => {
-    // Use the first (base) variant's action table regardless of how many dice were rolled
-    const variant = enemy.playerVariants[0];
-    if (!variant) return undefined;
-    return variant.actions.find((a) => a.value.includes(total));
-  };
+  // Reset on new roll result
+  React.useEffect(() => {
+    if (lastDiceResult !== null && selectedEnemy) {
+      const variant = selectedEnemy.playerVariants[0];
+      if (variant) {
+        const idx = variant.actions.findIndex((a) =>
+          a.value.includes(lastDiceResult),
+        );
+        setCurrentActionIndex(idx >= 0 ? idx : null);
+        setConditionConfirmed(false);
+      }
+    } else {
+      setCurrentActionIndex(null);
+      setConditionConfirmed(false);
+    }
+  }, [lastDiceResult]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Reset when rolling starts
+  React.useEffect(() => {
+    if (isRolling) {
+      setCurrentActionIndex(null);
+      setConditionConfirmed(false);
+    }
+  }, [isRolling]);
+
+  // Reset when enemy changes
+  React.useEffect(() => {
+    setCurrentActionIndex(null);
+    setConditionConfirmed(false);
+  }, [selectedEnemyId]);
 
   return (
     <>
@@ -113,17 +138,46 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
             {/* Matched action */}
             {lastDiceResult !== null &&
               !isRolling &&
+              currentActionIndex !== null &&
               (() => {
-                const action = getMatchingAction(selectedEnemy, lastDiceResult);
+                const variant = selectedEnemy.playerVariants[0];
+                if (!variant) return null;
+                const action = variant.actions[currentActionIndex];
                 if (!action) return null;
-                return (
-                  <div className="enemy-view__action">
-                    <div className="enemy-view__action-name">{action.name}</div>
-                    {action.condition && (
+
+                if (action.condition && !conditionConfirmed) {
+                  return (
+                    <div className="enemy-view__action">
+                      <div className="enemy-view__action-name">
+                        {action.name}
+                      </div>
                       <div className="enemy-view__action-condition">
                         <RichText text={action.condition} />
                       </div>
-                    )}
+                      <div className="enemy-view__action-condition-buttons">
+                        <button
+                          className="enemy-view__condition-btn enemy-view__condition-btn--yes"
+                          onClick={() => setConditionConfirmed(true)}
+                        >
+                          Tak
+                        </button>
+                        <button
+                          className="enemy-view__condition-btn enemy-view__condition-btn--no"
+                          onClick={() => {
+                            setCurrentActionIndex(currentActionIndex - 1);
+                            setConditionConfirmed(false);
+                          }}
+                        >
+                          Nie
+                        </button>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div className="enemy-view__action">
+                    <div className="enemy-view__action-name">{action.name}</div>
                     {action.description && (
                       <div className="enemy-view__action-description">
                         <RichText text={action.description} />
