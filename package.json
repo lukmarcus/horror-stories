@@ -1,7 +1,7 @@
 {
   "name": "horror-stories",
   "private": true,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Companion app for Horror Stories board game",
   "author": "Marek Szumny",
   "license": "MIT",

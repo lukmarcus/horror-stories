@@ -6,20 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.1.7 - Przeciwnik
-
-### Zakres
-
-- Każdy przeciwnik zdefiniowany jako osobny plik JSON (statystyki, efekty, liczba kości, HP)
-- Scenariusz wskazuje którego przeciwnika używa (pole w konfiguracji scenariusza)
-- Przycisk przeciwnika w menu gry: rzut kością i wyświetlenie wyniku wraz z pytaniami o aktualną sytuację
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.2.0 - Party time (Scenariusz 1)
 
 ### Zakres
