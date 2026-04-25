@@ -6,6 +6,7 @@ import "./EnemyView.css";
 
 interface EnemyViewProps {
   enemies: Enemy[];
+  diceModifiers?: number[];
   onClose: () => void;
   isRolling: boolean;
   diceRolls: number[];
@@ -15,6 +16,7 @@ interface EnemyViewProps {
 
 export const EnemyView: React.FC<EnemyViewProps> = ({
   enemies,
+  diceModifiers,
   onClose,
   isRolling,
   diceRolls,
@@ -126,17 +128,21 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
 
         {selectedEnemy && (
           <>
-            {/* Dice buttons — base diceCount through maxDiceCount */}
+            {/* Dice buttons — base + modifiers */}
             <div className="enemy-view__dice-buttons">
               {(() => {
                 const base = selectedEnemy.playerVariants[0];
                 if (!base) return null;
-                const min = base.diceCount;
-                const max = base.maxDiceCount ?? min;
-                return Array.from(
-                  { length: max - min + 1 },
-                  (_, i) => min + i,
-                ).map((n) => (
+                const baseCount = base.diceCount;
+                const counts = Array.from(
+                  new Set([
+                    baseCount,
+                    ...(diceModifiers ?? []).map((m) => baseCount + m),
+                  ]),
+                )
+                  .filter((n) => n > 0)
+                  .sort((a, b) => a - b);
+                return counts.map((n) => (
                   <button
                     key={n}
                     className="enemy-view__dice-btn"

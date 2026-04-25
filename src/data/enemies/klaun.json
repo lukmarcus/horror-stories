@@ -7,7 +7,6 @@
       "players": "1-2",
       "actionsPerTurn": 2,
       "diceCount": 2,
-      "maxDiceCount": 3,
       "actions": [
         {
           "value": [1, 2],

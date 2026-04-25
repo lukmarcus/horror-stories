@@ -321,6 +321,7 @@ export const Game: React.FC = () => {
           )}
           <EnemyView
             enemies={enemies as import("../types").Enemy[]}
+            diceModifiers={currentScenario?.enemyDiceModifiers}
             onClose={() => {
               game.toggleEnemyView();
               game.clearDiceResult();

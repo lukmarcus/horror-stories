@@ -97,6 +97,7 @@ export interface Scenario {
   notes?: string;
   startParagraphId?: string;
   enemyId?: string;
+  enemyDiceModifiers?: number[];
 }
 
 /**
@@ -123,7 +124,6 @@ export interface EnemyPlayerVariant {
   players: string;
   actionsPerTurn: number;
   diceCount: number;
-  maxDiceCount?: number;
   actions: EnemyAction[];
 }
 
