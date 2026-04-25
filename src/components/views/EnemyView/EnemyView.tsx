@@ -159,7 +159,7 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
                           className="enemy-view__condition-btn enemy-view__condition-btn--yes"
                           onClick={() => setConditionConfirmed(true)}
                         >
-                          Tak
+                          Prawda
                         </button>
                         <button
                           className="enemy-view__condition-btn enemy-view__condition-btn--no"
@@ -168,7 +168,7 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
                             setConditionConfirmed(false);
                           }}
                         >
-                          Nie
+                          Fałsz
                         </button>
                       </div>
                     </div>
