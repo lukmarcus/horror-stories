@@ -1,0 +1,73 @@
+{
+  "id": "klaun",
+  "name": "Klaun",
+  "image": "klaun",
+  "playerVariants": [
+    {
+      "players": "1-2",
+      "actionsPerTurn": 2,
+      "diceCount": 2,
+      "actions": [
+        {
+          "value": [1, 2],
+          "name": "Nieuwaga",
+          "condition": "",
+          "description": "Klaun traci jedną akcję."
+        },
+        {
+          "value": [3],
+          "name": "Ruch",
+          "condition": "Na planszy Klauna są wyłącznie figurki <symbol id='przeciwnik'/> i/lub figurki z żetonem <symbol id='rana-ciezka'/>.",
+          "actionDiceCount": 1,
+          "description": "Rzuć 1<symbol id='kosc'/>. Porusz się przez tyle odkrytych plansz przez <symbol id='drzwi-wywazone'/> i / lub <symbol id='drzwi-otwarte'/> w kierunku najbliższej figurki (INNEJ niż tej z <symbol id='rana-ciezka'/> oraz <symbol id='przeciwnik'/>) ile wyniósł wynik na <symbol id='kosc'/> minus jeden. W przypadku remisu w odległości, do tej z większą liczbą <symbol id='zycie'/>.\nW przypadku dalszego remisu, do tej z mniejszą ilością <symbol id='drzwi-zamkniete'/> na drodze. W ostateczności do posiadacza żetonu 1. gracza.\nJeśli masz się przemieścić, ale drogę blokują <symbol id='drzwi-zamkniete'/>, a pozostały Ci co najmniej dwa niewykorzystane punkty ruchu (z rzutu <symbol id='kosc'/>) zamień blokujące <symbol id='drzwi-zamkniete'/> na <symbol id='drzwi-otwarte'/> i zakończ akcję. W innym wypadku zakończ ruch."
+        },
+        {
+          "value": [4, 5],
+          "name": "Zabawa z nożem",
+          "condition": "Na planszy Klauna są figurki bez <symbol id='rana-ciezka'/>, inne niż <symbol id='przeciwnik'/>.",
+          "actionDiceCount": 1,
+          "actionOutcomes": [
+            {
+              "values": [1, 2],
+              "description": "Nic się nie dzieje. Klaun traci jedną akcję."
+            },
+            {
+              "values": [3, 4, 5, 6],
+              "description": "Każda figurka na planszy z Klaunem NIE będąca <symbol id='przeciwnik'/> oraz NIE posiadająca <symbol id='rana-ciezka'/> odrzuca 1<symbol id='zycie'/>."
+            }
+          ],
+          "description": ""
+        },
+        {
+          "value": [6, 7],
+          "name": "Śmiertelna zabawa",
+          "condition": "Na planszy Klauna są figurki bez <symbol id='rana-ciezka'/>, inne niż <symbol id='przeciwnik'/>.",
+          "actionDiceCount": 1,
+          "actionOutcomes": [
+            {
+              "values": [1],
+              "description": "Nic się nie dzieje. Klaun traci jedną akcję."
+            },
+            {
+              "values": [2, 3, 4, 5, 6],
+              "description": "Każda figurka na planszy z Klaunem NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/>, dodaje do swojego stosu odrzuconego kartę <symbol id='karta-osłabienie'/> z puli ogólnej."
+            }
+          ],
+          "description": ""
+        },
+        {
+          "value": [8, 9],
+          "name": "Zabawa w chowanego",
+          "condition": "Na planszy Klauna są wyłącznie figurki <symbol id='przeciwnik'/> i/lub figurki z żetonem <symbol id='rana-ciezka'/>.",
+          "description": "Przestaw <person id='klaun'/> do figurki gracza bez <symbol id='rana-ciezka'/> na planszy z najwyższą cyfrą."
+        },
+        {
+          "value": [10, 11, 12, 13, 14, 15, 16, 17, 18],
+          "name": "Hipnoza",
+          "condition": "Na planszy Klauna nie ma wszystkich figurek kontrolowanych przez graczy.",
+          "description": "Wszyscy gracze oprócz tych z żetonem <symbol id='rana-ciezka'/> (począwszy od 1 gracza i dalej wg. wskazówek zegara) muszą przemieścić się do dwóch pomieszczeń w kierunku <person id='klaun'/> i zakończyć ruch na polu z <person id='klaun'/> jeśli to możliwe.\nJeśli na drodze znajdują się <symbol id='drzwi-zamkniete'/>, przekręca się je na drugą stronę i przechodzi dalej."
+        }
+      ]
+    }
+  ]
+}

@@ -7,6 +7,17 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.1.7] - 2026-04-26
+
+### Dodano
+
+- Ekran przeciwnika (przycisk "👽 Przeciwnik" w menu scenariusza i na ślepych zaułkach): wybór figurki, rzut kością, wyświetlanie wykonywanej akcji
+- Warunek akcji wyświetlany jako twierdzenie z przyciskami "Prawda" / "Fałsz" — Fałsz automatycznie przechodzi do akcji o niższym wyniku
+- Po potwierdzeniu warunku: animowany rzut kością i wynik zanim pojawi się opis akcji
+- Symbol ciężkiej rany z grafiką
+
+---
+
 ## [0.1.6] - 2026-04-22
 
 ### Dodano

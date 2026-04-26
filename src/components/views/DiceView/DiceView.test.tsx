@@ -19,22 +19,22 @@ describe("DiceView", () => {
 
   it("renders three dice count buttons (1x, 2x, 3x)", () => {
     render(<DiceView {...makeProps()} />);
-    expect(screen.getByText("1x 🎲")).toBeDefined();
-    expect(screen.getByText("2x 🎲")).toBeDefined();
-    expect(screen.getByText("3x 🎲")).toBeDefined();
+    expect(screen.getByText("1 × 🎲")).toBeDefined();
+    expect(screen.getByText("2 × 🎲")).toBeDefined();
+    expect(screen.getByText("3 × 🎲")).toBeDefined();
   });
 
   it("calls onRoll with correct count when 1x button clicked", () => {
     const props = makeProps();
     render(<DiceView {...props} />);
-    fireEvent.click(screen.getByText("1x 🎲"));
+    fireEvent.click(screen.getByText("1 × 🎲"));
     expect(props.onRoll).toHaveBeenCalledWith(1);
   });
 
   it("calls onRoll with correct count when 3x button clicked", () => {
     const props = makeProps();
     render(<DiceView {...props} />);
-    fireEvent.click(screen.getByText("3x 🎲"));
+    fireEvent.click(screen.getByText("3 × 🎲"));
     expect(props.onRoll).toHaveBeenCalledWith(3);
   });
 

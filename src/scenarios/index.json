@@ -12,7 +12,9 @@
         "B": 83
       },
       "notes": "drugi gracz dołącza po około 20 min",
-      "startParagraphId": "77"
+      "startParagraphId": "77",
+      "enemyId": "klaun",
+      "enemyDiceModifiers": [1]
     },
     {
       "id": "party-time",
