@@ -54,6 +54,23 @@
   font-size: 0.75rem;
 }
 
+.meta-form__input-with-suffix {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.meta-form__input-with-suffix .meta-form__input {
+  width: auto;
+  flex: 1;
+}
+
+.meta-form__suffix {
+  color: #888;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
 .meta-form__textarea {
   resize: vertical;
 }

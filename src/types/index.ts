@@ -91,7 +91,7 @@ export interface Scenario {
   title: string;
   description: string;
   playerCount: string;
-  duration: string;
+  duration: number | null;
   characters?: string[];
   tokens?: Record<string, number>;
   notes?: string;

@@ -24,6 +24,11 @@ export const ScenarioMetaForm: React.FC = () => {
     dispatch({ type: "SET_META", payload: updated });
   };
 
+  const handleDurationChange = (value: string) => {
+    const num = value === "" ? null : Number(value);
+    dispatch({ type: "SET_META", payload: { ...meta, duration: num } });
+  };
+
   return (
     <div className="meta-form">
       <h2 className="meta-form__title">Dane scenariusza</h2>
@@ -64,13 +69,17 @@ export const ScenarioMetaForm: React.FC = () => {
 
         <div className="meta-form__field">
           <label className="meta-form__label">Czas trwania</label>
-          <input
-            className="meta-form__input"
-            type="text"
-            value={meta.duration}
-            onChange={(e) => handleChange("duration", e.target.value)}
-            placeholder="np. 90 min"
-          />
+          <div className="meta-form__input-with-suffix">
+            <input
+              className="meta-form__input"
+              type="number"
+              min={1}
+              value={meta.duration ?? ""}
+              onChange={(e) => handleDurationChange(e.target.value)}
+              placeholder="90"
+            />
+            <span className="meta-form__suffix">min</span>
+          </div>
         </div>
       </div>
 

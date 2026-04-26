@@ -62,7 +62,7 @@ export const ScenariosList: React.FC = () => {
               <div className="scenarios-list__info-item">
                 <span className="scenarios-list__info-icon">⏱</span>
                 <span className="scenarios-list__info-text">
-                  {scenario.duration}
+                  {scenario.duration != null ? `${scenario.duration} min` : "—"}
                 </span>
               </div>
               <div className="scenarios-list__info-item">

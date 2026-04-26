@@ -20,7 +20,7 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
             title: "",
             description: "",
             playerCount: "",
-            duration: "",
+            duration: null,
           },
         },
         isDirty: false,

@@ -146,17 +146,17 @@ describe("Game - Paragraph Logic", () => {
       "1": {
         title: "Tajemna Biblioteka",
         playerCount: "2-4 graczy",
-        duration: "45 min",
+        duration: 45,
       },
       "2": {
         title: "Opuszczony Szpital",
         playerCount: "2-4 graczy",
-        duration: "60 min",
+        duration: 60,
       },
       "3": {
         title: "Nocny Koszmar",
         playerCount: "2-6 graczy",
-        duration: "90 min",
+        duration: 90,
       },
     };
 
