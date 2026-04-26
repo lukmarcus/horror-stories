@@ -6,11 +6,16 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.0 - Party time (Scenariusz 1)
+## Milestone v0.2.0 - Edytor: szkielet + pełny pipeline
 
 ### Zakres
 
-- Pełna implementacja scenariusza "Party time"
+- Route `/editor`, layout, nawigacja
+- Formularz metadata scenariusza (tytuł, opis, liczba graczy, czas trwania)
+- Eksport scenariusza do pliku `.horrorstory` (ZIP z `meta.json` + puste `paragraphs.json`)
+- Wczytanie pliku `.horrorstory` z powrotem do edytora
+- Wczytanie pliku `.horrorstory` w grze (scenariusz pojawia się na liście scenariuszy)
+- Auto-save stanu edytora do IndexedDB
 
 ### Status
 
@@ -18,11 +23,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.3.0 - Eksperyment (Scenariusz 2)
+## Milestone v0.2.1 - Edytor: lista paragrafów
 
 ### Zakres
 
-- Pełna implementacja scenariusza "Eksperyment"
+- Widok listy paragrafów scenariusza (dodaj / usuń / zmień kolejność)
+- Każdy paragraf ma id i opcjonalny pusty tekst
+- Paragraf w ZIP-ie: `paragraphs.json` z listą paragrafów
 
 ### Status
 
@@ -30,11 +37,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.4.0 - Kolejny dzień w pracy (Scenariusz 3)
+## Milestone v0.2.2 - Edytor: treść paragrafu
 
 ### Zakres
 
-- Pełna implementacja scenariusza "Kolejny dzień w pracy"
+- Edycja prostego tekstu paragrafu
+- Podgląd renderowanego paragrafu (reużycie istniejącego `RichText`)
 
 ### Status
 
@@ -42,11 +50,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.5.0 - Śmiertelna zabawa (Scenariusz 4)
+## Milestone v0.2.3 - Edytor: wybory między paragrafami
 
 ### Zakres
 
-- Pełna implementacja scenariusza "Śmiertelna zabawa"
+- Dodawanie / usuwanie wyborów (`Choice`) do paragrafu
+- Wskazanie `nextParagraphId` z listy dostępnych paragrafów
+- Podgląd grafu połączeń (opcjonalnie)
 
 ### Status
 
@@ -54,11 +64,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.6.0 - Świnki trzy i wilk (Scenariusz 5)
+## Milestone v0.2.4 - Edytor: bloki treści i strony
 
 ### Zakres
 
-- Pełna implementacja scenariusza "Świnki trzy i wilk"
+- Edycja paragrafów opartych na `ContentBlock[]` (tekst, obrazy)
+- Obsługa wielostronicowych paragrafów (`contentPages`)
 
 ### Status
 
@@ -66,11 +77,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.7.0 - Do samego końca (Scenariusz 6)
+## Milestone v0.2.5 - Edytor: picker elementów globalnych
 
 ### Zakres
 
-- Pełna implementacja scenariusza "Do samego końca"
+- Wstawianie elementów inline: symbole, litery, przedmioty fabularne, osoby, statusy
+- Picker z miniaturkami grafik z `public/assets/images/`
 
 ### Status
 
@@ -78,11 +90,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.8.0 - (Nie) jesteśmy tu sami (Scenariusz 7)
+## Milestone v0.2.6 - Edytor: import wbudowanych scenariuszy
 
 ### Zakres
 
-- Pełna implementacja scenariusza "(Nie) jesteśmy tu sami"
+- Możliwość skopiowania wbudowanego scenariusza do edytora jako baza do edycji
+- Wbudowane scenariusze są read-only — edytuje się kopię
 
 ### Status
 
@@ -90,11 +103,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.9.0 - Spotkanie (Scenariusz 8)
+## Milestone v0.2.7 - Edytor: rzut kostką i warianty postaci
 
 ### Zakres
 
-- Pełna implementacja scenariusza "Spotkanie"
+- Edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy)
+- Edycja `variants` (wybór postaci, rozbieżna treść)
 
 ### Status
 
@@ -102,11 +116,34 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.10.0 - Finał (Scenariusz 9)
+## Milestone v0.2.8 - Edytor: grafiki, tokeny alfabetu, setup
 
 ### Zakres
 
-- Pełna implementacja scenariusza "Finał"
+- Upload własnych grafik scenariuszowych (pakowane do ZIP w `images/`)
+- Edycja tokenów alfabetu (`letters.json`)
+- Edycja kroków setupu (`setup.json`)
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.3.0+ - Nowe scenariusze
+
+### Zakres
+
+- Party time (Scenariusz 1)
+- Eksperyment (Scenariusz 2)
+- Kolejny dzień w pracy (Scenariusz 3)
+- Śmiertelna zabawa (Scenariusz 4)
+- Świnki trzy i wilk (Scenariusz 5)
+- Do samego końca (Scenariusz 6)
+- (Nie) jesteśmy tu sami (Scenariusz 7)
+- Spotkanie (Scenariusz 8)
+
+_Numeracja wersji i kolejność do ustalenia._
 
 ### Status
 
@@ -127,12 +164,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - Spójny system kolorów, typografii i komponentów
 - Pełna responsywność (mobile, tablet, desktop)
 
-### Własne scenariusze
-
-- Upload własnego pliku JSON z paragrafami
-- Scenariusz dostępny w bieżącej sesji (bez zapisu na serwerze)
-- Edytor scenariuszy (osobny projekt, długoterminowo)
-
 ### System Zapisu
 
 - Zapis/odczyt postępu gry
@@ -143,36 +174,3 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - Wsparcie dla wielu języków
 
 ---
-
-## Milestone v1.0.0 - Wydanie produkcyjne
-
-### Zakres
-
-- Wszystkie 10 scenariuszy w pełni działające (Droga Donikąd + 9 kolejnych)
-- System audio
-- Design system w pełni wdrożony
-- Pełna dokumentacja
-- Optymizacja wydajności
-- Stabilna aplikacja gotowa do produkcji
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
-## Strategia gałęzi
-
-- **main** - Stabilne wydania (v0.1.0+)
-- **v0.0.11+** - Bieżący development
-
-## Legenda
-
-- ✅ Ukończone
-- 🔄 W trakcie
-- ⏳ Zaplanowane/W backlogu
-- ❌ Odłożone/Odrzucone
-
----
-
-**Ostatnia aktualizacja:** 2026-03-04
