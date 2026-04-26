@@ -1,4 +1,4 @@
-import type { EditorScenario } from "../context/EditorContext";
+import type { EditorScenario } from "../context/editorTypes";
 
 const DB_NAME = "horror-stories-editor";
 const DB_VERSION = 1;

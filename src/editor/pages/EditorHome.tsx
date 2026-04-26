@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useEditor } from "../context/EditorContext";
+import { useEditor } from "../context/useEditor";
 import { exportToZip, importFromZip } from "../utils/zipHandler";
 import { clearStorage } from "../utils/editorStorage";
 import { ScenarioMetaForm } from "../components/scenario/ScenarioMetaForm";

@@ -1,17 +1,27 @@
 import React from "react";
-import { useEditor } from "../../context/EditorContext";
+import { useEditor } from "../../context/useEditor";
 import type { Scenario } from "../../../types";
 import "./ScenarioMetaForm.css";
+
+function toSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ł/g, "l")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 export const ScenarioMetaForm: React.FC = () => {
   const { state, dispatch } = useEditor();
   const meta = state.scenario!.meta;
-
   const handleChange = (field: keyof Scenario, value: string) => {
-    dispatch({
-      type: "SET_META",
-      payload: { ...meta, [field]: value },
-    });
+    const updated: Scenario = { ...meta, [field]: value };
+    if (field === "title") {
+      updated.id = toSlug(value);
+    }
+    dispatch({ type: "SET_META", payload: updated });
   };
 
   return (
@@ -71,9 +81,10 @@ export const ScenarioMetaForm: React.FC = () => {
           type="text"
           value={meta.id}
           readOnly
+          placeholder="generowane z tytułu"
         />
         <span className="meta-form__hint">
-          Generowane automatycznie, nie zmieniaj.
+          Generowany automatycznie z tytułu. Używany w adresie URL gry.
         </span>
       </div>
     </div>

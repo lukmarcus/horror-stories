@@ -1,21 +1,9 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
-import type { Scenario } from "../../types";
+import React, { useReducer, useEffect } from "react";
 import { saveToStorage, loadFromStorage } from "../utils/editorStorage";
+import { EditorContext } from "./editorTypes";
+import type { EditorState, EditorAction, EditorScenario } from "./editorTypes";
 
-export interface EditorScenario {
-  meta: Scenario;
-}
-
-interface EditorState {
-  scenario: EditorScenario | null;
-  isDirty: boolean;
-}
-
-type EditorAction =
-  | { type: "SET_META"; payload: Scenario }
-  | { type: "LOAD_SCENARIO"; payload: EditorScenario }
-  | { type: "NEW_SCENARIO" }
-  | { type: "MARK_SAVED" };
+export type { EditorScenario };
 
 const initialState: EditorState = {
   scenario: null,
@@ -28,7 +16,7 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
       return {
         scenario: {
           meta: {
-            id: crypto.randomUUID(),
+            id: "",
             title: "",
             description: "",
             playerCount: "",
@@ -57,19 +45,11 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
   }
 }
 
-interface EditorContextValue {
-  state: EditorState;
-  dispatch: React.Dispatch<EditorAction>;
-}
-
-const EditorContext = createContext<EditorContextValue | null>(null);
-
 export const EditorProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(editorReducer, initialState);
 
-  // Wczytaj zapisany stan przy starcie
   useEffect(() => {
     loadFromStorage().then((saved) => {
       if (saved) {
@@ -78,7 +58,6 @@ export const EditorProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   }, []);
 
-  // Auto-save przy każdej zmianie
   useEffect(() => {
     if (state.scenario && state.isDirty) {
       saveToStorage(state.scenario);
@@ -90,10 +69,4 @@ export const EditorProvider: React.FC<{ children: React.ReactNode }> = ({
       {children}
     </EditorContext.Provider>
   );
-};
-
-export const useEditor = (): EditorContextValue => {
-  const ctx = useContext(EditorContext);
-  if (!ctx) throw new Error("useEditor must be used within EditorProvider");
-  return ctx;
 };

@@ -1,4 +1,4 @@
-import type { EditorScenario } from "../context/EditorContext";
+import type { EditorScenario } from "../context/editorTypes";
 
 const FILE_EXTENSION = ".horrorstory";
 
