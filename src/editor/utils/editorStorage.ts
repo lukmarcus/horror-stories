@@ -1,8 +1,8 @@
 import type { EditorScenario } from "../context/editorTypes";
 
-const DB_NAME = "horror-stories-editor";
+const DB_NAME = "horror-stories";
 const DB_VERSION = 1;
-const STORE_NAME = "scenarios";
+const STORE_NAME = "editor";
 const AUTOSAVE_KEY = "autosave";
 
 function openDB(): Promise<IDBDatabase> {
