@@ -4,7 +4,8 @@
       "id": "droga-donikad",
       "title": "Droga donikąd",
       "description": "Jessica budzi się w ciemnym pokoju bez pamięci. Musi znaleźć wyjście i dowiedzieć się co się stało.",
-      "playerCount": "1-2 graczy",
+      "minPlayerCount": 1,
+      "maxPlayerCount": 2,
       "duration": 120,
       "characters": ["Jessica", "Patrick"],
       "tokens": {
@@ -20,56 +21,64 @@
       "id": "party-time",
       "title": "Party time",
       "description": "",
-      "playerCount": "",
+      "minPlayerCount": null,
+      "maxPlayerCount": null,
       "duration": null
     },
     {
       "id": "eksperyment",
       "title": "Eksperyment",
       "description": "",
-      "playerCount": "",
+      "minPlayerCount": null,
+      "maxPlayerCount": null,
       "duration": null
     },
     {
       "id": "kolejny-dzien-w-pracy",
       "title": "Kolejny dzień w pracy",
       "description": "",
-      "playerCount": "",
+      "minPlayerCount": null,
+      "maxPlayerCount": null,
       "duration": null
     },
     {
       "id": "smiertelna-zabawa",
       "title": "Śmiertelna zabawa",
       "description": "",
-      "playerCount": "",
+      "minPlayerCount": null,
+      "maxPlayerCount": null,
       "duration": null
     },
     {
       "id": "swinki-trzy-i-wilk",
       "title": "Świnki trzy i wilk",
       "description": "",
-      "playerCount": "",
+      "minPlayerCount": null,
+      "maxPlayerCount": null,
       "duration": null
     },
     {
       "id": "tajemna-biblioteka",
       "title": "Tajemna Biblioteka",
       "description": "Zaginęła księga starożytnych zaklęć. Musisz ją znaleźć.",
-      "playerCount": "2-4 graczy",
+      "minPlayerCount": 2,
+      "maxPlayerCount": 4,
       "duration": 45
     },
     {
       "id": "opuszczony-szpital",
       "title": "Opuszczony Szpital",
       "description": "Budynek pełen tajemnic czeka na odkrycie.",
-      "playerCount": "2-4 graczy",
+      "minPlayerCount": 2,
+      "maxPlayerCount": 4,
       "duration": 60
     },
     {
       "id": "nocny-koszmar",
       "title": "Nocny Koszmar",
       "description": "Czy potrafisz przetrwać noc w domu nawiedzonym?",
-      "playerCount": "2-6 graczy",
+      "minPlayerCount": 2,
+      "maxPlayerCount": 6,
       "duration": 90
     }
   ]

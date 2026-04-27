@@ -90,7 +90,8 @@ export interface Scenario {
   id: string;
   title: string;
   description: string;
-  playerCount: string;
+  minPlayerCount: number | null;
+  maxPlayerCount: number | null;
   duration: number | null;
   characters?: string[];
   tokens?: Record<string, number>;

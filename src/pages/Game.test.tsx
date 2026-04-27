@@ -145,17 +145,20 @@ describe("Game - Paragraph Logic", () => {
     const scenarios = {
       "1": {
         title: "Tajemna Biblioteka",
-        playerCount: "2-4 graczy",
+        minPlayerCount: 2,
+        maxPlayerCount: 4,
         duration: 45,
       },
       "2": {
         title: "Opuszczony Szpital",
-        playerCount: "2-4 graczy",
+        minPlayerCount: 2,
+        maxPlayerCount: 4,
         duration: 60,
       },
       "3": {
         title: "Nocny Koszmar",
-        playerCount: "2-6 graczy",
+        minPlayerCount: 2,
+        maxPlayerCount: 6,
         duration: 90,
       },
     };

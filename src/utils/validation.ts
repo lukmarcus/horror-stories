@@ -9,7 +9,7 @@ export function validateScenario(scenario: Scenario): {
   if (!scenario.id) errors.push("Scenario must have an ID");
   if (!scenario.title) errors.push("Scenario must have a title");
   if (!scenario.description) errors.push("Scenario must have a description");
-  if (!scenario.playerCount) errors.push("Scenario must specify player count");
+  if (scenario.minPlayerCount == null) errors.push("Scenario must specify player count");
   if (!scenario.duration) errors.push("Scenario must have estimated duration");
 
   return {

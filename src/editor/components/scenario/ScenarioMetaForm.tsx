@@ -58,13 +58,44 @@ export const ScenarioMetaForm: React.FC = () => {
       <div className="meta-form__row">
         <div className="meta-form__field">
           <label className="meta-form__label">Liczba graczy</label>
-          <input
-            className="meta-form__input"
-            type="text"
-            value={meta.playerCount}
-            onChange={(e) => handleChange("playerCount", e.target.value)}
-            placeholder="np. 1-2 graczy"
-          />
+          <div className="meta-form__input-with-suffix">
+            <input
+              className="meta-form__input"
+              type="number"
+              min={1}
+              value={meta.minPlayerCount ?? ""}
+              onChange={(e) =>
+                dispatch({
+                  type: "SET_META",
+                  payload: {
+                    ...meta,
+                    minPlayerCount:
+                      e.target.value === "" ? null : Number(e.target.value),
+                  },
+                })
+              }
+              placeholder="od"
+            />
+            <span className="meta-form__suffix">–</span>
+            <input
+              className="meta-form__input"
+              type="number"
+              min={1}
+              value={meta.maxPlayerCount ?? ""}
+              onChange={(e) =>
+                dispatch({
+                  type: "SET_META",
+                  payload: {
+                    ...meta,
+                    maxPlayerCount:
+                      e.target.value === "" ? null : Number(e.target.value),
+                  },
+                })
+              }
+              placeholder="do"
+            />
+            <span className="meta-form__suffix">graczy</span>
+          </div>
         </div>
 
         <div className="meta-form__field">

@@ -68,7 +68,11 @@ export const ScenariosList: React.FC = () => {
               <div className="scenarios-list__info-item">
                 <span className="scenarios-list__info-icon">👥</span>
                 <span className="scenarios-list__info-text">
-                  {scenario.playerCount}
+                  {scenario.minPlayerCount != null
+                    ? scenario.minPlayerCount === scenario.maxPlayerCount
+                      ? `${scenario.minPlayerCount} gracz`
+                      : `${scenario.minPlayerCount}-${scenario.maxPlayerCount} graczy`
+                    : "—"}
                 </span>
               </div>
             </div>
