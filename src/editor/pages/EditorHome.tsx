@@ -3,12 +3,15 @@ import { useEditor } from "../context/useEditor";
 import { exportToZip, importFromZip } from "../utils/zipHandler";
 import { clearStorage } from "../utils/editorStorage";
 import { ScenarioMetaForm } from "../components/scenario/ScenarioMetaForm";
+import { useMetaErrors } from "../components/scenario/scenarioMetaValidation";
 import "./EditorHome.css";
 
 export const EditorHome: React.FC = () => {
   const { state, dispatch } = useEditor();
   const [error, setError] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
+  const metaErrors = useMetaErrors();
+  const hasErrors = Object.keys(metaErrors).length > 0;
 
   const handleNew = () => {
     if (
@@ -27,7 +30,7 @@ export const EditorHome: React.FC = () => {
     try {
       await exportToZip(state.scenario);
       dispatch({ type: "MARK_SAVED" });
-    } catch (e) {
+    } catch {
       setError("Błąd podczas eksportu pliku.");
     }
   };
@@ -76,6 +79,10 @@ export const EditorHome: React.FC = () => {
           <button
             className="editor-btn editor-btn--primary"
             onClick={handleExport}
+            disabled={hasErrors}
+            title={
+              hasErrors ? "Popraw błędy w formularzu przed zapisem" : undefined
+            }
           >
             Zapisz plik .horrorstory {state.isDirty ? "●" : "✓"}
           </button>

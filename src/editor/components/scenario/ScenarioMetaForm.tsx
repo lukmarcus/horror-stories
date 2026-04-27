@@ -1,27 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEditor } from "../../context/useEditor";
 import type { Scenario } from "../../../types";
+import {
+  TITLE_MAX,
+  DESC_MAX,
+  PLAYER_MIN,
+  PLAYER_MAX,
+  DURATION_MAX,
+  toSlug,
+  validateMeta,
+} from "./scenarioMetaValidation";
 import "./ScenarioMetaForm.css";
-
-function toSlug(text: string): string {
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/ł/g, "l")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
 
 export const ScenarioMetaForm: React.FC = () => {
   const { state, dispatch } = useEditor();
   const meta = state.scenario!.meta;
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const errors = validateMeta(meta);
+
   const handleChange = (field: keyof Scenario, value: string) => {
     const updated: Scenario = { ...meta, [field]: value };
-    if (field === "title") {
-      updated.id = toSlug(value);
-    }
+    if (field === "title") updated.id = toSlug(value);
     dispatch({ type: "SET_META", payload: updated });
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
   };
 
   const handleDurationChange = (value: string) => {
@@ -29,30 +34,67 @@ export const ScenarioMetaForm: React.FC = () => {
     dispatch({ type: "SET_META", payload: { ...meta, duration: num } });
   };
 
+  const handlePlayerChange = (
+    field: "minPlayerCount" | "maxPlayerCount",
+    value: string,
+  ) => {
+    dispatch({
+      type: "SET_META",
+      payload: { ...meta, [field]: value === "" ? null : Number(value) },
+    });
+  };
+
+  const fieldError = (field: string) =>
+    touched[field] && errors[field] ? (
+      <span className="meta-form__error">{errors[field]}</span>
+    ) : null;
+
   return (
     <div className="meta-form">
       <h2 className="meta-form__title">Dane scenariusza</h2>
 
       <div className="meta-form__field">
-        <label className="meta-form__label">Tytuł *</label>
+        <div className="meta-form__label-row">
+          <label className="meta-form__label">Tytuł *</label>
+          <span
+            className={`meta-form__counter ${meta.title.length > TITLE_MAX ? "meta-form__counter--over" : ""}`}
+          >
+            {meta.title.length}/{TITLE_MAX}
+          </span>
+        </div>
         <input
-          className="meta-form__input"
+          className={`meta-form__input ${touched.title && errors.title ? "meta-form__input--error" : ""}`}
           type="text"
           value={meta.title}
           onChange={(e) => handleChange("title", e.target.value)}
+          onBlur={() => handleBlur("title")}
           placeholder="np. Mroczna noc w zamku"
+          maxLength={TITLE_MAX + 10}
         />
+        {fieldError("title")}
       </div>
 
       <div className="meta-form__field">
-        <label className="meta-form__label">Opis</label>
+        <div className="meta-form__label-row">
+          <label className="meta-form__label">Opis</label>
+          <span
+            className={`meta-form__counter ${meta.description && meta.description.length > DESC_MAX ? "meta-form__counter--over" : ""}`}
+          >
+            {meta.description?.length ?? 0}/{DESC_MAX}
+          </span>
+        </div>
         <textarea
-          className="meta-form__textarea"
+          className={`meta-form__textarea ${touched.description && errors.description ? "meta-form__input--error" : ""}`}
           value={meta.description}
           onChange={(e) => handleChange("description", e.target.value)}
+          onBlur={() => handleBlur("description")}
           placeholder="Krótki opis scenariusza widoczny na liście..."
           rows={4}
         />
+        {fieldError("description")}
+        <span className="meta-form__hint">
+          Opcjonalny. Widoczny na liście scenariuszy.
+        </span>
       </div>
 
       <div className="meta-form__row">
@@ -60,57 +102,52 @@ export const ScenarioMetaForm: React.FC = () => {
           <label className="meta-form__label">Liczba graczy</label>
           <div className="meta-form__input-with-suffix">
             <input
-              className="meta-form__input"
+              className={`meta-form__input ${touched.minPlayerCount && errors.minPlayerCount ? "meta-form__input--error" : ""}`}
               type="number"
-              min={1}
+              min={PLAYER_MIN}
+              max={PLAYER_MAX}
               value={meta.minPlayerCount ?? ""}
               onChange={(e) =>
-                dispatch({
-                  type: "SET_META",
-                  payload: {
-                    ...meta,
-                    minPlayerCount:
-                      e.target.value === "" ? null : Number(e.target.value),
-                  },
-                })
+                handlePlayerChange("minPlayerCount", e.target.value)
               }
+              onBlur={() => handleBlur("minPlayerCount")}
               placeholder="od"
             />
             <span className="meta-form__suffix">–</span>
             <input
-              className="meta-form__input"
+              className={`meta-form__input ${touched.maxPlayerCount && errors.maxPlayerCount ? "meta-form__input--error" : ""}`}
               type="number"
-              min={1}
+              min={PLAYER_MIN}
+              max={PLAYER_MAX}
               value={meta.maxPlayerCount ?? ""}
               onChange={(e) =>
-                dispatch({
-                  type: "SET_META",
-                  payload: {
-                    ...meta,
-                    maxPlayerCount:
-                      e.target.value === "" ? null : Number(e.target.value),
-                  },
-                })
+                handlePlayerChange("maxPlayerCount", e.target.value)
               }
+              onBlur={() => handleBlur("maxPlayerCount")}
               placeholder="do"
             />
-            <span className="meta-form__suffix">graczy</span>
+            <span className="meta-form__suffix">graczy (1–9)</span>
           </div>
+          {fieldError("minPlayerCount")}
+          {fieldError("maxPlayerCount")}
         </div>
 
         <div className="meta-form__field">
           <label className="meta-form__label">Czas trwania</label>
           <div className="meta-form__input-with-suffix">
             <input
-              className="meta-form__input"
+              className={`meta-form__input ${touched.duration && errors.duration ? "meta-form__input--error" : ""}`}
               type="number"
               min={1}
+              max={DURATION_MAX}
               value={meta.duration ?? ""}
               onChange={(e) => handleDurationChange(e.target.value)}
-              placeholder="90"
+              onBlur={() => handleBlur("duration")}
+              placeholder="np. 90"
             />
-            <span className="meta-form__suffix">min</span>
+            <span className="meta-form__suffix">min (1–999)</span>
           </div>
+          {fieldError("duration")}
         </div>
       </div>
 

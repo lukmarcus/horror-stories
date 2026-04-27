@@ -50,6 +50,16 @@
   background: #4a2020;
 }
 
+.editor-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.editor-btn:disabled:hover {
+  background: inherit;
+  border-color: inherit;
+}
+
 .editor-home__error {
   color: #ff8080;
   background: #2a1a1a;

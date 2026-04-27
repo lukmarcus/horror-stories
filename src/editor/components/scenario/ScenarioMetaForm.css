@@ -49,6 +49,32 @@
   border-color: #555;
 }
 
+.meta-form__label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.meta-form__counter {
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.meta-form__counter--over {
+  color: #ff6060;
+}
+
+.meta-form__error {
+  display: block;
+  font-size: 0.78rem;
+  color: #ff6060;
+  margin-top: 0.25rem;
+}
+
+.meta-form__input--error {
+  border-color: #8a3030;
+}
+
 .meta-form__input--muted {
   color: #555;
   font-size: 0.75rem;
