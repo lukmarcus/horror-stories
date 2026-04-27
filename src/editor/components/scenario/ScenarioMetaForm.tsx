@@ -55,13 +55,14 @@ export const ScenarioMetaForm: React.FC = () => {
 
       <div className="meta-form__field">
         <div className="meta-form__label-row">
-          <label className="meta-form__label">Tytuł *</label>
+          <label className="meta-form__label">Tytuł</label>
           <span
             className={`meta-form__counter ${meta.title.length > TITLE_MAX ? "meta-form__counter--over" : ""}`}
           >
             {meta.title.length}/{TITLE_MAX}
           </span>
         </div>
+        <span className="meta-form__hint">Wymagane.</span>
         <input
           className={`meta-form__input ${touched.title && errors.title ? "meta-form__input--error" : ""}`}
           type="text"
@@ -83,6 +84,9 @@ export const ScenarioMetaForm: React.FC = () => {
             {meta.description?.length ?? 0}/{DESC_MAX}
           </span>
         </div>
+        <span className="meta-form__hint">
+          Opcjonalny. Widoczny na liście scenariuszy.
+        </span>
         <textarea
           className={`meta-form__textarea ${touched.description && errors.description ? "meta-form__input--error" : ""}`}
           value={meta.description}
@@ -92,14 +96,14 @@ export const ScenarioMetaForm: React.FC = () => {
           rows={4}
         />
         {fieldError("description")}
-        <span className="meta-form__hint">
-          Opcjonalny. Widoczny na liście scenariuszy.
-        </span>
       </div>
 
       <div className="meta-form__row">
         <div className="meta-form__field">
           <label className="meta-form__label">Liczba graczy</label>
+          <span className="meta-form__hint">
+            Opcjonalne. Wartości od 1 do 9.
+          </span>
           <div className="meta-form__input-with-suffix">
             <input
               className={`meta-form__input ${touched.minPlayerCount && errors.minPlayerCount ? "meta-form__input--error" : ""}`}
@@ -126,7 +130,7 @@ export const ScenarioMetaForm: React.FC = () => {
               onBlur={() => handleBlur("maxPlayerCount")}
               placeholder="do"
             />
-            <span className="meta-form__suffix">graczy (1–9)</span>
+            <span className="meta-form__suffix">graczy</span>
           </div>
           {fieldError("minPlayerCount")}
           {fieldError("maxPlayerCount")}
@@ -134,6 +138,9 @@ export const ScenarioMetaForm: React.FC = () => {
 
         <div className="meta-form__field">
           <label className="meta-form__label">Czas trwania</label>
+          <span className="meta-form__hint">
+            Opcjonalne. Wartości od 1 do 999.
+          </span>
           <div className="meta-form__input-with-suffix">
             <input
               className={`meta-form__input ${touched.duration && errors.duration ? "meta-form__input--error" : ""}`}
@@ -145,7 +152,7 @@ export const ScenarioMetaForm: React.FC = () => {
               onBlur={() => handleBlur("duration")}
               placeholder="np. 90"
             />
-            <span className="meta-form__suffix">min (1–999)</span>
+            <span className="meta-form__suffix">min</span>
           </div>
           {fieldError("duration")}
         </div>
@@ -153,6 +160,9 @@ export const ScenarioMetaForm: React.FC = () => {
 
       <div className="meta-form__field">
         <label className="meta-form__label">ID scenariusza</label>
+        <span className="meta-form__hint">
+          Generowany automatycznie z tytułu. Używany w adresie URL gry.
+        </span>
         <input
           className="meta-form__input meta-form__input--muted"
           type="text"
@@ -160,9 +170,6 @@ export const ScenarioMetaForm: React.FC = () => {
           readOnly
           placeholder="generowane z tytułu"
         />
-        <span className="meta-form__hint">
-          Generowany automatycznie z tytułu. Używany w adresie URL gry.
-        </span>
       </div>
     </div>
   );
