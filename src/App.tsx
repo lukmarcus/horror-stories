@@ -5,6 +5,7 @@ import { ScenariosList } from "./pages/ScenariosList";
 import { Game } from "./pages/Game";
 import { Instructions } from "./pages/Instructions";
 import { About } from "./pages/About";
+import { Editor } from "./editor/Editor";
 import "./styles/global.css";
 import "./App.css";
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="/game/:id" element={<Game />} />
             <Route path="/instructions" element={<Instructions />} />
             <Route path="/about" element={<About />} />
+            <Route path="/editor/*" element={<Editor />} />
           </Routes>
         </div>
       </Router>

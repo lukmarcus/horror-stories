@@ -116,6 +116,14 @@
   font-size: var(--font-size-xl);
 }
 
+.home__secondary-note {
+  font-size: var(--font-size-xs);
+  opacity: 0.5;
+  font-weight: var(--font-weight-normal);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .home__footer-text {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);

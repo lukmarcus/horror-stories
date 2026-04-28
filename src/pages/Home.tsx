@@ -32,6 +32,11 @@ export const Home: React.FC = () => {
             <span className="home__secondary-icon">ℹ️</span>
             <span>O grze</span>
           </Link>
+          <Link to="/editor" className="home__secondary-card">
+            <span className="home__secondary-icon">✏️</span>
+            <span>Edytor scenariuszy</span>
+            <span className="home__secondary-note">tylko desktop</span>
+          </Link>
         </nav>
 
         <p className="home__footer-text">

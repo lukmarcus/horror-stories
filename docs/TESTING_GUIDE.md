@@ -181,20 +181,24 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 - ✅ Multi-page support
 - ✅ Rich text parsing
 - ✅ żetony stanów (`<status>` tag)
+- ✅ Walidacja metadanych edytora (`toSlug`, `validateMeta`)
+- ✅ localStorage CRUD dla scenariuszy użytkownika
 
-### Current Coverage (v0.1.1+)
+### Current Coverage (v0.2.0)
 
-| Category        | Tests   | Coverage | Status |
-| --------------- | ------- | -------- | ------ |
-| Game Logic      | 3       | 100%     | ✅     |
-| Variant System  | 18      | 100%     | ✅     |
-| Hooks (State)   | 26      | ~80%     | ✅     |
-| Utils (Parsing) | 40      | ~100%    | ✅     |
-| Components      | 96      | ~95%     | ✅     |
-| Data / Items    | 13      | 100%     | ✅     |
-| Pages           | 53      | mixed    | ✅     |
-| E2E             | 54      | —        | ✅     |
-| **Total**       | **313** | **62%**  | **✅** |
+| Category            | Tests   | Coverage | Status |
+| ------------------- | ------- | -------- | ------ |
+| Game Logic          | 3       | 100%     | ✅     |
+| Variant System      | 18      | 100%     | ✅     |
+| Hooks (State)       | 26      | ~80%     | ✅     |
+| Utils (Parsing)     | 40      | ~100%    | ✅     |
+| Components          | 96      | ~95%     | ✅     |
+| Data / Items        | 13      | 100%     | ✅     |
+| Pages               | 53      | mixed    | ✅     |
+| E2E                 | 54      | —        | ✅     |
+| Editor (Validation) | 24      | 100%     | ✅     |
+| Editor (Storage)    | 8       | 100%     | ✅     |
+| **Total**           | **335** | **~63%** | **✅** |
 
 ## Running Tests
 
