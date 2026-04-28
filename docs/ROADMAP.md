@@ -6,23 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.0 - Edytor: szkielet + pełny pipeline
-
-### Zakres
-
-- Route `/editor`, layout, nawigacja
-- Formularz metadata scenariusza (tytuł, opis, liczba graczy, czas trwania)
-- Eksport scenariusza do pliku `.horrorstory` (ZIP z `meta.json` + puste `paragraphs.json`)
-- Wczytanie pliku `.horrorstory` z powrotem do edytora
-- Wczytanie pliku `.horrorstory` w grze (scenariusz pojawia się na liście scenariuszy)
-- Auto-save stanu edytora do IndexedDB
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.2.1 - Edytor: lista paragrafów
 
 ### Zakres
