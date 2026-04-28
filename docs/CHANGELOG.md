@@ -7,6 +7,20 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.0] - 2026-04-28
+
+### Dodano
+
+- Nowa sekcja "Edytor scenariuszy" dostępna z menu głównego (przycisk "Edytor")
+- W edytorze można wypełnić metadane scenariusza: tytuł, opis, liczbę graczy i czas trwania
+- Gotowy scenariusz można wyeksportować do pliku `.horrorstory` przyciskiem "Eksportuj"
+- Plik `.horrorstory` można wczytać z powrotem do edytora przyciskiem "Wczytaj plik"
+- Plik `.horrorstory` można też wczytać bezpośrednio z listy scenariuszy — pojawi się na górze listy i będzie dostępny do gry
+- Wczytany scenariusz można usunąć z listy przyciskiem 🗑 w prawym górnym rogu jego karty
+- Edytor zapamiętuje niezapisany szkic — po powrocie do edytora można kontynuować pracę
+
+---
+
 ## [0.1.7] - 2026-04-26
 
 ### Dodano
