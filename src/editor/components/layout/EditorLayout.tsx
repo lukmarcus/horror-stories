@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEditor } from "../../context/useEditor";
 import "./EditorLayout.css";
@@ -15,6 +15,8 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
   onSectionChange,
 }) => {
   const { state, dispatch } = useEditor();
+  const [newId, setNewId] = useState("");
+  const [addError, setAddError] = useState<string | null>(null);
 
   const paragraphs = [...(state.scenario?.paragraphs ?? [])].sort((a, b) => {
     const na = parseInt(a.id, 10);
@@ -24,24 +26,22 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
   });
 
   const handleAddParagraph = () => {
-    const existing = new Set(state.scenario?.paragraphs.map((p) => p.id) ?? []);
-    const raw = window.prompt("Numer nowego paragrafu:");
-    if (raw === null) return;
-    const id = raw.trim();
+    const id = newId.trim();
     if (!id) return;
+    const existing = new Set(state.scenario?.paragraphs.map((p) => p.id) ?? []);
     if (existing.has(id)) {
-      window.alert(`Paragraf §${id} już istnieje.`);
+      setAddError(`§${id} już istnieje`);
       return;
     }
     dispatch({ type: "ADD_PARAGRAPH", payload: id });
     onSectionChange(id);
+    setNewId("");
+    setAddError(null);
   };
 
-  const handleRemove = (id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!window.confirm(`Usunąć paragraf §${id}?`)) return;
-    dispatch({ type: "REMOVE_PARAGRAPH", payload: id });
-    if (activeSection === id) onSectionChange("meta");
+  const handleAddKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleAddParagraph();
+    else setAddError(null);
   };
 
   return (
@@ -91,26 +91,36 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                   </span>
                 )}
               </span>
-              {p.id !== "100" && (
-                <button
-                  className="editor-sidebar__paragraph-btn editor-sidebar__paragraph-btn--remove"
-                  onClick={(e) => handleRemove(p.id, e)}
-                  title="Usuń paragraf"
-                  aria-label="Usuń paragraf"
-                >
-                  ×
-                </button>
-              )}
             </div>
           ))}
 
           {state.scenario && (
-            <button
-              className="editor-sidebar__add-paragraph"
-              onClick={handleAddParagraph}
-            >
-              + Dodaj §
-            </button>
+            <div className="editor-sidebar__add-row">
+              <span className="editor-sidebar__add-prefix">§</span>
+              <input
+                className="editor-sidebar__add-input"
+                type="text"
+                value={newId}
+                onChange={(e) => {
+                  setNewId(e.target.value);
+                  setAddError(null);
+                }}
+                onKeyDown={handleAddKeyDown}
+                placeholder="nr"
+                maxLength={10}
+                aria-label="Numer nowego paragrafu"
+              />
+              <button
+                className="editor-sidebar__add-btn"
+                onClick={handleAddParagraph}
+                title="Dodaj paragraf"
+              >
+                +
+              </button>
+              {addError && (
+                <span className="editor-sidebar__add-error">{addError}</span>
+              )}
+            </div>
           )}
         </nav>
       </aside>
