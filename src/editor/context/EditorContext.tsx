@@ -5,18 +5,18 @@ import type { EditorState, EditorAction, EditorScenario } from "./editorTypes";
 
 export type { EditorScenario };
 
+const DEATH_PARAGRAPH = { id: "100" };
+
 const initialState: EditorState = {
   scenario: null,
   isDirty: false,
   activeParagraphId: null,
 };
 
-function nextParagraphId(paragraphs: { id: string }[]): string {
-  const nums = paragraphs
-    .map((p) => parseInt(p.id, 10))
-    .filter((n) => !isNaN(n));
-  const max = nums.length > 0 ? Math.max(...nums) : 0;
-  return String(max + 1);
+function ensureDeath(paragraphs: { id: string }[]): typeof paragraphs {
+  return paragraphs.some((p) => p.id === "100")
+    ? paragraphs
+    : [...paragraphs, DEATH_PARAGRAPH];
 }
 
 function editorReducer(state: EditorState, action: EditorAction): EditorState {
@@ -32,7 +32,7 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
             maxPlayerCount: null,
             duration: null,
           },
-          paragraphs: [],
+          paragraphs: [DEATH_PARAGRAPH],
         },
         isDirty: false,
         activeParagraphId: null,
@@ -42,14 +42,14 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
         ...state,
         scenario: state.scenario
           ? { ...state.scenario, meta: action.payload }
-          : { meta: action.payload, paragraphs: [] },
+          : { meta: action.payload, paragraphs: [DEATH_PARAGRAPH] },
         isDirty: true,
       };
     case "LOAD_SCENARIO":
       return {
         scenario: {
           ...action.payload,
-          paragraphs: action.payload.paragraphs ?? [],
+          paragraphs: ensureDeath(action.payload.paragraphs ?? []),
         },
         isDirty: false,
         activeParagraphId: null,
@@ -58,7 +58,8 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
       return { ...state, isDirty: false };
     case "ADD_PARAGRAPH": {
       if (!state.scenario) return state;
-      const id = nextParagraphId(state.scenario.paragraphs);
+      const id = action.payload;
+      if (state.scenario.paragraphs.some((p) => p.id === id)) return state;
       const paragraphs = [...state.scenario.paragraphs, { id }];
       return {
         ...state,
@@ -68,7 +69,7 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
       };
     }
     case "REMOVE_PARAGRAPH": {
-      if (!state.scenario) return state;
+      if (!state.scenario || action.payload === "100") return state;
       const paragraphs = state.scenario.paragraphs.filter(
         (p) => p.id !== action.payload,
       );
@@ -80,21 +81,6 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
           state.activeParagraphId === action.payload
             ? null
             : state.activeParagraphId,
-      };
-    }
-    case "MOVE_PARAGRAPH": {
-      if (!state.scenario) return state;
-      const { id, direction } = action.payload;
-      const arr = [...state.scenario.paragraphs];
-      const idx = arr.findIndex((p) => p.id === id);
-      if (idx === -1) return state;
-      const swap = direction === "up" ? idx - 1 : idx + 1;
-      if (swap < 0 || swap >= arr.length) return state;
-      [arr[idx], arr[swap]] = [arr[swap], arr[idx]];
-      return {
-        ...state,
-        scenario: { ...state.scenario, paragraphs: arr },
-        isDirty: true,
       };
     }
     case "SET_ACTIVE_PARAGRAPH":

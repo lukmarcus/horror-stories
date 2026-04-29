@@ -15,6 +15,7 @@
   flex-direction: column;
   padding: 1rem;
   gap: 1.5rem;
+  overflow-y: auto;
 }
 
 .editor-sidebar__header {
@@ -48,22 +49,140 @@
   gap: 0.25rem;
 }
 
-.editor-sidebar__link {
+.editor-sidebar__item {
+  width: 100%;
   padding: 0.5rem 0.75rem;
   border-radius: 4px;
+  background: none;
+  border: none;
   color: #aaa;
-  text-decoration: none;
   font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
 }
 
-.editor-sidebar__link:hover {
+.editor-sidebar__item:hover {
   background: #222;
   color: #fff;
 }
 
-.editor-sidebar__link--active {
+.editor-sidebar__item--active {
   background: #2a2a2a;
   color: #fff;
+}
+
+.editor-sidebar__item--placeholder {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.editor-sidebar__item--placeholder:hover {
+  background: none;
+  color: #aaa;
+}
+
+.editor-sidebar__section-divider {
+  height: 1px;
+  background: #2a2a2a;
+  margin: 0.5rem 0;
+}
+
+.editor-sidebar__paragraph {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  gap: 0.25rem;
+}
+
+.editor-sidebar__paragraph:hover {
+  background: #222;
+}
+
+.editor-sidebar__paragraph--active {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.editor-sidebar__paragraph-label {
+  font-size: 0.875rem;
+  color: #ccc;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.editor-sidebar__paragraph--active .editor-sidebar__paragraph-label {
+  color: #fff;
+}
+
+.editor-sidebar__paragraph-tag {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.editor-sidebar__paragraph-actions {
+  display: flex;
+  gap: 0.125rem;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.editor-sidebar__paragraph:hover .editor-sidebar__paragraph-actions,
+.editor-sidebar__paragraph--active .editor-sidebar__paragraph-actions {
+  opacity: 1;
+}
+
+.editor-sidebar__paragraph-btn {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 0 3px;
+  font-size: 0.75rem;
+  line-height: 1;
+  border-radius: 3px;
+}
+
+.editor-sidebar__paragraph-btn:hover {
+  color: #fff;
+  background: #444;
+}
+
+.editor-sidebar__paragraph-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.editor-sidebar__paragraph-btn--remove:hover {
+  color: #ff6b6b;
+  background: #3a1a1a;
+}
+
+.editor-sidebar__add-paragraph {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: none;
+  border: 1px dashed #444;
+  border-radius: 4px;
+  color: #888;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.editor-sidebar__add-paragraph:hover {
+  color: #ccc;
+  border-color: #888;
 }
 
 .editor-main {

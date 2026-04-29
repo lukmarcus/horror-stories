@@ -22,12 +22,8 @@ export type EditorAction =
   | { type: "LOAD_SCENARIO"; payload: EditorScenario }
   | { type: "NEW_SCENARIO" }
   | { type: "MARK_SAVED" }
-  | { type: "ADD_PARAGRAPH" }
+  | { type: "ADD_PARAGRAPH"; payload: string }
   | { type: "REMOVE_PARAGRAPH"; payload: string }
-  | {
-      type: "MOVE_PARAGRAPH";
-      payload: { id: string; direction: "up" | "down" };
-    }
   | { type: "SET_ACTIVE_PARAGRAPH"; payload: string | null };
 
 export interface EditorContextValue {

@@ -6,7 +6,12 @@ import { ScenarioMetaForm } from "../components/scenario/ScenarioMetaForm";
 import { useMetaErrors } from "../components/scenario/scenarioMetaValidation";
 import "./EditorHome.css";
 
-export const EditorHome: React.FC = () => {
+interface EditorHomeProps {
+  activeSection: "meta" | string;
+  onSectionChange: (section: "meta" | string) => void;
+}
+
+export const EditorHome: React.FC<EditorHomeProps> = ({ activeSection }) => {
   const { state, dispatch } = useEditor();
   const [error, setError] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
@@ -113,7 +118,15 @@ export const EditorHome: React.FC = () => {
         </div>
       )}
 
-      {state.scenario && <ScenarioMetaForm />}
+      {state.scenario && activeSection === "meta" && <ScenarioMetaForm />}
+      {state.scenario && activeSection !== "meta" && (
+        <div className="editor-home__paragraph-placeholder">
+          <h2>§{activeSection}</h2>
+          <p className="editor-home__hint">
+            Edycja treści paragrafu — dostępna w kolejnej wersji.
+          </p>
+        </div>
+      )}
     </div>
   );
 };
