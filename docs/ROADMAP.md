@@ -6,17 +6,29 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.1 - Edytor: lista paragrafów
+## Milestone v0.2.1 - Edytor: sidebar nawigacyjny + lista paragrafów
 
 ### Zakres
 
-- Widok listy paragrafów scenariusza (dodaj / usuń / zmień kolejność)
-- Każdy paragraf ma id i opcjonalny pusty tekst
-- Paragraf w ZIP-ie: `paragraphs.json` z listą paragrafów
+- Lewa kolumna edytora staje się pełnym menu nawigacyjnym scenariusza:
+  - **Dane scenariusza** — formularz metadanych (istniejący)
+  - **Przygotowanie** — placeholder na przyszłość
+  - **Żetony alfabetu** — placeholder na przyszłość
+  - Sekcja paragrafów: **§1, §2, §3…** — kliknięcie przełącza aktywny paragraf
+- Paragraf §100 wyświetla się z etykietą `(śmierć)`
+- Przycisk **+ Dodaj §** (na dole listy paragrafów)
+- Operacje na paragrafie: usuń, zmień kolejność (przyciski ↑↓)
+- Każdy paragraf ma `id` i opcjonalny pusty tekst
+- Export ZIP: `paragraphs.json` zawiera tablicę paragrafów zamiast pustej listy
 
 ### Status
 
 - ⏳ Nie rozpoczęte
+
+### Notatki na przyszłość
+
+- Paragrafy podpięte pod żetony alfabetu powinny mieć etykietę `(litera A)` itp. — do v0.2.8
+- Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.7
 
 ---
 

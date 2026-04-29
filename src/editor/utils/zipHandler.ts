@@ -7,7 +7,10 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
   const zip = new JSZip();
 
   zip.file("meta.json", JSON.stringify(scenario.meta, null, 2));
-  zip.file("paragraphs.json", JSON.stringify({ paragraphs: [] }, null, 2));
+  zip.file(
+    "paragraphs.json",
+    JSON.stringify({ paragraphs: scenario.paragraphs ?? [] }, null, 2),
+  );
 
   const blob = await zip.generateAsync({ type: "blob" });
   const url = URL.createObjectURL(blob);
@@ -36,5 +39,12 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
     throw new Error("Nieprawidłowy format meta.json — brak id lub title");
   }
 
-  return { meta };
+  let paragraphs: EditorScenario["paragraphs"] = [];
+  const paragraphsFile = zip.file("paragraphs.json");
+  if (paragraphsFile) {
+    const raw = JSON.parse(await paragraphsFile.async("text"));
+    if (Array.isArray(raw.paragraphs)) paragraphs = raw.paragraphs;
+  }
+
+  return { meta, paragraphs };
 }
