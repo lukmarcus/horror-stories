@@ -102,7 +102,9 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                 type="text"
                 value={newId}
                 onChange={(e) => {
-                  setNewId(e.target.value);
+                  setNewId(
+                    e.target.value.toLowerCase().replace(/[^a-z0-9]/g, ""),
+                  );
                   setAddError(null);
                 }}
                 onKeyDown={handleAddKeyDown}
