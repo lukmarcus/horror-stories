@@ -7,6 +7,18 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.1] - 2026-04-30
+
+### Dodano
+
+- Lewy panel edytora stał się pełnym menu nawigacyjnym: sekcje "Dane scenariusza", "Przygotowanie" i "Żetony alfabetu" oraz lista paragrafów scenariusza
+- Kliknięcie paragrafu w panelu przełącza widok na ten paragraf
+- Paragraf §100 (zakończenie śmiercią) jest zawsze obecny w scenariuszu i wyświetla się z etykietą _(śmierć)_
+- Dodawanie nowych paragrafów przez pole w dolnej części panelu — wystarczy wpisać numer i nacisnąć Enter lub przycisk +
+- Eksport .horrorstory zawiera teraz listę paragrafów; wczytany plik zachowuje wszystkie dodane paragrafy
+
+---
+
 ## [0.2.0] - 2026-04-28
 
 ### Dodano
