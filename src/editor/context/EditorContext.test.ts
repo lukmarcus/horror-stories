@@ -284,4 +284,63 @@ describe("editorReducer", () => {
       expect(state.activeParagraphId).toBeNull();
     });
   });
+
+  describe("SET_PARAGRAPH_TEXT", () => {
+    it("ustawia tekst paragrafu i isDirty", () => {
+      const withScenario: EditorState = {
+        scenario: {
+          meta: EMPTY_META,
+          paragraphs: [{ id: "1" }, { id: "100" }],
+        },
+        isDirty: false,
+        activeParagraphId: null,
+      };
+      const state = dispatch(withScenario, {
+        type: "SET_PARAGRAPH_TEXT",
+        payload: { id: "1", text: "Treść paragrafu." },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.text).toBe("Treść paragrafu.");
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych paragrafów", () => {
+      const withScenario: EditorState = {
+        scenario: {
+          meta: EMPTY_META,
+          paragraphs: [{ id: "1", text: "stary" }, { id: "2" }, { id: "100" }],
+        },
+        isDirty: false,
+        activeParagraphId: null,
+      };
+      const state = dispatch(withScenario, {
+        type: "SET_PARAGRAPH_TEXT",
+        payload: { id: "2", text: "nowy" },
+      });
+      const p1 = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p1?.text).toBe("stary");
+    });
+
+    it("pozwala ustawić tekst §100", () => {
+      const withScenario: EditorState = {
+        scenario: { meta: EMPTY_META, paragraphs: [{ id: "100" }] },
+        isDirty: false,
+        activeParagraphId: null,
+      };
+      const state = dispatch(withScenario, {
+        type: "SET_PARAGRAPH_TEXT",
+        payload: { id: "100", text: "Koniec gry." },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "100");
+      expect(p?.text).toBe("Koniec gry.");
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "SET_PARAGRAPH_TEXT",
+        payload: { id: "1", text: "tekst" },
+      });
+      expect(state).toBe(initialState);
+    });
+  });
 });

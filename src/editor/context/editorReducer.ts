@@ -83,6 +83,17 @@ export function editorReducer(
     }
     case "SET_ACTIVE_PARAGRAPH":
       return { ...state, activeParagraphId: action.payload };
+    case "SET_PARAGRAPH_TEXT": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) =>
+        p.id === action.payload.id ? { ...p, text: action.payload.text } : p,
+      );
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
     default:
       return state;
   }

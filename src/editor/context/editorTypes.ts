@@ -24,7 +24,8 @@ export type EditorAction =
   | { type: "MARK_SAVED" }
   | { type: "ADD_PARAGRAPH"; payload: string }
   | { type: "REMOVE_PARAGRAPH"; payload: string }
-  | { type: "SET_ACTIVE_PARAGRAPH"; payload: string | null };
+  | { type: "SET_ACTIVE_PARAGRAPH"; payload: string | null }
+  | { type: "SET_PARAGRAPH_TEXT"; payload: { id: string; text: string } };
 
 export interface EditorContextValue {
   state: EditorState;
