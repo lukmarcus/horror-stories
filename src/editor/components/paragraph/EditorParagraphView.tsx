@@ -73,7 +73,15 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
           <span className="editor-paragraph-view__label">Podgląd</span>
           <div className="editor-paragraph-view__preview-content">
             {text ? (
-              <ParagraphText text={text} />
+              text
+                .split("\n")
+                .map((line, i) => (
+                  <ParagraphText
+                    key={i}
+                    text={line}
+                    className="editor-paragraph-view__preview-paragraph"
+                  />
+                ))
             ) : (
               <p className="editor-paragraph-view__preview-empty">
                 Brak treści

@@ -98,3 +98,11 @@
   color: #555;
   font-style: italic;
 }
+
+.editor-paragraph-view__preview-paragraph {
+  margin-bottom: 1em;
+}
+
+.editor-paragraph-view__preview-paragraph:last-child {
+  margin-bottom: 0;
+}
