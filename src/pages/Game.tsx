@@ -14,6 +14,9 @@ import { useGame } from "../hooks/useGame";
 import { useDiceRoll } from "../hooks/useDiceRoll";
 import { getEnemy } from "../data/enemies";
 import { jumpToParagraph } from "../utils/gameActions";
+import { loadUserParagraphs } from "../utils/userParagraphStorage";
+import { buildUserParagraphMap } from "../utils/userParagraphConverter";
+import { loadUserScenarios } from "../utils/userScenarioStorage";
 import "../styles/pages/game.css";
 
 export const Game: React.FC = () => {
@@ -61,9 +64,22 @@ export const Game: React.FC = () => {
   const scenarios = SCENARIOS;
   const allParagraphs = PARAGRAPHS;
   const scenarioId = id || "droga-donikad";
-  const paragraphs = allParagraphs[scenarioId] || {};
+  const isUserScenario = !SCENARIOS[scenarioId];
+  const userParagraphMap = React.useMemo(
+    () =>
+      isUserScenario
+        ? buildUserParagraphMap(loadUserParagraphs(scenarioId))
+        : {},
+    [scenarioId, isUserScenario],
+  );
+  const paragraphs = isUserScenario
+    ? userParagraphMap
+    : allParagraphs[scenarioId] || {};
 
-  const currentScenario = scenarios[scenarioId];
+  const currentScenario =
+    scenarios[scenarioId] ??
+    loadUserScenarios().find((s) => s.id === scenarioId) ??
+    null;
   const setupSteps = SETUP_DATA[scenarioId]?.steps || [];
   const letters = LETTERS_DATA[scenarioId]?.letters || [];
   const enemies = currentScenario?.enemyId

@@ -6,27 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
----
-
-## Milestone v0.2.2 - Edytor: treść paragrafu
-
-### Zakres
-
-- Edycja treści paragrafu (pole tekstowe)
-- Podgląd renderowanego paragrafu (reużycie istniejącego `RichText`)
-- Usuwanie paragrafu z widoku paragrafu (nie z sidebaru)
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
-### Notatki na przyszłość
-
-- Paragrafy podpięte pod żetony alfabetu powinny mieć etykietę `(litera A)` itp. — do v0.2.8
-- Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.7
-
----
-
 ## Milestone v0.2.3 - Edytor: wybory między paragrafami
 
 ### Zakres
@@ -104,6 +83,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ### Status
 
 - ⏳ Nie rozpoczęte
+
+---
+
+## Notatki na przyszłość
+
+- Paragrafy podpięte pod żetony alfabetu powinny mieć etykietę `(litera A)` itp. — do v0.2.8
+- Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.7
 
 ---
 

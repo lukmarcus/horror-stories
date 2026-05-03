@@ -4,6 +4,7 @@ import { exportToZip, importFromZip } from "../utils/zipHandler";
 import { clearStorage } from "../utils/editorStorage";
 import { ScenarioMetaForm } from "../components/scenario/ScenarioMetaForm";
 import { useMetaErrors } from "../components/scenario/scenarioMetaValidation";
+import { EditorParagraphView } from "../components/paragraph/EditorParagraphView";
 import "./EditorHome.css";
 
 interface EditorHomeProps {
@@ -11,7 +12,10 @@ interface EditorHomeProps {
   onSectionChange: (section: "meta" | string) => void;
 }
 
-export const EditorHome: React.FC<EditorHomeProps> = ({ activeSection }) => {
+export const EditorHome: React.FC<EditorHomeProps> = ({
+  activeSection,
+  onSectionChange,
+}) => {
   const { state, dispatch } = useEditor();
   const [error, setError] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
@@ -120,12 +124,13 @@ export const EditorHome: React.FC<EditorHomeProps> = ({ activeSection }) => {
 
       {state.scenario && activeSection === "meta" && <ScenarioMetaForm />}
       {state.scenario && activeSection !== "meta" && (
-        <div className="editor-home__paragraph-placeholder">
-          <h2>§{activeSection}</h2>
-          <p className="editor-home__hint">
-            Edycja treści paragrafu — dostępna w kolejnej wersji.
-          </p>
-        </div>
+        <EditorParagraphView
+          paragraphId={activeSection}
+          onRemove={(id) => {
+            dispatch({ type: "REMOVE_PARAGRAPH", payload: id });
+            onSectionChange("meta");
+          }}
+        />
       )}
     </div>
   );

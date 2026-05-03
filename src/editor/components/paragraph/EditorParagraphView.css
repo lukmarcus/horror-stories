@@ -1,0 +1,108 @@
+.editor-paragraph-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.editor-paragraph-view__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.editor-paragraph-view__title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.editor-paragraph-view__remove-btn {
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #e05a5a;
+}
+
+.editor-paragraph-view__remove-btn:disabled {
+  color: #888;
+  border-color: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.editor-paragraph-view__remove-btn:not(:disabled):hover {
+  background: #e05a5a;
+  color: #fff;
+}
+
+.editor-paragraph-view__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.editor-paragraph-view__editor,
+.editor-paragraph-view__preview {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.editor-paragraph-view__label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+}
+
+.editor-paragraph-view__textarea {
+  flex: 1;
+  resize: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: #eee;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.editor-paragraph-view__textarea:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.editor-paragraph-view__preview-content {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #111;
+  overflow-y: auto;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.editor-paragraph-view__preview-empty {
+  margin: 0;
+  color: #555;
+  font-style: italic;
+}
+
+.editor-paragraph-view__preview-paragraph {
+  margin-bottom: 1em;
+}
+
+.editor-paragraph-view__preview-paragraph:last-child {
+  margin-bottom: 0;
+}

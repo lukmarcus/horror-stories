@@ -183,22 +183,28 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 - ✅ żetony stanów (`<status>` tag)
 - ✅ Walidacja metadanych edytora (`toSlug`, `validateMeta`)
 - ✅ localStorage CRUD dla scenariuszy użytkownika
+- ✅ localStorage CRUD dla paragrafów użytkownika
+- ✅ Konwersja formatu edytora → format gry
+- ✅ Reducer edytora (stan scenariusza, paragrafy)
 
-### Current Coverage (v0.2.0)
+### Current Coverage (v0.2.2)
 
-| Category            | Tests   | Coverage | Status |
-| ------------------- | ------- | -------- | ------ |
-| Game Logic          | 3       | 100%     | ✅     |
-| Variant System      | 18      | 100%     | ✅     |
-| Hooks (State)       | 26      | ~80%     | ✅     |
-| Utils (Parsing)     | 40      | ~100%    | ✅     |
-| Components          | 96      | ~95%     | ✅     |
-| Data / Items        | 13      | 100%     | ✅     |
-| Pages               | 53      | mixed    | ✅     |
-| E2E                 | 54      | —        | ✅     |
-| Editor (Validation) | 24      | 100%     | ✅     |
-| Editor (Storage)    | 8       | 100%     | ✅     |
-| **Total**           | **335** | **~63%** | **✅** |
+| Category                 | Tests   | Coverage | Status |
+| ------------------------ | ------- | -------- | ------ |
+| Game Logic               | 3       | 100%     | ✅     |
+| Variant System           | 18      | 100%     | ✅     |
+| Hooks (State)            | 26      | ~80%     | ✅     |
+| Utils (Parsing)          | 40      | ~100%    | ✅     |
+| Components               | 96      | ~95%     | ✅     |
+| Data / Items             | 13      | 100%     | ✅     |
+| Pages                    | 53      | mixed    | ✅     |
+| E2E                      | 54      | —        | ✅     |
+| Editor (Validation)      | 24      | 100%     | ✅     |
+| Editor (Storage)         | 8       | 100%     | ✅     |
+| Editor (Reducer)         | 25      | 100%     | ✅     |
+| User Paragraph Storage   | 8       | 100%     | ✅     |
+| User Paragraph Converter | 12      | 100%     | ✅     |
+| **Total**                | **380** | **~65%** | **✅** |
 
 ## Running Tests
 
