@@ -7,6 +7,18 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.2] - 2026-05-03
+
+### Dodano
+
+- Edycja treści paragrafu bezpośrednio w edytorze — pole tekstowe z podglądem na żywo po prawej stronie
+- Podgląd renderuje każdą linię jako osobny akapit (Enter = nowy akapit)
+- Paragraf §100 wyświetla zablokowany przycisk "Nie można usunąć"; pozostałe paragrafy można usunąć z ich widoku
+- Wczytanie pliku `.horrorstory` z listy scenariuszy zapisuje teraz paragrafy — scenariusz jest w pełni grywalny (paragrafy ładowane z localStorage podczas gry)
+- Usunięcie scenariusza z listy usuwa też zapisane paragrafy
+
+---
+
 ## [0.2.1] - 2026-04-30
 
 ### Dodano
