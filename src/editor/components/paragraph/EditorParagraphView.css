@@ -106,3 +106,88 @@
 .editor-paragraph-view__preview-paragraph:last-child {
   margin-bottom: 0;
 }
+
+.editor-paragraph-view__choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.editor-paragraph-view__choice-row,
+.editor-paragraph-view__choice-add {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.editor-paragraph-view__choice-text {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: #eee;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__choice-text:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.editor-paragraph-view__choice-arrow {
+  color: #666;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.editor-paragraph-view__choice-target {
+  padding: 0.4rem 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: #eee;
+  font-size: 0.9rem;
+  min-width: 6rem;
+}
+
+.editor-paragraph-view__choice-target:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.editor-paragraph-view__choice-remove {
+  padding: 0.3rem 0.55rem;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background: transparent;
+  color: #e05a5a;
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.editor-paragraph-view__choice-remove:hover {
+  background: #e05a5a;
+  color: #fff;
+}
+
+.editor-paragraph-view__choice-add-btn {
+  padding: 0.4rem 0.75rem;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.editor-paragraph-view__choice-add-btn:hover {
+  border-color: #aaa;
+  color: #eee;
+}

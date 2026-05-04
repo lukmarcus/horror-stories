@@ -20,7 +20,11 @@ export function editorParagraphToGameParagraph(
   return {
     id: editorParagraph.id,
     contentPages: contentPage.length > 0 ? [contentPage] : [[]],
-    choices: [],
+    choices: (editorParagraph.choices ?? []).map((c) => ({
+      id: c.id,
+      text: c.text,
+      nextParagraphId: c.nextParagraphId,
+    })),
   };
 }
 

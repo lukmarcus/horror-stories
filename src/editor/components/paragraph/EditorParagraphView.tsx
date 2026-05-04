@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEditor } from "../../context/useEditor";
 import { ParagraphText } from "../../../components/text/ParagraphText/ParagraphText";
+import type { EditorChoice } from "../../context/editorTypes";
 import "./EditorParagraphView.css";
 
 interface EditorParagraphViewProps {
@@ -16,6 +17,9 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const paragraph = state.scenario?.paragraphs.find(
     (p) => p.id === paragraphId,
   );
+
+  const [newChoiceText, setNewChoiceText] = useState("");
+  const [newChoiceTarget, setNewChoiceTarget] = useState("");
 
   if (!paragraph) return null;
 
@@ -33,6 +37,38 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
     if (window.confirm(`Usunąć paragraf §${paragraphId}?`)) {
       onRemove(paragraphId);
     }
+  };
+
+  const availableIds = (state.scenario?.paragraphs ?? [])
+    .map((p) => p.id)
+    .filter((id) => id !== paragraphId)
+    .sort((a, b) => {
+      const na = parseInt(a, 10);
+      const nb = parseInt(b, 10);
+      if (!isNaN(na) && !isNaN(nb)) return na - nb;
+      return a.localeCompare(b);
+    });
+
+  const handleAddChoice = () => {
+    const text = newChoiceText.trim();
+    const target = newChoiceTarget.trim();
+    if (!text) return;
+    const choice: EditorChoice = {
+      id: crypto.randomUUID(),
+      text,
+      nextParagraphId: target,
+    };
+    dispatch({ type: "ADD_CHOICE", payload: { paragraphId, choice } });
+    setNewChoiceText("");
+    setNewChoiceTarget("");
+  };
+
+  const handleUpdateChoice = (choice: EditorChoice) => {
+    dispatch({ type: "UPDATE_CHOICE", payload: { paragraphId, choice } });
+  };
+
+  const handleRemoveChoice = (choiceId: string) => {
+    dispatch({ type: "REMOVE_CHOICE", payload: { paragraphId, choiceId } });
   };
 
   return (
@@ -88,6 +124,80 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
               </p>
             )}
           </div>
+        </div>
+      </div>
+
+      <div className="editor-paragraph-view__choices">
+        <span className="editor-paragraph-view__label">Wybory</span>
+
+        {(paragraph.choices ?? []).map((choice) => (
+          <div key={choice.id} className="editor-paragraph-view__choice-row">
+            <input
+              className="editor-paragraph-view__choice-text"
+              type="text"
+              value={choice.text}
+              onChange={(e) =>
+                handleUpdateChoice({ ...choice, text: e.target.value })
+              }
+              placeholder="Tekst wyboru"
+            />
+            <span className="editor-paragraph-view__choice-arrow">→</span>
+            <select
+              className="editor-paragraph-view__choice-target"
+              value={choice.nextParagraphId}
+              onChange={(e) =>
+                handleUpdateChoice({
+                  ...choice,
+                  nextParagraphId: e.target.value,
+                })
+              }
+            >
+              <option value="">— brak —</option>
+              {availableIds.map((id) => (
+                <option key={id} value={id}>
+                  §{id}
+                </option>
+              ))}
+            </select>
+            <button
+              className="editor-paragraph-view__choice-remove"
+              onClick={() => handleRemoveChoice(choice.id)}
+              title="Usuń wybór"
+            >
+              ✕
+            </button>
+          </div>
+        ))}
+
+        <div className="editor-paragraph-view__choice-add">
+          <input
+            className="editor-paragraph-view__choice-text"
+            type="text"
+            value={newChoiceText}
+            onChange={(e) => setNewChoiceText(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
+            placeholder="Tekst nowego wyboru"
+          />
+          <span className="editor-paragraph-view__choice-arrow">→</span>
+          <select
+            className="editor-paragraph-view__choice-target"
+            value={newChoiceTarget}
+            onChange={(e) => setNewChoiceTarget(e.target.value)}
+          >
+            <option value="">— brak —</option>
+            {availableIds.map((id) => (
+              <option key={id} value={id}>
+                §{id}
+              </option>
+            ))}
+          </select>
+          <button
+            className="editor-paragraph-view__choice-add-btn"
+            onClick={handleAddChoice}
+            title="Dodaj wybór"
+          >
+            + Dodaj
+          </button>
         </div>
       </div>
     </div>

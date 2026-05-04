@@ -1,15 +1,40 @@
-import type { EditorScenario } from "../context/editorTypes";
+import type { EditorScenario, EditorParagraph } from "../context/editorTypes";
 
 const FILE_EXTENSION = ".horrorstory";
+
+function buildAccessibleFrom(
+  paragraphs: EditorParagraph[],
+): Record<string, string[]> {
+  const map: Record<string, string[]> = {};
+  for (const p of paragraphs) {
+    for (const choice of p.choices ?? []) {
+      if (!choice.nextParagraphId) continue;
+      if (!map[choice.nextParagraphId]) map[choice.nextParagraphId] = [];
+      if (!map[choice.nextParagraphId].includes(p.id)) {
+        map[choice.nextParagraphId].push(p.id);
+      }
+    }
+  }
+  return map;
+}
 
 export async function exportToZip(scenario: EditorScenario): Promise<void> {
   const JSZip = (await import("jszip")).default;
   const zip = new JSZip();
 
+  const paragraphs = scenario.paragraphs ?? [];
+  const accessibleFrom = buildAccessibleFrom(paragraphs);
+  const paragraphsWithAccessible = paragraphs.map((p) => {
+    const sources = accessibleFrom[p.id];
+    return sources && sources.length > 0
+      ? { ...p, accessibleFrom: sources }
+      : p;
+  });
+
   zip.file("meta.json", JSON.stringify(scenario.meta, null, 2));
   zip.file(
     "paragraphs.json",
-    JSON.stringify({ paragraphs: scenario.paragraphs ?? [] }, null, 2),
+    JSON.stringify({ paragraphs: paragraphsWithAccessible }, null, 2),
   );
 
   const blob = await zip.generateAsync({ type: "blob" });
