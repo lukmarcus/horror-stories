@@ -94,6 +94,49 @@ export function editorReducer(
         isDirty: true,
       };
     }
+    case "ADD_CHOICE": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) => {
+        if (p.id !== action.payload.paragraphId) return p;
+        const choices = [...(p.choices ?? []), action.payload.choice];
+        return { ...p, choices };
+      });
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "UPDATE_CHOICE": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) => {
+        if (p.id !== action.payload.paragraphId) return p;
+        const choices = (p.choices ?? []).map((c) =>
+          c.id === action.payload.choice.id ? action.payload.choice : c,
+        );
+        return { ...p, choices };
+      });
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "REMOVE_CHOICE": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) => {
+        if (p.id !== action.payload.paragraphId) return p;
+        const choices = (p.choices ?? []).filter(
+          (c) => c.id !== action.payload.choiceId,
+        );
+        return { ...p, choices };
+      });
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
     default:
       return state;
   }
