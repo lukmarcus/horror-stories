@@ -126,6 +126,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
       {state.scenario && activeSection !== "meta" && (
         <EditorParagraphView
           paragraphId={activeSection}
+          onNavigate={onSectionChange}
           onRemove={(id) => {
             dispatch({ type: "REMOVE_PARAGRAPH", payload: id });
             onSectionChange("meta");

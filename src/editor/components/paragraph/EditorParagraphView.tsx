@@ -7,11 +7,13 @@ import "./EditorParagraphView.css";
 interface EditorParagraphViewProps {
   paragraphId: string;
   onRemove: (id: string) => void;
+  onNavigate: (id: string) => void;
 }
 
 export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   paragraphId,
   onRemove,
+  onNavigate,
 }) => {
   const { state, dispatch } = useEditor();
   const paragraph = state.scenario?.paragraphs.find(
@@ -71,10 +73,47 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
     dispatch({ type: "REMOVE_CHOICE", payload: { paragraphId, choiceId } });
   };
 
+  const incomingFrom = (state.scenario?.paragraphs ?? [])
+    .filter(
+      (p) =>
+        p.id !== paragraphId &&
+        (p.choices ?? []).some((c) => c.nextParagraphId === paragraphId),
+    )
+    .map((p) => p.id)
+    .sort((a, b) => {
+      const na = parseInt(a, 10);
+      const nb = parseInt(b, 10);
+      if (!isNaN(na) && !isNaN(nb)) return na - nb;
+      return a.localeCompare(b);
+    });
+
   return (
     <div className="editor-paragraph-view">
       <div className="editor-paragraph-view__header">
-        <h2 className="editor-paragraph-view__title">§{paragraphId}</h2>
+        <div className="editor-paragraph-view__header-left">
+          <h2 className="editor-paragraph-view__title">§{paragraphId}</h2>
+          <div className="editor-paragraph-view__incoming">
+            <span className="editor-paragraph-view__incoming-label">
+              Prowadzi tutaj:
+            </span>
+            {incomingFrom.length > 0 ? (
+              incomingFrom.map((id) => (
+                <button
+                  key={id}
+                  className="editor-paragraph-view__incoming-tag"
+                  onClick={() => onNavigate(id)}
+                  title={`Przejdź do §${id}`}
+                >
+                  §{id}
+                </button>
+              ))
+            ) : (
+              <span className="editor-paragraph-view__incoming-empty">
+                brak połączeń
+              </span>
+            )}
+          </div>
+        </div>
         <button
           className="editor-paragraph-view__remove-btn"
           onClick={isDeath ? undefined : handleRemove}
@@ -209,10 +248,17 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   >
                     {choice.text}
                     {choice.nextParagraphId && (
-                      <span className="editor-paragraph-view__preview-choice-target">
+                      <>
                         {" "}
-                        → §{choice.nextParagraphId}
-                      </span>
+                        →{" "}
+                        <button
+                          className="editor-paragraph-view__preview-choice-target"
+                          onClick={() => onNavigate(choice.nextParagraphId)}
+                          title={`Przejdź do §${choice.nextParagraphId}`}
+                        >
+                          §{choice.nextParagraphId}
+                        </button>
+                      </>
                     )}
                   </li>
                 ))}
