@@ -6,20 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.3 - Edytor: wybory między paragrafami
-
-### Zakres
-
-- Dodawanie / usuwanie wyborów (`Choice`) do paragrafu
-- Wskazanie `nextParagraphId` z listy dostępnych paragrafów
-- Podgląd grafu połączeń (opcjonalnie)
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.2.4 - Edytor: bloki treści i strony
 
 ### Zakres

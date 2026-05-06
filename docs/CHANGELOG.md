@@ -7,6 +7,20 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.3] - 2026-05-06
+
+### Dodano
+
+- Dodawanie, edycja i usuwanie wyborów (`Choice`) w paragrafie — tekst wyboru i docelowy paragraf
+- Lista wybieranych paragrafów posortowana numerycznie
+- Sekcja „Prowadzi tutaj" w nagłówku paragrafu — klikalny skrót do każdego paragrafu, który do niego prowadzi
+- Cele wyborów w podglądzie jako klikalne przyciski nawigacji
+- Graf połączeń między paragrafami (zakładka „Graf połączeń" w edytorze) — renderowany przez Mermaid, kliknięcie węzła nawiguje do paragrafu
+- Eksport `.horrorstory` automatycznie generuje `accessibleFrom` dla każdego paragrafu na podstawie wyborów
+- Konwersja wyborów edytora do formatu gry przy wczytywaniu scenariusza użytkownika
+
+---
+
 ## [0.2.2] - 2026-05-03
 
 ### Dodano
