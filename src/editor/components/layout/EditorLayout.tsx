@@ -63,6 +63,16 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
           >
             Dane scenariusza
           </button>
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
+                activeSection === "graph" ? "editor-sidebar__item--active" : ""
+              }`}
+              onClick={() => onSectionChange("graph")}
+            >
+              Graf połączeń
+            </button>
+          )}
           <button className="editor-sidebar__item editor-sidebar__item--placeholder">
             Przygotowanie
           </button>
