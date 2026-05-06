@@ -5,7 +5,7 @@ Interaktywna aplikacja webowa dla gry planszowej Horror Stories, stworzona w Rea
 ## Informacje o projekcie
 
 - **Nazwa**: Horror Stories
-- **Wersja**: 0.2.2
+- **Wersja**: 0.2.3
 - **Autor**: Marek Szumny
 - **Licencja**: MIT
 - **Opis**: Aplikacja towarzysząca grze planszowej Horror Stories

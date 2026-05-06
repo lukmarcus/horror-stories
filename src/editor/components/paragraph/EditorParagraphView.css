@@ -13,6 +13,12 @@
   margin-bottom: 1.5rem;
 }
 
+.editor-paragraph-view__header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
 .editor-paragraph-view__title {
   margin: 0;
   font-size: 1.5rem;
@@ -44,15 +50,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  flex: 1;
-  min-height: 0;
+  align-items: start;
 }
 
 .editor-paragraph-view__editor,
 .editor-paragraph-view__preview {
   display: flex;
   flex-direction: column;
-  min-height: 0;
 }
 
 .editor-paragraph-view__label {
@@ -64,8 +68,8 @@
 }
 
 .editor-paragraph-view__textarea {
-  flex: 1;
-  resize: none;
+  resize: vertical;
+  min-height: 12rem;
   padding: 0.75rem;
   border-radius: 6px;
   border: 1px solid #444;
@@ -83,7 +87,6 @@
 }
 
 .editor-paragraph-view__preview-content {
-  flex: 1;
   padding: 0.75rem;
   border-radius: 6px;
   border: 1px solid #333;
@@ -105,4 +108,154 @@
 
 .editor-paragraph-view__preview-paragraph:last-child {
   margin-bottom: 0;
+}
+
+.editor-paragraph-view__choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.editor-paragraph-view__choice-row,
+.editor-paragraph-view__choice-add {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.editor-paragraph-view__choice-text {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: #eee;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__choice-text:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.editor-paragraph-view__choice-arrow {
+  color: #666;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.editor-paragraph-view__choice-target {
+  padding: 0.4rem 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: #eee;
+  font-size: 0.9rem;
+  min-width: 6rem;
+}
+
+.editor-paragraph-view__choice-target:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.editor-paragraph-view__choice-remove {
+  padding: 0.3rem 0.55rem;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background: transparent;
+  color: #e05a5a;
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.editor-paragraph-view__choice-remove:hover {
+  background: #e05a5a;
+  color: #fff;
+}
+
+.editor-paragraph-view__choice-add-btn {
+  padding: 0.4rem 0.75rem;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.editor-paragraph-view__choice-add-btn:hover {
+  border-color: #aaa;
+  color: #eee;
+}
+
+.editor-paragraph-view__preview-choices {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0.75rem;
+  border-top: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.editor-paragraph-view__preview-choice {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.editor-paragraph-view__preview-choice-target {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: #7ec87e;
+  cursor: pointer;
+}
+
+.editor-paragraph-view__preview-choice-target:hover {
+  text-decoration: underline;
+}
+
+.editor-paragraph-view__incoming {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.editor-paragraph-view__incoming-label {
+  font-size: 0.8rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+.editor-paragraph-view__incoming-tag {
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  background: #1e2a1e;
+  border: 1px solid #3a5a3a;
+  color: #7ec87e;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+.editor-paragraph-view__incoming-tag:hover {
+  background: #2a3e2a;
+  border-color: #5a8a5a;
+}
+
+.editor-paragraph-view__incoming-empty {
+  color: #555;
+  font-style: italic;
+  font-size: 0.82rem;
 }

@@ -343,4 +343,155 @@ describe("editorReducer", () => {
       expect(state).toBe(initialState);
     });
   });
+
+  describe("ADD_CHOICE", () => {
+    const withParagraph: EditorState = {
+      scenario: {
+        meta: EMPTY_META,
+        paragraphs: [{ id: "1" }, { id: "2" }, { id: "100" }],
+      },
+      isDirty: false,
+      activeParagraphId: null,
+    };
+    const choice = { id: "c1", text: "Idź do §2", nextParagraphId: "2" };
+
+    it("dodaje wybór do paragrafu", () => {
+      const state = dispatch(withParagraph, {
+        type: "ADD_CHOICE",
+        payload: { paragraphId: "1", choice },
+      });
+      expect(
+        state.scenario!.paragraphs.find((p) => p.id === "1")?.choices,
+      ).toHaveLength(1);
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych paragrafów", () => {
+      const state = dispatch(withParagraph, {
+        type: "ADD_CHOICE",
+        payload: { paragraphId: "1", choice },
+      });
+      expect(
+        state.scenario!.paragraphs.find((p) => p.id === "2")?.choices,
+      ).toBeUndefined();
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "ADD_CHOICE",
+        payload: { paragraphId: "1", choice },
+      });
+      expect(state).toBe(initialState);
+    });
+  });
+
+  describe("UPDATE_CHOICE", () => {
+    const withChoice: EditorState = {
+      scenario: {
+        meta: EMPTY_META,
+        paragraphs: [
+          {
+            id: "1",
+            choices: [{ id: "c1", text: "Stary tekst", nextParagraphId: "2" }],
+          },
+          { id: "2" },
+          { id: "100" },
+        ],
+      },
+      isDirty: false,
+      activeParagraphId: null,
+    };
+
+    it("aktualizuje tekst wyboru", () => {
+      const state = dispatch(withChoice, {
+        type: "UPDATE_CHOICE",
+        payload: {
+          paragraphId: "1",
+          choice: { id: "c1", text: "Nowy tekst", nextParagraphId: "2" },
+        },
+      });
+      const choices = state.scenario!.paragraphs.find(
+        (p) => p.id === "1",
+      )?.choices;
+      expect(choices?.[0].text).toBe("Nowy tekst");
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("aktualizuje nextParagraphId wyboru", () => {
+      const state = dispatch(withChoice, {
+        type: "UPDATE_CHOICE",
+        payload: {
+          paragraphId: "1",
+          choice: { id: "c1", text: "Stary tekst", nextParagraphId: "100" },
+        },
+      });
+      const choices = state.scenario!.paragraphs.find(
+        (p) => p.id === "1",
+      )?.choices;
+      expect(choices?.[0].nextParagraphId).toBe("100");
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "UPDATE_CHOICE",
+        payload: {
+          paragraphId: "1",
+          choice: { id: "c1", text: "", nextParagraphId: "" },
+        },
+      });
+      expect(state).toBe(initialState);
+    });
+  });
+
+  describe("REMOVE_CHOICE", () => {
+    const withChoices: EditorState = {
+      scenario: {
+        meta: EMPTY_META,
+        paragraphs: [
+          {
+            id: "1",
+            choices: [
+              { id: "c1", text: "Wybór 1", nextParagraphId: "2" },
+              { id: "c2", text: "Wybór 2", nextParagraphId: "100" },
+            ],
+          },
+          { id: "2" },
+          { id: "100" },
+        ],
+      },
+      isDirty: false,
+      activeParagraphId: null,
+    };
+
+    it("usuwa wybór o podanym id", () => {
+      const state = dispatch(withChoices, {
+        type: "REMOVE_CHOICE",
+        payload: { paragraphId: "1", choiceId: "c1" },
+      });
+      const choices = state.scenario!.paragraphs.find(
+        (p) => p.id === "1",
+      )?.choices;
+      expect(choices).toHaveLength(1);
+      expect(choices?.[0].id).toBe("c2");
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych paragrafów", () => {
+      const state = dispatch(withChoices, {
+        type: "REMOVE_CHOICE",
+        payload: { paragraphId: "1", choiceId: "c1" },
+      });
+      expect(
+        state.scenario!.paragraphs.find((p) => p.id === "2")?.choices,
+      ).toBeUndefined();
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "REMOVE_CHOICE",
+        payload: { paragraphId: "1", choiceId: "c1" },
+      });
+      expect(state).toBe(initialState);
+    });
+  });
 });

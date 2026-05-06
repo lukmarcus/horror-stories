@@ -5,6 +5,7 @@ import { clearStorage } from "../utils/editorStorage";
 import { ScenarioMetaForm } from "../components/scenario/ScenarioMetaForm";
 import { useMetaErrors } from "../components/scenario/scenarioMetaValidation";
 import { EditorParagraphView } from "../components/paragraph/EditorParagraphView";
+import { GraphView } from "../components/graph/GraphView";
 import "./EditorHome.css";
 
 interface EditorHomeProps {
@@ -123,15 +124,24 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
       )}
 
       {state.scenario && activeSection === "meta" && <ScenarioMetaForm />}
-      {state.scenario && activeSection !== "meta" && (
-        <EditorParagraphView
-          paragraphId={activeSection}
-          onRemove={(id) => {
-            dispatch({ type: "REMOVE_PARAGRAPH", payload: id });
-            onSectionChange("meta");
-          }}
+      {state.scenario && activeSection === "graph" && (
+        <GraphView
+          paragraphs={state.scenario.paragraphs}
+          onNavigate={onSectionChange}
         />
       )}
+      {state.scenario &&
+        activeSection !== "meta" &&
+        activeSection !== "graph" && (
+          <EditorParagraphView
+            paragraphId={activeSection}
+            onNavigate={onSectionChange}
+            onRemove={(id) => {
+              dispatch({ type: "REMOVE_PARAGRAPH", payload: id });
+              onSectionChange("meta");
+            }}
+          />
+        )}
     </div>
   );
 };

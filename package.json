@@ -1,7 +1,7 @@
 {
   "name": "horror-stories",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Companion app for Horror Stories board game",
   "author": "Marek Szumny",
   "license": "MIT",
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "jszip": "^3.10.1",
+    "mermaid": "^11.14.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.0"
