@@ -259,3 +259,43 @@
   font-style: italic;
   font-size: 0.82rem;
 }
+
+.editor-paragraph-view__label-hint {
+  font-weight: normal;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.editor-paragraph-view__migrate-btn {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  background: none;
+  border: 1px solid #555;
+  color: #aaa;
+  border-radius: 3px;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.editor-paragraph-view__migrate-btn:hover {
+  border-color: #888;
+  color: #ddd;
+}
+
+.editor-paragraph-view__preview-page {
+  margin-bottom: 1rem;
+}
+
+.editor-paragraph-view__preview-page:last-child {
+  margin-bottom: 0;
+}
+
+.editor-paragraph-view__preview-page-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+}

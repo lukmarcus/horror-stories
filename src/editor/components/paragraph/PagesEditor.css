@@ -1,0 +1,161 @@
+.pages-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pages-editor__page {
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: #1a1a1a;
+}
+
+.pages-editor__page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pages-editor__page-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pages-editor__page-remove {
+  font-size: 0.75rem;
+  background: none;
+  border: 1px solid #550000;
+  color: #cc4444;
+  border-radius: 3px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.pages-editor__page-remove:hover {
+  background: #550000;
+}
+
+.pages-editor__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pages-editor__blocks-empty {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 0;
+  padding: 0.25rem 0;
+}
+
+.pages-editor__block-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.pages-editor__block-type {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  background: #222;
+  border: 1px solid #444;
+  color: #ccc;
+  border-radius: 3px;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+.pages-editor__block-text {
+  flex: 1;
+  font-size: 0.85rem;
+  background: #111;
+  border: 1px solid #444;
+  color: #ddd;
+  border-radius: 3px;
+  padding: 4px 8px;
+  resize: vertical;
+  font-family: inherit;
+  min-height: 36px;
+}
+
+.pages-editor__block-text:focus {
+  outline: none;
+  border-color: #666;
+}
+
+.pages-editor__block-input {
+  flex: 1;
+  font-size: 0.85rem;
+  background: #111;
+  border: 1px solid #444;
+  color: #ddd;
+  border-radius: 3px;
+  padding: 4px 8px;
+}
+
+.pages-editor__block-style,
+.pages-editor__block-color {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  background: #222;
+  border: 1px solid #444;
+  color: #ccc;
+  border-radius: 3px;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+.pages-editor__block-remove {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 3px;
+}
+
+.pages-editor__block-remove:hover {
+  color: #cc4444;
+  background: #2a0000;
+}
+
+.pages-editor__add-block {
+  align-self: flex-start;
+  font-size: 0.8rem;
+  background: none;
+  border: 1px dashed #444;
+  color: #777;
+  border-radius: 3px;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+
+.pages-editor__add-block:hover {
+  border-color: #666;
+  color: #aaa;
+}
+
+.pages-editor__add-page {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  background: none;
+  border: 1px solid #444;
+  color: #aaa;
+  border-radius: 3px;
+  padding: 5px 14px;
+  cursor: pointer;
+}
+
+.pages-editor__add-page:hover {
+  border-color: #666;
+  color: #ddd;
+}

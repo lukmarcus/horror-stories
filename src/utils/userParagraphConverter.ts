@@ -3,11 +3,40 @@ import type { Paragraph } from "../types";
 
 /**
  * Converts editor paragraph format to game paragraph format.
- * Each non-empty line of `text` becomes a separate ContentBlock in contentPages[0].
+ *
+ * - If `pages` is set: uses ContentBlock[][] directly.
+ *   - 1 page  → content: pages[0]  (no isMultiPage)
+ *   - 2+ pages → contentPages: pages, isMultiPage: true
+ * - Falls back to legacy `text` field: each non-empty line → ContentBlock in contentPages[0].
  */
 export function editorParagraphToGameParagraph(
   editorParagraph: EditorParagraph,
 ): Paragraph {
+  const choices = (editorParagraph.choices ?? []).map((c) => ({
+    id: c.id,
+    text: c.text,
+    nextParagraphId: c.nextParagraphId,
+  }));
+
+  // Pages-based format
+  if (editorParagraph.pages) {
+    const pages = editorParagraph.pages;
+    if (pages.length === 1) {
+      return {
+        id: editorParagraph.id,
+        content: pages[0],
+        choices,
+      };
+    }
+    return {
+      id: editorParagraph.id,
+      contentPages: pages,
+      isMultiPage: true,
+      choices,
+    };
+  }
+
+  // Legacy text format
   const lines = (editorParagraph.text ?? "")
     .split("\n")
     .filter((line) => line.trim() !== "");
@@ -20,11 +49,7 @@ export function editorParagraphToGameParagraph(
   return {
     id: editorParagraph.id,
     contentPages: contentPage.length > 0 ? [contentPage] : [[]],
-    choices: (editorParagraph.choices ?? []).map((c) => ({
-      id: c.id,
-      text: c.text,
-      nextParagraphId: c.nextParagraphId,
-    })),
+    choices,
   };
 }
 
