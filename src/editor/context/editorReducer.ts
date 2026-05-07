@@ -1,4 +1,5 @@
 import type { EditorState, EditorAction } from "./editorTypes";
+import type { ContentBlock } from "../../types";
 
 export const DEATH_PARAGRAPH = { id: "100" };
 
@@ -58,7 +59,10 @@ export function editorReducer(
       if (!state.scenario) return state;
       const id = action.payload;
       if (state.scenario.paragraphs.some((p) => p.id === id)) return state;
-      const paragraphs = [...state.scenario.paragraphs, { id }];
+      const paragraphs = [
+        ...state.scenario.paragraphs,
+        { id, pages: [[]] as ContentBlock[][] },
+      ];
       return {
         ...state,
         scenario: { ...state.scenario, paragraphs },
@@ -131,6 +135,17 @@ export function editorReducer(
         );
         return { ...p, choices };
       });
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "SET_PARAGRAPH_PAGES": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) =>
+        p.id === action.payload.id ? { ...p, pages: action.payload.pages } : p,
+      );
       return {
         ...state,
         scenario: { ...state.scenario, paragraphs },

@@ -36,6 +36,10 @@ export type EditorAction =
   | { type: "REMOVE_PARAGRAPH"; payload: string }
   | { type: "SET_ACTIVE_PARAGRAPH"; payload: string | null }
   | { type: "SET_PARAGRAPH_TEXT"; payload: { id: string; text: string } }
+  | {
+      type: "SET_PARAGRAPH_PAGES";
+      payload: { id: string; pages: ContentBlock[][] };
+    }
   | { type: "ADD_PAGE"; payload: { paragraphId: string } }
   | { type: "REMOVE_PAGE"; payload: { paragraphId: string; pageIndex: number } }
   | {
