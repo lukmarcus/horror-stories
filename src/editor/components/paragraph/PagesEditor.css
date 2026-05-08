@@ -83,7 +83,9 @@
   font-family: inherit;
   cursor: pointer;
   line-height: 1;
-  transition: background 0.1s, border-color 0.1s;
+  transition:
+    background 0.1s,
+    border-color 0.1s;
 }
 
 .pages-editor__toolbar-btn:hover {
@@ -96,22 +98,74 @@
   background: #333;
 }
 
+/* ── Color picker ────────────────────────────────────────────── */
+
+.pages-editor__color-picker {
+  position: relative;
+}
+
+.pages-editor__color-picker-toggle {
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.pages-editor__color-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  padding: 5px;
+  background: #1e1e1e;
+  border: 1px solid #444;
+  border-radius: 5px;
+  z-index: 200;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
 .pages-editor__color-btn {
   font-weight: 700;
   font-size: 0.8rem;
 }
 
-.pages-editor__color-btn--yellow { color: #d4a017; }
-.pages-editor__color-btn--red    { color: #cc4444; }
-.pages-editor__color-btn--purple { color: #9966cc; }
-.pages-editor__color-btn--green  { color: #4caf50; }
-.pages-editor__color-btn--blue   { color: #5599cc; }
+.pages-editor__color-btn--yellow {
+  color: #d4a017;
+}
+.pages-editor__color-btn--red {
+  color: #cc4444;
+}
+.pages-editor__color-btn--purple {
+  color: #9966cc;
+}
+.pages-editor__color-btn--green {
+  color: #4caf50;
+}
+.pages-editor__color-btn--blue {
+  color: #5599cc;
+}
 
-.pages-editor__color-btn--yellow:hover { background: #2a2200; border-color: #d4a017; }
-.pages-editor__color-btn--red:hover    { background: #2a0000; border-color: #cc4444; }
-.pages-editor__color-btn--purple:hover { background: #1e0033; border-color: #9966cc; }
-.pages-editor__color-btn--green:hover  { background: #001a00; border-color: #4caf50; }
-.pages-editor__color-btn--blue:hover   { background: #001a2a; border-color: #5599cc; }
+.pages-editor__color-btn--yellow:hover {
+  background: #2a2200;
+  border-color: #d4a017;
+}
+.pages-editor__color-btn--red:hover {
+  background: #2a0000;
+  border-color: #cc4444;
+}
+.pages-editor__color-btn--purple:hover {
+  background: #1e0033;
+  border-color: #9966cc;
+}
+.pages-editor__color-btn--green:hover {
+  background: #001a00;
+  border-color: #4caf50;
+}
+.pages-editor__color-btn--blue:hover {
+  background: #001a2a;
+  border-color: #5599cc;
+}
 
 .pages-editor__textarea {
   width: 100%;
@@ -146,7 +200,9 @@
   border-radius: 4px;
   padding: 5px 14px;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
 }
 
 .pages-editor__add-page:hover {

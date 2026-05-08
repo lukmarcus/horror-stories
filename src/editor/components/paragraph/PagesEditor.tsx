@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import type { ContentBlock } from "../../../types";
 import { useEditor } from "../../context/useEditor";
 import "./PagesEditor.css";
@@ -82,6 +82,62 @@ export const PagesEditor: React.FC<PagesEditorProps> = ({
 
 const COLORS = ["yellow", "red", "purple", "green", "blue"] as const;
 
+interface ColorPickerProps {
+  wrap: (before: string, after: string) => void;
+}
+
+const ColorPicker: React.FC<ColorPickerProps> = ({ wrap }) => {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  return (
+    <div className="pages-editor__color-picker" ref={containerRef}>
+      <button
+        className="pages-editor__toolbar-btn pages-editor__color-picker-toggle"
+        onMouseDown={(e) => {
+          e.preventDefault();
+          setOpen((o) => !o);
+        }}
+        title="Kolor tekstu"
+      >
+        A&#x25BE;
+      </button>
+      {open && (
+        <div className="pages-editor__color-dropdown">
+          {COLORS.map((color) => (
+            <button
+              key={color}
+              className={`pages-editor__toolbar-btn pages-editor__color-btn pages-editor__color-btn--${color}`}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                wrap(`<span class='color-${color}'>`, "</span>");
+                setOpen(false);
+              }}
+              title={`Kolor: ${color}`}
+            >
+              A
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 interface PageEditorProps {
   text: string;
   pageIndex: number;
@@ -144,21 +200,30 @@ const PageEditor: React.FC<PageEditorProps> = ({
         <div className="pages-editor__toolbar-group">
           <button
             className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => { e.preventDefault(); wrap("<b>", "</b>"); }}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              wrap("<b>", "</b>");
+            }}
             title="Pogrubienie"
           >
             <b>B</b>
           </button>
           <button
             className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => { e.preventDefault(); wrap("<em>", "</em>"); }}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              wrap("<em>", "</em>");
+            }}
             title="Kursywa"
           >
             <em>I</em>
           </button>
           <button
             className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => { e.preventDefault(); wrap("<u>", "</u>"); }}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              wrap("<u>", "</u>");
+            }}
             title="Podkreślenie"
           >
             <u>U</u>
@@ -168,19 +233,7 @@ const PageEditor: React.FC<PageEditorProps> = ({
         <div className="pages-editor__toolbar-sep" />
 
         <div className="pages-editor__toolbar-group">
-          {COLORS.map((color) => (
-            <button
-              key={color}
-              className={`pages-editor__toolbar-btn pages-editor__color-btn pages-editor__color-btn--${color}`}
-              onMouseDown={(e) => {
-                e.preventDefault();
-                wrap(`<span class='color-${color}'>`, "</span>");
-              }}
-              title={`Kolor: ${color}`}
-            >
-              A
-            </button>
-          ))}
+          <ColorPicker wrap={wrap} />
         </div>
 
         <div className="pages-editor__toolbar-sep" />
@@ -188,7 +241,10 @@ const PageEditor: React.FC<PageEditorProps> = ({
         <div className="pages-editor__toolbar-group">
           <button
             className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => { e.preventDefault(); insertLine("[img: ]", 6); }}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              insertLine("[img: ]", 6);
+            }}
             title="Wstaw blok obrazu"
           >
             🖼
@@ -201,7 +257,9 @@ const PageEditor: React.FC<PageEditorProps> = ({
         className="pages-editor__textarea"
         value={text}
         onChange={(e) => onChange(e.target.value)}
-        placeholder={"Każda linia = osobny akapit\nObraz: [img: ścieżka/do/pliku.jpg lg]"}
+        placeholder={
+          "Każda linia = osobny akapit\nObraz: [img: ścieżka/do/pliku.jpg lg]"
+        }
         rows={12}
         spellCheck={false}
       />
