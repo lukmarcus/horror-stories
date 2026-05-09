@@ -291,116 +291,123 @@ const PageEditor: React.FC<PageEditorProps> = ({
         </div>
       )}
 
-      <div className="pages-editor__toolbar" role="toolbar">
-        <div className="pages-editor__toolbar-group">
-          <button
-            className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => {
-              e.preventDefault();
-              wrap("<b>", "</b>");
-            }}
-            title="Pogrubienie"
-          >
-            <b>B</b>
-          </button>
-          <button
-            className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => {
-              e.preventDefault();
-              wrap("<em>", "</em>");
-            }}
-            title="Kursywa"
-          >
-            <em>I</em>
-          </button>
-          <button
-            className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => {
-              e.preventDefault();
-              wrap("<u>", "</u>");
-            }}
-            title="Podkreślenie"
-          >
-            <u>U</u>
-          </button>
+      <div className="pages-editor__toolbars" role="toolbar">
+        {/* row 1: inline */}
+        <div className="pages-editor__toolbar">
+          <span className="pages-editor__toolbar-label">Tekst:</span>
+          <div className="pages-editor__toolbar-group">
+            <button
+              className="pages-editor__toolbar-btn"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                wrap("<b>", "</b>");
+              }}
+              title="Pogrubienie (zaznaczenie)"
+            >
+              <b>B</b>
+            </button>
+            <button
+              className="pages-editor__toolbar-btn"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                wrap("<em>", "</em>");
+              }}
+              title="Kursywa (zaznaczenie)"
+            >
+              <em>I</em>
+            </button>
+            <button
+              className="pages-editor__toolbar-btn"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                wrap("<u>", "</u>");
+              }}
+              title="Podkreślenie (zaznaczenie)"
+            >
+              <u>U</u>
+            </button>
+          </div>
+
+          <div className="pages-editor__toolbar-sep" />
+
+          <div className="pages-editor__toolbar-group">
+            <ColorPicker
+              onSelect={(c) => wrap(`<span class='color-${c}'>`, "</span>")}
+            />
+          </div>
+
+          <div className="pages-editor__toolbar-sep" />
+
+          <div className="pages-editor__toolbar-group">
+            <button
+              className="pages-editor__toolbar-btn"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                insertLine("[img: ]", 6);
+              }}
+              title="Wstaw blok obrazu"
+            >
+              🖼
+            </button>
+          </div>
         </div>
 
-        <div className="pages-editor__toolbar-sep" />
+        {/* row 2: block */}
+        <div className="pages-editor__toolbar pages-editor__toolbar--block">
+          <span className="pages-editor__toolbar-label">Akapit:</span>
+          <div className="pages-editor__toolbar-group">
+            <button
+              className="pages-editor__toolbar-btn"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                toggleBlockStyle("b");
+              }}
+              title="Pogrubienie całego akapitu"
+            >
+              <b>B</b>
+            </button>
+            <button
+              className="pages-editor__toolbar-btn"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                toggleBlockStyle("i");
+              }}
+              title="Kursywa całego akapitu"
+            >
+              <em>I</em>
+            </button>
+            <button
+              className="pages-editor__toolbar-btn"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                toggleBlockStyle("u");
+              }}
+              title="Podkreślenie całego akapitu"
+            >
+              <u>U</u>
+            </button>
+          </div>
 
-        <div className="pages-editor__toolbar-group">
-          <ColorPicker
-            onSelect={(c) => wrap(`<span class='color-${c}'>`, "</span>")}
-          />
-        </div>
+          <div className="pages-editor__toolbar-sep" />
 
-        <div className="pages-editor__toolbar-sep" />
+          <div className="pages-editor__toolbar-group">
+            <ColorPicker onSelect={setBlockColor} label="¶A" />
+          </div>
 
-        <div className="pages-editor__toolbar-group">
-          <button
-            className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => {
-              e.preventDefault();
-              insertLine("[img: ]", 6);
-            }}
-            title="Wstaw blok obrazu"
-          >
-            🖼
-          </button>
-        </div>
+          <div className="pages-editor__toolbar-sep" />
 
-        {/* ── block ── */}
-        <div className="pages-editor__toolbar-sep pages-editor__toolbar-sep--thick" />
-
-        <span className="pages-editor__toolbar-label">Akapit:</span>
-
-        <div className="pages-editor__toolbar-group">
-          <button
-            className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => {
-              e.preventDefault();
-              toggleBlockStyle("b");
-            }}
-            title="Pogrubienie całego akapitu"
-          >
-            <b>B</b>
-          </button>
-          <button
-            className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => {
-              e.preventDefault();
-              toggleBlockStyle("i");
-            }}
-            title="Kursywa całego akapitu"
-          >
-            <em>I</em>
-          </button>
-          <button
-            className="pages-editor__toolbar-btn"
-            onMouseDown={(e) => {
-              e.preventDefault();
-              toggleBlockStyle("u");
-            }}
-            title="Podkreślenie całego akapitu"
-          >
-            <u>U</u>
-          </button>
-        </div>
-
-        <div className="pages-editor__toolbar-group">
-          <ColorPicker onSelect={setBlockColor} label="¶A" />
-        </div>
-
-        <div className="pages-editor__toolbar-group">
-          <button
-            className="pages-editor__toolbar-btn pages-editor__clear-btn"
-            onMouseDown={(e) => {
-              e.preventDefault();
-              clearBlock();
-            }}
-            title="Wyczyść styl akapitu"
-          >
-            ✕
-          </button>
+          <div className="pages-editor__toolbar-group">
+            <button
+              className="pages-editor__toolbar-btn pages-editor__clear-btn"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                clearBlock();
+              }}
+              title="Wyczyść styl akapitu"
+            >
+              ✕
+            </button>
+          </div>
         </div>
       </div>
 

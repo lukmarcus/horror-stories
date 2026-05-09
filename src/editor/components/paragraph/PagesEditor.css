@@ -45,6 +45,11 @@
   color: #ffaaaa;
 }
 
+.pages-editor__toolbars {
+  display: flex;
+  flex-direction: column;
+}
+
 .pages-editor__toolbar {
   display: flex;
   align-items: center;
@@ -53,6 +58,10 @@
   background: #1a1a1a;
   border-bottom: 1px solid #2a2a2a;
   flex-wrap: wrap;
+}
+
+.pages-editor__toolbar--block {
+  background: #161616;
 }
 
 .pages-editor__toolbar-group {
