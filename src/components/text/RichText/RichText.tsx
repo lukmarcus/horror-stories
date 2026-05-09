@@ -248,14 +248,15 @@ export const RichText: React.FC<RichTextProps> = ({
 
             let content: React.ReactNode = parseHtml(textContent);
 
-            // Apply style wrapper if needed (skip bold if color is present, as colors are bold by default)
-            if (block.style === "bold" && !block.color) {
-              content = <strong>{content}</strong>;
-            } else if (block.style === "italic") {
-              content = <em>{content}</em>;
-            } else if (block.style === "underline") {
-              content = <u>{content}</u>;
-            }
+            // Apply style wrappers (normalize to array for backward compat)
+            const styles = Array.isArray(block.style)
+              ? block.style
+              : block.style
+                ? [block.style]
+                : [];
+            if (styles.includes("underline")) content = <u>{content}</u>;
+            if (styles.includes("italic")) content = <em>{content}</em>;
+            if (styles.includes("bold") && !block.color) content = <strong>{content}</strong>;
 
             return (
               <div key={blockKey} className={classes}>

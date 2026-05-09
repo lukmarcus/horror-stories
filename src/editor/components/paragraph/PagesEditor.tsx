@@ -7,36 +7,50 @@ import "./PagesEditor.css";
 
 const COLORS = ["yellow", "red", "purple", "green", "blue"] as const;
 type ColorName = (typeof COLORS)[number];
+const SIZES = ["xs", "sm", "lg", "xl"] as const;
+type SizeName = (typeof SIZES)[number];
 
-const BLOCK_PREFIX_RE = /^(\[(?:b|i|u|c:[a-z]+)\])*/;
-
-function parseBlockPrefixes(line: string): {
-  style: "b" | "i" | "u" | null;
+interface BlockOpts {
+  styles: ReadonlySet<"b" | "i" | "u">;
   color: ColorName | null;
-  content: string;
-} {
+  size: SizeName | null;
+}
+const EMPTY_OPTS: BlockOpts = { styles: new Set(), color: null, size: null };
+
+const BLOCK_PREFIX_RE = /^(\[(?:b|i|u|c:[a-z]+|s:[a-z]+)\])*/;
+
+function parseBlockPrefixes(line: string): BlockOpts & { content: string } {
   const prefixStr = line.match(BLOCK_PREFIX_RE)?.[0] ?? "";
   const content = line.slice(prefixStr.length);
-  let style: "b" | "i" | "u" | null = null;
-  if (prefixStr.includes("[b]")) style = "b";
-  else if (prefixStr.includes("[i]")) style = "i";
-  else if (prefixStr.includes("[u]")) style = "u";
+  const styles = new Set<"b" | "i" | "u">();
+  if (prefixStr.includes("[b]")) styles.add("b");
+  if (prefixStr.includes("[i]")) styles.add("i");
+  if (prefixStr.includes("[u]")) styles.add("u");
   const colorM = prefixStr.match(/\[c:([a-z]+)\]/);
   const color =
     colorM && (COLORS as readonly string[]).includes(colorM[1])
       ? (colorM[1] as ColorName)
       : null;
-  return { style, color, content };
+  const sizeM = prefixStr.match(/\[s:([a-z]+)\]/);
+  const size =
+    sizeM && (SIZES as readonly string[]).includes(sizeM[1])
+      ? (sizeM[1] as SizeName)
+      : null;
+  return { styles, color, size, content };
 }
 
 function buildLine(
   content: string,
-  style: "b" | "i" | "u" | null,
+  styles: ReadonlySet<"b" | "i" | "u">,
   color: ColorName | null,
+  size: SizeName | null,
 ): string {
   let prefix = "";
-  if (style) prefix += `[${style}]`;
+  if (styles.has("b")) prefix += "[b]";
+  if (styles.has("i")) prefix += "[i]";
+  if (styles.has("u")) prefix += "[u]";
   if (color) prefix += `[c:${color}]`;
+  if (size) prefix += `[s:${size}]`;
   return prefix + content;
 }
 
@@ -56,10 +70,16 @@ function pageToText(page: ContentBlock[]): string {
       if (b.type === "image")
         return `[img: ${b.image ?? ""}${b.size ? ` ${b.size}` : ""}]`;
       let prefix = "";
-      if (b.style === "bold") prefix += "[b]";
-      else if (b.style === "italic") prefix += "[i]";
-      else if (b.style === "underline") prefix += "[u]";
+      const styles = Array.isArray(b.style)
+        ? b.style
+        : b.style
+          ? [b.style]
+          : [];
+      if (styles.includes("bold")) prefix += "[b]";
+      if (styles.includes("italic")) prefix += "[i]";
+      if (styles.includes("underline")) prefix += "[u]";
       if (b.color) prefix += `[c:${b.color}]`;
+      if (b.size) prefix += `[s:${b.size}]`;
       return prefix + (b.text ?? "");
     })
     .join("\n");
@@ -74,15 +94,21 @@ function textToPage(text: string): ContentBlock[] {
       if (imgM[2]) block.size = imgM[2] as ContentBlock["size"];
       return block;
     }
-    const { style, color, content } = parseBlockPrefixes(line);
+    const { styles: style, color, size, content } = parseBlockPrefixes(line);
     const block: ContentBlock = { type: "text", text: content };
-    if (style === "b") block.style = "bold";
-    else if (style === "i") block.style = "italic";
-    else if (style === "u") block.style = "underline";
+    const styleArr: ("bold" | "italic" | "underline")[] = [];
+    if (style.has("b")) styleArr.push("bold");
+    if (style.has("i")) styleArr.push("italic");
+    if (style.has("u")) styleArr.push("underline");
+    if (styleArr.length === 1) block.style = styleArr[0];
+    else if (styleArr.length > 1) block.style = styleArr;
     if (color) block.color = color;
+    if (size) block.size = size;
     return block;
   });
 }
+
+// ── PagesEditor ──────────────────────────────────────
 
 interface PagesEditorProps {
   paragraphId: string;
@@ -138,12 +164,19 @@ export const PagesEditor: React.FC<PagesEditorProps> = ({
   );
 };
 
+// ── ColorPicker ──────────────────────────────────────
+
 interface ColorPickerProps {
   onSelect: (color: string) => void;
   label?: string;
+  activeColor?: ColorName | null;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, label = "A" }) => {
+const ColorPicker: React.FC<ColorPickerProps> = ({
+  onSelect,
+  label = "A",
+  activeColor,
+}) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -164,21 +197,21 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, label = "A" }) => {
   return (
     <div className="pages-editor__color-picker" ref={containerRef}>
       <button
-        className="pages-editor__toolbar-btn pages-editor__color-picker-toggle"
+        className={`pages-editor__toolbar-btn pages-editor__color-picker-toggle${activeColor ? ` pages-editor__color-btn--${activeColor} pages-editor__toolbar-btn--active` : ""}`}
         onMouseDown={(e) => {
           e.preventDefault();
           setOpen((o) => !o);
         }}
-        title="Kolor tekstu"
+        title="Kolor"
       >
-        {label}&#x25BE;
+        {label}▾
       </button>
       {open && (
         <div className="pages-editor__color-dropdown">
           {COLORS.map((color) => (
             <button
               key={color}
-              className={`pages-editor__toolbar-btn pages-editor__color-btn pages-editor__color-btn--${color}`}
+              className={`pages-editor__toolbar-btn pages-editor__color-btn pages-editor__color-btn--${color}${activeColor === color ? " pages-editor__toolbar-btn--active" : ""}`}
               onMouseDown={(e) => {
                 e.preventDefault();
                 onSelect(color);
@@ -194,6 +227,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, label = "A" }) => {
     </div>
   );
 };
+
+// ── PageEditor ────────────────────────────────────────
 
 interface PageEditorProps {
   text: string;
@@ -211,6 +246,17 @@ const PageEditor: React.FC<PageEditorProps> = ({
   onRemove,
 }) => {
   const ref = useRef<HTMLTextAreaElement>(null);
+  const [activeOpts, setActiveOpts] = useState<BlockOpts>(EMPTY_OPTS);
+
+  const updateActive = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    const { line } = getCurrentLineRange(el.value, el.selectionStart);
+    const { styles, color, size } = parseBlockPrefixes(line);
+    setActiveOpts({ styles, color, size });
+  }, []);
+
+  // ── inline formatting ────────────────────────────────
 
   const wrap = (before: string, after: string) => {
     const el = ref.current;
@@ -226,44 +272,6 @@ const PageEditor: React.FC<PageEditorProps> = ({
     });
   };
 
-  // ── block-level formatting ───────────────────────────────
-
-  const applyToCurrentLine = (
-    modify: (
-      style: "b" | "i" | "u" | null,
-      color: ColorName | null,
-    ) => { style: "b" | "i" | "u" | null; color: ColorName | null },
-  ) => {
-    const el = ref.current;
-    if (!el) return;
-    const pos = el.selectionStart;
-    const { start, end, line } = getCurrentLineRange(text, pos);
-    const { style, color, content } = parseBlockPrefixes(line);
-    const next = modify(style, color);
-    const newLine = buildLine(content, next.style, next.color);
-    const delta = newLine.length - line.length;
-    onChange(text.slice(0, start) + newLine + text.slice(end));
-    requestAnimationFrame(() => {
-      el.focus();
-      el.selectionStart = el.selectionEnd = Math.max(start, pos + delta);
-    });
-  };
-
-  const toggleBlockStyle = (tag: "b" | "i" | "u") =>
-    applyToCurrentLine((style, color) => ({
-      style: style === tag ? null : tag,
-      color,
-    }));
-
-  const setBlockColor = (color: string) =>
-    applyToCurrentLine((style, oldColor) => ({
-      style,
-      color: oldColor === color ? null : (color as ColorName),
-    }));
-
-  const clearBlock = () =>
-    applyToCurrentLine(() => ({ style: null, color: null }));
-
   const insertLine = (snippet: string, cursorOffset: number) => {
     const el = ref.current;
     if (!el) return;
@@ -277,6 +285,50 @@ const PageEditor: React.FC<PageEditorProps> = ({
       el.selectionStart = el.selectionEnd = cur;
     });
   };
+
+  // ── block-level formatting ─────────────────────────────
+
+  const applyToCurrentLine = (modify: (opts: BlockOpts) => BlockOpts) => {
+    const el = ref.current;
+    if (!el) return;
+    const pos = el.selectionStart;
+    const { start, end, line } = getCurrentLineRange(text, pos);
+    const { styles, color, size, content } = parseBlockPrefixes(line);
+    const next = modify({ styles, color, size });
+    const newLine = buildLine(content, next.styles, next.color, next.size);
+    const delta = newLine.length - line.length;
+    onChange(text.slice(0, start) + newLine + text.slice(end));
+    setActiveOpts(next);
+    requestAnimationFrame(() => {
+      el.focus();
+      el.selectionStart = el.selectionEnd = Math.max(start, pos + delta);
+    });
+  };
+
+  const toggleBlockStyle = (tag: "b" | "i" | "u") =>
+    applyToCurrentLine((opts) => {
+      const next = new Set(opts.styles);
+      if (next.has(tag)) next.delete(tag);
+      else next.add(tag);
+      return { ...opts, styles: next };
+    });
+
+  const setBlockColor = (color: string) =>
+    applyToCurrentLine((opts) => ({
+      ...opts,
+      color: opts.color === color ? null : (color as ColorName),
+    }));
+
+  const setBlockSize = (size: string) =>
+    applyToCurrentLine((opts) => ({
+      ...opts,
+      size: opts.size === size ? null : (size as SizeName),
+    }));
+
+  const clearBlock = () => applyToCurrentLine(() => ({ ...EMPTY_OPTS }));
+
+  const btn = (active: boolean) =>
+    `pages-editor__toolbar-btn${active ? " pages-editor__toolbar-btn--active" : ""}`;
 
   return (
     <div className="pages-editor__page">
@@ -298,53 +350,37 @@ const PageEditor: React.FC<PageEditorProps> = ({
           <div className="pages-editor__toolbar-group">
             <button
               className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                wrap("<b>", "</b>");
-              }}
+              onMouseDown={(e) => { e.preventDefault(); wrap("<b>", "</b>"); }}
               title="Pogrubienie (zaznaczenie)"
             >
               <b>B</b>
             </button>
             <button
               className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                wrap("<em>", "</em>");
-              }}
+              onMouseDown={(e) => { e.preventDefault(); wrap("<em>", "</em>"); }}
               title="Kursywa (zaznaczenie)"
             >
               <em>I</em>
             </button>
             <button
               className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                wrap("<u>", "</u>");
-              }}
+              onMouseDown={(e) => { e.preventDefault(); wrap("<u>", "</u>"); }}
               title="Podkreślenie (zaznaczenie)"
             >
               <u>U</u>
             </button>
           </div>
-
           <div className="pages-editor__toolbar-sep" />
-
           <div className="pages-editor__toolbar-group">
             <ColorPicker
               onSelect={(c) => wrap(`<span class='color-${c}'>`, "</span>")}
             />
           </div>
-
           <div className="pages-editor__toolbar-sep" />
-
           <div className="pages-editor__toolbar-group">
             <button
               className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                insertLine("[img: ]", 6);
-              }}
+              onMouseDown={(e) => { e.preventDefault(); insertLine("[img: ]", 6); }}
               title="Wstaw blok obrazu"
             >
               🖼
@@ -357,52 +393,53 @@ const PageEditor: React.FC<PageEditorProps> = ({
           <span className="pages-editor__toolbar-label">Akapit:</span>
           <div className="pages-editor__toolbar-group">
             <button
-              className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleBlockStyle("b");
-              }}
+              className={btn(activeOpts.styles.has("b"))}
+              onMouseDown={(e) => { e.preventDefault(); toggleBlockStyle("b"); }}
               title="Pogrubienie całego akapitu"
             >
               <b>B</b>
             </button>
             <button
-              className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleBlockStyle("i");
-              }}
+              className={btn(activeOpts.styles.has("i"))}
+              onMouseDown={(e) => { e.preventDefault(); toggleBlockStyle("i"); }}
               title="Kursywa całego akapitu"
             >
               <em>I</em>
             </button>
             <button
-              className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                toggleBlockStyle("u");
-              }}
+              className={btn(activeOpts.styles.has("u"))}
+              onMouseDown={(e) => { e.preventDefault(); toggleBlockStyle("u"); }}
               title="Podkreślenie całego akapitu"
             >
               <u>U</u>
             </button>
           </div>
-
           <div className="pages-editor__toolbar-sep" />
-
           <div className="pages-editor__toolbar-group">
-            <ColorPicker onSelect={setBlockColor} label="¶A" />
+            <ColorPicker
+              onSelect={setBlockColor}
+              label="¶A"
+              activeColor={activeOpts.color}
+            />
           </div>
-
           <div className="pages-editor__toolbar-sep" />
-
+          <div className="pages-editor__toolbar-group">
+            {SIZES.map((s) => (
+              <button
+                key={s}
+                className={btn(activeOpts.size === s)}
+                onMouseDown={(e) => { e.preventDefault(); setBlockSize(s); }}
+                title={`Rozmiar akapitu: ${s}`}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+          <div className="pages-editor__toolbar-sep" />
           <div className="pages-editor__toolbar-group">
             <button
               className="pages-editor__toolbar-btn pages-editor__clear-btn"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                clearBlock();
-              }}
+              onMouseDown={(e) => { e.preventDefault(); clearBlock(); }}
               title="Wyczyść styl akapitu"
             >
               ✕
@@ -416,8 +453,11 @@ const PageEditor: React.FC<PageEditorProps> = ({
         className="pages-editor__textarea"
         value={text}
         onChange={(e) => onChange(e.target.value)}
+        onSelect={updateActive}
+        onClick={updateActive}
+        onKeyUp={updateActive}
         placeholder={
-          "Każda linia = osobny akapit\nObraz: [img: ścieżka/do/pliku.jpg lg]\nStyl akapitu: [b], [i], [u], [c:red] na początku linii"
+          "Każda linia = osobny akapit\nObraz: [img: ścieżka/do/pliku.jpg lg]\nStyl akapitu: [b], [i], [u], [c:red], [s:xl] na początku linii"
         }
         rows={12}
         spellCheck={false}

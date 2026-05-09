@@ -133,6 +133,18 @@
   background: #333;
 }
 
+.pages-editor__toolbar-btn--active {
+  background: #2c3a2c;
+  border-color: #4a7a4a;
+  color: #9dcc9d;
+}
+
+.pages-editor__toolbar-btn--active:hover {
+  background: #334433;
+  border-color: #5a8a5a;
+  color: #aaddaa;
+}
+
 /* ── Color picker ────────────────────────────────────────────── */
 
 .pages-editor__color-picker {
