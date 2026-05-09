@@ -68,6 +68,32 @@
   margin: 0 4px;
 }
 
+.pages-editor__toolbar-sep--thick {
+  width: 2px;
+  background: #444;
+  margin: 0 6px;
+}
+
+.pages-editor__toolbar-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 2px;
+  white-space: nowrap;
+}
+
+.pages-editor__clear-btn {
+  color: #884444;
+}
+
+.pages-editor__clear-btn:hover {
+  background: #2a0000;
+  border-color: #884444;
+  color: #cc6666;
+}
+
 .pages-editor__toolbar-btn {
   display: inline-flex;
   align-items: center;

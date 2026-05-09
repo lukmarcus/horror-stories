@@ -3,12 +3,64 @@ import type { ContentBlock } from "../../../types";
 import { useEditor } from "../../context/useEditor";
 import "./PagesEditor.css";
 
+// ── block prefix helpers ────────────────────────────────────
+
+const COLORS = ["yellow", "red", "purple", "green", "blue"] as const;
+type ColorName = (typeof COLORS)[number];
+
+const BLOCK_PREFIX_RE = /^(\[(?:b|i|u|c:[a-z]+)\])*/;
+
+function parseBlockPrefixes(line: string): {
+  style: "b" | "i" | "u" | null;
+  color: ColorName | null;
+  content: string;
+} {
+  const prefixStr = line.match(BLOCK_PREFIX_RE)?.[0] ?? "";
+  const content = line.slice(prefixStr.length);
+  let style: "b" | "i" | "u" | null = null;
+  if (prefixStr.includes("[b]")) style = "b";
+  else if (prefixStr.includes("[i]")) style = "i";
+  else if (prefixStr.includes("[u]")) style = "u";
+  const colorM = prefixStr.match(/\[c:([a-z]+)\]/);
+  const color =
+    colorM && (COLORS as readonly string[]).includes(colorM[1])
+      ? (colorM[1] as ColorName)
+      : null;
+  return { style, color, content };
+}
+
+function buildLine(
+  content: string,
+  style: "b" | "i" | "u" | null,
+  color: ColorName | null,
+): string {
+  let prefix = "";
+  if (style) prefix += `[${style}]`;
+  if (color) prefix += `[c:${color}]`;
+  return prefix + content;
+}
+
+function getCurrentLineRange(
+  text: string,
+  pos: number,
+): { start: number; end: number; line: string } {
+  const start = text.lastIndexOf("\n", pos - 1) + 1;
+  const rawEnd = text.indexOf("\n", pos);
+  const end = rawEnd === -1 ? text.length : rawEnd;
+  return { start, end, line: text.slice(start, end) };
+}
+
 function pageToText(page: ContentBlock[]): string {
   return page
     .map((b) => {
       if (b.type === "image")
         return `[img: ${b.image ?? ""}${b.size ? ` ${b.size}` : ""}]`;
-      return b.text ?? "";
+      let prefix = "";
+      if (b.style === "bold") prefix += "[b]";
+      else if (b.style === "italic") prefix += "[i]";
+      else if (b.style === "underline") prefix += "[u]";
+      if (b.color) prefix += `[c:${b.color}]`;
+      return prefix + (b.text ?? "");
     })
     .join("\n");
 }
@@ -16,13 +68,19 @@ function pageToText(page: ContentBlock[]): string {
 function textToPage(text: string): ContentBlock[] {
   if (!text) return [];
   return text.split("\n").map((line) => {
-    const m = line.match(/^\[img:\s*(.*?)(?:\s+(xs|sm|lg|xl))?\]$/);
-    if (m) {
-      const block: ContentBlock = { type: "image", image: m[1].trim() };
-      if (m[2]) block.size = m[2] as ContentBlock["size"];
+    const imgM = line.match(/^\[img:\s*(.*?)(?:\s+(xs|sm|lg|xl))?\]$/);
+    if (imgM) {
+      const block: ContentBlock = { type: "image", image: imgM[1].trim() };
+      if (imgM[2]) block.size = imgM[2] as ContentBlock["size"];
       return block;
     }
-    return { type: "text" as const, text: line };
+    const { style, color, content } = parseBlockPrefixes(line);
+    const block: ContentBlock = { type: "text", text: content };
+    if (style === "b") block.style = "bold";
+    else if (style === "i") block.style = "italic";
+    else if (style === "u") block.style = "underline";
+    if (color) block.color = color;
+    return block;
   });
 }
 
@@ -80,13 +138,12 @@ export const PagesEditor: React.FC<PagesEditorProps> = ({
   );
 };
 
-const COLORS = ["yellow", "red", "purple", "green", "blue"] as const;
-
 interface ColorPickerProps {
-  wrap: (before: string, after: string) => void;
+  onSelect: (color: string) => void;
+  label?: string;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ wrap }) => {
+const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, label = "A" }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -114,7 +171,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ wrap }) => {
         }}
         title="Kolor tekstu"
       >
-        A&#x25BE;
+        {label}&#x25BE;
       </button>
       {open && (
         <div className="pages-editor__color-dropdown">
@@ -124,7 +181,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ wrap }) => {
               className={`pages-editor__toolbar-btn pages-editor__color-btn pages-editor__color-btn--${color}`}
               onMouseDown={(e) => {
                 e.preventDefault();
-                wrap(`<span class='color-${color}'>`, "</span>");
+                onSelect(color);
                 setOpen(false);
               }}
               title={`Kolor: ${color}`}
@@ -168,6 +225,44 @@ const PageEditor: React.FC<PageEditorProps> = ({
       el.selectionEnd = e + before.length;
     });
   };
+
+  // ── block-level formatting ───────────────────────────────
+
+  const applyToCurrentLine = (
+    modify: (
+      style: "b" | "i" | "u" | null,
+      color: ColorName | null,
+    ) => { style: "b" | "i" | "u" | null; color: ColorName | null },
+  ) => {
+    const el = ref.current;
+    if (!el) return;
+    const pos = el.selectionStart;
+    const { start, end, line } = getCurrentLineRange(text, pos);
+    const { style, color, content } = parseBlockPrefixes(line);
+    const next = modify(style, color);
+    const newLine = buildLine(content, next.style, next.color);
+    const delta = newLine.length - line.length;
+    onChange(text.slice(0, start) + newLine + text.slice(end));
+    requestAnimationFrame(() => {
+      el.focus();
+      el.selectionStart = el.selectionEnd = Math.max(start, pos + delta);
+    });
+  };
+
+  const toggleBlockStyle = (tag: "b" | "i" | "u") =>
+    applyToCurrentLine((style, color) => ({
+      style: style === tag ? null : tag,
+      color,
+    }));
+
+  const setBlockColor = (color: string) =>
+    applyToCurrentLine((style, oldColor) => ({
+      style,
+      color: oldColor === color ? null : (color as ColorName),
+    }));
+
+  const clearBlock = () =>
+    applyToCurrentLine(() => ({ style: null, color: null }));
 
   const insertLine = (snippet: string, cursorOffset: number) => {
     const el = ref.current;
@@ -233,7 +328,9 @@ const PageEditor: React.FC<PageEditorProps> = ({
         <div className="pages-editor__toolbar-sep" />
 
         <div className="pages-editor__toolbar-group">
-          <ColorPicker wrap={wrap} />
+          <ColorPicker
+            onSelect={(c) => wrap(`<span class='color-${c}'>`, "</span>")}
+          />
         </div>
 
         <div className="pages-editor__toolbar-sep" />
@@ -250,6 +347,61 @@ const PageEditor: React.FC<PageEditorProps> = ({
             🖼
           </button>
         </div>
+
+        {/* ── block ── */}
+        <div className="pages-editor__toolbar-sep pages-editor__toolbar-sep--thick" />
+
+        <span className="pages-editor__toolbar-label">Akapit:</span>
+
+        <div className="pages-editor__toolbar-group">
+          <button
+            className="pages-editor__toolbar-btn"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              toggleBlockStyle("b");
+            }}
+            title="Pogrubienie całego akapitu"
+          >
+            <b>B</b>
+          </button>
+          <button
+            className="pages-editor__toolbar-btn"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              toggleBlockStyle("i");
+            }}
+            title="Kursywa całego akapitu"
+          >
+            <em>I</em>
+          </button>
+          <button
+            className="pages-editor__toolbar-btn"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              toggleBlockStyle("u");
+            }}
+            title="Podkreślenie całego akapitu"
+          >
+            <u>U</u>
+          </button>
+        </div>
+
+        <div className="pages-editor__toolbar-group">
+          <ColorPicker onSelect={setBlockColor} label="¶A" />
+        </div>
+
+        <div className="pages-editor__toolbar-group">
+          <button
+            className="pages-editor__toolbar-btn pages-editor__clear-btn"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              clearBlock();
+            }}
+            title="Wyczyść styl akapitu"
+          >
+            ✕
+          </button>
+        </div>
       </div>
 
       <textarea
@@ -258,7 +410,7 @@ const PageEditor: React.FC<PageEditorProps> = ({
         value={text}
         onChange={(e) => onChange(e.target.value)}
         placeholder={
-          "Każda linia = osobny akapit\nObraz: [img: ścieżka/do/pliku.jpg lg]"
+          "Każda linia = osobny akapit\nObraz: [img: ścieżka/do/pliku.jpg lg]\nStyl akapitu: [b], [i], [u], [c:red] na początku linii"
         }
         rows={12}
         spellCheck={false}
