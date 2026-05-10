@@ -24,11 +24,30 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
 
   const paragraphs = scenario.paragraphs ?? [];
   const accessibleFrom = buildAccessibleFrom(paragraphs);
-  const paragraphsWithAccessible = paragraphs.map((p) => {
+
+  const sortedParagraphs = [...paragraphs].sort((a, b) => {
+    const na = parseInt(a.id, 10);
+    const nb = parseInt(b.id, 10);
+    if (!isNaN(na) && !isNaN(nb)) return na - nb;
+    return a.id.localeCompare(b.id);
+  });
+
+  const paragraphsWithAccessible = sortedParagraphs.map((p) => {
     const sources = accessibleFrom[p.id];
-    return sources && sources.length > 0
-      ? { ...p, accessibleFrom: sources }
-      : p;
+    const cleanChoices = (p.choices ?? []).map(({ text, nextParagraphId }) => ({
+      text,
+      nextParagraphId,
+    }));
+    const result = {
+      ...(sources && sources.length > 0
+        ? { ...p, accessibleFrom: sources }
+        : p),
+      ...(cleanChoices.length > 0
+        ? { choices: cleanChoices }
+        : { choices: undefined }),
+    };
+    if (!result.choices?.length) delete result.choices;
+    return result;
   });
 
   zip.file("meta.json", JSON.stringify(scenario.meta, null, 2));
