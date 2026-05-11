@@ -7,6 +7,24 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.4] - 2026-05-11
+
+### Dodano
+
+- Edycja treści paragrafu jako bloki (ContentBlock[]) — każda linia to osobny blok z niezależnym formatowaniem
+- Formatowanie bloku: pogrubienie, kursywa, podkreślenie, kolor (żółty / czerwony / fioletowy / zielony / niebieski) oraz rozmiar (xs / sm / lg / xl)
+- Formatowanie inline wewnątrz bloku — zaznacz fragment tekstu i użyj przycisków w toolbarze
+- Wielostronicowe paragrafy — paragraf może składać się z wielu stron; wybory pojawiają się tylko na ostatniej stronie
+- Toolbar edytora podzielony na dwa rzędy: „Tekst" (formatowanie inline) i „Akapit" (formatowanie bloku) z wizualnym podświetleniem aktywnych opcji
+- Wstawianie grafik ze scenariusza bezpośrednio w treści paragrafu
+
+### Naprawiono
+
+- Eksport `.horrorstory`: paragrafy sortowane numerycznie (§1, §2… zamiast kolejności dodania)
+- Eksport `.horrorstory`: wewnętrzne identyfikatory wyborów nie trafiają do pliku
+
+---
+
 ## [0.2.3] - 2026-05-06
 
 ### Dodano

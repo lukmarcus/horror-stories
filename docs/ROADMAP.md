@@ -6,19 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.4 - Edytor: bloki treści i strony
-
-### Zakres
-
-- Edycja paragrafów opartych na `ContentBlock[]` (tekst, obrazy)
-- Obsługa wielostronicowych paragrafów (`contentPages`)
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
 ## Milestone v0.2.5 - Edytor: picker elementów globalnych
 
 ### Zakres
