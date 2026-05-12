@@ -1,0 +1,258 @@
+﻿.pages-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pages-editor__page {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid #333;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.pages-editor__page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.75rem;
+  background: #1e1e1e;
+  border-bottom: 1px solid #333;
+}
+
+.pages-editor__page-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pages-editor__page-remove {
+  font-size: 0.75rem;
+  background: none;
+  border: 1px solid #553333;
+  color: #aa4444;
+  border-radius: 3px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.pages-editor__page-remove:hover {
+  background: #553333;
+  color: #ffaaaa;
+}
+
+.pages-editor__toolbars {
+  display: flex;
+  flex-direction: column;
+}
+
+.pages-editor__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 6px;
+  background: #1a1a1a;
+  border-bottom: 1px solid #2a2a2a;
+  flex-wrap: wrap;
+}
+
+.pages-editor__toolbar--block {
+  background: #161616;
+}
+
+.pages-editor__toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.pages-editor__toolbar-sep {
+  width: 1px;
+  height: 18px;
+  background: #333;
+  margin: 0 4px;
+}
+
+.pages-editor__toolbar-sep--thick {
+  width: 2px;
+  background: #444;
+  margin: 0 6px;
+}
+
+.pages-editor__toolbar-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 2px;
+  white-space: nowrap;
+}
+
+.pages-editor__clear-btn {
+  color: #884444;
+}
+
+.pages-editor__clear-btn:hover {
+  background: #2a0000;
+  border-color: #884444;
+  color: #cc6666;
+}
+
+.pages-editor__toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 26px;
+  padding: 0 6px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #bbb;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1;
+  transition:
+    background 0.1s,
+    border-color 0.1s;
+}
+
+.pages-editor__toolbar-btn:hover {
+  background: #2a2a2a;
+  border-color: #444;
+  color: #eee;
+}
+
+.pages-editor__toolbar-btn:active {
+  background: #333;
+}
+
+.pages-editor__toolbar-btn--active {
+  background: #2c3a2c;
+  border-color: #4a7a4a;
+  color: #9dcc9d;
+}
+
+.pages-editor__toolbar-btn--active:hover {
+  background: #334433;
+  border-color: #5a8a5a;
+  color: #aaddaa;
+}
+
+/* ── Color picker ────────────────────────────────────────────── */
+
+.pages-editor__color-picker {
+  position: relative;
+}
+
+.pages-editor__color-picker-toggle {
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.pages-editor__color-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  padding: 5px;
+  background: #1e1e1e;
+  border: 1px solid #444;
+  border-radius: 5px;
+  z-index: 200;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.pages-editor__color-btn {
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.pages-editor__color-btn--yellow {
+  color: #d4a017;
+}
+.pages-editor__color-btn--red {
+  color: #cc4444;
+}
+.pages-editor__color-btn--purple {
+  color: #9966cc;
+}
+.pages-editor__color-btn--green {
+  color: #4caf50;
+}
+.pages-editor__color-btn--blue {
+  color: #5599cc;
+}
+
+.pages-editor__color-btn--yellow:hover {
+  background: #2a2200;
+  border-color: #d4a017;
+}
+.pages-editor__color-btn--red:hover {
+  background: #2a0000;
+  border-color: #cc4444;
+}
+.pages-editor__color-btn--purple:hover {
+  background: #1e0033;
+  border-color: #9966cc;
+}
+.pages-editor__color-btn--green:hover {
+  background: #001a00;
+  border-color: #4caf50;
+}
+.pages-editor__color-btn--blue:hover {
+  background: #001a2a;
+  border-color: #5599cc;
+}
+
+.pages-editor__textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #111;
+  border: none;
+  color: #ddd;
+  font-family: "Consolas", "Fira Mono", monospace;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  padding: 0.75rem;
+  resize: vertical;
+  min-height: 160px;
+  outline: none;
+}
+
+.pages-editor__textarea::placeholder {
+  color: #444;
+  font-family: inherit;
+}
+
+.pages-editor__textarea:focus {
+  background: #131313;
+}
+
+.pages-editor__add-page {
+  align-self: flex-start;
+  font-size: 0.82rem;
+  background: none;
+  border: 1px dashed #3a3a3a;
+  color: #666;
+  border-radius: 4px;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.pages-editor__add-page:hover {
+  border-color: #555;
+  color: #aaa;
+}

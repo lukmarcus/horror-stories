@@ -40,8 +40,8 @@ export interface ContentBlock {
   id?: string;
   image?: string; // New format: direct image reference
   size?: "xs" | "sm" | "lg" | "xl";
-  style?: "bold" | "italic" | "underline";
-  color?: "yellow" | "red" | "purple" | "green";
+  style?: "bold" | "italic" | "underline" | ("bold" | "italic" | "underline")[];
+  color?: "yellow" | "red" | "purple" | "green" | "blue";
   spacing?: "none"; // Optional spacing control - omit for default spacing
 }
 

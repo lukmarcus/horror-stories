@@ -332,7 +332,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
         </div>
       )}
 
-      {regularChoices.length > 0 && (
+      {regularChoices.length > 0 && (!hasPages || currentPage === maxPage) && (
         <fieldset
           className="choices choices--vertical"
           aria-label="Dostępne wybory"

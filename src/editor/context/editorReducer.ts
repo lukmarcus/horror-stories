@@ -1,4 +1,5 @@
 import type { EditorState, EditorAction } from "./editorTypes";
+import type { ContentBlock } from "../../types";
 
 export const DEATH_PARAGRAPH = { id: "100" };
 
@@ -58,7 +59,10 @@ export function editorReducer(
       if (!state.scenario) return state;
       const id = action.payload;
       if (state.scenario.paragraphs.some((p) => p.id === id)) return state;
-      const paragraphs = [...state.scenario.paragraphs, { id }];
+      const paragraphs = [
+        ...state.scenario.paragraphs,
+        { id, pages: [[]] as ContentBlock[][] },
+      ];
       return {
         ...state,
         scenario: { ...state.scenario, paragraphs },
@@ -130,6 +134,99 @@ export function editorReducer(
           (c) => c.id !== action.payload.choiceId,
         );
         return { ...p, choices };
+      });
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "SET_PARAGRAPH_PAGES": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) =>
+        p.id === action.payload.id ? { ...p, pages: action.payload.pages } : p,
+      );
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "ADD_PAGE": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) => {
+        if (p.id !== action.payload.paragraphId) return p;
+        const pages = [...(p.pages ?? [[]]), []];
+        return { ...p, pages };
+      });
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "REMOVE_PAGE": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) => {
+        if (p.id !== action.payload.paragraphId) return p;
+        const pages = (p.pages ?? [[]]).filter(
+          (_, i) => i !== action.payload.pageIndex,
+        );
+        return { ...p, pages: pages.length > 0 ? pages : [[]] };
+      });
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "ADD_BLOCK": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) => {
+        if (p.id !== action.payload.paragraphId) return p;
+        const pages = p.pages ?? [[]];
+        const updated = pages.map((page, i) =>
+          i === action.payload.pageIndex
+            ? [...page, action.payload.block]
+            : page,
+        );
+        return { ...p, pages: updated };
+      });
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "UPDATE_BLOCK": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) => {
+        if (p.id !== action.payload.paragraphId) return p;
+        const pages = (p.pages ?? [[]]).map((page, i) =>
+          i === action.payload.pageIndex
+            ? page.map((b, j) =>
+                j === action.payload.blockIndex ? action.payload.block : b,
+              )
+            : page,
+        );
+        return { ...p, pages };
+      });
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "REMOVE_BLOCK": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) => {
+        if (p.id !== action.payload.paragraphId) return p;
+        const pages = (p.pages ?? [[]]).map((page, i) =>
+          i === action.payload.pageIndex
+            ? page.filter((_, j) => j !== action.payload.blockIndex)
+            : page,
+        );
+        return { ...p, pages };
       });
       return {
         ...state,

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useEditor } from "../../context/useEditor";
 import { ParagraphText } from "../../../components/text/ParagraphText/ParagraphText";
+import { RichText } from "../../../components/text/RichText/RichText";
 import type { EditorChoice } from "../../context/editorTypes";
+import { PagesEditor } from "./PagesEditor";
 import "./EditorParagraphView.css";
 
 interface EditorParagraphViewProps {
@@ -27,6 +29,10 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
   const isDeath = paragraphId === "100";
   const text = paragraph.text ?? "";
+
+  // Use pages if available, otherwise fall back to legacy text field
+  const pages = paragraph.pages ?? null;
+  const hasPages = pages !== null;
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch({
@@ -128,20 +134,60 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
       <div className="editor-paragraph-view__columns">
         <div className="editor-paragraph-view__editor">
-          <label
-            className="editor-paragraph-view__label"
-            htmlFor={`paragraph-text-${paragraphId}`}
-          >
-            Treść
-          </label>
-          <textarea
-            id={`paragraph-text-${paragraphId}`}
-            className="editor-paragraph-view__textarea"
-            value={text}
-            onChange={handleTextChange}
-            placeholder="Wpisz treść paragrafu…"
-            rows={12}
-          />
+          {hasPages ? (
+            <>
+              <span className="editor-paragraph-view__label">Treść</span>
+              <PagesEditor paragraphId={paragraphId} pages={pages} />
+            </>
+          ) : (
+            <>
+              <label
+                className="editor-paragraph-view__label"
+                htmlFor={`paragraph-text-${paragraphId}`}
+              >
+                Treść{" "}
+                <span className="editor-paragraph-view__label-hint">
+                  (stary format — tylko tekst)
+                </span>
+              </label>
+              <textarea
+                id={`paragraph-text-${paragraphId}`}
+                className="editor-paragraph-view__textarea"
+                value={text}
+                onChange={handleTextChange}
+                placeholder="Wpisz treść paragrafu…"
+                rows={12}
+              />
+              <button
+                className="editor-paragraph-view__migrate-btn"
+                onClick={() => {
+                  // Convert legacy text to pages format
+                  const lines = text.split("\n").filter((l) => l.trim() !== "");
+                  const page = lines.map((line) => ({
+                    type: "text" as const,
+                    text: line,
+                  }));
+                  dispatch({
+                    type: "LOAD_SCENARIO",
+                    payload: {
+                      ...state.scenario!,
+                      paragraphs: state.scenario!.paragraphs.map((p) =>
+                        p.id === paragraphId
+                          ? {
+                              ...p,
+                              pages: [page.length > 0 ? page : []],
+                              text: undefined,
+                            }
+                          : p,
+                      ),
+                    },
+                  });
+                }}
+              >
+                Przekonwertuj na bloki
+              </button>
+            </>
+          )}
 
           <div className="editor-paragraph-view__choices">
             <span className="editor-paragraph-view__label">Wybory</span>
@@ -224,7 +270,25 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
         <div className="editor-paragraph-view__preview">
           <span className="editor-paragraph-view__label">Podgląd</span>
           <div className="editor-paragraph-view__preview-content">
-            {text ? (
+            {hasPages ? (
+              pages.length === 0 ||
+              (pages.length === 1 && pages[0].length === 0) ? (
+                <p className="editor-paragraph-view__preview-empty">
+                  Brak treści
+                </p>
+              ) : (
+                pages.map((page, i) => (
+                  <div key={i} className="editor-paragraph-view__preview-page">
+                    {pages.length > 1 && (
+                      <span className="editor-paragraph-view__preview-page-label">
+                        Strona {i + 1}
+                      </span>
+                    )}
+                    <RichText content={page} />
+                  </div>
+                ))
+              )
+            ) : text ? (
               text
                 .split("\n")
                 .map((line, i) => (

@@ -494,4 +494,160 @@ describe("editorReducer", () => {
       expect(state).toBe(initialState);
     });
   });
+
+  const withPages: EditorState = {
+    scenario: {
+      meta: EMPTY_META,
+      paragraphs: [
+        {
+          id: "1",
+          pages: [
+            [{ text: "Akapit 1" }, { text: "Akapit 2" }],
+            [{ text: "Strona 2" }],
+          ],
+        },
+        { id: "100" },
+      ],
+    },
+    isDirty: false,
+    activeParagraphId: null,
+  };
+
+  describe("ADD_PAGE", () => {
+    it("dodaje pustą stronę na końcu", () => {
+      const state = dispatch(withPages, {
+        type: "ADD_PAGE",
+        payload: { paragraphId: "1" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.pages).toHaveLength(3);
+      expect(p?.pages?.[2]).toEqual([]);
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("inicjalizuje pages gdy paragraf nie miał pages", () => {
+      const withEmpty: EditorState = {
+        scenario: {
+          meta: EMPTY_META,
+          paragraphs: [{ id: "1" }, { id: "100" }],
+        },
+        isDirty: false,
+        activeParagraphId: null,
+      };
+      const state = dispatch(withEmpty, {
+        type: "ADD_PAGE",
+        payload: { paragraphId: "1" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.pages).toHaveLength(2);
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "ADD_PAGE",
+        payload: { paragraphId: "1" },
+      });
+      expect(state).toBe(initialState);
+    });
+  });
+
+  describe("REMOVE_PAGE", () => {
+    it("usuwa stronę o podanym indeksie", () => {
+      const state = dispatch(withPages, {
+        type: "REMOVE_PAGE",
+        payload: { paragraphId: "1", pageIndex: 0 },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.pages).toHaveLength(1);
+      expect(p?.pages?.[0]).toEqual([{ text: "Strona 2" }]);
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie usuwa ostatniej strony — pozostawia [[]]", () => {
+      const withOne: EditorState = {
+        scenario: {
+          meta: EMPTY_META,
+          paragraphs: [
+            { id: "1", pages: [[{ text: "jedyna" }]] },
+            { id: "100" },
+          ],
+        },
+        isDirty: false,
+        activeParagraphId: null,
+      };
+      const state = dispatch(withOne, {
+        type: "REMOVE_PAGE",
+        payload: { paragraphId: "1", pageIndex: 0 },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.pages).toEqual([[]]);
+    });
+  });
+
+  describe("ADD_BLOCK", () => {
+    it("dodaje blok na koniec wskazanej strony", () => {
+      const state = dispatch(withPages, {
+        type: "ADD_BLOCK",
+        payload: { paragraphId: "1", pageIndex: 0, block: { text: "Nowy" } },
+      });
+      const page = state.scenario!.paragraphs.find((p) => p.id === "1")
+        ?.pages?.[0];
+      expect(page).toHaveLength(3);
+      expect(page?.[2]).toEqual({ text: "Nowy" });
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych stron", () => {
+      const state = dispatch(withPages, {
+        type: "ADD_BLOCK",
+        payload: { paragraphId: "1", pageIndex: 0, block: { text: "X" } },
+      });
+      const page1 = state.scenario!.paragraphs.find((p) => p.id === "1")
+        ?.pages?.[1];
+      expect(page1).toHaveLength(1);
+    });
+  });
+
+  describe("UPDATE_BLOCK", () => {
+    it("aktualizuje blok o podanym indeksie", () => {
+      const state = dispatch(withPages, {
+        type: "UPDATE_BLOCK",
+        payload: {
+          paragraphId: "1",
+          pageIndex: 0,
+          blockIndex: 1,
+          block: { text: "Zmieniony" },
+        },
+      });
+      const page = state.scenario!.paragraphs.find((p) => p.id === "1")
+        ?.pages?.[0];
+      expect(page?.[1]).toEqual({ text: "Zmieniony" });
+      expect(page?.[0]).toEqual({ text: "Akapit 1" });
+      expect(state.isDirty).toBe(true);
+    });
+  });
+
+  describe("REMOVE_BLOCK", () => {
+    it("usuwa blok o podanym indeksie", () => {
+      const state = dispatch(withPages, {
+        type: "REMOVE_BLOCK",
+        payload: { paragraphId: "1", pageIndex: 0, blockIndex: 0 },
+      });
+      const page = state.scenario!.paragraphs.find((p) => p.id === "1")
+        ?.pages?.[0];
+      expect(page).toHaveLength(1);
+      expect(page?.[0]).toEqual({ text: "Akapit 2" });
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych stron", () => {
+      const state = dispatch(withPages, {
+        type: "REMOVE_BLOCK",
+        payload: { paragraphId: "1", pageIndex: 0, blockIndex: 0 },
+      });
+      const page1 = state.scenario!.paragraphs.find((p) => p.id === "1")
+        ?.pages?.[1];
+      expect(page1).toHaveLength(1);
+    });
+  });
 });
