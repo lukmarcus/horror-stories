@@ -214,6 +214,64 @@
   border-color: #5599cc;
 }
 
+/* ── Image picker ────────────────────────────────────────────── */
+
+.pages-editor__image-picker {
+  position: relative;
+}
+
+.pages-editor__image-picker-toggle {
+  padding: 0 4px;
+}
+
+.pages-editor__picker-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: block;
+}
+
+.pages-editor__image-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  padding: 5px;
+  background: #1e1e1e;
+  border: 1px solid #444;
+  border-radius: 5px;
+  z-index: 200;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  min-width: 190px;
+}
+
+.pages-editor__image-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 3px;
+  transition:
+    background 0.1s,
+    border-color 0.1s;
+}
+
+.pages-editor__image-btn:hover {
+  background: #3a3a3a;
+  border-color: #5a8a5a;
+}
+
+.pages-editor__image-btn img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
 .pages-editor__textarea {
   width: 100%;
   box-sizing: border-box;
