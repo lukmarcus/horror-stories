@@ -4,13 +4,14 @@ import {
   getLetter,
   getRoomItem,
   getPerson,
+  getEnemy,
   getStoryItem,
   getStatus,
 } from "../../../data/items";
 
 // Regex as used in RichText.tsx
 const CUSTOM_TAG_REGEX =
-  /<(symbol|letter|item|image|person|story|room|status)\s+id=["']([^"']+)["']\s*\/>/g;
+  /<(symbol|letter|item|image|person|enemy|story|room|status)\s+id=["']([^"']+)["']\s*\/>/g;
 
 describe("RichText data helpers", () => {
   describe("getSymbol", () => {
@@ -93,6 +94,18 @@ describe("RichText data helpers", () => {
     });
   });
 
+  describe("getEnemy", () => {
+    it("returns enemy data for known id", () => {
+      const result = getEnemy("klaun");
+      expect(result).toBeDefined();
+      expect(result?.imagePath).toContain("klaun");
+    });
+
+    it("returns undefined for unknown enemy", () => {
+      expect(getEnemy("nieznany-przeciwnik")).toBeUndefined();
+    });
+  });
+
   describe("getStoryItem", () => {
     it("returns story item for known id", () => {
       const result = getStoryItem("xiii");
@@ -133,6 +146,7 @@ describe("RichText custom tag regex", () => {
       ["item", "klucz"],
       ["image", "scenariusz"],
       ["person", "jessica"],
+      ["enemy", "klaun"],
       ["story", "xiii"],
       ["room", "110"],
       ["status", "zielony"],
@@ -164,4 +178,3 @@ describe("RichText custom tag regex", () => {
     expect(match).toBeNull();
   });
 });
-

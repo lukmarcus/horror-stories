@@ -5,12 +5,14 @@ import {
   symbols,
   roomItems,
   persons,
+  enemies,
   storyItems,
   statuses,
   letters,
   getSymbol,
   getRoomItem,
   getPerson,
+  getEnemy,
   getStoryItem,
   getStatus,
   getLetter,
@@ -141,6 +143,12 @@ const PERSON_PICKER_ITEMS = persons.map((p) => ({
   id: p.id,
   imagePath: getPerson(p.id)!.imagePath,
   label: p.id.charAt(0).toUpperCase() + p.id.slice(1),
+}));
+
+const ENEMY_PICKER_ITEMS = enemies.map((e) => ({
+  id: e.id,
+  imagePath: getEnemy(e.id)!.imagePath,
+  label: e.id.charAt(0).toUpperCase() + e.id.slice(1),
 }));
 
 const STORY_PICKER_ITEMS = storyItems.map((s) => ({
@@ -577,6 +585,18 @@ const PageEditor: React.FC<PageEditorProps> = ({
                 />
               }
               title="Wstaw postać"
+            />
+            <ImagePicker
+              items={ENEMY_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<enemy id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={ENEMY_PICKER_ITEMS[0].imagePath}
+                  alt="przeciwnik"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw przeciwnika"
             />
             <ImagePicker
               items={STORY_PICKER_ITEMS}

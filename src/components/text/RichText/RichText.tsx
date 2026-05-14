@@ -2,6 +2,7 @@ import React from "react";
 import type { ContentBlock } from "../../../types";
 import {
   getPerson,
+  getEnemy,
   getLetter,
   getSymbol,
   getStoryItem,
@@ -26,7 +27,7 @@ export const RichText: React.FC<RichTextProps> = ({
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode => {
     const customTagRegex =
-      /<(symbol|letter|item|image|person|story|room|status)\s+id=["']([^"']+)["']\s*\/>/g;
+      /<(symbol|letter|item|image|person|enemy|story|room|status)\s+id=["']([^"']+)["']\s*\/>/g;
 
     // Check if there are any custom tags at all
     if (!customTagRegex.test(html)) {
@@ -143,6 +144,19 @@ export const RichText: React.FC<RichTextProps> = ({
               src={personData.imagePath}
               alt={id}
               className="person-image"
+              title={id}
+            />,
+          );
+        }
+      } else if (tag === "enemy") {
+        const enemyData = getEnemy(id);
+        if (enemyData) {
+          segments.push(
+            <img
+              key={key}
+              src={enemyData.imagePath}
+              alt={id}
+              className="enemy-image"
               title={id}
             />,
           );
