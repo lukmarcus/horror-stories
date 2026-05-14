@@ -52,12 +52,12 @@ describe("RichText Component", () => {
     it("should match symbol tags", () => {
       const customTagRegex =
         /<(symbol|token|image)\s+id=["']([^"']+)["']\s*\/>/g;
-      const html = "Check <symbol id='rewers'/> for details";
+      const html = "Check <symbol id='karta-akcji'/> for details";
       const match = customTagRegex.exec(html);
 
       expect(match).not.toBeNull();
       expect(match?.[1]).toBe("symbol");
-      expect(match?.[2]).toBe("rewers");
+      expect(match?.[2]).toBe("karta-akcji");
     });
 
     it("should match token tags", () => {
@@ -86,7 +86,7 @@ describe("RichText Component", () => {
       const customTagRegex =
         /<(symbol|token|image)\s+id=["']([^"']+)["']\s*\/>/g;
       const html =
-        "<symbol id='rewers'/> and <token id='A'/> and <image id='pic'/>";
+        "<symbol id='karta-akcji'/> and <token id='A'/> and <image id='pic'/>";
       const matches: RegExpExecArray[] = [];
       let match;
 
@@ -95,7 +95,7 @@ describe("RichText Component", () => {
       }
 
       expect(matches).toHaveLength(3);
-      expect(matches[0][2]).toBe("rewers");
+      expect(matches[0][2]).toBe("karta-akcji");
       expect(matches[1][2]).toBe("A");
       expect(matches[2][2]).toBe("pic");
     });
@@ -104,8 +104,8 @@ describe("RichText Component", () => {
       const customTagRegex =
         /<(symbol|token|image)\s+id=["']([^"']+)["']\s*\/>/g;
 
-      const htmlSingle = "Text <symbol id='rewers'/> here";
-      const htmlDouble = 'Text <symbol id="rewers"/> here';
+      const htmlSingle = "Text <symbol id='karta-akcji'/> here";
+      const htmlDouble = 'Text <symbol id="karta-akcji"/> here';
 
       expect(customTagRegex.exec(htmlSingle)).not.toBeNull();
       customTagRegex.lastIndex = 0;
@@ -300,7 +300,7 @@ describe("RichText Component", () => {
 
     it("should handle mixed content", () => {
       const html =
-        "Text with <strong>bold</strong>, <em>italic</em>, <span class='color-red'>red</span> and <symbol id='rewers'/>";
+        "Text with <strong>bold</strong>, <em>italic</em>, <span class='color-red'>red</span> and <symbol id='karta-akcji'/>";
       expect(html).toContain("bold");
       expect(html).toContain("italic");
       expect(html).toContain("color-red");
