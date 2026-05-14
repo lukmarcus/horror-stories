@@ -4,8 +4,16 @@ import { useEditor } from "../../context/useEditor";
 import {
   symbols,
   roomItems,
+  persons,
+  storyItems,
+  statuses,
+  letters,
   getSymbol,
   getRoomItem,
+  getPerson,
+  getStoryItem,
+  getStatus,
+  getLetter,
 } from "../../../data/items";
 import "./PagesEditor.css";
 
@@ -127,6 +135,33 @@ const ROOM_PICKER_ITEMS = roomItems.map((r) => ({
   imagePath: getRoomItem(r.id)!.imagePath,
   label: `Żeton planszy §${r.id}`,
   sublabel: r.name || undefined,
+}));
+
+const PERSON_PICKER_ITEMS = persons.map((p) => ({
+  id: p.id,
+  imagePath: getPerson(p.id)!.imagePath,
+  label: p.id.charAt(0).toUpperCase() + p.id.slice(1),
+}));
+
+const STORY_PICKER_ITEMS = storyItems.map((s) => ({
+  id: s.id,
+  imagePath: getStoryItem(s.id)!.imagePath,
+  label: s.description
+    ? `${s.id.toUpperCase()} — ${s.description}`
+    : s.id.toUpperCase(),
+  sublabel: s.description || undefined,
+}));
+
+const STATUS_PICKER_ITEMS = statuses.map((s) => ({
+  id: s.id,
+  imagePath: getStatus(s.id)!.imagePath,
+  label: s.description ? `Status: ${s.description}` : s.id,
+}));
+
+const LETTER_PICKER_ITEMS = letters.map((l) => ({
+  id: l.id,
+  imagePath: getLetter(l.id)!.imagePath,
+  label: `Litera ${l.id.toUpperCase()}`,
 }));
 
 // ── PagesEditor ──────────────────────────────────────
@@ -530,6 +565,54 @@ const PageEditor: React.FC<PageEditorProps> = ({
                 />
               }
               title="Wstaw żeton planszy"
+            />
+            <ImagePicker
+              items={PERSON_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<person id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={PERSON_PICKER_ITEMS[0].imagePath}
+                  alt="postać"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw postać"
+            />
+            <ImagePicker
+              items={STORY_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<story id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={STORY_PICKER_ITEMS[0].imagePath}
+                  alt="przedmiot fabularny"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw przedmiot fabularny"
+            />
+            <ImagePicker
+              items={STATUS_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<status id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={STATUS_PICKER_ITEMS[0].imagePath}
+                  alt="status"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw status"
+            />
+            <ImagePicker
+              items={LETTER_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<letter id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={LETTER_PICKER_ITEMS[0].imagePath}
+                  alt="litera"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw żeton litery"
             />
           </div>
         </div>
