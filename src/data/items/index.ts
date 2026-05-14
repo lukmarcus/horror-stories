@@ -15,6 +15,7 @@ export interface StoryItem {
 
 export interface RoomItem {
   id: number; // Paragraph number
+  name?: string;
 }
 
 export interface RandomItem {

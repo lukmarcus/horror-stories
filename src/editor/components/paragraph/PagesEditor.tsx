@@ -125,7 +125,8 @@ const SYMBOL_PICKER_ITEMS = symbols.map((s) => ({
 const ROOM_PICKER_ITEMS = roomItems.map((r) => ({
   id: String(r.id),
   imagePath: getRoomItem(r.id)!.imagePath,
-  label: `Pomieszczenie §${r.id}`,
+  label: `Żeton planszy §${r.id}`,
+  sublabel: r.name || undefined,
 }));
 
 // ── PagesEditor ──────────────────────────────────────
@@ -254,6 +255,7 @@ interface ImagePickerItem {
   id: string;
   imagePath: string;
   label: string;
+  sublabel?: string;
 }
 
 interface ImagePickerProps {
@@ -309,7 +311,9 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
                 onSelect(item.id);
                 setOpen(false);
               }}
-              title={item.label}
+              title={
+                item.sublabel ? `${item.label}\n${item.sublabel}` : item.label
+              }
             >
               <img src={item.imagePath} alt={item.label} />
             </button>
@@ -525,7 +529,7 @@ const PageEditor: React.FC<PageEditorProps> = ({
                   className="pages-editor__picker-icon"
                 />
               }
-              title="Wstaw kartę pomieszczenia"
+              title="Wstaw żeton planszy"
             />
           </div>
         </div>
