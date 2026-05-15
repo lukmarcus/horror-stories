@@ -2,6 +2,7 @@
   "items": [
     {
       "id": "zielony",
+      "name": "Zielony",
       "description": "Stałe +1 kość (max 1 na figurkę)"
     }
   ]

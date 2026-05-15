@@ -9,6 +9,7 @@ import {
   storyItems,
   statuses,
   letters,
+  randomItems,
   getSymbol,
   getRoomItem,
   getPerson,
@@ -16,6 +17,7 @@ import {
   getStoryItem,
   getStatus,
   getLetter,
+  getRandomItem,
 } from "../../../data/items";
 import "./PagesEditor.css";
 
@@ -154,22 +156,28 @@ const ENEMY_PICKER_ITEMS = enemies.map((e) => ({
 const STORY_PICKER_ITEMS = storyItems.map((s) => ({
   id: s.id,
   imagePath: getStoryItem(s.id)!.imagePath,
-  label: s.description
-    ? `${s.id.toUpperCase()} — ${s.description}`
-    : s.id.toUpperCase(),
+  label: `Przedmiot fabularny ${s.id.toUpperCase()}${s.paragraphId != null ? ` (\u00a7${s.paragraphId})` : ""}`,
   sublabel: s.description || undefined,
 }));
 
 const STATUS_PICKER_ITEMS = statuses.map((s) => ({
   id: s.id,
   imagePath: getStatus(s.id)!.imagePath,
-  label: s.description ? `Status: ${s.description}` : s.id,
+  label: s.name ? `Żeton statusu: ${s.name}` : s.id,
+  sublabel: s.description || undefined,
 }));
 
 const LETTER_PICKER_ITEMS = letters.map((l) => ({
   id: l.id,
   imagePath: getLetter(l.id)!.imagePath,
   label: `Litera ${l.id.toUpperCase()}`,
+}));
+
+const RANDOM_PICKER_ITEMS = randomItems.map((r) => ({
+  id: r.id,
+  imagePath: getRandomItem(r.id)!.imagePath,
+  label: `Przedmiot losowy ${r.id.toUpperCase()}`,
+  sublabel: r.description || undefined,
 }));
 
 // ── PagesEditor ──────────────────────────────────────
@@ -620,7 +628,7 @@ const PageEditor: React.FC<PageEditorProps> = ({
                   className="pages-editor__picker-icon"
                 />
               }
-              title="Wstaw status"
+              title="Wstaw żeton statusu"
             />
             <ImagePicker
               items={LETTER_PICKER_ITEMS}
@@ -633,6 +641,18 @@ const PageEditor: React.FC<PageEditorProps> = ({
                 />
               }
               title="Wstaw żeton litery"
+            />
+            <ImagePicker
+              items={RANDOM_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<item id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={`${import.meta.env.BASE_URL}assets/images/symbols/przedmiot-losowy.png`}
+                  alt="przedmiot losowy"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw przedmiot losowy"
             />
           </div>
         </div>

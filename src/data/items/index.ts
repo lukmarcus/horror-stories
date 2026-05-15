@@ -20,8 +20,7 @@ export interface RoomItem {
 }
 
 export interface RandomItem {
-  id: string; // Item name
-  romanNumeral?: string;
+  id: string; // Roman numeral (i, ii, iii...)
   description?: string | null;
 }
 
@@ -32,6 +31,7 @@ export interface Symbol {
 
 export interface Status {
   id: string;
+  name?: string | null;
   description?: string | null;
 }
 
@@ -75,6 +75,15 @@ const getImagePath = (
   // Determine extension based on type
   const extension = type === "symbols" || type === "letters" ? "png" : "jpg";
   return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
+};
+
+export const getRandomItem = (
+  id: string,
+): (RandomItem & { imagePath: string }) | undefined => {
+  const item = randomItems.find((r) => r.id === id);
+  return item
+    ? { ...item, imagePath: getImagePath(id, "randomItems") }
+    : undefined;
 };
 
 export const getStoryItem = (
