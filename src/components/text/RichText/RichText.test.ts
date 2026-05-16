@@ -7,11 +7,12 @@ import {
   getEnemy,
   getStoryItem,
   getStatus,
+  getRandomItem,
 } from "../../../data/items";
 
 // Regex as used in RichText.tsx
 const CUSTOM_TAG_REGEX =
-  /<(symbol|letter|item|image|person|enemy|story|room|status)\s+id=["']([^"']+)["']\s*\/>/g;
+  /<(symbol|letter|item|image|person|enemy|story|room|status|random)\s+id=["']([^"']+)["']\s*\/>/g;
 
 describe("RichText data helpers", () => {
   describe("getSymbol", () => {
@@ -106,6 +107,18 @@ describe("RichText data helpers", () => {
     });
   });
 
+  describe("getRandomItem", () => {
+    it("returns random item for known id", () => {
+      const result = getRandomItem("i");
+      expect(result).toBeDefined();
+      expect(result?.imagePath).toContain("/i.");
+    });
+
+    it("returns undefined for unknown id", () => {
+      expect(getRandomItem("nieznany")).toBeUndefined();
+    });
+  });
+
   describe("getStoryItem", () => {
     it("returns story item for known id", () => {
       const result = getStoryItem("xiii");
@@ -150,6 +163,7 @@ describe("RichText custom tag regex", () => {
       ["story", "xiii"],
       ["room", "110"],
       ["status", "zielony"],
+      ["random", "i"],
     ];
     tags.forEach(([tag, id]) => {
       const re = new RegExp(CUSTOM_TAG_REGEX.source, "g");

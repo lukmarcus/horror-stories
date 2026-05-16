@@ -644,7 +644,7 @@ const PageEditor: React.FC<PageEditorProps> = ({
             />
             <ImagePicker
               items={RANDOM_PICKER_ITEMS}
-              onSelect={(id) => insertAtCursor(`<item id="${id}"/>`)}
+              onSelect={(id) => insertAtCursor(`<random id="${id}"/>`)}
               toggleContent={
                 <img
                   src={`${import.meta.env.BASE_URL}assets/images/symbols/przedmiot-losowy.png`}

@@ -8,6 +8,7 @@ import {
   getStoryItem,
   getRoomItem,
   getStatus,
+  getRandomItem,
 } from "../../../data/items";
 import "./rich-text.css";
 
@@ -27,7 +28,7 @@ export const RichText: React.FC<RichTextProps> = ({
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode => {
     const customTagRegex =
-      /<(symbol|letter|item|image|person|enemy|story|room|status)\s+id=["']([^"']+)["']\s*\/>/g;
+      /<(symbol|letter|item|image|person|enemy|story|room|status|random)\s+id=["']([^"']+)["']\s*\/>/g;
 
     // Check if there are any custom tags at all
     if (!customTagRegex.test(html)) {
@@ -110,6 +111,19 @@ export const RichText: React.FC<RichTextProps> = ({
             [{id}]
           </span>,
         );
+      } else if (tag === "random") {
+        const randomItem = getRandomItem(id);
+        if (randomItem) {
+          segments.push(
+            <img
+              key={key}
+              src={randomItem.imagePath}
+              alt={id}
+              className="random-item-image"
+              title={randomItem.description || id}
+            />,
+          );
+        }
       } else if (tag === "story") {
         const storyItem = getStoryItem(id);
         if (storyItem) {
@@ -270,7 +284,8 @@ export const RichText: React.FC<RichTextProps> = ({
                 : [];
             if (styles.includes("underline")) content = <u>{content}</u>;
             if (styles.includes("italic")) content = <em>{content}</em>;
-            if (styles.includes("bold") && !block.color) content = <strong>{content}</strong>;
+            if (styles.includes("bold") && !block.color)
+              content = <strong>{content}</strong>;
 
             return (
               <div key={blockKey} className={classes}>
