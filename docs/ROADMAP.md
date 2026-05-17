@@ -6,12 +6,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.5 - Edytor: picker elementów globalnych
+## Milestone v0.2.6 - Edytor: warianty paragrafu
 
 ### Zakres
 
-- Wstawianie elementów inline: symbole, litery, przedmioty fabularne, osoby, statusy
-- Picker z miniaturkami grafik z `public/assets/images/`
+- Edycja `variants` — zagnieżdżone pod-paragrafy z własnymi stronami i wyborami
+- Obsługa `nextVariantId` w wyborach (np. wybór postaci prowadzi do wariantu treści)
+- Obsługa `areChoicesHorizontal` (poziomy układ przycisków wyborów)
 
 ### Status
 
@@ -19,12 +20,39 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.6 - Edytor: import wbudowanych scenariuszy
+## Milestone v0.2.7 - Edytor: zaawansowane paragrafy
+
+### Zakres
+
+- Paragrafy z wieloma ID (jeden paragraf dostępny pod kilkoma numerami)
+- Upload własnych grafik scenariuszowych (pakowane do ZIP w `images/`)
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.2.8 - Edytor: setup i tokeny alfabetu
+
+### Zakres
+
+- Edycja kroków setupu (`setup.json`)
+- Edycja tokenów alfabetu (`letters.json`)
+
+### Status
+
+- ⏳ Nie rozpoczęte
+
+---
+
+## Milestone v0.2.9 - Edytor: import wbudowanych scenariuszy
 
 ### Zakres
 
 - Możliwość skopiowania wbudowanego scenariusza do edytora jako baza do edycji
 - Wbudowane scenariusze są read-only — edytuje się kopię
+- Po v0.2.8 wszystkie elementy droga-donikad są edytowalne
 
 ### Status
 
@@ -32,26 +60,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.7 - Edytor: rzut kostką i warianty postaci
+## Milestone v0.2.10 - Edytor: rzut kostką
 
 ### Zakres
 
 - Edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy)
-- Edycja `variants` (wybór postaci, rozbieżna treść)
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
-## Milestone v0.2.8 - Edytor: grafiki, tokeny alfabetu, setup
-
-### Zakres
-
-- Upload własnych grafik scenariuszowych (pakowane do ZIP w `images/`)
-- Edycja tokenów alfabetu (`letters.json`)
-- Edycja kroków setupu (`setup.json`)
+- Implementowana gdy pojawi się pierwszy scenariusz korzystający z tej funkcji
 
 ### Status
 
@@ -62,7 +76,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 ## Notatki na przyszłość
 
 - Paragrafy podpięte pod żetony alfabetu powinny mieć etykietę `(litera A)` itp. — do v0.2.8
-- Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.7
+- Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.9
 
 ---
 

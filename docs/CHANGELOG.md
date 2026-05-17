@@ -7,6 +7,28 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.5] - 2026-05-16
+
+### Dodano
+
+- Toolbar edytora: przyciski-picki grafik dla wszystkich globalnych elementów inline — symboli akcji, żetonów planszy, postaci, przeciwników, przedmiotów fabularnych, żetonów statusu, żetonów liter i przedmiotów losowych
+- Najechanie na miniaturkę w pickerze pokazuje tooltip z nazwą i opisem elementu
+- Nowy tag `<enemy id="..."/>` dla figurek przeciwników (do tej pory używany był `<person>`)
+- Nowy tag `<random id="..."/>` dla przedmiotów losowych
+- Postacie podzielone na dwie kategorie: postacie graczy (`<person>`) i przeciwnicy (`<enemy>`)
+
+### Zmieniono
+
+- Symbol `rewers` przemianowany na `karta-akcji`; symbol `losowe` przemianowany na `przedmiot-losowy`
+- Symbole posortowane alfabetycznie
+- Przedmioty losowe mają teraz uproszczone identyfikatory (i, ii, iii…) zamiast opisowych nazw
+- Statusy wzbogacone o pole `name` wyświetlane w toolbarze jako „Żeton statusu: {name}"
+- Etykiety pickerów: „Żeton statusu:", „Wstaw żeton statusu", „Wstaw przedmiot losowy" — spójne nazewnictwo
+- Przedmioty fabularne posortowane według wartości liczby rzymskiej (XIII → XIV → XVII → LIII)
+- Wszystkie grafiki inline ujednolicone do tej samej wysokości (1.4em)
+
+---
+
 ## [0.2.4] - 2026-05-11
 
 ### Dodano
