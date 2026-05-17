@@ -1,19 +1,19 @@
 {
   "items": [
-    { "id": 12 },
-    { "id": 14 },
-    { "id": 37 },
-    { "id": 38 },
-    { "id": 50 },
-    { "id": 53 },
-    { "id": 69 },
-    { "id": 110 },
-    { "id": 111 },
-    { "id": 121 },
-    { "id": 123 },
-    { "id": 137 },
-    { "id": 147 },
-    { "id": 151 },
-    { "id": 173 }
+    { "id": 12, "name": "Drzwi zielone" },
+    { "id": 14, "name": "Obraz" },
+    { "id": 37, "name": "Drzwi czerwone" },
+    { "id": 38, "name": "Obraz" },
+    { "id": 50, "name": "Drzwi żółte" },
+    { "id": 53, "name": "Biurko" },
+    { "id": 69, "name": "Dziura" },
+    { "id": 110, "name": "Priorytet" },
+    { "id": 111, "name": "Rzeźba" },
+    { "id": 121, "name": "Ciało" },
+    { "id": 123, "name": "Dłonie" },
+    { "id": 137, "name": "Regał" },
+    { "id": 147, "name": "Ciało" },
+    { "id": 151, "name": "Priorytet" },
+    { "id": 173, "name": "Książki" }
   ]
 }

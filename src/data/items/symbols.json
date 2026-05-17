@@ -1,60 +1,60 @@
 {
   "symbols": [
     {
-      "id": "drzwi-otwarte",
-      "name": "Żeton otwartych drzwi"
-    },
-    {
-      "id": "drzwi-zamkniete",
-      "name": "Żeton zamkniętych drzwi"
-    },
-    {
-      "id": "drzwi-wywazone",
-      "name": "Żeton wyważonych drzwi"
-    },
-    {
-      "id": "zycie",
-      "name": "Żeton życia"
-    },
-    {
-      "id": "rewers",
-      "name": "Rewers karty akcji"
-    },
-    {
       "id": "amunicja-pistolet",
-      "name": "Żeton amunicji do pistoletu"
+      "name": "Amunicja do pistoletu"
     },
     {
       "id": "amunicja-strzelba",
-      "name": "Żeton amunicji do strzelby"
+      "name": "Amunicja do strzelby"
     },
     {
-      "id": "losowe",
-      "name": "Żeton losowego przedmiotu"
+      "id": "czas",
+      "name": "Czas"
     },
     {
-      "id": "pd",
-      "name": "Żeton punktu doświadczenia"
+      "id": "drzwi-otwarte",
+      "name": "Drzwi otwarte"
+    },
+    {
+      "id": "drzwi-wywazone",
+      "name": "Drzwi wyważone"
+    },
+    {
+      "id": "drzwi-zamkniete",
+      "name": "Drzwi zamknięte"
+    },
+    {
+      "id": "gwiazda",
+      "name": "Gwiazda"
+    },
+    {
+      "id": "karta-akcji",
+      "name": "Karta akcji"
     },
     {
       "id": "paragraf",
       "name": "Paragraf scenariusza"
     },
     {
-      "id": "gwiazda",
-      "name": "Symbol gwiazdy"
-    },
-    {
-      "id": "czas",
-      "name": "Żeton czasu"
+      "id": "pd",
+      "name": "Punkt doświadczenia"
     },
     {
       "id": "przeciwnik",
       "name": "Przeciwnik"
     },
     {
+      "id": "przedmiot-losowy",
+      "name": "Przedmiot losowy"
+    },
+    {
       "id": "rana-ciezka",
-      "name": "Żeton ciężkiej rany"
+      "name": "Rana ciężka"
+    },
+    {
+      "id": "zycie",
+      "name": "Życie"
     }
   ]
 }

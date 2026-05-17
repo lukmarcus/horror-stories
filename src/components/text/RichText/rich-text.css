@@ -97,18 +97,13 @@
 .symbol-image,
 .letter-image,
 .person-image,
+.enemy-image,
 .status-image,
+.random-item-image,
+.story-item-image,
+.room-item-image,
 .inline-image {
   height: 1.4em;
-  width: auto;
-  display: inline;
-  vertical-align: -0.3em;
-  margin: 0 0.1em;
-}
-
-.story-item-image,
-.room-item-image {
-  height: 2em;
   width: auto;
   display: inline;
   vertical-align: -0.3em;

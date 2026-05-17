@@ -4,6 +4,7 @@ import randomItemsData from "./randomItems.json";
 import symbolsData from "./symbols.json";
 import statusesData from "./statuses.json";
 import personsData from "./persons.json";
+import enemiesData from "./enemies.json";
 import lettersData from "./letters.json";
 
 // Types
@@ -15,11 +16,11 @@ export interface StoryItem {
 
 export interface RoomItem {
   id: number; // Paragraph number
+  name?: string;
 }
 
 export interface RandomItem {
-  id: string; // Item name
-  romanNumeral?: string;
+  id: string; // Roman numeral (i, ii, iii...)
   description?: string | null;
 }
 
@@ -30,10 +31,16 @@ export interface Symbol {
 
 export interface Status {
   id: string;
+  name?: string | null;
   description?: string | null;
 }
 
 export interface Person {
+  id: string;
+  paragraphId?: number | null;
+}
+
+export interface Enemy {
   id: string;
   paragraphId?: number | null;
 }
@@ -49,6 +56,7 @@ export const randomItems: RandomItem[] = randomItemsData.items;
 export const symbols: Symbol[] = symbolsData.symbols;
 export const statuses: Status[] = statusesData.items;
 export const persons: Person[] = personsData.items;
+export const enemies: Enemy[] = enemiesData.items;
 export const letters: Letter[] = lettersData.items;
 
 // Helpers
@@ -61,11 +69,21 @@ const getImagePath = (
     | "symbols"
     | "statuses"
     | "persons"
+    | "enemies"
     | "letters",
 ): string => {
   // Determine extension based on type
   const extension = type === "symbols" || type === "letters" ? "png" : "jpg";
   return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
+};
+
+export const getRandomItem = (
+  id: string,
+): (RandomItem & { imagePath: string }) | undefined => {
+  const item = randomItems.find((r) => r.id === id);
+  return item
+    ? { ...item, imagePath: getImagePath(id, "randomItems") }
+    : undefined;
 };
 
 export const getStoryItem = (
@@ -102,6 +120,15 @@ export const getPerson = (
   const person = persons.find((p) => p.id === id);
   return person
     ? { ...person, imagePath: getImagePath(id, "persons") }
+    : undefined;
+};
+
+export const getEnemy = (
+  id: string,
+): (Enemy & { imagePath: string }) | undefined => {
+  const enemy = enemies.find((e) => e.id === id);
+  return enemy
+    ? { ...enemy, imagePath: getImagePath(id, "enemies") }
     : undefined;
 };
 

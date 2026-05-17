@@ -1,6 +1,24 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import type { ContentBlock } from "../../../types";
 import { useEditor } from "../../context/useEditor";
+import {
+  symbols,
+  roomItems,
+  persons,
+  enemies,
+  storyItems,
+  statuses,
+  letters,
+  randomItems,
+  getSymbol,
+  getRoomItem,
+  getPerson,
+  getEnemy,
+  getStoryItem,
+  getStatus,
+  getLetter,
+  getRandomItem,
+} from "../../../data/items";
 import "./PagesEditor.css";
 
 // ── block prefix helpers ────────────────────────────────────
@@ -107,6 +125,60 @@ function textToPage(text: string): ContentBlock[] {
     return block;
   });
 }
+
+// ── image picker data ────────────────────────────────────────
+
+const SYMBOL_PICKER_ITEMS = symbols.map((s) => ({
+  id: s.id,
+  imagePath: getSymbol(s.id)!.imagePath,
+  label: s.name,
+}));
+
+const ROOM_PICKER_ITEMS = roomItems.map((r) => ({
+  id: String(r.id),
+  imagePath: getRoomItem(r.id)!.imagePath,
+  label: `Żeton planszy §${r.id}`,
+  sublabel: r.name || undefined,
+}));
+
+const PERSON_PICKER_ITEMS = persons.map((p) => ({
+  id: p.id,
+  imagePath: getPerson(p.id)!.imagePath,
+  label: p.id.charAt(0).toUpperCase() + p.id.slice(1),
+}));
+
+const ENEMY_PICKER_ITEMS = enemies.map((e) => ({
+  id: e.id,
+  imagePath: getEnemy(e.id)!.imagePath,
+  label: e.id.charAt(0).toUpperCase() + e.id.slice(1),
+}));
+
+const STORY_PICKER_ITEMS = storyItems.map((s) => ({
+  id: s.id,
+  imagePath: getStoryItem(s.id)!.imagePath,
+  label: `Przedmiot fabularny ${s.id.toUpperCase()}${s.paragraphId != null ? ` (\u00a7${s.paragraphId})` : ""}`,
+  sublabel: s.description || undefined,
+}));
+
+const STATUS_PICKER_ITEMS = statuses.map((s) => ({
+  id: s.id,
+  imagePath: getStatus(s.id)!.imagePath,
+  label: s.name ? `Żeton statusu: ${s.name}` : s.id,
+  sublabel: s.description || undefined,
+}));
+
+const LETTER_PICKER_ITEMS = letters.map((l) => ({
+  id: l.id,
+  imagePath: getLetter(l.id)!.imagePath,
+  label: `Litera ${l.id.toUpperCase()}`,
+}));
+
+const RANDOM_PICKER_ITEMS = randomItems.map((r) => ({
+  id: r.id,
+  imagePath: getRandomItem(r.id)!.imagePath,
+  label: `Przedmiot losowy ${r.id.toUpperCase()}`,
+  sublabel: r.description || undefined,
+}));
 
 // ── PagesEditor ──────────────────────────────────────
 
@@ -228,6 +300,81 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   );
 };
 
+// ── ImagePicker ──────────────────────────────────────
+
+interface ImagePickerItem {
+  id: string;
+  imagePath: string;
+  label: string;
+  sublabel?: string;
+}
+
+interface ImagePickerProps {
+  items: ImagePickerItem[];
+  onSelect: (id: string) => void;
+  toggleContent: React.ReactNode;
+  title?: string;
+}
+
+const ImagePicker: React.FC<ImagePickerProps> = ({
+  items,
+  onSelect,
+  toggleContent,
+  title,
+}) => {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  return (
+    <div className="pages-editor__image-picker" ref={containerRef}>
+      <button
+        className="pages-editor__toolbar-btn pages-editor__image-picker-toggle"
+        onMouseDown={(e) => {
+          e.preventDefault();
+          setOpen((o) => !o);
+        }}
+        title={title}
+      >
+        {toggleContent}
+      </button>
+      {open && (
+        <div className="pages-editor__image-dropdown">
+          {items.map((item) => (
+            <button
+              key={item.id}
+              className="pages-editor__image-btn"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                onSelect(item.id);
+                setOpen(false);
+              }}
+              title={
+                item.sublabel ? `${item.label}\n${item.sublabel}` : item.label
+              }
+            >
+              <img src={item.imagePath} alt={item.label} />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 // ── PageEditor ────────────────────────────────────────
 
 interface PageEditorProps {
@@ -283,6 +430,17 @@ const PageEditor: React.FC<PageEditorProps> = ({
     requestAnimationFrame(() => {
       el.focus();
       el.selectionStart = el.selectionEnd = cur;
+    });
+  };
+
+  const insertAtCursor = (snippet: string) => {
+    const el = ref.current;
+    if (!el) return;
+    const pos = el.selectionStart;
+    onChange(text.slice(0, pos) + snippet + text.slice(pos));
+    requestAnimationFrame(() => {
+      el.focus();
+      el.selectionStart = el.selectionEnd = pos + snippet.length;
     });
   };
 
@@ -350,21 +508,30 @@ const PageEditor: React.FC<PageEditorProps> = ({
           <div className="pages-editor__toolbar-group">
             <button
               className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => { e.preventDefault(); wrap("<b>", "</b>"); }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                wrap("<b>", "</b>");
+              }}
               title="Pogrubienie (zaznaczenie)"
             >
               <b>B</b>
             </button>
             <button
               className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => { e.preventDefault(); wrap("<em>", "</em>"); }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                wrap("<em>", "</em>");
+              }}
               title="Kursywa (zaznaczenie)"
             >
               <em>I</em>
             </button>
             <button
               className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => { e.preventDefault(); wrap("<u>", "</u>"); }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                wrap("<u>", "</u>");
+              }}
               title="Podkreślenie (zaznaczenie)"
             >
               <u>U</u>
@@ -380,11 +547,113 @@ const PageEditor: React.FC<PageEditorProps> = ({
           <div className="pages-editor__toolbar-group">
             <button
               className="pages-editor__toolbar-btn"
-              onMouseDown={(e) => { e.preventDefault(); insertLine("[img: ]", 6); }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                insertLine("[img: ]", 6);
+              }}
               title="Wstaw blok obrazu"
             >
               🖼
             </button>
+          </div>
+          <div className="pages-editor__toolbar-sep" />
+          <div className="pages-editor__toolbar-group">
+            <ImagePicker
+              items={SYMBOL_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<symbol id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={SYMBOL_PICKER_ITEMS[0].imagePath}
+                  alt="symbol"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw symbol gry"
+            />
+            <ImagePicker
+              items={ROOM_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<room id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={ROOM_PICKER_ITEMS[0].imagePath}
+                  alt="pomieszczenie"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw żeton planszy"
+            />
+            <ImagePicker
+              items={PERSON_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<person id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={PERSON_PICKER_ITEMS[0].imagePath}
+                  alt="postać"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw postać"
+            />
+            <ImagePicker
+              items={ENEMY_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<enemy id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={ENEMY_PICKER_ITEMS[0].imagePath}
+                  alt="przeciwnik"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw przeciwnika"
+            />
+            <ImagePicker
+              items={STORY_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<story id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={STORY_PICKER_ITEMS[0].imagePath}
+                  alt="przedmiot fabularny"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw przedmiot fabularny"
+            />
+            <ImagePicker
+              items={STATUS_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<status id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={STATUS_PICKER_ITEMS[0].imagePath}
+                  alt="status"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw żeton statusu"
+            />
+            <ImagePicker
+              items={LETTER_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<letter id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={LETTER_PICKER_ITEMS[0].imagePath}
+                  alt="litera"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw żeton litery"
+            />
+            <ImagePicker
+              items={RANDOM_PICKER_ITEMS}
+              onSelect={(id) => insertAtCursor(`<random id="${id}"/>`)}
+              toggleContent={
+                <img
+                  src={`${import.meta.env.BASE_URL}assets/images/symbols/przedmiot-losowy.png`}
+                  alt="przedmiot losowy"
+                  className="pages-editor__picker-icon"
+                />
+              }
+              title="Wstaw przedmiot losowy"
+            />
           </div>
         </div>
 
@@ -394,21 +663,30 @@ const PageEditor: React.FC<PageEditorProps> = ({
           <div className="pages-editor__toolbar-group">
             <button
               className={btn(activeOpts.styles.has("b"))}
-              onMouseDown={(e) => { e.preventDefault(); toggleBlockStyle("b"); }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                toggleBlockStyle("b");
+              }}
               title="Pogrubienie całego akapitu"
             >
               <b>B</b>
             </button>
             <button
               className={btn(activeOpts.styles.has("i"))}
-              onMouseDown={(e) => { e.preventDefault(); toggleBlockStyle("i"); }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                toggleBlockStyle("i");
+              }}
               title="Kursywa całego akapitu"
             >
               <em>I</em>
             </button>
             <button
               className={btn(activeOpts.styles.has("u"))}
-              onMouseDown={(e) => { e.preventDefault(); toggleBlockStyle("u"); }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                toggleBlockStyle("u");
+              }}
               title="Podkreślenie całego akapitu"
             >
               <u>U</u>
@@ -428,7 +706,10 @@ const PageEditor: React.FC<PageEditorProps> = ({
               <button
                 key={s}
                 className={btn(activeOpts.size === s)}
-                onMouseDown={(e) => { e.preventDefault(); setBlockSize(s); }}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  setBlockSize(s);
+                }}
                 title={`Rozmiar akapitu: ${s}`}
               >
                 {s}
@@ -439,7 +720,10 @@ const PageEditor: React.FC<PageEditorProps> = ({
           <div className="pages-editor__toolbar-group">
             <button
               className="pages-editor__toolbar-btn pages-editor__clear-btn"
-              onMouseDown={(e) => { e.preventDefault(); clearBlock(); }}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                clearBlock();
+              }}
               title="Wyczyść styl akapitu"
             >
               ✕

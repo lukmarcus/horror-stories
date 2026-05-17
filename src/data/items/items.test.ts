@@ -4,14 +4,18 @@ import {
   getRoomItem,
   getSymbol,
   getPerson,
+  getEnemy,
   getLetter,
   getStatus,
+  getRandomItem,
   storyItems,
   roomItems,
   symbols,
   persons,
+  enemies,
   letters,
   statuses,
+  randomItems,
 } from "./index";
 
 describe("data/items getters", () => {
@@ -109,6 +113,36 @@ describe("data/items getters", () => {
 
     it("should return undefined for non-existent id", () => {
       expect(getStatus("__nonexistent__")).toBeUndefined();
+    });
+  });
+
+  describe("getEnemy", () => {
+    it("should return enemy with imagePath for existing id", () => {
+      const firstEnemy = enemies[0];
+      const result = getEnemy(firstEnemy.id);
+      expect(result).toBeDefined();
+      expect(result!.id).toBe(firstEnemy.id);
+      expect(result!.imagePath).toContain("enemies");
+      expect(result!.imagePath).toContain(".jpg");
+    });
+
+    it("should return undefined for non-existent id", () => {
+      expect(getEnemy("__nonexistent__")).toBeUndefined();
+    });
+  });
+
+  describe("getRandomItem", () => {
+    it("should return random item with imagePath for existing id", () => {
+      const firstItem = randomItems[0];
+      const result = getRandomItem(firstItem.id);
+      expect(result).toBeDefined();
+      expect(result!.id).toBe(firstItem.id);
+      expect(result!.imagePath).toContain("randomItems");
+      expect(result!.imagePath).toContain(".jpg");
+    });
+
+    it("should return undefined for non-existent id", () => {
+      expect(getRandomItem("__nonexistent__")).toBeUndefined();
     });
   });
 });
