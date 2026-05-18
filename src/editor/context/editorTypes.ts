@@ -33,6 +33,7 @@ export type EditorAction =
   | { type: "NEW_SCENARIO" }
   | { type: "MARK_SAVED" }
   | { type: "ADD_PARAGRAPH"; payload: string }
+  | { type: "ADD_PARAGRAPH_SILENT"; payload: string }
   | { type: "REMOVE_PARAGRAPH"; payload: string }
   | { type: "SET_ACTIVE_PARAGRAPH"; payload: string | null }
   | { type: "SET_PARAGRAPH_TEXT"; payload: { id: string; text: string } }

@@ -67,12 +67,19 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
       nextParagraphId: target,
     };
     dispatch({ type: "ADD_CHOICE", payload: { paragraphId, choice } });
+    if (target && !availableIds.includes(target) && target !== paragraphId) {
+      dispatch({ type: "ADD_PARAGRAPH_SILENT", payload: target });
+    }
     setNewChoiceText("");
     setNewChoiceTarget("");
   };
 
   const handleUpdateChoice = (choice: EditorChoice) => {
     dispatch({ type: "UPDATE_CHOICE", payload: { paragraphId, choice } });
+    const target = choice.nextParagraphId.trim();
+    if (target && !availableIds.includes(target) && target !== paragraphId) {
+      dispatch({ type: "ADD_PARAGRAPH_SILENT", payload: target });
+    }
   };
 
   const handleRemoveChoice = (choiceId: string) => {
@@ -92,6 +99,12 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
       if (!isNaN(na) && !isNaN(nb)) return na - nb;
       return a.localeCompare(b);
     });
+
+  const existingIds = new Set(availableIds);
+  const targetStatus = (id: string) => {
+    if (!id.trim()) return null;
+    return existingIds.has(id.trim()) ? "exists" : "new";
+  };
 
   return (
     <div className="editor-paragraph-view">
@@ -207,8 +220,9 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   placeholder="Tekst wyboru"
                 />
                 <span className="editor-paragraph-view__choice-arrow">→</span>
-                <select
+                <input
                   className="editor-paragraph-view__choice-target"
+                  type="text"
                   value={choice.nextParagraphId}
                   onChange={(e) =>
                     handleUpdateChoice({
@@ -216,14 +230,24 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                       nextParagraphId: e.target.value,
                     })
                   }
-                >
-                  <option value="">— brak —</option>
-                  {availableIds.map((id) => (
-                    <option key={id} value={id}>
-                      §{id}
-                    </option>
-                  ))}
-                </select>
+                  placeholder="§"
+                />
+                {targetStatus(choice.nextParagraphId) === "exists" && (
+                  <span
+                    className="editor-paragraph-view__choice-status editor-paragraph-view__choice-status--exists"
+                    title="Paragraf istnieje"
+                  >
+                    ✓
+                  </span>
+                )}
+                {targetStatus(choice.nextParagraphId) === "new" && (
+                  <span
+                    className="editor-paragraph-view__choice-status editor-paragraph-view__choice-status--new"
+                    title="Zostanie utworzony nowy paragraf"
+                  >
+                    + nowy
+                  </span>
+                )}
                 <button
                   className="editor-paragraph-view__choice-remove"
                   onClick={() => handleRemoveChoice(choice.id)}
@@ -244,18 +268,30 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                 placeholder="Tekst nowego wyboru"
               />
               <span className="editor-paragraph-view__choice-arrow">→</span>
-              <select
+              <input
                 className="editor-paragraph-view__choice-target"
+                type="text"
                 value={newChoiceTarget}
                 onChange={(e) => setNewChoiceTarget(e.target.value)}
-              >
-                <option value="">— brak —</option>
-                {availableIds.map((id) => (
-                  <option key={id} value={id}>
-                    §{id}
-                  </option>
-                ))}
-              </select>
+                onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
+                placeholder="§"
+              />
+              {targetStatus(newChoiceTarget) === "exists" && (
+                <span
+                  className="editor-paragraph-view__choice-status editor-paragraph-view__choice-status--exists"
+                  title="Paragraf istnieje"
+                >
+                  ✓
+                </span>
+              )}
+              {targetStatus(newChoiceTarget) === "new" && (
+                <span
+                  className="editor-paragraph-view__choice-status editor-paragraph-view__choice-status--new"
+                  title="Zostanie utworzony nowy paragraf"
+                >
+                  + nowy
+                </span>
+              )}
               <button
                 className="editor-paragraph-view__choice-add-btn"
                 onClick={handleAddChoice}

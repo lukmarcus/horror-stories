@@ -178,6 +178,20 @@
   color: #fff;
 }
 
+.editor-paragraph-view__choice-status {
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.editor-paragraph-view__choice-status--exists {
+  color: #4caf50;
+}
+
+.editor-paragraph-view__choice-status--new {
+  color: #ff9800;
+}
+
 .editor-paragraph-view__choice-add-btn {
   padding: 0.4rem 0.75rem;
   border-radius: 5px;

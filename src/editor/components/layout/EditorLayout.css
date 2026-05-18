@@ -1,6 +1,7 @@
 .editor-layout {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   background: #1a1a1a;
   color: #e0e0e0;
   font-family: var(--font-family, sans-serif);
@@ -16,6 +17,13 @@
   padding: 1rem;
   gap: 1.5rem;
   overflow-y: auto;
+  height: 100%;
+}
+
+.editor-main {
+  flex: 1;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .editor-sidebar__header {

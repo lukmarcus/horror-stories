@@ -70,6 +70,20 @@ export function editorReducer(
         activeParagraphId: id,
       };
     }
+    case "ADD_PARAGRAPH_SILENT": {
+      if (!state.scenario) return state;
+      const id = action.payload;
+      if (state.scenario.paragraphs.some((p) => p.id === id)) return state;
+      const paragraphs = [
+        ...state.scenario.paragraphs,
+        { id, pages: [[]] as ContentBlock[][] },
+      ];
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
     case "REMOVE_PARAGRAPH": {
       if (!state.scenario || action.payload === "100") return state;
       const paragraphs = state.scenario.paragraphs.filter(
