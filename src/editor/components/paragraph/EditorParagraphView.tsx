@@ -24,6 +24,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
   const [newChoiceText, setNewChoiceText] = useState("");
   const [newChoiceTarget, setNewChoiceTarget] = useState("");
+  const [focusedTargetId, setFocusedTargetId] = useState<string | null>(null);
 
   if (!paragraph) return null;
 
@@ -104,6 +105,11 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const targetStatus = (id: string) => {
     if (!id.trim()) return null;
     return existingIds.has(id.trim()) ? "exists" : "new";
+  };
+  const filteredIds = (value: string) => {
+    const v = value.trim();
+    if (!v) return availableIds;
+    return availableIds.filter((id) => id.includes(v));
   };
 
   return (
@@ -219,35 +225,47 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   }
                   placeholder="Tekst wyboru"
                 />
-                <span className="editor-paragraph-view__choice-arrow">→</span>
-                <input
-                  className="editor-paragraph-view__choice-target"
-                  type="text"
-                  value={choice.nextParagraphId}
-                  onChange={(e) =>
-                    handleUpdateChoice({
-                      ...choice,
-                      nextParagraphId: e.target.value,
-                    })
-                  }
-                  placeholder="§"
-                />
-                {targetStatus(choice.nextParagraphId) === "exists" && (
-                  <span
-                    className="editor-paragraph-view__choice-status editor-paragraph-view__choice-status--exists"
-                    title="Paragraf istnieje"
-                  >
-                    ✓
+                <div
+                  className={`editor-paragraph-view__choice-target-wrap editor-paragraph-view__choice-target-wrap--${targetStatus(choice.nextParagraphId) ?? "empty"}`}
+                >
+                  <span className="editor-paragraph-view__choice-target-prefix">
+                    §
                   </span>
-                )}
-                {targetStatus(choice.nextParagraphId) === "new" && (
-                  <span
-                    className="editor-paragraph-view__choice-status editor-paragraph-view__choice-status--new"
-                    title="Zostanie utworzony nowy paragraf"
-                  >
-                    + nowy
-                  </span>
-                )}
+                  <input
+                    className="editor-paragraph-view__choice-target"
+                    type="text"
+                    value={choice.nextParagraphId}
+                    onChange={(e) =>
+                      handleUpdateChoice({
+                        ...choice,
+                        nextParagraphId: e.target.value,
+                      })
+                    }
+                    onFocus={() => setFocusedTargetId(choice.id)}
+                    onBlur={() => setFocusedTargetId(null)}
+                    placeholder="?"
+                  />
+                  {focusedTargetId === choice.id &&
+                    filteredIds(choice.nextParagraphId).length > 0 && (
+                      <ul className="editor-paragraph-view__choice-dropdown">
+                        {filteredIds(choice.nextParagraphId).map((id) => (
+                          <li
+                            key={id}
+                            className="editor-paragraph-view__choice-dropdown-item"
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              handleUpdateChoice({
+                                ...choice,
+                                nextParagraphId: id,
+                              });
+                            }}
+                          >
+                            §{id}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                </div>
                 <button
                   className="editor-paragraph-view__choice-remove"
                   onClick={() => handleRemoveChoice(choice.id)}
@@ -267,31 +285,40 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                 onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
                 placeholder="Tekst nowego wyboru"
               />
-              <span className="editor-paragraph-view__choice-arrow">→</span>
-              <input
-                className="editor-paragraph-view__choice-target"
-                type="text"
-                value={newChoiceTarget}
-                onChange={(e) => setNewChoiceTarget(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
-                placeholder="§"
-              />
-              {targetStatus(newChoiceTarget) === "exists" && (
-                <span
-                  className="editor-paragraph-view__choice-status editor-paragraph-view__choice-status--exists"
-                  title="Paragraf istnieje"
-                >
-                  ✓
+              <div
+                className={`editor-paragraph-view__choice-target-wrap editor-paragraph-view__choice-target-wrap--${targetStatus(newChoiceTarget) ?? "empty"}`}
+              >
+                <span className="editor-paragraph-view__choice-target-prefix">
+                  §
                 </span>
-              )}
-              {targetStatus(newChoiceTarget) === "new" && (
-                <span
-                  className="editor-paragraph-view__choice-status editor-paragraph-view__choice-status--new"
-                  title="Zostanie utworzony nowy paragraf"
-                >
-                  + nowy
-                </span>
-              )}
+                <input
+                  className="editor-paragraph-view__choice-target"
+                  type="text"
+                  value={newChoiceTarget}
+                  onChange={(e) => setNewChoiceTarget(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
+                  onFocus={() => setFocusedTargetId("__new__")}
+                  onBlur={() => setFocusedTargetId(null)}
+                  placeholder="?"
+                />
+                {focusedTargetId === "__new__" &&
+                  filteredIds(newChoiceTarget).length > 0 && (
+                    <ul className="editor-paragraph-view__choice-dropdown">
+                      {filteredIds(newChoiceTarget).map((id) => (
+                        <li
+                          key={id}
+                          className="editor-paragraph-view__choice-dropdown-item"
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            setNewChoiceTarget(id);
+                          }}
+                        >
+                          §{id}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+              </div>
               <button
                 className="editor-paragraph-view__choice-add-btn"
                 onClick={handleAddChoice}

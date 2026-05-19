@@ -140,25 +140,93 @@
   border-color: #777;
 }
 
-.editor-paragraph-view__choice-arrow {
-  color: #666;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.editor-paragraph-view__choice-target {
-  padding: 0.4rem 0.5rem;
+.editor-paragraph-view__choice-target-wrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
   border-radius: 5px;
   border: 1px solid #444;
   background: #1a1a1a;
+  flex-shrink: 0;
+  transition: border-color 0.15s;
+}
+
+.editor-paragraph-view__choice-target-wrap--exists {
+  border-color: #4caf50;
+}
+
+.editor-paragraph-view__choice-target-wrap--new {
+  border-color: #ff9800;
+}
+
+.editor-paragraph-view__choice-target-wrap--empty {
+  border-color: #444;
+}
+
+.editor-paragraph-view__choice-target-wrap--exists:focus-within {
+  border-color: #66bb6a;
+}
+
+.editor-paragraph-view__choice-target-wrap--new:focus-within {
+  border-color: #ffa726;
+}
+
+.editor-paragraph-view__choice-target-wrap--empty:focus-within {
+  border-color: #777;
+}
+
+.editor-paragraph-view__choice-target-prefix {
+  padding: 0.4rem 0.25rem 0.4rem 0.55rem;
+  color: #888;
+  font-size: 0.9rem;
+  user-select: none;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.editor-paragraph-view__choice-target {
+  border: none;
+  background: transparent;
   color: #eee;
   font-size: 0.9rem;
-  min-width: 6rem;
+  padding: 0.4rem 0.5rem 0.4rem 0.1rem;
+  width: 4rem;
+  min-width: 0;
+  font-family: inherit;
 }
 
 .editor-paragraph-view__choice-target:focus {
   outline: none;
-  border-color: #777;
+}
+
+.editor-paragraph-view__choice-dropdown {
+  position: absolute;
+  bottom: calc(100% + 3px);
+  left: 100%;
+  min-width: 8rem;
+  max-height: 12rem;
+  overflow-y: auto;
+  background: #252525;
+  border: 1px solid #555;
+  border-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.editor-paragraph-view__choice-dropdown-item {
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.editor-paragraph-view__choice-dropdown-item:hover {
+  background: #3a3a3a;
+  color: #fff;
 }
 
 .editor-paragraph-view__choice-remove {
@@ -176,20 +244,6 @@
 .editor-paragraph-view__choice-remove:hover {
   background: #e05a5a;
   color: #fff;
-}
-
-.editor-paragraph-view__choice-status {
-  font-size: 0.75rem;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.editor-paragraph-view__choice-status--exists {
-  color: #4caf50;
-}
-
-.editor-paragraph-view__choice-status--new {
-  color: #ff9800;
 }
 
 .editor-paragraph-view__choice-add-btn {
