@@ -62,6 +62,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
     const text = newChoiceText.trim();
     const target = newChoiceTarget.trim();
     if (!text) return;
+    if (target === paragraphId) return;
     const choice: EditorChoice = {
       id: crypto.randomUUID(),
       text,
@@ -76,6 +77,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   };
 
   const handleUpdateChoice = (choice: EditorChoice) => {
+    if (choice.nextParagraphId.trim() === paragraphId) return;
     dispatch({ type: "UPDATE_CHOICE", payload: { paragraphId, choice } });
     const target = choice.nextParagraphId.trim();
     if (target && !availableIds.includes(target) && target !== paragraphId) {
@@ -101,16 +103,12 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
       return a.localeCompare(b);
     });
 
-  const existingIds = new Set(availableIds);
-  const targetStatus = (id: string) => {
-    if (!id.trim()) return null;
-    return existingIds.has(id.trim()) ? "exists" : "new";
-  };
   const filteredIds = (value: string) => {
     const v = value.trim();
     if (!v) return availableIds;
     return availableIds.filter((id) => id.includes(v));
   };
+  const canAddChoice = newChoiceText.trim().length > 0;
 
   return (
     <div className="editor-paragraph-view">
@@ -225,9 +223,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   }
                   placeholder="Tekst wyboru"
                 />
-                <div
-                  className={`editor-paragraph-view__choice-target-wrap editor-paragraph-view__choice-target-wrap--${targetStatus(choice.nextParagraphId) ?? "empty"}`}
-                >
+                <div className="editor-paragraph-view__choice-target-wrap">
                   <span className="editor-paragraph-view__choice-target-prefix">
                     §
                   </span>
@@ -285,9 +281,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                 onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
                 placeholder="Tekst nowego wyboru"
               />
-              <div
-                className={`editor-paragraph-view__choice-target-wrap editor-paragraph-view__choice-target-wrap--${targetStatus(newChoiceTarget) ?? "empty"}`}
-              >
+              <div className="editor-paragraph-view__choice-target-wrap">
                 <span className="editor-paragraph-view__choice-target-prefix">
                   §
                 </span>
@@ -322,6 +316,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
               <button
                 className="editor-paragraph-view__choice-add-btn"
                 onClick={handleAddChoice}
+                disabled={!canAddChoice}
                 title="Dodaj wybór"
               >
                 + Dodaj

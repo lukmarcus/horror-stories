@@ -148,30 +148,9 @@
   border: 1px solid #444;
   background: #1a1a1a;
   flex-shrink: 0;
-  transition: border-color 0.15s;
 }
 
-.editor-paragraph-view__choice-target-wrap--exists {
-  border-color: #4caf50;
-}
-
-.editor-paragraph-view__choice-target-wrap--new {
-  border-color: #ff9800;
-}
-
-.editor-paragraph-view__choice-target-wrap--empty {
-  border-color: #444;
-}
-
-.editor-paragraph-view__choice-target-wrap--exists:focus-within {
-  border-color: #66bb6a;
-}
-
-.editor-paragraph-view__choice-target-wrap--new:focus-within {
-  border-color: #ffa726;
-}
-
-.editor-paragraph-view__choice-target-wrap--empty:focus-within {
+.editor-paragraph-view__choice-target-wrap:focus-within {
   border-color: #777;
 }
 
@@ -261,6 +240,11 @@
 .editor-paragraph-view__choice-add-btn:hover {
   border-color: #aaa;
   color: #eee;
+}
+
+.editor-paragraph-view__choice-add-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .editor-paragraph-view__preview-choices {
