@@ -4,6 +4,7 @@ import { ParagraphText } from "../../../components/text/ParagraphText/ParagraphT
 import { RichText } from "../../../components/text/RichText/RichText";
 import type { EditorChoice } from "../../context/editorTypes";
 import { PagesEditor } from "./PagesEditor";
+import { ChoiceTextInput } from "./ChoiceTextInput";
 import "./EditorParagraphView.css";
 
 interface EditorParagraphViewProps {
@@ -214,13 +215,9 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                 key={choice.id}
                 className="editor-paragraph-view__choice-row"
               >
-                <input
-                  className="editor-paragraph-view__choice-text"
-                  type="text"
+                <ChoiceTextInput
                   value={choice.text}
-                  onChange={(e) =>
-                    handleUpdateChoice({ ...choice, text: e.target.value })
-                  }
+                  onChange={(text) => handleUpdateChoice({ ...choice, text })}
                   placeholder="Tekst wyboru"
                 />
                 <div className="editor-paragraph-view__choice-target-wrap">
@@ -273,11 +270,9 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
             ))}
 
             <div className="editor-paragraph-view__choice-add">
-              <input
-                className="editor-paragraph-view__choice-text"
-                type="text"
+              <ChoiceTextInput
                 value={newChoiceText}
-                onChange={(e) => setNewChoiceText(e.target.value)}
+                onChange={setNewChoiceText}
                 onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
                 placeholder="Tekst nowego wyboru"
               />
@@ -368,7 +363,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                     key={choice.id}
                     className="editor-paragraph-view__preview-choice"
                   >
-                    {choice.text}
+                    <RichText content={[{ type: "text", text: choice.text }]} />
                     {choice.nextParagraphId && (
                       <>
                         {" "}
