@@ -242,12 +242,14 @@ interface ColorPickerProps {
   onSelect: (color: string) => void;
   label?: string;
   activeColor?: ColorName | null;
+  title?: string;
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({
   onSelect,
   label = "A",
   activeColor,
+  title = "Kolor",
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -274,7 +276,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
           e.preventDefault();
           setOpen((o) => !o);
         }}
-        title="Kolor"
+        title={title}
       >
         {label}▾
       </button>
@@ -375,6 +377,107 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
   );
 };
 
+// ── SnippetPicker ─────────────────────────────────────
+
+interface SnippetItem {
+  label: string;
+  snippet: string;
+  cursorFromEnd?: number;
+  displayColor?: string;
+}
+
+interface SnippetPickerProps {
+  items: SnippetItem[];
+  toggleLabel: React.ReactNode;
+  title?: string;
+  onSelect: (snippet: string, cursorFromEnd?: number) => void;
+}
+
+const SnippetPicker: React.FC<SnippetPickerProps> = ({
+  items,
+  toggleLabel,
+  title,
+  onSelect,
+}) => {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  return (
+    <div className="pages-editor__snippet-picker" ref={containerRef}>
+      <button
+        className="pages-editor__toolbar-btn"
+        onMouseDown={(e) => {
+          e.preventDefault();
+          setOpen((o) => !o);
+        }}
+        title={title}
+      >
+        {toggleLabel}
+      </button>
+      {open && (
+        <div className="pages-editor__snippet-dropdown">
+          {items.map((item) => (
+            <button
+              key={item.label}
+              className="pages-editor__snippet-item"
+              style={
+                item.displayColor
+                  ? { color: item.displayColor, fontWeight: 700 }
+                  : undefined
+              }
+              onMouseDown={(e) => {
+                e.preventDefault();
+                onSelect(item.snippet, item.cursorFromEnd);
+                setOpen(false);
+              }}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const SPAN_SNIPPETS: SnippetItem[] = [
+  {
+    label: "§ paragraf",
+    snippet: "<span class='color-green'>§</span>",
+    cursorFromEnd: 7,
+    displayColor: "#4caf50",
+  },
+  {
+    label: "UWAGA",
+    snippet: "<span class='color-red'>UWAGA</span>",
+    displayColor: "#cc4444",
+  },
+  {
+    label: "nagroda",
+    snippet: "<span class='color-blue'>nagroda</span>",
+    displayColor: "#5599cc",
+  },
+  {
+    label: "NEWS",
+    snippet: "<span class='color-purple'>NEWS</span>",
+    displayColor: "#9966cc",
+  },
+];
+
 // ── PageEditor ────────────────────────────────────────
 
 interface PageEditorProps {
@@ -441,6 +544,21 @@ const PageEditor: React.FC<PageEditorProps> = ({
     requestAnimationFrame(() => {
       el.focus();
       el.selectionStart = el.selectionEnd = pos + snippet.length;
+    });
+  };
+
+  const insertSnippet = (snippet: string, cursorFromEnd?: number) => {
+    const el = ref.current;
+    if (!el) return;
+    const pos = el.selectionStart;
+    onChange(text.slice(0, pos) + snippet + text.slice(pos));
+    const cursorPos =
+      cursorFromEnd != null
+        ? pos + snippet.length - cursorFromEnd
+        : pos + snippet.length;
+    requestAnimationFrame(() => {
+      el.focus();
+      el.selectionStart = el.selectionEnd = cursorPos;
     });
   };
 
@@ -541,6 +659,13 @@ const PageEditor: React.FC<PageEditorProps> = ({
           <div className="pages-editor__toolbar-group">
             <ColorPicker
               onSelect={(c) => wrap(`<span class='color-${c}'>`, "</span>")}
+              title="Kolor zaznaczenia"
+            />
+            <SnippetPicker
+              items={SPAN_SNIPPETS}
+              toggleLabel={"</>"}
+              title="Wstaw kolorowy span"
+              onSelect={insertSnippet}
             />
           </div>
           <div className="pages-editor__toolbar-sep" />
