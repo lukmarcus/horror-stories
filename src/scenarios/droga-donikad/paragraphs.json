@@ -88,7 +88,8 @@
               "text": "Patrick stoi",
               "nextVariantId": "patrick-stoi"
             }
-          ]
+          ],
+          "areChoicesHorizontal": true
         },
         "patrick-lezy": {
           "contentPages": [
@@ -1009,7 +1010,8 @@
               "text": "Tylko Jessica posiada żeton ciężkiej rany.",
               "nextVariantId": "jessica-tylko"
             }
-          ]
+          ],
+          "areChoicesHorizontal": true
         },
         "patrick": {
           "contentPages": [
@@ -1031,7 +1033,8 @@
               "text": "Tylko Patrick posiada żeton ciężkiej rany.",
               "nextVariantId": "patrick-tylko"
             }
-          ]
+          ],
+          "areChoicesHorizontal": true
         },
         "jessica-tylko": {
           "contentPages": [

@@ -63,6 +63,7 @@ export interface Paragraph {
   accessibleFrom?: string[]; // If empty/undefined, paragraph is directly accessible (isDirect=true)
   items?: string[];
   isMultiPage?: boolean;
+  areChoicesHorizontal?: boolean; // Only meaningful on nested variants; top-level paragraphs derive this from !!variants
 }
 
 /**
