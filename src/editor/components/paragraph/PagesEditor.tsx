@@ -127,22 +127,29 @@ function textToPage(text: string): ContentBlock[] {
 interface PagesEditorProps {
   paragraphId: string;
   pages: ContentBlock[][];
+  /** If provided, called instead of dispatching SET_PARAGRAPH_PAGES */
+  onPagesChange?: (pages: ContentBlock[][]) => void;
 }
 
 export const PagesEditor: React.FC<PagesEditorProps> = ({
   paragraphId,
   pages,
+  onPagesChange,
 }) => {
   const { dispatch } = useEditor();
 
   const setPages = useCallback(
     (newPages: ContentBlock[][]) => {
-      dispatch({
-        type: "SET_PARAGRAPH_PAGES",
-        payload: { id: paragraphId, pages: newPages },
-      });
+      if (onPagesChange) {
+        onPagesChange(newPages);
+      } else {
+        dispatch({
+          type: "SET_PARAGRAPH_PAGES",
+          payload: { id: paragraphId, pages: newPages },
+        });
+      }
     },
-    [dispatch, paragraphId],
+    [dispatch, paragraphId, onPagesChange],
   );
 
   const handlePageChange = useCallback(

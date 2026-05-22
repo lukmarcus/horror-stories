@@ -4,16 +4,34 @@ import type { Scenario, ContentBlock } from "../../types";
 export interface EditorChoice {
   id: string;
   text: string;
-  nextParagraphId: string;
+  /** Target paragraph ID (empty string = back to menu) */
+  nextParagraphId?: string;
+  /** Target variant key within the same paragraph's variants record */
+  nextVariantId?: string;
+}
+
+export interface EditorVariant {
+  /** Rich content pages */
+  pages: ContentBlock[][];
+  /** Whether choices are shown as horizontal row (can be true even with only nextParagraphId targets) */
+  areChoicesHorizontal?: boolean;
+  /** Choices shown at the end of this variant */
+  choices?: EditorChoice[];
 }
 
 export interface EditorParagraph {
   id: string;
   /** Legacy plain-text field — kept for backward compatibility with older saves */
   text?: string;
-  /** Rich content pages. Each page is an array of ContentBlock. */
+  /** Rich content pages (for "prosty" paragraphs) */
   pages?: ContentBlock[][];
+  /** Choices for "prosty" paragraphs — vertical, point to nextParagraphId only */
   choices?: EditorChoice[];
+  /** Variant record — presence means this is a "wariantowy" paragraph.
+   *  Top-level choices (selector row) are stored separately as variantSelectors. */
+  variants?: Record<string, EditorVariant>;
+  /** Horizontal selector choices for "wariantowy" paragraphs — always nextVariantId */
+  variantSelectors?: EditorChoice[];
 }
 
 export interface EditorScenario {
@@ -75,6 +93,52 @@ export type EditorAction =
   | {
       type: "REMOVE_CHOICE";
       payload: { paragraphId: string; choiceId: string };
+    }
+  // ── Variant selector (horizontal row choices on "wariantowy" paragraph) ──
+  | {
+      type: "ADD_VARIANT_SELECTOR";
+      payload: { paragraphId: string; choice: EditorChoice };
+    }
+  | {
+      type: "UPDATE_VARIANT_SELECTOR";
+      payload: { paragraphId: string; choice: EditorChoice };
+    }
+  | {
+      type: "REMOVE_VARIANT_SELECTOR";
+      payload: { paragraphId: string; choiceId: string };
+    }
+  // ── Variants ──
+  | {
+      type: "ADD_VARIANT";
+      payload: { paragraphId: string; variantId: string };
+    }
+  | {
+      type: "REMOVE_VARIANT";
+      payload: { paragraphId: string; variantId: string };
+    }
+  | {
+      type: "SET_VARIANT_PAGES";
+      payload: {
+        paragraphId: string;
+        variantId: string;
+        pages: ContentBlock[][];
+      };
+    }
+  | {
+      type: "SET_VARIANT_HORIZONTAL";
+      payload: { paragraphId: string; variantId: string; value: boolean };
+    }
+  | {
+      type: "ADD_VARIANT_CHOICE";
+      payload: { paragraphId: string; variantId: string; choice: EditorChoice };
+    }
+  | {
+      type: "UPDATE_VARIANT_CHOICE";
+      payload: { paragraphId: string; variantId: string; choice: EditorChoice };
+    }
+  | {
+      type: "REMOVE_VARIANT_CHOICE";
+      payload: { paragraphId: string; variantId: string; choiceId: string };
     };
 
 export interface EditorContextValue {
