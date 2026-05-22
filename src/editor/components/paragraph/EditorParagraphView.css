@@ -306,6 +306,234 @@
   border-color: #5a8a5a;
 }
 
+/* ── Mode toggle (Prosty / Wariantowy) ───────────────────────────────────── */
+
+.editor-paragraph-view__header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.editor-paragraph-view__mode-toggle {
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #3a3a3a;
+}
+
+.editor-paragraph-view__mode-btn {
+  padding: 0.35rem 0.8rem;
+  border: none;
+  background: transparent;
+  color: #aaa;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__mode-btn:hover:not(:disabled) {
+  background: #2a2a2a;
+  color: #ccc;
+}
+
+.editor-paragraph-view__mode-btn--active {
+  background: #2a3e2a;
+  color: #7ec87e;
+  cursor: default;
+}
+
+/* ── Choice type toggle (§ / W) ──────────────────────────────────────────── */
+
+.editor-paragraph-view__choice-type-btn {
+  padding: 0 0.5rem;
+  border: 1px solid #555;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  background: #222;
+  color: #aaa;
+  font-size: 0.85rem;
+  font-family: monospace;
+  cursor: pointer;
+  height: 100%;
+  line-height: 1;
+}
+
+.editor-paragraph-view__choice-type-btn:hover {
+  background: #2a2a2a;
+  color: #ccc;
+}
+
+.editor-paragraph-view__choice-type-btn--variant {
+  background: #1e2a1e;
+  color: #7ec87e;
+  border-color: #3a5a3a;
+}
+
+.editor-paragraph-view__choice-target-prefix--variant {
+  background: #1e2a1e;
+  color: #7ec87e;
+  border-color: #3a5a3a;
+}
+
+/* ── Variant block ───────────────────────────────────────────────────────── */
+
+.editor-paragraph-view__variant {
+  border: 1px solid #2a4a2a;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.editor-paragraph-view__variant-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #1a2a1a;
+}
+
+.editor-paragraph-view__variant-toggle {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.editor-paragraph-view__variant-name {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #b8d8b8;
+  font-family: monospace;
+}
+
+.editor-paragraph-view__variant-layout-btn {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #3a5a3a;
+  background: transparent;
+  color: #7ec87e;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__variant-layout-btn:hover {
+  background: #2a3e2a;
+}
+
+.editor-paragraph-view__variant-layout-btn--active {
+  background: #2a4a2a;
+}
+
+.editor-paragraph-view__variant-remove {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #5a2a2a;
+  background: transparent;
+  color: #e87e7e;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.editor-paragraph-view__variant-remove:hover {
+  background: #3a1a1a;
+}
+
+.editor-paragraph-view__variant-body {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── Variants section (list + add row) ───────────────────────────────────── */
+
+.editor-paragraph-view__variants-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.editor-paragraph-view__variants-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.editor-paragraph-view__variants-empty {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+.editor-paragraph-view__variant-add-row {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.editor-paragraph-view__variant-add-input {
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: #ccc;
+  font-size: 0.85rem;
+  font-family: monospace;
+  width: 14rem;
+}
+
+.editor-paragraph-view__variant-add-btn {
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  border: 1px solid #3a5a3a;
+  background: #1a2a1a;
+  color: #7ec87e;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__variant-add-btn:hover:not(:disabled) {
+  background: #2a3e2a;
+}
+
+.editor-paragraph-view__variant-add-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ── Variant mode preview ─────────────────────────────────────────────────── */
+
+.editor-paragraph-view__preview-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.editor-paragraph-view__preview-mode-label {
+  font-size: 0.82rem;
+  color: #7ec87e;
+  font-style: italic;
+  margin: 0 0 0.25rem;
+}
+
+.editor-paragraph-view__preview-selector {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background: #1e2a1e;
+  border: 1px solid #3a5a3a;
+  color: #a8d8a8;
+  font-size: 0.85rem;
+  margin-right: 0.4rem;
+  margin-bottom: 0.3rem;
+}
+
 .editor-paragraph-view__incoming-empty {
   color: #555;
   font-style: italic;
