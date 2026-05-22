@@ -34,7 +34,6 @@ export interface Paragraph {
   accessibleFrom?: string[];
 
   // Layout flags
-  areChoicesHorizontal?: boolean; // Wariantowe choices wyświetlane poziomo
   isMultiPage?: boolean; // Legacy flag
   items?: string[];
 }
@@ -159,7 +158,6 @@ export interface DiceResult {
       "nextVariantId": "patrick"
     }
   ],
-  "areChoicesHorizontal": true,
   "variants": {
     "jessica": {
       "contentPages": [[{ "text": "Poznałaś Patrick'a na imprezie." }]],
@@ -287,21 +285,6 @@ Obsługiwane tagi w polu `text`:
 ```
 
 ## Layout Flags
-
-### areChoicesHorizontal
-
-Dla wariantów - wyświetla choices w linii zamiast stosu:
-
-```json
-{
-  "id": "9",
-  "choices": [
-    { "text": "Jessica", "nextVariantId": "jessica" },
-    { "text": "Patrick", "nextVariantId": "patrick" }
-  ],
-  "areChoicesHorizontal": true // Side-by-side instead of stacked
-}
-```
 
 ### accessibleFrom
 

@@ -182,7 +182,6 @@ describe("Game - Variant System", () => {
       { text: "Jessica", nextVariantId: "jessica" },
       { text: "Patrick", nextVariantId: "patrick" },
     ],
-    areChoicesHorizontal: true,
     variants: {
       jessica: {
         contentPages: [[{ text: "Poznałaś go na imprezie." }]],

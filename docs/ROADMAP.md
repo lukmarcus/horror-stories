@@ -12,7 +12,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 - Edycja `variants` — zagnieżdżone pod-paragrafy z własnymi stronami i wyborami
 - Obsługa `nextVariantId` w wyborach (np. wybór postaci prowadzi do wariantu treści)
-- Obsługa `areChoicesHorizontal` (poziomy układ przycisków wyborów)
+- Układ poziomy przycisków wyborów automatyczny przy obecności `variants` (flaga `areChoicesHorizontal` usunięta jako redundantna)
 - Picker grafik inline w polu tekstowym wyborów (choices używają tych samych tagów co treść)
 - Wstawianie numeru paragrafu ze stylowaniem kolorem (`<span class='color-green'>105</span>`) — przycisk „§" w toolbarze, kolor wybieralny; konwencja: zielony = nawigacja, czerwony = ostrzeżenie, niebieski = nagroda, fioletowy = kierunek
 - Auto-tworzenie paragrafu: gdy dodajesz choice z `nextParagraphId` który nie istnieje → nowy pusty paragraf pojawia się od razu na liście

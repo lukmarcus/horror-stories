@@ -23,7 +23,6 @@ interface MockParagraph {
   }>;
   variants?: Record<string, MockVariant>;
   isMultiPage?: boolean;
-  areChoicesHorizontal?: boolean;
   direct?: boolean;
   accessibleFrom?: string[];
 }
@@ -62,7 +61,6 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
       id: "26",
       text: "Choose your character",
       accessibleFrom: ["9-jessica", "9-patrick"],
-      areChoicesHorizontal: true,
       choices: [
         {
           id: "as-jessica",
