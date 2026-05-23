@@ -73,32 +73,6 @@ h3.editor-paragraph-view__label {
   align-items: start;
 }
 
-/* In variant mode the right preview panel is replaced by per-section splits */
-.editor-paragraph-view__columns--variant {
-  grid-template-columns: 1fr;
-}
-
-/* Intro section (treść wprowadzająca) 50/50 split */
-.editor-paragraph-view__intro-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  align-items: start;
-  margin-bottom: 1.25rem;
-}
-
-.editor-paragraph-view__intro-editor,
-.editor-paragraph-view__intro-preview {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.editor-paragraph-view__intro-preview {
-  border-left: 1px solid #2a2a2a;
-  padding-left: 1.25rem;
-}
-
 .editor-paragraph-view__preview-selectors {
   display: flex;
   flex-wrap: wrap;
@@ -398,7 +372,7 @@ h3.editor-paragraph-view__label {
 /* ── Choice type toggle (§ / W) ──────────────────────────────────────────── */
 
 .editor-paragraph-view__choice-type-btn {
-  padding: 0 0.5rem;
+  padding: 0.4rem 0.5rem;
   border: 1px solid #555;
   border-right: none;
   border-radius: 4px 0 0 4px;
@@ -407,7 +381,8 @@ h3.editor-paragraph-view__label {
   font-size: 0.85rem;
   font-family: monospace;
   cursor: pointer;
-  height: 100%;
+  display: flex;
+  align-items: center;
   line-height: 1;
 }
 
@@ -434,6 +409,19 @@ h3.editor-paragraph-view__label {
   justify-content: space-between;
   gap: 0.5rem;
   margin-top: 0.25rem;
+}
+
+/* Label + layout-button side by side (inside variant editor column) */
+.editor-paragraph-view__choices-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.editor-paragraph-view__choices-heading-row h3 {
+  margin: 0;
 }
 
 /* ── Choice type select (replaces §/W toggle button) ────────────────────── */
@@ -472,7 +460,7 @@ h3.editor-paragraph-view__label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0;
   background: #1a2a1a;
 }
 
@@ -526,8 +514,55 @@ h3.editor-paragraph-view__label {
   background: #3a1a1a;
 }
 
+.editor-paragraph-view__variant-rename-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 0.88rem;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+.editor-paragraph-view__variant-rename-btn:hover {
+  color: #aaa;
+}
+
+.editor-paragraph-view__variant-rename-input {
+  flex: 1;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #5a8a5a;
+  background: #1a2a1a;
+  color: #ccc;
+  font-size: 0.9rem;
+  font-family: monospace;
+  min-width: 0;
+}
+
+.editor-paragraph-view__variant-rename-save,
+.editor-paragraph-view__variant-rename-cancel {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.editor-paragraph-view__variant-rename-save {
+  border: 1px solid #3a5a3a;
+  background: #1a2a1a;
+  color: #7ec87e;
+}
+
+.editor-paragraph-view__variant-rename-cancel {
+  border: 1px solid #5a2a2a;
+  background: transparent;
+  color: #e87e7e;
+}
+
 .editor-paragraph-view__variant-body {
-  padding: 0.75rem;
+  padding: 0.75rem 0;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -536,22 +571,20 @@ h3.editor-paragraph-view__label {
 .editor-paragraph-view__variant-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: start;
 }
 
-.editor-paragraph-view__variant-editor {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
+.editor-paragraph-view__variant-editor,
 .editor-paragraph-view__variant-preview {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  border-left: 1px solid #2a2a2a;
-  padding-left: 1rem;
+}
+
+/* Choice row spacing in variant mode — direct children of .editor (mirrors .choices gap in simple mode) */
+.editor-paragraph-view__editor > .editor-paragraph-view__choice-row + .editor-paragraph-view__choice-row,
+.editor-paragraph-view__editor > .editor-paragraph-view__choice-row + .editor-paragraph-view__choice-add {
+  margin-top: 0.5rem;
 }
 
 .editor-paragraph-view__preview-choice-arrow {
@@ -573,6 +606,17 @@ h3.editor-paragraph-view__label {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+}
+
+/* Add-variant row pinned to the bottom of the variants list */
+.editor-paragraph-view__variant-add-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #2a2a2a;
+  margin-top: 0.5rem;
 }
 
 .editor-paragraph-view__variants-empty {
