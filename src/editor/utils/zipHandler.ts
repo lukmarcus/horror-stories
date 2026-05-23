@@ -90,6 +90,9 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
 
     return {
       id: p.id,
+      ...(p.pages !== undefined && p.pages.length > 0
+        ? { pages: p.pages }
+        : {}),
       ...(selectorChoices.length > 0 ? { choices: selectorChoices } : {}),
       variants: exportedVariants,
       ...accessibleFromEntry,
@@ -162,6 +165,7 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
           }
           return {
             id: String(p.id),
+            ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
             variantSelectors,
             variants,
             ...(Array.isArray(p.accessibleFrom)

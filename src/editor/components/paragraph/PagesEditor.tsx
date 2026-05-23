@@ -129,12 +129,15 @@ interface PagesEditorProps {
   pages: ContentBlock[][];
   /** If provided, called instead of dispatching SET_PARAGRAPH_PAGES */
   onPagesChange?: (pages: ContentBlock[][]) => void;
+  /** Disables the "Add page" button — for single-content contexts like variant bodies */
+  singlePage?: boolean;
 }
 
 export const PagesEditor: React.FC<PagesEditorProps> = ({
   paragraphId,
   pages,
   onPagesChange,
+  singlePage,
 }) => {
   const { dispatch } = useEditor();
 
@@ -178,9 +181,11 @@ export const PagesEditor: React.FC<PagesEditorProps> = ({
           onRemove={() => handleRemovePage(pageIndex)}
         />
       ))}
-      <button className="pages-editor__add-page" onClick={handleAddPage}>
-        + Dodaj stronę
-      </button>
+      {!singlePage && (
+        <button className="pages-editor__add-page" onClick={handleAddPage}>
+          + Dodaj stronę
+        </button>
+      )}
     </div>
   );
 };
