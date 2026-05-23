@@ -24,6 +24,26 @@
   font-size: 1.5rem;
 }
 
+/* h1/h2/h3 reset when used as labels */
+h1.editor-paragraph-view__title {
+  margin: 0;
+}
+h2.editor-paragraph-view__label,
+h3.editor-paragraph-view__label {
+  margin: 0.9rem 0 0.5rem;
+  font-weight: 600;
+}
+h2.editor-paragraph-view__label:first-child,
+h3.editor-paragraph-view__label:first-child {
+  margin-top: 0;
+}
+h2.editor-paragraph-view__label {
+  font-size: 0.85rem;
+}
+h3.editor-paragraph-view__label {
+  font-size: 0.78rem;
+}
+
 .editor-paragraph-view__remove-btn {
   padding: 0.4rem 0.9rem;
   border-radius: 6px;
@@ -51,6 +71,39 @@
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   align-items: start;
+}
+
+/* In variant mode the right preview panel is replaced by per-section splits */
+.editor-paragraph-view__columns--variant {
+  grid-template-columns: 1fr;
+}
+
+/* Intro section (treść wprowadzająca) 50/50 split */
+.editor-paragraph-view__intro-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 1.25rem;
+}
+
+.editor-paragraph-view__intro-editor,
+.editor-paragraph-view__intro-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.editor-paragraph-view__intro-preview {
+  border-left: 1px solid #2a2a2a;
+  padding-left: 1.25rem;
+}
+
+.editor-paragraph-view__preview-selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
 }
 
 .editor-paragraph-view__editor,
@@ -375,7 +428,38 @@
   border-color: #3a5a3a;
 }
 
-/* ── Variant block ───────────────────────────────────────────────────────── */
+.editor-paragraph-view__variant-layout-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+/* ── Choice type select (replaces §/W toggle button) ────────────────────── */
+
+.editor-paragraph-view__choice-type-select {
+  padding: 0 0.4rem;
+  border: 1px solid #555;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  background: #1a1a1a;
+  color: #aaa;
+  font-size: 0.82rem;
+  cursor: pointer;
+  height: 100%;
+  line-height: 1;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.editor-paragraph-view__choice-type-select:focus {
+  outline: none;
+  border-color: #666;
+  color: #ccc;
+}
+
+/* ── Variant layout button (when inside layout-row) ─────────────────────── */
 
 .editor-paragraph-view__variant {
   border: 1px solid #2a4a2a;
@@ -447,6 +531,32 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.editor-paragraph-view__variant-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.editor-paragraph-view__variant-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.editor-paragraph-view__variant-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-left: 1px solid #2a2a2a;
+  padding-left: 1rem;
+}
+
+.editor-paragraph-view__preview-choice-arrow {
+  color: #666;
+  font-size: 0.82rem;
 }
 
 /* ── Variants section (list + add row) ───────────────────────────────────── */

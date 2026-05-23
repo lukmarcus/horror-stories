@@ -221,7 +221,7 @@ const VariantEditor: React.FC<VariantEditorProps> = ({
 
       {!collapsed && (
         <div className="editor-paragraph-view__variant-body">
-          <span className="editor-paragraph-view__label">Treść wariantu</span>
+              <span className="editor-paragraph-view__label">Treść wariantu</span>
           <PagesEditor
             paragraphId={paragraphId}
             pages={variant.pages ?? [[]]}
@@ -486,7 +486,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
       {/* Header */}
       <div className="editor-paragraph-view__header">
         <div className="editor-paragraph-view__header-left">
-          <h2 className="editor-paragraph-view__title">§{paragraphId}</h2>
+          <h1 className="editor-paragraph-view__title">§{paragraphId}</h1>
           <div className="editor-paragraph-view__incoming">
             <span className="editor-paragraph-view__incoming-label">
               Prowadzi tutaj:
@@ -548,14 +548,14 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
         </div>
       </div>
 
-      <div className="editor-paragraph-view__columns">
+      <div className={`editor-paragraph-view__columns${isVariantMode ? " editor-paragraph-view__columns--variant" : ""}`}>
         <div className="editor-paragraph-view__editor">
           {/* ── TRYB PROSTY ── */}
           {!isVariantMode && (
             <>
               {hasPages ? (
                 <>
-                  <span className="editor-paragraph-view__label">Treść</span>
+                  <h2 className="editor-paragraph-view__label">Treść</h2>
                   <PagesEditor paragraphId={paragraphId} pages={pages} />
                 </>
               ) : (
@@ -615,7 +615,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
               )}
 
               <div className="editor-paragraph-view__choices">
-                <span className="editor-paragraph-view__label">Wybory</span>
+                <h3 className="editor-paragraph-view__label">Wybory</h3>
 
                 {(paragraph.choices ?? []).map((choice) => (
                   <ChoiceRow
@@ -689,11 +689,47 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
           {/* ── TRYB WARIANTOWY ── */}
           {isVariantMode && (
             <>
+              {/* Treść wprowadzająca + podgląd — 50/50 */}
+              <div className="editor-paragraph-view__intro-split">
+                <div className="editor-paragraph-view__intro-editor">
+                  <h2 className="editor-paragraph-view__label">Treść wprowadzająca</h2>
+                  <PagesEditor
+                    paragraphId={paragraphId}
+                    pages={paragraph.pages ?? [[]]}
+                    singlePage
+                  />
+                </div>
+                <div className="editor-paragraph-view__intro-preview">
+                  <h2 className="editor-paragraph-view__label">Podgląd</h2>
+                  <div className="editor-paragraph-view__preview-content">
+                    {(paragraph.pages ?? [[]])[0]?.length > 0 ? (
+                      <RichText content={(paragraph.pages ?? [[]])[0]!} />
+                    ) : (
+                      <p className="editor-paragraph-view__preview-empty">
+                        Brak treści wprowadzającej
+                      </p>
+                    )}
+                    {(paragraph.variantSelectors ?? []).length > 0 && (
+                      <div className="editor-paragraph-view__preview-selectors">
+                        {(paragraph.variantSelectors ?? []).map((s) => (
+                          <span
+                            key={s.id}
+                            className="editor-paragraph-view__preview-selector"
+                          >
+                            {s.text}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
               {/* Selektor wariantów */}
               <div className="editor-paragraph-view__choices">
-                <span className="editor-paragraph-view__label">
+                <h3 className="editor-paragraph-view__label">
                   Selektor wariantów (→ poziome przyciski)
-                </span>
+                </h3>
 
                 {(paragraph.variantSelectors ?? []).map((choice) => (
                   <div
@@ -837,7 +873,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
               {/* Lista wariantów */}
               <div className="editor-paragraph-view__variants-section">
                 <div className="editor-paragraph-view__variants-header">
-                  <span className="editor-paragraph-view__label">Warianty</span>
+                  <h2 className="editor-paragraph-view__label">Warianty</h2>
                   <div className="editor-paragraph-view__variant-add-row">
                     <input
                       className="editor-paragraph-view__variant-add-input"
@@ -905,102 +941,79 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
           )}
         </div>
 
-        {/* Preview */}
-        <div className="editor-paragraph-view__preview">
-          <span className="editor-paragraph-view__label">Podgląd</span>
-          <div className="editor-paragraph-view__preview-content">
-            {!isVariantMode && (
-              <>
-                {hasPages ? (
-                  pages.length === 0 ||
-                  (pages.length === 1 && pages[0].length === 0) ? (
-                    <p className="editor-paragraph-view__preview-empty">
-                      Brak treści
-                    </p>
-                  ) : (
-                    pages.map((page, i) => (
-                      <div
-                        key={i}
-                        className="editor-paragraph-view__preview-page"
-                      >
-                        {pages.length > 1 && (
-                          <span className="editor-paragraph-view__preview-page-label">
-                            Strona {i + 1}
-                          </span>
-                        )}
-                        <RichText content={page} />
-                      </div>
-                    ))
-                  )
-                ) : text ? (
-                  text
-                    .split("\n")
-                    .map((line, i) => (
-                      <ParagraphText
-                        key={i}
-                        text={line}
-                        className="editor-paragraph-view__preview-paragraph"
-                      />
-                    ))
-                ) : (
+        {/* Preview — tylko w trybie prostym; wariantowy ma własne sekcje */}
+        {!isVariantMode && (
+          <div className="editor-paragraph-view__preview">
+            <h2 className="editor-paragraph-view__label">Podgląd</h2>
+            <div className="editor-paragraph-view__preview-content">
+              {hasPages ? (
+                pages.length === 0 ||
+                (pages.length === 1 && pages[0].length === 0) ? (
                   <p className="editor-paragraph-view__preview-empty">
                     Brak treści
                   </p>
-                )}
-                {(paragraph.choices ?? []).length > 0 && (
-                  <ul className="editor-paragraph-view__preview-choices">
-                    {(paragraph.choices ?? []).map((choice) => (
-                      <li
-                        key={choice.id}
-                        className="editor-paragraph-view__preview-choice"
-                      >
-                        <RichText
-                          content={[{ type: "text", text: choice.text }]}
-                        />
-                        {choice.nextParagraphId && (
-                          <>
-                            {" "}
-                            →{" "}
-                            <button
-                              className="editor-paragraph-view__preview-choice-target"
-                              onClick={() =>
-                                onNavigate(choice.nextParagraphId!)
-                              }
-                              title={`Przejdź do §${choice.nextParagraphId}`}
-                            >
-                              §{choice.nextParagraphId}
-                            </button>
-                          </>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </>
-            )}
-            {isVariantMode && (
-              <div className="editor-paragraph-view__preview-variants">
-                <p className="editor-paragraph-view__preview-mode-label">
-                  Paragraf wariantowy · {variantIds.length} wariant
-                  {variantIds.length === 1
-                    ? ""
-                    : variantIds.length < 5
-                      ? "y"
-                      : "ów"}
+                ) : (
+                  pages.map((page, i) => (
+                    <div
+                      key={i}
+                      className="editor-paragraph-view__preview-page"
+                    >
+                      {pages.length > 1 && (
+                        <span className="editor-paragraph-view__preview-page-label">
+                          Strona {i + 1}
+                        </span>
+                      )}
+                      <RichText content={page} />
+                    </div>
+                  ))
+                )
+              ) : text ? (
+                text
+                  .split("\n")
+                  .map((line, i) => (
+                    <ParagraphText
+                      key={i}
+                      text={line}
+                      className="editor-paragraph-view__preview-paragraph"
+                    />
+                  ))
+              ) : (
+                <p className="editor-paragraph-view__preview-empty">
+                  Brak treści
                 </p>
-                {(paragraph.variantSelectors ?? []).map((s) => (
-                  <span
-                    key={s.id}
-                    className="editor-paragraph-view__preview-selector"
-                  >
-                    {s.text}
-                    {s.nextVariantId ? ` → W:${s.nextVariantId}` : ""}
-                  </span>
-                ))}
-              </div>
-            )}
+              )}
+              {(paragraph.choices ?? []).length > 0 && (
+                <ul className="editor-paragraph-view__preview-choices">
+                  {(paragraph.choices ?? []).map((choice) => (
+                    <li
+                      key={choice.id}
+                      className="editor-paragraph-view__preview-choice"
+                    >
+                      <RichText
+                        content={[{ type: "text", text: choice.text }]}
+                      />
+                      {choice.nextParagraphId && (
+                        <>
+                          {" "}
+                          →{" "}
+                          <button
+                            className="editor-paragraph-view__preview-choice-target"
+                            onClick={() =>
+                              onNavigate(choice.nextParagraphId!)
+                            }
+                            title={`Przejdź do §${choice.nextParagraphId}`}
+                          >
+                            §{choice.nextParagraphId}
+                          </button>
+                        </>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
