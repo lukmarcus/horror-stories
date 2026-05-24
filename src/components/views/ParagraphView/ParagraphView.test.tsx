@@ -346,7 +346,9 @@ describe("ParagraphView", () => {
     const callbacks = makeCallbacks();
     const para: Paragraph = {
       ...baseParagraph,
-      areChoicesHorizontal: true,
+      variants: {
+        "variant-1": { id: "variant-1", contentPages: [[]], choices: [] },
+      },
       choices: [{ id: "v1", text: "Wariant A", nextVariantId: "variant-1" }],
     };
     render(

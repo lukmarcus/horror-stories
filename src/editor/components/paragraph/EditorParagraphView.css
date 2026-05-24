@@ -24,6 +24,26 @@
   font-size: 1.5rem;
 }
 
+/* h1/h2/h3 reset when used as labels */
+h1.editor-paragraph-view__title {
+  margin: 0;
+}
+h2.editor-paragraph-view__label,
+h3.editor-paragraph-view__label {
+  margin: 0.9rem 0 0.5rem;
+  font-weight: 600;
+}
+h2.editor-paragraph-view__label:first-child,
+h3.editor-paragraph-view__label:first-child {
+  margin-top: 0;
+}
+h2.editor-paragraph-view__label {
+  font-size: 0.85rem;
+}
+h3.editor-paragraph-view__label {
+  font-size: 0.78rem;
+}
+
 .editor-paragraph-view__remove-btn {
   padding: 0.4rem 0.9rem;
   border-radius: 6px;
@@ -140,25 +160,72 @@
   border-color: #777;
 }
 
-.editor-paragraph-view__choice-arrow {
-  color: #666;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.editor-paragraph-view__choice-target {
-  padding: 0.4rem 0.5rem;
+.editor-paragraph-view__choice-target-wrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
   border-radius: 5px;
   border: 1px solid #444;
   background: #1a1a1a;
+  flex-shrink: 0;
+}
+
+.editor-paragraph-view__choice-target-wrap:focus-within {
+  border-color: #777;
+}
+
+.editor-paragraph-view__choice-target-prefix {
+  padding: 0.4rem 0.25rem 0.4rem 0.55rem;
+  color: #888;
+  font-size: 0.9rem;
+  user-select: none;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.editor-paragraph-view__choice-target {
+  border: none;
+  background: transparent;
   color: #eee;
   font-size: 0.9rem;
-  min-width: 6rem;
+  padding: 0.4rem 0.5rem 0.4rem 0.1rem;
+  width: 4rem;
+  min-width: 0;
+  font-family: inherit;
 }
 
 .editor-paragraph-view__choice-target:focus {
   outline: none;
-  border-color: #777;
+}
+
+.editor-paragraph-view__choice-dropdown {
+  position: absolute;
+  bottom: calc(100% + 3px);
+  left: 100%;
+  min-width: 8rem;
+  max-height: 12rem;
+  overflow-y: auto;
+  background: #252525;
+  border: 1px solid #555;
+  border-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.editor-paragraph-view__choice-dropdown-item {
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.editor-paragraph-view__choice-dropdown-item:hover {
+  background: #3a3a3a;
+  color: #fff;
 }
 
 .editor-paragraph-view__choice-remove {
@@ -195,33 +262,37 @@
   color: #eee;
 }
 
-.editor-paragraph-view__preview-choices {
-  list-style: none;
-  margin: 1rem 0 0;
-  padding: 0.75rem;
-  border-top: 1px solid #333;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+.editor-paragraph-view__choice-add-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
-.editor-paragraph-view__preview-choice {
-  font-size: 0.9rem;
-  color: #ccc;
-}
-
-.editor-paragraph-view__preview-choice-target {
-  background: none;
+/* In-preview choice buttons — same layout as the game */
+.editor-paragraph-view__preview-content .choices {
   border: none;
   padding: 0;
-  font-family: inherit;
-  font-size: 0.85rem;
-  color: #7ec87e;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
-.editor-paragraph-view__preview-choice-target:hover {
-  text-decoration: underline;
+.editor-paragraph-view__preview-content .choices--vertical .button {
+  width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.editor-paragraph-view__preview-content .choices--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.editor-paragraph-view__preview-content .choices--horizontal .button {
+  flex: 1;
+  min-width: 100px;
 }
 
 .editor-paragraph-view__incoming {
@@ -252,6 +323,365 @@
 .editor-paragraph-view__incoming-tag:hover {
   background: #2a3e2a;
   border-color: #5a8a5a;
+}
+
+/* ── Mode toggle (Prosty / Wariantowy) ───────────────────────────────────── */
+
+.editor-paragraph-view__header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.editor-paragraph-view__mode-toggle {
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #3a3a3a;
+}
+
+.editor-paragraph-view__mode-btn {
+  padding: 0.35rem 0.8rem;
+  border: none;
+  background: transparent;
+  color: #aaa;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__mode-btn:hover:not(:disabled) {
+  background: #2a2a2a;
+  color: #ccc;
+}
+
+.editor-paragraph-view__mode-btn--active {
+  background: #2a3e2a;
+  color: #7ec87e;
+  cursor: default;
+}
+
+/* ── Choice type toggle (§ / W) ──────────────────────────────────────────── */
+
+.editor-paragraph-view__choice-type-btn {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #555;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  background: #222;
+  color: #aaa;
+  font-size: 0.85rem;
+  font-family: monospace;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.editor-paragraph-view__choice-type-btn:hover {
+  background: #2a2a2a;
+  color: #ccc;
+}
+
+.editor-paragraph-view__choice-type-btn--variant {
+  background: #1e2a1e;
+  color: #7ec87e;
+  border-color: #3a5a3a;
+}
+
+.editor-paragraph-view__choice-target-prefix--variant {
+  background: #1e2a1e;
+  color: #7ec87e;
+  border-color: #3a5a3a;
+}
+
+.editor-paragraph-view__variant-layout-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+/* Label + layout-button side by side (inside variant editor column) */
+.editor-paragraph-view__choices-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.editor-paragraph-view__choices-heading-row h3 {
+  margin: 0;
+}
+
+/* ── Choice type select (replaces §/W toggle button) ────────────────────── */
+
+.editor-paragraph-view__choice-type-select {
+  padding: 0 0.4rem;
+  border: 1px solid #555;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  background: #1a1a1a;
+  color: #aaa;
+  font-size: 0.82rem;
+  cursor: pointer;
+  height: 100%;
+  line-height: 1;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.editor-paragraph-view__choice-type-select:focus {
+  outline: none;
+  border-color: #666;
+  color: #ccc;
+}
+
+/* ── Variant layout button (when inside layout-row) ─────────────────────── */
+
+.editor-paragraph-view__variant {
+  border: 1px solid #2a4a2a;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.editor-paragraph-view__variant-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  background: #1a2a1a;
+}
+
+.editor-paragraph-view__variant-toggle {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.editor-paragraph-view__variant-name {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #b8d8b8;
+  font-family: monospace;
+}
+
+.editor-paragraph-view__variant-layout-btn {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #3a5a3a;
+  background: transparent;
+  color: #7ec87e;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__variant-layout-btn:hover {
+  background: #2a3e2a;
+}
+
+.editor-paragraph-view__variant-layout-btn--active {
+  background: #2a4a2a;
+}
+
+.editor-paragraph-view__variant-remove {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #5a2a2a;
+  background: transparent;
+  color: #e87e7e;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.editor-paragraph-view__variant-remove:hover {
+  background: #3a1a1a;
+}
+
+.editor-paragraph-view__variant-rename-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 0.88rem;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+.editor-paragraph-view__variant-rename-btn:hover {
+  color: #aaa;
+}
+
+.editor-paragraph-view__variant-rename-input {
+  flex: 1;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #5a8a5a;
+  background: #1a2a1a;
+  color: #ccc;
+  font-size: 0.9rem;
+  font-family: monospace;
+  min-width: 0;
+}
+
+.editor-paragraph-view__variant-rename-save,
+.editor-paragraph-view__variant-rename-cancel {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.editor-paragraph-view__variant-rename-save {
+  border: 1px solid #3a5a3a;
+  background: #1a2a1a;
+  color: #7ec87e;
+}
+
+.editor-paragraph-view__variant-rename-cancel {
+  border: 1px solid #5a2a2a;
+  background: transparent;
+  color: #e87e7e;
+}
+
+.editor-paragraph-view__variant-body {
+  padding: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.editor-paragraph-view__variant-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.editor-paragraph-view__variant-editor,
+.editor-paragraph-view__variant-preview {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Choice row spacing in variant mode — direct children of .editor (mirrors .choices gap in simple mode) */
+.editor-paragraph-view__editor
+  > .editor-paragraph-view__choice-row
+  + .editor-paragraph-view__choice-row,
+.editor-paragraph-view__editor
+  > .editor-paragraph-view__choice-row
+  + .editor-paragraph-view__choice-add {
+  margin-top: 0.5rem;
+}
+
+.editor-paragraph-view__preview-choice-arrow {
+  color: #666;
+  font-size: 0.82rem;
+}
+
+/* ── Variants section (list + add row) ───────────────────────────────────── */
+
+.editor-paragraph-view__variants-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.editor-paragraph-view__variants-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* Add-variant row pinned to the bottom of the variants list */
+.editor-paragraph-view__variant-add-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #2a2a2a;
+  margin-top: 0.5rem;
+}
+
+.editor-paragraph-view__variants-empty {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+
+.editor-paragraph-view__variant-add-row {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.editor-paragraph-view__variant-add-input {
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: #ccc;
+  font-size: 0.85rem;
+  font-family: monospace;
+  width: 14rem;
+}
+
+.editor-paragraph-view__variant-add-btn {
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  border: 1px solid #3a5a3a;
+  background: #1a2a1a;
+  color: #7ec87e;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__variant-add-btn:hover:not(:disabled) {
+  background: #2a3e2a;
+}
+
+.editor-paragraph-view__variant-add-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ── Variant mode preview ─────────────────────────────────────────────────── */
+
+.editor-paragraph-view__preview-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.editor-paragraph-view__preview-mode-label {
+  font-size: 0.82rem;
+  color: #7ec87e;
+  font-style: italic;
+  margin: 0 0 0.25rem;
+}
+
+.editor-paragraph-view__preview-selector {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background: #1e2a1e;
+  border: 1px solid #3a5a3a;
+  color: #a8d8a8;
+  font-size: 0.85rem;
+  margin-right: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .editor-paragraph-view__incoming-empty {

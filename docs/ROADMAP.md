@@ -6,13 +6,16 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.6 - Edytor: warianty paragrafu
+## Milestone v0.2.7 - Refaktoring i testy edytora
 
 ### Zakres
 
-- Edycja `variants` — zagnieżdżone pod-paragrafy z własnymi stronami i wyborami
-- Obsługa `nextVariantId` w wyborach (np. wybór postaci prowadzi do wariantu treści)
-- Obsługa `areChoicesHorizontal` (poziomy układ przycisków wyborów)
+- Wyciągnięcie `VariantEditor` do osobnego pliku
+- Wyciągnięcie `<ChoiceAddRow>` jako współdzielony komponent (3× duplikat)
+- Usunięcie nieużywanych klas CSS
+- Wspólna funkcja `filterIds` zamiast 4 kopii
+- Hook `useClickOutside` w `EditorInlineTools`
+- Testy jednostkowe: `textToPage`/`pageToText`, `buildAccessibleFrom`, `buildDefinition`
 
 ### Status
 
@@ -20,7 +23,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.7 - Edytor: zaawansowane paragrafy
+## Milestone v0.2.8 - Edytor: zaawansowane paragrafy
 
 ### Zakres
 
@@ -33,7 +36,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.8 - Edytor: setup i tokeny alfabetu
+## Milestone v0.2.9 - Edytor: setup i tokeny alfabetu
 
 ### Zakres
 
@@ -46,13 +49,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.9 - Edytor: import wbudowanych scenariuszy
+## Milestone v0.2.10 - Edytor: import wbudowanych scenariuszy
 
 ### Zakres
 
 - Możliwość skopiowania wbudowanego scenariusza do edytora jako baza do edycji
 - Wbudowane scenariusze są read-only — edytuje się kopię
-- Po v0.2.8 wszystkie elementy droga-donikad są edytowalne
+- Po v0.2.9 wszystkie elementy droga-donikad są edytowalne
 
 ### Status
 
@@ -60,7 +63,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.10 - Edytor: rzut kostką
+## Milestone v0.2.11 - Edytor: rzut kostką
 
 ### Zakres
 
@@ -75,8 +78,8 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ## Notatki na przyszłość
 
-- Paragrafy podpięte pod żetony alfabetu powinny mieć etykietę `(litera A)` itp. — do v0.2.8
-- Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.9
+- Paragrafy podpięte pod żetony alfabetu powinny mieć etykietę `(litera A)` itp. — do v0.2.9
+- Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10
 
 ---
 

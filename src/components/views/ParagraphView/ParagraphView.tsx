@@ -106,12 +106,11 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   const showDeadEndInput = isDeadEnd && currentPage === maxPage;
 
   // Separate variant choices (horizontal/within frame) from regular choices
-  const variantChoices = paragraph.areChoicesHorizontal
-    ? paragraph.choices || []
-    : [];
-  const regularChoices = paragraph.areChoicesHorizontal
-    ? []
-    : paragraph.choices || [];
+  // Top-level paragraphs: horizontal when they have variants
+  // Nested variants: horizontal when explicitly marked with areChoicesHorizontal
+  const isHorizontal = !!paragraph.variants || !!paragraph.areChoicesHorizontal;
+  const variantChoices = isHorizontal ? paragraph.choices || [] : [];
+  const regularChoices = isHorizontal ? [] : paragraph.choices || [];
 
   return (
     <>
@@ -239,7 +238,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
           </div>
         )}
 
-        {variantChoices.length > 0 && paragraph.areChoicesHorizontal && (
+        {variantChoices.length > 0 && isHorizontal && (
           <fieldset
             className="choices choices--horizontal"
             aria-label="Dostępne warianty"

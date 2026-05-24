@@ -1,30 +1,26 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import type { ContentBlock } from "../../../types";
 import { useEditor } from "../../context/useEditor";
 import {
-  symbols,
-  roomItems,
-  persons,
-  enemies,
-  storyItems,
-  statuses,
-  letters,
-  randomItems,
-  getSymbol,
-  getRoomItem,
-  getPerson,
-  getEnemy,
-  getStoryItem,
-  getStatus,
-  getLetter,
-  getRandomItem,
-} from "../../../data/items";
+  ColorPicker,
+  ImagePicker,
+  SnippetPicker,
+  SPAN_SNIPPETS,
+  SYMBOL_PICKER_ITEMS,
+  ROOM_PICKER_ITEMS,
+  PERSON_PICKER_ITEMS,
+  ENEMY_PICKER_ITEMS,
+  STORY_PICKER_ITEMS,
+  STATUS_PICKER_ITEMS,
+  LETTER_PICKER_ITEMS,
+  RANDOM_PICKER_ITEMS,
+  COLORS,
+  type ColorName,
+} from "./EditorInlineTools";
 import "./PagesEditor.css";
 
 // ── block prefix helpers ────────────────────────────────────
 
-const COLORS = ["yellow", "red", "purple", "green", "blue"] as const;
-type ColorName = (typeof COLORS)[number];
 const SIZES = ["xs", "sm", "lg", "xl"] as const;
 type SizeName = (typeof SIZES)[number];
 
@@ -126,81 +122,37 @@ function textToPage(text: string): ContentBlock[] {
   });
 }
 
-// ── image picker data ────────────────────────────────────────
-
-const SYMBOL_PICKER_ITEMS = symbols.map((s) => ({
-  id: s.id,
-  imagePath: getSymbol(s.id)!.imagePath,
-  label: s.name,
-}));
-
-const ROOM_PICKER_ITEMS = roomItems.map((r) => ({
-  id: String(r.id),
-  imagePath: getRoomItem(r.id)!.imagePath,
-  label: `Żeton planszy §${r.id}`,
-  sublabel: r.name || undefined,
-}));
-
-const PERSON_PICKER_ITEMS = persons.map((p) => ({
-  id: p.id,
-  imagePath: getPerson(p.id)!.imagePath,
-  label: p.id.charAt(0).toUpperCase() + p.id.slice(1),
-}));
-
-const ENEMY_PICKER_ITEMS = enemies.map((e) => ({
-  id: e.id,
-  imagePath: getEnemy(e.id)!.imagePath,
-  label: e.id.charAt(0).toUpperCase() + e.id.slice(1),
-}));
-
-const STORY_PICKER_ITEMS = storyItems.map((s) => ({
-  id: s.id,
-  imagePath: getStoryItem(s.id)!.imagePath,
-  label: `Przedmiot fabularny ${s.id.toUpperCase()}${s.paragraphId != null ? ` (\u00a7${s.paragraphId})` : ""}`,
-  sublabel: s.description || undefined,
-}));
-
-const STATUS_PICKER_ITEMS = statuses.map((s) => ({
-  id: s.id,
-  imagePath: getStatus(s.id)!.imagePath,
-  label: s.name ? `Żeton statusu: ${s.name}` : s.id,
-  sublabel: s.description || undefined,
-}));
-
-const LETTER_PICKER_ITEMS = letters.map((l) => ({
-  id: l.id,
-  imagePath: getLetter(l.id)!.imagePath,
-  label: `Litera ${l.id.toUpperCase()}`,
-}));
-
-const RANDOM_PICKER_ITEMS = randomItems.map((r) => ({
-  id: r.id,
-  imagePath: getRandomItem(r.id)!.imagePath,
-  label: `Przedmiot losowy ${r.id.toUpperCase()}`,
-  sublabel: r.description || undefined,
-}));
-
-// ── PagesEditor ──────────────────────────────────────
+// ── PageEditor ────────────────────────────────────────
 
 interface PagesEditorProps {
   paragraphId: string;
   pages: ContentBlock[][];
+  /** If provided, called instead of dispatching SET_PARAGRAPH_PAGES */
+  onPagesChange?: (pages: ContentBlock[][]) => void;
+  /** Disables the "Add page" button — for single-content contexts like variant bodies */
+  singlePage?: boolean;
 }
 
 export const PagesEditor: React.FC<PagesEditorProps> = ({
   paragraphId,
   pages,
+  onPagesChange,
+  singlePage,
 }) => {
   const { dispatch } = useEditor();
 
   const setPages = useCallback(
     (newPages: ContentBlock[][]) => {
-      dispatch({
-        type: "SET_PARAGRAPH_PAGES",
-        payload: { id: paragraphId, pages: newPages },
-      });
+      if (onPagesChange) {
+        onPagesChange(newPages);
+      } else {
+        dispatch({
+          type: "SET_PARAGRAPH_PAGES",
+          payload: { id: paragraphId, pages: newPages },
+        });
+      }
     },
-    [dispatch, paragraphId],
+    [dispatch, paragraphId, onPagesChange],
   );
 
   const handlePageChange = useCallback(
@@ -229,147 +181,10 @@ export const PagesEditor: React.FC<PagesEditorProps> = ({
           onRemove={() => handleRemovePage(pageIndex)}
         />
       ))}
-      <button className="pages-editor__add-page" onClick={handleAddPage}>
-        + Dodaj stronę
-      </button>
-    </div>
-  );
-};
-
-// ── ColorPicker ──────────────────────────────────────
-
-interface ColorPickerProps {
-  onSelect: (color: string) => void;
-  label?: string;
-  activeColor?: ColorName | null;
-}
-
-const ColorPicker: React.FC<ColorPickerProps> = ({
-  onSelect,
-  label = "A",
-  activeColor,
-}) => {
-  const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [open]);
-
-  return (
-    <div className="pages-editor__color-picker" ref={containerRef}>
-      <button
-        className={`pages-editor__toolbar-btn pages-editor__color-picker-toggle${activeColor ? ` pages-editor__color-btn--${activeColor} pages-editor__toolbar-btn--active` : ""}`}
-        onMouseDown={(e) => {
-          e.preventDefault();
-          setOpen((o) => !o);
-        }}
-        title="Kolor"
-      >
-        {label}▾
-      </button>
-      {open && (
-        <div className="pages-editor__color-dropdown">
-          {COLORS.map((color) => (
-            <button
-              key={color}
-              className={`pages-editor__toolbar-btn pages-editor__color-btn pages-editor__color-btn--${color}${activeColor === color ? " pages-editor__toolbar-btn--active" : ""}`}
-              onMouseDown={(e) => {
-                e.preventDefault();
-                onSelect(color);
-                setOpen(false);
-              }}
-              title={`Kolor: ${color}`}
-            >
-              A
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
-
-// ── ImagePicker ──────────────────────────────────────
-
-interface ImagePickerItem {
-  id: string;
-  imagePath: string;
-  label: string;
-  sublabel?: string;
-}
-
-interface ImagePickerProps {
-  items: ImagePickerItem[];
-  onSelect: (id: string) => void;
-  toggleContent: React.ReactNode;
-  title?: string;
-}
-
-const ImagePicker: React.FC<ImagePickerProps> = ({
-  items,
-  onSelect,
-  toggleContent,
-  title,
-}) => {
-  const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [open]);
-
-  return (
-    <div className="pages-editor__image-picker" ref={containerRef}>
-      <button
-        className="pages-editor__toolbar-btn pages-editor__image-picker-toggle"
-        onMouseDown={(e) => {
-          e.preventDefault();
-          setOpen((o) => !o);
-        }}
-        title={title}
-      >
-        {toggleContent}
-      </button>
-      {open && (
-        <div className="pages-editor__image-dropdown">
-          {items.map((item) => (
-            <button
-              key={item.id}
-              className="pages-editor__image-btn"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                onSelect(item.id);
-                setOpen(false);
-              }}
-              title={
-                item.sublabel ? `${item.label}\n${item.sublabel}` : item.label
-              }
-            >
-              <img src={item.imagePath} alt={item.label} />
-            </button>
-          ))}
-        </div>
+      {!singlePage && (
+        <button className="pages-editor__add-page" onClick={handleAddPage}>
+          + Dodaj stronę
+        </button>
       )}
     </div>
   );
@@ -441,6 +256,21 @@ const PageEditor: React.FC<PageEditorProps> = ({
     requestAnimationFrame(() => {
       el.focus();
       el.selectionStart = el.selectionEnd = pos + snippet.length;
+    });
+  };
+
+  const insertSnippet = (snippet: string, cursorFromEnd?: number) => {
+    const el = ref.current;
+    if (!el) return;
+    const pos = el.selectionStart;
+    onChange(text.slice(0, pos) + snippet + text.slice(pos));
+    const cursorPos =
+      cursorFromEnd != null
+        ? pos + snippet.length - cursorFromEnd
+        : pos + snippet.length;
+    requestAnimationFrame(() => {
+      el.focus();
+      el.selectionStart = el.selectionEnd = cursorPos;
     });
   };
 
@@ -541,6 +371,13 @@ const PageEditor: React.FC<PageEditorProps> = ({
           <div className="pages-editor__toolbar-group">
             <ColorPicker
               onSelect={(c) => wrap(`<span class='color-${c}'>`, "</span>")}
+              title="Kolor zaznaczenia"
+            />
+            <SnippetPicker
+              items={SPAN_SNIPPETS}
+              toggleLabel={"</>"}
+              title="Wstaw kolorowy span"
+              onSelect={insertSnippet}
             />
           </div>
           <div className="pages-editor__toolbar-sep" />

@@ -7,6 +7,29 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.6] - 2026-05-24
+
+### Dodano
+
+- Tworzenie paragrafów wariantowych — przełącznik „Prosty / Wariantowy" otwiera tryb z treścią wprowadzającą i selektorem poziomych przycisków prowadzących do osobnych wariantów
+- Każdy wariant ma własne strony treści i wybory; można go zwinąć, rozwinąć, zmienić mu nazwę lub usunąć
+- Połączenia wychodzące z wariantów są widoczne w grafie scenariusza
+- Plik `.horrorstory` w pełni zachowuje strukturę wariantową — zapis i odczyt bez utraty danych
+- Podgląd selektorów i wyborów w edytorze wygląda identycznie jak przyciski w grze
+- Pole docelowe wyboru ma teraz podpowiadacz — po kliknięciu otwiera się lista dostępnych paragrafów, filtrowana w trakcie wpisywania; lista pojawia się w górę i w prawo, nie zasłaniając pozostałych wyborów
+- Wpisanie numeru paragrafu który jeszcze nie istnieje automatycznie go tworzy — pojawia się od razu na liście bez konieczności ręcznego zakładania
+- Pole tekstowe wyboru otrzymało pełny pasek narzędzi: pogrubienie, kursywa, podkreślenie, kolor zaznaczenia, gotowe kolorowe wstawki oraz pickery grafik — te same narzędzia co w edytorze treści paragrafu
+- Gotowe wstawki (`</>`): `§ paragraf` (zielony), `UWAGA` (czerwony), `nagroda` (niebieski), `NEWS` (fioletowy) — wstawiają kolorowy tekst jednym kliknięciem
+- Podgląd wyborów renderuje kolorowe tagi, obrazki i inne znaczniki — widać efekt końcowy zamiast surowego kodu
+
+### Zmieniono
+
+- Nie można dodać wyboru bez wpisania tekstu — przycisk „+ Dodaj" jest nieaktywny dopóki pole jest puste
+- Nie można dodać wyboru wskazującego na ten sam paragraf
+- Sidebar z listą paragrafów i panel edycji scrollują się niezależnie od siebie
+
+---
+
 ## [0.2.5] - 2026-05-16
 
 ### Dodano

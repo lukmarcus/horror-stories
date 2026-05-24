@@ -121,6 +121,7 @@ export const Game: React.FC = () => {
     }
 
     // Return only the last variant (not accumulated with main paragraph)
+    // Strip variants so !!displayParagraph.variants is false for nested variants
     return {
       ...currentParagraph,
       contentPages:
@@ -131,6 +132,7 @@ export const Game: React.FC = () => {
       content: lastVariant.content,
       choices: lastVariant.choices || currentParagraph.choices,
       areChoicesHorizontal: lastVariant.areChoicesHorizontal,
+      variants: undefined,
     };
   };
 

@@ -1,4 +1,8 @@
-import type { EditorScenario, EditorParagraph } from "../context/editorTypes";
+import type {
+  EditorScenario,
+  EditorParagraph,
+  EditorChoice,
+} from "../context/editorTypes";
 
 const FILE_EXTENSION = ".horrorstory";
 
@@ -7,6 +11,7 @@ function buildAccessibleFrom(
 ): Record<string, string[]> {
   const map: Record<string, string[]> = {};
   for (const p of paragraphs) {
+    // Choices from simple paragraphs
     for (const choice of p.choices ?? []) {
       if (!choice.nextParagraphId) continue;
       if (!map[choice.nextParagraphId]) map[choice.nextParagraphId] = [];
@@ -14,8 +19,29 @@ function buildAccessibleFrom(
         map[choice.nextParagraphId].push(p.id);
       }
     }
+    // Choices from variant paragraphs (variant selectors don't link to paragraphs,
+    // but variant choices may link to paragraphs via nextParagraphId)
+    for (const variant of Object.values(p.variants ?? {})) {
+      for (const choice of variant.choices ?? []) {
+        if (!choice.nextParagraphId) continue;
+        if (!map[choice.nextParagraphId]) map[choice.nextParagraphId] = [];
+        if (!map[choice.nextParagraphId].includes(p.id)) {
+          map[choice.nextParagraphId].push(p.id);
+        }
+      }
+    }
   }
   return map;
+}
+
+/** Strip editor-only `id` field from choices and remove undefined-valued keys. */
+function exportChoice(c: EditorChoice): Record<string, unknown> {
+  const out: Record<string, unknown> = { text: c.text };
+  if (c.nextParagraphId !== undefined && c.nextParagraphId !== "")
+    out.nextParagraphId = c.nextParagraphId;
+  if (c.nextVariantId !== undefined && c.nextVariantId !== "")
+    out.nextVariantId = c.nextVariantId;
+  return out;
 }
 
 export async function exportToZip(scenario: EditorScenario): Promise<void> {
@@ -32,28 +58,51 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     return a.id.localeCompare(b.id);
   });
 
-  const paragraphsWithAccessible = sortedParagraphs.map((p) => {
+  const paragraphsExported = sortedParagraphs.map((p) => {
     const sources = accessibleFrom[p.id];
-    const cleanChoices = (p.choices ?? []).map(({ text, nextParagraphId }) => ({
-      text,
-      nextParagraphId,
-    }));
-    const result = {
-      ...(sources && sources.length > 0
-        ? { ...p, accessibleFrom: sources }
-        : p),
-      ...(cleanChoices.length > 0
-        ? { choices: cleanChoices }
-        : { choices: undefined }),
+    const accessibleFromEntry =
+      sources && sources.length > 0 ? { accessibleFrom: sources } : {};
+
+    // ── Prosty (simple) paragraph ──
+    if (!p.variants) {
+      const cleanChoices = (p.choices ?? []).map(exportChoice);
+      return {
+        id: p.id,
+        ...(p.text !== undefined ? { text: p.text } : {}),
+        ...(p.pages !== undefined ? { pages: p.pages } : {}),
+        ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
+        ...accessibleFromEntry,
+      };
+    }
+
+    // ── Wariantowy (variant) paragraph ──
+    const selectorChoices = (p.variantSelectors ?? []).map(exportChoice);
+
+    const exportedVariants: Record<string, unknown> = {};
+    for (const [vid, variant] of Object.entries(p.variants)) {
+      const variantChoices = (variant.choices ?? []).map(exportChoice);
+      exportedVariants[vid] = {
+        ...(variant.pages !== undefined ? { contentPages: variant.pages } : {}),
+        ...(variant.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
+        ...(variantChoices.length > 0 ? { choices: variantChoices } : {}),
+      };
+    }
+
+    return {
+      id: p.id,
+      ...(p.pages !== undefined && p.pages.length > 0
+        ? { pages: p.pages }
+        : {}),
+      ...(selectorChoices.length > 0 ? { choices: selectorChoices } : {}),
+      variants: exportedVariants,
+      ...accessibleFromEntry,
     };
-    if (!result.choices?.length) delete result.choices;
-    return result;
   });
 
   zip.file("meta.json", JSON.stringify(scenario.meta, null, 2));
   zip.file(
     "paragraphs.json",
-    JSON.stringify({ paragraphs: paragraphsWithAccessible }, null, 2),
+    JSON.stringify({ paragraphs: paragraphsExported }, null, 2),
   );
 
   const blob = await zip.generateAsync({ type: "blob" });
@@ -87,7 +136,57 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   const paragraphsFile = zip.file("paragraphs.json");
   if (paragraphsFile) {
     const raw = JSON.parse(await paragraphsFile.async("text"));
-    if (Array.isArray(raw.paragraphs)) paragraphs = raw.paragraphs;
+    if (Array.isArray(raw.paragraphs)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      paragraphs = raw.paragraphs.map((p: any) => {
+        const addId = (c: Record<string, unknown>) => ({
+          id: crypto.randomUUID(),
+          text: String(c.text ?? ""),
+          ...(c.nextParagraphId !== undefined
+            ? { nextParagraphId: String(c.nextParagraphId) }
+            : {}),
+          ...(c.nextVariantId !== undefined
+            ? { nextVariantId: String(c.nextVariantId) }
+            : {}),
+        });
+
+        if (p.variants && typeof p.variants === "object") {
+          // Variant paragraph: choices → variantSelectors, variants: contentPages → pages
+          const variantSelectors = (p.choices ?? []).map(addId);
+          const variants: Record<string, unknown> = {};
+          for (const [vid, v] of Object.entries(
+            p.variants as Record<string, any>,
+          )) {
+            variants[vid] = {
+              pages: v.contentPages ?? [[]],
+              ...(v.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
+              choices: (v.choices ?? []).map(addId),
+            };
+          }
+          return {
+            id: String(p.id),
+            ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
+            variantSelectors,
+            variants,
+            ...(Array.isArray(p.accessibleFrom)
+              ? { accessibleFrom: p.accessibleFrom }
+              : {}),
+          };
+        }
+
+        // Simple paragraph
+        const choices = (p.choices ?? []).map(addId);
+        return {
+          id: String(p.id),
+          ...(p.text !== undefined ? { text: String(p.text) } : {}),
+          ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
+          ...(choices.length > 0 ? { choices } : {}),
+          ...(Array.isArray(p.accessibleFrom)
+            ? { accessibleFrom: p.accessibleFrom }
+            : {}),
+        };
+      });
+    }
   }
 
   return { meta, paragraphs };
