@@ -73,13 +73,6 @@ h3.editor-paragraph-view__label {
   align-items: start;
 }
 
-.editor-paragraph-view__preview-selectors {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.5rem;
-}
-
 .editor-paragraph-view__editor,
 .editor-paragraph-view__preview {
   display: flex;
@@ -274,33 +267,32 @@ h3.editor-paragraph-view__label {
   cursor: not-allowed;
 }
 
-.editor-paragraph-view__preview-choices {
-  list-style: none;
-  margin: 1rem 0 0;
-  padding: 0.75rem;
-  border-top: 1px solid #333;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.editor-paragraph-view__preview-choice {
-  font-size: 0.9rem;
-  color: #ccc;
-}
-
-.editor-paragraph-view__preview-choice-target {
-  background: none;
+/* In-preview choice buttons — same layout as the game */
+.editor-paragraph-view__preview-content .choices {
   border: none;
   padding: 0;
-  font-family: inherit;
-  font-size: 0.85rem;
-  color: #7ec87e;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
-.editor-paragraph-view__preview-choice-target:hover {
-  text-decoration: underline;
+.editor-paragraph-view__preview-content .choices--vertical .button {
+  width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.editor-paragraph-view__preview-content .choices--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.editor-paragraph-view__preview-content .choices--horizontal .button {
+  flex: 1;
+  min-width: 100px;
 }
 
 .editor-paragraph-view__incoming {
@@ -582,8 +574,12 @@ h3.editor-paragraph-view__label {
 }
 
 /* Choice row spacing in variant mode — direct children of .editor (mirrors .choices gap in simple mode) */
-.editor-paragraph-view__editor > .editor-paragraph-view__choice-row + .editor-paragraph-view__choice-row,
-.editor-paragraph-view__editor > .editor-paragraph-view__choice-row + .editor-paragraph-view__choice-add {
+.editor-paragraph-view__editor
+  > .editor-paragraph-view__choice-row
+  + .editor-paragraph-view__choice-row,
+.editor-paragraph-view__editor
+  > .editor-paragraph-view__choice-row
+  + .editor-paragraph-view__choice-add {
   margin-top: 0.5rem;
 }
 

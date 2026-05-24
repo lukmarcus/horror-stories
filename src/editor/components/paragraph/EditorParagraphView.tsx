@@ -2,6 +2,7 @@
 import { useEditor } from "../../context/useEditor";
 import { ParagraphText } from "../../../components/text/ParagraphText/ParagraphText";
 import { RichText } from "../../../components/text/RichText/RichText";
+import { Button } from "../../../components/ui/Button";
 import type { EditorChoice, EditorVariant } from "../../context/editorTypes";
 import { PagesEditor } from "./PagesEditor";
 import { ChoiceTextInput } from "./ChoiceTextInput";
@@ -431,24 +432,28 @@ const VariantEditor: React.FC<VariantEditorProps> = ({
                   ))
                 )}
                 {(variant.choices ?? []).length > 0 && (
-                  <ul className="editor-paragraph-view__preview-choices">
+                  <fieldset className="choices choices--vertical">
+                    <legend className="sr-only">Wybory wariantu</legend>
                     {(variant.choices ?? []).map((choice) => (
-                      <li
+                      <Button
                         key={choice.id}
-                        className="editor-paragraph-view__preview-choice"
+                        variant="primary"
+                        size="lg"
+                        disabled
+                        title={
+                          choice.nextParagraphId
+                            ? `→ §${choice.nextParagraphId}`
+                            : choice.nextVariantId
+                              ? `→ W:${choice.nextVariantId}`
+                              : undefined
+                        }
                       >
                         <RichText
                           content={[{ type: "text", text: choice.text }]}
                         />
-                        {choice.nextParagraphId && (
-                          <> → §{choice.nextParagraphId}</>
-                        )}
-                        {choice.nextVariantId && (
-                          <> → W:{choice.nextVariantId}</>
-                        )}
-                      </li>
+                      </Button>
                     ))}
-                  </ul>
+                  </fieldset>
                 )}
               </div>
             </div>
@@ -877,26 +882,26 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                       filteredVariantIds(choice.nextVariantId ?? "").length >
                         0 && (
                         <ul className="editor-paragraph-view__choice-dropdown">
-                          {filteredVariantIds(
-                            choice.nextVariantId ?? "",
-                          ).map((id) => (
-                            <li
-                              key={id}
-                              className="editor-paragraph-view__choice-dropdown-item"
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                dispatch({
-                                  type: "UPDATE_VARIANT_SELECTOR",
-                                  payload: {
-                                    paragraphId,
-                                    choice: { ...choice, nextVariantId: id },
-                                  },
-                                });
-                              }}
-                            >
-                              W:{id}
-                            </li>
-                          ))}
+                          {filteredVariantIds(choice.nextVariantId ?? "").map(
+                            (id) => (
+                              <li
+                                key={id}
+                                className="editor-paragraph-view__choice-dropdown-item"
+                                onMouseDown={(e) => {
+                                  e.preventDefault();
+                                  dispatch({
+                                    type: "UPDATE_VARIANT_SELECTOR",
+                                    payload: {
+                                      paragraphId,
+                                      choice: { ...choice, nextVariantId: id },
+                                    },
+                                  });
+                                }}
+                              >
+                                W:{id}
+                              </li>
+                            ),
+                          )}
                         </ul>
                       )}
                   </div>
@@ -930,9 +935,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                     type="text"
                     value={newSelectorTarget}
                     onChange={(e) => setNewSelectorTarget(e.target.value)}
-                    onKeyDown={(e) =>
-                      e.key === "Enter" && handleAddSelector()
-                    }
+                    onKeyDown={(e) => e.key === "Enter" && handleAddSelector()}
                     onFocus={() => setFocusedSelectorId("__new-sel__")}
                     onBlur={() => setFocusedSelectorId(null)}
                     placeholder="?"
@@ -980,8 +983,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   const introPages = paragraph.pages ?? [[]];
                   const isEmpty =
                     introPages.length === 0 ||
-                    (introPages.length === 1 &&
-                      introPages[0].length === 0);
+                    (introPages.length === 1 && introPages[0].length === 0);
                   return isEmpty ? (
                     <p className="editor-paragraph-view__preview-empty">
                       Brak treści wprowadzającej
@@ -1003,16 +1005,14 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   );
                 })()}
                 {(paragraph.variantSelectors ?? []).length > 0 && (
-                  <div className="editor-paragraph-view__preview-selectors">
+                  <fieldset className="choices choices--horizontal">
+                    <legend className="sr-only">Wybierz wariant</legend>
                     {(paragraph.variantSelectors ?? []).map((s) => (
-                      <span
-                        key={s.id}
-                        className="editor-paragraph-view__preview-selector"
-                      >
+                      <Button key={s.id} variant="primary" size="lg">
                         {s.text}
-                      </span>
+                      </Button>
                     ))}
-                  </div>
+                  </fieldset>
                 )}
               </>
             ) : (
@@ -1054,33 +1054,34 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   </p>
                 )}
                 {(paragraph.choices ?? []).length > 0 && (
-                  <ul className="editor-paragraph-view__preview-choices">
+                  <fieldset className="choices choices--vertical">
+                    <legend className="sr-only">Dostępne wybory</legend>
                     {(paragraph.choices ?? []).map((choice) => (
-                      <li
+                      <Button
                         key={choice.id}
-                        className="editor-paragraph-view__preview-choice"
+                        variant="primary"
+                        size="lg"
+                        onClick={() =>
+                          choice.nextParagraphId &&
+                          onNavigate(choice.nextParagraphId)
+                        }
+                        disabled={
+                          !choice.nextParagraphId && !choice.nextVariantId
+                        }
+                        title={
+                          choice.nextParagraphId
+                            ? `Przejdź do §${choice.nextParagraphId}`
+                            : choice.nextVariantId
+                              ? `Wariant: ${choice.nextVariantId}`
+                              : undefined
+                        }
                       >
                         <RichText
                           content={[{ type: "text", text: choice.text }]}
                         />
-                        {choice.nextParagraphId && (
-                          <>
-                            {" "}
-                            →{" "}
-                            <button
-                              className="editor-paragraph-view__preview-choice-target"
-                              onClick={() =>
-                                onNavigate(choice.nextParagraphId!)
-                              }
-                              title={`Przejdź do §${choice.nextParagraphId}`}
-                            >
-                              §{choice.nextParagraphId}
-                            </button>
-                          </>
-                        )}
-                      </li>
+                      </Button>
                     ))}
-                  </ul>
+                  </fieldset>
                 )}
               </>
             )}
