@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import * as textInsert from "../../utils/textInsert";
 import {
   ColorPicker,
   ImagePicker,
@@ -31,46 +32,20 @@ export const ChoiceTextInput: React.FC<ChoiceTextInputProps> = ({
 }) => {
   const ref = useRef<HTMLInputElement>(null);
 
-  const insertAtCursor = (snippet: string) => {
-    const el = ref.current;
-    if (!el) return;
-    const pos = el.selectionStart ?? value.length;
-    const end = el.selectionEnd ?? pos;
-    onChange(value.slice(0, pos) + snippet + value.slice(end));
-    requestAnimationFrame(() => {
-      el.focus();
-      el.selectionStart = el.selectionEnd = pos + snippet.length;
-    });
-  };
+  const insertAtCursor = (snippet: string) =>
+    textInsert.insertAtCursor(ref.current, value, onChange, snippet);
 
-  const wrap = (before: string, after: string) => {
-    const el = ref.current;
-    if (!el) return;
-    const s = el.selectionStart ?? 0;
-    const e = el.selectionEnd ?? 0;
-    const sel = value.slice(s, e);
-    onChange(value.slice(0, s) + before + sel + after + value.slice(e));
-    requestAnimationFrame(() => {
-      el.focus();
-      el.selectionStart = s + before.length;
-      el.selectionEnd = e + before.length;
-    });
-  };
+  const wrap = (before: string, after: string) =>
+    textInsert.wrapSelection(ref.current, value, onChange, before, after);
 
-  const insertSnippet = (snippet: string, cursorFromEnd?: number) => {
-    const el = ref.current;
-    if (!el) return;
-    const pos = el.selectionStart ?? value.length;
-    onChange(value.slice(0, pos) + snippet + value.slice(pos));
-    const cursorPos =
-      cursorFromEnd != null
-        ? pos + snippet.length - cursorFromEnd
-        : pos + snippet.length;
-    requestAnimationFrame(() => {
-      el.focus();
-      el.selectionStart = el.selectionEnd = cursorPos;
-    });
-  };
+  const insertSnippet = (snippet: string, cursorFromEnd?: number) =>
+    textInsert.insertSnippet(
+      ref.current,
+      value,
+      onChange,
+      snippet,
+      cursorFromEnd,
+    );
 
   return (
     <div className="choice-text-input">

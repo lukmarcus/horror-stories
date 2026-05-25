@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import type { ContentBlock } from "../../../types";
 import { useEditor } from "../../context/useEditor";
+import * as textInsert from "../../utils/textInsert";
 import {
   ColorPicker,
   ImagePicker,
@@ -220,19 +221,8 @@ const PageEditor: React.FC<PageEditorProps> = ({
 
   // ── inline formatting ────────────────────────────────
 
-  const wrap = (before: string, after: string) => {
-    const el = ref.current;
-    if (!el) return;
-    const s = el.selectionStart;
-    const e = el.selectionEnd;
-    const sel = text.slice(s, e);
-    onChange(text.slice(0, s) + before + sel + after + text.slice(e));
-    requestAnimationFrame(() => {
-      el.focus();
-      el.selectionStart = s + before.length;
-      el.selectionEnd = e + before.length;
-    });
-  };
+  const wrap = (before: string, after: string) =>
+    textInsert.wrapSelection(ref.current, text, onChange, before, after);
 
   const insertLine = (snippet: string, cursorOffset: number) => {
     const el = ref.current;
@@ -248,31 +238,17 @@ const PageEditor: React.FC<PageEditorProps> = ({
     });
   };
 
-  const insertAtCursor = (snippet: string) => {
-    const el = ref.current;
-    if (!el) return;
-    const pos = el.selectionStart;
-    onChange(text.slice(0, pos) + snippet + text.slice(pos));
-    requestAnimationFrame(() => {
-      el.focus();
-      el.selectionStart = el.selectionEnd = pos + snippet.length;
-    });
-  };
+  const insertAtCursor = (snippet: string) =>
+    textInsert.insertAtCursor(ref.current, text, onChange, snippet);
 
-  const insertSnippet = (snippet: string, cursorFromEnd?: number) => {
-    const el = ref.current;
-    if (!el) return;
-    const pos = el.selectionStart;
-    onChange(text.slice(0, pos) + snippet + text.slice(pos));
-    const cursorPos =
-      cursorFromEnd != null
-        ? pos + snippet.length - cursorFromEnd
-        : pos + snippet.length;
-    requestAnimationFrame(() => {
-      el.focus();
-      el.selectionStart = el.selectionEnd = cursorPos;
-    });
-  };
+  const insertSnippet = (snippet: string, cursorFromEnd?: number) =>
+    textInsert.insertSnippet(
+      ref.current,
+      text,
+      onChange,
+      snippet,
+      cursorFromEnd,
+    );
 
   // ── block-level formatting ─────────────────────────────
 

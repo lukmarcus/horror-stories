@@ -124,7 +124,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 4/10 — Deduplikacja `insertAtCursor` / `wrap` / `insertSnippet`
+### ~~★ 4/10 — Deduplikacja `insertAtCursor` / `wrap` / `insertSnippet`~~ ✅ fea8ac3
 
 **Pliki:** `src/editor/components/paragraph/PagesEditor.tsx`, `ChoiceTextInput.tsx`  
 **Problem:** Te same funkcje wstawiające tekst skopiowane w obu plikach — różnią się tylko typem elementu (`textarea` vs `input`).  
