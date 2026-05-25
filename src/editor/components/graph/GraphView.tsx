@@ -1,6 +1,7 @@
 ﻿import React, { useCallback, useEffect, useRef } from "react";
 import mermaid from "mermaid";
 import type { EditorParagraph } from "../../context/editorTypes";
+import { buildDefinition } from "./graphDefinition";
 import "./GraphView.css";
 
 let mermaidReady = false;
@@ -31,65 +32,6 @@ function ensureMermaid() {
     securityLevel: "loose",
   });
   mermaidReady = true;
-}
-
-function buildDefinition(
-  paragraphs: EditorParagraph[],
-  activeId?: string,
-): string {
-  if (paragraphs.length === 0) {
-    return 'graph LR\n  empty["Brak paragraf\u00f3w"]';
-  }
-
-  const lines: string[] = ["graph LR"];
-  const knownIds = new Set(paragraphs.map((p) => p.id));
-  const extraIds = new Set<string>();
-
-  for (const p of paragraphs) {
-    for (const c of p.choices ?? []) {
-      if (c.nextParagraphId && !knownIds.has(c.nextParagraphId)) {
-        extraIds.add(c.nextParagraphId);
-      }
-    }
-    for (const variant of Object.values(p.variants ?? {})) {
-      for (const c of variant.choices ?? []) {
-        if (c.nextParagraphId && !knownIds.has(c.nextParagraphId)) {
-          extraIds.add(c.nextParagraphId);
-        }
-      }
-    }
-  }
-
-  for (const p of paragraphs) {
-    const label =
-      activeId === p.id ? `"\u00a7${p.id} \u25ba"` : `"\u00a7${p.id}"`;
-    lines.push(`  p${p.id}[${label}]`);
-    lines.push(`  click p${p.id} __hsGraphNavigate`);
-  }
-
-  for (const id of extraIds) {
-    lines.push(`  p${id}["\u00a7${id} ?"]`);
-  }
-
-  for (const p of paragraphs) {
-    const seenTargets = new Set<string>();
-    for (const c of p.choices ?? []) {
-      if (!c.nextParagraphId) continue;
-      if (seenTargets.has(c.nextParagraphId)) continue;
-      seenTargets.add(c.nextParagraphId);
-      lines.push(`  p${p.id} --> p${c.nextParagraphId}`);
-    }
-    for (const variant of Object.values(p.variants ?? {})) {
-      for (const c of variant.choices ?? []) {
-        if (!c.nextParagraphId) continue;
-        if (seenTargets.has(c.nextParagraphId)) continue;
-        seenTargets.add(c.nextParagraphId);
-        lines.push(`  p${p.id} -.-> p${c.nextParagraphId}`);
-      }
-    }
-  }
-
-  return lines.join("\n");
 }
 
 interface GraphViewProps {

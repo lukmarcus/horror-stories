@@ -67,7 +67,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 6/10 — Testy `buildDefinition` w `GraphView`
+### ~~★ 6/10 — Testy `buildDefinition` w `GraphView`~~ ✅ 9effa05
 
 **Plik:** `src/editor/components/graph/GraphView.tsx`  
 **Problem:** Czysta funkcja budująca definicję Mermaid — łatwa do przetestowania, ale nieprzetestowana.  
