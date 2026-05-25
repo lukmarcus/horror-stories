@@ -4,6 +4,7 @@ import { ParagraphText } from "../../../components/text/ParagraphText/ParagraphT
 import { RichText } from "../../../components/text/RichText/RichText";
 import { Button } from "../../../components/ui/Button";
 import type { EditorChoice, EditorVariant } from "../../context/editorTypes";
+import { filterIds } from "../../utils/editorUtils";
 import { PagesEditor } from "./PagesEditor";
 import { ChoiceTextInput } from "./ChoiceTextInput";
 import "./EditorParagraphView.css";
@@ -40,13 +41,6 @@ const ChoiceRow: React.FC<ChoiceRowProps> = ({
     ? (choice.nextVariantId ?? "")
     : (choice.nextParagraphId ?? "");
 
-  const filteredOptions = (value: string) => {
-    const v = value.trim();
-    const list = isVariantTarget ? (variantIds ?? []) : paragraphIds;
-    if (!v) return list;
-    return list.filter((id) => id.includes(v));
-  };
-
   const handleTargetChange = (val: string) => {
     if (isVariantTarget) {
       onUpdate({ ...choice, nextVariantId: val, nextParagraphId: undefined });
@@ -64,7 +58,8 @@ const ChoiceRow: React.FC<ChoiceRowProps> = ({
   };
 
   const dropdownKey = `${choice.id}-target`;
-  const options = filteredOptions(targetValue);
+  const list = isVariantTarget ? (variantIds ?? []) : paragraphIds;
+  const options = filterIds(targetValue, list);
 
   return (
     <div className="editor-paragraph-view__choice-row">
@@ -195,11 +190,6 @@ const VariantEditor: React.FC<VariantEditorProps> = ({
     });
     setNewChoiceText("");
     setNewChoiceTarget("");
-  };
-
-  const filteredList = (val: string, list: string[]) => {
-    const v = val.trim();
-    return v ? list.filter((id) => id.includes(v)) : list;
   };
 
   return (
@@ -377,7 +367,7 @@ const VariantEditor: React.FC<VariantEditorProps> = ({
                       const list = newChoiceIsVariant
                         ? variantIds
                         : paragraphIds;
-                      const opts = filteredList(newChoiceTarget, list);
+                      const opts = filterIds(newChoiceTarget, list);
                       return opts.length > 0 ? (
                         <ul className="editor-paragraph-view__choice-dropdown">
                           {opts.map((id) => (
@@ -605,18 +595,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
     setNewSelectorTarget("");
   };
 
-  const filteredIds = (value: string) => {
-    const v = value.trim();
-    if (!v) return availableIds;
-    return availableIds.filter((id) => id.includes(v));
-  };
-
-  const filteredVariantIds = (value: string) => {
-    const v = value.trim();
-    if (!v) return variantIds;
-    return variantIds.filter((id) => id.includes(v));
-  };
-
   return (
     <div className="editor-paragraph-view">
       {/* Header */}
@@ -792,20 +770,22 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                       placeholder="?"
                     />
                     {focusedTargetId === "__new__" &&
-                      filteredIds(newChoiceTarget).length > 0 && (
+                      filterIds(newChoiceTarget, availableIds).length > 0 && (
                         <ul className="editor-paragraph-view__choice-dropdown">
-                          {filteredIds(newChoiceTarget).map((id) => (
-                            <li
-                              key={id}
-                              className="editor-paragraph-view__choice-dropdown-item"
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                setNewChoiceTarget(id);
-                              }}
-                            >
-                              §{id}
-                            </li>
-                          ))}
+                          {filterIds(newChoiceTarget, availableIds).map(
+                            (id) => (
+                              <li
+                                key={id}
+                                className="editor-paragraph-view__choice-dropdown-item"
+                                onMouseDown={(e) => {
+                                  e.preventDefault();
+                                  setNewChoiceTarget(id);
+                                }}
+                              >
+                                §{id}
+                              </li>
+                            ),
+                          )}
                         </ul>
                       )}
                   </div>
@@ -879,29 +859,30 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                       placeholder="?"
                     />
                     {focusedSelectorId === choice.id &&
-                      filteredVariantIds(choice.nextVariantId ?? "").length >
+                      filterIds(choice.nextVariantId ?? "", variantIds).length >
                         0 && (
                         <ul className="editor-paragraph-view__choice-dropdown">
-                          {filteredVariantIds(choice.nextVariantId ?? "").map(
-                            (id) => (
-                              <li
-                                key={id}
-                                className="editor-paragraph-view__choice-dropdown-item"
-                                onMouseDown={(e) => {
-                                  e.preventDefault();
-                                  dispatch({
-                                    type: "UPDATE_VARIANT_SELECTOR",
-                                    payload: {
-                                      paragraphId,
-                                      choice: { ...choice, nextVariantId: id },
-                                    },
-                                  });
-                                }}
-                              >
-                                W:{id}
-                              </li>
-                            ),
-                          )}
+                          {filterIds(
+                            choice.nextVariantId ?? "",
+                            variantIds,
+                          ).map((id) => (
+                            <li
+                              key={id}
+                              className="editor-paragraph-view__choice-dropdown-item"
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                dispatch({
+                                  type: "UPDATE_VARIANT_SELECTOR",
+                                  payload: {
+                                    paragraphId,
+                                    choice: { ...choice, nextVariantId: id },
+                                  },
+                                });
+                              }}
+                            >
+                              W:{id}
+                            </li>
+                          ))}
                         </ul>
                       )}
                   </div>
@@ -941,9 +922,9 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                     placeholder="?"
                   />
                   {focusedSelectorId === "__new-sel__" &&
-                    filteredVariantIds(newSelectorTarget).length > 0 && (
+                    filterIds(newSelectorTarget, variantIds).length > 0 && (
                       <ul className="editor-paragraph-view__choice-dropdown">
-                        {filteredVariantIds(newSelectorTarget).map((id) => (
+                        {filterIds(newSelectorTarget, variantIds).map((id) => (
                           <li
                             key={id}
                             className="editor-paragraph-view__choice-dropdown-item"
