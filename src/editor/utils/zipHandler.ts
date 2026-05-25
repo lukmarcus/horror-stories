@@ -3,8 +3,32 @@ import type {
   EditorParagraph,
   EditorChoice,
 } from "../context/editorTypes";
+import type { Scenario } from "../../types";
 
 const FILE_EXTENSION = ".horrorstory";
+
+function isString(v: unknown): v is string {
+  return typeof v === "string";
+}
+
+function isNullableNumber(v: unknown): v is number | null {
+  return v === null || typeof v === "number";
+}
+
+export function isValidScenarioMeta(data: unknown): data is Scenario {
+  if (!data || typeof data !== "object") return false;
+  const d = data as Record<string, unknown>;
+  return (
+    isString(d.id) &&
+    d.id.length > 0 &&
+    isString(d.title) &&
+    d.title.length > 0 &&
+    isString(d.description) &&
+    isNullableNumber(d.minPlayerCount) &&
+    isNullableNumber(d.maxPlayerCount) &&
+    isNullableNumber(d.duration)
+  );
+}
 
 export function buildAccessibleFrom(
   paragraphs: EditorParagraph[],
@@ -128,8 +152,10 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   const metaText = await metaFile.async("text");
   const meta = JSON.parse(metaText);
 
-  if (!meta.id || !meta.title) {
-    throw new Error("Nieprawidłowy format meta.json — brak id lub title");
+  if (!isValidScenarioMeta(meta)) {
+    throw new Error(
+      "Nieprawidłowy format meta.json — brak wymaganych pól (id, title, description, playerCount, duration)",
+    );
   }
 
   let paragraphs: EditorScenario["paragraphs"] = [];

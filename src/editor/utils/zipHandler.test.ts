@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildAccessibleFrom } from "./zipHandler";
+import { buildAccessibleFrom, isValidScenarioMeta } from "./zipHandler";
 import type { EditorParagraph } from "../context/editorTypes";
 
 describe("buildAccessibleFrom", () => {
@@ -168,5 +168,72 @@ describe("buildAccessibleFrom", () => {
     expect(result["3"]).toHaveLength(2);
     expect(result["3"]).toContain("1");
     expect(result["3"]).toContain("2");
+  });
+});
+
+describe("isValidScenarioMeta", () => {
+  const VALID = {
+    id: "test-id",
+    title: "Tytuł",
+    description: "Opis",
+    minPlayerCount: 1,
+    maxPlayerCount: 4,
+    duration: 60,
+  };
+
+  it("zwraca true dla poprawnego obiektu meta", () => {
+    expect(isValidScenarioMeta(VALID)).toBe(true);
+  });
+
+  it("akceptuje null dla pól liczb opcjonalnych", () => {
+    expect(
+      isValidScenarioMeta({
+        ...VALID,
+        minPlayerCount: null,
+        maxPlayerCount: null,
+        duration: null,
+      }),
+    ).toBe(true);
+  });
+
+  it("zwraca false dla null", () => {
+    expect(isValidScenarioMeta(null)).toBe(false);
+  });
+
+  it("zwraca false dla wartości niebędącej obiektem", () => {
+    expect(isValidScenarioMeta("string")).toBe(false);
+    expect(isValidScenarioMeta(42)).toBe(false);
+    expect(isValidScenarioMeta([])).toBe(false);
+  });
+
+  it("zwraca false gdy brak id", () => {
+    const { id: _, ...rest } = VALID;
+    expect(isValidScenarioMeta(rest)).toBe(false);
+  });
+
+  it("zwraca false gdy id jest pustym stringiem", () => {
+    expect(isValidScenarioMeta({ ...VALID, id: "" })).toBe(false);
+  });
+
+  it("zwraca false gdy brak title", () => {
+    const { title: _, ...rest } = VALID;
+    expect(isValidScenarioMeta(rest)).toBe(false);
+  });
+
+  it("zwraca false gdy title jest pustym stringiem", () => {
+    expect(isValidScenarioMeta({ ...VALID, title: "" })).toBe(false);
+  });
+
+  it("zwraca false gdy brak description", () => {
+    const { description: _, ...rest } = VALID;
+    expect(isValidScenarioMeta(rest)).toBe(false);
+  });
+
+  it("zwraca false gdy duration nie jest liczbą ani null", () => {
+    expect(isValidScenarioMeta({ ...VALID, duration: "60min" })).toBe(false);
+  });
+
+  it("zwraca false gdy minPlayerCount nie jest liczbą ani null", () => {
+    expect(isValidScenarioMeta({ ...VALID, minPlayerCount: "1" })).toBe(false);
   });
 });
