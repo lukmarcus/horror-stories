@@ -121,12 +121,38 @@ describe("validateMeta", () => {
     expect(errors.minPlayerCount).toBeDefined();
   });
 
+  it("rejects minPlayerCount above PLAYER_MAX", () => {
+    const errors = validateMeta({
+      ...baseMeta,
+      minPlayerCount: PLAYER_MAX + 1,
+    });
+    expect(errors.minPlayerCount).toBeDefined();
+  });
+
+  it("rejects maxPlayerCount below PLAYER_MIN", () => {
+    const errors = validateMeta({
+      ...baseMeta,
+      maxPlayerCount: PLAYER_MIN - 1,
+    });
+    expect(errors.maxPlayerCount).toBeDefined();
+  });
+
   it("rejects maxPlayerCount above PLAYER_MAX", () => {
     const errors = validateMeta({
       ...baseMeta,
       maxPlayerCount: PLAYER_MAX + 1,
     });
     expect(errors.maxPlayerCount).toBeDefined();
+  });
+
+  it("accepts valid player counts within range", () => {
+    const errors = validateMeta({
+      ...baseMeta,
+      minPlayerCount: PLAYER_MIN,
+      maxPlayerCount: PLAYER_MAX,
+    });
+    expect(errors.minPlayerCount).toBeUndefined();
+    expect(errors.maxPlayerCount).toBeUndefined();
   });
 
   it("rejects maxPlayerCount lower than minPlayerCount", () => {
@@ -156,6 +182,11 @@ describe("validateMeta", () => {
   it("rejects duration of 0", () => {
     const errors = validateMeta({ ...baseMeta, duration: 0 });
     expect(errors.duration).toBeDefined();
+  });
+
+  it("accepts duration exactly at 1", () => {
+    const errors = validateMeta({ ...baseMeta, duration: 1 });
+    expect(errors.duration).toBeUndefined();
   });
 
   it("rejects duration above DURATION_MAX", () => {
