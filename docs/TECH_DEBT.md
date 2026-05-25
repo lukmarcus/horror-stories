@@ -78,7 +78,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ## Priorytet 3 — Strukturalne wydzielenie komponentów
 
-### ★ 9/10 — Wyciągnięcie `VariantEditor` do osobnego pliku
+### ~~★ 9/10 — Wyciągnięcie `VariantEditor` do osobnego pliku~~ ✅ 52bba13
 
 **Plik:** `src/editor/components/paragraph/EditorParagraphView.tsx` (~300 linii sub-komponentu w pliku 1116-liniowym)  
 **Działanie:** Przenieść do `VariantEditor.tsx` + `VariantEditor.css` (klasy `__variant-*`).  
@@ -86,7 +86,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 8/10 — Wyciągnięcie `ChoiceRow` do osobnego pliku
+### ~~★ 8/10 — Wyciągnięcie `ChoiceRow` do osobnego pliku~~ ✅ 52bba13
 
 **Plik:** `src/editor/components/paragraph/EditorParagraphView.tsx` (~110 linii sub-komponentu)  
 **Problem:** `ChoiceRow` jest używany przez oba tryby (prosty i wariantowy) ale zdefiniowany w pliku głównego komponentu. Dla spójności z wydzieleniem `VariantEditor` powinien żyć osobno.  
