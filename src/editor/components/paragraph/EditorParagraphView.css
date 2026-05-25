@@ -144,22 +144,6 @@ h3.editor-paragraph-view__label {
   gap: 0.5rem;
 }
 
-.editor-paragraph-view__choice-text {
-  flex: 1;
-  padding: 0.4rem 0.6rem;
-  border-radius: 5px;
-  border: 1px solid #444;
-  background: #1a1a1a;
-  color: #eee;
-  font-size: 0.9rem;
-  font-family: inherit;
-}
-
-.editor-paragraph-view__choice-text:focus {
-  outline: none;
-  border-color: #777;
-}
-
 .editor-paragraph-view__choice-target-wrap {
   position: relative;
   display: flex;
@@ -395,14 +379,6 @@ h3.editor-paragraph-view__label {
   border-color: #3a5a3a;
 }
 
-.editor-paragraph-view__variant-layout-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-top: 0.25rem;
-}
-
 /* Label + layout-button side by side (inside variant editor column) */
 .editor-paragraph-view__choices-heading-row {
   display: flex;
@@ -415,31 +391,6 @@ h3.editor-paragraph-view__label {
 .editor-paragraph-view__choices-heading-row h3 {
   margin: 0;
 }
-
-/* ── Choice type select (replaces §/W toggle button) ────────────────────── */
-
-.editor-paragraph-view__choice-type-select {
-  padding: 0 0.4rem;
-  border: 1px solid #555;
-  border-right: none;
-  border-radius: 4px 0 0 4px;
-  background: #1a1a1a;
-  color: #aaa;
-  font-size: 0.82rem;
-  cursor: pointer;
-  height: 100%;
-  line-height: 1;
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-.editor-paragraph-view__choice-type-select:focus {
-  outline: none;
-  border-color: #666;
-  color: #ccc;
-}
-
-/* ── Variant layout button (when inside layout-row) ─────────────────────── */
 
 .editor-paragraph-view__variant {
   border: 1px solid #2a4a2a;
@@ -583,11 +534,6 @@ h3.editor-paragraph-view__label {
   margin-top: 0.5rem;
 }
 
-.editor-paragraph-view__preview-choice-arrow {
-  color: #666;
-  font-size: 0.82rem;
-}
-
 /* ── Variants section (list + add row) ───────────────────────────────────── */
 
 .editor-paragraph-view__variants-section {
@@ -595,13 +541,6 @@ h3.editor-paragraph-view__label {
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 1rem;
-}
-
-.editor-paragraph-view__variants-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
 }
 
 /* Add-variant row pinned to the bottom of the variants list */
@@ -655,33 +594,6 @@ h3.editor-paragraph-view__label {
 .editor-paragraph-view__variant-add-btn:disabled {
   opacity: 0.4;
   cursor: default;
-}
-
-/* ── Variant mode preview ─────────────────────────────────────────────────── */
-
-.editor-paragraph-view__preview-variants {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.editor-paragraph-view__preview-mode-label {
-  font-size: 0.82rem;
-  color: #7ec87e;
-  font-style: italic;
-  margin: 0 0 0.25rem;
-}
-
-.editor-paragraph-view__preview-selector {
-  display: inline-block;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  background: #1e2a1e;
-  border: 1px solid #3a5a3a;
-  color: #a8d8a8;
-  font-size: 0.85rem;
-  margin-right: 0.4rem;
-  margin-bottom: 0.3rem;
 }
 
 .editor-paragraph-view__incoming-empty {

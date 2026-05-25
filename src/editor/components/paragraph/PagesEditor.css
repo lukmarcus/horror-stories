@@ -77,12 +77,6 @@
   margin: 0 4px;
 }
 
-.pages-editor__toolbar-sep--thick {
-  width: 2px;
-  background: #444;
-  margin: 0 6px;
-}
-
 .pages-editor__toolbar-label {
   font-size: 0.68rem;
   font-weight: 600;
