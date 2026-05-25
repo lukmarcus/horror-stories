@@ -115,7 +115,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ## Priorytet 4 — Większe zmiany architektoniczne
 
-### ★ 5/10 — `ENABLE_VARIANT_MODE` / `DISABLE_VARIANT_MODE` w reducerze
+### ~~★ 5/10 — `ENABLE_VARIANT_MODE` / `DISABLE_VARIANT_MODE` w reducerze~~ ✅ 08c906e
 
 **Plik:** `src/editor/context/editorReducer.ts`  
 **Problem:** Przełączanie trybów w `EditorParagraphView` odbywa się przez dispatch `LOAD_SCENARIO` z ręcznie zrekonstruowanym scenariuszem — omija reducer i łamie zasadę single source of truth.  

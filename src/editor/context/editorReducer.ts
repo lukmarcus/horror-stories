@@ -457,6 +457,32 @@ export function editorReducer(
         isDirty: true,
       };
     }
+    case "ENABLE_VARIANT_MODE": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) =>
+        p.id === action.payload
+          ? { ...p, variants: {}, variantSelectors: [], choices: undefined }
+          : p,
+      );
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
+    case "DISABLE_VARIANT_MODE": {
+      if (!state.scenario) return state;
+      const paragraphs = state.scenario.paragraphs.map((p) =>
+        p.id === action.payload
+          ? { ...p, variants: undefined, variantSelectors: undefined }
+          : p,
+      );
+      return {
+        ...state,
+        scenario: { ...state.scenario, paragraphs },
+        isDirty: true,
+      };
+    }
     default:
       return state;
   }

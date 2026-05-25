@@ -73,17 +73,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   // ── Mode toggle ──
 
   const handleSwitchToVariant = () => {
-    dispatch({
-      type: "LOAD_SCENARIO",
-      payload: {
-        ...state.scenario!,
-        paragraphs: state.scenario!.paragraphs.map((p) =>
-          p.id === paragraphId
-            ? { ...p, variants: {}, variantSelectors: [], choices: undefined }
-            : p,
-        ),
-      },
-    });
+    dispatch({ type: "ENABLE_VARIANT_MODE", payload: paragraphId });
   };
 
   const handleSwitchToSimple = () => {
@@ -94,17 +84,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
       )
     )
       return;
-    dispatch({
-      type: "LOAD_SCENARIO",
-      payload: {
-        ...state.scenario!,
-        paragraphs: state.scenario!.paragraphs.map((p) =>
-          p.id === paragraphId
-            ? { ...p, variants: undefined, variantSelectors: undefined }
-            : p,
-        ),
-      },
-    });
+    dispatch({ type: "DISABLE_VARIANT_MODE", payload: paragraphId });
   };
 
   // ── Simple mode choice handlers ──

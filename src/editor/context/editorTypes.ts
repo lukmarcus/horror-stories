@@ -139,7 +139,9 @@ export type EditorAction =
   | {
       type: "REMOVE_VARIANT_CHOICE";
       payload: { paragraphId: string; variantId: string; choiceId: string };
-    };
+    }
+  | { type: "ENABLE_VARIANT_MODE"; payload: string }
+  | { type: "DISABLE_VARIANT_MODE"; payload: string };
 
 export interface EditorContextValue {
   state: EditorState;
