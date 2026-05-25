@@ -8,7 +8,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ## Priorytet 1 — Szybkie wygrane (niskie ryzyko, wysoka wartość)
 
-### ★ 10/10 — Usunięcie nieużywanych klas CSS
+### ~~★ 10/10 — Usunięcie nieużywanych klas CSS~~ ✅ f1f6948
 
 **Plik:** `src/editor/components/paragraph/EditorParagraphView.css`  
 **Problem:** 8 klas zdefiniowanych w CSS, nieobecnych w TSX (~55 linii do usunięcia):
@@ -28,7 +28,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 9/10 — Wspólna funkcja `filterIds`
+### ~~★ 9/10 — Wspólna funkcja `filterIds`~~ ✅ 5ee1b1f
 
 **Plik:** `src/editor/components/paragraph/EditorParagraphView.tsx`  
 **Problem:** `v ? list.filter(id => id.includes(v)) : list` pojawia się 4 razy pod różnymi nazwami: `filteredOptions`, `filteredList`, `filteredIds`, `filteredVariantIds`.  
@@ -39,7 +39,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ## Priorytet 2 — Testy czystych funkcji
 
-### ★ 9/10 — Testy `textToPage` / `pageToText`
+### ~~★ 9/10 — Testy `textToPage` / `pageToText`~~ ✅ 9525ab3
 
 **Plik:** `src/editor/components/paragraph/PagesEditor.tsx` (linie 72–130)  
 **Problem:** Serializacja/deserializacja `ContentBlock ↔ tekst` to czyste funkcje bez testów. Każda zmiana może zepsuć zapis/odczyt blokowej treści bez żadnego sygnału.  

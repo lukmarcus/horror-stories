@@ -78,7 +78,7 @@ function getCurrentLineRange(
   return { start, end, line: text.slice(start, end) };
 }
 
-function pageToText(page: ContentBlock[]): string {
+export function pageToText(page: ContentBlock[]): string {
   return page
     .map((b) => {
       if (b.type === "image")
@@ -99,7 +99,7 @@ function pageToText(page: ContentBlock[]): string {
     .join("\n");
 }
 
-function textToPage(text: string): ContentBlock[] {
+export function textToPage(text: string): ContentBlock[] {
   if (!text) return [];
   return text.split("\n").map((line) => {
     const imgM = line.match(/^\[img:\s*(.*?)(?:\s+(xs|sm|lg|xl))?\]$/);
