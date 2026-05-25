@@ -104,7 +104,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 7/10 — Hook `useClickOutside`
+### ~~★ 7/10 — Hook `useClickOutside`~~ ✅ 29c1551
 
 **Plik:** `src/editor/components/paragraph/EditorInlineTools.tsx`  
 **Problem:** `ColorPicker`, `ImagePicker`, `SnippetPicker` — każdy ma identyczny `useEffect` z `mousedown` listenarem do zamykania.  

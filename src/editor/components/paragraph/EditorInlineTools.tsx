@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
+import { useClickOutside } from "../../../hooks/useClickOutside";
+import type { SnippetItem } from "./snippets";
 import {
   symbols,
   roomItems,
@@ -91,21 +93,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
   title = "Kolor",
 }) => {
   const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [open]);
+  const containerRef = useClickOutside(open, () => setOpen(false));
 
   return (
     <div className="pages-editor__color-picker" ref={containerRef}>
@@ -164,21 +152,7 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
   title,
 }) => {
   const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [open]);
+  const containerRef = useClickOutside(open, () => setOpen(false));
 
   return (
     <div className="pages-editor__image-picker" ref={containerRef}>
@@ -218,12 +192,7 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
 
 // ── SnippetPicker ─────────────────────────────────────
 
-export interface SnippetItem {
-  label: string;
-  snippet: string;
-  cursorFromEnd?: number;
-  displayColor?: string;
-}
+export type { SnippetItem } from "./snippets";
 
 export interface SnippetPickerProps {
   items: SnippetItem[];
@@ -239,21 +208,7 @@ export const SnippetPicker: React.FC<SnippetPickerProps> = ({
   onSelect,
 }) => {
   const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [open]);
+  const containerRef = useClickOutside(open, () => setOpen(false));
 
   return (
     <div className="pages-editor__snippet-picker" ref={containerRef}>
@@ -293,26 +248,4 @@ export const SnippetPicker: React.FC<SnippetPickerProps> = ({
   );
 };
 
-export const SPAN_SNIPPETS: SnippetItem[] = [
-  {
-    label: "§ paragraf",
-    snippet: "<span class='color-green'>§</span>",
-    cursorFromEnd: 7,
-    displayColor: "#4caf50",
-  },
-  {
-    label: "UWAGA",
-    snippet: "<span class='color-red'>UWAGA</span>",
-    displayColor: "#cc4444",
-  },
-  {
-    label: "nagroda",
-    snippet: "<span class='color-blue'>nagroda</span>",
-    displayColor: "#5599cc",
-  },
-  {
-    label: "NEWS",
-    snippet: "<span class='color-purple'>NEWS</span>",
-    displayColor: "#9966cc",
-  },
-];
+export { SPAN_SNIPPETS } from "./snippets";
