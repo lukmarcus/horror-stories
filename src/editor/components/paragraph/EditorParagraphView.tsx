@@ -1,10 +1,11 @@
-﻿import React, { useState } from "react";
+﻿import React, { useMemo, useState } from "react";
 import { useEditor } from "../../context/useEditor";
 import { ParagraphText } from "../../../components/text/ParagraphText/ParagraphText";
 import { RichText } from "../../../components/text/RichText/RichText";
+import { PagesPreview } from "./PagesPreview";
 import { Button } from "../../../components/ui/Button";
 import type { EditorChoice } from "../../context/editorTypes";
-import { filterIds } from "../../utils/editorUtils";
+import { filterIds, sortParagraphIds } from "../../utils/editorUtils";
 import { PagesEditor } from "./PagesEditor";
 import { ChoiceTextInput } from "./ChoiceTextInput";
 import { ChoiceRow } from "./ChoiceRow";
@@ -26,14 +27,42 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   onNavigate,
 }) => {
   const { state, dispatch } = useEditor();
-  const paragraph = state.scenario?.paragraphs.find(
-    (p) => p.id === paragraphId,
-  );
+  const scenarioParagraphs = state.scenario?.paragraphs;
+  const paragraph = scenarioParagraphs?.find((p) => p.id === paragraphId);
 
   const [focusedTargetId, setFocusedTargetId] = useState<string | null>(null);
   const [newVariantId, setNewVariantId] = useState("");
   const [focusedSelectorId, setFocusedSelectorId] = useState<string | null>(
     null,
+  );
+
+  const availableIds = useMemo(
+    () =>
+      sortParagraphIds(
+        (scenarioParagraphs ?? [])
+          .map((p) => p.id)
+          .filter((id) => id !== paragraphId),
+      ),
+    [scenarioParagraphs, paragraphId],
+  );
+
+  const variantIds = useMemo(
+    () => Object.keys(paragraph?.variants ?? {}),
+    [paragraph?.variants],
+  );
+
+  const incomingFrom = useMemo(
+    () =>
+      sortParagraphIds(
+        (scenarioParagraphs ?? [])
+          .filter(
+            (p) =>
+              p.id !== paragraphId &&
+              (p.choices ?? []).some((c) => c.nextParagraphId === paragraphId),
+          )
+          .map((p) => p.id),
+      ),
+    [scenarioParagraphs, paragraphId],
   );
 
   if (!paragraph) return null;
@@ -43,32 +72,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const text = paragraph.text ?? "";
   const pages = paragraph.pages ?? null;
   const hasPages = pages !== null;
-
-  const availableIds = (state.scenario?.paragraphs ?? [])
-    .map((p) => p.id)
-    .filter((id) => id !== paragraphId)
-    .sort((a, b) => {
-      const na = parseInt(a, 10);
-      const nb = parseInt(b, 10);
-      if (!isNaN(na) && !isNaN(nb)) return na - nb;
-      return a.localeCompare(b);
-    });
-
-  const variantIds = Object.keys(paragraph.variants ?? {});
-
-  const incomingFrom = (state.scenario?.paragraphs ?? [])
-    .filter(
-      (p) =>
-        p.id !== paragraphId &&
-        (p.choices ?? []).some((c) => c.nextParagraphId === paragraphId),
-    )
-    .map((p) => p.id)
-    .sort((a, b) => {
-      const na = parseInt(a, 10);
-      const nb = parseInt(b, 10);
-      if (!isNaN(na) && !isNaN(nb)) return na - nb;
-      return a.localeCompare(b);
-    });
 
   // ── Mode toggle ──
 
@@ -410,31 +413,10 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
           <div className="editor-paragraph-view__preview-content">
             {isVariantMode ? (
               <>
-                {(() => {
-                  const introPages = paragraph.pages ?? [[]];
-                  const isEmpty =
-                    introPages.length === 0 ||
-                    (introPages.length === 1 && introPages[0].length === 0);
-                  return isEmpty ? (
-                    <p className="editor-paragraph-view__preview-empty">
-                      Brak treści wprowadzającej
-                    </p>
-                  ) : (
-                    introPages.map((page, i) => (
-                      <div
-                        key={i}
-                        className="editor-paragraph-view__preview-page"
-                      >
-                        {introPages.length > 1 && (
-                          <span className="editor-paragraph-view__preview-page-label">
-                            Strona {i + 1}
-                          </span>
-                        )}
-                        <RichText content={page} />
-                      </div>
-                    ))
-                  );
-                })()}
+                <PagesPreview
+                  pages={paragraph.pages ?? [[]]}
+                  emptyMessage="Brak treści wprowadzającej"
+                />
                 {(paragraph.variantSelectors ?? []).length > 0 && (
                   <fieldset className="choices choices--horizontal">
                     <legend className="sr-only">Wybierz wariant</legend>
@@ -449,26 +431,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
             ) : (
               <>
                 {hasPages ? (
-                  pages.length === 0 ||
-                  (pages.length === 1 && pages[0].length === 0) ? (
-                    <p className="editor-paragraph-view__preview-empty">
-                      Brak treści
-                    </p>
-                  ) : (
-                    pages.map((page, i) => (
-                      <div
-                        key={i}
-                        className="editor-paragraph-view__preview-page"
-                      >
-                        {pages.length > 1 && (
-                          <span className="editor-paragraph-view__preview-page-label">
-                            Strona {i + 1}
-                          </span>
-                        )}
-                        <RichText content={page} />
-                      </div>
-                    ))
-                  )
+                  <PagesPreview pages={pages!} />
                 ) : text ? (
                   text
                     .split("\n")

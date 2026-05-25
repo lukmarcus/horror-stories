@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEditor } from "../../context/useEditor";
+import { sortParagraphIds } from "../../utils/editorUtils";
 import "./EditorLayout.css";
 
 interface EditorLayoutProps {
@@ -18,12 +19,9 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
   const [newId, setNewId] = useState("");
   const [addError, setAddError] = useState<string | null>(null);
 
-  const paragraphs = [...(state.scenario?.paragraphs ?? [])].sort((a, b) => {
-    const na = parseInt(a.id, 10);
-    const nb = parseInt(b.id, 10);
-    if (!isNaN(na) && !isNaN(nb)) return na - nb;
-    return a.id.localeCompare(b.id);
-  });
+  const paragraphs = sortParagraphIds(
+    (state.scenario?.paragraphs ?? []).map((p) => p.id),
+  ).map((id) => state.scenario!.paragraphs.find((p) => p.id === id)!);
 
   const handleAddParagraph = () => {
     const id = newId.trim();

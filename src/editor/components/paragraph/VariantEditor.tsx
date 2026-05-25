@@ -4,6 +4,7 @@ import { RichText } from "../../../components/text/RichText/RichText";
 import { Button } from "../../../components/ui/Button";
 import type { EditorChoice, EditorVariant } from "../../context/editorTypes";
 import { PagesEditor } from "./PagesEditor";
+import { PagesPreview } from "./PagesPreview";
 import { ChoiceRow } from "./ChoiceRow";
 import { ChoiceAddRow } from "./ChoiceAddRow";
 import "./VariantEditor.css";
@@ -222,27 +223,7 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
             <div className="editor-paragraph-view__variant-preview">
               <h3 className="editor-paragraph-view__label">Podgląd</h3>
               <div className="editor-paragraph-view__preview-content">
-                {(variant.pages ?? [[]]).length === 0 ||
-                ((variant.pages ?? [[]]).length === 1 &&
-                  (variant.pages ?? [[]])[0].length === 0) ? (
-                  <p className="editor-paragraph-view__preview-empty">
-                    Brak treści
-                  </p>
-                ) : (
-                  (variant.pages ?? [[]]).map((page, i) => (
-                    <div
-                      key={i}
-                      className="editor-paragraph-view__preview-page"
-                    >
-                      {(variant.pages ?? [[]]).length > 1 && (
-                        <span className="editor-paragraph-view__preview-page-label">
-                          Strona {i + 1}
-                        </span>
-                      )}
-                      <RichText content={page} />
-                    </div>
-                  ))
-                )}
+                <PagesPreview pages={variant.pages ?? [[]]} />
                 {(variant.choices ?? []).length > 0 && (
                   <fieldset className="choices choices--vertical">
                     <legend className="sr-only">Wybory wariantu</legend>
