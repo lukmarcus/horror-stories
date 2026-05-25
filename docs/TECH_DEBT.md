@@ -39,7 +39,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ## Priorytet 2 — Testy czystych funkcji
 
-### ~~★ 9/10 — Testy `textToPage` / `pageToText`~~ ✅ 9525ab3
+### ~~★ 9/10 — Testy `textToPage` / `pageToText`~~ ✅ 15f0868
 
 **Plik:** `src/editor/components/paragraph/PagesEditor.tsx` (linie 72–130)  
 **Problem:** Serializacja/deserializacja `ContentBlock ↔ tekst` to czyste funkcje bez testów. Każda zmiana może zepsuć zapis/odczyt blokowej treści bez żadnego sygnału.  
@@ -53,7 +53,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 8/10 — Testy `buildAccessibleFrom`
+### ~~★ 8/10 — Testy `buildAccessibleFrom`~~ ✅ 7765cb9
 
 **Plik:** `src/editor/utils/zipHandler.ts` (linie 8–33)  
 **Problem:** Funkcja buduje graf „skąd można dotrzeć do paragrafu" — używana przy każdym eksporcie ZIP. Brak testów.  

@@ -6,7 +6,7 @@ import type {
 
 const FILE_EXTENSION = ".horrorstory";
 
-function buildAccessibleFrom(
+export function buildAccessibleFrom(
   paragraphs: EditorParagraph[],
 ): Record<string, string[]> {
   const map: Record<string, string[]> = {};
