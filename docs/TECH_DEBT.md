@@ -95,7 +95,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 7/10 — Wyciągnięcie `<ChoiceAddRow>` jako wspólny komponent
+### ~~★ 7/10 — Wyciągnięcie `<ChoiceAddRow>` jako wspólny komponent~~ ✅ 765a39f
 
 **Plik:** `src/editor/components/paragraph/EditorParagraphView.tsx` (3× duplikat)  
 **Problem:** Wzorzec „pole tekstowe + target input + dropdown + przycisk + Dodaj" skopiowany trzykrotnie (nowy wybór prosty, nowy selektor wariantu, nowy wybór w `VariantEditor`). Różni się tylko typem akcji i prefiksem (`§` vs `W`).  

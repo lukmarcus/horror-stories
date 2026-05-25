@@ -3,10 +3,9 @@ import { useEditor } from "../../context/useEditor";
 import { RichText } from "../../../components/text/RichText/RichText";
 import { Button } from "../../../components/ui/Button";
 import type { EditorChoice, EditorVariant } from "../../context/editorTypes";
-import { filterIds } from "../../utils/editorUtils";
 import { PagesEditor } from "./PagesEditor";
-import { ChoiceTextInput } from "./ChoiceTextInput";
 import { ChoiceRow } from "./ChoiceRow";
+import { ChoiceAddRow } from "./ChoiceAddRow";
 import "./VariantEditor.css";
 
 export interface VariantEditorProps {
@@ -25,8 +24,6 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
   paragraphIds,
 }) => {
   const { state, dispatch } = useEditor();
-  const [newChoiceText, setNewChoiceText] = useState("");
-  const [newChoiceTarget, setNewChoiceTarget] = useState("");
   const [newChoiceIsVariant, setNewChoiceIsVariant] = useState(false);
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [collapsed, setCollapsed] = useState(false);
@@ -58,24 +55,6 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
       },
     });
     setRenaming(false);
-  };
-
-  const handleAddChoice = () => {
-    const text = newChoiceText.trim();
-    if (!text) return;
-    const choice: EditorChoice = {
-      id: crypto.randomUUID(),
-      text,
-      ...(newChoiceIsVariant
-        ? { nextVariantId: newChoiceTarget.trim() }
-        : { nextParagraphId: newChoiceTarget.trim() }),
-    };
-    dispatch({
-      type: "ADD_VARIANT_CHOICE",
-      payload: { paragraphId, variantId, choice },
-    });
-    setNewChoiceText("");
-    setNewChoiceTarget("");
   };
 
   return (
@@ -215,72 +194,29 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
                   }
                 />
               ))}
-              <div className="editor-paragraph-view__choice-add">
-                <ChoiceTextInput
-                  value={newChoiceText}
-                  onChange={setNewChoiceText}
-                  onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
-                  placeholder="Tekst nowego wyboru"
-                />
-                <div className="editor-paragraph-view__choice-target-wrap">
-                  {isHorizontal ? (
-                    <button
-                      className={`editor-paragraph-view__choice-type-btn${newChoiceIsVariant ? " editor-paragraph-view__choice-type-btn--variant" : ""}`}
-                      onClick={() => setNewChoiceIsVariant((v) => !v)}
-                      title={
-                        newChoiceIsVariant ? "Cel: wariant" : "Cel: paragraf"
-                      }
-                    >
-                      {newChoiceIsVariant ? "W" : "§"}
-                    </button>
-                  ) : (
-                    <span className="editor-paragraph-view__choice-target-prefix">
-                      §
-                    </span>
-                  )}
-                  <input
-                    className="editor-paragraph-view__choice-target"
-                    type="text"
-                    value={newChoiceTarget}
-                    onChange={(e) => setNewChoiceTarget(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
-                    onFocus={() => setFocusedId("__new-vc__")}
-                    onBlur={() => setFocusedId(null)}
-                    placeholder="?"
-                  />
-                  {focusedId === "__new-vc__" &&
-                    (() => {
-                      const list = newChoiceIsVariant
-                        ? variantIds
-                        : paragraphIds;
-                      const opts = filterIds(newChoiceTarget, list);
-                      return opts.length > 0 ? (
-                        <ul className="editor-paragraph-view__choice-dropdown">
-                          {opts.map((id) => (
-                            <li
-                              key={id}
-                              className="editor-paragraph-view__choice-dropdown-item"
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                setNewChoiceTarget(id);
-                              }}
-                            >
-                              {newChoiceIsVariant ? `W:${id}` : `§${id}`}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null;
-                    })()}
-                </div>
-                <button
-                  className="editor-paragraph-view__choice-add-btn"
-                  onClick={handleAddChoice}
-                  disabled={!newChoiceText.trim()}
-                  title="Dodaj wybór"
-                >
-                  + Dodaj
-                </button>
-              </div>
+              <ChoiceAddRow
+                prefixLabel={newChoiceIsVariant ? "W" : "§"}
+                prefixIsVariant={newChoiceIsVariant}
+                onPrefixToggle={
+                  isHorizontal
+                    ? () => setNewChoiceIsVariant((v) => !v)
+                    : undefined
+                }
+                targetList={newChoiceIsVariant ? variantIds : paragraphIds}
+                onAdd={(text, target) => {
+                  const choice: EditorChoice = {
+                    id: crypto.randomUUID(),
+                    text,
+                    ...(newChoiceIsVariant
+                      ? { nextVariantId: target }
+                      : { nextParagraphId: target }),
+                  };
+                  dispatch({
+                    type: "ADD_VARIANT_CHOICE",
+                    payload: { paragraphId, variantId, choice },
+                  });
+                }}
+              />
             </div>
             {/* Preview column */}
             <div className="editor-paragraph-view__variant-preview">

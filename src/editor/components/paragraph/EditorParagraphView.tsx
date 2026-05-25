@@ -8,6 +8,7 @@ import { filterIds } from "../../utils/editorUtils";
 import { PagesEditor } from "./PagesEditor";
 import { ChoiceTextInput } from "./ChoiceTextInput";
 import { ChoiceRow } from "./ChoiceRow";
+import { ChoiceAddRow } from "./ChoiceAddRow";
 import { VariantEditor } from "./VariantEditor";
 import "./EditorParagraphView.css";
 
@@ -29,12 +30,8 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
     (p) => p.id === paragraphId,
   );
 
-  const [newChoiceText, setNewChoiceText] = useState("");
-  const [newChoiceTarget, setNewChoiceTarget] = useState("");
   const [focusedTargetId, setFocusedTargetId] = useState<string | null>(null);
   const [newVariantId, setNewVariantId] = useState("");
-  const [newSelectorText, setNewSelectorText] = useState("");
-  const [newSelectorTarget, setNewSelectorTarget] = useState("");
   const [focusedSelectorId, setFocusedSelectorId] = useState<string | null>(
     null,
   );
@@ -112,24 +109,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
   // ── Simple mode choice handlers ──
 
-  const handleAddChoice = () => {
-    const t = newChoiceText.trim();
-    const target = newChoiceTarget.trim();
-    if (!t) return;
-    if (target === paragraphId) return;
-    const choice: EditorChoice = {
-      id: crypto.randomUUID(),
-      text: t,
-      nextParagraphId: target,
-    };
-    dispatch({ type: "ADD_CHOICE", payload: { paragraphId, choice } });
-    if (target && !availableIds.includes(target) && target !== paragraphId) {
-      dispatch({ type: "ADD_PARAGRAPH_SILENT", payload: target });
-    }
-    setNewChoiceText("");
-    setNewChoiceTarget("");
-  };
-
   const handleUpdateChoice = (choice: EditorChoice) => {
     if ((choice.nextParagraphId ?? "").trim() === paragraphId) return;
     dispatch({ type: "UPDATE_CHOICE", payload: { paragraphId, choice } });
@@ -140,23 +119,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   };
 
   // ── Variant selector handlers ──
-
-  const handleAddSelector = () => {
-    const t = newSelectorText.trim();
-    const target = newSelectorTarget.trim();
-    if (!t || !target) return;
-    const choice: EditorChoice = {
-      id: crypto.randomUUID(),
-      text: t,
-      nextVariantId: target,
-    };
-    dispatch({
-      type: "ADD_VARIANT_SELECTOR",
-      payload: { paragraphId, choice },
-    });
-    setNewSelectorText("");
-    setNewSelectorTarget("");
-  };
 
   return (
     <div className="editor-paragraph-view">
@@ -311,56 +273,32 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   />
                 ))}
 
-                <div className="editor-paragraph-view__choice-add">
-                  <ChoiceTextInput
-                    value={newChoiceText}
-                    onChange={setNewChoiceText}
-                    onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
-                    placeholder="Tekst nowego wyboru"
-                  />
-                  <div className="editor-paragraph-view__choice-target-wrap">
-                    <span className="editor-paragraph-view__choice-target-prefix">
-                      §
-                    </span>
-                    <input
-                      className="editor-paragraph-view__choice-target"
-                      type="text"
-                      value={newChoiceTarget}
-                      onChange={(e) => setNewChoiceTarget(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
-                      onFocus={() => setFocusedTargetId("__new__")}
-                      onBlur={() => setFocusedTargetId(null)}
-                      placeholder="?"
-                    />
-                    {focusedTargetId === "__new__" &&
-                      filterIds(newChoiceTarget, availableIds).length > 0 && (
-                        <ul className="editor-paragraph-view__choice-dropdown">
-                          {filterIds(newChoiceTarget, availableIds).map(
-                            (id) => (
-                              <li
-                                key={id}
-                                className="editor-paragraph-view__choice-dropdown-item"
-                                onMouseDown={(e) => {
-                                  e.preventDefault();
-                                  setNewChoiceTarget(id);
-                                }}
-                              >
-                                §{id}
-                              </li>
-                            ),
-                          )}
-                        </ul>
-                      )}
-                  </div>
-                  <button
-                    className="editor-paragraph-view__choice-add-btn"
-                    onClick={handleAddChoice}
-                    disabled={!newChoiceText.trim()}
-                    title="Dodaj wybór"
-                  >
-                    + Dodaj
-                  </button>
-                </div>
+                <ChoiceAddRow
+                  prefixLabel="§"
+                  targetList={availableIds}
+                  onAdd={(text, target) => {
+                    if (target === paragraphId) return;
+                    const choice: EditorChoice = {
+                      id: crypto.randomUUID(),
+                      text,
+                      nextParagraphId: target,
+                    };
+                    dispatch({
+                      type: "ADD_CHOICE",
+                      payload: { paragraphId, choice },
+                    });
+                    if (
+                      target &&
+                      !availableIds.includes(target) &&
+                      target !== paragraphId
+                    ) {
+                      dispatch({
+                        type: "ADD_PARAGRAPH_SILENT",
+                        payload: target,
+                      });
+                    }
+                  }}
+                />
               </div>
             </>
           )}
@@ -463,56 +401,25 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   </button>
                 </div>
               ))}
-              <div className="editor-paragraph-view__choice-add">
-                <ChoiceTextInput
-                  value={newSelectorText}
-                  onChange={setNewSelectorText}
-                  onKeyDown={(e) => e.key === "Enter" && handleAddSelector()}
-                  placeholder="Tekst nowego przycisku"
-                />
-                <div className="editor-paragraph-view__choice-target-wrap">
-                  <span className="editor-paragraph-view__choice-target-prefix editor-paragraph-view__choice-target-prefix--variant">
-                    W
-                  </span>
-                  <input
-                    className="editor-paragraph-view__choice-target"
-                    type="text"
-                    value={newSelectorTarget}
-                    onChange={(e) => setNewSelectorTarget(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleAddSelector()}
-                    onFocus={() => setFocusedSelectorId("__new-sel__")}
-                    onBlur={() => setFocusedSelectorId(null)}
-                    placeholder="?"
-                  />
-                  {focusedSelectorId === "__new-sel__" &&
-                    filterIds(newSelectorTarget, variantIds).length > 0 && (
-                      <ul className="editor-paragraph-view__choice-dropdown">
-                        {filterIds(newSelectorTarget, variantIds).map((id) => (
-                          <li
-                            key={id}
-                            className="editor-paragraph-view__choice-dropdown-item"
-                            onMouseDown={(e) => {
-                              e.preventDefault();
-                              setNewSelectorTarget(id);
-                            }}
-                          >
-                            W:{id}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                </div>
-                <button
-                  className="editor-paragraph-view__choice-add-btn"
-                  onClick={handleAddSelector}
-                  disabled={
-                    !newSelectorText.trim() || !newSelectorTarget.trim()
-                  }
-                  title="Dodaj przycisk selektora"
-                >
-                  + Dodaj
-                </button>
-              </div>
+              <ChoiceAddRow
+                placeholder="Tekst nowego przycisku"
+                prefixLabel="W"
+                prefixIsVariant
+                targetList={variantIds}
+                requireTarget
+                addButtonTitle="Dodaj przycisk selektora"
+                onAdd={(text, target) => {
+                  const choice: EditorChoice = {
+                    id: crypto.randomUUID(),
+                    text,
+                    nextVariantId: target,
+                  };
+                  dispatch({
+                    type: "ADD_VARIANT_SELECTOR",
+                    payload: { paragraphId, choice },
+                  });
+                }}
+              />
             </>
           )}
         </div>
