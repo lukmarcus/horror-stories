@@ -17,12 +17,39 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 7/10 — Wydzielenie `DropdownPicker`
+### ~~★ 8/10 — Test `CONVERT_TEXT_TO_PAGES`~~ ✅
+
+**Plik:** `src/editor/context/EditorContext.test.ts`  
+**Problem:** Nowa akcja `CONVERT_TEXT_TO_PAGES` parsuje tekst na linie, filtruje puste, tworzy bloki — logika nie jest trywialna i nie ma żadnego testu.  
+**Działanie:** Dodać testy do `EditorContext.test.ts`: tekst wieloliniowy, tekst z pustymi liniami, pusty tekst, brak pola `text`.  
+**Ryzyko:** zerowe. **Nakład:** ~20 min.
+
+---
+
+### ~~★ 7/10 — Wydzielenie danych z `EditorInlineTools.tsx` do `.ts`~~ ✅
+
+**Plik:** `src/editor/components/paragraph/EditorInlineTools.tsx`  
+**Problem:** Plik `.tsx` eksportuje 8 stałych z danymi (`SYMBOL_PICKER_ITEMS`, `ROOM_PICKER_ITEMS`, `COLORS` itd.) i typy. React Fast Refresh ostrzega, gdy plik komponentów miesza eksporty danych — ten sam problem co `buildDefinition` w `GraphView.tsx` (naprawiony w 01bab5e).  
+**Działanie:** Przenieść wszystkie stałe i typy do `EditorInlineTools.ts`, zostawić w `.tsx` tylko komponenty (`ColorPicker`, `ImagePicker`, `SnippetPicker`).  
+**Ryzyko:** niskie. **Nakład:** ~30 min.
+
+---
+
+### ~~★ 7/10 — Wydzielenie `DropdownPicker`~~ ✅
 
 **Plik:** `src/editor/components/paragraph/EditorInlineTools.tsx`  
 **Problem:** `ColorPicker`, `ImagePicker`, `SnippetPicker` mają identyczną strukturę: `useState(open)` + `useClickOutside` + toggle-button + dropdown. Wzorzec powtórzy się przy dodaniu kolejnych pickerów.  
-**Działanie:** Stworzyć generyczny `DropdownPicker<T>` z propsami `toggle`, `children` i wydzielić do `EditorDropdownPicker.tsx`. Skrócić plik `EditorInlineTools.tsx` o ~80 linii.  
+**Działanie:** Stworzyć `DropdownPicker` z propsami `toggleContent`, `containerClass`, `children` i użyć go w każdym z trzech pickerów. Skrócić plik o ~60 linii.  
 **Ryzyko:** niskie. **Nakład:** ~1 h.
+
+---
+
+### ~~★ 6/10 — Wydzielenie `pageSerializer.ts`~~ ✅
+
+**Plik:** `src/editor/components/paragraph/PagesEditor.tsx`  
+**Problem:** Plik `.tsx` eksportuje funkcje `pageToText` i `textToPage` — React Fast Refresh ostrzega (ten sam problem co z danymi w `EditorInlineTools`).  
+**Działanie:** Przenieść `pageToText`, `textToPage`, `buildLine`, `getCurrentLineRange`, `parseBlockPrefixes` i typy pomocnicze do `pageSerializer.ts`.  
+**Ryzyko:** niskie. **Nakład:** ~30 min.
 
 ---
 

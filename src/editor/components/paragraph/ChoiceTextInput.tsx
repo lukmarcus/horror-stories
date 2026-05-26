@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
 import * as textInsert from "../../utils/textInsert";
+import { ColorPicker, ImagePicker, SnippetPicker } from "./EditorInlineTools";
 import {
-  ColorPicker,
-  ImagePicker,
-  SnippetPicker,
   SPAN_SNIPPETS,
   SYMBOL_PICKER_ITEMS,
   ROOM_PICKER_ITEMS,
@@ -13,7 +11,7 @@ import {
   STATUS_PICKER_ITEMS,
   LETTER_PICKER_ITEMS,
   RANDOM_PICKER_ITEMS,
-} from "./EditorInlineTools";
+} from "./editorPickerData";
 import "./PagesEditor.css";
 import "./ChoiceTextInput.css";
 

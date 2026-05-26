@@ -344,6 +344,99 @@ describe("editorReducer", () => {
     });
   });
 
+  describe("CONVERT_TEXT_TO_PAGES", () => {
+    const withText: EditorState = {
+      scenario: {
+        meta: EMPTY_META,
+        paragraphs: [
+          { id: "1", text: "Linia pierwsza\nLinia druga\nLinia trzecia" },
+          { id: "100" },
+        ],
+      },
+      isDirty: false,
+      activeParagraphId: null,
+    };
+
+    it("konwertuje tekst wieloliniowy na bloki i usuwa pole text", () => {
+      const state = dispatch(withText, {
+        type: "CONVERT_TEXT_TO_PAGES",
+        payload: "1",
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1")!;
+      expect(p.text).toBeUndefined();
+      expect(p.pages).toHaveLength(1);
+      expect(p.pages![0]).toHaveLength(3);
+      expect(p.pages![0][0]).toEqual({ type: "text", text: "Linia pierwsza" });
+      expect(p.pages![0][2]).toEqual({ type: "text", text: "Linia trzecia" });
+    });
+
+    it("filtruje puste linie przy konwersji", () => {
+      const state = dispatch(
+        {
+          ...withText,
+          scenario: {
+            ...withText.scenario!,
+            paragraphs: [
+              { id: "1", text: "Linia\n\n   \nDruga" },
+              { id: "100" },
+            ],
+          },
+        },
+        { type: "CONVERT_TEXT_TO_PAGES", payload: "1" },
+      );
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1")!;
+      expect(p.pages![0]).toHaveLength(2);
+    });
+
+    it("tworzy pustą stronę gdy tekst jest pusty", () => {
+      const state = dispatch(
+        {
+          ...withText,
+          scenario: {
+            ...withText.scenario!,
+            paragraphs: [{ id: "1", text: "" }, { id: "100" }],
+          },
+        },
+        { type: "CONVERT_TEXT_TO_PAGES", payload: "1" },
+      );
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1")!;
+      expect(p.pages).toEqual([[]]);
+      expect(p.text).toBeUndefined();
+    });
+
+    it("tworzy pustą stronę gdy brak pola text", () => {
+      const state = dispatch(
+        {
+          ...withText,
+          scenario: {
+            ...withText.scenario!,
+            paragraphs: [{ id: "1" }, { id: "100" }],
+          },
+        },
+        { type: "CONVERT_TEXT_TO_PAGES", payload: "1" },
+      );
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1")!;
+      expect(p.pages).toEqual([[]]);
+    });
+
+    it("ustawia isDirty", () => {
+      const state = dispatch(withText, {
+        type: "CONVERT_TEXT_TO_PAGES",
+        payload: "1",
+      });
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych paragrafów", () => {
+      const state = dispatch(withText, {
+        type: "CONVERT_TEXT_TO_PAGES",
+        payload: "1",
+      });
+      const p100 = state.scenario!.paragraphs.find((p) => p.id === "100")!;
+      expect(p100).toEqual({ id: "100" });
+    });
+  });
+
   describe("ADD_CHOICE", () => {
     const withParagraph: EditorState = {
       scenario: {

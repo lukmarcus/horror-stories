@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { pageToText, textToPage } from "./PagesEditor";
+import { pageToText, textToPage } from "./pageSerializer";
 import type { ContentBlock } from "../../../types";
 
 // ── textToPage ────────────────────────────────────────────────────────────────
