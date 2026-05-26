@@ -1125,4 +1125,60 @@ describe("editorReducer", () => {
       expect(state).toBe(initialState);
     });
   });
+
+  describe("RENAME_VARIANT", () => {
+    it("zmienia klucz wariantu zachowując zawartość", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "A", newId: "X" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants).not.toHaveProperty("A");
+      expect(p?.variants?.X).toEqual(
+        withVariantScenario.scenario!.paragraphs[0].variants!.A,
+      );
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("zachowuje pozostałe warianty bez zmian", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "A", newId: "X" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants).toHaveProperty("B");
+      expect(p?.variants?.B).toEqual(
+        withVariantScenario.scenario!.paragraphs[0].variants!.B,
+      );
+    });
+
+    it("nie zmienia stanu gdy oldId nie istnieje", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "ZZ", newId: "X" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants).toHaveProperty("A");
+      expect(p?.variants).toHaveProperty("B");
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "A", newId: "X" },
+      });
+      expect(state).toBe(initialState);
+    });
+
+    it("zachowuje kolejność wariantów", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "A", newId: "Z" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      const keys = Object.keys(p?.variants ?? {});
+      expect(keys[0]).toBe("Z");
+      expect(keys[1]).toBe("B");
+    });
+  });
 });

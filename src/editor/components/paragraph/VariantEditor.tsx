@@ -24,7 +24,7 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
   variantIds,
   paragraphIds,
 }) => {
-  const { state, dispatch } = useEditor();
+  const { dispatch } = useEditor();
   const [newChoiceIsVariant, setNewChoiceIsVariant] = useState(false);
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [collapsed, setCollapsed] = useState(false);
@@ -39,21 +39,9 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
       setRenaming(false);
       return;
     }
-    const p = state.scenario!.paragraphs.find((p) => p.id === paragraphId)!;
-    const newVariants: Record<string, EditorVariant> = Object.fromEntries(
-      Object.entries(p.variants ?? {}).map(([k, v]) => [
-        k === variantId ? newName : k,
-        v,
-      ]),
-    );
     dispatch({
-      type: "LOAD_SCENARIO",
-      payload: {
-        ...state.scenario!,
-        paragraphs: state.scenario!.paragraphs.map((p) =>
-          p.id === paragraphId ? { ...p, variants: newVariants } : p,
-        ),
-      },
+      type: "RENAME_VARIANT",
+      payload: { paragraphId, oldId: variantId, newId: newName },
     });
     setRenaming(false);
   };

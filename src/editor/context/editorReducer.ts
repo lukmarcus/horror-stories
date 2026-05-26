@@ -340,6 +340,15 @@ export function editorReducer(
         variants: undefined,
         variantSelectors: undefined,
       }));
+    case "RENAME_VARIANT":
+      return mapParagraph(state, action.payload.paragraphId, (p) => {
+        if (!p.variants || !p.variants[action.payload.oldId]) return p;
+        const entries = Object.entries(p.variants).map(([k, v]) => [
+          k === action.payload.oldId ? action.payload.newId : k,
+          v,
+        ]);
+        return { ...p, variants: Object.fromEntries(entries) };
+      });
     default:
       return state;
   }

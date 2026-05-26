@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { EditorChoice } from "../../context/editorTypes";
 import { filterIds } from "../../utils/editorUtils";
 import { ChoiceTextInput } from "./ChoiceTextInput";
@@ -22,6 +22,7 @@ export const ChoiceRow: React.FC<ChoiceRowProps> = ({
   onUpdate,
   onRemove,
 }) => {
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
   const isVariantTarget = !!choice.nextVariantId;
   const targetValue = isVariantTarget
     ? (choice.nextVariantId ?? "")
@@ -74,17 +75,62 @@ export const ChoiceRow: React.FC<ChoiceRowProps> = ({
           className="editor-paragraph-view__choice-target"
           type="text"
           value={targetValue}
+          aria-autocomplete="list"
+          aria-controls={
+            focusedId === dropdownKey && options.length > 0
+              ? `${dropdownKey}-listbox`
+              : undefined
+          }
+          aria-activedescendant={
+            focusedId === dropdownKey && highlightedIndex !== null
+              ? `${dropdownKey}-option-${highlightedIndex}`
+              : undefined
+          }
           onChange={(e) => handleTargetChange(e.target.value)}
           onFocus={() => setFocusedId(dropdownKey)}
-          onBlur={() => setFocusedId(null)}
+          onBlur={() => {
+            setFocusedId(null);
+            setHighlightedIndex(null);
+          }}
+          onKeyDown={(e) => {
+            if (focusedId !== dropdownKey || options.length === 0) return;
+            if (e.key === "ArrowDown") {
+              e.preventDefault();
+              setHighlightedIndex((i) =>
+                i === null ? 0 : (i + 1) % options.length,
+              );
+            } else if (e.key === "ArrowUp") {
+              e.preventDefault();
+              setHighlightedIndex((i) =>
+                i === null
+                  ? options.length - 1
+                  : (i - 1 + options.length) % options.length,
+              );
+            } else if (e.key === "Enter" && highlightedIndex !== null) {
+              e.preventDefault();
+              handleTargetChange(options[highlightedIndex]);
+              setHighlightedIndex(null);
+            } else if (e.key === "Escape") {
+              e.preventDefault();
+              setFocusedId(null);
+              setHighlightedIndex(null);
+            }
+          }}
           placeholder="?"
         />
         {focusedId === dropdownKey && options.length > 0 && (
-          <ul className="editor-paragraph-view__choice-dropdown">
-            {options.map((id) => (
+          <ul
+            id={`${dropdownKey}-listbox`}
+            role="listbox"
+            className="editor-paragraph-view__choice-dropdown"
+          >
+            {options.map((id, index) => (
               <li
                 key={id}
-                className="editor-paragraph-view__choice-dropdown-item"
+                id={`${dropdownKey}-option-${index}`}
+                role="option"
+                aria-selected={highlightedIndex === index}
+                className={`editor-paragraph-view__choice-dropdown-item${highlightedIndex === index ? " editor-paragraph-view__choice-dropdown-item--highlighted" : ""}`}
                 onMouseDown={(e) => {
                   e.preventDefault();
                   handleTargetChange(id);

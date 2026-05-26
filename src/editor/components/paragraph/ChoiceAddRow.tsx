@@ -37,6 +37,7 @@ export const ChoiceAddRow: React.FC<ChoiceAddRowProps> = ({
   const [text, setText] = useState("");
   const [target, setTarget] = useState("");
   const [focused, setFocused] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
   const handleAdd = () => {
     const trimmedText = text.trim();
@@ -81,18 +82,66 @@ export const ChoiceAddRow: React.FC<ChoiceAddRowProps> = ({
           className="editor-paragraph-view__choice-target"
           type="text"
           value={target}
+          aria-autocomplete="list"
+          aria-controls={
+            focused && options.length > 0 ? "choice-add-listbox" : undefined
+          }
+          aria-activedescendant={
+            focused && highlightedIndex !== null
+              ? `choice-add-option-${highlightedIndex}`
+              : undefined
+          }
           onChange={(e) => setTarget(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleAdd()}
+          onKeyDown={(e) => {
+            if (focused && options.length > 0) {
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                setHighlightedIndex((i) =>
+                  i === null ? 0 : (i + 1) % options.length,
+                );
+                return;
+              } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                setHighlightedIndex((i) =>
+                  i === null
+                    ? options.length - 1
+                    : (i - 1 + options.length) % options.length,
+                );
+                return;
+              } else if (e.key === "Enter" && highlightedIndex !== null) {
+                e.preventDefault();
+                setTarget(options[highlightedIndex]);
+                setHighlightedIndex(null);
+                return;
+              } else if (e.key === "Escape") {
+                e.preventDefault();
+                setFocused(false);
+                setHighlightedIndex(null);
+                return;
+              }
+            }
+            if (e.key === "Enter") handleAdd();
+          }}
           onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
+          onBlur={() => {
+            setFocused(false);
+            setHighlightedIndex(null);
+          }}
           placeholder="?"
         />
         {focused && options.length > 0 && (
-          <ul className="editor-paragraph-view__choice-dropdown">
-            {options.map((id) => (
+          <ul
+            id="choice-add-listbox"
+            role="listbox"
+            className="editor-paragraph-view__choice-dropdown"
+          >
+            {options.map((id, index) => (
               <li
                 key={id}
-                className="editor-paragraph-view__choice-dropdown-item"
+                id={`choice-add-option-${index}`}
+                role="option"
+                aria-selected={highlightedIndex === index}
+                className={`editor-paragraph-view__choice-dropdown-item${highlightedIndex === index ? " editor-paragraph-view__choice-dropdown-item--highlighted" : ""}`}
                 onMouseDown={(e) => {
                   e.preventDefault();
                   setTarget(id);
