@@ -8,7 +8,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ## v0.2.7 — Nowe zadania
 
-### ★ 8/10 — Testy `validateMeta`
+### ~~★ 8/10 — Testy `validateMeta`~~ ✅ 9e49a52
 
 **Plik:** `src/editor/components/scenario/scenarioMetaValidation.ts`  
 **Problem:** Funkcja `validateMeta` ma 7 oddzielnych warunków (tytuł, opis, zakres graczy, czas, min<max), ale nie ma żadnego testu. Logika jest odpowiedzialna za wyświetlanie błędów w formularzu metadanych.  
@@ -26,7 +26,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 6/10 — Dedykowana akcja `CONVERT_TEXT_TO_PAGES`
+### ~~★ 6/10 — Dedykowana akcja `CONVERT_TEXT_TO_PAGES`~~ ✅
 
 **Plik:** `src/editor/components/paragraph/EditorParagraphView.tsx` (linia ~218), `src/editor/context/editorReducer.ts`  
 **Problem:** Przycisk "Przekonwertuj na bloki" wywołuje `LOAD_SCENARIO` z ręcznie skonstruowanym całym scenariuszem. Bypasuje abstrakcję reducera — zmiana struktury danych wymaga edycji komponentu.  
@@ -35,7 +35,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 5/10 — `<div onClick>` → `<button>` w sidebarze
+### ~~★ 5/10 — `<div onClick>` → `<button>` w sidebarze~~ ✅
 
 **Plik:** `src/editor/components/layout/EditorLayout.tsx` (linia ~103)  
 **Problem:** Każdy paragraf w pasku bocznym to `<div onClick>`. Elementy `div` nie są focusowalne klawiaturą, nie mają roli semantycznej — screen-readery ich nie wykrywają.  
@@ -44,7 +44,7 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 5/10 — Testy `filterIds` i `sortParagraphIds`
+### ~~★ 5/10 — Testy `filterIds` i `sortParagraphIds`~~ ✅ 9e49a52
 
 **Plik:** `src/editor/utils/editorUtils.ts`  
 **Problem:** `filterIds` i `sortParagraphIds` są używane w wielu miejscach, ale nie mają żadnych testów. Edge-case'y: pusty string, ID mieszane (numeryczne + alfanumeryczne), dopasowanie częściowe.  
@@ -53,21 +53,12 @@ Kolejność według priorytetu (ocena 1–10: ryzyko × wartość × nakład).
 
 ---
 
-### ★ 5/10 — Walidacja danych przy odczycie z `editorStorage`
+### ~~★ 5/10 — Walidacja danych przy odczycie z `editorStorage`~~ ✅
 
 **Plik:** `src/editor/utils/editorStorage.ts`  
 **Problem:** `loadFromStorage()` zwraca `request.result as EditorScenario` bez walidacji. Uszkodzony lub niekompletny zapis w IndexedDB powoduje cichy błąd runtime zamiast czytelnego komunikatu.  
 **Działanie:** Użyć `isValidEditorScenario` (analogicznie do `isValidScenarioMeta` w zipHandlerze) lub przynajmniej sprawdzić `typeof result === "object"` i obecność `meta`/`paragraphs`. Przy błędzie — `clearStorage()` i zwrócenie `null` z logiem.  
 **Ryzyko:** niskie. **Nakład:** ~30 min.
-
----
-
-### ★ 4/10 — Poprawka typu `"meta" | string`
-
-**Pliki:** `src/editor/pages/EditorHome.tsx` (linia 12), `src/editor/components/layout/EditorLayout.tsx` (linia 9)  
-**Problem:** `"meta" | string` jest semantycznie tożsame z `string` — TypeScript rozszerza literal do bazowego. Prop `activeSection` nie komunikuje dopuszczalnych wartości.  
-**Działanie:** Zdefiniować `type EditorSection = "meta" | "graph" | (string & {})` albo przenieść do `editorTypes.ts`.  
-**Ryzyko:** zerowe. **Nakład:** ~10 min.
 
 ---
 

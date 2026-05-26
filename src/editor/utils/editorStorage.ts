@@ -5,6 +5,14 @@ const DB_VERSION = 1;
 const STORE_NAME = "editor";
 const AUTOSAVE_KEY = "autosave";
 
+function isValidEditorScenario(data: unknown): data is EditorScenario {
+  if (!data || typeof data !== "object") return false;
+  const d = data as Record<string, unknown>;
+  return (
+    d.meta !== null && typeof d.meta === "object" && Array.isArray(d.paragraphs)
+  );
+}
+
 function openDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION);
@@ -31,8 +39,23 @@ export async function loadFromStorage(): Promise<EditorScenario | null> {
   return new Promise((resolve, reject) => {
     const tx = db.transaction(STORE_NAME, "readonly");
     const request = tx.objectStore(STORE_NAME).get(AUTOSAVE_KEY);
-    request.onsuccess = () =>
-      resolve((request.result as EditorScenario) ?? null);
+    request.onsuccess = () => {
+      const raw = request.result;
+      if (raw === undefined || raw === null) {
+        resolve(null);
+        return;
+      }
+      if (!isValidEditorScenario(raw)) {
+        console.warn(
+          "[editorStorage] Nieprawidłowy format zapisu — dane zostaną usunięte.",
+          raw,
+        );
+        clearStorage().catch(() => undefined);
+        resolve(null);
+        return;
+      }
+      resolve(raw);
+    };
     request.onerror = () => reject(request.error);
   });
 }

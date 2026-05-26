@@ -82,7 +82,7 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
             <div className="editor-sidebar__section-divider" />
           )}
           {paragraphs.map((p) => (
-            <div
+            <button
               key={p.id}
               className={`editor-sidebar__paragraph ${
                 activeSection === p.id
@@ -90,6 +90,7 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                   : ""
               }`}
               onClick={() => onSectionChange(p.id)}
+              aria-current={activeSection === p.id ? "true" : undefined}
             >
               <span className="editor-sidebar__paragraph-label">
                 §{p.id}
@@ -99,7 +100,7 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                   </span>
                 )}
               </span>
-            </div>
+            </button>
           ))}
 
           {state.scenario && (

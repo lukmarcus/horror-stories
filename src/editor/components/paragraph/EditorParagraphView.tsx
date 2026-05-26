@@ -206,30 +206,12 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   />
                   <button
                     className="editor-paragraph-view__migrate-btn"
-                    onClick={() => {
-                      const lines = text
-                        .split("\n")
-                        .filter((l) => l.trim() !== "");
-                      const page = lines.map((line) => ({
-                        type: "text" as const,
-                        text: line,
-                      }));
+                    onClick={() =>
                       dispatch({
-                        type: "LOAD_SCENARIO",
-                        payload: {
-                          ...state.scenario!,
-                          paragraphs: state.scenario!.paragraphs.map((p) =>
-                            p.id === paragraphId
-                              ? {
-                                  ...p,
-                                  pages: [page.length > 0 ? page : []],
-                                  text: undefined,
-                                }
-                              : p,
-                          ),
-                        },
-                      });
-                    }}
+                        type: "CONVERT_TEXT_TO_PAGES",
+                        payload: paragraphId,
+                      })
+                    }
                   >
                     Przekonwertuj na bloki
                   </button>

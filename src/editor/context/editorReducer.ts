@@ -124,6 +124,16 @@ export function editorReducer(
         ...p,
         text: action.payload.text,
       }));
+    case "CONVERT_TEXT_TO_PAGES": {
+      return mapParagraph(state, action.payload, (p) => {
+        const lines = (p.text ?? "").split("\n").filter((l) => l.trim() !== "");
+        const page = lines.map((line) => ({
+          type: "text" as const,
+          text: line,
+        }));
+        return { ...p, pages: [page.length > 0 ? page : []], text: undefined };
+      });
+    }
     case "SET_PARAGRAPH_PAGES":
       return mapParagraph(state, action.payload.id, (p) => ({
         ...p,
