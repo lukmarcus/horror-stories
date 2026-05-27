@@ -12,6 +12,9 @@ import {
 } from "../../../data/items";
 import "./rich-text.css";
 
+const CUSTOM_TAG_PATTERN =
+  /<(symbol|letter|item|image|person|enemy|story|room|status|random)\s+id=["']([^"']+)["']\s*\/>/;
+
 interface RichTextProps {
   content?: ContentBlock[];
   text?: string; // for backward compatibility
@@ -27,17 +30,11 @@ export const RichText: React.FC<RichTextProps> = ({
 }) => {
   // Parse HTML and replace custom tags with React elements
   const parseHtml = (html: string): React.ReactNode => {
-    const customTagRegex =
-      /<(symbol|letter|item|image|person|enemy|story|room|status|random)\s+id=["']([^"']+)["']\s*\/>/g;
-
-    // Check if there are any custom tags at all
-    if (!customTagRegex.test(html)) {
+    if (!CUSTOM_TAG_PATTERN.test(html)) {
       return <span dangerouslySetInnerHTML={{ __html: html }} />;
     }
 
-    // Reset regex
-    customTagRegex.lastIndex = 0;
-
+    const customTagRegex = new RegExp(CUSTOM_TAG_PATTERN.source, "g");
     let currentPos = 0;
     const segments: React.ReactNode[] = [];
     let counter = 0;
