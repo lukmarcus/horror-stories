@@ -181,12 +181,16 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
           const variantSelectors = (p.choices ?? []).map(addId);
           const variants: Record<string, unknown> = {};
           for (const [vid, v] of Object.entries(
-            p.variants as Record<string, any>,
+            p.variants as Record<string, Record<string, unknown>>,
           )) {
             variants[vid] = {
               pages: v.contentPages ?? [[]],
               ...(v.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
-              choices: (v.choices ?? []).map(addId),
+              choices: (
+                Array.isArray(v.choices)
+                  ? (v.choices as Record<string, unknown>[])
+                  : []
+              ).map(addId),
             };
           }
           return {

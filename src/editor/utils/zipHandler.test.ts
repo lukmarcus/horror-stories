@@ -207,7 +207,7 @@ describe("isValidScenarioMeta", () => {
   });
 
   it("zwraca false gdy brak id", () => {
-    const { id: _, ...rest } = VALID;
+    const { id: _id, ...rest } = VALID;
     expect(isValidScenarioMeta(rest)).toBe(false);
   });
 
@@ -216,7 +216,7 @@ describe("isValidScenarioMeta", () => {
   });
 
   it("zwraca false gdy brak title", () => {
-    const { title: _, ...rest } = VALID;
+    const { title: _title, ...rest } = VALID;
     expect(isValidScenarioMeta(rest)).toBe(false);
   });
 
@@ -225,7 +225,7 @@ describe("isValidScenarioMeta", () => {
   });
 
   it("zwraca false gdy brak description", () => {
-    const { description: _, ...rest } = VALID;
+    const { description: _description, ...rest } = VALID;
     expect(isValidScenarioMeta(rest)).toBe(false);
   });
 
