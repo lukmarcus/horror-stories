@@ -5,7 +5,7 @@ Interaktywna aplikacja webowa dla gry planszowej Horror Stories, stworzona w Rea
 ## Informacje o projekcie
 
 - **Nazwa**: Horror Stories
-- **Wersja**: 0.2.6
+- **Wersja**: 0.2.7
 - **Autor**: Marek Szumny
 - **Licencja**: MIT
 - **Opis**: Aplikacja towarzysząca grze planszowej Horror Stories
@@ -50,7 +50,7 @@ Projekt jest zorganizowany wg. czytelnych warstw:
 - **Game Logic**: Oddzielona od komponentów (src/utils/gameLogic.ts)
   - **Data-driven**: Dane gry w src/scenarios/ i src/data/items/, nie w komponentach
 - **Accessible**: Walidacja dostępności paragrafów z warningami użytkownika
-- **Tested**: 420+ testów pokrywających logikę gry, komponenty i utility functions
+- **Tested**: 590+ testów pokrywających logikę gry, komponenty i utility functions
 
 ## Struktura projektu
 

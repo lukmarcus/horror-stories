@@ -344,6 +344,99 @@ describe("editorReducer", () => {
     });
   });
 
+  describe("CONVERT_TEXT_TO_PAGES", () => {
+    const withText: EditorState = {
+      scenario: {
+        meta: EMPTY_META,
+        paragraphs: [
+          { id: "1", text: "Linia pierwsza\nLinia druga\nLinia trzecia" },
+          { id: "100" },
+        ],
+      },
+      isDirty: false,
+      activeParagraphId: null,
+    };
+
+    it("konwertuje tekst wieloliniowy na bloki i usuwa pole text", () => {
+      const state = dispatch(withText, {
+        type: "CONVERT_TEXT_TO_PAGES",
+        payload: "1",
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1")!;
+      expect(p.text).toBeUndefined();
+      expect(p.pages).toHaveLength(1);
+      expect(p.pages![0]).toHaveLength(3);
+      expect(p.pages![0][0]).toEqual({ type: "text", text: "Linia pierwsza" });
+      expect(p.pages![0][2]).toEqual({ type: "text", text: "Linia trzecia" });
+    });
+
+    it("filtruje puste linie przy konwersji", () => {
+      const state = dispatch(
+        {
+          ...withText,
+          scenario: {
+            ...withText.scenario!,
+            paragraphs: [
+              { id: "1", text: "Linia\n\n   \nDruga" },
+              { id: "100" },
+            ],
+          },
+        },
+        { type: "CONVERT_TEXT_TO_PAGES", payload: "1" },
+      );
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1")!;
+      expect(p.pages![0]).toHaveLength(2);
+    });
+
+    it("tworzy pustą stronę gdy tekst jest pusty", () => {
+      const state = dispatch(
+        {
+          ...withText,
+          scenario: {
+            ...withText.scenario!,
+            paragraphs: [{ id: "1", text: "" }, { id: "100" }],
+          },
+        },
+        { type: "CONVERT_TEXT_TO_PAGES", payload: "1" },
+      );
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1")!;
+      expect(p.pages).toEqual([[]]);
+      expect(p.text).toBeUndefined();
+    });
+
+    it("tworzy pustą stronę gdy brak pola text", () => {
+      const state = dispatch(
+        {
+          ...withText,
+          scenario: {
+            ...withText.scenario!,
+            paragraphs: [{ id: "1" }, { id: "100" }],
+          },
+        },
+        { type: "CONVERT_TEXT_TO_PAGES", payload: "1" },
+      );
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1")!;
+      expect(p.pages).toEqual([[]]);
+    });
+
+    it("ustawia isDirty", () => {
+      const state = dispatch(withText, {
+        type: "CONVERT_TEXT_TO_PAGES",
+        payload: "1",
+      });
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych paragrafów", () => {
+      const state = dispatch(withText, {
+        type: "CONVERT_TEXT_TO_PAGES",
+        payload: "1",
+      });
+      const p100 = state.scenario!.paragraphs.find((p) => p.id === "100")!;
+      expect(p100).toEqual({ id: "100" });
+    });
+  });
+
   describe("ADD_CHOICE", () => {
     const withParagraph: EditorState = {
       scenario: {
@@ -648,6 +741,444 @@ describe("editorReducer", () => {
       const page1 = state.scenario!.paragraphs.find((p) => p.id === "1")
         ?.pages?.[1];
       expect(page1).toHaveLength(1);
+    });
+  });
+
+  describe("ENABLE_VARIANT_MODE", () => {
+    const withSimple: EditorState = {
+      scenario: {
+        meta: EMPTY_META,
+        paragraphs: [
+          {
+            id: "1",
+            choices: [{ id: "c1", text: "Idź", nextParagraphId: "2" }],
+          },
+          { id: "2" },
+          { id: "100" },
+        ],
+      },
+      isDirty: false,
+      activeParagraphId: null,
+    };
+
+    it("ustawia variants: {} i variantSelectors: [] na paragrafie", () => {
+      const state = dispatch(withSimple, {
+        type: "ENABLE_VARIANT_MODE",
+        payload: "1",
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants).toEqual({});
+      expect(p?.variantSelectors).toEqual([]);
+    });
+
+    it("usuwa choices przy włączeniu trybu wariantowego", () => {
+      const state = dispatch(withSimple, {
+        type: "ENABLE_VARIANT_MODE",
+        payload: "1",
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.choices).toBeUndefined();
+    });
+
+    it("ustawia isDirty na true", () => {
+      const state = dispatch(withSimple, {
+        type: "ENABLE_VARIANT_MODE",
+        payload: "1",
+      });
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych paragrafów", () => {
+      const state = dispatch(withSimple, {
+        type: "ENABLE_VARIANT_MODE",
+        payload: "1",
+      });
+      const p2 = state.scenario!.paragraphs.find((p) => p.id === "2");
+      expect(p2?.variants).toBeUndefined();
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "ENABLE_VARIANT_MODE",
+        payload: "1",
+      });
+      expect(state).toBe(initialState);
+    });
+  });
+
+  describe("DISABLE_VARIANT_MODE", () => {
+    const withVariant: EditorState = {
+      scenario: {
+        meta: EMPTY_META,
+        paragraphs: [
+          {
+            id: "1",
+            variants: { A: { pages: [[]] }, B: { pages: [[]] } },
+            variantSelectors: [{ id: "s1", text: "W:A", nextParagraphId: "2" }],
+          },
+          { id: "2" },
+          { id: "100" },
+        ],
+      },
+      isDirty: false,
+      activeParagraphId: null,
+    };
+
+    it("usuwa variants i variantSelectors z paragrafu", () => {
+      const state = dispatch(withVariant, {
+        type: "DISABLE_VARIANT_MODE",
+        payload: "1",
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants).toBeUndefined();
+      expect(p?.variantSelectors).toBeUndefined();
+    });
+
+    it("ustawia isDirty na true", () => {
+      const state = dispatch(withVariant, {
+        type: "DISABLE_VARIANT_MODE",
+        payload: "1",
+      });
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych paragrafów", () => {
+      const state = dispatch(withVariant, {
+        type: "DISABLE_VARIANT_MODE",
+        payload: "1",
+      });
+      const p2 = state.scenario!.paragraphs.find((p) => p.id === "2");
+      expect(p2).toEqual({ id: "2" });
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "DISABLE_VARIANT_MODE",
+        payload: "1",
+      });
+      expect(state).toBe(initialState);
+    });
+  });
+
+  const withVariantScenario: EditorState = {
+    scenario: {
+      meta: EMPTY_META,
+      paragraphs: [
+        {
+          id: "1",
+          variants: {
+            A: {
+              pages: [[{ type: "text", text: "Wariant A" }]],
+              choices: [{ id: "vc1", text: "Dalej", nextParagraphId: "2" }],
+            },
+            B: { pages: [[]] },
+          },
+          variantSelectors: [
+            { id: "s1", text: "Wybierz A", nextParagraphId: "2" },
+          ],
+        },
+        { id: "2" },
+        { id: "100" },
+      ],
+    },
+    isDirty: false,
+    activeParagraphId: null,
+  };
+
+  describe("ADD_VARIANT_SELECTOR", () => {
+    it("dodaje selektor do paragrafu", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "ADD_VARIANT_SELECTOR",
+        payload: {
+          paragraphId: "1",
+          choice: { id: "s2", text: "Wybierz B", nextParagraphId: "100" },
+        },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variantSelectors).toHaveLength(2);
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "ADD_VARIANT_SELECTOR",
+        payload: {
+          paragraphId: "1",
+          choice: { id: "s2", text: "X", nextParagraphId: "2" },
+        },
+      });
+      expect(state).toBe(initialState);
+    });
+  });
+
+  describe("UPDATE_VARIANT_SELECTOR", () => {
+    it("aktualizuje selektor o podanym id", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "UPDATE_VARIANT_SELECTOR",
+        payload: {
+          paragraphId: "1",
+          choice: { id: "s1", text: "Zmieniony", nextParagraphId: "100" },
+        },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variantSelectors?.[0].text).toBe("Zmieniony");
+      expect(p?.variantSelectors?.[0].nextParagraphId).toBe("100");
+    });
+  });
+
+  describe("REMOVE_VARIANT_SELECTOR", () => {
+    it("usuwa selektor o podanym id", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "REMOVE_VARIANT_SELECTOR",
+        payload: { paragraphId: "1", choiceId: "s1" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variantSelectors).toHaveLength(0);
+      expect(state.isDirty).toBe(true);
+    });
+  });
+
+  describe("ADD_VARIANT", () => {
+    it("dodaje nowy wariant do paragrafu", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "ADD_VARIANT",
+        payload: { paragraphId: "1", variantId: "C" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.C).toEqual({ pages: [[]] });
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie nadpisuje istniejącego wariantu", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "ADD_VARIANT",
+        payload: { paragraphId: "1", variantId: "A" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.A.pages?.[0]).toHaveLength(1); // unchanged
+    });
+  });
+
+  describe("REMOVE_VARIANT", () => {
+    it("usuwa wariant o podanym id", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "REMOVE_VARIANT",
+        payload: { paragraphId: "1", variantId: "A" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.A).toBeUndefined();
+      expect(p?.variants?.B).toBeDefined();
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("ustawia variants: undefined gdy usunięto ostatni wariant", () => {
+      const withOneVariant: EditorState = {
+        scenario: {
+          meta: EMPTY_META,
+          paragraphs: [
+            { id: "1", variants: { A: { pages: [[]] } } },
+            { id: "100" },
+          ],
+        },
+        isDirty: false,
+        activeParagraphId: null,
+      };
+      const state = dispatch(withOneVariant, {
+        type: "REMOVE_VARIANT",
+        payload: { paragraphId: "1", variantId: "A" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants).toBeUndefined();
+    });
+  });
+
+  describe("SET_VARIANT_PAGES", () => {
+    it("ustawia strony wariantu", () => {
+      const newPages = [[{ type: "text" as const, text: "Nowa treść" }]];
+      const state = dispatch(withVariantScenario, {
+        type: "SET_VARIANT_PAGES",
+        payload: { paragraphId: "1", variantId: "B", pages: newPages },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.B.pages).toEqual(newPages);
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych wariantów", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "SET_VARIANT_PAGES",
+        payload: { paragraphId: "1", variantId: "B", pages: [[]] },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.A.pages?.[0]).toHaveLength(1);
+    });
+
+    it("nie zmienia danych gdy wariant nie istnieje", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "SET_VARIANT_PAGES",
+        payload: { paragraphId: "1", variantId: "Z", pages: [[]] },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.A).toEqual(
+        withVariantScenario.scenario!.paragraphs[0].variants!.A,
+      );
+      expect(p?.variants?.B).toEqual(
+        withVariantScenario.scenario!.paragraphs[0].variants!.B,
+      );
+    });
+  });
+
+  describe("SET_VARIANT_HORIZONTAL", () => {
+    it("ustawia areChoicesHorizontal na true", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "SET_VARIANT_HORIZONTAL",
+        payload: { paragraphId: "1", variantId: "A", value: true },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.A.areChoicesHorizontal).toBe(true);
+    });
+
+    it("usuwa areChoicesHorizontal gdy value=false (undefined zamiast false)", () => {
+      const withHorizontal: EditorState = {
+        scenario: {
+          meta: EMPTY_META,
+          paragraphs: [
+            {
+              id: "1",
+              variants: { A: { pages: [[]], areChoicesHorizontal: true } },
+            },
+            { id: "100" },
+          ],
+        },
+        isDirty: false,
+        activeParagraphId: null,
+      };
+      const state = dispatch(withHorizontal, {
+        type: "SET_VARIANT_HORIZONTAL",
+        payload: { paragraphId: "1", variantId: "A", value: false },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.A.areChoicesHorizontal).toBeUndefined();
+    });
+  });
+
+  describe("ADD_VARIANT_CHOICE", () => {
+    it("dodaje wybór do wariantu", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "ADD_VARIANT_CHOICE",
+        payload: {
+          paragraphId: "1",
+          variantId: "A",
+          choice: { id: "vc2", text: "Nowy wybór", nextParagraphId: "100" },
+        },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.A.choices).toHaveLength(2);
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia innych wariantów", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "ADD_VARIANT_CHOICE",
+        payload: {
+          paragraphId: "1",
+          variantId: "A",
+          choice: { id: "vc2", text: "X", nextParagraphId: "2" },
+        },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.B.choices).toBeUndefined();
+    });
+  });
+
+  describe("UPDATE_VARIANT_CHOICE", () => {
+    it("aktualizuje wybór w wariancie", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "UPDATE_VARIANT_CHOICE",
+        payload: {
+          paragraphId: "1",
+          variantId: "A",
+          choice: { id: "vc1", text: "Zmieniony", nextParagraphId: "100" },
+        },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.A.choices?.[0].text).toBe("Zmieniony");
+    });
+  });
+
+  describe("REMOVE_VARIANT_CHOICE", () => {
+    it("usuwa wybór z wariantu", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "REMOVE_VARIANT_CHOICE",
+        payload: { paragraphId: "1", variantId: "A", choiceId: "vc1" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants?.A.choices).toHaveLength(0);
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "REMOVE_VARIANT_CHOICE",
+        payload: { paragraphId: "1", variantId: "A", choiceId: "vc1" },
+      });
+      expect(state).toBe(initialState);
+    });
+  });
+
+  describe("RENAME_VARIANT", () => {
+    it("zmienia klucz wariantu zachowując zawartość", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "A", newId: "X" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants).not.toHaveProperty("A");
+      expect(p?.variants?.X).toEqual(
+        withVariantScenario.scenario!.paragraphs[0].variants!.A,
+      );
+      expect(state.isDirty).toBe(true);
+    });
+
+    it("zachowuje pozostałe warianty bez zmian", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "A", newId: "X" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants).toHaveProperty("B");
+      expect(p?.variants?.B).toEqual(
+        withVariantScenario.scenario!.paragraphs[0].variants!.B,
+      );
+    });
+
+    it("nie zmienia stanu gdy oldId nie istnieje", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "ZZ", newId: "X" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      expect(p?.variants).toHaveProperty("A");
+      expect(p?.variants).toHaveProperty("B");
+    });
+
+    it("nie zmienia stanu gdy brak scenariusza", () => {
+      const state = dispatch(initialState, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "A", newId: "X" },
+      });
+      expect(state).toBe(initialState);
+    });
+
+    it("zachowuje kolejność wariantów", () => {
+      const state = dispatch(withVariantScenario, {
+        type: "RENAME_VARIANT",
+        payload: { paragraphId: "1", oldId: "A", newId: "Z" },
+      });
+      const p = state.scenario!.paragraphs.find((p) => p.id === "1");
+      const keys = Object.keys(p?.variants ?? {});
+      expect(keys[0]).toBe("Z");
+      expect(keys[1]).toBe("B");
     });
   });
 });

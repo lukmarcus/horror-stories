@@ -188,8 +188,10 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 - ✅ Reducer edytora (stan scenariusza, paragrafy)
 - ✅ Data helpers: `getSymbol`, `getRoomItem`, `getLetter`, `getPerson`, `getEnemy`, `getStoryItem`, `getStatus`, `getRandomItem` (wszystkie ID z danych)
 - ✅ Regex tagów RichText (`<symbol>`, `<room>`, `<letter>`, `<person>`, `<enemy>`, `<story>`, `<status>`, `<image>`, `<random>`)
+- ✅ Serializacja bloków treści edytora (`pageToText` / `textToPage`, round-trip, wszystkie prefiks-typy)
+- ✅ Graf dostępności paragrafów (`buildAccessibleFrom` — proste, wariantowe, dedupl.)
 
-### Current Coverage (v0.2.5)
+### Current Coverage (v0.2.7)
 
 | Category                 | Tests   | Coverage | Status |
 | ------------------------ | ------- | -------- | ------ |
@@ -198,6 +200,8 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 | Hooks (State)            | 26      | ~80%     | ✅     |
 | Utils (Parsing)          | 40      | ~100%    | ✅     |
 | Components               | 96      | ~95%     | ✅     |
+| Editor Serialization     | 57      | 100%     | ✅     |
+| Editor Graph Utils       | 12      | 100%     | ✅     |
 | Data / Items             | 38      | 100%     | ✅     |
 | Pages                    | 53      | mixed    | ✅     |
 | E2E                      | 54      | —        | ✅     |

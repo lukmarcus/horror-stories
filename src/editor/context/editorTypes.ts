@@ -139,7 +139,14 @@ export type EditorAction =
   | {
       type: "REMOVE_VARIANT_CHOICE";
       payload: { paragraphId: string; variantId: string; choiceId: string };
-    };
+    }
+  | { type: "ENABLE_VARIANT_MODE"; payload: string }
+  | { type: "DISABLE_VARIANT_MODE"; payload: string }
+  | {
+      type: "RENAME_VARIANT";
+      payload: { paragraphId: string; oldId: string; newId: string };
+    }
+  | { type: "CONVERT_TEXT_TO_PAGES"; payload: string };
 
 export interface EditorContextValue {
   state: EditorState;

@@ -1,11 +1,16 @@
-﻿import React, { useState } from "react";
+﻿import React, { useMemo, useState } from "react";
 import { useEditor } from "../../context/useEditor";
 import { ParagraphText } from "../../../components/text/ParagraphText/ParagraphText";
 import { RichText } from "../../../components/text/RichText/RichText";
+import { PagesPreview } from "./PagesPreview";
 import { Button } from "../../../components/ui/Button";
-import type { EditorChoice, EditorVariant } from "../../context/editorTypes";
+import type { EditorChoice } from "../../context/editorTypes";
+import { filterIds, sortParagraphIds } from "../../utils/editorUtils";
 import { PagesEditor } from "./PagesEditor";
 import { ChoiceTextInput } from "./ChoiceTextInput";
+import { ChoiceRow } from "./ChoiceRow";
+import { ChoiceAddRow } from "./ChoiceAddRow";
+import { VariantEditor } from "./VariantEditor";
 import "./EditorParagraphView.css";
 
 interface EditorParagraphViewProps {
@@ -13,456 +18,6 @@ interface EditorParagraphViewProps {
   onRemove: (id: string) => void;
   onNavigate: (id: string) => void;
 }
-
-// ── ChoiceRow ─────────────────────────────────────────────────────────────────
-
-interface ChoiceRowProps {
-  choice: EditorChoice;
-  paragraphIds: string[];
-  variantIds?: string[];
-  focusedId: string | null;
-  setFocusedId: (id: string | null) => void;
-  onUpdate: (choice: EditorChoice) => void;
-  onRemove: (id: string) => void;
-}
-
-const ChoiceRow: React.FC<ChoiceRowProps> = ({
-  choice,
-  paragraphIds,
-  variantIds,
-  focusedId,
-  setFocusedId,
-  onUpdate,
-  onRemove,
-}) => {
-  const isVariantTarget = !!choice.nextVariantId;
-  const targetValue = isVariantTarget
-    ? (choice.nextVariantId ?? "")
-    : (choice.nextParagraphId ?? "");
-
-  const filteredOptions = (value: string) => {
-    const v = value.trim();
-    const list = isVariantTarget ? (variantIds ?? []) : paragraphIds;
-    if (!v) return list;
-    return list.filter((id) => id.includes(v));
-  };
-
-  const handleTargetChange = (val: string) => {
-    if (isVariantTarget) {
-      onUpdate({ ...choice, nextVariantId: val, nextParagraphId: undefined });
-    } else {
-      onUpdate({ ...choice, nextParagraphId: val, nextVariantId: undefined });
-    }
-  };
-
-  const toggleTargetType = () => {
-    if (isVariantTarget) {
-      onUpdate({ ...choice, nextParagraphId: "", nextVariantId: undefined });
-    } else {
-      onUpdate({ ...choice, nextVariantId: "", nextParagraphId: undefined });
-    }
-  };
-
-  const dropdownKey = `${choice.id}-target`;
-  const options = filteredOptions(targetValue);
-
-  return (
-    <div className="editor-paragraph-view__choice-row">
-      <ChoiceTextInput
-        value={choice.text}
-        onChange={(text) => onUpdate({ ...choice, text })}
-        placeholder="Tekst wyboru"
-      />
-      <div className="editor-paragraph-view__choice-target-wrap">
-        {variantIds ? (
-          <button
-            className={`editor-paragraph-view__choice-type-btn${isVariantTarget ? " editor-paragraph-view__choice-type-btn--variant" : ""}`}
-            onClick={toggleTargetType}
-            title={
-              isVariantTarget
-                ? "Cel: wariant (kliknij → paragraf)"
-                : "Cel: paragraf (kliknij → wariant)"
-            }
-          >
-            {isVariantTarget ? "W" : "§"}
-          </button>
-        ) : (
-          <span className="editor-paragraph-view__choice-target-prefix">§</span>
-        )}
-        <input
-          className="editor-paragraph-view__choice-target"
-          type="text"
-          value={targetValue}
-          onChange={(e) => handleTargetChange(e.target.value)}
-          onFocus={() => setFocusedId(dropdownKey)}
-          onBlur={() => setFocusedId(null)}
-          placeholder="?"
-        />
-        {focusedId === dropdownKey && options.length > 0 && (
-          <ul className="editor-paragraph-view__choice-dropdown">
-            {options.map((id) => (
-              <li
-                key={id}
-                className="editor-paragraph-view__choice-dropdown-item"
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  handleTargetChange(id);
-                }}
-              >
-                {isVariantTarget ? `W:${id}` : `§${id}`}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <button
-        className="editor-paragraph-view__choice-remove"
-        onClick={() => onRemove(choice.id)}
-        title="Usuń wybór"
-      >
-        ✕
-      </button>
-    </div>
-  );
-};
-
-// ── VariantEditor ─────────────────────────────────────────────────────────────
-
-interface VariantEditorProps {
-  paragraphId: string;
-  variantId: string;
-  variant: EditorVariant;
-  variantIds: string[];
-  paragraphIds: string[];
-}
-
-const VariantEditor: React.FC<VariantEditorProps> = ({
-  paragraphId,
-  variantId,
-  variant,
-  variantIds,
-  paragraphIds,
-}) => {
-  const { state, dispatch } = useEditor();
-  const [newChoiceText, setNewChoiceText] = useState("");
-  const [newChoiceTarget, setNewChoiceTarget] = useState("");
-  const [newChoiceIsVariant, setNewChoiceIsVariant] = useState(false);
-  const [focusedId, setFocusedId] = useState<string | null>(null);
-  const [collapsed, setCollapsed] = useState(false);
-  const [renaming, setRenaming] = useState(false);
-  const [renameValue, setRenameValue] = useState(variantId);
-
-  const isHorizontal = !!variant.areChoicesHorizontal;
-
-  const handleRename = () => {
-    const newName = renameValue.trim();
-    if (!newName || newName === variantId) {
-      setRenaming(false);
-      return;
-    }
-    const p = state.scenario!.paragraphs.find((p) => p.id === paragraphId)!;
-    const newVariants: Record<string, EditorVariant> = Object.fromEntries(
-      Object.entries(p.variants ?? {}).map(([k, v]) => [
-        k === variantId ? newName : k,
-        v,
-      ]),
-    );
-    dispatch({
-      type: "LOAD_SCENARIO",
-      payload: {
-        ...state.scenario!,
-        paragraphs: state.scenario!.paragraphs.map((p) =>
-          p.id === paragraphId ? { ...p, variants: newVariants } : p,
-        ),
-      },
-    });
-    setRenaming(false);
-  };
-
-  const handleAddChoice = () => {
-    const text = newChoiceText.trim();
-    if (!text) return;
-    const choice: EditorChoice = {
-      id: crypto.randomUUID(),
-      text,
-      ...(newChoiceIsVariant
-        ? { nextVariantId: newChoiceTarget.trim() }
-        : { nextParagraphId: newChoiceTarget.trim() }),
-    };
-    dispatch({
-      type: "ADD_VARIANT_CHOICE",
-      payload: { paragraphId, variantId, choice },
-    });
-    setNewChoiceText("");
-    setNewChoiceTarget("");
-  };
-
-  const filteredList = (val: string, list: string[]) => {
-    const v = val.trim();
-    return v ? list.filter((id) => id.includes(v)) : list;
-  };
-
-  return (
-    <div className="editor-paragraph-view__variant">
-      <div className="editor-paragraph-view__variant-header">
-        <button
-          className="editor-paragraph-view__variant-toggle"
-          onClick={() => setCollapsed((c) => !c)}
-          title={collapsed ? "Rozwiń" : "Zwiń"}
-        >
-          {collapsed ? "▶" : "▼"}
-        </button>
-        {renaming ? (
-          <>
-            <input
-              className="editor-paragraph-view__variant-rename-input"
-              value={renameValue}
-              autoFocus
-              onChange={(e) =>
-                setRenameValue(
-                  e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""),
-                )
-              }
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleRename();
-                if (e.key === "Escape") {
-                  setRenaming(false);
-                  setRenameValue(variantId);
-                }
-              }}
-            />
-            <button
-              className="editor-paragraph-view__variant-rename-save"
-              onClick={handleRename}
-              title="Zapisz nazwę"
-            >
-              ✓
-            </button>
-            <button
-              className="editor-paragraph-view__variant-rename-cancel"
-              onClick={() => {
-                setRenaming(false);
-                setRenameValue(variantId);
-              }}
-              title="Anuluj"
-            >
-              ✕
-            </button>
-          </>
-        ) : (
-          <>
-            <span className="editor-paragraph-view__variant-name">
-              W: <strong>{variantId}</strong>
-            </span>
-            <button
-              className="editor-paragraph-view__variant-rename-btn"
-              onClick={() => setRenaming(true)}
-              title="Zmień nazwę wariantu"
-            >
-              ✎
-            </button>
-            <button
-              className="editor-paragraph-view__variant-remove"
-              onClick={() => {
-                if (window.confirm(`Usunąć wariant "${variantId}"?`)) {
-                  dispatch({
-                    type: "REMOVE_VARIANT",
-                    payload: { paragraphId, variantId },
-                  });
-                }
-              }}
-              title={`Usuń wariant ${variantId}`}
-            >
-              ✕
-            </button>
-          </>
-        )}
-      </div>
-
-      {!collapsed && (
-        <div className="editor-paragraph-view__variant-body">
-          <div className="editor-paragraph-view__variant-columns">
-            {/* Editor column */}
-            <div className="editor-paragraph-view__variant-editor">
-              <h3 className="editor-paragraph-view__label">Treść wariantu</h3>
-              <PagesEditor
-                paragraphId={paragraphId}
-                pages={variant.pages ?? [[]]}
-                singlePage
-                onPagesChange={(pages) =>
-                  dispatch({
-                    type: "SET_VARIANT_PAGES",
-                    payload: { paragraphId, variantId, pages },
-                  })
-                }
-              />
-              <div className="editor-paragraph-view__choices-heading-row">
-                <h3 className="editor-paragraph-view__label">
-                  Wybory wariantu
-                </h3>
-                <button
-                  className={`editor-paragraph-view__variant-layout-btn${isHorizontal ? " editor-paragraph-view__variant-layout-btn--active" : ""}`}
-                  onClick={() =>
-                    dispatch({
-                      type: "SET_VARIANT_HORIZONTAL",
-                      payload: { paragraphId, variantId, value: !isHorizontal },
-                    })
-                  }
-                  title={
-                    isHorizontal
-                      ? "Pionowe wybory (kliknij)"
-                      : "Poziome wybory (kliknij)"
-                  }
-                >
-                  {isHorizontal ? "→ Poziome" : "↓ Pionowe"}
-                </button>
-              </div>
-              {(variant.choices ?? []).map((choice) => (
-                <ChoiceRow
-                  key={choice.id}
-                  choice={choice}
-                  paragraphIds={paragraphIds}
-                  variantIds={isHorizontal ? variantIds : undefined}
-                  focusedId={focusedId}
-                  setFocusedId={setFocusedId}
-                  onUpdate={(c) =>
-                    dispatch({
-                      type: "UPDATE_VARIANT_CHOICE",
-                      payload: { paragraphId, variantId, choice: c },
-                    })
-                  }
-                  onRemove={(id) =>
-                    dispatch({
-                      type: "REMOVE_VARIANT_CHOICE",
-                      payload: { paragraphId, variantId, choiceId: id },
-                    })
-                  }
-                />
-              ))}
-              <div className="editor-paragraph-view__choice-add">
-                <ChoiceTextInput
-                  value={newChoiceText}
-                  onChange={setNewChoiceText}
-                  onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
-                  placeholder="Tekst nowego wyboru"
-                />
-                <div className="editor-paragraph-view__choice-target-wrap">
-                  {isHorizontal ? (
-                    <button
-                      className={`editor-paragraph-view__choice-type-btn${newChoiceIsVariant ? " editor-paragraph-view__choice-type-btn--variant" : ""}`}
-                      onClick={() => setNewChoiceIsVariant((v) => !v)}
-                      title={
-                        newChoiceIsVariant ? "Cel: wariant" : "Cel: paragraf"
-                      }
-                    >
-                      {newChoiceIsVariant ? "W" : "§"}
-                    </button>
-                  ) : (
-                    <span className="editor-paragraph-view__choice-target-prefix">
-                      §
-                    </span>
-                  )}
-                  <input
-                    className="editor-paragraph-view__choice-target"
-                    type="text"
-                    value={newChoiceTarget}
-                    onChange={(e) => setNewChoiceTarget(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
-                    onFocus={() => setFocusedId("__new-vc__")}
-                    onBlur={() => setFocusedId(null)}
-                    placeholder="?"
-                  />
-                  {focusedId === "__new-vc__" &&
-                    (() => {
-                      const list = newChoiceIsVariant
-                        ? variantIds
-                        : paragraphIds;
-                      const opts = filteredList(newChoiceTarget, list);
-                      return opts.length > 0 ? (
-                        <ul className="editor-paragraph-view__choice-dropdown">
-                          {opts.map((id) => (
-                            <li
-                              key={id}
-                              className="editor-paragraph-view__choice-dropdown-item"
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                setNewChoiceTarget(id);
-                              }}
-                            >
-                              {newChoiceIsVariant ? `W:${id}` : `§${id}`}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null;
-                    })()}
-                </div>
-                <button
-                  className="editor-paragraph-view__choice-add-btn"
-                  onClick={handleAddChoice}
-                  disabled={!newChoiceText.trim()}
-                  title="Dodaj wybór"
-                >
-                  + Dodaj
-                </button>
-              </div>
-            </div>
-            {/* Preview column */}
-            <div className="editor-paragraph-view__variant-preview">
-              <h3 className="editor-paragraph-view__label">Podgląd</h3>
-              <div className="editor-paragraph-view__preview-content">
-                {(variant.pages ?? [[]]).length === 0 ||
-                ((variant.pages ?? [[]]).length === 1 &&
-                  (variant.pages ?? [[]])[0].length === 0) ? (
-                  <p className="editor-paragraph-view__preview-empty">
-                    Brak treści
-                  </p>
-                ) : (
-                  (variant.pages ?? [[]]).map((page, i) => (
-                    <div
-                      key={i}
-                      className="editor-paragraph-view__preview-page"
-                    >
-                      {(variant.pages ?? [[]]).length > 1 && (
-                        <span className="editor-paragraph-view__preview-page-label">
-                          Strona {i + 1}
-                        </span>
-                      )}
-                      <RichText content={page} />
-                    </div>
-                  ))
-                )}
-                {(variant.choices ?? []).length > 0 && (
-                  <fieldset className="choices choices--vertical">
-                    <legend className="sr-only">Wybory wariantu</legend>
-                    {(variant.choices ?? []).map((choice) => (
-                      <Button
-                        key={choice.id}
-                        variant="primary"
-                        size="lg"
-                        disabled
-                        title={
-                          choice.nextParagraphId
-                            ? `→ §${choice.nextParagraphId}`
-                            : choice.nextVariantId
-                              ? `→ W:${choice.nextVariantId}`
-                              : undefined
-                        }
-                      >
-                        <RichText
-                          content={[{ type: "text", text: choice.text }]}
-                        />
-                      </Button>
-                    ))}
-                  </fieldset>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
 
 // ── EditorParagraphView ───────────────────────────────────────────────────────
 
@@ -472,18 +27,42 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   onNavigate,
 }) => {
   const { state, dispatch } = useEditor();
-  const paragraph = state.scenario?.paragraphs.find(
-    (p) => p.id === paragraphId,
-  );
+  const scenarioParagraphs = state.scenario?.paragraphs;
+  const paragraph = scenarioParagraphs?.find((p) => p.id === paragraphId);
 
-  const [newChoiceText, setNewChoiceText] = useState("");
-  const [newChoiceTarget, setNewChoiceTarget] = useState("");
   const [focusedTargetId, setFocusedTargetId] = useState<string | null>(null);
   const [newVariantId, setNewVariantId] = useState("");
-  const [newSelectorText, setNewSelectorText] = useState("");
-  const [newSelectorTarget, setNewSelectorTarget] = useState("");
   const [focusedSelectorId, setFocusedSelectorId] = useState<string | null>(
     null,
+  );
+
+  const availableIds = useMemo(
+    () =>
+      sortParagraphIds(
+        (scenarioParagraphs ?? [])
+          .map((p) => p.id)
+          .filter((id) => id !== paragraphId),
+      ),
+    [scenarioParagraphs, paragraphId],
+  );
+
+  const variantIds = useMemo(
+    () => Object.keys(paragraph?.variants ?? {}),
+    [paragraph?.variants],
+  );
+
+  const incomingFrom = useMemo(
+    () =>
+      sortParagraphIds(
+        (scenarioParagraphs ?? [])
+          .filter(
+            (p) =>
+              p.id !== paragraphId &&
+              (p.choices ?? []).some((c) => c.nextParagraphId === paragraphId),
+          )
+          .map((p) => p.id),
+      ),
+    [scenarioParagraphs, paragraphId],
   );
 
   if (!paragraph) return null;
@@ -494,46 +73,10 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const pages = paragraph.pages ?? null;
   const hasPages = pages !== null;
 
-  const availableIds = (state.scenario?.paragraphs ?? [])
-    .map((p) => p.id)
-    .filter((id) => id !== paragraphId)
-    .sort((a, b) => {
-      const na = parseInt(a, 10);
-      const nb = parseInt(b, 10);
-      if (!isNaN(na) && !isNaN(nb)) return na - nb;
-      return a.localeCompare(b);
-    });
-
-  const variantIds = Object.keys(paragraph.variants ?? {});
-
-  const incomingFrom = (state.scenario?.paragraphs ?? [])
-    .filter(
-      (p) =>
-        p.id !== paragraphId &&
-        (p.choices ?? []).some((c) => c.nextParagraphId === paragraphId),
-    )
-    .map((p) => p.id)
-    .sort((a, b) => {
-      const na = parseInt(a, 10);
-      const nb = parseInt(b, 10);
-      if (!isNaN(na) && !isNaN(nb)) return na - nb;
-      return a.localeCompare(b);
-    });
-
   // ── Mode toggle ──
 
   const handleSwitchToVariant = () => {
-    dispatch({
-      type: "LOAD_SCENARIO",
-      payload: {
-        ...state.scenario!,
-        paragraphs: state.scenario!.paragraphs.map((p) =>
-          p.id === paragraphId
-            ? { ...p, variants: {}, variantSelectors: [], choices: undefined }
-            : p,
-        ),
-      },
-    });
+    dispatch({ type: "ENABLE_VARIANT_MODE", payload: paragraphId });
   };
 
   const handleSwitchToSimple = () => {
@@ -544,38 +87,10 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
       )
     )
       return;
-    dispatch({
-      type: "LOAD_SCENARIO",
-      payload: {
-        ...state.scenario!,
-        paragraphs: state.scenario!.paragraphs.map((p) =>
-          p.id === paragraphId
-            ? { ...p, variants: undefined, variantSelectors: undefined }
-            : p,
-        ),
-      },
-    });
+    dispatch({ type: "DISABLE_VARIANT_MODE", payload: paragraphId });
   };
 
   // ── Simple mode choice handlers ──
-
-  const handleAddChoice = () => {
-    const t = newChoiceText.trim();
-    const target = newChoiceTarget.trim();
-    if (!t) return;
-    if (target === paragraphId) return;
-    const choice: EditorChoice = {
-      id: crypto.randomUUID(),
-      text: t,
-      nextParagraphId: target,
-    };
-    dispatch({ type: "ADD_CHOICE", payload: { paragraphId, choice } });
-    if (target && !availableIds.includes(target) && target !== paragraphId) {
-      dispatch({ type: "ADD_PARAGRAPH_SILENT", payload: target });
-    }
-    setNewChoiceText("");
-    setNewChoiceTarget("");
-  };
 
   const handleUpdateChoice = (choice: EditorChoice) => {
     if ((choice.nextParagraphId ?? "").trim() === paragraphId) return;
@@ -587,35 +102,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   };
 
   // ── Variant selector handlers ──
-
-  const handleAddSelector = () => {
-    const t = newSelectorText.trim();
-    const target = newSelectorTarget.trim();
-    if (!t || !target) return;
-    const choice: EditorChoice = {
-      id: crypto.randomUUID(),
-      text: t,
-      nextVariantId: target,
-    };
-    dispatch({
-      type: "ADD_VARIANT_SELECTOR",
-      payload: { paragraphId, choice },
-    });
-    setNewSelectorText("");
-    setNewSelectorTarget("");
-  };
-
-  const filteredIds = (value: string) => {
-    const v = value.trim();
-    if (!v) return availableIds;
-    return availableIds.filter((id) => id.includes(v));
-  };
-
-  const filteredVariantIds = (value: string) => {
-    const v = value.trim();
-    if (!v) return variantIds;
-    return variantIds.filter((id) => id.includes(v));
-  };
 
   return (
     <div className="editor-paragraph-view">
@@ -720,30 +206,12 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   />
                   <button
                     className="editor-paragraph-view__migrate-btn"
-                    onClick={() => {
-                      const lines = text
-                        .split("\n")
-                        .filter((l) => l.trim() !== "");
-                      const page = lines.map((line) => ({
-                        type: "text" as const,
-                        text: line,
-                      }));
+                    onClick={() =>
                       dispatch({
-                        type: "LOAD_SCENARIO",
-                        payload: {
-                          ...state.scenario!,
-                          paragraphs: state.scenario!.paragraphs.map((p) =>
-                            p.id === paragraphId
-                              ? {
-                                  ...p,
-                                  pages: [page.length > 0 ? page : []],
-                                  text: undefined,
-                                }
-                              : p,
-                          ),
-                        },
-                      });
-                    }}
+                        type: "CONVERT_TEXT_TO_PAGES",
+                        payload: paragraphId,
+                      })
+                    }
                   >
                     Przekonwertuj na bloki
                   </button>
@@ -770,54 +238,32 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   />
                 ))}
 
-                <div className="editor-paragraph-view__choice-add">
-                  <ChoiceTextInput
-                    value={newChoiceText}
-                    onChange={setNewChoiceText}
-                    onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
-                    placeholder="Tekst nowego wyboru"
-                  />
-                  <div className="editor-paragraph-view__choice-target-wrap">
-                    <span className="editor-paragraph-view__choice-target-prefix">
-                      §
-                    </span>
-                    <input
-                      className="editor-paragraph-view__choice-target"
-                      type="text"
-                      value={newChoiceTarget}
-                      onChange={(e) => setNewChoiceTarget(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleAddChoice()}
-                      onFocus={() => setFocusedTargetId("__new__")}
-                      onBlur={() => setFocusedTargetId(null)}
-                      placeholder="?"
-                    />
-                    {focusedTargetId === "__new__" &&
-                      filteredIds(newChoiceTarget).length > 0 && (
-                        <ul className="editor-paragraph-view__choice-dropdown">
-                          {filteredIds(newChoiceTarget).map((id) => (
-                            <li
-                              key={id}
-                              className="editor-paragraph-view__choice-dropdown-item"
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                setNewChoiceTarget(id);
-                              }}
-                            >
-                              §{id}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                  </div>
-                  <button
-                    className="editor-paragraph-view__choice-add-btn"
-                    onClick={handleAddChoice}
-                    disabled={!newChoiceText.trim()}
-                    title="Dodaj wybór"
-                  >
-                    + Dodaj
-                  </button>
-                </div>
+                <ChoiceAddRow
+                  prefixLabel="§"
+                  targetList={availableIds}
+                  onAdd={(text, target) => {
+                    if (target === paragraphId) return;
+                    const choice: EditorChoice = {
+                      id: crypto.randomUUID(),
+                      text,
+                      nextParagraphId: target,
+                    };
+                    dispatch({
+                      type: "ADD_CHOICE",
+                      payload: { paragraphId, choice },
+                    });
+                    if (
+                      target &&
+                      !availableIds.includes(target) &&
+                      target !== paragraphId
+                    ) {
+                      dispatch({
+                        type: "ADD_PARAGRAPH_SILENT",
+                        payload: target,
+                      });
+                    }
+                  }}
+                />
               </div>
             </>
           )}
@@ -879,29 +325,30 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                       placeholder="?"
                     />
                     {focusedSelectorId === choice.id &&
-                      filteredVariantIds(choice.nextVariantId ?? "").length >
+                      filterIds(choice.nextVariantId ?? "", variantIds).length >
                         0 && (
                         <ul className="editor-paragraph-view__choice-dropdown">
-                          {filteredVariantIds(choice.nextVariantId ?? "").map(
-                            (id) => (
-                              <li
-                                key={id}
-                                className="editor-paragraph-view__choice-dropdown-item"
-                                onMouseDown={(e) => {
-                                  e.preventDefault();
-                                  dispatch({
-                                    type: "UPDATE_VARIANT_SELECTOR",
-                                    payload: {
-                                      paragraphId,
-                                      choice: { ...choice, nextVariantId: id },
-                                    },
-                                  });
-                                }}
-                              >
-                                W:{id}
-                              </li>
-                            ),
-                          )}
+                          {filterIds(
+                            choice.nextVariantId ?? "",
+                            variantIds,
+                          ).map((id) => (
+                            <li
+                              key={id}
+                              className="editor-paragraph-view__choice-dropdown-item"
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                dispatch({
+                                  type: "UPDATE_VARIANT_SELECTOR",
+                                  payload: {
+                                    paragraphId,
+                                    choice: { ...choice, nextVariantId: id },
+                                  },
+                                });
+                              }}
+                            >
+                              W:{id}
+                            </li>
+                          ))}
                         </ul>
                       )}
                   </div>
@@ -919,56 +366,25 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                   </button>
                 </div>
               ))}
-              <div className="editor-paragraph-view__choice-add">
-                <ChoiceTextInput
-                  value={newSelectorText}
-                  onChange={setNewSelectorText}
-                  onKeyDown={(e) => e.key === "Enter" && handleAddSelector()}
-                  placeholder="Tekst nowego przycisku"
-                />
-                <div className="editor-paragraph-view__choice-target-wrap">
-                  <span className="editor-paragraph-view__choice-target-prefix editor-paragraph-view__choice-target-prefix--variant">
-                    W
-                  </span>
-                  <input
-                    className="editor-paragraph-view__choice-target"
-                    type="text"
-                    value={newSelectorTarget}
-                    onChange={(e) => setNewSelectorTarget(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleAddSelector()}
-                    onFocus={() => setFocusedSelectorId("__new-sel__")}
-                    onBlur={() => setFocusedSelectorId(null)}
-                    placeholder="?"
-                  />
-                  {focusedSelectorId === "__new-sel__" &&
-                    filteredVariantIds(newSelectorTarget).length > 0 && (
-                      <ul className="editor-paragraph-view__choice-dropdown">
-                        {filteredVariantIds(newSelectorTarget).map((id) => (
-                          <li
-                            key={id}
-                            className="editor-paragraph-view__choice-dropdown-item"
-                            onMouseDown={(e) => {
-                              e.preventDefault();
-                              setNewSelectorTarget(id);
-                            }}
-                          >
-                            W:{id}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                </div>
-                <button
-                  className="editor-paragraph-view__choice-add-btn"
-                  onClick={handleAddSelector}
-                  disabled={
-                    !newSelectorText.trim() || !newSelectorTarget.trim()
-                  }
-                  title="Dodaj przycisk selektora"
-                >
-                  + Dodaj
-                </button>
-              </div>
+              <ChoiceAddRow
+                placeholder="Tekst nowego przycisku"
+                prefixLabel="W"
+                prefixIsVariant
+                targetList={variantIds}
+                requireTarget
+                addButtonTitle="Dodaj przycisk selektora"
+                onAdd={(text, target) => {
+                  const choice: EditorChoice = {
+                    id: crypto.randomUUID(),
+                    text,
+                    nextVariantId: target,
+                  };
+                  dispatch({
+                    type: "ADD_VARIANT_SELECTOR",
+                    payload: { paragraphId, choice },
+                  });
+                }}
+              />
             </>
           )}
         </div>
@@ -979,31 +395,10 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
           <div className="editor-paragraph-view__preview-content">
             {isVariantMode ? (
               <>
-                {(() => {
-                  const introPages = paragraph.pages ?? [[]];
-                  const isEmpty =
-                    introPages.length === 0 ||
-                    (introPages.length === 1 && introPages[0].length === 0);
-                  return isEmpty ? (
-                    <p className="editor-paragraph-view__preview-empty">
-                      Brak treści wprowadzającej
-                    </p>
-                  ) : (
-                    introPages.map((page, i) => (
-                      <div
-                        key={i}
-                        className="editor-paragraph-view__preview-page"
-                      >
-                        {introPages.length > 1 && (
-                          <span className="editor-paragraph-view__preview-page-label">
-                            Strona {i + 1}
-                          </span>
-                        )}
-                        <RichText content={page} />
-                      </div>
-                    ))
-                  );
-                })()}
+                <PagesPreview
+                  pages={paragraph.pages ?? [[]]}
+                  emptyMessage="Brak treści wprowadzającej"
+                />
                 {(paragraph.variantSelectors ?? []).length > 0 && (
                   <fieldset className="choices choices--horizontal">
                     <legend className="sr-only">Wybierz wariant</legend>
@@ -1018,26 +413,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
             ) : (
               <>
                 {hasPages ? (
-                  pages.length === 0 ||
-                  (pages.length === 1 && pages[0].length === 0) ? (
-                    <p className="editor-paragraph-view__preview-empty">
-                      Brak treści
-                    </p>
-                  ) : (
-                    pages.map((page, i) => (
-                      <div
-                        key={i}
-                        className="editor-paragraph-view__preview-page"
-                      >
-                        {pages.length > 1 && (
-                          <span className="editor-paragraph-view__preview-page-label">
-                            Strona {i + 1}
-                          </span>
-                        )}
-                        <RichText content={page} />
-                      </div>
-                    ))
-                  )
+                  <PagesPreview pages={pages!} />
                 ) : text ? (
                   text
                     .split("\n")

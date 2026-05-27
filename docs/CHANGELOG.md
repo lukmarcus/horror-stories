@@ -7,6 +7,12 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.7] - 2026-05-27
+
+> Wersja techniczna — brak zmian widocznych dla użytkownika
+
+---
+
 ## [0.2.6] - 2026-05-24
 
 ### Dodano
@@ -209,7 +215,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.1.1] - 2026-03-24
 
-- Wersja techniczna — brak zmian widocznych dla użytkownika
+> Wersja techniczna — brak zmian widocznych dla użytkownika
 
 ---
 
