@@ -36,6 +36,7 @@ export interface Paragraph {
   // Layout flags
   isMultiPage?: boolean; // Legacy flag
   items?: string[];
+  areChoicesHorizontal?: boolean; // Poziome przyciski wyborów (v0.2.6+)
 }
 ```
 
@@ -55,7 +56,7 @@ export interface ContentBlock {
   // Opcje formatowania
   size?: "xs" | "sm" | "lg" | "xl";
   style?: "bold" | "italic" | "underline";
-  color?: "yellow" | "red" | "purple" | "green";
+  color?: "yellow" | "red" | "purple" | "green" | "blue";
   spacing?: "none";        // Usuwa dolny margines bloku
 }
 ```

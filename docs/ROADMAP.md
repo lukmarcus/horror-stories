@@ -6,26 +6,18 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.7 - Refaktoring i testy edytora
+## Milestone v0.2.8 - Tech debt + zaawansowane paragrafy
 
-### Zakres
+### Zakres (tech debt)
 
-- Wyciągnięcie `VariantEditor` do osobnego pliku
-- Wyciągnięcie `<ChoiceAddRow>` jako współdzielony komponent (3× duplikat)
-- Usunięcie nieużywanych klas CSS
-- Wspólna funkcja `filterIds` zamiast 4 kopii
-- Hook `useClickOutside` w `EditorInlineTools`
-- Testy jednostkowe: `textToPage`/`pageToText`, `buildAccessibleFrom`, `buildDefinition`
+- Refaktor `PagesEditor.tsx` — podział na `BlockToolbar`, `PageToolbar`, `BlockEditor`
+- Sanityzacja HTML: `DOMPurify` przy wczytywaniu zewnętrznych plików `.horrorstory`
+- `Game.tsx` — usunięcie `eslint-disable` dla `useEffect` deps (przebudowa synchronizacji URL)
+- `RichText.tsx` — wydzielenie rendererów custom tagów do mapy `TAG_RENDERERS`
+- `EnemyView.tsx` — uzupełnienie brakujących deps w `useEffect`
+- `ErrorBoundary` — `role="alert"`, przeniesienie inline styles do CSS
 
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
-## Milestone v0.2.8 - Edytor: zaawansowane paragrafy
-
-### Zakres
+### Zakres (funkcje)
 
 - Paragrafy z wieloma ID (jeden paragraf dostępny pod kilkoma numerami)
 - Upload własnych grafik scenariuszowych (pakowane do ZIP w `images/`)
