@@ -1,5 +1,6 @@
 import { Component } from "react";
 import type { ReactNode, ErrorInfo } from "react";
+import "./ErrorBoundary.css";
 
 interface Props {
   children: ReactNode;
@@ -28,36 +29,18 @@ export class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div
-          className="error-boundary"
-          style={{ padding: "2rem", textAlign: "center" }}
-        >
+        <div className="error-boundary" role="alert">
           <h1>Coś poszło nie tak 😞</h1>
           <p>Przepraszamy, aplikacja napotkała błąd.</p>
-          <details style={{ marginTop: "1rem", textAlign: "left" }}>
+          <details className="error-boundary__details">
             <summary>Szczegóły błędu</summary>
-            <pre
-              style={{
-                whiteSpace: "pre-wrap",
-                wordWrap: "break-word",
-                fontSize: "0.875rem",
-              }}
-            >
+            <pre className="error-boundary__pre">
               {this.state.error?.toString()}
             </pre>
           </details>
           <button
             onClick={() => window.location.reload()}
-            style={{
-              marginTop: "1rem",
-              padding: "0.5rem 1rem",
-              cursor: "pointer",
-              background: "#ff6b6b",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              fontSize: "1rem",
-            }}
+            className="error-boundary__button"
           >
             Odśwież aplikację
           </button>

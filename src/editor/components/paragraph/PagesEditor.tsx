@@ -4,17 +4,16 @@ import { useEditor } from "../../context/useEditor";
 import * as textInsert from "../../utils/textInsert";
 import { BlockToolbar } from "./BlockToolbar";
 import { InlineToolbar } from "./InlineToolbar";
+import { type ColorName } from "./editorPickerData";
 import {
-  type ColorName,
   type BlockOpts,
+  type SizeName,
   EMPTY_BLOCK_OPTS,
   parseBlockPrefixes,
   buildLine,
   getCurrentLineRange,
   pageToText,
   textToPage,
-  SIZES,
-  type SizeName,
 } from "./pageSerializer";
 import "./PagesEditor.css";
 
