@@ -129,6 +129,15 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     JSON.stringify({ paragraphs: paragraphsExported }, null, 2),
   );
 
+  // Pack user-uploaded images into images/ folder
+  for (const [id, dataUrl] of Object.entries(scenario.images ?? {})) {
+    const mimeMatch = dataUrl.match(/^data:([^;]+);base64,/);
+    const mimeType = mimeMatch?.[1] ?? "image/jpeg";
+    const base64 = dataUrl.replace(/^data:[^;]+;base64,/, "");
+    const ext = mimeType === "image/png" ? "png" : "jpg";
+    zip.file(`images/${id}.${ext}`, base64, { base64: true });
+  }
+
   const blob = await zip.generateAsync({ type: "blob" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -186,10 +195,9 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
             variants[vid] = {
               pages: v.contentPages ?? [[]],
               ...(v.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
-              choices: (
-                Array.isArray(v.choices)
-                  ? (v.choices as Record<string, unknown>[])
-                  : []
+              choices: (Array.isArray(v.choices)
+                ? (v.choices as Record<string, unknown>[])
+                : []
               ).map(addId),
             };
           }
@@ -219,5 +227,18 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
     }
   }
 
-  return { meta, paragraphs };
+  // Unpack user-uploaded images from images/ folder
+  const images: Record<string, string> = {};
+  const imageFiles = zip.file(/^images\//);
+  for (const imageFile of imageFiles) {
+    const filename = imageFile.name.replace(/^images\//, "");
+    if (!filename) continue;
+    const ext = filename.split(".").pop()?.toLowerCase() ?? "jpg";
+    const mimeType = ext === "png" ? "image/png" : "image/jpeg";
+    const base64 = await imageFile.async("base64");
+    const id = filename.replace(/\.[^.]+$/, "");
+    images[id] = `data:${mimeType};base64,${base64}`;
+  }
+
+  return { meta, paragraphs, images };
 }

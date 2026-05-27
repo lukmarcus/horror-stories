@@ -19,10 +19,15 @@ type TagRenderer = (
   id: string,
   key: string,
   scenarioId?: string,
+  images?: Record<string, string>,
 ) => React.ReactNode;
 
 const TAG_RENDERERS: Record<string, TagRenderer> = {
-  image: (id, key, scenarioId) => {
+  image: (id, key, scenarioId, images) => {
+    const dataUrl = images?.[id];
+    if (dataUrl) {
+      return <img key={key} src={dataUrl} alt={id} className="inline-image" />;
+    }
     const imagePath = scenarioId
       ? new URL(
           `../../../scenarios/${scenarioId}/images/${id}.jpg`,
@@ -143,6 +148,7 @@ interface RichTextProps {
   content?: ContentBlock[];
   text?: string; // for backward compatibility
   scenarioId?: string; // for loading images
+  images?: Record<string, string>; // user-uploaded images: id → data URL
   noSpacing?: boolean; // disable spacing (for use inside buttons/choices)
 }
 
@@ -150,6 +156,7 @@ export const RichText: React.FC<RichTextProps> = ({
   content,
   text,
   scenarioId,
+  images,
   noSpacing,
 }) => {
   // Parse HTML and replace custom tags with React elements
@@ -182,7 +189,7 @@ export const RichText: React.FC<RichTextProps> = ({
       const key = `custom-${counter}`;
       counter++;
 
-      const node = TAG_RENDERERS[tag]?.(id, key, scenarioId);
+      const node = TAG_RENDERERS[tag]?.(id, key, scenarioId, images);
       if (node != null) segments.push(node);
 
       currentPos = customTagRegex.lastIndex;
@@ -222,12 +229,15 @@ export const RichText: React.FC<RichTextProps> = ({
 
           // Handle new image format: {image: "id"}
           if (block.image) {
-            const imagePath = scenarioId
-              ? new URL(
-                  `../../../scenarios/${scenarioId}/images/${block.image}.jpg`,
-                  import.meta.url,
-                ).href
-              : undefined;
+            const dataUrl = images?.[block.image];
+            const imagePath =
+              dataUrl ??
+              (scenarioId
+                ? new URL(
+                    `../../../scenarios/${scenarioId}/images/${block.image}.jpg`,
+                    import.meta.url,
+                  ).href
+                : undefined);
 
             const imageClasses = [
               "rich-image-block",
@@ -289,12 +299,15 @@ export const RichText: React.FC<RichTextProps> = ({
             );
           } else if (block.type === "image" && (block.id || block.image)) {
             const imageId = block.image || block.id;
-            const imagePath = scenarioId
-              ? new URL(
-                  `../../../scenarios/${scenarioId}/images/${imageId}.jpg`,
-                  import.meta.url,
-                ).href
-              : undefined;
+            const dataUrl = images?.[imageId!];
+            const imagePath =
+              dataUrl ??
+              (scenarioId
+                ? new URL(
+                    `../../../scenarios/${scenarioId}/images/${imageId}.jpg`,
+                    import.meta.url,
+                  ).href
+                : undefined);
 
             const imageClasses = [
               "rich-image-block",

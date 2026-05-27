@@ -37,6 +37,8 @@ export interface EditorParagraph {
 export interface EditorScenario {
   meta: Scenario;
   paragraphs: EditorParagraph[];
+  /** User-uploaded images: id → base64 data URL */
+  images?: Record<string, string>;
 }
 
 export interface EditorState {
@@ -146,7 +148,9 @@ export type EditorAction =
       type: "RENAME_VARIANT";
       payload: { paragraphId: string; oldId: string; newId: string };
     }
-  | { type: "CONVERT_TEXT_TO_PAGES"; payload: string };
+  | { type: "CONVERT_TEXT_TO_PAGES"; payload: string }
+  | { type: "ADD_IMAGE"; payload: { id: string; data: string } }
+  | { type: "REMOVE_IMAGE"; payload: string };
 
 export interface EditorContextValue {
   state: EditorState;

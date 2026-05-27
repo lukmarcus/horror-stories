@@ -6,6 +6,7 @@ import { ScenarioMetaForm } from "../components/scenario/ScenarioMetaForm";
 import { useMetaErrors } from "../components/scenario/scenarioMetaValidation";
 import { EditorParagraphView } from "../components/paragraph/EditorParagraphView";
 import { GraphView } from "../components/graph/GraphView";
+import { ImagesPanel } from "./ImagesPanel";
 import "./EditorHome.css";
 
 interface EditorHomeProps {
@@ -130,9 +131,11 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
           onNavigate={onSectionChange}
         />
       )}
+      {state.scenario && activeSection === "images" && <ImagesPanel />}
       {state.scenario &&
         activeSection !== "meta" &&
-        activeSection !== "graph" && (
+        activeSection !== "graph" &&
+        activeSection !== "images" && (
           <EditorParagraphView
             paragraphId={activeSection}
             onNavigate={onSectionChange}

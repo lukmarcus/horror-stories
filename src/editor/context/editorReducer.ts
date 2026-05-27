@@ -50,6 +50,7 @@ export function editorReducer(
             duration: null,
           },
           paragraphs: [DEATH_PARAGRAPH],
+          images: {},
         },
         isDirty: false,
         activeParagraphId: null,
@@ -67,6 +68,7 @@ export function editorReducer(
         scenario: {
           ...action.payload,
           paragraphs: ensureDeath(action.payload.paragraphs ?? []),
+          images: action.payload.images ?? {},
         },
         isDirty: false,
         activeParagraphId: null,
@@ -349,6 +351,30 @@ export function editorReducer(
         ]);
         return { ...p, variants: Object.fromEntries(entries) };
       });
+    case "ADD_IMAGE": {
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          images: {
+            ...state.scenario.images,
+            [action.payload.id]: action.payload.data,
+          },
+        },
+        isDirty: true,
+      };
+    }
+    case "REMOVE_IMAGE": {
+      if (!state.scenario) return state;
+      const images = { ...(state.scenario.images ?? {}) };
+      delete images[action.payload];
+      return {
+        ...state,
+        scenario: { ...state.scenario, images },
+        isDirty: true,
+      };
+    }
     default:
       return state;
   }
