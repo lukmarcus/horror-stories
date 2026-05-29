@@ -10,7 +10,6 @@
   gap: 0;
   border: 1px solid #333;
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .pages-editor__page-header {
@@ -20,6 +19,7 @@
   padding: 0.35rem 0.75rem;
   background: #1e1e1e;
   border-bottom: 1px solid #333;
+  border-radius: 5px 5px 0 0;
 }
 
 .pages-editor__page-label {
@@ -46,8 +46,14 @@
 }
 
 .pages-editor__toolbars {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
+}
+
+.pages-editor__toolbars:first-child {
+  border-radius: 5px 5px 0 0;
 }
 
 .pages-editor__toolbar {
@@ -302,11 +308,21 @@
   object-fit: contain;
 }
 
+.pages-editor__image-empty {
+  grid-column: 1 / -1;
+  padding: 0.5rem 0.75rem;
+  color: #666;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  margin: 0;
+}
+
 .pages-editor__textarea {
   width: 100%;
   box-sizing: border-box;
   background: #111;
   border: none;
+  border-radius: 0 0 5px 5px;
   color: #ddd;
   font-family: "Consolas", "Fira Mono", monospace;
   font-size: 0.88rem;

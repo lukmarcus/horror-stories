@@ -98,3 +98,36 @@
 .images-panel__remove:hover {
   background: #9b2c2c;
 }
+
+.images-panel__confirm {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.images-panel__confirm-yes {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  background: #c53030;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.images-panel__confirm-yes:hover {
+  background: #9b2c2c;
+}
+
+.images-panel__confirm-no {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  background: #333;
+  color: #ccc;
+  border: 1px solid #555;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.images-panel__confirm-no:hover {
+  background: #444;
+}

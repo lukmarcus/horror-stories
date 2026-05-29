@@ -83,19 +83,6 @@ export const InlineToolbar: React.FC<InlineToolbarProps> = ({
       </div>
       <div className="pages-editor__toolbar-sep" />
       <div className="pages-editor__toolbar-group">
-        <button
-          className="pages-editor__toolbar-btn"
-          onMouseDown={(e) => {
-            e.preventDefault();
-            onInsertLine("[img: ]", 6);
-          }}
-          title="Wstaw blok obrazu"
-        >
-          🖼
-        </button>
-      </div>
-      <div className="pages-editor__toolbar-sep" />
-      <div className="pages-editor__toolbar-group">
         <ImagePicker
           items={SYMBOL_PICKER_ITEMS}
           onSelect={(id) => onInsertAtCursor(`<symbol id="${id}"/>`)}
@@ -200,7 +187,7 @@ export const InlineToolbar: React.FC<InlineToolbarProps> = ({
               onInsertLine(snippet, snippet.length);
             }}
             toggleContent={
-              <span className="pages-editor__picker-icon">🖼+</span>
+              <span className="pages-editor__picker-icon">🖼</span>
             }
             title="Wstaw grafikę scenariusza"
           />

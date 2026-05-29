@@ -29,6 +29,7 @@ export const ImagesPanel: React.FC = () => {
   const { state, dispatch } = useEditor();
   const inputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | null>(null);
+  const [confirmId, setConfirmId] = useState<string | null>(null);
 
   const images = state.scenario?.images ?? {};
   const entries = Object.entries(images);
@@ -74,8 +75,12 @@ export const ImagesPanel: React.FC = () => {
   };
 
   const handleRemove = (id: string) => {
-    if (!window.confirm(`Usunąć grafikę „${id}"?`)) return;
-    dispatch({ type: "REMOVE_IMAGE", payload: id });
+    if (confirmId === id) {
+      dispatch({ type: "REMOVE_IMAGE", payload: id });
+      setConfirmId(null);
+    } else {
+      setConfirmId(id);
+    }
   };
 
   return (
@@ -129,13 +134,30 @@ export const ImagesPanel: React.FC = () => {
               <span className="images-panel__id" title={id}>
                 {id}
               </span>
-              <button
-                className="images-panel__remove"
-                onClick={() => handleRemove(id)}
-                title={`Usuń ${id}`}
-              >
-                Usuń
-              </button>
+              {confirmId === id ? (
+                <div className="images-panel__confirm">
+                  <button
+                    className="images-panel__confirm-yes"
+                    onClick={() => handleRemove(id)}
+                  >
+                    Usuń
+                  </button>
+                  <button
+                    className="images-panel__confirm-no"
+                    onClick={() => setConfirmId(null)}
+                  >
+                    Anuluj
+                  </button>
+                </div>
+              ) : (
+                <button
+                  className="images-panel__remove"
+                  onClick={() => setConfirmId(id)}
+                  title={`Usuń ${id}`}
+                >
+                  Usuń
+                </button>
+              )}
             </div>
           ))}
         </div>
