@@ -1,7 +1,10 @@
 import type { EditorState, EditorAction, EditorParagraph } from "./editorTypes";
 import type { ContentBlock } from "../../types";
 
-export const DEATH_PARAGRAPH = { id: "100" };
+export const DEATH_PARAGRAPH = {
+  id: "100",
+  pages: [[]] as ContentBlock[][],
+};
 
 export const initialState: EditorState = {
   scenario: null,
