@@ -14,6 +14,7 @@ export const PagesPreview: React.FC<PagesPreviewProps> = ({
 }) => {
   const { state } = useEditor();
   const images = state.scenario?.images ?? {};
+  const scenarioId = state.scenario?.meta.id;
   const isEmpty =
     pages.length === 0 || (pages.length === 1 && pages[0].length === 0);
 
@@ -32,7 +33,7 @@ export const PagesPreview: React.FC<PagesPreviewProps> = ({
               Strona {i + 1}
             </span>
           )}
-          <RichText content={page} images={images} />
+          <RichText content={page} images={images} scenarioId={scenarioId} />
         </div>
       ))}
     </>

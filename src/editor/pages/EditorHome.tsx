@@ -59,6 +59,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
     try {
       const loaded = await importFromZip(file);
       dispatch({ type: "LOAD_SCENARIO", payload: loaded });
+      onSectionChange("meta");
     } catch (e) {
       setError(
         e instanceof Error ? e.message : "Błąd podczas wczytywania pliku.",
@@ -78,6 +79,14 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
     await clearStorage();
     dispatch({ type: "LOAD_SCENARIO", payload: null as never });
     window.location.reload();
+  };
+
+  // Resolve alias IDs to their primary paragraph ID before navigating
+  const handleNavigate = (id: string) => {
+    const primary = state.scenario?.paragraphs.find((p) =>
+      (p.aliases ?? []).includes(id),
+    );
+    onSectionChange(primary ? primary.id : id);
   };
 
   return (
@@ -169,7 +178,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
       {state.scenario && activeSection === "graph" && (
         <GraphView
           paragraphs={state.scenario.paragraphs}
-          onNavigate={onSectionChange}
+          onNavigate={handleNavigate}
         />
       )}
       {state.scenario && activeSection === "images" && <ImagesPanel />}
@@ -179,7 +188,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
         activeSection !== "images" && (
           <EditorParagraphView
             paragraphId={activeSection}
-            onNavigate={onSectionChange}
+            onNavigate={handleNavigate}
             onRemove={(id) => {
               dispatch({ type: "REMOVE_PARAGRAPH", payload: id });
               onSectionChange("meta");

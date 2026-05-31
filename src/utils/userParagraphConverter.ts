@@ -1,5 +1,39 @@
-import type { EditorParagraph } from "../editor/context/editorTypes";
-import type { Paragraph } from "../types";
+import type {
+  EditorParagraph,
+  EditorVariant,
+} from "../editor/context/editorTypes";
+import type { Paragraph, Choice } from "../types";
+
+function editorChoicesToGameChoices(
+  choices: EditorParagraph["choices"],
+): Choice[] {
+  return (choices ?? []).map((c) => ({
+    id: c.id,
+    text: c.text,
+    ...(c.nextParagraphId !== undefined
+      ? { nextParagraphId: c.nextParagraphId }
+      : {}),
+    ...(c.nextVariantId !== undefined
+      ? { nextVariantId: c.nextVariantId }
+      : {}),
+  }));
+}
+
+function editorVariantToGameParagraph(
+  variantId: string,
+  variant: EditorVariant,
+): Paragraph {
+  const pages = variant.pages ?? [[]];
+  const choices = editorChoicesToGameChoices(variant.choices);
+  return {
+    id: variantId,
+    ...(pages.length === 1
+      ? { content: pages[0] }
+      : { contentPages: pages, isMultiPage: true }),
+    ...(choices.length > 0 ? { choices } : {}),
+    ...(variant.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
+  };
+}
 
 /**
  * Converts editor paragraph format to game paragraph format.
@@ -12,11 +46,28 @@ import type { Paragraph } from "../types";
 export function editorParagraphToGameParagraph(
   editorParagraph: EditorParagraph,
 ): Paragraph {
-  const choices = (editorParagraph.choices ?? []).map((c) => ({
-    id: c.id,
-    text: c.text,
-    nextParagraphId: c.nextParagraphId,
-  }));
+  const choices = editorChoicesToGameChoices(
+    editorParagraph.variants
+      ? editorParagraph.variantSelectors
+      : editorParagraph.choices,
+  );
+
+  // Variant paragraph
+  if (editorParagraph.variants) {
+    const pages = editorParagraph.pages ?? [[]];
+    const variants: Record<string, Paragraph> = {};
+    for (const [vid, v] of Object.entries(editorParagraph.variants)) {
+      variants[vid] = editorVariantToGameParagraph(vid, v);
+    }
+    return {
+      id: editorParagraph.id,
+      ...(pages.length === 1
+        ? { content: pages[0] }
+        : { contentPages: pages, isMultiPage: true }),
+      ...(choices.length > 0 ? { choices } : {}),
+      variants,
+    };
+  }
 
   // Pages-based format
   if (editorParagraph.pages) {
@@ -55,13 +106,18 @@ export function editorParagraphToGameParagraph(
 
 /**
  * Converts an array of editor paragraphs to the game's paragraph map.
+ * Also creates entries for each alias, pointing to the same paragraph object.
  */
 export function buildUserParagraphMap(
   paragraphs: EditorParagraph[],
 ): Record<string, Paragraph> {
   const map: Record<string, Paragraph> = {};
   for (const p of paragraphs) {
-    map[p.id] = editorParagraphToGameParagraph(p);
+    const gameParagraph = editorParagraphToGameParagraph(p);
+    map[p.id] = gameParagraph;
+    for (const alias of p.aliases ?? []) {
+      map[alias] = gameParagraph;
+    }
   }
   return map;
 }

@@ -16,6 +16,7 @@ interface ParagraphViewProps {
   onJumpToParagraph: (value: string) => string | null;
   onBack: () => void;
   scenarioId?: string;
+  images?: Record<string, string>;
   hasVariants?: boolean;
   variantPathLength?: number;
   accessibleFrom?: string[];
@@ -59,6 +60,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   onJumpToParagraph,
   onBack,
   scenarioId,
+  images,
   hasVariants = false,
   variantPathLength = 0,
   accessibleFrom = [],
@@ -191,7 +193,11 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
         {paragraph.text && <ParagraphText text={paragraph.text} />}
 
         {currentContent && (
-          <RichText content={currentContent} scenarioId={scenarioId} />
+          <RichText
+            content={currentContent}
+            scenarioId={scenarioId}
+            images={images}
+          />
         )}
 
         {paragraph.hasDiceRoll &&
@@ -266,6 +272,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                     <RichText
                       text={choice.text}
                       scenarioId={scenarioId}
+                      images={images}
                       noSpacing
                     />
                   ) : (
@@ -373,6 +380,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
                   <RichText
                     text={choice.text}
                     scenarioId={scenarioId}
+                    images={images}
                     noSpacing
                   />
                 ) : (
