@@ -21,17 +21,22 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
   const { state, dispatch } = useEditor();
   const [error, setError] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
+  const [confirmNew, setConfirmNew] = useState(false);
+  const [confirmDiscard, setConfirmDiscard] = useState(false);
   const metaErrors = useMetaErrors();
   const hasErrors = Object.keys(metaErrors).length > 0;
 
   const handleNew = () => {
-    if (
-      state.scenario &&
-      !window.confirm(
-        "Masz niezapisany scenariusz. Stworzyć nowy i utracić zmiany?",
-      )
-    )
+    if (state.scenario) {
+      setConfirmNew(true);
       return;
+    }
+    dispatch({ type: "NEW_SCENARIO" });
+    setError(null);
+  };
+
+  const handleNewConfirm = () => {
+    setConfirmNew(false);
     dispatch({ type: "NEW_SCENARIO" });
     setError(null);
   };
@@ -64,8 +69,12 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
     }
   };
 
-  const handleDiscard = async () => {
-    if (!window.confirm("Usunąć zapisany szkic z przeglądarki?")) return;
+  const handleDiscard = () => {
+    setConfirmDiscard(true);
+  };
+
+  const handleDiscardConfirm = async () => {
+    setConfirmDiscard(false);
     await clearStorage();
     dispatch({ type: "LOAD_SCENARIO", payload: null as never });
     window.location.reload();
@@ -74,9 +83,24 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
   return (
     <div className="editor-home">
       <div className="editor-home__toolbar">
-        <button className="editor-btn" onClick={handleNew}>
-          + Nowy scenariusz
-        </button>
+        {confirmNew ? (
+          <span className="editor-home__inline-confirm">
+            <span>Na pewno? Utracisz bierzący scenariusz.</span>
+            <button
+              className="editor-btn editor-btn--danger"
+              onClick={handleNewConfirm}
+            >
+              Tak
+            </button>
+            <button className="editor-btn" onClick={() => setConfirmNew(false)}>
+              Anuluj
+            </button>
+          </span>
+        ) : (
+          <button className="editor-btn" onClick={handleNew}>
+            + Nowy scenariusz
+          </button>
+        )}
         <label className="editor-btn editor-btn--secondary">
           {importing ? "Wczytywanie..." : "Wczytaj plik .horrorstory"}
           <input
@@ -98,14 +122,31 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
             Zapisz plik .horrorstory {state.isDirty ? "●" : "✓"}
           </button>
         )}
-        {state.scenario && (
-          <button
-            className="editor-btn editor-btn--danger"
-            onClick={handleDiscard}
-          >
-            Usuń szkic
-          </button>
-        )}
+        {state.scenario &&
+          (confirmDiscard ? (
+            <span className="editor-home__inline-confirm">
+              <span>Na pewno usunąć szkic?</span>
+              <button
+                className="editor-btn editor-btn--danger"
+                onClick={handleDiscardConfirm}
+              >
+                Tak
+              </button>
+              <button
+                className="editor-btn"
+                onClick={() => setConfirmDiscard(false)}
+              >
+                Anuluj
+              </button>
+            </span>
+          ) : (
+            <button
+              className="editor-btn editor-btn--danger"
+              onClick={handleDiscard}
+            >
+              Usuń szkic
+            </button>
+          ))}
       </div>
 
       {error && <p className="editor-home__error">{error}</p>}

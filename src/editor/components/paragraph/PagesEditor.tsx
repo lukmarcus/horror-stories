@@ -116,22 +116,23 @@ const PageEditor: React.FC<PageEditorProps> = ({
   const wrap = (before: string, after: string) =>
     textInsert.wrapSelection(ref.current, text, onChange, before, after);
 
-  const insertLine = (snippet: string, cursorOffset: number) => {
+  const insertAtCursor = (snippet: string) =>
+    textInsert.insertAtCursor(ref.current, text, onChange, snippet);
+
+  const insertBlockImage = (id: string) => {
     const el = ref.current;
     if (!el) return;
     const pos = el.selectionStart;
     const pre = pos > 0 && text[pos - 1] !== "\n" ? "\n" : "";
     const suf = pos < text.length && text[pos] !== "\n" ? "\n" : "";
+    const snippet = `[img: ${id}]`;
     onChange(text.slice(0, pos) + pre + snippet + suf + text.slice(pos));
-    const cur = pos + pre.length + cursorOffset;
+    const newPos = pos + pre.length + snippet.length;
     requestAnimationFrame(() => {
       el.focus();
-      el.selectionStart = el.selectionEnd = cur;
+      el.selectionStart = el.selectionEnd = newPos;
     });
   };
-
-  const insertAtCursor = (snippet: string) =>
-    textInsert.insertAtCursor(ref.current, text, onChange, snippet);
 
   const insertSnippet = (snippet: string, cursorFromEnd?: number) =>
     textInsert.insertSnippet(
@@ -197,7 +198,6 @@ const PageEditor: React.FC<PageEditorProps> = ({
       <div className="pages-editor__toolbars" role="toolbar">
         <InlineToolbar
           onWrap={wrap}
-          onInsertLine={insertLine}
           onInsertAtCursor={insertAtCursor}
           onInsertSnippet={insertSnippet}
         />
@@ -207,6 +207,7 @@ const PageEditor: React.FC<PageEditorProps> = ({
           onSetColor={setBlockColor}
           onSetSize={setBlockSize}
           onClear={clearBlock}
+          onInsertBlockImage={insertBlockImage}
         />
       </div>
 

@@ -28,6 +28,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 }) => {
   const { state, dispatch } = useEditor();
   const scenarioParagraphs = state.scenario?.paragraphs;
+  const scenarioImages = state.scenario?.images;
   const paragraph = scenarioParagraphs?.find((p) => p.id === paragraphId);
 
   const [focusedTargetId, setFocusedTargetId] = useState<string | null>(null);
@@ -35,6 +36,8 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const [focusedSelectorId, setFocusedSelectorId] = useState<string | null>(
     null,
   );
+  const [confirmSwitchSimple, setConfirmSwitchSimple] = useState(false);
+  const [confirmDeleteParagraph, setConfirmDeleteParagraph] = useState(false);
 
   const availableIds = useMemo(
     () =>
@@ -80,13 +83,10 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   };
 
   const handleSwitchToSimple = () => {
-    if (
-      variantIds.length > 0 &&
-      !window.confirm(
-        "Przełączyć na tryb prosty? Wszystkie warianty zostaną usunięte.",
-      )
-    )
+    if (variantIds.length > 0) {
+      setConfirmSwitchSimple(true);
       return;
+    }
     dispatch({ type: "DISABLE_VARIANT_MODE", payload: paragraphId });
   };
 
@@ -148,25 +148,64 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
               Wariantowy
             </button>
           </div>
-          <button
-            className="editor-paragraph-view__remove-btn"
-            onClick={
-              isDeath
-                ? undefined
-                : () => {
-                    if (window.confirm(`Usunąć paragraf §${paragraphId}?`))
-                      onRemove(paragraphId);
-                  }
-            }
-            disabled={isDeath}
-            title={
-              isDeath
-                ? "Nie można usunąć paragrafu §100"
-                : `Usuń §${paragraphId}`
-            }
-          >
-            {isDeath ? "Nie można usunąć" : "Usuń paragraf"}
-          </button>
+          {confirmSwitchSimple && (
+            <span className="editor-paragraph-view__inline-confirm">
+              <span>Usunąć wszystkie warianty?</span>
+              <button
+                className="editor-paragraph-view__inline-confirm-yes"
+                onClick={() => {
+                  setConfirmSwitchSimple(false);
+                  dispatch({
+                    type: "DISABLE_VARIANT_MODE",
+                    payload: paragraphId,
+                  });
+                }}
+              >
+                Tak
+              </button>
+              <button
+                className="editor-paragraph-view__inline-confirm-no"
+                onClick={() => setConfirmSwitchSimple(false)}
+              >
+                Anuluj
+              </button>
+            </span>
+          )}
+          {confirmDeleteParagraph ? (
+            <span className="editor-paragraph-view__inline-confirm">
+              <span>Usunąć §{paragraphId}?</span>
+              <button
+                className="editor-paragraph-view__inline-confirm-yes"
+                onClick={() => {
+                  setConfirmDeleteParagraph(false);
+                  onRemove(paragraphId);
+                }}
+              >
+                Tak
+              </button>
+              <button
+                className="editor-paragraph-view__inline-confirm-no"
+                onClick={() => setConfirmDeleteParagraph(false)}
+              >
+                Anuluj
+              </button>
+            </span>
+          ) : (
+            <button
+              className="editor-paragraph-view__remove-btn"
+              onClick={
+                isDeath ? undefined : () => setConfirmDeleteParagraph(true)
+              }
+              disabled={isDeath}
+              title={
+                isDeath
+                  ? "Nie można usunąć paragrafu §100"
+                  : `Usuń §${paragraphId}`
+              }
+            >
+              {isDeath ? "Nie można usunąć" : "Usuń paragraf"}
+            </button>
+          )}
         </div>
       </div>
 
@@ -454,6 +493,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                       >
                         <RichText
                           content={[{ type: "text", text: choice.text }]}
+                          images={scenarioImages}
                         />
                       </Button>
                     ))}

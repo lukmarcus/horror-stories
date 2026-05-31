@@ -7,6 +7,22 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.8] - 2026-05-30
+
+### Dodano
+
+- Panel grafik scenariusza — nowa strona „Grafiki" w lewym menu edytora; pozwala wgrywać własne obrazki (JPG/PNG, max 2 MB, do 32 sztuk), podglądać miniaturki i usuwać grafiki
+- Grafiki są zapisywane razem ze scenariuszem i pakowane do pliku `.horrorstory` przy eksporcie; po ponownym imporcie wracają bez utraty
+- Przy wstawianiu obrazka do treści paragrafu lub do tekstu wyboru lista dostępnych grafik scenariusza pojawia się teraz w dropdownie z miniaturkami — zamiast konieczności ręcznego wpisywania nazwy
+- Usuwanie grafiki wymaga potwierdzenia bezpośrednio w panelu (bez systemowego okienka przeglądarki)
+- Własne grafiki scenariusza są widoczne w podglądzie treści paragrafu
+
+### Naprawiono
+
+- Paragraf 100 (śmierć) w nowym scenariuszu otwierał się w trybie „stary format — tylko tekst" zamiast normalnego edytora bloków
+
+---
+
 ## [0.2.7] - 2026-05-27
 
 > Wersja techniczna — brak zmian widocznych dla użytkownika

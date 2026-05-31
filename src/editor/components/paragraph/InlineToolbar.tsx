@@ -16,14 +16,12 @@ import {
 
 export interface InlineToolbarProps {
   onWrap: (before: string, after: string) => void;
-  onInsertLine: (snippet: string, cursorOffset: number) => void;
   onInsertAtCursor: (snippet: string) => void;
   onInsertSnippet: (snippet: string, cursorFromEnd?: number) => void;
 }
 
 export const InlineToolbar: React.FC<InlineToolbarProps> = ({
   onWrap,
-  onInsertLine,
   onInsertAtCursor,
   onInsertSnippet,
 }) => {
@@ -182,12 +180,9 @@ export const InlineToolbar: React.FC<InlineToolbarProps> = ({
         {scenarioImageItems.length > 0 && (
           <ImagePicker
             items={scenarioImageItems}
-            onSelect={(id) => {
-              const snippet = `[img: ${id}]`;
-              onInsertLine(snippet, snippet.length);
-            }}
+            onSelect={(id) => onInsertAtCursor(`<image id="${id}"/>`)}
             toggleContent={
-              <span className="pages-editor__picker-icon">🖼</span>
+              <span className="pages-editor__picker-icon">🖼️</span>
             }
             title="Wstaw grafikę scenariusza"
           />
