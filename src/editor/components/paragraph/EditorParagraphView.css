@@ -19,6 +19,13 @@
   gap: 0.4rem;
 }
 
+.editor-paragraph-view__title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .editor-paragraph-view__title {
   margin: 0;
   font-size: 1.5rem;
@@ -27,6 +34,66 @@
 /* h1/h2/h3 reset when used as labels */
 h1.editor-paragraph-view__title {
   margin: 0;
+}
+
+.editor-paragraph-view__aliases {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.editor-paragraph-view__alias-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  background: #2a2a2a;
+  border: 1px solid #555;
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+.editor-paragraph-view__alias-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 0.85rem;
+  padding: 0 0.1rem;
+  line-height: 1;
+}
+
+.editor-paragraph-view__alias-remove:hover {
+  color: #e05a5a;
+}
+
+.editor-paragraph-view__alias-input {
+  width: 5.5rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  border: 1px dashed #555;
+  background: transparent;
+  color: #aaa;
+  font-size: 0.8rem;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__alias-input:focus {
+  outline: none;
+  border-color: #888;
+  color: #eee;
+  border-style: solid;
+}
+
+.editor-paragraph-view__alias-input::placeholder {
+  color: #666;
+}
+
+.editor-paragraph-view__alias-error {
+  font-size: 0.75rem;
+  color: #e05a5a;
 }
 h2.editor-paragraph-view__label,
 h3.editor-paragraph-view__label {

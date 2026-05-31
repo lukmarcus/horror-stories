@@ -21,6 +21,8 @@ export interface EditorVariant {
 
 export interface EditorParagraph {
   id: string;
+  /** Additional IDs under which this paragraph is also accessible in the game */
+  aliases?: string[];
   /** Legacy plain-text field — kept for backward compatibility with older saves */
   text?: string;
   /** Rich content pages (for "prosty" paragraphs) */
@@ -150,7 +152,9 @@ export type EditorAction =
     }
   | { type: "CONVERT_TEXT_TO_PAGES"; payload: string }
   | { type: "ADD_IMAGE"; payload: { id: string; data: string } }
-  | { type: "REMOVE_IMAGE"; payload: string };
+  | { type: "REMOVE_IMAGE"; payload: string }
+  | { type: "ADD_ALIAS"; payload: { paragraphId: string; alias: string } }
+  | { type: "REMOVE_ALIAS"; payload: { paragraphId: string; alias: string } };
 
 export interface EditorContextValue {
   state: EditorState;

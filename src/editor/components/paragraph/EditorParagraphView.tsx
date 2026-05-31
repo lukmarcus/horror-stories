@@ -38,6 +38,8 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   );
   const [confirmSwitchSimple, setConfirmSwitchSimple] = useState(false);
   const [confirmDeleteParagraph, setConfirmDeleteParagraph] = useState(false);
+  const [newAlias, setNewAlias] = useState("");
+  const [aliasError, setAliasError] = useState("");
 
   const availableIds = useMemo(
     () =>
@@ -67,6 +69,15 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
       ),
     [scenarioParagraphs, paragraphId],
   );
+
+  const usedIds = useMemo(() => {
+    const set = new Set<string>();
+    for (const p of scenarioParagraphs ?? []) {
+      set.add(p.id);
+      for (const a of p.aliases ?? []) set.add(a);
+    }
+    return set;
+  }, [scenarioParagraphs]);
 
   if (!paragraph) return null;
 
@@ -103,12 +114,74 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
   // ── Variant selector handlers ──
 
+  const handleAddAlias = () => {
+    const val = newAlias.trim();
+    if (!val) return;
+    if (val === paragraphId) {
+      setAliasError("To już jest główny ID");
+      return;
+    }
+    if ((paragraph.aliases ?? []).includes(val)) {
+      setAliasError("Już istnieje");
+      return;
+    }
+    if (usedIds.has(val)) {
+      setAliasError("Zajęty przez inny paragraf");
+      return;
+    }
+    dispatch({ type: "ADD_ALIAS", payload: { paragraphId, alias: val } });
+    setNewAlias("");
+    setAliasError("");
+  };
+
   return (
     <div className="editor-paragraph-view">
       {/* Header */}
       <div className="editor-paragraph-view__header">
         <div className="editor-paragraph-view__header-left">
-          <h1 className="editor-paragraph-view__title">§{paragraphId}</h1>
+          <div className="editor-paragraph-view__title-row">
+            <h1 className="editor-paragraph-view__title">§{paragraphId}</h1>
+            <div className="editor-paragraph-view__aliases">
+              {(paragraph.aliases ?? []).map((alias) => (
+                <span
+                  key={alias}
+                  className="editor-paragraph-view__alias-badge"
+                >
+                  §{alias}
+                  <button
+                    className="editor-paragraph-view__alias-remove"
+                    onClick={() =>
+                      dispatch({
+                        type: "REMOVE_ALIAS",
+                        payload: { paragraphId, alias },
+                      })
+                    }
+                    title={`Usuń alias §${alias}`}
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+              <input
+                className="editor-paragraph-view__alias-input"
+                type="text"
+                placeholder="+ alias"
+                value={newAlias}
+                onChange={(e) => {
+                  setNewAlias(e.target.value);
+                  setAliasError("");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleAddAlias();
+                }}
+              />
+              {aliasError && (
+                <span className="editor-paragraph-view__alias-error">
+                  {aliasError}
+                </span>
+              )}
+            </div>
+          </div>
           <div className="editor-paragraph-view__incoming">
             <span className="editor-paragraph-view__incoming-label">
               Prowadzi tutaj:

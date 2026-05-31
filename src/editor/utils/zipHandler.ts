@@ -87,11 +87,14 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     const accessibleFromEntry =
       sources && sources.length > 0 ? { accessibleFrom: sources } : {};
 
+    const idField: string | string[] =
+      (p.aliases ?? []).length > 0 ? [p.id, ...(p.aliases ?? [])] : p.id;
+
     // ── Prosty (simple) paragraph ──
     if (!p.variants) {
       const cleanChoices = (p.choices ?? []).map(exportChoice);
       return {
-        id: p.id,
+        id: idField,
         ...(p.text !== undefined ? { text: p.text } : {}),
         ...(p.pages !== undefined ? { pages: p.pages } : {}),
         ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
@@ -113,7 +116,7 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     }
 
     return {
-      id: p.id,
+      id: idField,
       ...(p.pages !== undefined && p.pages.length > 0
         ? { pages: p.pages }
         : {}),
@@ -187,6 +190,10 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
 
         if (p.variants && typeof p.variants === "object") {
           // Variant paragraph: choices → variantSelectors, variants: contentPages → pages
+          const rawId = Array.isArray(p.id) ? p.id[0] : String(p.id);
+          const rawAliases = Array.isArray(p.id)
+            ? p.id.slice(1).map(String)
+            : [];
           const variantSelectors = (p.choices ?? []).map(addId);
           const variants: Record<string, unknown> = {};
           for (const [vid, v] of Object.entries(
@@ -202,7 +209,8 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
             };
           }
           return {
-            id: String(p.id),
+            id: rawId,
+            ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
             ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
             variantSelectors,
             variants,
@@ -213,9 +221,12 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
         }
 
         // Simple paragraph
+        const rawId = Array.isArray(p.id) ? p.id[0] : String(p.id);
+        const rawAliases = Array.isArray(p.id) ? p.id.slice(1).map(String) : [];
         const choices = (p.choices ?? []).map(addId);
         return {
-          id: String(p.id),
+          id: rawId,
+          ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
           ...(p.text !== undefined ? { text: String(p.text) } : {}),
           ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
           ...(choices.length > 0 ? { choices } : {}),

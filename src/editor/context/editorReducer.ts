@@ -378,6 +378,16 @@ export function editorReducer(
         isDirty: true,
       };
     }
+    case "ADD_ALIAS":
+      return mapParagraph(state, action.payload.paragraphId, (p) => ({
+        ...p,
+        aliases: [...(p.aliases ?? []), action.payload.alias],
+      }));
+    case "REMOVE_ALIAS":
+      return mapParagraph(state, action.payload.paragraphId, (p) => ({
+        ...p,
+        aliases: (p.aliases ?? []).filter((a) => a !== action.payload.alias),
+      }));
     default:
       return state;
   }
