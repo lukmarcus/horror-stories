@@ -17,6 +17,7 @@ import { jumpToParagraph } from "../utils/gameActions";
 import { loadUserParagraphs } from "../utils/userParagraphStorage";
 import { buildUserParagraphMap } from "../utils/userParagraphConverter";
 import { loadUserScenarios } from "../utils/userScenarioStorage";
+import { loadUserImages } from "../utils/userImageStorage";
 import "../styles/pages/game.css";
 
 export const Game: React.FC = () => {
@@ -70,6 +71,10 @@ export const Game: React.FC = () => {
       isUserScenario
         ? buildUserParagraphMap(loadUserParagraphs(scenarioId))
         : {},
+    [scenarioId, isUserScenario],
+  );
+  const userImages = React.useMemo(
+    () => (isUserScenario ? loadUserImages(scenarioId) : {}),
     [scenarioId, isUserScenario],
   );
   const paragraphs = isUserScenario
@@ -433,6 +438,7 @@ export const Game: React.FC = () => {
                     onJumpToParagraph={handleJumpFromDeadEnd}
                     onBack={handleBackToInput}
                     scenarioId={scenarioId}
+                    images={isUserScenario ? userImages : undefined}
                     hasVariants={Boolean(currentParagraph?.variants)}
                     variantPathLength={game.state.variantPath.length}
                     accessibleFrom={

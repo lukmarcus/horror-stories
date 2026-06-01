@@ -30,6 +30,7 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
   const [collapsed, setCollapsed] = useState(false);
   const [renaming, setRenaming] = useState(false);
   const [renameValue, setRenameValue] = useState(variantId);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const isHorizontal = !!variant.areChoicesHorizontal;
 
@@ -105,20 +106,37 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
             >
               ✎
             </button>
-            <button
-              className="editor-paragraph-view__variant-remove"
-              onClick={() => {
-                if (window.confirm(`Usunąć wariant "${variantId}"?`)) {
-                  dispatch({
-                    type: "REMOVE_VARIANT",
-                    payload: { paragraphId, variantId },
-                  });
-                }
-              }}
-              title={`Usuń wariant ${variantId}`}
-            >
-              ✕
-            </button>
+            {confirmDelete ? (
+              <span className="editor-paragraph-view__inline-confirm">
+                <span>Usunąć?</span>
+                <button
+                  className="editor-paragraph-view__inline-confirm-yes"
+                  onClick={() => {
+                    setConfirmDelete(false);
+                    dispatch({
+                      type: "REMOVE_VARIANT",
+                      payload: { paragraphId, variantId },
+                    });
+                  }}
+                >
+                  Tak
+                </button>
+                <button
+                  className="editor-paragraph-view__inline-confirm-no"
+                  onClick={() => setConfirmDelete(false)}
+                >
+                  Anuluj
+                </button>
+              </span>
+            ) : (
+              <button
+                className="editor-paragraph-view__variant-remove"
+                onClick={() => setConfirmDelete(true)}
+                title={`Usuń wariant ${variantId}`}
+              >
+                ✕
+              </button>
+            )}
           </>
         )}
       </div>

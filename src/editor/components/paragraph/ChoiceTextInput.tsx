@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import * as textInsert from "../../utils/textInsert";
 import { ColorPicker, ImagePicker, SnippetPicker } from "./EditorInlineTools";
+import type { ImagePickerItem } from "./EditorInlineTools";
+import { useEditor } from "../../context/useEditor";
 import {
   SPAN_SNIPPETS,
   SYMBOL_PICKER_ITEMS,
@@ -29,6 +31,10 @@ export const ChoiceTextInput: React.FC<ChoiceTextInputProps> = ({
   onKeyDown,
 }) => {
   const ref = useRef<HTMLInputElement>(null);
+  const { state } = useEditor();
+  const scenarioImageItems: ImagePickerItem[] = Object.entries(
+    state.scenario?.images ?? {},
+  ).map(([id, data]) => ({ id, label: id, imagePath: data }));
 
   const insertAtCursor = (snippet: string) =>
     textInsert.insertAtCursor(ref.current, value, onChange, snippet);
@@ -191,6 +197,16 @@ export const ChoiceTextInput: React.FC<ChoiceTextInputProps> = ({
             }
             title="Wstaw przedmiot losowy"
           />
+          {scenarioImageItems.length > 0 && (
+            <ImagePicker
+              items={scenarioImageItems}
+              onSelect={(id) => insertAtCursor(`<image id="${id}"/>`)}
+              toggleContent={
+                <span className="pages-editor__picker-icon">🖼</span>
+              }
+              title="Wstaw grafikę scenariusza"
+            />
+          )}
         </div>
       </div>
       <input

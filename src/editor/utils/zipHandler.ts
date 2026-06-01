@@ -87,11 +87,14 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     const accessibleFromEntry =
       sources && sources.length > 0 ? { accessibleFrom: sources } : {};
 
+    const idField: string | string[] =
+      (p.aliases ?? []).length > 0 ? [p.id, ...(p.aliases ?? [])] : p.id;
+
     // ── Prosty (simple) paragraph ──
     if (!p.variants) {
       const cleanChoices = (p.choices ?? []).map(exportChoice);
       return {
-        id: p.id,
+        id: idField,
         ...(p.text !== undefined ? { text: p.text } : {}),
         ...(p.pages !== undefined ? { pages: p.pages } : {}),
         ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
@@ -113,7 +116,7 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     }
 
     return {
-      id: p.id,
+      id: idField,
       ...(p.pages !== undefined && p.pages.length > 0
         ? { pages: p.pages }
         : {}),
@@ -128,6 +131,15 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     "paragraphs.json",
     JSON.stringify({ paragraphs: paragraphsExported }, null, 2),
   );
+
+  // Pack user-uploaded images into images/ folder
+  for (const [id, dataUrl] of Object.entries(scenario.images ?? {})) {
+    const mimeMatch = dataUrl.match(/^data:([^;]+);base64,/);
+    const mimeType = mimeMatch?.[1] ?? "image/jpeg";
+    const base64 = dataUrl.replace(/^data:[^;]+;base64,/, "");
+    const ext = mimeType === "image/png" ? "png" : "jpg";
+    zip.file(`images/${id}.${ext}`, base64, { base64: true });
+  }
 
   const blob = await zip.generateAsync({ type: "blob" });
   const url = URL.createObjectURL(blob);
@@ -178,6 +190,10 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
 
         if (p.variants && typeof p.variants === "object") {
           // Variant paragraph: choices → variantSelectors, variants: contentPages → pages
+          const rawId = Array.isArray(p.id) ? p.id[0] : String(p.id);
+          const rawAliases = Array.isArray(p.id)
+            ? p.id.slice(1).map(String)
+            : [];
           const variantSelectors = (p.choices ?? []).map(addId);
           const variants: Record<string, unknown> = {};
           for (const [vid, v] of Object.entries(
@@ -186,15 +202,15 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
             variants[vid] = {
               pages: v.contentPages ?? [[]],
               ...(v.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
-              choices: (
-                Array.isArray(v.choices)
-                  ? (v.choices as Record<string, unknown>[])
-                  : []
+              choices: (Array.isArray(v.choices)
+                ? (v.choices as Record<string, unknown>[])
+                : []
               ).map(addId),
             };
           }
           return {
-            id: String(p.id),
+            id: rawId,
+            ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
             ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
             variantSelectors,
             variants,
@@ -205,9 +221,12 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
         }
 
         // Simple paragraph
+        const rawId = Array.isArray(p.id) ? p.id[0] : String(p.id);
+        const rawAliases = Array.isArray(p.id) ? p.id.slice(1).map(String) : [];
         const choices = (p.choices ?? []).map(addId);
         return {
-          id: String(p.id),
+          id: rawId,
+          ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
           ...(p.text !== undefined ? { text: String(p.text) } : {}),
           ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
           ...(choices.length > 0 ? { choices } : {}),
@@ -219,5 +238,18 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
     }
   }
 
-  return { meta, paragraphs };
+  // Unpack user-uploaded images from images/ folder
+  const images: Record<string, string> = {};
+  const imageFiles = zip.file(/^images\//);
+  for (const imageFile of imageFiles) {
+    const filename = imageFile.name.replace(/^images\//, "");
+    if (!filename) continue;
+    const ext = filename.split(".").pop()?.toLowerCase() ?? "jpg";
+    const mimeType = ext === "png" ? "image/png" : "image/jpeg";
+    const base64 = await imageFile.async("base64");
+    const id = filename.replace(/\.[^.]+$/, "");
+    images[id] = `data:${mimeType};base64,${base64}`;
+  }
+
+  return { meta, paragraphs, images };
 }

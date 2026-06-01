@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEditor } from "../../context/useEditor";
 import { sortParagraphIds } from "../../utils/editorUtils";
@@ -19,14 +19,28 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
   const [newId, setNewId] = useState("");
   const [addError, setAddError] = useState<string | null>(null);
 
-  const paragraphs = sortParagraphIds(
-    (state.scenario?.paragraphs ?? []).map((p) => p.id),
-  ).map((id) => state.scenario!.paragraphs.find((p) => p.id === id)!);
+  const allEntries = sortParagraphIds(
+    (state.scenario?.paragraphs ?? []).flatMap((p) => [
+      p.id,
+      ...(p.aliases ?? []),
+    ]),
+  ).map((id) => {
+    const primary = state.scenario!.paragraphs.find((p) => p.id === id);
+    if (primary) return { id, primaryId: id, isAlias: false };
+    const owner = state.scenario!.paragraphs.find((p) =>
+      (p.aliases ?? []).includes(id),
+    )!;
+    return { id, primaryId: owner.id, isAlias: true };
+  });
 
   const handleAddParagraph = () => {
     const id = newId.trim();
     if (!id) return;
-    const existing = new Set(state.scenario?.paragraphs.map((p) => p.id) ?? []);
+    const existing = new Set<string>();
+    for (const p of state.scenario?.paragraphs ?? []) {
+      existing.add(p.id);
+      for (const a of p.aliases ?? []) existing.add(a);
+    }
     if (existing.has(id)) {
       setAddError(`§${id} już istnieje`);
       return;
@@ -71,6 +85,16 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
               Graf połączeń
             </button>
           )}
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
+                activeSection === "images" ? "editor-sidebar__item--active" : ""
+              }`}
+              onClick={() => onSectionChange("images")}
+            >
+              Grafiki
+            </button>
+          )}
           <button className="editor-sidebar__item editor-sidebar__item--placeholder">
             Przygotowanie
           </button>
@@ -78,23 +102,27 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
             Żetony alfabetu
           </button>
 
-          {paragraphs.length > 0 && (
+          {allEntries.length > 0 && (
             <div className="editor-sidebar__section-divider" />
           )}
-          {paragraphs.map((p) => (
+          {allEntries.map(({ id, primaryId, isAlias }) => (
             <button
-              key={p.id}
+              key={isAlias ? `alias-${id}` : id}
               className={`editor-sidebar__paragraph ${
-                activeSection === p.id
-                  ? "editor-sidebar__paragraph--active"
-                  : ""
+                activeSection === id ? "editor-sidebar__paragraph--active" : ""
               }`}
-              onClick={() => onSectionChange(p.id)}
-              aria-current={activeSection === p.id ? "true" : undefined}
+              onClick={() => onSectionChange(primaryId)}
+              aria-current={activeSection === id ? "true" : undefined}
+              title={isAlias ? `Alias §${id} → §${primaryId}` : undefined}
             >
               <span className="editor-sidebar__paragraph-label">
-                §{p.id}
-                {p.id === "100" && (
+                §{id}
+                {isAlias && (
+                  <span className="editor-sidebar__paragraph-tag">
+                    &nbsp;→ §{primaryId}
+                  </span>
+                )}
+                {id === "100" && !isAlias && (
                   <span className="editor-sidebar__paragraph-tag">
                     &nbsp;(śmierć)
                   </span>

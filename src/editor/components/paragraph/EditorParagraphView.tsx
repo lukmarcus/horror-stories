@@ -28,6 +28,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 }) => {
   const { state, dispatch } = useEditor();
   const scenarioParagraphs = state.scenario?.paragraphs;
+  const scenarioImages = state.scenario?.images;
   const paragraph = scenarioParagraphs?.find((p) => p.id === paragraphId);
 
   const [focusedTargetId, setFocusedTargetId] = useState<string | null>(null);
@@ -35,6 +36,10 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const [focusedSelectorId, setFocusedSelectorId] = useState<string | null>(
     null,
   );
+  const [confirmSwitchSimple, setConfirmSwitchSimple] = useState(false);
+  const [confirmDeleteParagraph, setConfirmDeleteParagraph] = useState(false);
+  const [newAlias, setNewAlias] = useState("");
+  const [aliasError, setAliasError] = useState("");
 
   const availableIds = useMemo(
     () =>
@@ -65,6 +70,15 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
     [scenarioParagraphs, paragraphId],
   );
 
+  const usedIds = useMemo(() => {
+    const set = new Set<string>();
+    for (const p of scenarioParagraphs ?? []) {
+      set.add(p.id);
+      for (const a of p.aliases ?? []) set.add(a);
+    }
+    return set;
+  }, [scenarioParagraphs]);
+
   if (!paragraph) return null;
 
   const isDeath = paragraphId === "100";
@@ -80,13 +94,10 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   };
 
   const handleSwitchToSimple = () => {
-    if (
-      variantIds.length > 0 &&
-      !window.confirm(
-        "Przełączyć na tryb prosty? Wszystkie warianty zostaną usunięte.",
-      )
-    )
+    if (variantIds.length > 0) {
+      setConfirmSwitchSimple(true);
       return;
+    }
     dispatch({ type: "DISABLE_VARIANT_MODE", payload: paragraphId });
   };
 
@@ -103,12 +114,74 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
   // ── Variant selector handlers ──
 
+  const handleAddAlias = () => {
+    const val = newAlias.trim();
+    if (!val) return;
+    if (val === paragraphId) {
+      setAliasError("To już jest główny ID");
+      return;
+    }
+    if ((paragraph.aliases ?? []).includes(val)) {
+      setAliasError("Już istnieje");
+      return;
+    }
+    if (usedIds.has(val)) {
+      setAliasError("Zajęty przez inny paragraf");
+      return;
+    }
+    dispatch({ type: "ADD_ALIAS", payload: { paragraphId, alias: val } });
+    setNewAlias("");
+    setAliasError("");
+  };
+
   return (
     <div className="editor-paragraph-view">
       {/* Header */}
       <div className="editor-paragraph-view__header">
         <div className="editor-paragraph-view__header-left">
-          <h1 className="editor-paragraph-view__title">§{paragraphId}</h1>
+          <div className="editor-paragraph-view__title-row">
+            <h1 className="editor-paragraph-view__title">§{paragraphId}</h1>
+            <div className="editor-paragraph-view__aliases">
+              {(paragraph.aliases ?? []).map((alias) => (
+                <span
+                  key={alias}
+                  className="editor-paragraph-view__alias-badge"
+                >
+                  §{alias}
+                  <button
+                    className="editor-paragraph-view__alias-remove"
+                    onClick={() =>
+                      dispatch({
+                        type: "REMOVE_ALIAS",
+                        payload: { paragraphId, alias },
+                      })
+                    }
+                    title={`Usuń alias §${alias}`}
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+              <input
+                className="editor-paragraph-view__alias-input"
+                type="text"
+                placeholder="+ alias"
+                value={newAlias}
+                onChange={(e) => {
+                  setNewAlias(e.target.value);
+                  setAliasError("");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleAddAlias();
+                }}
+              />
+              {aliasError && (
+                <span className="editor-paragraph-view__alias-error">
+                  {aliasError}
+                </span>
+              )}
+            </div>
+          </div>
           <div className="editor-paragraph-view__incoming">
             <span className="editor-paragraph-view__incoming-label">
               Prowadzi tutaj:
@@ -148,25 +221,64 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
               Wariantowy
             </button>
           </div>
-          <button
-            className="editor-paragraph-view__remove-btn"
-            onClick={
-              isDeath
-                ? undefined
-                : () => {
-                    if (window.confirm(`Usunąć paragraf §${paragraphId}?`))
-                      onRemove(paragraphId);
-                  }
-            }
-            disabled={isDeath}
-            title={
-              isDeath
-                ? "Nie można usunąć paragrafu §100"
-                : `Usuń §${paragraphId}`
-            }
-          >
-            {isDeath ? "Nie można usunąć" : "Usuń paragraf"}
-          </button>
+          {confirmSwitchSimple && (
+            <span className="editor-paragraph-view__inline-confirm">
+              <span>Usunąć wszystkie warianty?</span>
+              <button
+                className="editor-paragraph-view__inline-confirm-yes"
+                onClick={() => {
+                  setConfirmSwitchSimple(false);
+                  dispatch({
+                    type: "DISABLE_VARIANT_MODE",
+                    payload: paragraphId,
+                  });
+                }}
+              >
+                Tak
+              </button>
+              <button
+                className="editor-paragraph-view__inline-confirm-no"
+                onClick={() => setConfirmSwitchSimple(false)}
+              >
+                Anuluj
+              </button>
+            </span>
+          )}
+          {confirmDeleteParagraph ? (
+            <span className="editor-paragraph-view__inline-confirm">
+              <span>Usunąć §{paragraphId}?</span>
+              <button
+                className="editor-paragraph-view__inline-confirm-yes"
+                onClick={() => {
+                  setConfirmDeleteParagraph(false);
+                  onRemove(paragraphId);
+                }}
+              >
+                Tak
+              </button>
+              <button
+                className="editor-paragraph-view__inline-confirm-no"
+                onClick={() => setConfirmDeleteParagraph(false)}
+              >
+                Anuluj
+              </button>
+            </span>
+          ) : (
+            <button
+              className="editor-paragraph-view__remove-btn"
+              onClick={
+                isDeath ? undefined : () => setConfirmDeleteParagraph(true)
+              }
+              disabled={isDeath}
+              title={
+                isDeath
+                  ? "Nie można usunąć paragrafu §100"
+                  : `Usuń §${paragraphId}`
+              }
+            >
+              {isDeath ? "Nie można usunąć" : "Usuń paragraf"}
+            </button>
+          )}
         </div>
       </div>
 
@@ -454,6 +566,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                       >
                         <RichText
                           content={[{ type: "text", text: choice.text }]}
+                          images={scenarioImages}
                         />
                       </Button>
                     ))}

@@ -71,7 +71,7 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
       setCurrentActionIndex(null);
       setConditionConfirmed(false);
     }
-  }, [lastDiceResult]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [lastDiceResult, selectedEnemy]);
 
   // Reset when rolling starts
   React.useEffect(() => {
@@ -224,24 +224,33 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
                           : `${actionDiceResult[0]}`}
                       </div>
                     )}
-                    {!actionDiceRolling && (!action.actionDiceCount || actionDiceResult !== null) && (() => {
-                      if (action.actionOutcomes && actionDiceResult !== null) {
-                        const total = actionDiceResult.reduce((a, b) => a + b, 0);
-                        const outcome: ActionOutcome | undefined = action.actionOutcomes.find((o) =>
-                          o.values.includes(total),
-                        );
-                        return outcome ? (
+                    {!actionDiceRolling &&
+                      (!action.actionDiceCount || actionDiceResult !== null) &&
+                      (() => {
+                        if (
+                          action.actionOutcomes &&
+                          actionDiceResult !== null
+                        ) {
+                          const total = actionDiceResult.reduce(
+                            (a, b) => a + b,
+                            0,
+                          );
+                          const outcome: ActionOutcome | undefined =
+                            action.actionOutcomes.find((o) =>
+                              o.values.includes(total),
+                            );
+                          return outcome ? (
+                            <div className="enemy-view__action-description">
+                              <RichText text={outcome.description} />
+                            </div>
+                          ) : null;
+                        }
+                        return action.description ? (
                           <div className="enemy-view__action-description">
-                            <RichText text={outcome.description} />
+                            <RichText text={action.description} />
                           </div>
                         ) : null;
-                      }
-                      return action.description ? (
-                        <div className="enemy-view__action-description">
-                          <RichText text={action.description} />
-                        </div>
-                      ) : null;
-                    })()}
+                      })()}
                   </div>
                 );
               })()}

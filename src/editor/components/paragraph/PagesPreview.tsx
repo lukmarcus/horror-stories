@@ -1,6 +1,7 @@
 import React from "react";
 import type { ContentBlock } from "../../../types";
 import { RichText } from "../../../components/text/RichText/RichText";
+import { useEditor } from "../../context/useEditor";
 
 interface PagesPreviewProps {
   pages: ContentBlock[][];
@@ -11,6 +12,9 @@ export const PagesPreview: React.FC<PagesPreviewProps> = ({
   pages,
   emptyMessage = "Brak treści",
 }) => {
+  const { state } = useEditor();
+  const images = state.scenario?.images ?? {};
+  const scenarioId = state.scenario?.meta.id;
   const isEmpty =
     pages.length === 0 || (pages.length === 1 && pages[0].length === 0);
 
@@ -29,7 +33,7 @@ export const PagesPreview: React.FC<PagesPreviewProps> = ({
               Strona {i + 1}
             </span>
           )}
-          <RichText content={page} />
+          <RichText content={page} images={images} scenarioId={scenarioId} />
         </div>
       ))}
     </>

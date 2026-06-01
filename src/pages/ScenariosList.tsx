@@ -12,6 +12,7 @@ import {
   saveUserParagraphs,
   removeUserParagraphs,
 } from "../utils/userParagraphStorage";
+import { saveUserImages, removeUserImages } from "../utils/userImageStorage";
 import type { Scenario } from "../types";
 import "../styles/pages/scenarios-list.css";
 
@@ -44,6 +45,7 @@ export const ScenariosList: React.FC = () => {
       const imported = await importFromZip(file);
       saveUserScenario(imported.meta);
       saveUserParagraphs(imported.meta.id, imported.paragraphs);
+      saveUserImages(imported.meta.id, imported.images ?? {});
       setUserScenarios(loadUserScenarios());
     } catch (err) {
       setImportError(
@@ -59,6 +61,7 @@ export const ScenariosList: React.FC = () => {
   const handleRemove = (id: string) => {
     removeUserScenario(id);
     removeUserParagraphs(id);
+    removeUserImages(id);
     setUserScenarios(loadUserScenarios());
   };
 

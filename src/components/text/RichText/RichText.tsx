@@ -15,10 +15,140 @@ import "./rich-text.css";
 const CUSTOM_TAG_PATTERN =
   /<(symbol|letter|item|image|person|enemy|story|room|status|random)\s+id=["']([^"']+)["']\s*\/>/;
 
+type TagRenderer = (
+  id: string,
+  key: string,
+  scenarioId?: string,
+  images?: Record<string, string>,
+) => React.ReactNode;
+
+const TAG_RENDERERS: Record<string, TagRenderer> = {
+  image: (id, key, scenarioId, images) => {
+    const dataUrl = images?.[id];
+    if (dataUrl) {
+      return <img key={key} src={dataUrl} alt={id} className="inline-image" />;
+    }
+    const imagePath = scenarioId
+      ? new URL(
+          `../../../scenarios/${scenarioId}/images/${id}.jpg`,
+          import.meta.url,
+        ).href
+      : undefined;
+    return imagePath ? (
+      <img key={key} src={imagePath} alt={id} className="inline-image" />
+    ) : (
+      <span key={key} className="rich-image-placeholder">
+        🖼️ {id}
+      </span>
+    );
+  },
+  symbol: (id, key) => {
+    const d = getSymbol(id);
+    return d ? (
+      <img
+        key={key}
+        src={d.imagePath}
+        alt={id}
+        className="symbol-image"
+        title={id}
+      />
+    ) : null;
+  },
+  letter: (id, key) => {
+    const d = getLetter(id);
+    return d ? (
+      <img
+        key={key}
+        src={d.imagePath}
+        alt={id}
+        className="letter-image"
+        title={id}
+      />
+    ) : null;
+  },
+  item: (id, key) => (
+    <span key={key} className="item">
+      [{id}]
+    </span>
+  ),
+  random: (id, key) => {
+    const d = getRandomItem(id);
+    return d ? (
+      <img
+        key={key}
+        src={d.imagePath}
+        alt={id}
+        className="random-item-image"
+        title={d.description || id}
+      />
+    ) : null;
+  },
+  story: (id, key) => {
+    const d = getStoryItem(id);
+    return d ? (
+      <img
+        key={key}
+        src={d.imagePath}
+        alt={d.description || id}
+        className="story-item-image"
+        title={d.description || undefined}
+      />
+    ) : null;
+  },
+  room: (id, key) => {
+    const d = getRoomItem(id);
+    return d ? (
+      <img
+        key={key}
+        src={d.imagePath}
+        alt={`Room ${id}`}
+        className="room-item-image"
+      />
+    ) : null;
+  },
+  person: (id, key) => {
+    const d = getPerson(id);
+    return d ? (
+      <img
+        key={key}
+        src={d.imagePath}
+        alt={id}
+        className="person-image"
+        title={id}
+      />
+    ) : null;
+  },
+  enemy: (id, key) => {
+    const d = getEnemy(id);
+    return d ? (
+      <img
+        key={key}
+        src={d.imagePath}
+        alt={id}
+        className="enemy-image"
+        title={id}
+      />
+    ) : null;
+  },
+  status: (id, key) => {
+    const d = getStatus(id);
+    return d ? (
+      <img
+        key={key}
+        src={d.imagePath}
+        alt={d.description || id}
+        className="status-image"
+        title={d.description || id}
+      />
+    ) : null;
+  },
+};
+
 interface RichTextProps {
   content?: ContentBlock[];
   text?: string; // for backward compatibility
   scenarioId?: string; // for loading images
+  images?: Record<string, string>; // user-uploaded images: id → data URL
   noSpacing?: boolean; // disable spacing (for use inside buttons/choices)
 }
 
@@ -26,6 +156,7 @@ export const RichText: React.FC<RichTextProps> = ({
   content,
   text,
   scenarioId,
+  images,
   noSpacing,
 }) => {
   // Parse HTML and replace custom tags with React elements
@@ -58,134 +189,8 @@ export const RichText: React.FC<RichTextProps> = ({
       const key = `custom-${counter}`;
       counter++;
 
-      if (tag === "image") {
-        const imagePath = scenarioId
-          ? new URL(
-              `../../../scenarios/${scenarioId}/images/${id}.jpg`,
-              import.meta.url,
-            ).href
-          : undefined;
-        if (imagePath) {
-          segments.push(
-            <img key={key} src={imagePath} alt={id} className="inline-image" />,
-          );
-        } else {
-          segments.push(
-            <span key={key} className="rich-image-placeholder">
-              🖼️ {id}
-            </span>,
-          );
-        }
-      } else if (tag === "symbol") {
-        const symbolData = getSymbol(id);
-        if (symbolData) {
-          segments.push(
-            <img
-              key={key}
-              src={symbolData.imagePath}
-              alt={id}
-              className="symbol-image"
-              title={id}
-            />,
-          );
-        }
-      } else if (tag === "letter") {
-        const letterData = getLetter(id);
-        if (letterData) {
-          segments.push(
-            <img
-              key={key}
-              src={letterData.imagePath}
-              alt={id}
-              className="letter-image"
-              title={id}
-            />,
-          );
-        }
-      } else if (tag === "item") {
-        segments.push(
-          <span key={key} className="item">
-            [{id}]
-          </span>,
-        );
-      } else if (tag === "random") {
-        const randomItem = getRandomItem(id);
-        if (randomItem) {
-          segments.push(
-            <img
-              key={key}
-              src={randomItem.imagePath}
-              alt={id}
-              className="random-item-image"
-              title={randomItem.description || id}
-            />,
-          );
-        }
-      } else if (tag === "story") {
-        const storyItem = getStoryItem(id);
-        if (storyItem) {
-          segments.push(
-            <img
-              key={key}
-              src={storyItem.imagePath}
-              alt={storyItem.description || id}
-              className="story-item-image"
-              title={storyItem.description || undefined}
-            />,
-          );
-        }
-      } else if (tag === "room") {
-        const roomItem = getRoomItem(id);
-        if (roomItem) {
-          segments.push(
-            <img
-              key={key}
-              src={roomItem.imagePath}
-              alt={`Room ${id}`}
-              className="room-item-image"
-            />,
-          );
-        }
-      } else if (tag === "person") {
-        const personData = getPerson(id);
-        if (personData) {
-          segments.push(
-            <img
-              key={key}
-              src={personData.imagePath}
-              alt={id}
-              className="person-image"
-              title={id}
-            />,
-          );
-        }
-      } else if (tag === "enemy") {
-        const enemyData = getEnemy(id);
-        if (enemyData) {
-          segments.push(
-            <img
-              key={key}
-              src={enemyData.imagePath}
-              alt={id}
-              className="enemy-image"
-              title={id}
-            />,
-          );
-        }
-      } else if (tag === "status") {
-        const statusData = getStatus(id);
-        if (statusData) {
-          segments.push(
-            <img
-              key={key}
-              src={statusData.imagePath}
-              alt={statusData.description || id}
-              className="status-image"
-              title={statusData.description || id}
-            />,
-          );
-        }
-      }
+      const node = TAG_RENDERERS[tag]?.(id, key, scenarioId, images);
+      if (node != null) segments.push(node);
 
       currentPos = customTagRegex.lastIndex;
     }
@@ -224,12 +229,15 @@ export const RichText: React.FC<RichTextProps> = ({
 
           // Handle new image format: {image: "id"}
           if (block.image) {
-            const imagePath = scenarioId
-              ? new URL(
-                  `../../../scenarios/${scenarioId}/images/${block.image}.jpg`,
-                  import.meta.url,
-                ).href
-              : undefined;
+            const dataUrl = images?.[block.image];
+            const imagePath =
+              dataUrl ??
+              (scenarioId
+                ? new URL(
+                    `../../../scenarios/${scenarioId}/images/${block.image}.jpg`,
+                    import.meta.url,
+                  ).href
+                : undefined);
 
             const imageClasses = [
               "rich-image-block",
@@ -291,12 +299,15 @@ export const RichText: React.FC<RichTextProps> = ({
             );
           } else if (block.type === "image" && (block.id || block.image)) {
             const imageId = block.image || block.id;
-            const imagePath = scenarioId
-              ? new URL(
-                  `../../../scenarios/${scenarioId}/images/${imageId}.jpg`,
-                  import.meta.url,
-                ).href
-              : undefined;
+            const dataUrl = images?.[imageId!];
+            const imagePath =
+              dataUrl ??
+              (scenarioId
+                ? new URL(
+                    `../../../scenarios/${scenarioId}/images/${imageId}.jpg`,
+                    import.meta.url,
+                  ).href
+                : undefined);
 
             const imageClasses = [
               "rich-image-block",

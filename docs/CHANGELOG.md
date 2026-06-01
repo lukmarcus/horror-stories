@@ -7,6 +7,26 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.8] - 2026-06-01
+
+### Dodano
+
+- Aliasy dla paragrafów — jeden paragraf dostępny pod wieloma numerami; edytowalne w panelu paragrafu jako oddzielna lista
+- Panel grafik scenariusza — nowa strona „Grafiki" w lewym menu edytora; pozwala wgrywać własne obrazki (JPG/PNG, max 2 MB, do 32 sztuk), podglądać miniaturki i usuwać grafiki
+- Grafiki są zapisywane razem ze scenariuszem i pakowane do pliku `.horrorstory` przy eksporcie; po ponownym imporcie wracają bez utraty
+- Przy wstawianiu obrazka do treści paragrafu lub do tekstu wyboru lista dostępnych grafik scenariusza pojawia się w dropdownie z miniaturkami
+- Pasek „Tekst:" ma przycisk 🖼️ — wstawia grafikę inline wewnątrz akapitu
+- Pasek „Akapit:" ma przycisk 🖼️ — wstawia grafikę jako osobny akapit pełnej szerokości
+- Podgląd wyborów pokazuje własne grafiki scenariusza wstawione w tekście wyboru
+- Potwierdzenia destruktywnych akcji (nowy scenariusz, usuń szkic, usuń paragraf, usuń wariant, przełącz na tryb prosty) są teraz wyświetlane bezpośrednio w interfejsie — bez systemowych okienek przeglądarki
+
+### Naprawiono
+
+- Paragraf 100 (śmierć) w nowym scenariuszu otwierał się w trybie „stary format — tylko tekst" zamiast normalnego edytora bloków
+- Import scenariuszy użytkownika — warianty z pustymi wyborami (dead-end) pokazywały selektor głównego paragrafu zamiast być dead-end
+
+---
+
 ## [0.2.7] - 2026-05-27
 
 > Wersja techniczna — brak zmian widocznych dla użytkownika

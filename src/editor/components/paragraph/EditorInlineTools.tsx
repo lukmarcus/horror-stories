@@ -93,6 +93,7 @@ export interface ImagePickerProps {
   onSelect: (id: string) => void;
   toggleContent: React.ReactNode;
   title?: string;
+  emptyMessage?: string;
 }
 
 export const ImagePicker: React.FC<ImagePickerProps> = ({
@@ -100,6 +101,7 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
   onSelect,
   toggleContent,
   title,
+  emptyMessage,
 }) => (
   <DropdownPicker
     containerClass="pages-editor__image-picker"
@@ -108,19 +110,23 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
     title={title}
   >
     <div className="pages-editor__image-dropdown">
-      {items.map((item) => (
-        <button
-          key={item.id}
-          className="pages-editor__image-btn"
-          onMouseDown={(e) => {
-            e.preventDefault();
-            onSelect(item.id);
-          }}
-          title={item.sublabel ? `${item.label}\n${item.sublabel}` : item.label}
-        >
-          <img src={item.imagePath} alt={item.label} />
-        </button>
-      ))}
+      {items.length === 0 && emptyMessage ? (
+        <p className="pages-editor__image-empty">{emptyMessage}</p>
+      ) : (
+        items.map((item) => (
+          <button
+            key={item.id}
+            className="pages-editor__image-btn"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              onSelect(item.id);
+            }}
+            title={item.sublabel ? `${item.label}\n${item.sublabel}` : item.label}
+          >
+            <img src={item.imagePath} alt={item.label} />
+          </button>
+        ))
+      )}
     </div>
   </DropdownPicker>
 );
