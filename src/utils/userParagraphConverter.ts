@@ -30,7 +30,7 @@ function editorVariantToGameParagraph(
     ...(pages.length === 1
       ? { content: pages[0] }
       : { contentPages: pages, isMultiPage: true }),
-    ...(choices.length > 0 ? { choices } : {}),
+    choices,
     ...(variant.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
   };
 }
@@ -64,7 +64,7 @@ export function editorParagraphToGameParagraph(
       ...(pages.length === 1
         ? { content: pages[0] }
         : { contentPages: pages, isMultiPage: true }),
-      ...(choices.length > 0 ? { choices } : {}),
+      choices,
       variants,
     };
   }
