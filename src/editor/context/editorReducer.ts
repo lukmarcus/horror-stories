@@ -54,6 +54,7 @@ export function editorReducer(
           },
           paragraphs: [DEATH_PARAGRAPH],
           images: {},
+          letters: [],
         },
         isDirty: false,
         activeParagraphId: null,
@@ -63,7 +64,7 @@ export function editorReducer(
         ...state,
         scenario: state.scenario
           ? { ...state.scenario, meta: action.payload }
-          : { meta: action.payload, paragraphs: [DEATH_PARAGRAPH] },
+          : { meta: action.payload, paragraphs: [DEATH_PARAGRAPH], letters: [] },
         isDirty: true,
       };
     case "LOAD_SCENARIO":
@@ -72,6 +73,7 @@ export function editorReducer(
           ...action.payload,
           paragraphs: ensureDeath(action.payload.paragraphs ?? []),
           images: action.payload.images ?? {},
+          letters: action.payload.letters ?? [],
         },
         isDirty: false,
         activeParagraphId: null,
@@ -388,6 +390,55 @@ export function editorReducer(
         ...p,
         aliases: (p.aliases ?? []).filter((a) => a !== action.payload.alias),
       }));
+    case "LOAD_LETTERS":
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          letters: action.payload.letters,
+        },
+        isDirty: true,
+      };
+    case "ADD_LETTER":
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          letters: [
+            ...(state.scenario.letters ?? []),
+            { id: action.payload.id, paragraphId: action.payload.paragraphId },
+          ],
+        },
+        isDirty: true,
+      };
+    case "REMOVE_LETTER":
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          letters: (state.scenario.letters ?? []).filter(
+            (l) => l.id !== action.payload,
+          ),
+        },
+        isDirty: true,
+      };
+    case "UPDATE_LETTER":
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          letters: (state.scenario.letters ?? []).map((l) =>
+            l.id === action.payload.id
+              ? { id: action.payload.id, paragraphId: action.payload.paragraphId }
+              : l,
+          ),
+        },
+        isDirty: true,
+      };
     default:
       return state;
   }

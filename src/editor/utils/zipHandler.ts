@@ -132,6 +132,14 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     JSON.stringify({ paragraphs: paragraphsExported }, null, 2),
   );
 
+  // Pack letters.json if present
+  if (scenario.letters && scenario.letters.length > 0) {
+    zip.file(
+      "letters.json",
+      JSON.stringify({ letters: scenario.letters }, null, 2),
+    );
+  }
+
   // Pack user-uploaded images into images/ folder
   for (const [id, dataUrl] of Object.entries(scenario.images ?? {})) {
     const mimeMatch = dataUrl.match(/^data:([^;]+);base64,/);
@@ -251,5 +259,13 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
     images[id] = `data:${mimeType};base64,${base64}`;
   }
 
-  return { meta, paragraphs, images };
+  // Load letters.json if present
+  let letters: EditorScenario["letters"];
+  const lettersFile = zip.file("letters.json");
+  if (lettersFile) {
+    const parsed = JSON.parse(await lettersFile.async("text"));
+    letters = parsed.letters;
+  }
+
+  return { meta, paragraphs, images, letters };
 }

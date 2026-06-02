@@ -36,11 +36,18 @@ export interface EditorParagraph {
   variantSelectors?: EditorChoice[];
 }
 
+export interface EditorLetter {
+  id: string;
+  paragraphId: string;
+}
+
 export interface EditorScenario {
   meta: Scenario;
   paragraphs: EditorParagraph[];
   /** User-uploaded images: id → base64 data URL */
   images?: Record<string, string>;
+  /** Scenario letters mapping */
+  letters?: EditorLetter[];
 }
 
 export interface EditorState {
@@ -154,7 +161,20 @@ export type EditorAction =
   | { type: "ADD_IMAGE"; payload: { id: string; data: string } }
   | { type: "REMOVE_IMAGE"; payload: string }
   | { type: "ADD_ALIAS"; payload: { paragraphId: string; alias: string } }
-  | { type: "REMOVE_ALIAS"; payload: { paragraphId: string; alias: string } };
+  | { type: "REMOVE_ALIAS"; payload: { paragraphId: string; alias: string } }
+  | {
+      type: "LOAD_LETTERS";
+      payload: { letters: Array<{ id: string; paragraphId: string }> };
+    }
+  | {
+      type: "ADD_LETTER";
+      payload: { id: string; paragraphId: string };
+    }
+  | { type: "REMOVE_LETTER"; payload: string }
+  | {
+      type: "UPDATE_LETTER";
+      payload: { id: string; paragraphId: string };
+    };
 
 export interface EditorContextValue {
   state: EditorState;

@@ -7,6 +7,7 @@ import { useMetaErrors } from "../components/scenario/scenarioMetaValidation";
 import { EditorParagraphView } from "../components/paragraph/EditorParagraphView";
 import { GraphView } from "../components/graph/GraphView";
 import { ImagesPanel } from "./ImagesPanel";
+import { LettersEditor } from "../components/layout/LettersEditor";
 import "./EditorHome.css";
 
 interface EditorHomeProps {
@@ -182,10 +183,12 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
         />
       )}
       {state.scenario && activeSection === "images" && <ImagesPanel />}
+      {state.scenario && activeSection === "letters" && <LettersEditor />}
       {state.scenario &&
         activeSection !== "meta" &&
         activeSection !== "graph" &&
-        activeSection !== "images" && (
+        activeSection !== "images" &&
+        activeSection !== "letters" && (
           <EditorParagraphView
             paragraphId={activeSection}
             onNavigate={handleNavigate}

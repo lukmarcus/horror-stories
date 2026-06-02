@@ -95,11 +95,20 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
               Grafiki
             </button>
           )}
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
+                activeSection === "letters"
+                  ? "editor-sidebar__item--active"
+                  : ""
+              }`}
+              onClick={() => onSectionChange("letters")}
+            >
+              Żetony alfabetu
+            </button>
+          )}
           <button className="editor-sidebar__item editor-sidebar__item--placeholder">
             Przygotowanie
-          </button>
-          <button className="editor-sidebar__item editor-sidebar__item--placeholder">
-            Żetony alfabetu
           </button>
 
           {allEntries.length > 0 && (
