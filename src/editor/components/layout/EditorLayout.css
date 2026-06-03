@@ -140,6 +140,12 @@
   opacity: 0.6;
 }
 
+.editor-sidebar__paragraph-tag--letter {
+  opacity: 0.9;
+  color: #bbb;
+  font-weight: 600;
+}
+
 .editor-sidebar__add-row {
   margin-top: 0.5rem;
   display: flex;

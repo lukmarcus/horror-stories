@@ -58,7 +58,7 @@ export interface EditorState {
 
 export type EditorAction =
   | { type: "SET_META"; payload: Scenario }
-  | { type: "LOAD_SCENARIO"; payload: EditorScenario }
+  | { type: "LOAD_SCENARIO"; payload: EditorScenario | null }
   | { type: "NEW_SCENARIO" }
   | { type: "MARK_SAVED" }
   | { type: "ADD_PARAGRAPH"; payload: string }

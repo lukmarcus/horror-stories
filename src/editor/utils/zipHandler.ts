@@ -264,7 +264,7 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   const lettersFile = zip.file("letters.json");
   if (lettersFile) {
     const parsed = JSON.parse(await lettersFile.async("text"));
-    letters = parsed.letters;
+    letters = Array.isArray(parsed.letters) ? parsed.letters : [];
   }
 
   return { meta, paragraphs, images, letters };

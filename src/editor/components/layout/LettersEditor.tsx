@@ -1,18 +1,25 @@
 import React, { useContext, useMemo, useState } from "react";
 import { EditorContext } from "../../context/editorTypes";
-import { Button } from "../../../components/ui/Button";
 import "./LettersEditor.css";
+
+const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 export const LettersEditor: React.FC = () => {
   const editorCtx = useContext(EditorContext);
-  if (!editorCtx) return <div>Błąd kontekstu edytora</div>;
 
-  const { state, dispatch } = editorCtx;
-  const letters = state.scenario?.letters ?? [];
-  const paragraphs = state.scenario?.paragraphs ?? [];
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [newLetter, setNewLetter] = useState("");
+  const [newParaInput, setNewParaInput] = useState("");
+  const [addError, setAddError] = useState("");
+  // per-row editing: letterId → current input value
+  const [editingValues, setEditingValues] = useState<Record<string, string>>(
+    {},
+  );
+  const [editErrors, setEditErrors] = useState<Record<string, string>>({});
+
   const paragraphIds = useMemo(
     () =>
-      paragraphs
+      (editorCtx?.state.scenario?.paragraphs ?? [])
         .map((p) => p.id)
         .sort((a, b) => {
           const na = parseInt(a, 10);
@@ -20,150 +27,264 @@ export const LettersEditor: React.FC = () => {
           if (!isNaN(na) && !isNaN(nb)) return na - nb;
           return a.localeCompare(b);
         }),
-    [paragraphs],
+    [editorCtx?.state.scenario?.paragraphs],
   );
 
-  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
-  const [newLetterId, setNewLetterId] = useState("");
-  const [newLetterParagraphId, setNewLetterParagraphId] = useState(
-    paragraphIds[0] ?? "",
+  const usedLetters = useMemo(
+    () => new Set((editorCtx?.state.scenario?.letters ?? []).map((l) => l.id)),
+    [editorCtx?.state.scenario?.letters],
   );
-  const [addError, setAddError] = useState("");
 
-  const handleAddLetter = () => {
+  // paragraphId → letterId that's using it
+  const paragraphUsedBy = useMemo(
+    () =>
+      Object.fromEntries(
+        (editorCtx?.state.scenario?.letters ?? []).map((l) => [
+          l.paragraphId,
+          l.id,
+        ]),
+      ),
+    [editorCtx?.state.scenario?.letters],
+  );
+
+  const availableLetters = useMemo(
+    () => ALPHABET.filter((l) => !usedLetters.has(l)),
+    [usedLetters],
+  );
+
+  // Paragraphs available for new assignments (not used by any letter yet)
+  const availableParasForAdd = useMemo(
+    () => paragraphIds.filter((id) => !paragraphUsedBy[id]),
+    [paragraphIds, paragraphUsedBy],
+  );
+
+  if (!editorCtx) return null;
+
+  const { state, dispatch } = editorCtx;
+  const letters = [...(state.scenario?.letters ?? [])].sort((a, b) =>
+    a.id.localeCompare(b.id),
+  );
+
+  const effectiveLetter = newLetter || availableLetters[0] || "";
+
+  const handleAdd = () => {
     setAddError("");
-    const id = newLetterId.toLowerCase().trim();
-
-    if (!id) {
-      setAddError("Identyfikator litery nie może być pusty");
+    if (!effectiveLetter) {
+      setAddError("Brak dostępnych liter.");
       return;
     }
-
-    if (!/^[a-z]+$/.test(id)) {
-      setAddError("Tylko małe litery (a-z)");
+    const paraId = newParaInput.trim();
+    if (!paraId) {
+      setAddError("Podaj numer paragrafu.");
       return;
     }
-
-    if (letters.some((l) => l.id === id)) {
-      setAddError(`Litera „${id}" już istnieje`);
+    if (
+      paragraphUsedBy[paraId] &&
+      paragraphUsedBy[paraId] !== effectiveLetter
+    ) {
+      setAddError(
+        `Paragraf \u00a7${paraId} jest już przypisany do litery ${paragraphUsedBy[paraId]}.`,
+      );
       return;
     }
-
-    if (!newLetterParagraphId) {
-      setAddError("Wybierz paragraf");
-      return;
+    if (!paragraphIds.includes(paraId)) {
+      dispatch({ type: "ADD_PARAGRAPH_SILENT", payload: paraId });
     }
-
     dispatch({
       type: "ADD_LETTER",
-      payload: { id, paragraphId: newLetterParagraphId },
+      payload: { id: effectiveLetter, paragraphId: paraId },
     });
-
-    setNewLetterId("");
-    setNewLetterParagraphId(paragraphIds[0] ?? "");
+    setNewLetter("");
+    setNewParaInput("");
+    setAddError("");
   };
 
-  const handleUpdateLetter = (id: string, paragraphId: string) => {
+  const clearEditRow = (letterId: string) => {
+    setEditingValues((prev) => {
+      const next = { ...prev };
+      delete next[letterId];
+      return next;
+    });
+    setEditErrors((prev) => {
+      const next = { ...prev };
+      delete next[letterId];
+      return next;
+    });
+  };
+
+  const handleEditCommit = (letterId: string, currentParagraphId: string) => {
+    const raw = editingValues[letterId];
+    if (raw === undefined) return;
+    const paraId = raw.trim();
+    if (!paraId || paraId === currentParagraphId) {
+      clearEditRow(letterId);
+      return;
+    }
+    if (paragraphUsedBy[paraId] && paragraphUsedBy[paraId] !== letterId) {
+      setEditErrors((prev) => ({
+        ...prev,
+        [letterId]: `Paragraf \u00a7${paraId} jest już przypisany do litery ${paragraphUsedBy[paraId]}.`,
+      }));
+      return;
+    }
+    if (!paragraphIds.includes(paraId)) {
+      dispatch({ type: "ADD_PARAGRAPH_SILENT", payload: paraId });
+    }
     dispatch({
       type: "UPDATE_LETTER",
-      payload: { id, paragraphId },
+      payload: { id: letterId, paragraphId: paraId },
     });
+    clearEditRow(letterId);
   };
 
-  const handleDeleteLetter = (id: string) => {
-    dispatch({
-      type: "REMOVE_LETTER",
-      payload: id,
-    });
+  const handleDelete = (id: string) => {
+    dispatch({ type: "REMOVE_LETTER", payload: id });
     setConfirmDeleteId(null);
   };
 
   return (
     <div className="letters-editor">
       <h2 className="letters-editor__title">Żetony alfabetu</h2>
+      <p className="letters-editor__hint">
+        Każda litera odpowiada paragrafowi odkrywanemu przez gracza po
+        znalezieniu żetonu.
+      </p>
 
       {letters.length > 0 && (
-        <div className="letters-editor__list">
-          {letters.map((letter) => (
-            <div key={letter.id} className="letters-editor__row">
-              <span className="letters-editor__letter-id">{letter.id}</span>
+        <div className="letters-editor__section">
+          <div className="letters-editor__label">Przypisane litery</div>
+          <div className="letters-editor__list">
+            {letters.map((letter) => {
+              const editVal = editingValues[letter.id] ?? letter.paragraphId;
+              const editErr = editErrors[letter.id];
+              const availableParasForEdit = paragraphIds.filter(
+                (id) => !paragraphUsedBy[id] || id === letter.paragraphId,
+              );
+              return (
+                <div key={letter.id} className="letters-editor__row">
+                  <span className="letters-editor__letter-badge">
+                    {letter.id}
+                  </span>
 
-              <select
-                className="letters-editor__select"
-                value={letter.paragraphId}
-                onChange={(e) => handleUpdateLetter(letter.id, e.target.value)}
-              >
-                {paragraphIds.map((pid) => (
-                  <option key={pid} value={pid}>
-                    § {pid}
-                  </option>
-                ))}
-              </select>
+                  <div className="letters-editor__edit-para">
+                    <input
+                      className={`letters-editor__para-input${
+                        editErr ? " letters-editor__para-input--error" : ""
+                      }`}
+                      type="text"
+                      list={`para-list-${letter.id}`}
+                      value={editVal}
+                      onChange={(e) =>
+                        setEditingValues((prev) => ({
+                          ...prev,
+                          [letter.id]: e.target.value,
+                        }))
+                      }
+                      onBlur={() =>
+                        handleEditCommit(letter.id, letter.paragraphId)
+                      }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter")
+                          handleEditCommit(letter.id, letter.paragraphId);
+                        if (e.key === "Escape") clearEditRow(letter.id);
+                      }}
+                    />
+                    <datalist id={`para-list-${letter.id}`}>
+                      {availableParasForEdit.map((pid) => (
+                        <option key={pid} value={pid} />
+                      ))}
+                    </datalist>
+                    {editErr && (
+                      <div className="letters-editor__row-error">{editErr}</div>
+                    )}
+                  </div>
 
-              {confirmDeleteId === letter.id ? (
-                <>
-                  <button
-                    className="letters-editor__confirm-btn letters-editor__confirm-btn--yes"
-                    onClick={() => handleDeleteLetter(letter.id)}
-                  >
-                    Tak
-                  </button>
-                  <button
-                    className="letters-editor__confirm-btn letters-editor__confirm-btn--no"
-                    onClick={() => setConfirmDeleteId(null)}
-                  >
-                    Nie
-                  </button>
-                </>
-              ) : (
-                <button
-                  className="letters-editor__remove-btn"
-                  onClick={() => setConfirmDeleteId(letter.id)}
-                  title="Usuń tę literę"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          ))}
+                  {confirmDeleteId === letter.id ? (
+                    <span className="letters-editor__confirm">
+                      <span className="letters-editor__confirm-text">
+                        Usunąć?
+                      </span>
+                      <button
+                        className="editor-btn editor-btn--danger editor-btn--sm"
+                        onClick={() => handleDelete(letter.id)}
+                      >
+                        Tak
+                      </button>
+                      <button
+                        className="editor-btn editor-btn--sm"
+                        onClick={() => setConfirmDeleteId(null)}
+                      >
+                        Nie
+                      </button>
+                    </span>
+                  ) : (
+                    <button
+                      className="letters-editor__remove"
+                      onClick={() => setConfirmDeleteId(letter.id)}
+                      title="Usuń przypisanie"
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
 
-      <div className="letters-editor__add-section">
-        <h3 className="letters-editor__add-title">Dodaj nową literę</h3>
-        <div className="letters-editor__add-row">
-          <input
-            className="letters-editor__input"
-            type="text"
-            placeholder="a, b, c…"
-            value={newLetterId}
-            onChange={(e) => setNewLetterId(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") handleAddLetter();
-            }}
-          />
+      {availableLetters.length > 0 ? (
+        <div className="letters-editor__section">
+          <div className="letters-editor__label">Dodaj literę</div>
+          <div className="letters-editor__add-row">
+            <select
+              className="letters-editor__select letters-editor__select--letter"
+              value={effectiveLetter}
+              onChange={(e) => setNewLetter(e.target.value)}
+            >
+              {availableLetters.map((l) => (
+                <option key={l} value={l}>
+                  {l}
+                </option>
+              ))}
+            </select>
 
-          <select
-            className="letters-editor__select"
-            value={newLetterParagraphId}
-            onChange={(e) => setNewLetterParagraphId(e.target.value)}
-          >
-            {paragraphIds.map((pid) => (
-              <option key={pid} value={pid}>
-                § {pid}
-              </option>
-            ))}
-          </select>
+            <input
+              className="letters-editor__para-input"
+              type="text"
+              list="para-list-new"
+              value={newParaInput}
+              onChange={(e) => setNewParaInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleAdd();
+              }}
+              placeholder="numer §…"
+            />
+            <datalist id="para-list-new">
+              {availableParasForAdd.map((pid) => (
+                <option key={pid} value={pid} />
+              ))}
+            </datalist>
 
-          <Button
-            onClick={handleAddLetter}
-            disabled={!newLetterId || !newLetterParagraphId}
-          >
-            + Dodaj
-          </Button>
+            <button
+              className="editor-btn editor-btn--primary"
+              onClick={handleAdd}
+              disabled={!effectiveLetter || !newParaInput.trim()}
+            >
+              Dodaj
+            </button>
+          </div>
+          {addError && <div className="letters-editor__error">{addError}</div>}
+          <p className="letters-editor__add-hint">
+            Możesz wpisać istniejący lub nowy numer § — zostanie automatycznie
+            utworzony.
+          </p>
         </div>
-        {addError && <div className="letters-editor__error">{addError}</div>}
-      </div>
+      ) : (
+        <div className="letters-editor__note">
+          Wszystkie litery (A–Z) zostały już przypisane.
+        </div>
+      )}
     </div>
   );
 };

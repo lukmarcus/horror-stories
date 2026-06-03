@@ -64,16 +64,38 @@ export function editorReducer(
         ...state,
         scenario: state.scenario
           ? { ...state.scenario, meta: action.payload }
-          : { meta: action.payload, paragraphs: [DEATH_PARAGRAPH], letters: [] },
+          : {
+              meta: action.payload,
+              paragraphs: [DEATH_PARAGRAPH],
+              images: {},
+              letters: [],
+            },
         isDirty: true,
       };
     case "LOAD_SCENARIO":
+      if (!action.payload) {
+        return {
+          scenario: null,
+          isDirty: false,
+          activeParagraphId: null,
+        };
+      }
       return {
         scenario: {
           ...action.payload,
-          paragraphs: ensureDeath(action.payload.paragraphs ?? []),
-          images: action.payload.images ?? {},
-          letters: action.payload.letters ?? [],
+          paragraphs: ensureDeath(
+            Array.isArray(action.payload.paragraphs)
+              ? action.payload.paragraphs
+              : [],
+          ),
+          images:
+            typeof action.payload.images === "object" &&
+            !Array.isArray(action.payload.images)
+              ? action.payload.images
+              : {},
+          letters: Array.isArray(action.payload.letters)
+            ? action.payload.letters
+            : [],
         },
         isDirty: false,
         activeParagraphId: null,
@@ -396,7 +418,9 @@ export function editorReducer(
         ...state,
         scenario: {
           ...state.scenario,
-          letters: action.payload.letters,
+          letters: Array.isArray(action.payload.letters)
+            ? action.payload.letters
+            : [],
         },
         isDirty: true,
       };
@@ -433,7 +457,10 @@ export function editorReducer(
           ...state.scenario,
           letters: (state.scenario.letters ?? []).map((l) =>
             l.id === action.payload.id
-              ? { id: action.payload.id, paragraphId: action.payload.paragraphId }
+              ? {
+                  id: action.payload.id,
+                  paragraphId: action.payload.paragraphId,
+                }
               : l,
           ),
         },

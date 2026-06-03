@@ -19,6 +19,10 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
   const [newId, setNewId] = useState("");
   const [addError, setAddError] = useState<string | null>(null);
 
+  const letterByParagraphId = Object.fromEntries(
+    (state.scenario?.letters ?? []).map((l) => [l.paragraphId, l.id]),
+  );
+
   const allEntries = sortParagraphIds(
     (state.scenario?.paragraphs ?? []).flatMap((p) => [
       p.id,
@@ -134,6 +138,11 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                 {id === "100" && !isAlias && (
                   <span className="editor-sidebar__paragraph-tag">
                     &nbsp;(śmierć)
+                  </span>
+                )}
+                {!isAlias && letterByParagraphId[id] && (
+                  <span className="editor-sidebar__paragraph-tag editor-sidebar__paragraph-tag--letter">
+                    &nbsp;({letterByParagraphId[id]})
                   </span>
                 )}
               </span>

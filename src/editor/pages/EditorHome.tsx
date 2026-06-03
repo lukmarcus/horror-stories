@@ -78,7 +78,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
   const handleDiscardConfirm = async () => {
     setConfirmDiscard(false);
     await clearStorage();
-    dispatch({ type: "LOAD_SCENARIO", payload: null as never });
+    dispatch({ type: "LOAD_SCENARIO", payload: null });
     window.location.reload();
   };
 
@@ -179,6 +179,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
       {state.scenario && activeSection === "graph" && (
         <GraphView
           paragraphs={state.scenario.paragraphs}
+          letters={state.scenario.letters}
           onNavigate={handleNavigate}
         />
       )}
