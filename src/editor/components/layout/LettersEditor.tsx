@@ -1,5 +1,6 @@
 import React, { useContext, useMemo, useState } from "react";
 import { EditorContext } from "../../context/editorTypes";
+import { filterIds } from "../../utils/editorUtils";
 import "./LettersEditor.css";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -16,6 +17,11 @@ export const LettersEditor: React.FC = () => {
     {},
   );
   const [editErrors, setEditErrors] = useState<Record<string, string>>({});
+
+  const [addFocused, setAddFocused] = useState(false);
+  const [addHighlighted, setAddHighlighted] = useState<number | null>(null);
+  const [editFocused, setEditFocused] = useState<string | null>(null);
+  const [editHighlighted, setEditHighlighted] = useState<number | null>(null);
 
   const paragraphIds = useMemo(
     () =>
@@ -97,6 +103,8 @@ export const LettersEditor: React.FC = () => {
     setNewLetter("");
     setNewParaInput("");
     setAddError("");
+    setAddFocused(false);
+    setAddHighlighted(null);
   };
 
   const clearEditRow = (letterId: string) => {
@@ -160,6 +168,10 @@ export const LettersEditor: React.FC = () => {
               const availableParasForEdit = paragraphIds.filter(
                 (id) => !paragraphUsedBy[id] || id === letter.paragraphId,
               );
+              const editOptions = filterIds(
+                editingValues[letter.id] ?? "",
+                availableParasForEdit,
+              );
               return (
                 <div key={letter.id} className="letters-editor__row">
                   <span className="letters-editor__letter-badge">
@@ -167,33 +179,84 @@ export const LettersEditor: React.FC = () => {
                   </span>
 
                   <div className="letters-editor__edit-para">
-                    <input
-                      className={`letters-editor__para-input${
-                        editErr ? " letters-editor__para-input--error" : ""
-                      }`}
-                      type="text"
-                      list={`para-list-${letter.id}`}
-                      value={editVal}
-                      onChange={(e) =>
-                        setEditingValues((prev) => ({
-                          ...prev,
-                          [letter.id]: e.target.value,
-                        }))
-                      }
-                      onBlur={() =>
-                        handleEditCommit(letter.id, letter.paragraphId)
-                      }
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter")
+                    <div
+                      className={`letters-editor__para-wrap${editErr ? " letters-editor__para-wrap--error" : ""}`}
+                    >
+                      <span className="letters-editor__para-prefix">§</span>
+                      <input
+                        className="letters-editor__para-target"
+                        type="text"
+                        value={editVal}
+                        onChange={(e) => {
+                          setEditingValues((prev) => ({
+                            ...prev,
+                            [letter.id]: e.target.value,
+                          }));
+                          setEditHighlighted(null);
+                        }}
+                        onFocus={() => setEditFocused(letter.id)}
+                        onBlur={() => {
+                          setEditFocused(null);
+                          setEditHighlighted(null);
                           handleEditCommit(letter.id, letter.paragraphId);
-                        if (e.key === "Escape") clearEditRow(letter.id);
-                      }}
-                    />
-                    <datalist id={`para-list-${letter.id}`}>
-                      {availableParasForEdit.map((pid) => (
-                        <option key={pid} value={pid} />
-                      ))}
-                    </datalist>
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "ArrowDown") {
+                            e.preventDefault();
+                            setEditHighlighted((i) =>
+                              i === null ? 0 : (i + 1) % editOptions.length,
+                            );
+                          } else if (e.key === "ArrowUp") {
+                            e.preventDefault();
+                            setEditHighlighted((i) =>
+                              i === null
+                                ? editOptions.length - 1
+                                : (i - 1 + editOptions.length) %
+                                  editOptions.length,
+                            );
+                          } else if (e.key === "Enter") {
+                            if (
+                              editHighlighted !== null &&
+                              editOptions[editHighlighted]
+                            ) {
+                              setEditingValues((prev) => ({
+                                ...prev,
+                                [letter.id]: editOptions[editHighlighted!],
+                              }));
+                              setEditHighlighted(null);
+                            } else {
+                              handleEditCommit(letter.id, letter.paragraphId);
+                            }
+                          } else if (e.key === "Escape") {
+                            clearEditRow(letter.id);
+                          }
+                        }}
+                      />
+                      {editFocused === letter.id && editOptions.length > 0 && (
+                        <ul
+                          className="letters-editor__para-dropdown"
+                          role="listbox"
+                        >
+                          {editOptions.map((pid, index) => (
+                            <li
+                              key={pid}
+                              role="option"
+                              className={`letters-editor__para-dropdown-item${editHighlighted === index ? " letters-editor__para-dropdown-item--highlighted" : ""}`}
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                setEditingValues((prev) => ({
+                                  ...prev,
+                                  [letter.id]: pid,
+                                }));
+                                setEditFocused(null);
+                              }}
+                            >
+                              §{pid}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                     {editErr && (
                       <div className="letters-editor__row-error">{editErr}</div>
                     )}
@@ -236,6 +299,10 @@ export const LettersEditor: React.FC = () => {
       {availableLetters.length > 0 ? (
         <div className="letters-editor__section">
           <div className="letters-editor__label">Dodaj literę</div>
+          <p className="letters-editor__add-hint">
+            Możesz wpisać istniejący lub nowy numer § — zostanie automatycznie
+            utworzony.
+          </p>
           <div className="letters-editor__add-row">
             <select
               className="letters-editor__select letters-editor__select--letter"
@@ -249,22 +316,71 @@ export const LettersEditor: React.FC = () => {
               ))}
             </select>
 
-            <input
-              className="letters-editor__para-input"
-              type="text"
-              list="para-list-new"
-              value={newParaInput}
-              onChange={(e) => setNewParaInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleAdd();
-              }}
-              placeholder="numer §…"
-            />
-            <datalist id="para-list-new">
-              {availableParasForAdd.map((pid) => (
-                <option key={pid} value={pid} />
-              ))}
-            </datalist>
+            <div className="letters-editor__para-wrap">
+              <span className="letters-editor__para-prefix">§</span>
+              <input
+                className="letters-editor__para-target"
+                type="text"
+                value={newParaInput}
+                onChange={(e) => {
+                  setNewParaInput(e.target.value);
+                  setAddHighlighted(null);
+                }}
+                onFocus={() => setAddFocused(true)}
+                onBlur={() => {
+                  setAddFocused(false);
+                  setAddHighlighted(null);
+                }}
+                onKeyDown={(e) => {
+                  const opts = filterIds(newParaInput, availableParasForAdd);
+                  if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    setAddHighlighted((i) =>
+                      i === null ? 0 : (i + 1) % opts.length,
+                    );
+                  } else if (e.key === "ArrowUp") {
+                    e.preventDefault();
+                    setAddHighlighted((i) =>
+                      i === null
+                        ? opts.length - 1
+                        : (i - 1 + opts.length) % opts.length,
+                    );
+                  } else if (e.key === "Enter") {
+                    if (addHighlighted !== null && opts[addHighlighted]) {
+                      setNewParaInput(opts[addHighlighted]);
+                      setAddHighlighted(null);
+                    } else {
+                      handleAdd();
+                    }
+                  } else if (e.key === "Escape") {
+                    setAddFocused(false);
+                    setAddHighlighted(null);
+                  }
+                }}
+                placeholder="numer…"
+              />
+              {addFocused &&
+                filterIds(newParaInput, availableParasForAdd).length > 0 && (
+                  <ul className="letters-editor__para-dropdown" role="listbox">
+                    {filterIds(newParaInput, availableParasForAdd).map(
+                      (pid, index) => (
+                        <li
+                          key={pid}
+                          role="option"
+                          className={`letters-editor__para-dropdown-item${addHighlighted === index ? " letters-editor__para-dropdown-item--highlighted" : ""}`}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            setNewParaInput(pid);
+                            setAddFocused(false);
+                          }}
+                        >
+                          §{pid}
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                )}
+            </div>
 
             <button
               className="editor-btn editor-btn--primary"
@@ -275,10 +391,6 @@ export const LettersEditor: React.FC = () => {
             </button>
           </div>
           {addError && <div className="letters-editor__error">{addError}</div>}
-          <p className="letters-editor__add-hint">
-            Możesz wpisać istniejący lub nowy numer § — zostanie automatycznie
-            utworzony.
-          </p>
         </div>
       ) : (
         <div className="letters-editor__note">

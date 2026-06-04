@@ -181,6 +181,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
           paragraphs={state.scenario.paragraphs}
           letters={state.scenario.letters}
           onNavigate={handleNavigate}
+          onNavigateToLetters={() => onSectionChange("letters")}
         />
       )}
       {state.scenario && activeSection === "images" && <ImagesPanel />}
@@ -193,6 +194,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
           <EditorParagraphView
             paragraphId={activeSection}
             onNavigate={handleNavigate}
+            onNavigateToLetters={() => onSectionChange("letters")}
             onRemove={(id) => {
               dispatch({ type: "REMOVE_PARAGRAPH", payload: id });
               onSectionChange("meta");

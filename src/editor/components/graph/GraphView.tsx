@@ -7,13 +7,15 @@ import "./GraphView.css";
 let mermaidReady = false;
 let graphCounter = 0;
 
-// Module-level ref - only one GraphView is ever mounted at a time
+// Module-level refs - only one GraphView is ever mounted at a time
 let currentNavigate: ((id: string) => void) | null = null;
+let currentNavigateToLetters: (() => void) | null = null;
 
 declare global {
   interface Window {
     // Mermaid calls: __hsGraphNavigate(nodeId) where nodeId = "p{paragraphId}"
     __hsGraphNavigate?: (nodeId: string) => void;
+    __hsGraphNavigateLetter?: (nodeId: string) => void;
   }
 }
 
@@ -21,6 +23,9 @@ if (typeof window !== "undefined") {
   window.__hsGraphNavigate = (nodeId: string) => {
     const paragraphId = nodeId.replace(/^p/, "");
     currentNavigate?.(paragraphId);
+  };
+  window.__hsGraphNavigateLetter = (_nodeId: string) => {
+    currentNavigateToLetters?.();
   };
 }
 
@@ -39,6 +44,7 @@ interface GraphViewProps {
   letters?: EditorLetter[];
   activeParagraphId?: string;
   onNavigate: (id: string) => void;
+  onNavigateToLetters?: () => void;
 }
 
 export const GraphView: React.FC<GraphViewProps> = ({
@@ -46,15 +52,20 @@ export const GraphView: React.FC<GraphViewProps> = ({
   letters,
   activeParagraphId,
   onNavigate,
+  onNavigateToLetters,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const onNavigateRef = useRef(onNavigate);
   onNavigateRef.current = onNavigate;
+  const onNavigateToLettersRef = useRef(onNavigateToLetters);
+  onNavigateToLettersRef.current = onNavigateToLetters;
 
   useEffect(() => {
     currentNavigate = (id) => onNavigateRef.current(id);
+    currentNavigateToLetters = () => onNavigateToLettersRef.current?.();
     return () => {
       currentNavigate = null;
+      currentNavigateToLetters = null;
     };
   }, []);
 

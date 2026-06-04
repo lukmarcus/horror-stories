@@ -409,6 +409,17 @@ h3.editor-paragraph-view__label {
   border-color: #5a8a5a;
 }
 
+.editor-paragraph-view__incoming-tag--letter {
+  background: #1e2230;
+  border-color: #3a4a6a;
+  color: #7ea8e8;
+}
+
+.editor-paragraph-view__incoming-tag--letter:hover {
+  background: #242d40;
+  border-color: #5a7aaa;
+}
+
 /* ── Mode toggle (Prosty / Wariantowy) ──────────────────────────────────────── */
 
 .editor-paragraph-view__header-right {

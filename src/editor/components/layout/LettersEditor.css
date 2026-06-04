@@ -1,4 +1,4 @@
-.letters-editor {
+﻿.letters-editor {
   max-width: 640px;
 }
 
@@ -25,10 +25,10 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #888;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
-/* ── Lista przypisanych liter ──────────────────────────────── */
+/* Lista przypisanych liter */
 
 .letters-editor__list {
   display: flex;
@@ -38,7 +38,7 @@
 
 .letters-editor__row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.6rem;
   padding: 0.5rem 0.75rem;
   background: #1e1e1e;
@@ -53,24 +53,98 @@
   min-width: 1.75rem;
   text-align: center;
   letter-spacing: 0.5px;
+  margin-top: 0.45rem;
+  flex-shrink: 0;
 }
 
-.letters-editor__select {
+/* Choices-style paragraph input */
+
+.letters-editor__edit-para {
   flex: 1;
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
-  border: 1px solid #333;
-  background: #1e1e1e;
-  color: #e0e0e0;
-  font-family: inherit;
-  font-size: 0.9rem;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
-.letters-editor__select:focus {
-  outline: none;
-  border-color: #555;
+.letters-editor__para-wrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  flex-shrink: 0;
 }
+
+.letters-editor__para-wrap:focus-within {
+  border-color: #777;
+}
+
+.letters-editor__para-wrap--error {
+  border-color: #8a3030;
+}
+
+.letters-editor__para-prefix {
+  padding: 0.4rem 0.25rem 0.4rem 0.55rem;
+  color: #888;
+  font-size: 0.9rem;
+  user-select: none;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.letters-editor__para-target {
+  border: none;
+  background: transparent;
+  color: #eee;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem 0.4rem 0.1rem;
+  width: 5rem;
+  min-width: 0;
+  font-family: inherit;
+}
+
+.letters-editor__para-target:focus {
+  outline: none;
+}
+
+.letters-editor__para-dropdown {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 0;
+  min-width: 8rem;
+  max-height: 12rem;
+  overflow-y: auto;
+  background: #252525;
+  border: 1px solid #555;
+  border-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.letters-editor__para-dropdown-item {
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.letters-editor__para-dropdown-item:hover,
+.letters-editor__para-dropdown-item--highlighted {
+  background: #3a3a3a;
+  color: #fff;
+}
+
+.letters-editor__row-error {
+  font-size: 0.75rem;
+  color: #ff6060;
+  margin-top: 0.2rem;
+}
+
+/* Usuwanie */
 
 .letters-editor__remove {
   background: none;
@@ -82,6 +156,7 @@
   border-radius: 4px;
   line-height: 1;
   flex-shrink: 0;
+  margin-top: 0.3rem;
 }
 
 .letters-editor__remove:hover {
@@ -94,6 +169,7 @@
   align-items: center;
   gap: 0.4rem;
   flex-shrink: 0;
+  margin-top: 0.2rem;
 }
 
 .letters-editor__confirm-text {
@@ -101,21 +177,44 @@
   color: #888;
 }
 
-/* ── Formularz dodawania ──────────────────────────────────── */
+/* Formularz dodawania */
+
+.letters-editor__add-hint {
+  font-size: 0.75rem;
+  color: #555;
+  margin: 0 0 0.6rem;
+}
 
 .letters-editor__add-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex-wrap: wrap;
+}
+
+.letters-editor__select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: #1e1e1e;
+  color: #e0e0e0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.letters-editor__select:focus {
+  outline: none;
+  border-color: #555;
 }
 
 .letters-editor__select--letter {
-  width: 3.5rem;
+  width: 4.5rem;
   flex: none;
   font-weight: 700;
   font-size: 1rem;
   text-align: center;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
 }
 
 .letters-editor__error {
@@ -123,45 +222,8 @@
   color: #ff6060;
   margin-top: 0.4rem;
 }
-.letters-editor__row-error {
-  font-size: 0.75rem;
-  color: #ff6060;
-  margin-top: 0.2rem;
-}
 
-.letters-editor__edit-para {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.letters-editor__para-input {
-  background: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 4px;
-  color: #e0e0e0;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.9rem;
-  font-family: inherit;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.letters-editor__para-input:focus {
-  outline: none;
-  border-color: #555;
-}
-
-.letters-editor__para-input--error {
-  border-color: #8a3030;
-}
-
-.letters-editor__add-hint {
-  font-size: 0.75rem;
-  color: #555;
-  margin: 0.4rem 0 0;
-}
-/* ── Komunikat końcowy ──────────────────────────────────────── */
+/* Komunikat koncowy */
 
 .letters-editor__note {
   font-size: 0.85rem;
@@ -169,192 +231,4 @@
   padding: 0.75rem;
   border: 1px solid #2a2a2a;
   border-radius: 4px;
-}
-
-.letters-editor__title {
-  margin: 0 0 1.5rem;
-  font-size: 1.5rem;
-  color: #eee;
-}
-
-.letters-editor__list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-
-.letters-editor__row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  background: #1e1e1e;
-  border-radius: 6px;
-  border: 1px solid #333;
-}
-
-.letters-editor__letter-id {
-  font-weight: 600;
-  color: #4da6ff;
-  font-size: 1.1rem;
-  min-width: 2rem;
-  text-align: center;
-}
-
-.letters-editor__select {
-  flex: 1;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  border: 1px solid #444;
-  background: #252525;
-  color: #bbb;
-  font-family: inherit;
-  font-size: 0.95rem;
-  cursor: pointer;
-}
-
-.letters-editor__select:focus {
-  outline: none;
-  border-color: #888;
-  background: #2a2a2a;
-  color: #eee;
-}
-
-.letters-editor__navigate-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-
-.letters-editor__navigate-btn:hover {
-  background: #333;
-}
-
-.letters-editor__remove-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #888;
-  font-size: 1rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  transition:
-    background 0.2s,
-    color 0.2s;
-}
-
-.letters-editor__remove-btn:hover {
-  background: rgba(217, 83, 79, 0.15);
-  color: #d9534f;
-}
-
-.letters-editor__confirm-btn {
-  background: none;
-  border: 1px solid #666;
-  color: #aaa;
-  cursor: pointer;
-  padding: 0.35rem 0.75rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  transition: all 0.2s;
-}
-
-.letters-editor__confirm-btn--yes {
-  border-color: #5a5;
-  color: #9f9;
-}
-
-.letters-editor__confirm-btn--yes:hover {
-  background: rgba(85, 170, 85, 0.2);
-  border-color: #9f9;
-  color: #9f9;
-}
-
-.letters-editor__confirm-btn--no {
-  border-color: #a55;
-  color: #f99;
-}
-
-.letters-editor__confirm-btn--no:hover {
-  background: rgba(170, 85, 85, 0.2);
-  border-color: #f99;
-  color: #f99;
-}
-
-.letters-editor__add-section {
-  margin-top: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #333;
-}
-
-.letters-editor__add-title {
-  margin: 0 0 1rem;
-  font-size: 1.1rem;
-  color: #aaa;
-}
-
-.letters-editor__add-row {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-}
-
-.letters-editor__select--letter {
-  width: 8rem;
-  flex-shrink: 0;
-}
-
-.letters-editor__paragraph-row {
-  display: flex;
-  gap: 0.25rem;
-  align-items: center;
-  flex: 1;
-}
-
-.letters-editor__create-btn {
-  background: #4da6ff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background 0.2s;
-  flex-shrink: 0;
-}
-
-.letters-editor__create-btn:hover {
-  background: #66b3ff;
-}
-
-.letters-editor__create-btn:active {
-  background: #3385ff;
-}
-
-.letters-editor__error {
-  margin-top: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  background: rgba(217, 83, 79, 0.15);
-  color: #f99;
-  font-size: 0.9rem;
-}
-
-.letters-editor__note {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background: rgba(100, 180, 255, 0.1);
-  border-left: 3px solid #4da6ff;
-  color: #aaa;
-  border-radius: 4px;
-  font-size: 0.9rem;
-}
-.letter-selector {
-  flex: 1;
 }

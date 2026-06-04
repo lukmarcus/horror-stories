@@ -17,6 +17,7 @@ interface EditorParagraphViewProps {
   paragraphId: string;
   onRemove: (id: string) => void;
   onNavigate: (id: string) => void;
+  onNavigateToLetters?: () => void;
 }
 
 // ── EditorParagraphView ───────────────────────────────────────────────────────
@@ -25,6 +26,7 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   paragraphId,
   onRemove,
   onNavigate,
+  onNavigateToLetters,
 }) => {
   const { state, dispatch } = useEditor();
   const scenarioParagraphs = state.scenario?.paragraphs;
@@ -68,6 +70,12 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
           .map((p) => p.id),
       ),
     [scenarioParagraphs, paragraphId],
+  );
+
+  const paragraphLetter = useMemo(
+    () =>
+      state.scenario?.letters?.find((l) => l.paragraphId === paragraphId)?.id,
+    [state.scenario?.letters, paragraphId],
   );
 
   const usedIds = useMemo(() => {
@@ -203,6 +211,20 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
               </span>
             )}
           </div>
+          {paragraphLetter && (
+            <div className="editor-paragraph-view__incoming">
+              <span className="editor-paragraph-view__incoming-label">
+                Dostępna przez literę:
+              </span>
+              <button
+                className="editor-paragraph-view__incoming-tag editor-paragraph-view__incoming-tag--letter"
+                onClick={onNavigateToLetters}
+                title="Przejdź do żetonów alfabetu"
+              >
+                {paragraphLetter}
+              </button>
+            </div>
+          )}
         </div>
         <div className="editor-paragraph-view__header-right">
           <div className="editor-paragraph-view__mode-toggle">
