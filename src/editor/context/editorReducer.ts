@@ -94,7 +94,10 @@ export function editorReducer(
               ? action.payload.images
               : {},
           letters: Array.isArray(action.payload.letters)
-            ? action.payload.letters
+            ? action.payload.letters.map((l) => ({
+                ...l,
+                id: String(l.id).toUpperCase(),
+              }))
             : [],
         },
         isDirty: false,
@@ -419,7 +422,10 @@ export function editorReducer(
         scenario: {
           ...state.scenario,
           letters: Array.isArray(action.payload.letters)
-            ? action.payload.letters
+            ? action.payload.letters.map((l) => ({
+                ...l,
+                id: String(l.id).toUpperCase(),
+              }))
             : [],
         },
         isDirty: true,

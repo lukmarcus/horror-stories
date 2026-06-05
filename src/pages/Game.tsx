@@ -18,6 +18,7 @@ import { loadUserParagraphs } from "../utils/userParagraphStorage";
 import { buildUserParagraphMap } from "../utils/userParagraphConverter";
 import { loadUserScenarios } from "../utils/userScenarioStorage";
 import { loadUserImages } from "../utils/userImageStorage";
+import { loadUserLetters } from "../utils/userLetterStorage";
 import "../styles/pages/game.css";
 
 export const Game: React.FC = () => {
@@ -86,7 +87,9 @@ export const Game: React.FC = () => {
     loadUserScenarios().find((s) => s.id === scenarioId) ??
     null;
   const setupSteps = SETUP_DATA[scenarioId]?.steps || [];
-  const letters = LETTERS_DATA[scenarioId]?.letters || [];
+  const letters = isUserScenario
+    ? loadUserLetters(scenarioId)
+    : LETTERS_DATA[scenarioId]?.letters || [];
   const enemies = currentScenario?.enemyId
     ? [getEnemy(currentScenario.enemyId)].filter(Boolean)
     : [];

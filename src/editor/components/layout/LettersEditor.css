@@ -72,7 +72,8 @@
   border-radius: 5px;
   border: 1px solid #444;
   background: #1a1a1a;
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 .letters-editor__para-wrap:focus-within {
@@ -99,7 +100,8 @@
   color: #eee;
   font-size: 0.9rem;
   padding: 0.4rem 0.5rem 0.4rem 0.1rem;
-  width: 5rem;
+  flex: 1;
+  width: 0;
   min-width: 0;
   font-family: inherit;
 }
