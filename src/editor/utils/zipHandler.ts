@@ -144,10 +144,10 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
   if (scenario.setupSteps && scenario.setupSteps.length > 0) {
     const steps = scenario.setupSteps.map((s) => ({
       stepNumber: s.stepNumber,
-      // Flatten pages: each page becomes a content array; multi-page steps use the first page
-      // For compatibility with the game's SetupStep format, we export content as a flat array
-      // from all pages concatenated
-      content: s.pages.flat(),
+      content: s.content,
+      ...(s.choices && s.choices.length > 0
+        ? { choices: s.choices.map(exportChoice) }
+        : {}),
     }));
     zip.file("setup.json", JSON.stringify({ steps }, null, 2));
   }
@@ -286,10 +286,24 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
     const parsed = JSON.parse(await setupFile.async("text"));
     if (Array.isArray(parsed.steps)) {
       setupSteps = parsed.steps.map(
-        (s: { stepNumber: number; content?: unknown[] }, i: number) => ({
+        (
+          s: { stepNumber: number; content?: unknown[]; choices?: unknown[] },
+          i: number,
+        ) => ({
           stepNumber: s.stepNumber ?? i + 1,
-          // Import content as a single page
-          pages: [Array.isArray(s.content) ? s.content : []],
+          content: Array.isArray(s.content) ? s.content : [],
+          choices: Array.isArray(s.choices)
+            ? s.choices.map((c: unknown) => {
+                const ch = c as Record<string, unknown>;
+                return {
+                  id: crypto.randomUUID(),
+                  text: String(ch.text ?? ""),
+                  ...(ch.nextParagraphId !== undefined
+                    ? { nextParagraphId: String(ch.nextParagraphId) }
+                    : {}),
+                };
+              })
+            : [],
         }),
       );
     }

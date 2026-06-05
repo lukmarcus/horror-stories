@@ -275,6 +275,11 @@ export const Game: React.FC = () => {
                 game.toggleSetup();
                 game.setParagraph(currentScenario?.startParagraphId ?? "1");
               }}
+              onChoice={(nextParagraphId) => {
+                game.resetSetupStep();
+                game.toggleSetup();
+                game.setParagraph(nextParagraphId);
+              }}
             />
           ) : (
             <p className="game__scenario-empty">

@@ -12,6 +12,7 @@ interface PrepareViewProps {
   onPrev: () => void;
   onNext: () => void;
   onStart: () => void;
+  onChoice?: (nextParagraphId: string) => void;
 }
 
 export const PrepareView: React.FC<PrepareViewProps> = ({
@@ -23,9 +24,11 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
   onPrev,
   onNext,
   onStart,
+  onChoice,
 }) => {
   const currentSetupStep = setupSteps[currentStep];
   const isLastStep = currentStep === totalSteps - 1;
+  const choices = currentSetupStep?.choices ?? [];
 
   return (
     <>
@@ -60,6 +63,24 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
         )}
         {currentSetupStep?.text && (
           <RichText text={currentSetupStep.text} scenarioId={scenarioId} />
+        )}
+
+        {choices.length > 0 && onChoice && (
+          <fieldset className="choices" aria-label="Dostępne opcje">
+            <legend className="sr-only">Wybierz opcję</legend>
+            {choices.map((choice, idx) => (
+              <Button
+                key={choice.id || `setup-choice-${idx}`}
+                variant="primary"
+                size="lg"
+                onClick={() => {
+                  if (choice.nextParagraphId) onChoice(choice.nextParagraphId);
+                }}
+              >
+                {choice.text}
+              </Button>
+            ))}
+          </fieldset>
         )}
 
         <div className="game__scenario-footer">

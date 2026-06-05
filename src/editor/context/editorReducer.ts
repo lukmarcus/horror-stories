@@ -100,7 +100,23 @@ export function editorReducer(
               }))
             : [],
           setupSteps: Array.isArray(action.payload.setupSteps)
-            ? action.payload.setupSteps
+            ? action.payload.setupSteps.map((s) => {
+                const raw = s as unknown as Record<string, unknown>;
+                return {
+                  stepNumber: s.stepNumber,
+                  // Back-compat: old saves had pages:ContentBlock[][] instead of content
+                  content: Array.isArray(raw.content)
+                    ? (raw.content as import("../../types").ContentBlock[])
+                    : Array.isArray(raw.pages)
+                      ? (
+                          raw.pages as import("../../types").ContentBlock[][]
+                        ).flat()
+                      : [],
+                  choices: Array.isArray(raw.choices)
+                    ? (raw.choices as import("./editorTypes").EditorChoice[])
+                    : [],
+                };
+              })
             : [],
         },
         isDirty: false,
@@ -480,7 +496,8 @@ export function editorReducer(
       const existing = state.scenario.setupSteps ?? [];
       const next: import("./editorTypes").EditorSetupStep = {
         stepNumber: existing.length + 1,
-        pages: [[]],
+        content: [],
+        choices: [],
       };
       return {
         ...state,
@@ -499,11 +516,24 @@ export function editorReducer(
         isDirty: true,
       };
     }
-    case "SET_SETUP_STEP_PAGES": {
+    case "SET_SETUP_STEP_CONTENT": {
       if (!state.scenario) return state;
       const steps = (state.scenario.setupSteps ?? []).map((s, i) =>
         i === action.payload.stepIndex
-          ? { ...s, pages: action.payload.pages }
+          ? { ...s, content: action.payload.content }
+          : s,
+      );
+      return {
+        ...state,
+        scenario: { ...state.scenario, setupSteps: steps },
+        isDirty: true,
+      };
+    }
+    case "SET_SETUP_STEP_CHOICES": {
+      if (!state.scenario) return state;
+      const steps = (state.scenario.setupSteps ?? []).map((s, i) =>
+        i === action.payload.stepIndex
+          ? { ...s, choices: action.payload.choices }
           : s,
       );
       return {

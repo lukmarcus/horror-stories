@@ -44,8 +44,10 @@ export interface EditorLetter {
 export interface EditorSetupStep {
   /** 1-based step number (auto-assigned, matches array index+1) */
   stepNumber: number;
-  /** Rich content pages — one page per screen, same as EditorParagraph.pages */
-  pages: ContentBlock[][];
+  /** Flat content blocks — no page division */
+  content: ContentBlock[];
+  /** Optional choices shown after the content */
+  choices?: EditorChoice[];
 }
 
 export interface EditorScenario {
@@ -187,8 +189,12 @@ export type EditorAction =
   | { type: "ADD_SETUP_STEP" }
   | { type: "REMOVE_SETUP_STEP"; payload: number }
   | {
-      type: "SET_SETUP_STEP_PAGES";
-      payload: { stepIndex: number; pages: ContentBlock[][] };
+      type: "SET_SETUP_STEP_CONTENT";
+      payload: { stepIndex: number; content: ContentBlock[] };
+    }
+  | {
+      type: "SET_SETUP_STEP_CHOICES";
+      payload: { stepIndex: number; choices: EditorChoice[] };
     };
 
 export interface EditorContextValue {

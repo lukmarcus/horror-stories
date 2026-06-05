@@ -56,7 +56,18 @@ export const ScenariosList: React.FC = () => {
         imported.meta.id,
         (imported.setupSteps ?? []).map((s) => ({
           stepNumber: s.stepNumber,
-          content: s.pages.flat(),
+          content: s.content,
+          ...(s.choices && s.choices.length > 0
+            ? {
+                choices: s.choices.map((c) => ({
+                  id: c.id,
+                  text: c.text,
+                  ...(c.nextParagraphId !== undefined
+                    ? { nextParagraphId: c.nextParagraphId }
+                    : {}),
+                })),
+              }
+            : {}),
         })) as SetupStep[],
       );
       setUserScenarios(loadUserScenarios());

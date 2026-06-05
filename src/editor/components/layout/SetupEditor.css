@@ -66,6 +66,14 @@
   border: none;
 }
 
+.setup-editor__choices {
+  border-top: 1px solid #2e2e2e;
+  padding: 0.5rem 0.75rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .setup-editor__add-btn {
   margin-top: 0.5rem;
 }

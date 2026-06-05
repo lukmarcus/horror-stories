@@ -15,7 +15,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- ⏳ Nie rozpoczęte
+- ✅ Ukończone
 
 ---
 
