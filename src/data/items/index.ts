@@ -135,9 +135,10 @@ export const getEnemy = (
 export const getLetter = (
   id: string,
 ): (Letter & { imagePath: string }) | undefined => {
-  const letter = letters.find((l) => l.id === id);
+  const normalized = id.toLowerCase();
+  const letter = letters.find((l) => l.id === normalized);
   return letter
-    ? { ...letter, imagePath: getImagePath(id, "letters") }
+    ? { ...letter, imagePath: getImagePath(normalized, "letters") }
     : undefined;
 };
 

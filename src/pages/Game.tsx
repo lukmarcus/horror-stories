@@ -87,9 +87,13 @@ export const Game: React.FC = () => {
     loadUserScenarios().find((s) => s.id === scenarioId) ??
     null;
   const setupSteps = SETUP_DATA[scenarioId]?.steps || [];
-  const letters = isUserScenario
-    ? loadUserLetters(scenarioId)
-    : LETTERS_DATA[scenarioId]?.letters || [];
+  const letters = (
+    isUserScenario
+      ? loadUserLetters(scenarioId)
+      : LETTERS_DATA[scenarioId]?.letters || []
+  )
+    .slice()
+    .sort((a, b) => a.id.localeCompare(b.id));
   const enemies = currentScenario?.enemyId
     ? [getEnemy(currentScenario.enemyId)].filter(Boolean)
     : [];
