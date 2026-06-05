@@ -41,6 +41,13 @@ export interface EditorLetter {
   paragraphId: string;
 }
 
+export interface EditorSetupStep {
+  /** 1-based step number (auto-assigned, matches array index+1) */
+  stepNumber: number;
+  /** Rich content pages — one page per screen, same as EditorParagraph.pages */
+  pages: ContentBlock[][];
+}
+
 export interface EditorScenario {
   meta: Scenario;
   paragraphs: EditorParagraph[];
@@ -48,6 +55,8 @@ export interface EditorScenario {
   images?: Record<string, string>;
   /** Scenario letters mapping */
   letters?: EditorLetter[];
+  /** Setup steps */
+  setupSteps?: EditorSetupStep[];
 }
 
 export interface EditorState {
@@ -174,6 +183,12 @@ export type EditorAction =
   | {
       type: "UPDATE_LETTER";
       payload: { id: string; paragraphId: string };
+    }
+  | { type: "ADD_SETUP_STEP" }
+  | { type: "REMOVE_SETUP_STEP"; payload: number }
+  | {
+      type: "SET_SETUP_STEP_PAGES";
+      payload: { stepIndex: number; pages: ContentBlock[][] };
     };
 
 export interface EditorContextValue {

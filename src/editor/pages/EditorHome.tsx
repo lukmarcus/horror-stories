@@ -8,6 +8,7 @@ import { EditorParagraphView } from "../components/paragraph/EditorParagraphView
 import { GraphView } from "../components/graph/GraphView";
 import { ImagesPanel } from "./ImagesPanel";
 import { LettersEditor } from "../components/layout/LettersEditor";
+import { SetupEditor } from "../components/layout/SetupEditor";
 import "./EditorHome.css";
 
 interface EditorHomeProps {
@@ -186,11 +187,13 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
       )}
       {state.scenario && activeSection === "images" && <ImagesPanel />}
       {state.scenario && activeSection === "letters" && <LettersEditor />}
+      {state.scenario && activeSection === "setup" && <SetupEditor />}
       {state.scenario &&
         activeSection !== "meta" &&
         activeSection !== "graph" &&
         activeSection !== "images" &&
-        activeSection !== "letters" && (
+        activeSection !== "letters" &&
+        activeSection !== "setup" && (
           <EditorParagraphView
             paragraphId={activeSection}
             onNavigate={handleNavigate}

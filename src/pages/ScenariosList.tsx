@@ -14,7 +14,8 @@ import {
 } from "../utils/userParagraphStorage";
 import { saveUserImages, removeUserImages } from "../utils/userImageStorage";
 import { saveUserLetters, removeUserLetters } from "../utils/userLetterStorage";
-import type { Scenario, LetterToken } from "../types";
+import { saveUserSetup, removeUserSetup } from "../utils/userSetupStorage";
+import type { Scenario, LetterToken, SetupStep } from "../types";
 import "../styles/pages/scenarios-list.css";
 
 const covers = import.meta.glob(
@@ -51,6 +52,13 @@ export const ScenariosList: React.FC = () => {
         imported.meta.id,
         (imported.letters ?? []) as LetterToken[],
       );
+      saveUserSetup(
+        imported.meta.id,
+        (imported.setupSteps ?? []).map((s) => ({
+          stepNumber: s.stepNumber,
+          content: s.pages.flat(),
+        })) as SetupStep[],
+      );
       setUserScenarios(loadUserScenarios());
     } catch (err) {
       setImportError(
@@ -68,6 +76,7 @@ export const ScenariosList: React.FC = () => {
     removeUserParagraphs(id);
     removeUserImages(id);
     removeUserLetters(id);
+    removeUserSetup(id);
     setUserScenarios(loadUserScenarios());
   };
 

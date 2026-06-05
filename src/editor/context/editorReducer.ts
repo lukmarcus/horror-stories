@@ -99,6 +99,9 @@ export function editorReducer(
                 id: String(l.id).toUpperCase(),
               }))
             : [],
+          setupSteps: Array.isArray(action.payload.setupSteps)
+            ? action.payload.setupSteps
+            : [],
         },
         isDirty: false,
         activeParagraphId: null,
@@ -472,6 +475,43 @@ export function editorReducer(
         },
         isDirty: true,
       };
+    case "ADD_SETUP_STEP": {
+      if (!state.scenario) return state;
+      const existing = state.scenario.setupSteps ?? [];
+      const next: import("./editorTypes").EditorSetupStep = {
+        stepNumber: existing.length + 1,
+        pages: [[]],
+      };
+      return {
+        ...state,
+        scenario: { ...state.scenario, setupSteps: [...existing, next] },
+        isDirty: true,
+      };
+    }
+    case "REMOVE_SETUP_STEP": {
+      if (!state.scenario) return state;
+      const filtered = (state.scenario.setupSteps ?? [])
+        .filter((_, i) => i !== action.payload)
+        .map((s, i) => ({ ...s, stepNumber: i + 1 }));
+      return {
+        ...state,
+        scenario: { ...state.scenario, setupSteps: filtered },
+        isDirty: true,
+      };
+    }
+    case "SET_SETUP_STEP_PAGES": {
+      if (!state.scenario) return state;
+      const steps = (state.scenario.setupSteps ?? []).map((s, i) =>
+        i === action.payload.stepIndex
+          ? { ...s, pages: action.payload.pages }
+          : s,
+      );
+      return {
+        ...state,
+        scenario: { ...state.scenario, setupSteps: steps },
+        isDirty: true,
+      };
+    }
     default:
       return state;
   }

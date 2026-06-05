@@ -111,9 +111,16 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
               Żetony alfabetu
             </button>
           )}
-          <button className="editor-sidebar__item editor-sidebar__item--placeholder">
-            Przygotowanie
-          </button>
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
+                activeSection === "setup" ? "editor-sidebar__item--active" : ""
+              }`}
+              onClick={() => onSectionChange("setup")}
+            >
+              Przygotowanie
+            </button>
+          )}
 
           {allEntries.length > 0 && (
             <div className="editor-sidebar__section-divider" />

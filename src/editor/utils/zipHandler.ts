@@ -140,6 +140,18 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     );
   }
 
+  // Pack setup.json if present
+  if (scenario.setupSteps && scenario.setupSteps.length > 0) {
+    const steps = scenario.setupSteps.map((s) => ({
+      stepNumber: s.stepNumber,
+      // Flatten pages: each page becomes a content array; multi-page steps use the first page
+      // For compatibility with the game's SetupStep format, we export content as a flat array
+      // from all pages concatenated
+      content: s.pages.flat(),
+    }));
+    zip.file("setup.json", JSON.stringify({ steps }, null, 2));
+  }
+
   // Pack user-uploaded images into images/ folder
   for (const [id, dataUrl] of Object.entries(scenario.images ?? {})) {
     const mimeMatch = dataUrl.match(/^data:([^;]+);base64,/);
@@ -267,5 +279,21 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
     letters = Array.isArray(parsed.letters) ? parsed.letters : [];
   }
 
-  return { meta, paragraphs, images, letters };
+  // Load setup.json if present
+  let setupSteps: EditorScenario["setupSteps"];
+  const setupFile = zip.file("setup.json");
+  if (setupFile) {
+    const parsed = JSON.parse(await setupFile.async("text"));
+    if (Array.isArray(parsed.steps)) {
+      setupSteps = parsed.steps.map(
+        (s: { stepNumber: number; content?: unknown[] }, i: number) => ({
+          stepNumber: s.stepNumber ?? i + 1,
+          // Import content as a single page
+          pages: [Array.isArray(s.content) ? s.content : []],
+        }),
+      );
+    }
+  }
+
+  return { meta, paragraphs, images, letters, setupSteps };
 }
