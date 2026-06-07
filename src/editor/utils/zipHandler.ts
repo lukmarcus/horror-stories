@@ -195,8 +195,8 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   if (paragraphsFile) {
     const raw = JSON.parse(await paragraphsFile.async("text"));
     if (Array.isArray(raw.paragraphs)) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      paragraphs = raw.paragraphs.map((p: any) => {
+      paragraphs = (raw.paragraphs as unknown[]).map((p: unknown) => {
+        const pObj = p as Record<string, unknown>;
         const addId = (c: Record<string, unknown>) => ({
           id: crypto.randomUUID(),
           text: String(c.text ?? ""),
@@ -208,16 +208,20 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
             : {}),
         });
 
-        if (p.variants && typeof p.variants === "object") {
+        if (pObj.variants && typeof pObj.variants === "object") {
           // Variant paragraph: choices → variantSelectors, variants: contentPages → pages
-          const rawId = Array.isArray(p.id) ? p.id[0] : String(p.id);
-          const rawAliases = Array.isArray(p.id)
-            ? p.id.slice(1).map(String)
+          const rawId = Array.isArray(pObj.id)
+            ? String((pObj.id as unknown[])[0])
+            : String(pObj.id);
+          const rawAliases = Array.isArray(pObj.id)
+            ? (pObj.id as unknown[]).slice(1).map(String)
             : [];
-          const variantSelectors = (p.choices ?? []).map(addId);
+          const variantSelectors = (
+            (pObj.choices ?? []) as Record<string, unknown>[]
+          ).map(addId);
           const variants: Record<string, unknown> = {};
           for (const [vid, v] of Object.entries(
-            p.variants as Record<string, Record<string, unknown>>,
+            pObj.variants as Record<string, Record<string, unknown>>,
           )) {
             variants[vid] = {
               pages: v.contentPages ?? [[]],
@@ -231,30 +235,36 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
           return {
             id: rawId,
             ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
-            ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
+            ...(Array.isArray(pObj.pages) ? { pages: pObj.pages } : {}),
             variantSelectors,
             variants,
-            ...(Array.isArray(p.accessibleFrom)
-              ? { accessibleFrom: p.accessibleFrom }
+            ...(Array.isArray(pObj.accessibleFrom)
+              ? { accessibleFrom: pObj.accessibleFrom }
               : {}),
           };
         }
 
         // Simple paragraph
-        const rawId = Array.isArray(p.id) ? p.id[0] : String(p.id);
-        const rawAliases = Array.isArray(p.id) ? p.id.slice(1).map(String) : [];
-        const choices = (p.choices ?? []).map(addId);
+        const rawId = Array.isArray(pObj.id)
+          ? String((pObj.id as unknown[])[0])
+          : String(pObj.id);
+        const rawAliases = Array.isArray(pObj.id)
+          ? (pObj.id as unknown[]).slice(1).map(String)
+          : [];
+        const choices = ((pObj.choices ?? []) as Record<string, unknown>[]).map(
+          addId,
+        );
         return {
           id: rawId,
           ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
-          ...(p.text !== undefined ? { text: String(p.text) } : {}),
-          ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
+          ...(pObj.text !== undefined ? { text: String(pObj.text) } : {}),
+          ...(Array.isArray(pObj.pages) ? { pages: pObj.pages } : {}),
           ...(choices.length > 0 ? { choices } : {}),
-          ...(Array.isArray(p.accessibleFrom)
-            ? { accessibleFrom: p.accessibleFrom }
+          ...(Array.isArray(pObj.accessibleFrom)
+            ? { accessibleFrom: pObj.accessibleFrom }
             : {}),
         };
-      });
+      }) as EditorScenario["paragraphs"];
     }
   }
 
