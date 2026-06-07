@@ -6,19 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.9 - Edytor: setup i tokeny alfabetu
-
-### Zakres
-
-- Edycja kroków setupu (`setup.json`)
-- Edycja tokenów alfabetu (`letters.json`)
-
-### Status
-
-- ✅ Ukończone
-
----
-
 ## Milestone v0.2.10 - Edytor: import wbudowanych scenariuszy
 
 ### Zakres
@@ -48,7 +35,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ## Notatki na przyszłość
 
-- Paragrafy podpięte pod żetony alfabetu powinny mieć etykietę `(litera A)` itp. — do v0.2.9
 - Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10
 
 ---
