@@ -1,33 +1,11 @@
 import type { EditorParagraph } from "../editor/context/editorTypes";
+import { createUserStorage } from "./userStorage";
 
-const storageKey = (scenarioId: string) =>
-  `horror-stories:user-paragraphs:${scenarioId}`;
+const storage = createUserStorage<EditorParagraph[]>(
+  (id) => `horror-stories:user-paragraphs:${id}`,
+  [],
+);
 
-export function saveUserParagraphs(
-  scenarioId: string,
-  paragraphs: EditorParagraph[],
-): void {
-  try {
-    localStorage.setItem(storageKey(scenarioId), JSON.stringify(paragraphs));
-  } catch {
-    // ignore storage errors
-  }
-}
-
-export function loadUserParagraphs(scenarioId: string): EditorParagraph[] {
-  try {
-    const raw = localStorage.getItem(storageKey(scenarioId));
-    if (!raw) return [];
-    return JSON.parse(raw) as EditorParagraph[];
-  } catch {
-    return [];
-  }
-}
-
-export function removeUserParagraphs(scenarioId: string): void {
-  try {
-    localStorage.removeItem(storageKey(scenarioId));
-  } catch {
-    // ignore storage errors
-  }
-}
+export const saveUserParagraphs = storage.save;
+export const loadUserParagraphs = storage.load;
+export const removeUserParagraphs = storage.remove;
