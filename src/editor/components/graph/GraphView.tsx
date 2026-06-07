@@ -1,19 +1,21 @@
 ﻿import React, { useCallback, useEffect, useRef } from "react";
 import mermaid from "mermaid";
-import type { EditorParagraph } from "../../context/editorTypes";
+import type { EditorParagraph, EditorLetter } from "../../context/editorTypes";
 import { buildDefinition } from "./graphDefinition";
 import "./GraphView.css";
 
 let mermaidReady = false;
 let graphCounter = 0;
 
-// Module-level ref - only one GraphView is ever mounted at a time
+// Module-level refs - only one GraphView is ever mounted at a time
 let currentNavigate: ((id: string) => void) | null = null;
+let currentNavigateToLetters: (() => void) | null = null;
 
 declare global {
   interface Window {
     // Mermaid calls: __hsGraphNavigate(nodeId) where nodeId = "p{paragraphId}"
     __hsGraphNavigate?: (nodeId: string) => void;
+    __hsGraphNavigateLetter?: (nodeId: string) => void;
   }
 }
 
@@ -21,6 +23,9 @@ if (typeof window !== "undefined") {
   window.__hsGraphNavigate = (nodeId: string) => {
     const paragraphId = nodeId.replace(/^p/, "");
     currentNavigate?.(paragraphId);
+  };
+  window.__hsGraphNavigateLetter = (_nodeId: string) => {
+    currentNavigateToLetters?.();
   };
 }
 
@@ -36,30 +41,38 @@ function ensureMermaid() {
 
 interface GraphViewProps {
   paragraphs: EditorParagraph[];
+  letters?: EditorLetter[];
   activeParagraphId?: string;
   onNavigate: (id: string) => void;
+  onNavigateToLetters?: () => void;
 }
 
 export const GraphView: React.FC<GraphViewProps> = ({
   paragraphs,
+  letters,
   activeParagraphId,
   onNavigate,
+  onNavigateToLetters,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const onNavigateRef = useRef(onNavigate);
   onNavigateRef.current = onNavigate;
+  const onNavigateToLettersRef = useRef(onNavigateToLetters);
+  onNavigateToLettersRef.current = onNavigateToLetters;
 
   useEffect(() => {
     currentNavigate = (id) => onNavigateRef.current(id);
+    currentNavigateToLetters = () => onNavigateToLettersRef.current?.();
     return () => {
       currentNavigate = null;
+      currentNavigateToLetters = null;
     };
   }, []);
 
   const renderGraph = useCallback(async () => {
     if (!containerRef.current) return;
     ensureMermaid();
-    const definition = buildDefinition(paragraphs, activeParagraphId);
+    const definition = buildDefinition(paragraphs, activeParagraphId, letters);
     const renderId = `hs-render-${++graphCounter}`;
     try {
       const { svg, bindFunctions } = await mermaid.render(renderId, definition);
@@ -73,7 +86,7 @@ export const GraphView: React.FC<GraphViewProps> = ({
           '<p class="graph-view__error">Błąd renderowania grafu.</p>';
       }
     }
-  }, [paragraphs, activeParagraphId]);
+  }, [paragraphs, activeParagraphId, letters]);
 
   useEffect(() => {
     void renderGraph();

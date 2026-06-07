@@ -19,6 +19,10 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
   const [newId, setNewId] = useState("");
   const [addError, setAddError] = useState<string | null>(null);
 
+  const letterByParagraphId = Object.fromEntries(
+    (state.scenario?.letters ?? []).map((l) => [l.paragraphId, l.id]),
+  );
+
   const allEntries = sortParagraphIds(
     (state.scenario?.paragraphs ?? []).flatMap((p) => [
       p.id,
@@ -95,12 +99,28 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
               Grafiki
             </button>
           )}
-          <button className="editor-sidebar__item editor-sidebar__item--placeholder">
-            Przygotowanie
-          </button>
-          <button className="editor-sidebar__item editor-sidebar__item--placeholder">
-            Żetony alfabetu
-          </button>
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
+                activeSection === "letters"
+                  ? "editor-sidebar__item--active"
+                  : ""
+              }`}
+              onClick={() => onSectionChange("letters")}
+            >
+              Żetony alfabetu
+            </button>
+          )}
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
+                activeSection === "setup" ? "editor-sidebar__item--active" : ""
+              }`}
+              onClick={() => onSectionChange("setup")}
+            >
+              Przygotowanie
+            </button>
+          )}
 
           {allEntries.length > 0 && (
             <div className="editor-sidebar__section-divider" />
@@ -125,6 +145,11 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                 {id === "100" && !isAlias && (
                   <span className="editor-sidebar__paragraph-tag">
                     &nbsp;(śmierć)
+                  </span>
+                )}
+                {!isAlias && letterByParagraphId[id] && (
+                  <span className="editor-sidebar__paragraph-tag">
+                    &nbsp;(litera {letterByParagraphId[id]})
                   </span>
                 )}
               </span>

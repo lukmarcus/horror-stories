@@ -36,11 +36,29 @@ export interface EditorParagraph {
   variantSelectors?: EditorChoice[];
 }
 
+export interface EditorLetter {
+  id: string;
+  paragraphId: string;
+}
+
+export interface EditorSetupStep {
+  /** 1-based step number (auto-assigned, matches array index+1) */
+  stepNumber: number;
+  /** Flat content blocks — no page division */
+  content: ContentBlock[];
+  /** Optional choices shown after the content */
+  choices?: EditorChoice[];
+}
+
 export interface EditorScenario {
   meta: Scenario;
   paragraphs: EditorParagraph[];
   /** User-uploaded images: id → base64 data URL */
   images?: Record<string, string>;
+  /** Scenario letters mapping */
+  letters?: EditorLetter[];
+  /** Setup steps */
+  setupSteps?: EditorSetupStep[];
 }
 
 export interface EditorState {
@@ -51,7 +69,7 @@ export interface EditorState {
 
 export type EditorAction =
   | { type: "SET_META"; payload: Scenario }
-  | { type: "LOAD_SCENARIO"; payload: EditorScenario }
+  | { type: "LOAD_SCENARIO"; payload: EditorScenario | null }
   | { type: "NEW_SCENARIO" }
   | { type: "MARK_SAVED" }
   | { type: "ADD_PARAGRAPH"; payload: string }
@@ -154,7 +172,30 @@ export type EditorAction =
   | { type: "ADD_IMAGE"; payload: { id: string; data: string } }
   | { type: "REMOVE_IMAGE"; payload: string }
   | { type: "ADD_ALIAS"; payload: { paragraphId: string; alias: string } }
-  | { type: "REMOVE_ALIAS"; payload: { paragraphId: string; alias: string } };
+  | { type: "REMOVE_ALIAS"; payload: { paragraphId: string; alias: string } }
+  | {
+      type: "LOAD_LETTERS";
+      payload: { letters: Array<{ id: string; paragraphId: string }> };
+    }
+  | {
+      type: "ADD_LETTER";
+      payload: { id: string; paragraphId: string };
+    }
+  | { type: "REMOVE_LETTER"; payload: string }
+  | {
+      type: "UPDATE_LETTER";
+      payload: { id: string; paragraphId: string };
+    }
+  | { type: "ADD_SETUP_STEP" }
+  | { type: "REMOVE_SETUP_STEP"; payload: number }
+  | {
+      type: "SET_SETUP_STEP_CONTENT";
+      payload: { stepIndex: number; content: ContentBlock[] };
+    }
+  | {
+      type: "SET_SETUP_STEP_CHOICES";
+      payload: { stepIndex: number; choices: EditorChoice[] };
+    };
 
 export interface EditorContextValue {
   state: EditorState;

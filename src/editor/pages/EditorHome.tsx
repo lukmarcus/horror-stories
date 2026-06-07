@@ -7,6 +7,8 @@ import { useMetaErrors } from "../components/scenario/scenarioMetaValidation";
 import { EditorParagraphView } from "../components/paragraph/EditorParagraphView";
 import { GraphView } from "../components/graph/GraphView";
 import { ImagesPanel } from "./ImagesPanel";
+import { LettersEditor } from "../components/layout/LettersEditor";
+import { SetupEditor } from "../components/layout/SetupEditor";
 import "./EditorHome.css";
 
 interface EditorHomeProps {
@@ -77,7 +79,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
   const handleDiscardConfirm = async () => {
     setConfirmDiscard(false);
     await clearStorage();
-    dispatch({ type: "LOAD_SCENARIO", payload: null as never });
+    dispatch({ type: "LOAD_SCENARIO", payload: null });
     window.location.reload();
   };
 
@@ -178,17 +180,24 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
       {state.scenario && activeSection === "graph" && (
         <GraphView
           paragraphs={state.scenario.paragraphs}
+          letters={state.scenario.letters}
           onNavigate={handleNavigate}
+          onNavigateToLetters={() => onSectionChange("letters")}
         />
       )}
       {state.scenario && activeSection === "images" && <ImagesPanel />}
+      {state.scenario && activeSection === "letters" && <LettersEditor />}
+      {state.scenario && activeSection === "setup" && <SetupEditor />}
       {state.scenario &&
         activeSection !== "meta" &&
         activeSection !== "graph" &&
-        activeSection !== "images" && (
+        activeSection !== "images" &&
+        activeSection !== "letters" &&
+        activeSection !== "setup" && (
           <EditorParagraphView
             paragraphId={activeSection}
             onNavigate={handleNavigate}
+            onNavigateToLetters={() => onSectionChange("letters")}
             onRemove={(id) => {
               dispatch({ type: "REMOVE_PARAGRAPH", payload: id });
               onSectionChange("meta");

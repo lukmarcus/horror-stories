@@ -132,6 +132,26 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     JSON.stringify({ paragraphs: paragraphsExported }, null, 2),
   );
 
+  // Pack letters.json if present
+  if (scenario.letters && scenario.letters.length > 0) {
+    zip.file(
+      "letters.json",
+      JSON.stringify({ letters: scenario.letters }, null, 2),
+    );
+  }
+
+  // Pack setup.json if present
+  if (scenario.setupSteps && scenario.setupSteps.length > 0) {
+    const steps = scenario.setupSteps.map((s) => ({
+      stepNumber: s.stepNumber,
+      content: s.content,
+      ...(s.choices && s.choices.length > 0
+        ? { choices: s.choices.map(exportChoice) }
+        : {}),
+    }));
+    zip.file("setup.json", JSON.stringify({ steps }, null, 2));
+  }
+
   // Pack user-uploaded images into images/ folder
   for (const [id, dataUrl] of Object.entries(scenario.images ?? {})) {
     const mimeMatch = dataUrl.match(/^data:([^;]+);base64,/);
@@ -251,5 +271,43 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
     images[id] = `data:${mimeType};base64,${base64}`;
   }
 
-  return { meta, paragraphs, images };
+  // Load letters.json if present
+  let letters: EditorScenario["letters"];
+  const lettersFile = zip.file("letters.json");
+  if (lettersFile) {
+    const parsed = JSON.parse(await lettersFile.async("text"));
+    letters = Array.isArray(parsed.letters) ? parsed.letters : [];
+  }
+
+  // Load setup.json if present
+  let setupSteps: EditorScenario["setupSteps"];
+  const setupFile = zip.file("setup.json");
+  if (setupFile) {
+    const parsed = JSON.parse(await setupFile.async("text"));
+    if (Array.isArray(parsed.steps)) {
+      setupSteps = parsed.steps.map(
+        (
+          s: { stepNumber: number; content?: unknown[]; choices?: unknown[] },
+          i: number,
+        ) => ({
+          stepNumber: s.stepNumber ?? i + 1,
+          content: Array.isArray(s.content) ? s.content : [],
+          choices: Array.isArray(s.choices)
+            ? s.choices.map((c: unknown) => {
+                const ch = c as Record<string, unknown>;
+                return {
+                  id: crypto.randomUUID(),
+                  text: String(ch.text ?? ""),
+                  ...(ch.nextParagraphId !== undefined
+                    ? { nextParagraphId: String(ch.nextParagraphId) }
+                    : {}),
+                };
+              })
+            : [],
+        }),
+      );
+    }
+  }
+
+  return { meta, paragraphs, images, letters, setupSteps };
 }

@@ -1,0 +1,79 @@
+.setup-editor {
+  max-width: 800px;
+}
+
+.setup-editor__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ccc;
+  margin: 0 0 0.5rem;
+}
+
+.setup-editor__hint {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0 0 1.5rem;
+}
+
+.setup-editor__empty {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0 0 1.5rem;
+}
+
+.setup-editor__step {
+  margin-bottom: 2rem;
+  border: 1px solid #2e2e2e;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.setup-editor__step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: #1a1a1a;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+.setup-editor__step-number {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+}
+
+.setup-editor__remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.setup-editor__remove:hover {
+  background: rgba(200, 60, 60, 0.15);
+  color: #c04040;
+}
+
+.setup-editor__step .pages-editor {
+  border-radius: 0;
+  border: none;
+}
+
+.setup-editor__choices {
+  border-top: 1px solid #2e2e2e;
+  padding: 0.5rem 0.75rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.setup-editor__add-btn {
+  margin-top: 0.5rem;
+}

@@ -45,19 +45,19 @@ export interface Paragraph {
 ```typescript
 export interface ContentBlock {
   // Nowy format
-  text?: string;           // Tekst (może zawierać HTML/tagi)
-  image?: string;          // ID obrazu (bez rozszerzenia)
+  text?: string; // Tekst (może zawierać HTML/tagi)
+  image?: string; // ID obrazu (bez rozszerzenia)
 
   // Stary format (kompatybilność wsteczna)
   type?: "text" | "image" | "letter" | "item";
-  html?: string;           // Zamiast `text` (stary format)
-  id?: string;             // ID elementu (stary format image/letter)
+  html?: string; // Zamiast `text` (stary format)
+  id?: string; // ID elementu (stary format image/letter)
 
   // Opcje formatowania
   size?: "xs" | "sm" | "lg" | "xl";
   style?: "bold" | "italic" | "underline";
   color?: "yellow" | "red" | "purple" | "green" | "blue";
-  spacing?: "none";        // Usuwa dolny margines bloku
+  spacing?: "none"; // Usuwa dolny margines bloku
 }
 ```
 
@@ -65,21 +65,21 @@ export interface ContentBlock {
 
 ```typescript
 export interface Choice {
-  id: string;              // Wymagane unikatowe ID
-  text?: string;           // Tekst przycisku
+  id: string; // Wymagane unikatowe ID
+  text?: string; // Tekst przycisku
   nextParagraphId?: string; // Przejdź do paragrafu
-  nextVariantId?: string;  // Wejdź w wariant
+  nextVariantId?: string; // Wejdź w wariant
 
   // Wybory warunkowe
   isConditional?: boolean;
-  yesText?: string;        // Tekst po kliknięciu Tak
-  noText?: string;         // Tekst po kliknięciu Nie
+  yesText?: string; // Tekst po kliknięciu Tak
+  noText?: string; // Tekst po kliknięciu Nie
   yesNextId?: string;
   noNextId?: string;
 }
 
 export interface DiceResult {
-  threshold: number;       // Wynik > threshold = sukces
+  threshold: number; // Wynik > threshold = sukces
   successText: string;
   successNextId: string;
   failText: string;
@@ -299,15 +299,59 @@ Czy paragraf jest dostępny bezpośrednio czy tylko przez linki? Jeśli `accessi
 }
 ```
 
+## Plik letters.json (v0.2.9+)
+
+Opcjonalny plik mapujący litery alfabetu na paragrafy. Gracz dobiera żeton z literą i przechodzi do wskazanego paragrafu.
+
+```json
+{
+  "letters": [
+    { "id": "A", "paragraphId": "107" },
+    { "id": "B", "paragraphId": "203" }
+  ]
+}
+```
+
+- `id` — wielka litera alfabetu (A–Z); obsługa jest case-insensitive
+- `paragraphId` — ID paragrafu do którego prowadzi żeton
+
+## Plik setup.json (v0.2.9+)
+
+Opcjonalny plik z krokami przygotowania wyświetlanymi przed startem gry.
+
+```json
+{
+  "steps": [
+    {
+      "stepNumber": 1,
+      "content": [
+        { "text": "Umieść żeton postaci na planszy." },
+        { "image": "jessica-figurka" }
+      ]
+    },
+    {
+      "stepNumber": 2,
+      "content": [{ "text": "Przygotuj talię kart." }],
+      "choices": [{ "text": "Kontynuuj do §1", "nextParagraphId": "1" }]
+    }
+  ]
+}
+```
+
+- `stepNumber` — numer kroku (1-based)
+- `content` — tablica bloków treści (`ContentBlock[]`), identyczna jak w paragrafach
+- `choices` — opcjonalna lista wyborów (identyczna jak w paragrafach); kliknięcie zamyka setup i przechodzi do wskazanego paragrafu
+
 ## Version History
 
-| Version | Change                            | Example                             |
-| ------- | --------------------------------- | ----------------------------------- |
-| v0.0.9  | Initial format                    | `"text": "..."`                     |
-| v0.0.10 | Multi-page, Rich text             | `"contentPages": [[...]]`           |
-| v0.0.12 | Variants, Reset display           | `"variants": {...}`                 |
-| v0.1.0  | DiceResult, content (single-page) | `"hasDiceRoll": true`               |
+| Version | Change                            | Example                                     |
+| ------- | --------------------------------- | ------------------------------------------- |
+| v0.0.9  | Initial format                    | `"text": "..."`                             |
+| v0.0.10 | Multi-page, Rich text             | `"contentPages": [[...]]`                   |
+| v0.0.12 | Variants, Reset display           | `"variants": {...}`                         |
+| v0.1.0  | DiceResult, content (single-page) | `"hasDiceRoll": true`                       |
 | v0.1.1  | id jako tablica, isConditional    | `"id": ["5", "6"]`, `"isConditional": true` |
+| v0.2.9  | letters.json, setup.json          | żetony alfabetu, kroki przygotowania        |
 
 ## Best Practices
 

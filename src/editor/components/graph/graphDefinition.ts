@@ -1,8 +1,9 @@
-import type { EditorParagraph } from "../../context/editorTypes";
+﻿import type { EditorParagraph, EditorLetter } from "../../context/editorTypes";
 
 export function buildDefinition(
   paragraphs: EditorParagraph[],
   activeId?: string,
+  letters?: EditorLetter[],
 ): string {
   if (paragraphs.length === 0) {
     return 'graph LR\n  empty["Brak paragrafów"]';
@@ -31,6 +32,14 @@ export function buildDefinition(
     const label = activeId === p.id ? `"§${p.id} ►"` : `"§${p.id}"`;
     lines.push(`  p${p.id}[${label}]`);
     lines.push(`  click p${p.id} __hsGraphNavigate`);
+  }
+
+  // Letter nodes -- separate circle nodes with arrows to their paragraphs
+  for (const l of letters ?? []) {
+    const lNodeId = `letter_${l.id}`;
+    lines.push(`  ${lNodeId}(("${l.id}"))`);
+    lines.push(`  click ${lNodeId} __hsGraphNavigateLetter`);
+    lines.push(`  ${lNodeId} --> p${l.paragraphId}`);
   }
 
   for (const id of extraIds) {

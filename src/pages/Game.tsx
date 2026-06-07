@@ -18,6 +18,8 @@ import { loadUserParagraphs } from "../utils/userParagraphStorage";
 import { buildUserParagraphMap } from "../utils/userParagraphConverter";
 import { loadUserScenarios } from "../utils/userScenarioStorage";
 import { loadUserImages } from "../utils/userImageStorage";
+import { loadUserLetters } from "../utils/userLetterStorage";
+import { loadUserSetup } from "../utils/userSetupStorage";
 import "../styles/pages/game.css";
 
 export const Game: React.FC = () => {
@@ -85,8 +87,16 @@ export const Game: React.FC = () => {
     scenarios[scenarioId] ??
     loadUserScenarios().find((s) => s.id === scenarioId) ??
     null;
-  const setupSteps = SETUP_DATA[scenarioId]?.steps || [];
-  const letters = LETTERS_DATA[scenarioId]?.letters || [];
+  const setupSteps = isUserScenario
+    ? loadUserSetup(scenarioId)
+    : SETUP_DATA[scenarioId]?.steps || [];
+  const letters = (
+    isUserScenario
+      ? loadUserLetters(scenarioId)
+      : LETTERS_DATA[scenarioId]?.letters || []
+  )
+    .slice()
+    .sort((a, b) => a.id.localeCompare(b.id));
   const enemies = currentScenario?.enemyId
     ? [getEnemy(currentScenario.enemyId)].filter(Boolean)
     : [];
@@ -264,6 +274,11 @@ export const Game: React.FC = () => {
                 game.resetSetupStep();
                 game.toggleSetup();
                 game.setParagraph(currentScenario?.startParagraphId ?? "1");
+              }}
+              onChoice={(nextParagraphId) => {
+                game.resetSetupStep();
+                game.toggleSetup();
+                game.setParagraph(nextParagraphId);
               }}
             />
           ) : (

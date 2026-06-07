@@ -7,6 +7,23 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.9] - 2026-06-07
+
+### Dodano
+
+- Edytor: **LettersEditor** — dodawanie, edytowanie i usuwanie żetonów alfabetu (`letters.json`); każdy żeton łączy literę z docelowym paragrafem
+- Edytor: Żetony alfabetu widoczne w grafie scenariusza jako oddzielne węzły kołowe (np. `((A))`) z połączeniami do paragrafów; kliknięcie węzła przechodzi na ekran liter
+- Edytor: Interfejs LettersEditor w stylu wyborów — pole paragrafu docelowego z autouzupełnianiem i zapobieganiem duplikatom
+- Edytor: W bocznym panelu paragraf wyświetla tag `(litera A)` gdy jest podpięty pod żeton alfabetu
+- Edytor: W edytorze paragrafu sekcja „Dostępna przez literę: [A]" z tagiem-linkiem prowadzącym do ekranu liter
+- Edytor: SetupEditor — dodawanie, edytowanie i usuwanie kroków przygotowania scenariusza (`setup.json`); każdy krok to bloki treści (edytor bloków) i opcjonalne wybory z autouzupełnianiem
+- Eksport/import `.horrorstory` obejmuje teraz `letters.json` i `setup.json`
+- Importowane scenariusze użytkownika zapisują żetony alfabetu i kroki setupu w `localStorage`, dzięki czemu gra je wczytuje poprawnie
+- `getLetter` obsługuje litery zarówno małe, jak i wielkie (`a` = `A`)
+- Żetony alfabetu w widoku alfabetu posortowane alfabetycznie
+
+---
+
 ## [0.2.8] - 2026-06-01
 
 ### Dodano

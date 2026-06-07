@@ -1,0 +1,236 @@
+﻿.letters-editor {
+  max-width: 640px;
+}
+
+.letters-editor__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ccc;
+  margin: 0 0 0.5rem;
+}
+
+.letters-editor__hint {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0 0 1.5rem;
+}
+
+.letters-editor__section {
+  margin-bottom: 1.75rem;
+}
+
+.letters-editor__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+/* Lista przypisanych liter */
+
+.letters-editor__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.letters-editor__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  background: #1e1e1e;
+  border: 1px solid #2e2e2e;
+  border-radius: 4px;
+}
+
+.letters-editor__letter-badge {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #e0e0e0;
+  min-width: 1.75rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin-top: 0.45rem;
+  flex-shrink: 0;
+}
+
+/* Choices-style paragraph input */
+
+.letters-editor__edit-para {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.letters-editor__para-wrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  flex: 1;
+  min-width: 0;
+}
+
+.letters-editor__para-wrap:focus-within {
+  border-color: #777;
+}
+
+.letters-editor__para-wrap--error {
+  border-color: #8a3030;
+}
+
+.letters-editor__para-prefix {
+  padding: 0.4rem 0.25rem 0.4rem 0.55rem;
+  color: #888;
+  font-size: 0.9rem;
+  user-select: none;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.letters-editor__para-target {
+  border: none;
+  background: transparent;
+  color: #eee;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem 0.4rem 0.1rem;
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  font-family: inherit;
+}
+
+.letters-editor__para-target:focus {
+  outline: none;
+}
+
+.letters-editor__para-dropdown {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 0;
+  min-width: 8rem;
+  max-height: 12rem;
+  overflow-y: auto;
+  background: #252525;
+  border: 1px solid #555;
+  border-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.letters-editor__para-dropdown-item {
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.letters-editor__para-dropdown-item:hover,
+.letters-editor__para-dropdown-item--highlighted {
+  background: #3a3a3a;
+  color: #fff;
+}
+
+.letters-editor__row-error {
+  font-size: 0.75rem;
+  color: #ff6060;
+  margin-top: 0.2rem;
+}
+
+/* Usuwanie */
+
+.letters-editor__remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+}
+
+.letters-editor__remove:hover {
+  background: rgba(200, 60, 60, 0.15);
+  color: #c04040;
+}
+
+.letters-editor__confirm {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.letters-editor__confirm-text {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Formularz dodawania */
+
+.letters-editor__add-hint {
+  font-size: 0.75rem;
+  color: #555;
+  margin: 0 0 0.6rem;
+}
+
+.letters-editor__add-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.letters-editor__select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: #1e1e1e;
+  color: #e0e0e0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.letters-editor__select:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.letters-editor__select--letter {
+  width: 4.5rem;
+  flex: none;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+
+.letters-editor__error {
+  font-size: 0.78rem;
+  color: #ff6060;
+  margin-top: 0.4rem;
+}
+
+/* Komunikat koncowy */
+
+.letters-editor__note {
+  font-size: 0.85rem;
+  color: #666;
+  padding: 0.75rem;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+}

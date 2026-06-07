@@ -54,6 +54,7 @@ export function editorReducer(
           },
           paragraphs: [DEATH_PARAGRAPH],
           images: {},
+          letters: [],
         },
         isDirty: false,
         activeParagraphId: null,
@@ -63,15 +64,60 @@ export function editorReducer(
         ...state,
         scenario: state.scenario
           ? { ...state.scenario, meta: action.payload }
-          : { meta: action.payload, paragraphs: [DEATH_PARAGRAPH] },
+          : {
+              meta: action.payload,
+              paragraphs: [DEATH_PARAGRAPH],
+              images: {},
+              letters: [],
+            },
         isDirty: true,
       };
     case "LOAD_SCENARIO":
+      if (!action.payload) {
+        return {
+          scenario: null,
+          isDirty: false,
+          activeParagraphId: null,
+        };
+      }
       return {
         scenario: {
           ...action.payload,
-          paragraphs: ensureDeath(action.payload.paragraphs ?? []),
-          images: action.payload.images ?? {},
+          paragraphs: ensureDeath(
+            Array.isArray(action.payload.paragraphs)
+              ? action.payload.paragraphs
+              : [],
+          ),
+          images:
+            typeof action.payload.images === "object" &&
+            !Array.isArray(action.payload.images)
+              ? action.payload.images
+              : {},
+          letters: Array.isArray(action.payload.letters)
+            ? action.payload.letters.map((l) => ({
+                ...l,
+                id: String(l.id).toUpperCase(),
+              }))
+            : [],
+          setupSteps: Array.isArray(action.payload.setupSteps)
+            ? action.payload.setupSteps.map((s) => {
+                const raw = s as unknown as Record<string, unknown>;
+                return {
+                  stepNumber: s.stepNumber,
+                  // Back-compat: old saves had pages:ContentBlock[][] instead of content
+                  content: Array.isArray(raw.content)
+                    ? (raw.content as import("../../types").ContentBlock[])
+                    : Array.isArray(raw.pages)
+                      ? (
+                          raw.pages as import("../../types").ContentBlock[][]
+                        ).flat()
+                      : [],
+                  choices: Array.isArray(raw.choices)
+                    ? (raw.choices as import("./editorTypes").EditorChoice[])
+                    : [],
+                };
+              })
+            : [],
         },
         isDirty: false,
         activeParagraphId: null,
@@ -388,6 +434,114 @@ export function editorReducer(
         ...p,
         aliases: (p.aliases ?? []).filter((a) => a !== action.payload.alias),
       }));
+    case "LOAD_LETTERS":
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          letters: Array.isArray(action.payload.letters)
+            ? action.payload.letters.map((l) => ({
+                ...l,
+                id: String(l.id).toUpperCase(),
+              }))
+            : [],
+        },
+        isDirty: true,
+      };
+    case "ADD_LETTER":
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          letters: [
+            ...(state.scenario.letters ?? []),
+            { id: action.payload.id, paragraphId: action.payload.paragraphId },
+          ],
+        },
+        isDirty: true,
+      };
+    case "REMOVE_LETTER":
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          letters: (state.scenario.letters ?? []).filter(
+            (l) => l.id !== action.payload,
+          ),
+        },
+        isDirty: true,
+      };
+    case "UPDATE_LETTER":
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          letters: (state.scenario.letters ?? []).map((l) =>
+            l.id === action.payload.id
+              ? {
+                  id: action.payload.id,
+                  paragraphId: action.payload.paragraphId,
+                }
+              : l,
+          ),
+        },
+        isDirty: true,
+      };
+    case "ADD_SETUP_STEP": {
+      if (!state.scenario) return state;
+      const existing = state.scenario.setupSteps ?? [];
+      const next: import("./editorTypes").EditorSetupStep = {
+        stepNumber: existing.length + 1,
+        content: [],
+        choices: [],
+      };
+      return {
+        ...state,
+        scenario: { ...state.scenario, setupSteps: [...existing, next] },
+        isDirty: true,
+      };
+    }
+    case "REMOVE_SETUP_STEP": {
+      if (!state.scenario) return state;
+      const filtered = (state.scenario.setupSteps ?? [])
+        .filter((_, i) => i !== action.payload)
+        .map((s, i) => ({ ...s, stepNumber: i + 1 }));
+      return {
+        ...state,
+        scenario: { ...state.scenario, setupSteps: filtered },
+        isDirty: true,
+      };
+    }
+    case "SET_SETUP_STEP_CONTENT": {
+      if (!state.scenario) return state;
+      const steps = (state.scenario.setupSteps ?? []).map((s, i) =>
+        i === action.payload.stepIndex
+          ? { ...s, content: action.payload.content }
+          : s,
+      );
+      return {
+        ...state,
+        scenario: { ...state.scenario, setupSteps: steps },
+        isDirty: true,
+      };
+    }
+    case "SET_SETUP_STEP_CHOICES": {
+      if (!state.scenario) return state;
+      const steps = (state.scenario.setupSteps ?? []).map((s, i) =>
+        i === action.payload.stepIndex
+          ? { ...s, choices: action.payload.choices }
+          : s,
+      );
+      return {
+        ...state,
+        scenario: { ...state.scenario, setupSteps: steps },
+        isDirty: true,
+      };
+    }
     default:
       return state;
   }

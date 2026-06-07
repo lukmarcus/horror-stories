@@ -73,6 +73,7 @@ export interface SetupStep {
   stepNumber: number;
   content?: ContentBlock[];
   text?: string;
+  choices?: Choice[];
 }
 
 /**
