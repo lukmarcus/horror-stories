@@ -9,17 +9,21 @@ import "./SetupEditor.css";
 
 export const SetupEditor: React.FC = () => {
   const editorCtx = useContext(EditorContext);
+
+  const paragraphIds = useMemo(
+    () =>
+      sortParagraphIds(
+        (editorCtx?.state.scenario?.paragraphs ?? []).map((p) => p.id),
+      ),
+    [editorCtx?.state.scenario?.paragraphs],
+  );
+
+  const [focusedChoiceId, setFocusedChoiceId] = useState<string | null>(null);
+
   if (!editorCtx) return null;
 
   const { state, dispatch } = editorCtx;
   const steps = state.scenario?.setupSteps ?? [];
-
-  const paragraphIds = useMemo(
-    () => sortParagraphIds((state.scenario?.paragraphs ?? []).map((p) => p.id)),
-    [state.scenario?.paragraphs],
-  );
-
-  const [focusedChoiceId, setFocusedChoiceId] = useState<string | null>(null);
 
   return (
     <div className="setup-editor">
