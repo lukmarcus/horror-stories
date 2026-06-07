@@ -1,10 +1,13 @@
-import type { EditorState, EditorAction, EditorParagraph } from "./editorTypes";
+import type { EditorState, EditorAction, EditorChoice } from "./editorTypes";
 import type { ContentBlock } from "../../types";
+import { DEATH_PARAGRAPH, ensureDeath } from "./reducers/reducerUtils";
+import { paragraphReducer } from "./reducers/paragraphReducer";
+import { variantReducer } from "./reducers/variantReducer";
+import { letterReducer } from "./reducers/letterReducer";
+import { setupReducer } from "./reducers/setupReducer";
+import { imageReducer } from "./reducers/imageReducer";
 
-export const DEATH_PARAGRAPH = {
-  id: "100",
-  pages: [[]] as ContentBlock[][],
-};
+export { DEATH_PARAGRAPH } from "./reducers/reducerUtils";
 
 export const initialState: EditorState = {
   scenario: null,
@@ -12,34 +15,11 @@ export const initialState: EditorState = {
   activeParagraphId: null,
 };
 
-function ensureDeath(paragraphs: { id: string }[]): typeof paragraphs {
-  return paragraphs.some((p) => p.id === "100")
-    ? paragraphs
-    : [...paragraphs, DEATH_PARAGRAPH];
-}
-
-function mapParagraph(
-  state: EditorState,
-  id: string,
-  update: (p: EditorParagraph) => EditorParagraph,
-): EditorState {
-  if (!state.scenario) return state;
-  return {
-    ...state,
-    scenario: {
-      ...state.scenario,
-      paragraphs: state.scenario.paragraphs.map((p) =>
-        p.id === id ? update(p) : p,
-      ),
-    },
-    isDirty: true,
-  };
-}
-
 export function editorReducer(
   state: EditorState,
   action: EditorAction,
 ): EditorState {
+  // ── Scenario-level actions ────────────────────────────────────────────────
   switch (action.type) {
     case "NEW_SCENARIO":
       return {
@@ -74,11 +54,7 @@ export function editorReducer(
       };
     case "LOAD_SCENARIO":
       if (!action.payload) {
-        return {
-          scenario: null,
-          isDirty: false,
-          activeParagraphId: null,
-        };
+        return { scenario: null, isDirty: false, activeParagraphId: null };
       }
       return {
         scenario: {
@@ -104,16 +80,13 @@ export function editorReducer(
                 const raw = s as unknown as Record<string, unknown>;
                 return {
                   stepNumber: s.stepNumber,
-                  // Back-compat: old saves had pages:ContentBlock[][] instead of content
                   content: Array.isArray(raw.content)
-                    ? (raw.content as import("../../types").ContentBlock[])
+                    ? (raw.content as ContentBlock[])
                     : Array.isArray(raw.pages)
-                      ? (
-                          raw.pages as import("../../types").ContentBlock[][]
-                        ).flat()
+                      ? (raw.pages as ContentBlock[][]).flat()
                       : [],
                   choices: Array.isArray(raw.choices)
-                    ? (raw.choices as import("./editorTypes").EditorChoice[])
+                    ? (raw.choices as EditorChoice[])
                     : [],
                 };
               })
@@ -124,425 +97,14 @@ export function editorReducer(
       };
     case "MARK_SAVED":
       return { ...state, isDirty: false };
-    case "ADD_PARAGRAPH": {
-      if (!state.scenario) return state;
-      const id = action.payload;
-      if (state.scenario.paragraphs.some((p) => p.id === id)) return state;
-      const paragraphs = [
-        ...state.scenario.paragraphs,
-        { id, pages: [[]] as ContentBlock[][] },
-      ];
-      return {
-        ...state,
-        scenario: { ...state.scenario, paragraphs },
-        isDirty: true,
-        activeParagraphId: id,
-      };
-    }
-    case "ADD_PARAGRAPH_SILENT": {
-      if (!state.scenario) return state;
-      const id = action.payload;
-      if (state.scenario.paragraphs.some((p) => p.id === id)) return state;
-      const paragraphs = [
-        ...state.scenario.paragraphs,
-        { id, pages: [[]] as ContentBlock[][] },
-      ];
-      return {
-        ...state,
-        scenario: { ...state.scenario, paragraphs },
-        isDirty: true,
-      };
-    }
-    case "REMOVE_PARAGRAPH": {
-      if (!state.scenario || action.payload === "100") return state;
-      const paragraphs = state.scenario.paragraphs.filter(
-        (p) => p.id !== action.payload,
-      );
-      return {
-        ...state,
-        scenario: { ...state.scenario, paragraphs },
-        isDirty: true,
-        activeParagraphId:
-          state.activeParagraphId === action.payload
-            ? null
-            : state.activeParagraphId,
-      };
-    }
-    case "SET_ACTIVE_PARAGRAPH":
-      return { ...state, activeParagraphId: action.payload };
-    case "SET_PARAGRAPH_TEXT":
-      return mapParagraph(state, action.payload.id, (p) => ({
-        ...p,
-        text: action.payload.text,
-      }));
-    case "CONVERT_TEXT_TO_PAGES": {
-      return mapParagraph(state, action.payload, (p) => {
-        const lines = (p.text ?? "").split("\n").filter((l) => l.trim() !== "");
-        const page = lines.map((line) => ({
-          type: "text" as const,
-          text: line,
-        }));
-        return { ...p, pages: [page.length > 0 ? page : []], text: undefined };
-      });
-    }
-    case "SET_PARAGRAPH_PAGES":
-      return mapParagraph(state, action.payload.id, (p) => ({
-        ...p,
-        pages: action.payload.pages,
-      }));
-    case "ADD_CHOICE":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        choices: [...(p.choices ?? []), action.payload.choice],
-      }));
-    case "UPDATE_CHOICE":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        choices: (p.choices ?? []).map((c) =>
-          c.id === action.payload.choice.id ? action.payload.choice : c,
-        ),
-      }));
-    case "REMOVE_CHOICE":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        choices: (p.choices ?? []).filter(
-          (c) => c.id !== action.payload.choiceId,
-        ),
-      }));
-    case "ADD_PAGE":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        pages: [...(p.pages ?? [[]]), []],
-      }));
-    case "REMOVE_PAGE":
-      return mapParagraph(state, action.payload.paragraphId, (p) => {
-        const pages = (p.pages ?? [[]]).filter(
-          (_, i) => i !== action.payload.pageIndex,
-        );
-        return { ...p, pages: pages.length > 0 ? pages : [[]] };
-      });
-    case "ADD_BLOCK":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        pages: (p.pages ?? [[]]).map((page, i) =>
-          i === action.payload.pageIndex
-            ? [...page, action.payload.block]
-            : page,
-        ),
-      }));
-    case "UPDATE_BLOCK":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        pages: (p.pages ?? [[]]).map((page, i) =>
-          i === action.payload.pageIndex
-            ? page.map((b, j) =>
-                j === action.payload.blockIndex ? action.payload.block : b,
-              )
-            : page,
-        ),
-      }));
-    case "REMOVE_BLOCK":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        pages: (p.pages ?? [[]]).map((page, i) =>
-          i === action.payload.pageIndex
-            ? page.filter((_, j) => j !== action.payload.blockIndex)
-            : page,
-        ),
-      }));
-    // ── Variant selectors ────────────────────────────────────────────────────
-    case "ADD_VARIANT_SELECTOR":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        variantSelectors: [
-          ...(p.variantSelectors ?? []),
-          action.payload.choice,
-        ],
-      }));
-    case "UPDATE_VARIANT_SELECTOR":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        variantSelectors: (p.variantSelectors ?? []).map((c) =>
-          c.id === action.payload.choice.id ? action.payload.choice : c,
-        ),
-      }));
-    case "REMOVE_VARIANT_SELECTOR":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        variantSelectors: (p.variantSelectors ?? []).filter(
-          (c) => c.id !== action.payload.choiceId,
-        ),
-      }));
-    // ── Variants ─────────────────────────────────────────────────────────────
-    case "ADD_VARIANT":
-      return mapParagraph(state, action.payload.paragraphId, (p) => {
-        if ((p.variants ?? {})[action.payload.variantId]) return p;
-        return {
-          ...p,
-          variants: {
-            ...(p.variants ?? {}),
-            [action.payload.variantId]: { pages: [[]] },
-          },
-        };
-      });
-    case "REMOVE_VARIANT":
-      return mapParagraph(state, action.payload.paragraphId, (p) => {
-        const variants = { ...(p.variants ?? {}) };
-        delete variants[action.payload.variantId];
-        return {
-          ...p,
-          variants: Object.keys(variants).length > 0 ? variants : undefined,
-        };
-      });
-    case "SET_VARIANT_PAGES":
-      return mapParagraph(state, action.payload.paragraphId, (p) => {
-        if (!p.variants) return p;
-        const variant = p.variants[action.payload.variantId];
-        if (!variant) return p;
-        return {
-          ...p,
-          variants: {
-            ...p.variants,
-            [action.payload.variantId]: {
-              ...variant,
-              pages: action.payload.pages,
-            },
-          },
-        };
-      });
-    case "SET_VARIANT_HORIZONTAL":
-      return mapParagraph(state, action.payload.paragraphId, (p) => {
-        if (!p.variants) return p;
-        const variant = p.variants[action.payload.variantId];
-        if (!variant) return p;
-        return {
-          ...p,
-          variants: {
-            ...p.variants,
-            [action.payload.variantId]: {
-              ...variant,
-              areChoicesHorizontal: action.payload.value || undefined,
-            },
-          },
-        };
-      });
-    case "ADD_VARIANT_CHOICE":
-      return mapParagraph(state, action.payload.paragraphId, (p) => {
-        if (!p.variants) return p;
-        const variant = p.variants[action.payload.variantId];
-        if (!variant) return p;
-        return {
-          ...p,
-          variants: {
-            ...p.variants,
-            [action.payload.variantId]: {
-              ...variant,
-              choices: [...(variant.choices ?? []), action.payload.choice],
-            },
-          },
-        };
-      });
-    case "UPDATE_VARIANT_CHOICE":
-      return mapParagraph(state, action.payload.paragraphId, (p) => {
-        if (!p.variants) return p;
-        const variant = p.variants[action.payload.variantId];
-        if (!variant) return p;
-        return {
-          ...p,
-          variants: {
-            ...p.variants,
-            [action.payload.variantId]: {
-              ...variant,
-              choices: (variant.choices ?? []).map((c) =>
-                c.id === action.payload.choice.id ? action.payload.choice : c,
-              ),
-            },
-          },
-        };
-      });
-    case "REMOVE_VARIANT_CHOICE":
-      return mapParagraph(state, action.payload.paragraphId, (p) => {
-        if (!p.variants) return p;
-        const variant = p.variants[action.payload.variantId];
-        if (!variant) return p;
-        return {
-          ...p,
-          variants: {
-            ...p.variants,
-            [action.payload.variantId]: {
-              ...variant,
-              choices: (variant.choices ?? []).filter(
-                (c) => c.id !== action.payload.choiceId,
-              ),
-            },
-          },
-        };
-      });
-    case "ENABLE_VARIANT_MODE":
-      return mapParagraph(state, action.payload, (p) => ({
-        ...p,
-        variants: {},
-        variantSelectors: [],
-        choices: undefined,
-      }));
-    case "DISABLE_VARIANT_MODE":
-      return mapParagraph(state, action.payload, (p) => ({
-        ...p,
-        variants: undefined,
-        variantSelectors: undefined,
-      }));
-    case "RENAME_VARIANT":
-      return mapParagraph(state, action.payload.paragraphId, (p) => {
-        if (!p.variants || !p.variants[action.payload.oldId]) return p;
-        const entries = Object.entries(p.variants).map(([k, v]) => [
-          k === action.payload.oldId ? action.payload.newId : k,
-          v,
-        ]);
-        return { ...p, variants: Object.fromEntries(entries) };
-      });
-    case "ADD_IMAGE": {
-      if (!state.scenario) return state;
-      return {
-        ...state,
-        scenario: {
-          ...state.scenario,
-          images: {
-            ...state.scenario.images,
-            [action.payload.id]: action.payload.data,
-          },
-        },
-        isDirty: true,
-      };
-    }
-    case "REMOVE_IMAGE": {
-      if (!state.scenario) return state;
-      const images = { ...(state.scenario.images ?? {}) };
-      delete images[action.payload];
-      return {
-        ...state,
-        scenario: { ...state.scenario, images },
-        isDirty: true,
-      };
-    }
-    case "ADD_ALIAS":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        aliases: [...(p.aliases ?? []), action.payload.alias],
-      }));
-    case "REMOVE_ALIAS":
-      return mapParagraph(state, action.payload.paragraphId, (p) => ({
-        ...p,
-        aliases: (p.aliases ?? []).filter((a) => a !== action.payload.alias),
-      }));
-    case "LOAD_LETTERS":
-      if (!state.scenario) return state;
-      return {
-        ...state,
-        scenario: {
-          ...state.scenario,
-          letters: Array.isArray(action.payload.letters)
-            ? action.payload.letters.map((l) => ({
-                ...l,
-                id: String(l.id).toUpperCase(),
-              }))
-            : [],
-        },
-        isDirty: true,
-      };
-    case "ADD_LETTER":
-      if (!state.scenario) return state;
-      return {
-        ...state,
-        scenario: {
-          ...state.scenario,
-          letters: [
-            ...(state.scenario.letters ?? []),
-            { id: action.payload.id, paragraphId: action.payload.paragraphId },
-          ],
-        },
-        isDirty: true,
-      };
-    case "REMOVE_LETTER":
-      if (!state.scenario) return state;
-      return {
-        ...state,
-        scenario: {
-          ...state.scenario,
-          letters: (state.scenario.letters ?? []).filter(
-            (l) => l.id !== action.payload,
-          ),
-        },
-        isDirty: true,
-      };
-    case "UPDATE_LETTER":
-      if (!state.scenario) return state;
-      return {
-        ...state,
-        scenario: {
-          ...state.scenario,
-          letters: (state.scenario.letters ?? []).map((l) =>
-            l.id === action.payload.id
-              ? {
-                  id: action.payload.id,
-                  paragraphId: action.payload.paragraphId,
-                }
-              : l,
-          ),
-        },
-        isDirty: true,
-      };
-    case "ADD_SETUP_STEP": {
-      if (!state.scenario) return state;
-      const existing = state.scenario.setupSteps ?? [];
-      const next: import("./editorTypes").EditorSetupStep = {
-        stepNumber: existing.length + 1,
-        content: [],
-        choices: [],
-      };
-      return {
-        ...state,
-        scenario: { ...state.scenario, setupSteps: [...existing, next] },
-        isDirty: true,
-      };
-    }
-    case "REMOVE_SETUP_STEP": {
-      if (!state.scenario) return state;
-      const filtered = (state.scenario.setupSteps ?? [])
-        .filter((_, i) => i !== action.payload)
-        .map((s, i) => ({ ...s, stepNumber: i + 1 }));
-      return {
-        ...state,
-        scenario: { ...state.scenario, setupSteps: filtered },
-        isDirty: true,
-      };
-    }
-    case "SET_SETUP_STEP_CONTENT": {
-      if (!state.scenario) return state;
-      const steps = (state.scenario.setupSteps ?? []).map((s, i) =>
-        i === action.payload.stepIndex
-          ? { ...s, content: action.payload.content }
-          : s,
-      );
-      return {
-        ...state,
-        scenario: { ...state.scenario, setupSteps: steps },
-        isDirty: true,
-      };
-    }
-    case "SET_SETUP_STEP_CHOICES": {
-      if (!state.scenario) return state;
-      const steps = (state.scenario.setupSteps ?? []).map((s, i) =>
-        i === action.payload.stepIndex
-          ? { ...s, choices: action.payload.choices }
-          : s,
-      );
-      return {
-        ...state,
-        scenario: { ...state.scenario, setupSteps: steps },
-        isDirty: true,
-      };
-    }
-    default:
-      return state;
   }
+
+  // ── Domain reducers ───────────────────────────────────────────────────────
+  return [
+    paragraphReducer,
+    variantReducer,
+    letterReducer,
+    setupReducer,
+    imageReducer,
+  ].reduce((s, reducer) => reducer(s, action), state);
 }
