@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { SCENARIOS } from "../scenarios";
+import { SCENARIOS, LETTERS_DATA } from "../scenarios";
 import { Button, BackToMenu } from "../components/ui";
 import { importFromZip } from "../editor/utils/zipHandler";
 import {
@@ -202,17 +202,25 @@ export const ScenariosList: React.FC = () => {
               </div>
             )}
 
-            {/* Tokens */}
-            {scenario.tokens && Object.keys(scenario.tokens).length > 0 && (
-              <div className="scenarios-list__metadata">
-                <h3 className="scenarios-list__metadata-title">Żetony</h3>
-                <p className="scenarios-list__metadata-content">
-                  {Object.entries(scenario.tokens)
-                    .map(([key, value]) => `${key}: ${value}`)
-                    .join(", ")}
-                </p>
-              </div>
-            )}
+            {/* Letters */}
+            {(() => {
+              const letters = LETTERS_DATA[scenario.id]?.letters ?? [];
+              if (letters.length === 0) return null;
+              return (
+                <div className="scenarios-list__metadata">
+                  <h3 className="scenarios-list__metadata-title">
+                    Żetony alfabetu
+                  </h3>
+                  <p className="scenarios-list__metadata-content">
+                    {letters
+                      .slice()
+                      .sort((a, b) => a.id.localeCompare(b.id))
+                      .map((l) => `${l.id.toUpperCase()} → §${l.paragraphId}`)
+                      .join(", ")}
+                  </p>
+                </div>
+              );
+            })()}
 
             {/* Notes */}
             {scenario.notes && (

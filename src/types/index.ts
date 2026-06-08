@@ -95,7 +95,6 @@ export interface Scenario {
   maxPlayerCount: number | null;
   duration: number | null;
   characters?: string[];
-  tokens?: Record<string, number>;
   notes?: string;
   startParagraphId?: string;
   enemyId?: string;
