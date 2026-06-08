@@ -6,13 +6,24 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.10 - Edytor: import wbudowanych scenariuszy
+## Milestone v0.2.10 - Edytor: import wbudowanych scenariuszy + brakujące pola meta
 
 ### Zakres
 
 - Możliwość skopiowania wbudowanego scenariusza do edytora jako baza do edycji
 - Wbudowane scenariusze są read-only — edytuje się kopię
 - Po v0.2.9 wszystkie elementy droga-donikad są edytowalne
+
+**Brakujące pola meta scenariusza w `ScenarioMetaForm`:**
+
+- `characters` — lista postaci (wyświetlana na karcie scenariusza); edycja jako lista stringów
+- `notes` — notatki dla prowadzącego; edycja jako `<textarea>`
+- `enemyId` + `enemyDiceModifiers` — osobny widok `EnemyMetaEditor` (analogicznie do `LettersEditor` / `SetupEditor`); zawiera wybór ID przeciwnika i listę modyfikatorów kości
+
+**Pola wymagające decyzji designerskiej (patrz TECH_DEBT):**
+
+- `tokens` — prawdopodobnie redundantne z `letters.json`; przed dodaniem do edytora ustalić czy usunąć z `Scenario`
+- `startParagraphId` — konflikt z mechaniką `SetupStep.choices`; przed dodaniem do edytora ustalić model priorytetu (setup choice > startParagraphId > `"1"`)
 
 ### Status
 
