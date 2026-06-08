@@ -87,9 +87,11 @@ export const Game: React.FC = () => {
     scenarios[scenarioId] ??
     loadUserScenarios().find((s) => s.id === scenarioId) ??
     null;
-  const setupSteps = isUserScenario
+  const setupData = isUserScenario
     ? loadUserSetup(scenarioId)
-    : SETUP_DATA[scenarioId]?.steps || [];
+    : SETUP_DATA[scenarioId];
+  const setupSteps = setupData?.steps ?? [];
+  const startParagraphId = setupData?.startParagraphId ?? "1";
   const letters = (
     isUserScenario
       ? loadUserLetters(scenarioId)
@@ -267,13 +269,13 @@ export const Game: React.FC = () => {
               totalSteps={setupSteps.length}
               setupSteps={setupSteps}
               scenarioId={scenarioId}
-              startParagraphId={currentScenario?.startParagraphId ?? "1"}
+              startParagraphId={startParagraphId}
               onPrev={() => game.prevSetupStep()}
               onNext={() => game.nextSetupStep()}
               onStart={() => {
                 game.resetSetupStep();
                 game.toggleSetup();
-                game.setParagraph(currentScenario?.startParagraphId ?? "1");
+                game.setParagraph(startParagraphId);
               }}
               onChoice={(nextParagraphId) => {
                 game.resetSetupStep();

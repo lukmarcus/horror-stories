@@ -53,6 +53,8 @@ export interface EditorSetupStep {
 export interface EditorScenario {
   meta: Scenario;
   paragraphs: EditorParagraph[];
+  /** Which paragraph to navigate to when setup is complete (fallback: "1") */
+  startParagraphId?: string;
   /** User-uploaded images: id → base64 data URL */
   images?: Record<string, string>;
   /** Scenario letters mapping */
@@ -188,6 +190,7 @@ export type EditorAction =
     }
   | { type: "ADD_SETUP_STEP" }
   | { type: "REMOVE_SETUP_STEP"; payload: number }
+  | { type: "SET_START_PARAGRAPH_ID"; payload: string }
   | {
       type: "SET_SETUP_STEP_CONTENT";
       payload: { stepIndex: number; content: ContentBlock[] };

@@ -77,6 +77,15 @@ export interface SetupStep {
 }
 
 /**
+ * Setup data for a scenario — preparation steps and starting navigation
+ */
+export interface SetupData {
+  /** Which paragraph to navigate to when setup is complete (fallback: "1") */
+  startParagraphId?: string;
+  steps: SetupStep[];
+}
+
+/**
  * Alphabet token linking a letter to its trigger paragraph
  */
 export interface LetterToken {
@@ -96,7 +105,6 @@ export interface Scenario {
   duration: number | null;
   characters?: string[];
   notes?: string;
-  startParagraphId?: string;
   enemyId?: string;
   enemyDiceModifiers?: number[];
 }

@@ -9,7 +9,6 @@
       "duration": 120,
       "characters": ["Jessica", "Patrick"],
       "notes": "drugi gracz dołącza po około 20 min",
-      "startParagraphId": "77",
       "enemyId": "klaun",
       "enemyDiceModifiers": [1]
     },

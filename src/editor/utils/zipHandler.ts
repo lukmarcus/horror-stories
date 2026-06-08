@@ -141,15 +141,30 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
   }
 
   // Pack setup.json if present
-  if (scenario.setupSteps && scenario.setupSteps.length > 0) {
-    const steps = scenario.setupSteps.map((s) => ({
+  if (
+    (scenario.setupSteps && scenario.setupSteps.length > 0) ||
+    scenario.startParagraphId
+  ) {
+    const steps = (scenario.setupSteps ?? []).map((s) => ({
       stepNumber: s.stepNumber,
       content: s.content,
       ...(s.choices && s.choices.length > 0
         ? { choices: s.choices.map(exportChoice) }
         : {}),
     }));
-    zip.file("setup.json", JSON.stringify({ steps }, null, 2));
+    zip.file(
+      "setup.json",
+      JSON.stringify(
+        {
+          ...(scenario.startParagraphId
+            ? { startParagraphId: scenario.startParagraphId }
+            : {}),
+          steps,
+        },
+        null,
+        2,
+      ),
+    );
   }
 
   // Pack user-uploaded images into images/ folder
@@ -291,9 +306,16 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
 
   // Load setup.json if present
   let setupSteps: EditorScenario["setupSteps"];
+  let startParagraphId: string | undefined;
   const setupFile = zip.file("setup.json");
   if (setupFile) {
     const parsed = JSON.parse(await setupFile.async("text"));
+    if (
+      typeof parsed.startParagraphId === "string" &&
+      parsed.startParagraphId
+    ) {
+      startParagraphId = parsed.startParagraphId;
+    }
     if (Array.isArray(parsed.steps)) {
       setupSteps = parsed.steps.map(
         (
@@ -319,5 +341,5 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
     }
   }
 
-  return { meta, paragraphs, images, letters, setupSteps };
+  return { meta, paragraphs, images, letters, setupSteps, startParagraphId };
 }

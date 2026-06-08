@@ -3,7 +3,7 @@
  * Central data repository for all game content
  */
 
-import type { Scenario, Paragraph, SetupStep, LetterToken } from "../types";
+import type { Scenario, Paragraph, SetupData, LetterToken } from "../types";
 import scenariosIndex from "./index.json";
 import droga from "./droga-donikad/paragraphs.json";
 import drogaSetup from "./droga-donikad/setup.json";
@@ -103,8 +103,8 @@ export const PARAGRAPHS: Record<string, Record<string, Paragraph>> = {
 /**
  * Setup steps for each scenario
  */
-export const SETUP_DATA: Record<string, { steps: SetupStep[] }> = {
-  "droga-donikad": drogaSetup as { steps: SetupStep[] },
+export const SETUP_DATA: Record<string, SetupData> = {
+  "droga-donikad": drogaSetup as SetupData,
 };
 
 /**

@@ -1,10 +1,10 @@
-import type { SetupStep } from "../types";
+import type { SetupData } from "../types";
 import { createUserStorage } from "./userStorage";
 
-const storage = createUserStorage<SetupStep[]>(
+const storage = createUserStorage<SetupData>(
   (id) => `horror-stories:user-setup:${id}`,
-  [],
-  (steps) => steps.length === 0,
+  { steps: [] },
+  (data) => data.steps.length === 0 && !data.startParagraphId,
 );
 
 export const saveUserSetup = storage.save;

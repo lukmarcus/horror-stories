@@ -1,4 +1,8 @@
-import type { EditorState, EditorAction, EditorSetupStep } from "../editorTypes";
+import type {
+  EditorState,
+  EditorAction,
+  EditorSetupStep,
+} from "../editorTypes";
 
 export function setupReducer(
   state: EditorState,
@@ -53,6 +57,17 @@ export function setupReducer(
       return {
         ...state,
         scenario: { ...state.scenario, setupSteps: steps },
+        isDirty: true,
+      };
+    }
+    case "SET_START_PARAGRAPH_ID": {
+      if (!state.scenario) return state;
+      return {
+        ...state,
+        scenario: {
+          ...state.scenario,
+          startParagraphId: action.payload || undefined,
+        },
         isDirty: true,
       };
     }
