@@ -41,26 +41,22 @@ export interface EditorLetter {
   paragraphId: string;
 }
 
-export interface EditorSetupStep {
-  /** 1-based step number (auto-assigned, matches array index+1) */
-  stepNumber: number;
-  /** Flat content blocks — no page division */
-  content: ContentBlock[];
-  /** Optional choices shown after the content */
+export interface EditorSetup {
+  /** Pages of content blocks — each page shown as one step */
+  pages: ContentBlock[][];
+  /** Optional choices shown on the last page */
   choices?: EditorChoice[];
 }
 
 export interface EditorScenario {
   meta: Scenario;
   paragraphs: EditorParagraph[];
-  /** Which paragraph to navigate to when setup is complete (fallback: "1") */
-  startParagraphId?: string;
+  /** Setup (preparation steps + optional navigation choices) */
+  setup?: EditorSetup;
   /** User-uploaded images: id → base64 data URL */
   images?: Record<string, string>;
   /** Scenario letters mapping */
   letters?: EditorLetter[];
-  /** Setup steps */
-  setupSteps?: EditorSetupStep[];
 }
 
 export interface EditorState {
@@ -188,16 +184,15 @@ export type EditorAction =
       type: "UPDATE_LETTER";
       payload: { id: string; paragraphId: string };
     }
-  | { type: "ADD_SETUP_STEP" }
-  | { type: "REMOVE_SETUP_STEP"; payload: number }
-  | { type: "SET_START_PARAGRAPH_ID"; payload: string }
+  | { type: "ADD_SETUP_PAGE" }
+  | { type: "REMOVE_SETUP_PAGE"; payload: number }
   | {
-      type: "SET_SETUP_STEP_CONTENT";
-      payload: { stepIndex: number; content: ContentBlock[] };
+      type: "SET_SETUP_PAGES";
+      payload: ContentBlock[][];
     }
   | {
-      type: "SET_SETUP_STEP_CHOICES";
-      payload: { stepIndex: number; choices: EditorChoice[] };
+      type: "SET_SETUP_CHOICES";
+      payload: EditorChoice[];
     };
 
 export interface EditorContextValue {

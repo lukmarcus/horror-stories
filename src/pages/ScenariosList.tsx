@@ -52,24 +52,9 @@ export const ScenariosList: React.FC = () => {
         imported.meta.id,
         (imported.letters ?? []) as LetterToken[],
       );
-      saveUserSetup(imported.meta.id, {
-        ...(imported.startParagraphId ? { startParagraphId: imported.startParagraphId } : {}),
-        steps: (imported.setupSteps ?? []).map((s) => ({
-          stepNumber: s.stepNumber,
-          content: s.content,
-          ...(s.choices && s.choices.length > 0
-            ? {
-                choices: s.choices.map((c) => ({
-                  id: c.id,
-                  text: c.text,
-                  ...(c.nextParagraphId !== undefined
-                    ? { nextParagraphId: c.nextParagraphId }
-                    : {}),
-                })),
-              }
-            : {}),
-        })),
-      });
+      if (imported.setup) {
+        saveUserSetup(imported.meta.id, imported.setup);
+      }
       setUserScenarios(loadUserScenarios());
     } catch (err) {
       setImportError(

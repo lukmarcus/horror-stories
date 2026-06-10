@@ -75,22 +75,39 @@ export function editorReducer(
                 id: String(l.id).toUpperCase(),
               }))
             : [],
-          setupSteps: Array.isArray(action.payload.setupSteps)
-            ? action.payload.setupSteps.map((s) => {
-                const raw = s as unknown as Record<string, unknown>;
-                return {
-                  stepNumber: s.stepNumber,
-                  content: Array.isArray(raw.content)
-                    ? (raw.content as ContentBlock[])
-                    : Array.isArray(raw.pages)
-                      ? (raw.pages as ContentBlock[][]).flat()
+          setup: (() => {
+            const raw = action.payload as unknown as Record<string, unknown>;
+            // New format: setup.pages
+            if (raw.setup && typeof raw.setup === "object") {
+              const s = raw.setup as Record<string, unknown>;
+              return {
+                pages: Array.isArray(s.pages)
+                  ? (s.pages as ContentBlock[][])
+                  : [[]],
+                choices: Array.isArray(s.choices)
+                  ? (s.choices as EditorChoice[])
+                  : undefined,
+              };
+            }
+            // Back-compat: old setupSteps[] format
+            if (
+              Array.isArray(raw.setupSteps) &&
+              (raw.setupSteps as unknown[]).length > 0
+            ) {
+              const steps = raw.setupSteps as Array<Record<string, unknown>>;
+              return {
+                pages: steps.map((s) =>
+                  Array.isArray(s.content)
+                    ? (s.content as ContentBlock[])
+                    : Array.isArray(s.pages)
+                      ? (s.pages as ContentBlock[][]).flat()
                       : [],
-                  choices: Array.isArray(raw.choices)
-                    ? (raw.choices as EditorChoice[])
-                    : [],
-                };
-              })
-            : [],
+                ),
+                choices: undefined,
+              };
+            }
+            return undefined;
+          })(),
         },
         isDirty: false,
         activeParagraphId: null,

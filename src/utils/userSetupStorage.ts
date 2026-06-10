@@ -3,8 +3,8 @@ import { createUserStorage } from "./userStorage";
 
 const storage = createUserStorage<SetupData>(
   (id) => `horror-stories:user-setup:${id}`,
-  { steps: [] },
-  (data) => data.steps.length === 0 && !data.startParagraphId,
+  { pages: [] },
+  (data) => data.pages.length === 0 && !data.choices?.length,
 );
 
 export const saveUserSetup = storage.save;

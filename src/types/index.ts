@@ -67,22 +67,13 @@ export interface Paragraph {
 }
 
 /**
- * Single step in the scenario setup/preparation flow
- */
-export interface SetupStep {
-  stepNumber: number;
-  content?: ContentBlock[];
-  text?: string;
-  choices?: Choice[];
-}
-
-/**
- * Setup data for a scenario — preparation steps and starting navigation
+ * Setup data for a scenario — preparation pages shown before the game starts
  */
 export interface SetupData {
-  /** Which paragraph to navigate to when setup is complete (fallback: "1") */
-  startParagraphId?: string;
-  steps: SetupStep[];
+  /** Pages of content blocks — each page is shown as one step to the player */
+  pages: ContentBlock[][];
+  /** Optional choices shown on the last page (navigates to a paragraph) */
+  choices?: Choice[];
 }
 
 /**

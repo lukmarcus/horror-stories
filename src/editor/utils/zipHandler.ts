@@ -141,25 +141,16 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
   }
 
   // Pack setup.json if present
-  if (
-    (scenario.setupSteps && scenario.setupSteps.length > 0) ||
-    scenario.startParagraphId
-  ) {
-    const steps = (scenario.setupSteps ?? []).map((s) => ({
-      stepNumber: s.stepNumber,
-      content: s.content,
-      ...(s.choices && s.choices.length > 0
-        ? { choices: s.choices.map(exportChoice) }
-        : {}),
-    }));
+  if (scenario.setup) {
+    const { pages, choices } = scenario.setup;
     zip.file(
       "setup.json",
       JSON.stringify(
         {
-          ...(scenario.startParagraphId
-            ? { startParagraphId: scenario.startParagraphId }
+          pages,
+          ...(choices && choices.length > 0
+            ? { choices: choices.map(exportChoice) }
             : {}),
-          steps,
         },
         null,
         2,
@@ -305,41 +296,50 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   }
 
   // Load setup.json if present
-  let setupSteps: EditorScenario["setupSteps"];
-  let startParagraphId: string | undefined;
+  let setup: EditorScenario["setup"];
   const setupFile = zip.file("setup.json");
   if (setupFile) {
     const parsed = JSON.parse(await setupFile.async("text"));
-    if (
-      typeof parsed.startParagraphId === "string" &&
-      parsed.startParagraphId
-    ) {
-      startParagraphId = parsed.startParagraphId;
+    // New format: pages[]
+    if (Array.isArray(parsed.pages)) {
+      const choices = Array.isArray(parsed.choices)
+        ? parsed.choices.map((c: unknown) => {
+            const ch = c as Record<string, unknown>;
+            return {
+              id: crypto.randomUUID(),
+              text: String(ch.text ?? ""),
+              ...(ch.nextParagraphId !== undefined
+                ? { nextParagraphId: String(ch.nextParagraphId) }
+                : {}),
+            };
+          })
+        : undefined;
+      setup = {
+        pages: parsed.pages as import("../../types").ContentBlock[][],
+        ...(choices && choices.length > 0 ? { choices } : {}),
+      };
     }
-    if (Array.isArray(parsed.steps)) {
-      setupSteps = parsed.steps.map(
-        (
-          s: { stepNumber: number; content?: unknown[]; choices?: unknown[] },
-          i: number,
-        ) => ({
-          stepNumber: s.stepNumber ?? i + 1,
-          content: Array.isArray(s.content) ? s.content : [],
-          choices: Array.isArray(s.choices)
-            ? s.choices.map((c: unknown) => {
-                const ch = c as Record<string, unknown>;
-                return {
-                  id: crypto.randomUUID(),
-                  text: String(ch.text ?? ""),
-                  ...(ch.nextParagraphId !== undefined
-                    ? { nextParagraphId: String(ch.nextParagraphId) }
-                    : {}),
-                };
-              })
+    // Back-compat: old steps[] format
+    else if (Array.isArray(parsed.steps) && parsed.steps.length > 0) {
+      const steps = parsed.steps as Array<Record<string, unknown>>;
+      setup = {
+        pages: steps.map((s) =>
+          Array.isArray(s.content)
+            ? (s.content as import("../../types").ContentBlock[])
             : [],
-        }),
-      );
+        ),
+      };
+      if (parsed.startParagraphId) {
+        setup.choices = [
+          {
+            id: crypto.randomUUID(),
+            text: `Przejdź do paragrafu ${parsed.startParagraphId}`,
+            nextParagraphId: String(parsed.startParagraphId),
+          },
+        ];
+      }
     }
   }
 
-  return { meta, paragraphs, images, letters, setupSteps, startParagraphId };
+  return { meta, paragraphs, images, letters, setup };
 }

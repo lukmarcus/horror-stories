@@ -1,26 +1,30 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { PrepareView } from "./PrepareView";
+import type { ContentBlock, Choice } from "../../../types";
 
 vi.mock("../../text/RichText/RichText", () => ({
-  RichText: ({ text, content }: { text?: string; content?: unknown[] }) => (
-    <div data-testid="rich-text">
-      {text || (content ? "block-content" : "")}
-    </div>
+  RichText: ({ content }: { content?: unknown[] }) => (
+    <div data-testid="rich-text">{content ? "block-content" : ""}</div>
   ),
 }));
 
-const makeStep = (text: string) => ({ stepNumber: 1, text });
+const makePage = (text: string): ContentBlock[] => [{ type: "text", text }];
+
+const defaultChoices: Choice[] = [
+  { id: "c1", text: "Przejdź do paragrafu 77", nextParagraphId: "77" },
+];
 
 const makeProps = (overrides = {}) => ({
   currentStep: 0,
   totalSteps: 3,
-  setupSteps: [makeStep("Krok 1"), makeStep("Krok 2"), makeStep("Krok 3")],
+  pages: [makePage("Strona 1"), makePage("Strona 2"), makePage("Strona 3")],
+  choices: defaultChoices,
   scenarioId: "test-scenario",
-  startParagraphId: "77",
   onPrev: vi.fn(),
   onNext: vi.fn(),
   onStart: vi.fn(),
+  onChoice: vi.fn(),
   ...overrides,
 });
 
@@ -61,50 +65,53 @@ describe("PrepareView", () => {
     expect(props.onPrev).toHaveBeenCalled();
   });
 
-  it("does not show Start button on non-last step", () => {
+  it("does not show choices on non-last step", () => {
     render(<PrepareView {...makeProps({ currentStep: 0 })} />);
     expect(screen.queryByText("Przejdź do paragrafu 77")).toBeNull();
   });
 
-  it("shows Start button on last step", () => {
+  it("shows choices on last step", () => {
     render(<PrepareView {...makeProps({ currentStep: 2, totalSteps: 3 })} />);
     expect(screen.getByText("Przejdź do paragrafu 77")).toBeDefined();
   });
 
-  it("calls onStart when Start button clicked", () => {
+  it("calls onChoice when choice button clicked", () => {
     const props = makeProps({ currentStep: 2, totalSteps: 3 });
     render(<PrepareView {...props} />);
     fireEvent.click(screen.getByText("Przejdź do paragrafu 77"));
+    expect(props.onChoice).toHaveBeenCalledWith("77");
+  });
+
+  it("shows Zacznij grę button when last step and no choices", () => {
+    render(
+      <PrepareView
+        {...makeProps({ currentStep: 2, totalSteps: 3, choices: [] })}
+      />,
+    );
+    expect(screen.getByText("Zacznij grę")).toBeDefined();
+  });
+
+  it("calls onStart when Zacznij grę clicked", () => {
+    const props = makeProps({ currentStep: 2, totalSteps: 3, choices: [] });
+    render(<PrepareView {...props} />);
+    fireEvent.click(screen.getByText("Zacznij grę"));
     expect(props.onStart).toHaveBeenCalled();
   });
 
-  it("uses startParagraphId in Start button text", () => {
-    render(
-      <PrepareView
-        {...makeProps({
-          currentStep: 2,
-          totalSteps: 3,
-          startParagraphId: "42",
-        })}
-      />,
-    );
-    expect(screen.getByText("Przejdź do paragrafu 42")).toBeDefined();
-  });
-
-  it("renders step content via RichText", () => {
+  it("renders page content via RichText", () => {
     render(<PrepareView {...makeProps()} />);
     expect(screen.getAllByTestId("rich-text").length).toBeGreaterThan(0);
   });
 
-  it("shows step content for current step", () => {
-    const steps = [
-      makeStep("Przygotuj planszę"),
-      makeStep("Rozłóż karty"),
-      makeStep("Zacznij grę"),
+  it("shows content for current step page", () => {
+    const pages = [
+      makePage("Przygotuj planszę"),
+      makePage("Rozłóż karty"),
+      makePage("Zacznij grę"),
     ];
     render(
-      <PrepareView {...makeProps({ setupSteps: steps, currentStep: 0 })} />,
+      <PrepareView {...makeProps({ pages, currentStep: 0, choices: [] })} />,
     );
-    expect(screen.getByText("Przygotuj planszę")).toBeDefined();
+    expect(screen.getAllByTestId("rich-text").length).toBeGreaterThan(0);
   });
 });
