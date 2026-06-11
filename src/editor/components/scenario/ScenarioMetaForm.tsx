@@ -16,6 +16,7 @@ export const ScenarioMetaForm: React.FC = () => {
   const { state, dispatch } = useEditor();
   const meta = state.scenario!.meta;
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [newCharacter, setNewCharacter] = useState("");
 
   const errors = validateMeta(meta);
 
@@ -169,6 +170,100 @@ export const ScenarioMetaForm: React.FC = () => {
           value={meta.id}
           readOnly
           placeholder="generowane z tytułu"
+        />
+      </div>
+
+      <div className="meta-form__field">
+        <label className="meta-form__label">Postacie</label>
+        <span className="meta-form__hint">
+          Opcjonalne. Widoczne na karcie scenariusza.
+        </span>
+        <div className="meta-form__tag-list">
+          {(meta.characters ?? []).map((char, i) => (
+            <span key={i} className="meta-form__tag">
+              {char}
+              <button
+                className="meta-form__tag-remove"
+                onClick={() =>
+                  dispatch({
+                    type: "SET_META",
+                    payload: {
+                      ...meta,
+                      characters: (meta.characters ?? []).filter(
+                        (_, j) => j !== i,
+                      ),
+                    },
+                  })
+                }
+                aria-label={`Usuń postać ${char}`}
+              >
+                ×
+              </button>
+            </span>
+          ))}
+        </div>
+        <div className="meta-form__input-with-suffix">
+          <input
+            className="meta-form__input"
+            type="text"
+            value={newCharacter}
+            onChange={(e) => setNewCharacter(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && newCharacter.trim()) {
+                e.preventDefault();
+                dispatch({
+                  type: "SET_META",
+                  payload: {
+                    ...meta,
+                    characters: [
+                      ...(meta.characters ?? []),
+                      newCharacter.trim(),
+                    ],
+                  },
+                });
+                setNewCharacter("");
+              }
+            }}
+            placeholder="Imię postaci, Enter aby dodać"
+          />
+          <button
+            className="meta-form__tag-add"
+            onClick={() => {
+              if (!newCharacter.trim()) return;
+              dispatch({
+                type: "SET_META",
+                payload: {
+                  ...meta,
+                  characters: [...(meta.characters ?? []), newCharacter.trim()],
+                },
+              });
+              setNewCharacter("");
+            }}
+          >
+            Dodaj
+          </button>
+        </div>
+      </div>
+
+      <div className="meta-form__field">
+        <label className="meta-form__label">Notatki</label>
+        <span className="meta-form__hint">
+          Opcjonalne. Widoczne na karcie scenariusza.
+        </span>
+        <textarea
+          className="meta-form__textarea"
+          value={meta.notes ?? ""}
+          onChange={(e) =>
+            dispatch({
+              type: "SET_META",
+              payload: {
+                ...meta,
+                notes: e.target.value || undefined,
+              },
+            })
+          }
+          placeholder="Notatki dla prowadzącego..."
+          rows={3}
         />
       </div>
     </div>

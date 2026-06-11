@@ -6,37 +6,37 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.10 - Edytor: import wbudowanych scenariuszy + brakujące pola meta
+## Milestone v0.2.10 - Edytor: kompletne pola meta scenariusza
+
+### Zakres
+
+**Refaktory (zrobione):**
+
+- ✅ `startParagraphId` — przeniesione do `setup.json` jako `choices`
+- ✅ `tokens` — usunięte, zastąpione przez `LETTERS_DATA` w `ScenariosList`
+- ✅ Refaktor `SetupStep[]` → `pages + choices` (jak paragraf)
+- ✅ `editorReducer` → sub-reducery
+- ✅ `createUserStorage` factory
+
+**Brakujące pola meta scenariusza w `ScenarioMetaForm`:**
+
+- ⏳ `characters` — edycja jako dynamiczna lista stringów
+- ⏳ `notes` — notatki dla prowadzącego (textarea)
+- ⏳ `enemyId` + `enemyDiceModifiers` — osobny widok `EnemyMetaEditor`
+
+### Status
+
+- ⏳ W trakcie
+
+---
+
+## Milestone v0.2.11 - Edytor: import wbudowanych scenariuszy
 
 ### Zakres
 
 - Możliwość skopiowania wbudowanego scenariusza do edytora jako baza do edycji
 - Wbudowane scenariusze są read-only — edytuje się kopię
-- Po v0.2.9 wszystkie elementy droga-donikad są edytowalne
-
-**Brakujące pola meta scenariusza w `ScenarioMetaForm`:**
-
-- `characters` — lista postaci (wyświetlana na karcie scenariusza); edycja jako lista stringów
-- `notes` — notatki dla prowadzącego; edycja jako `<textarea>`
-- `enemyId` + `enemyDiceModifiers` — osobny widok `EnemyMetaEditor` (analogicznie do `LettersEditor` / `SetupEditor`); zawiera wybór ID przeciwnika i listę modyfikatorów kości
-
-**Pola wymagające decyzji designerskiej (patrz TECH_DEBT):**
-
-- `startParagraphId` — przeniesione do `setup.json` jako `startParagraphId` na poziomie głównym; rozwiązuje konflikt z `SetupStep.choices` (realizowane w tym milestone)
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
-## Milestone v0.2.11 - Edytor: pozostałe pola meta
-
-### Zakres
-
-- `characters` — lista postaci (edycja jako dynamiczna lista stringów)
-- `notes` — notatki dla prowadzącego (textarea)
-- `enemyId` + `enemyDiceModifiers` — osobny widok `EnemyMetaEditor`
+- Wszystkie pola scenariusza obsługiwane w edytorze (możliwe po v0.2.10)
 
 ### Status
 
