@@ -3,6 +3,7 @@ import { useEditor } from "../context/useEditor";
 import { exportToZip, importFromZip } from "../utils/zipHandler";
 import { clearStorage } from "../utils/editorStorage";
 import { ScenarioMetaForm } from "../components/scenario/ScenarioMetaForm";
+import { EnemyMetaEditor } from "../components/scenario/EnemyMetaEditor";
 import { useMetaErrors } from "../components/scenario/scenarioMetaValidation";
 import { EditorParagraphView } from "../components/paragraph/EditorParagraphView";
 import { GraphView } from "../components/graph/GraphView";
@@ -188,12 +189,14 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
       {state.scenario && activeSection === "images" && <ImagesPanel />}
       {state.scenario && activeSection === "letters" && <LettersEditor />}
       {state.scenario && activeSection === "setup" && <SetupEditor />}
+      {state.scenario && activeSection === "enemy" && <EnemyMetaEditor />}
       {state.scenario &&
         activeSection !== "meta" &&
         activeSection !== "graph" &&
         activeSection !== "images" &&
         activeSection !== "letters" &&
-        activeSection !== "setup" && (
+        activeSection !== "setup" &&
+        activeSection !== "enemy" && (
           <EditorParagraphView
             paragraphId={activeSection}
             onNavigate={handleNavigate}

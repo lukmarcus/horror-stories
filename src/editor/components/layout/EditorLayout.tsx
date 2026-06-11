@@ -121,6 +121,16 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
               Przygotowanie
             </button>
           )}
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
+                activeSection === "enemy" ? "editor-sidebar__item--active" : ""
+              }`}
+              onClick={() => onSectionChange("enemy")}
+            >
+              Wróg
+            </button>
+          )}
 
           {allEntries.length > 0 && (
             <div className="editor-sidebar__section-divider" />
