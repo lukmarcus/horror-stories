@@ -3,6 +3,8 @@ import { useEditor } from "../../context/useEditor";
 import { ENEMIES } from "../../../data/enemies";
 import "./EnemyMetaEditor.css";
 
+const MODIFIER_PRESETS = [-2, -1, 1, 2] as const;
+
 export const EnemyMetaEditor: React.FC = () => {
   const { state, dispatch } = useEditor();
   const meta = state.scenario!.meta;
@@ -10,68 +12,59 @@ export const EnemyMetaEditor: React.FC = () => {
   const setMeta = (patch: Partial<typeof meta>) =>
     dispatch({ type: "SET_META", payload: { ...meta, ...patch } });
 
+  const selectedIds = meta.enemyIds ?? [];
   const modifiers = meta.enemyDiceModifiers ?? [];
+
+  const toggleEnemy = (id: string, checked: boolean) => {
+    const next = checked
+      ? [...selectedIds, id]
+      : selectedIds.filter((e) => e !== id);
+    setMeta({ enemyIds: next.length ? next : undefined });
+  };
+
+  const toggleModifier = (val: number, checked: boolean) => {
+    const next = checked
+      ? [...modifiers, val]
+      : modifiers.filter((m) => m !== val);
+    setMeta({ enemyDiceModifiers: next.length ? next : undefined });
+  };
 
   return (
     <div className="enemy-meta">
       <h2 className="enemy-meta__title">Wróg scenariusza</h2>
 
       <div className="enemy-meta__field">
-        <label className="enemy-meta__label">ID wroga</label>
-        <select
-          className="enemy-meta__select"
-          value={meta.enemyId ?? ""}
-          onChange={(e) => setMeta({ enemyId: e.target.value || undefined })}
-        >
-          <option value="">— brak —</option>
+        <label className="enemy-meta__label">Przeciwnicy</label>
+        <div className="enemy-meta__checklist">
           {Object.keys(ENEMIES).map((id) => (
-            <option key={id} value={id}>
-              {ENEMIES[id].name} ({id})
-            </option>
+            <label key={id} className="enemy-meta__check-row">
+              <input
+                type="checkbox"
+                checked={selectedIds.includes(id)}
+                onChange={(e) => toggleEnemy(id, e.target.checked)}
+              />
+              {ENEMIES[id].name} <span className="enemy-meta__id">({id})</span>
+            </label>
           ))}
-        </select>
+        </div>
       </div>
 
       <div className="enemy-meta__field">
-        <label className="enemy-meta__label">Modyfikatory kości</label>
+        <label className="enemy-meta__label">Modyfikatory kości gracza</label>
         <span className="enemy-meta__hint">
-          Lista wartości dodawanych do rzutu kością gracza (np. [1] = +1 do
-          każdego rzutu).
+          Zaznaczone wartości są dodawane do rzutów kością gracza.
         </span>
-        <div className="enemy-meta__modifiers">
-          {modifiers.map((val: number, i: number) => (
-            <div key={i} className="enemy-meta__modifier-row">
+        <div className="enemy-meta__checklist">
+          {MODIFIER_PRESETS.map((val) => (
+            <label key={val} className="enemy-meta__check-row">
               <input
-                className="enemy-meta__modifier-input"
-                type="number"
-                value={val}
-                onChange={(e) => {
-                  const next = [...modifiers];
-                  next[i] = Number(e.target.value);
-                  setMeta({ enemyDiceModifiers: next });
-                }}
+                type="checkbox"
+                checked={modifiers.includes(val)}
+                onChange={(e) => toggleModifier(val, e.target.checked)}
               />
-              <button
-                className="enemy-meta__modifier-remove"
-                onClick={() =>
-                  setMeta({
-                    enemyDiceModifiers: modifiers.filter(
-                      (_: number, j: number) => j !== i,
-                    ),
-                  })
-                }
-                aria-label={`Usuń modyfikator ${val}`}
-              >
-                ×
-              </button>
-            </div>
+              {val > 0 ? `+${val}` : val}
+            </label>
           ))}
-          <button
-            className="enemy-meta__modifier-add"
-            onClick={() => setMeta({ enemyDiceModifiers: [...modifiers, 0] })}
-          >
-            + Dodaj modyfikator
-          </button>
         </div>
       </div>
     </div>

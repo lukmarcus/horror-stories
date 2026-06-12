@@ -96,7 +96,7 @@ export interface Scenario {
   duration: number | null;
   characters?: string[];
   notes?: string;
-  enemyId?: string;
+  enemyIds?: string[];
   enemyDiceModifiers?: number[];
 }
 
