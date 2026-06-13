@@ -1,9 +1,14 @@
-﻿import type { EditorParagraph, EditorLetter } from "../../context/editorTypes";
+﻿import type {
+  EditorParagraph,
+  EditorLetter,
+  EditorSetup,
+} from "../../context/editorTypes";
 
 export function buildDefinition(
   paragraphs: EditorParagraph[],
   activeId?: string,
   letters?: EditorLetter[],
+  setup?: EditorSetup,
 ): string {
   if (paragraphs.length === 0) {
     return 'graph LR\n  empty["Brak paragrafów"]';
@@ -44,6 +49,16 @@ export function buildDefinition(
 
   for (const id of extraIds) {
     lines.push(`  p${id}["§${id} ?"]`);
+  }
+
+  // Setup node
+  if (setup) {
+    lines.push(`  setup(["[Setup]"])`);
+    for (const c of setup.choices ?? []) {
+      if (c.nextParagraphId) {
+        lines.push(`  setup --> p${c.nextParagraphId}`);
+      }
+    }
   }
 
   for (const p of paragraphs) {

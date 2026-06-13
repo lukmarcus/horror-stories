@@ -182,6 +182,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
         <GraphView
           paragraphs={state.scenario.paragraphs}
           letters={state.scenario.letters}
+          setup={state.scenario.setup}
           onNavigate={handleNavigate}
           onNavigateToLetters={() => onSectionChange("letters")}
         />

@@ -1,6 +1,10 @@
 ﻿import React, { useCallback, useEffect, useRef } from "react";
 import mermaid from "mermaid";
-import type { EditorParagraph, EditorLetter } from "../../context/editorTypes";
+import type {
+  EditorParagraph,
+  EditorLetter,
+  EditorSetup,
+} from "../../context/editorTypes";
 import { buildDefinition } from "./graphDefinition";
 import "./GraphView.css";
 
@@ -42,6 +46,7 @@ function ensureMermaid() {
 interface GraphViewProps {
   paragraphs: EditorParagraph[];
   letters?: EditorLetter[];
+  setup?: EditorSetup;
   activeParagraphId?: string;
   onNavigate: (id: string) => void;
   onNavigateToLetters?: () => void;
@@ -50,6 +55,7 @@ interface GraphViewProps {
 export const GraphView: React.FC<GraphViewProps> = ({
   paragraphs,
   letters,
+  setup,
   activeParagraphId,
   onNavigate,
   onNavigateToLetters,
@@ -72,7 +78,12 @@ export const GraphView: React.FC<GraphViewProps> = ({
   const renderGraph = useCallback(async () => {
     if (!containerRef.current) return;
     ensureMermaid();
-    const definition = buildDefinition(paragraphs, activeParagraphId, letters);
+    const definition = buildDefinition(
+      paragraphs,
+      activeParagraphId,
+      letters,
+      setup,
+    );
     const renderId = `hs-render-${++graphCounter}`;
     try {
       const { svg, bindFunctions } = await mermaid.render(renderId, definition);
@@ -86,7 +97,7 @@ export const GraphView: React.FC<GraphViewProps> = ({
           '<p class="graph-view__error">Błąd renderowania grafu.</p>';
       }
     }
-  }, [paragraphs, activeParagraphId, letters]);
+  }, [paragraphs, activeParagraphId, letters, setup]);
 
   useEffect(() => {
     void renderGraph();
