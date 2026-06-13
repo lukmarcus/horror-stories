@@ -10,13 +10,13 @@ import {
   toSlug,
   validateMeta,
 } from "./scenarioMetaValidation";
+import { CHARACTERS } from "../../../data/characters";
 import "./ScenarioMetaForm.css";
 
 export const ScenarioMetaForm: React.FC = () => {
   const { state, dispatch } = useEditor();
   const meta = state.scenario!.meta;
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const [newCharacter, setNewCharacter] = useState("");
 
   const errors = validateMeta(meta);
 
@@ -74,6 +74,20 @@ export const ScenarioMetaForm: React.FC = () => {
           maxLength={TITLE_MAX + 10}
         />
         {fieldError("title")}
+      </div>
+
+      <div className="meta-form__field">
+        <label className="meta-form__label">ID scenariusza</label>
+        <span className="meta-form__hint">
+          Generowany automatycznie z tytułu. Używany w adresie URL gry.
+        </span>
+        <input
+          className="meta-form__input meta-form__input--muted"
+          type="text"
+          value={meta.id}
+          readOnly
+          placeholder="generowane z tytułu"
+        />
       </div>
 
       <div className="meta-form__field">
@@ -160,88 +174,33 @@ export const ScenarioMetaForm: React.FC = () => {
       </div>
 
       <div className="meta-form__field">
-        <label className="meta-form__label">ID scenariusza</label>
-        <span className="meta-form__hint">
-          Generowany automatycznie z tytułu. Używany w adresie URL gry.
-        </span>
-        <input
-          className="meta-form__input meta-form__input--muted"
-          type="text"
-          value={meta.id}
-          readOnly
-          placeholder="generowane z tytułu"
-        />
-      </div>
-
-      <div className="meta-form__field">
         <label className="meta-form__label">Postacie</label>
         <span className="meta-form__hint">
           Opcjonalne. Widoczne na karcie scenariusza.
         </span>
-        <div className="meta-form__tag-list">
-          {(meta.characters ?? []).map((char, i) => (
-            <span key={i} className="meta-form__tag">
-              {char}
-              <button
-                className="meta-form__tag-remove"
-                onClick={() =>
+        <div className="meta-form__checklist">
+          {CHARACTERS.map((char) => (
+            <label key={char.id} className="meta-form__check-row">
+              <input
+                type="checkbox"
+                checked={(meta.characters ?? []).includes(char.name)}
+                onChange={(e) => {
+                  const current = meta.characters ?? [];
+                  const next = e.target.checked
+                    ? [...current, char.name]
+                    : current.filter((c) => c !== char.name);
                   dispatch({
                     type: "SET_META",
                     payload: {
                       ...meta,
-                      characters: (meta.characters ?? []).filter(
-                        (_, j) => j !== i,
-                      ),
+                      characters: next.length ? next : undefined,
                     },
-                  })
-                }
-                aria-label={`Usuń postać ${char}`}
-              >
-                ×
-              </button>
-            </span>
+                  });
+                }}
+              />
+              {char.name}
+            </label>
           ))}
-        </div>
-        <div className="meta-form__input-with-suffix">
-          <input
-            className="meta-form__input"
-            type="text"
-            value={newCharacter}
-            onChange={(e) => setNewCharacter(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && newCharacter.trim()) {
-                e.preventDefault();
-                dispatch({
-                  type: "SET_META",
-                  payload: {
-                    ...meta,
-                    characters: [
-                      ...(meta.characters ?? []),
-                      newCharacter.trim(),
-                    ],
-                  },
-                });
-                setNewCharacter("");
-              }
-            }}
-            placeholder="Imię postaci, Enter aby dodać"
-          />
-          <button
-            className="meta-form__tag-add"
-            onClick={() => {
-              if (!newCharacter.trim()) return;
-              dispatch({
-                type: "SET_META",
-                payload: {
-                  ...meta,
-                  characters: [...(meta.characters ?? []), newCharacter.trim()],
-                },
-              });
-              setNewCharacter("");
-            }}
-          >
-            Dodaj
-          </button>
         </div>
       </div>
 
