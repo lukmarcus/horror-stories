@@ -6,30 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.10 - Edytor: kompletne pola meta scenariusza
-
-### Zakres
-
-**Refaktory (zrobione):**
-
-- ✅ `startParagraphId` — przeniesione do `setup.json` jako `choices`
-- ✅ `tokens` — usunięte, zastąpione przez `LETTERS_DATA` w `ScenariosList`
-- ✅ Refaktor `SetupStep[]` → `pages + choices` (jak paragraf)
-- ✅ `editorReducer` → sub-reducery
-- ✅ `createUserStorage` factory
-
-**Brakujące pola meta scenariusza w `ScenarioMetaForm`:**
-
-- ⏳ `characters` — edycja jako dynamiczna lista stringów
-- ⏳ `notes` — notatki dla prowadzącego (textarea)
-- ⏳ `enemyId` + `enemyDiceModifiers` — osobny widok `EnemyMetaEditor`
-
-### Status
-
-- ⏳ W trakcie
-
----
-
 ## Milestone v0.2.11 - Edytor: import wbudowanych scenariuszy
 
 ### Zakres
