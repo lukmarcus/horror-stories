@@ -1,0 +1,57 @@
+.enemy-meta {
+  max-width: 640px;
+}
+
+.enemy-meta__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ccc;
+  margin: 0 0 1.5rem;
+}
+
+.enemy-meta__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.enemy-meta__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+}
+
+.enemy-meta__hint {
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.enemy-meta__checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.enemy-meta__check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.enemy-meta__check-row input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #888;
+  cursor: pointer;
+}
+
+.enemy-meta__id {
+  color: #666;
+  font-size: 0.8rem;
+}

@@ -141,15 +141,21 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
   }
 
   // Pack setup.json if present
-  if (scenario.setupSteps && scenario.setupSteps.length > 0) {
-    const steps = scenario.setupSteps.map((s) => ({
-      stepNumber: s.stepNumber,
-      content: s.content,
-      ...(s.choices && s.choices.length > 0
-        ? { choices: s.choices.map(exportChoice) }
-        : {}),
-    }));
-    zip.file("setup.json", JSON.stringify({ steps }, null, 2));
+  if (scenario.setup) {
+    const { pages, choices } = scenario.setup;
+    zip.file(
+      "setup.json",
+      JSON.stringify(
+        {
+          pages,
+          ...(choices && choices.length > 0
+            ? { choices: choices.map(exportChoice) }
+            : {}),
+        },
+        null,
+        2,
+      ),
+    );
   }
 
   // Pack user-uploaded images into images/ folder
@@ -195,8 +201,8 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   if (paragraphsFile) {
     const raw = JSON.parse(await paragraphsFile.async("text"));
     if (Array.isArray(raw.paragraphs)) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      paragraphs = raw.paragraphs.map((p: any) => {
+      paragraphs = (raw.paragraphs as unknown[]).map((p: unknown) => {
+        const pObj = p as Record<string, unknown>;
         const addId = (c: Record<string, unknown>) => ({
           id: crypto.randomUUID(),
           text: String(c.text ?? ""),
@@ -208,16 +214,20 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
             : {}),
         });
 
-        if (p.variants && typeof p.variants === "object") {
+        if (pObj.variants && typeof pObj.variants === "object") {
           // Variant paragraph: choices → variantSelectors, variants: contentPages → pages
-          const rawId = Array.isArray(p.id) ? p.id[0] : String(p.id);
-          const rawAliases = Array.isArray(p.id)
-            ? p.id.slice(1).map(String)
+          const rawId = Array.isArray(pObj.id)
+            ? String((pObj.id as unknown[])[0])
+            : String(pObj.id);
+          const rawAliases = Array.isArray(pObj.id)
+            ? (pObj.id as unknown[]).slice(1).map(String)
             : [];
-          const variantSelectors = (p.choices ?? []).map(addId);
+          const variantSelectors = (
+            (pObj.choices ?? []) as Record<string, unknown>[]
+          ).map(addId);
           const variants: Record<string, unknown> = {};
           for (const [vid, v] of Object.entries(
-            p.variants as Record<string, Record<string, unknown>>,
+            pObj.variants as Record<string, Record<string, unknown>>,
           )) {
             variants[vid] = {
               pages: v.contentPages ?? [[]],
@@ -231,30 +241,36 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
           return {
             id: rawId,
             ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
-            ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
+            ...(Array.isArray(pObj.pages) ? { pages: pObj.pages } : {}),
             variantSelectors,
             variants,
-            ...(Array.isArray(p.accessibleFrom)
-              ? { accessibleFrom: p.accessibleFrom }
+            ...(Array.isArray(pObj.accessibleFrom)
+              ? { accessibleFrom: pObj.accessibleFrom }
               : {}),
           };
         }
 
         // Simple paragraph
-        const rawId = Array.isArray(p.id) ? p.id[0] : String(p.id);
-        const rawAliases = Array.isArray(p.id) ? p.id.slice(1).map(String) : [];
-        const choices = (p.choices ?? []).map(addId);
+        const rawId = Array.isArray(pObj.id)
+          ? String((pObj.id as unknown[])[0])
+          : String(pObj.id);
+        const rawAliases = Array.isArray(pObj.id)
+          ? (pObj.id as unknown[]).slice(1).map(String)
+          : [];
+        const choices = ((pObj.choices ?? []) as Record<string, unknown>[]).map(
+          addId,
+        );
         return {
           id: rawId,
           ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
-          ...(p.text !== undefined ? { text: String(p.text) } : {}),
-          ...(Array.isArray(p.pages) ? { pages: p.pages } : {}),
+          ...(pObj.text !== undefined ? { text: String(pObj.text) } : {}),
+          ...(Array.isArray(pObj.pages) ? { pages: pObj.pages } : {}),
           ...(choices.length > 0 ? { choices } : {}),
-          ...(Array.isArray(p.accessibleFrom)
-            ? { accessibleFrom: p.accessibleFrom }
+          ...(Array.isArray(pObj.accessibleFrom)
+            ? { accessibleFrom: pObj.accessibleFrom }
             : {}),
         };
-      });
+      }) as EditorScenario["paragraphs"];
     }
   }
 
@@ -280,34 +296,50 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   }
 
   // Load setup.json if present
-  let setupSteps: EditorScenario["setupSteps"];
+  let setup: EditorScenario["setup"];
   const setupFile = zip.file("setup.json");
   if (setupFile) {
     const parsed = JSON.parse(await setupFile.async("text"));
-    if (Array.isArray(parsed.steps)) {
-      setupSteps = parsed.steps.map(
-        (
-          s: { stepNumber: number; content?: unknown[]; choices?: unknown[] },
-          i: number,
-        ) => ({
-          stepNumber: s.stepNumber ?? i + 1,
-          content: Array.isArray(s.content) ? s.content : [],
-          choices: Array.isArray(s.choices)
-            ? s.choices.map((c: unknown) => {
-                const ch = c as Record<string, unknown>;
-                return {
-                  id: crypto.randomUUID(),
-                  text: String(ch.text ?? ""),
-                  ...(ch.nextParagraphId !== undefined
-                    ? { nextParagraphId: String(ch.nextParagraphId) }
-                    : {}),
-                };
-              })
+    // New format: pages[]
+    if (Array.isArray(parsed.pages)) {
+      const choices = Array.isArray(parsed.choices)
+        ? parsed.choices.map((c: unknown) => {
+            const ch = c as Record<string, unknown>;
+            return {
+              id: crypto.randomUUID(),
+              text: String(ch.text ?? ""),
+              ...(ch.nextParagraphId !== undefined
+                ? { nextParagraphId: String(ch.nextParagraphId) }
+                : {}),
+            };
+          })
+        : undefined;
+      setup = {
+        pages: parsed.pages as import("../../types").ContentBlock[][],
+        ...(choices && choices.length > 0 ? { choices } : {}),
+      };
+    }
+    // Back-compat: old steps[] format
+    else if (Array.isArray(parsed.steps) && parsed.steps.length > 0) {
+      const steps = parsed.steps as Array<Record<string, unknown>>;
+      setup = {
+        pages: steps.map((s) =>
+          Array.isArray(s.content)
+            ? (s.content as import("../../types").ContentBlock[])
             : [],
-        }),
-      );
+        ),
+      };
+      if (parsed.startParagraphId) {
+        setup.choices = [
+          {
+            id: crypto.randomUUID(),
+            text: `Przejdź do paragrafu ${parsed.startParagraphId}`,
+            nextParagraphId: String(parsed.startParagraphId),
+          },
+        ];
+      }
     }
   }
 
-  return { meta, paragraphs, images, letters, setupSteps };
+  return { meta, paragraphs, images, letters, setup };
 }

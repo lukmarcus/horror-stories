@@ -82,11 +82,23 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
           {state.scenario && (
             <button
               className={`editor-sidebar__item ${
-                activeSection === "graph" ? "editor-sidebar__item--active" : ""
+                activeSection === "letters"
+                  ? "editor-sidebar__item--active"
+                  : ""
               }`}
-              onClick={() => onSectionChange("graph")}
+              onClick={() => onSectionChange("letters")}
             >
-              Graf połączeń
+              Żetony alfabetu
+            </button>
+          )}
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
+                activeSection === "enemy" ? "editor-sidebar__item--active" : ""
+              }`}
+              onClick={() => onSectionChange("enemy")}
+            >
+              Przeciwnicy
             </button>
           )}
           {state.scenario && (
@@ -102,23 +114,21 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
           {state.scenario && (
             <button
               className={`editor-sidebar__item ${
-                activeSection === "letters"
-                  ? "editor-sidebar__item--active"
-                  : ""
-              }`}
-              onClick={() => onSectionChange("letters")}
-            >
-              Żetony alfabetu
-            </button>
-          )}
-          {state.scenario && (
-            <button
-              className={`editor-sidebar__item ${
                 activeSection === "setup" ? "editor-sidebar__item--active" : ""
               }`}
               onClick={() => onSectionChange("setup")}
             >
               Przygotowanie
+            </button>
+          )}
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
+                activeSection === "graph" ? "editor-sidebar__item--active" : ""
+              }`}
+              onClick={() => onSectionChange("graph")}
+            >
+              Graf połączeń
             </button>
           )}
 

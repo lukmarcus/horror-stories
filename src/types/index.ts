@@ -67,12 +67,12 @@ export interface Paragraph {
 }
 
 /**
- * Single step in the scenario setup/preparation flow
+ * Setup data for a scenario — preparation pages shown before the game starts
  */
-export interface SetupStep {
-  stepNumber: number;
-  content?: ContentBlock[];
-  text?: string;
+export interface SetupData {
+  /** Pages of content blocks — each page is shown as one step to the player */
+  pages: ContentBlock[][];
+  /** Optional choices shown on the last page (navigates to a paragraph) */
   choices?: Choice[];
 }
 
@@ -95,10 +95,8 @@ export interface Scenario {
   maxPlayerCount: number | null;
   duration: number | null;
   characters?: string[];
-  tokens?: Record<string, number>;
   notes?: string;
-  startParagraphId?: string;
-  enemyId?: string;
+  enemyIds?: string[];
   enemyDiceModifiers?: number[];
 }
 

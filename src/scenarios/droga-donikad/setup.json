@@ -1,200 +1,152 @@
 {
-  "steps": [
+  "pages": [
+    [
+      {
+        "text": "Umieść żeton Jessici w plastikowych podstawce. Od teraz będziemy nazywać ją <span class='color-yellow'>figurką</span>. Dobierz jej <span class='color-yellow'>ekwipunek</span> (patrz obrazek) i połóż ją stroną z imieniem i wizerunkiem postaci."
+      },
+      {
+        "image": "jessica-ekwipunek"
+      },
+      {
+        "image": "jessica-figurka"
+      }
+    ],
+    [
+      {
+        "text": "Następnie przygotuj jej <span class='color-yellow'>talię postaci</span> która odzwierciedla jej stan psycho-fizyczny. Weź talię kart z ikoną <symbol id='karta-akcji'/> na rewersie i przygotuj dla Jessici jej talię składającą się z:"
+      },
+      {
+        "size": "xl",
+        "text": "Dwóch <image id='karta1'/> + dwóch <image id='karta2'/> + dwóch <image id='karta3'/>"
+      }
+    ],
+    [
+      {
+        "text": "Utworzone w ten sposób talie potasuj i umieść zakryte (rewersami do góry) obok ekwipunku postaci. Talii <span class='color-red'>nie można</span> przeglądać."
+      },
+      {
+        "image": "jessica-ekwipunek-talia"
+      },
+      {
+        "text": "Niewykorzystane karty <symbol id='karta-akcji'/> odłóż na bok. Będą one stanowić <span class='color-yellow'>pulę ogólną kart postaci</span>."
+      }
+    ],
+    [
+      {
+        "text": "Wyłóż planszę 12 (stroną <letter id='a'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>). Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
+      },
+      {
+        "image": "jessica-plansza"
+      },
+      {
+        "text": "W tym scenariuszu kładź plansze stroną w zamkniętych przestrzeniach. Ilustracje na planszach pełnią wyłącznie rolę estetyczną."
+      }
+    ],
+    [
+      {
+        "style": "italic",
+        "text": "Jessice towarzyszy nieznośny ból głowy. To jednak mniejszy z jej problemów. Otóż nie wie gdzie się znajduje i dlaczego. Wracała wspólnie z Patrickiem z imprezy, który obiecał, że ją podrzuci. To nie jest sen, bo jest zbyt realistyczny. Mroczny pokój bez okien i drzwiami naprzeciwko jest realny. Zadzwoniłaby po pomoc, ale ktoś zabrał jej telefon. Stara się odsuwać myśli na temat tego, że mogła zostać porwana. Patrick wyglądał na miłego chłopaka, nie zrobiłby tego. Niezależnie kto to jej zrobił, powinna znaleźć wyjście."
+      }
+    ],
+    [
+      {
+        "text": "Dobierz dwustronną <strong>kartę akcji ogólnych</strong>. Stanowi spis możliwych akcji (spójrz na obrazek):"
+      },
+      {
+        "image": "karty-akcji"
+      }
+    ],
+    [
+      {
+        "text": "W grze będzie pojawiał się symbol gwiazdki (<symbol id='gwiazda'/>). Odnosi się on do tych, które występują na kartach z talii postaci (tych z rewersem <symbol id='karta-akcji'/>, spójrz na obrazek po prawej). Ps. ilustracja nie ma żadnego znaczenia."
+      },
+      {
+        "image": "karta-gwiazda"
+      }
+    ],
+    [
+      {
+        "text": "Zużywając akcję na \"<strong>Otwarcie drzwi</strong>\" zadeklaruj przed dobraniem określoną przez siebie liczbę kart z talii postaci Jessici (w przypadku \"Otwarcia drzwi\" maksymalnie do trzech), dobierz tyle kart ile zadeklarowano i sprawdź rezultat w postaci łącznej sumy <symbol id='gwiazda'/> na wszystkich."
+      }
+    ],
+    [
+      {
+        "style": "bold",
+        "text": "<span class='color-red'>GRACZ DECYDUJE ILE DOBIERZE KART</span> <u>ZANIM JE ODSŁONI</u> <span class='color-red'>MOŻE SIĘ ZDARZYĆ SYTUACJA, IŻ ZABRAKNIE POTRZEBNEJ LICZBY</span> <symbol id='gwiazda'/> <span class='color-red'>- NIE MOŻNA WTEDY ZMIENIĆ ZDANIA I DOCIĄGNĄĆ WIĘCEJ PO FAKCIE.</span>"
+      }
+    ],
+    [
+      {
+        "text": "W razie porażki, czyli wyniku rzędu 0<symbol id='gwiazda'/>, w ramach nowej akcji po prostu powtórz czynność, aż zdołasz otworzyć drzwi (<symbol id='drzwi-otwarte'/>) lub je wyważyć (<symbol id='drzwi-wywazone'/>). Wyważonych nie będzie można zamknąć w razie potrzeby."
+      }
+    ],
+    [
+      {
+        "text": "Dobrane <symbol id='karta-akcji'/> zawsze odkładamy od razu na <span class='color-yellow'>stos kart odrzuconych</span> tej postaci (ten stos w przeciwieństwie do talii postaci można zawsze przeglądać)."
+      },
+      {
+        "image": "karty-odrzucone"
+      }
+    ],
+    [
+      {
+        "text": "Ilekroć należałoby dobrać <symbol id='karta-akcji'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='karta-akcji'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='karta-akcji'/>)."
+      }
+    ],
+    [
+      {
+        "text": "Wykorzystaj teraz \"Otwarcie drzwi\" ze spisu możliwych akcji."
+      },
+      {
+        "text": "Przemieszczać się do nowych plansz można wyłącznie poprzez <symbol id='drzwi-otwarte'/> lub <symbol id='drzwi-wywazone'/>. Otwarcie drzwi lub wyważenie <strong>NIE</strong> oznacza automatyczne przemieszczenia się do nowego planszy."
+      }
+    ],
+    [
+      {
+        "text": "Jedyne dostępne przejście wiedzie na wschód. Przechodząc w tym kierunku do nowej planszy, sprawdzamy <span class='color-green'>paragraf</span>, który należy wtedy przeczytać. W przypadku planszy 12 idąc na wschód należy przejść do <span class='color-green'>paragrafu 77</span>."
+      },
+      {
+        "image": "plansza-12"
+      },
+      {
+        "size": "xl",
+        "style": "bold",
+        "text": "<span class='color-red'>Wstrzymaj się z tym jednak przez chwilę!</span>"
+      }
+    ],
+    [
+      {
+        "text": "Zwróć uwagę, że przy numerze <span class='color-green'>77</span> znajduje się symbol <symbol id='paragraf'/> (oznacza <span class='color-green'>paragraf</span>)."
+      },
+      {
+        "text": "Ilekroć w ramach akcji wskazujesz <symbol id='paragraf'/> oznacza to konieczność dobrania przez figurkę aktualnie wykonującą turę dobrania wierzchniej karty ze swojej talii postaci, czyli <symbol id='karta-akcji'/>. Nie wymaga to żadnych <symbol id='gwiazda'/>, aby to zrobić."
+      }
+    ],
+    [
+      {
+        "text": "Jessica, aby więc przejść na wschód wskazuje paragraf <span class='color-green'>77</span>. Jako, że ma na sobie <symbol id='paragraf'/>, dobiera wierzchnią kartę ze swojej talii i odkłada ją na stos odrzucony. Dopiero po zrobieniu tego i rozpatrzeniu tekstu (jeśli takowy jest) może przejść do wskazanego przez siebie paragrafu. Nadrukowane <symbol id='paragraf'/> na planszach można wskazywać wyłącznie, gdy chcemy odkryć nową planszę i tym kierunku wiodą <symbol id='drzwi-otwarte'/> / <symbol id='drzwi-wywazone'/>."
+      }
+    ],
+    [
+      {
+        "text": "Paragrafy zaznaczone w każdym scenariuszu na zielono i znajdują się zawsze po lewej stronie każdego scenariusza. Na obrazku po lewej możesz zobaczyć paragrafy <span class='color-green'>2</span> oraz <span class='color-green'>3</span>."
+      },
+      {
+        "image": "paragrafy"
+      }
+    ],
+    [
+      {
+        "style": "bold",
+        "size": "lg",
+        "text": "<span class='color-red'>DOBIERZ WIERZCHNIĄ KARTĘ Z TALII I PRZEJDŹ DO PARAGRAFU</span> <span class='color-green'>77</span> <span class='color-red'>na stronie 13.</span>"
+      }
+    ]
+  ],
+  "choices": [
     {
-      "stepNumber": 1,
-      "content": [
-        {
-          "text": "Umieść żeton Jessici w plastikowych podstawce. Od teraz będziemy nazywać ją <span class='color-yellow'>figurką</span>. Dobierz jej <span class='color-yellow'>ekwipunek</span> (patrz obrazek) i połóż ją stroną z imieniem i wizerunkiem postaci."
-        },
-        {
-          "image": "jessica-ekwipunek"
-        },
-        {
-          "image": "jessica-figurka"
-        }
-      ]
-    },
-    {
-      "stepNumber": 2,
-      "content": [
-        {
-          "text": "Następnie przygotuj jej <span class='color-yellow'>talię postaci</span> która odzwierciedla jej stan psycho-fizyczny. Weź talię kart z ikoną <symbol id='karta-akcji'/> na rewersie i przygotuj dla Jessici jej talię składającą się z:"
-        },
-        {
-          "size": "xl",
-          "text": "Dwóch <image id='karta1'/> + dwóch <image id='karta2'/> + dwóch <image id='karta3'/>"
-        }
-      ]
-    },
-    {
-      "stepNumber": 3,
-      "content": [
-        {
-          "text": "Utworzone w ten sposób talie potasuj i umieść zakryte (rewersami do góry) obok ekwipunku postaci. Talii <span class='color-red'>nie można</span> przeglądać."
-        },
-        {
-          "image": "jessica-ekwipunek-talia"
-        },
-        {
-          "text": "Niewykorzystane karty <symbol id='karta-akcji'/> odłóż na bok. Będą one stanowić <span class='color-yellow'>pulę ogólną kart postaci</span>."
-        }
-      ]
-    },
-    {
-      "stepNumber": 4,
-      "content": [
-        {
-          "text": "Wyłóż planszę 12 (stroną <letter id='a'/>; strony różnią się wyłącznie kwestiami wizualnymi), a na jego polu <span class='color-purple'>E</span> żeton zamkniętych drzwi (<symbol id='drzwi-zamkniete'/>). Na środku planszy postaw figurkę Jessici (obrazek po prawej)."
-        },
-        {
-          "image": "jessica-plansza"
-        },
-        {
-          "text": "W tym scenariuszu kładź plansze stroną w zamkniętych przestrzeniach. Ilustracje na planszach pełnią wyłącznie rolę estetyczną."
-        }
-      ]
-    },
-    {
-      "stepNumber": 5,
-      "content": [
-        {
-          "style": "italic",
-          "text": "Jessice towarzyszy nieznośny ból głowy. To jednak mniejszy z jej problemów. Otóż nie wie gdzie się znajduje i dlaczego. Wracała wspólnie z Patrickiem z imprezy, który obiecał, że ją podrzuci. To nie jest sen, bo jest zbyt realistyczny. Mroczny pokój bez okien i drzwiami naprzeciwko jest realny. Zadzwoniłaby po pomoc, ale ktoś zabrał jej telefon. Stara się odsuwać myśli na temat tego, że mogła zostać porwana. Patrick wyglądał na miłego chłopaka, nie zrobiłby tego. Niezależnie kto to jej zrobił, powinna znaleźć wyjście."
-        }
-      ]
-    },
-    {
-      "stepNumber": 6,
-      "content": [
-        {
-          "text": "Dobierz dwustronną <strong>kartę akcji ogólnych</strong>. Stanowi spis możliwych akcji (spójrz na obrazek):"
-        },
-        {
-          "image": "karty-akcji"
-        }
-      ]
-    },
-    {
-      "stepNumber": 7,
-      "content": [
-        {
-          "text": "W grze będzie pojawiał się symbol gwiazdki (<symbol id='gwiazda'/>). Odnosi się on do tych, które występują na kartach z talii postaci (tych z rewersem <symbol id='karta-akcji'/>, spójrz na obrazek po prawej). Ps. ilustracja nie ma żadnego znaczenia."
-        },
-        {
-          "image": "karta-gwiazda"
-        }
-      ]
-    },
-    {
-      "stepNumber": 8,
-      "content": [
-        {
-          "text": "Zużywając akcję na \"<strong>Otwarcie drzwi</strong>\" zadeklaruj przed dobraniem określoną przez siebie liczbę kart z talii postaci Jessici (w przypadku \"Otwarcia drzwi\" maksymalnie do trzech), dobierz tyle kart ile zadeklarowano i sprawdź rezultat w postaci łącznej sumy <symbol id='gwiazda'/> na wszystkich."
-        }
-      ]
-    },
-    {
-      "stepNumber": 9,
-      "content": [
-        {
-          "style": "bold",
-          "text": "<span class='color-red'>GRACZ DECYDUJE ILE DOBIERZE KART</span> <u>ZANIM JE ODSŁONI</u> <span class='color-red'>MOŻE SIĘ ZDARZYĆ SYTUACJA, IŻ ZABRAKNIE POTRZEBNEJ LICZBY</span> <symbol id='gwiazda'/> <span class='color-red'>- NIE MOŻNA WTEDY ZMIENIĆ ZDANIA I DOCIĄGNĄĆ WIĘCEJ PO FAKCIE.</span>"
-        }
-      ]
-    },
-    {
-      "stepNumber": 10,
-      "content": [
-        {
-          "text": "W razie porażki, czyli wyniku rzędu 0<symbol id='gwiazda'/>, w ramach nowej akcji po prostu powtórz czynność, aż zdołasz otworzyć drzwi (<symbol id='drzwi-otwarte'/>) lub je wyważyć (<symbol id='drzwi-wywazone'/>). Wyważonych nie będzie można zamknąć w razie potrzeby."
-        }
-      ]
-    },
-    {
-      "stepNumber": 11,
-      "content": [
-        {
-          "text": "Dobrane <symbol id='karta-akcji'/> zawsze odkładamy od razu na <span class='color-yellow'>stos kart odrzuconych</span> tej postaci (ten stos w przeciwieństwie do talii postaci można zawsze przeglądać)."
-        },
-        {
-          "image": "karty-odrzucone"
-        }
-      ]
-    },
-    {
-      "stepNumber": 12,
-      "content": [
-        {
-          "text": "Ilekroć należałoby dobrać <symbol id='karta-akcji'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='karta-akcji'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='karta-akcji'/>)."
-        }
-      ]
-    },
-    {
-      "stepNumber": 13,
-      "content": [
-        {
-          "text": "Wykorzystaj teraz \"Otwarcie drzwi\" ze spisu możliwych akcji."
-        },
-        {
-          "text": "Przemieszczać się do nowych plansz można wyłącznie poprzez <symbol id='drzwi-otwarte'/> lub <symbol id='drzwi-wywazone'/>. Otwarcie drzwi lub wyważenie <strong>NIE</strong> oznacza automatyczne przemieszczenia się do nowego planszy."
-        }
-      ]
-    },
-    {
-      "stepNumber": 14,
-      "content": [
-        {
-          "text": "Jedyne dostępne przejście wiedzie na wschód. Przechodząc w tym kierunku do nowej planszy, sprawdzamy <span class='color-green'>paragraf</span>, który należy wtedy przeczytać. W przypadku planszy 12 idąc na wschód należy przejść do <span class='color-green'>paragrafu 77</span>."
-        },
-        {
-          "image": "plansza-12"
-        },
-        {
-          "size": "xl",
-          "style": "bold",
-          "text": "<span class='color-red'>Wstrzymaj się z tym jednak przez chwilę!</span>"
-        }
-      ]
-    },
-    {
-      "stepNumber": 15,
-      "content": [
-        {
-          "text": "Zwróć uwagę, że przy numerze <span class='color-green'>77</span> znajduje się symbol <symbol id='paragraf'/> (oznacza <span class='color-green'>paragraf</span>)."
-        },
-        {
-          "text": "Ilekroć w ramach akcji wskazujesz <symbol id='paragraf'/> oznacza to konieczność dobrania przez figurkę aktualnie wykonującą turę dobrania wierzchniej karty ze swojej talii postaci, czyli <symbol id='karta-akcji'/>. Nie wymaga to żadnych <symbol id='gwiazda'/>, aby to zrobić."
-        }
-      ]
-    },
-    {
-      "stepNumber": 16,
-      "content": [
-        {
-          "text": "Jessica, aby więc przejść na wschód wskazuje paragraf <span class='color-green'>77</span>. Jako, że ma na sobie <symbol id='paragraf'/>, dobiera wierzchnią kartę ze swojej talii i odkłada ją na stos odrzucony. Dopiero po zrobieniu tego i rozpatrzeniu tekstu (jeśli takowy jest) może przejść do wskazanego przez siebie paragrafu. Nadrukowane <symbol id='paragraf'/> na planszach można wskazywać wyłącznie, gdy chcemy odkryć nową planszę i tym kierunku wiodą <symbol id='drzwi-otwarte'/> / <symbol id='drzwi-wywazone'/>."
-        }
-      ]
-    },
-    {
-      "stepNumber": 17,
-      "content": [
-        {
-          "text": "Paragrafy zaznaczone w każdym scenariuszu na zielono i znajdują się zawsze po lewej stronie każdego scenariusza. Na obrazku po lewej możesz zobaczyć paragrafy <span class='color-green'>2</span> oraz <span class='color-green'>3</span>."
-        },
-        {
-          "image": "paragrafy"
-        }
-      ]
-    },
-    {
-      "stepNumber": 18,
-      "content": [
-        {
-          "style": "bold",
-          "size": "lg",
-          "text": "<span class='color-red'>DOBIERZ WIERZCHNIĄ KARTĘ Z TALII I PRZEJDŹ DO PARAGRAFU</span> <span class='color-green'>77</span> <span class='color-red'>na stronie 13.</span>"
-        }
-      ]
+      "text": "Przejdź do paragrafu 77",
+      "nextParagraphId": "77"
     }
   ]
 }

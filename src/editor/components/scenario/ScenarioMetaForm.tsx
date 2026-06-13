@@ -10,6 +10,7 @@ import {
   toSlug,
   validateMeta,
 } from "./scenarioMetaValidation";
+import { CHARACTERS } from "../../../data/characters";
 import "./ScenarioMetaForm.css";
 
 export const ScenarioMetaForm: React.FC = () => {
@@ -73,6 +74,20 @@ export const ScenarioMetaForm: React.FC = () => {
           maxLength={TITLE_MAX + 10}
         />
         {fieldError("title")}
+      </div>
+
+      <div className="meta-form__field">
+        <label className="meta-form__label">ID scenariusza</label>
+        <span className="meta-form__hint">
+          Generowany automatycznie z tytułu. Używany w adresie URL gry.
+        </span>
+        <input
+          className="meta-form__input meta-form__input--muted"
+          type="text"
+          value={meta.id}
+          readOnly
+          placeholder="generowane z tytułu"
+        />
       </div>
 
       <div className="meta-form__field">
@@ -159,16 +174,55 @@ export const ScenarioMetaForm: React.FC = () => {
       </div>
 
       <div className="meta-form__field">
-        <label className="meta-form__label">ID scenariusza</label>
+        <label className="meta-form__label">Postacie</label>
         <span className="meta-form__hint">
-          Generowany automatycznie z tytułu. Używany w adresie URL gry.
+          Opcjonalne. Widoczne na karcie scenariusza.
         </span>
-        <input
-          className="meta-form__input meta-form__input--muted"
-          type="text"
-          value={meta.id}
-          readOnly
-          placeholder="generowane z tytułu"
+        <div className="meta-form__checklist">
+          {CHARACTERS.map((char) => (
+            <label key={char.id} className="meta-form__check-row">
+              <input
+                type="checkbox"
+                checked={(meta.characters ?? []).includes(char.name)}
+                onChange={(e) => {
+                  const current = meta.characters ?? [];
+                  const next = e.target.checked
+                    ? [...current, char.name]
+                    : current.filter((c) => c !== char.name);
+                  dispatch({
+                    type: "SET_META",
+                    payload: {
+                      ...meta,
+                      characters: next.length ? next : undefined,
+                    },
+                  });
+                }}
+              />
+              {char.name}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="meta-form__field">
+        <label className="meta-form__label">Notatki</label>
+        <span className="meta-form__hint">
+          Opcjonalne. Widoczne na karcie scenariusza.
+        </span>
+        <textarea
+          className="meta-form__textarea"
+          value={meta.notes ?? ""}
+          onChange={(e) =>
+            dispatch({
+              type: "SET_META",
+              payload: {
+                ...meta,
+                notes: e.target.value || undefined,
+              },
+            })
+          }
+          placeholder="Notatki dla prowadzącego..."
+          rows={3}
         />
       </div>
     </div>

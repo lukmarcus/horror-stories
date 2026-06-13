@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { SCENARIOS } from "../scenarios";
+import { SCENARIOS, LETTERS_DATA } from "../scenarios";
 import { Button, BackToMenu } from "../components/ui";
 import { importFromZip } from "../editor/utils/zipHandler";
 import {
@@ -15,7 +15,7 @@ import {
 import { saveUserImages, removeUserImages } from "../utils/userImageStorage";
 import { saveUserLetters, removeUserLetters } from "../utils/userLetterStorage";
 import { saveUserSetup, removeUserSetup } from "../utils/userSetupStorage";
-import type { Scenario, LetterToken, SetupStep } from "../types";
+import type { Scenario, LetterToken } from "../types";
 import "../styles/pages/scenarios-list.css";
 
 const covers = import.meta.glob(
@@ -52,24 +52,9 @@ export const ScenariosList: React.FC = () => {
         imported.meta.id,
         (imported.letters ?? []) as LetterToken[],
       );
-      saveUserSetup(
-        imported.meta.id,
-        (imported.setupSteps ?? []).map((s) => ({
-          stepNumber: s.stepNumber,
-          content: s.content,
-          ...(s.choices && s.choices.length > 0
-            ? {
-                choices: s.choices.map((c) => ({
-                  id: c.id,
-                  text: c.text,
-                  ...(c.nextParagraphId !== undefined
-                    ? { nextParagraphId: c.nextParagraphId }
-                    : {}),
-                })),
-              }
-            : {}),
-        })) as SetupStep[],
-      );
+      if (imported.setup) {
+        saveUserSetup(imported.meta.id, imported.setup);
+      }
       setUserScenarios(loadUserScenarios());
     } catch (err) {
       setImportError(
@@ -202,17 +187,25 @@ export const ScenariosList: React.FC = () => {
               </div>
             )}
 
-            {/* Tokens */}
-            {scenario.tokens && Object.keys(scenario.tokens).length > 0 && (
-              <div className="scenarios-list__metadata">
-                <h3 className="scenarios-list__metadata-title">Żetony</h3>
-                <p className="scenarios-list__metadata-content">
-                  {Object.entries(scenario.tokens)
-                    .map(([key, value]) => `${key}: ${value}`)
-                    .join(", ")}
-                </p>
-              </div>
-            )}
+            {/* Letters */}
+            {(() => {
+              const letters = LETTERS_DATA[scenario.id]?.letters ?? [];
+              if (letters.length === 0) return null;
+              return (
+                <div className="scenarios-list__metadata">
+                  <h3 className="scenarios-list__metadata-title">
+                    Żetony alfabetu
+                  </h3>
+                  <p className="scenarios-list__metadata-content">
+                    {letters
+                      .slice()
+                      .sort((a, b) => a.id.localeCompare(b.id))
+                      .map((l) => `${l.id.toUpperCase()} → §${l.paragraphId}`)
+                      .join(", ")}
+                  </p>
+                </div>
+              );
+            })()}
 
             {/* Notes */}
             {scenario.notes && (

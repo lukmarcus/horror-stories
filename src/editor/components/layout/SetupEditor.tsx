@@ -23,116 +23,91 @@ export const SetupEditor: React.FC = () => {
   if (!editorCtx) return null;
 
   const { state, dispatch } = editorCtx;
-  const steps = state.scenario?.setupSteps ?? [];
+  const setup = state.scenario?.setup;
+  const pages = setup?.pages ?? [[]];
+  const choices = setup?.choices ?? [];
+
+  const handleUpdateChoice = (updated: EditorChoice) => {
+    dispatch({
+      type: "SET_SETUP_CHOICES",
+      payload: choices.map((c) => (c.id === updated.id ? updated : c)),
+    });
+  };
+
+  const handleRemoveChoice = (id: string) => {
+    dispatch({
+      type: "SET_SETUP_CHOICES",
+      payload: choices.filter((c) => c.id !== id),
+    });
+  };
+
+  const handleAddChoice = (text: string, target: string) => {
+    dispatch({
+      type: "SET_SETUP_CHOICES",
+      payload: [
+        ...choices,
+        {
+          id: crypto.randomUUID(),
+          text,
+          nextParagraphId: target || undefined,
+        },
+      ],
+    });
+  };
 
   return (
     <div className="setup-editor">
       <h2 className="setup-editor__title">Przygotowanie scenariusza</h2>
       <p className="setup-editor__hint">
-        Kroki setupu są wyświetlane graczom przed rozpoczęciem gry. Każdy krok
-        to treść z opcjonalnymi wyborami.
+        Strony setupu są wyświetlane graczom przed rozpoczęciem gry. Wybory
+        pojawią się na ostatniej stronie.
       </p>
 
-      {steps.length === 0 && (
+      {!setup && (
         <p className="setup-editor__empty">
-          Brak kroków. Kliknij „Dodaj krok", aby zacząć.
+          Brak treści setupu. Kliknij „Dodaj stronę", aby zacząć.
         </p>
       )}
 
-      {steps.map((step, index) => {
-        const choices = step.choices ?? [];
+      {setup && (
+        <>
+          <PagesEditor
+            paragraphId="__setup__"
+            pages={pages}
+            onPagesChange={(newPages) =>
+              dispatch({ type: "SET_SETUP_PAGES", payload: newPages })
+            }
+          />
 
-        const handleUpdateChoice = (updated: EditorChoice) => {
-          dispatch({
-            type: "SET_SETUP_STEP_CHOICES",
-            payload: {
-              stepIndex: index,
-              choices: choices.map((c) => (c.id === updated.id ? updated : c)),
-            },
-          });
-        };
-
-        const handleRemoveChoice = (id: string) => {
-          dispatch({
-            type: "SET_SETUP_STEP_CHOICES",
-            payload: {
-              stepIndex: index,
-              choices: choices.filter((c) => c.id !== id),
-            },
-          });
-        };
-
-        const handleAddChoice = (text: string, target: string) => {
-          dispatch({
-            type: "SET_SETUP_STEP_CHOICES",
-            payload: {
-              stepIndex: index,
-              choices: [
-                ...choices,
-                {
-                  id: crypto.randomUUID(),
-                  text,
-                  nextParagraphId: target || undefined,
-                },
-              ],
-            },
-          });
-        };
-
-        return (
-          <div key={index} className="setup-editor__step">
-            <div className="setup-editor__step-header">
-              <span className="setup-editor__step-number">
-                Krok {step.stepNumber}
-              </span>
-              <button
-                className="setup-editor__remove"
-                onClick={() =>
-                  dispatch({ type: "REMOVE_SETUP_STEP", payload: index })
-                }
-                title="Usuń krok"
-              >
-                ✕
-              </button>
-            </div>
-            <PagesEditor
-              paragraphId={`__setup_${index}`}
-              pages={[step.content]}
-              singlePage
-              onPagesChange={(pages) =>
-                dispatch({
-                  type: "SET_SETUP_STEP_CONTENT",
-                  payload: { stepIndex: index, content: pages[0] ?? [] },
-                })
-              }
-            />
-            <div className="setup-editor__choices">
-              {choices.map((choice) => (
-                <ChoiceRow
-                  key={choice.id}
-                  choice={choice}
-                  paragraphIds={paragraphIds}
-                  focusedId={focusedChoiceId}
-                  setFocusedId={setFocusedChoiceId}
-                  onUpdate={handleUpdateChoice}
-                  onRemove={handleRemoveChoice}
-                />
-              ))}
-              <ChoiceAddRow
-                prefixLabel="§"
-                targetList={paragraphIds}
-                onAdd={handleAddChoice}
+          <div className="setup-editor__choices">
+            <h3 className="setup-editor__choices-title">
+              Wybory (ostatnia strona)
+            </h3>
+            {choices.map((choice) => (
+              <ChoiceRow
+                key={choice.id}
+                choice={choice}
+                paragraphIds={paragraphIds}
+                focusedId={focusedChoiceId}
+                setFocusedId={setFocusedChoiceId}
+                onUpdate={handleUpdateChoice}
+                onRemove={handleRemoveChoice}
               />
-            </div>
+            ))}
+            <ChoiceAddRow
+              prefixLabel="§"
+              targetList={paragraphIds}
+              onAdd={handleAddChoice}
+            />
           </div>
-        );
-      })}
+        </>
+      )}
 
       <button
         className="editor-btn editor-btn--primary setup-editor__add-btn"
-        onClick={() => dispatch({ type: "ADD_SETUP_STEP" })}
+        onClick={() => dispatch({ type: "ADD_SETUP_PAGE" })}
       >
-        + Dodaj krok
+        + Dodaj stronę
       </button>
     </div>
   );

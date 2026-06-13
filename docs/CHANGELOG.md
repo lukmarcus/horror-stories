@@ -7,11 +7,28 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.10] - 2026-06-13
+
+### Dodano
+
+- Edytor: pole Postacie w formularzu meta — checkboxy ze wszystkich dostępnych postaci (`data/characters`); zaznaczone widoczne na karcie scenariusza
+- Edytor: pole Notatki w formularzu meta — textarea z notatkami dla prowadzącego
+- Edytor: widok Przeciwnicy — lista checkboxów dostępnych wrogów (wielokrotny wybór) oraz presety modyfikatorów kości gracza (−2, −1, +1, +2)
+- Edytor: węzeł `[Setup]` widoczny w grafie połączeń z połączeniami do paragrafów wynikających z wyborów w przygotowaniu
+
+### Zmieniono
+
+- Edytor: kolejność pól formularza meta: tytuł → ID → opis → liczba graczy/czas → postacie → notatki
+- Edytor: kolejność pozycji menu bocznego: Dane scenariusza → Żetony alfabetu → Przeciwnicy → Grafiki → Przygotowanie → Graf połączeń
+- Edytor: scenariusz może mieć wielu przeciwników (zamiast jednego `enemyId`)
+
+---
+
 ## [0.2.9] - 2026-06-07
 
 ### Dodano
 
-- Edytor: **LettersEditor** — dodawanie, edytowanie i usuwanie żetonów alfabetu (`letters.json`); każdy żeton łączy literę z docelowym paragrafem
+- Edytor: LettersEditor — dodawanie, edytowanie i usuwanie żetonów alfabetu (`letters.json`); każdy żeton łączy literę z docelowym paragrafem
 - Edytor: Żetony alfabetu widoczne w grafie scenariusza jako oddzielne węzły kołowe (np. `((A))`) z połączeniami do paragrafów; kliknięcie węzła przechodzi na ekran liter
 - Edytor: Interfejs LettersEditor w stylu wyborów — pole paragrafu docelowego z autouzupełnianiem i zapobieganiem duplikatom
 - Edytor: W bocznym panelu paragraf wyświetla tag `(litera A)` gdy jest podpięty pod żeton alfabetu

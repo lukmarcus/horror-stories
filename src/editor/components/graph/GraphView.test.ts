@@ -132,4 +132,32 @@ describe("buildDefinition", () => {
       expect(result).toContain(`click p${id} __hsGraphNavigate`);
     });
   });
+
+  it("renders setup node when setup is provided", () => {
+    const result = buildDefinition([p("1")], undefined, undefined, {
+      pages: [],
+    });
+    expect(result).toContain('setup(["[Setup]"])');
+  });
+
+  it("renders setup node without arrows when setup has no choices", () => {
+    const result = buildDefinition([p("1")], undefined, undefined, {
+      pages: [],
+      choices: [],
+    });
+    expect(result).not.toContain("setup -->");
+  });
+
+  it("renders setup → paragraph arrow for each setup choice with nextParagraphId", () => {
+    const result = buildDefinition([p("77")], undefined, undefined, {
+      pages: [],
+      choices: [{ id: "sc1", text: "Przejdź", nextParagraphId: "77" }],
+    });
+    expect(result).toContain("setup --> p77");
+  });
+
+  it("does not render setup node when setup is undefined", () => {
+    const result = buildDefinition([p("1")]);
+    expect(result).not.toContain("setup");
+  });
 });

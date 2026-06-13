@@ -1,14 +1,14 @@
 import React from "react";
 import { Button, OptionButton, SectionHeader } from "../../ui";
 import { RichText } from "../../text/RichText/RichText";
-import type { SetupStep } from "../../../types";
+import type { ContentBlock, Choice } from "../../../types";
 
 interface PrepareViewProps {
   currentStep: number;
   totalSteps: number;
-  setupSteps: SetupStep[];
+  pages: ContentBlock[][];
+  choices: Choice[];
   scenarioId: string;
-  startParagraphId: string;
   onPrev: () => void;
   onNext: () => void;
   onStart: () => void;
@@ -18,17 +18,16 @@ interface PrepareViewProps {
 export const PrepareView: React.FC<PrepareViewProps> = ({
   currentStep,
   totalSteps,
-  setupSteps,
+  pages,
+  choices,
   scenarioId,
-  startParagraphId,
   onPrev,
   onNext,
   onStart,
   onChoice,
 }) => {
-  const currentSetupStep = setupSteps[currentStep];
+  const currentPage = pages[currentStep] ?? [];
   const isLastStep = currentStep === totalSteps - 1;
-  const choices = currentSetupStep?.choices ?? [];
 
   return (
     <>
@@ -55,17 +54,11 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
           }
         />
 
-        {currentSetupStep?.content && (
-          <RichText
-            content={currentSetupStep.content}
-            scenarioId={scenarioId}
-          />
-        )}
-        {currentSetupStep?.text && (
-          <RichText text={currentSetupStep.text} scenarioId={scenarioId} />
+        {currentPage.length > 0 && (
+          <RichText content={currentPage} scenarioId={scenarioId} />
         )}
 
-        {choices.length > 0 && onChoice && (
+        {isLastStep && choices.length > 0 && onChoice && (
           <fieldset className="choices" aria-label="Dostępne opcje">
             <legend className="sr-only">Wybierz opcję</legend>
             {choices.map((choice, idx) => (
@@ -105,14 +98,14 @@ export const PrepareView: React.FC<PrepareViewProps> = ({
         </div>
       </div>
 
-      {isLastStep && (
+      {isLastStep && choices.length === 0 && (
         <Button
           variant="primary"
           size="md"
           onClick={onStart}
           style={{ width: "100%", marginTop: "var(--spacing-md)" }}
         >
-          Przejdź do paragrafu {startParagraphId}
+          Zacznij grę
         </Button>
       )}
     </>

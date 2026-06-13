@@ -87,9 +87,11 @@ export const Game: React.FC = () => {
     scenarios[scenarioId] ??
     loadUserScenarios().find((s) => s.id === scenarioId) ??
     null;
-  const setupSteps = isUserScenario
+  const setup = isUserScenario
     ? loadUserSetup(scenarioId)
-    : SETUP_DATA[scenarioId]?.steps || [];
+    : SETUP_DATA[scenarioId];
+  const setupPages = setup?.pages ?? [];
+  const setupChoices = setup?.choices ?? [];
   const letters = (
     isUserScenario
       ? loadUserLetters(scenarioId)
@@ -97,9 +99,9 @@ export const Game: React.FC = () => {
   )
     .slice()
     .sort((a, b) => a.id.localeCompare(b.id));
-  const enemies = currentScenario?.enemyId
-    ? [getEnemy(currentScenario.enemyId)].filter(Boolean)
-    : [];
+  const enemies = (currentScenario?.enemyIds ?? [])
+    .map((id) => getEnemy(id))
+    .filter(Boolean as unknown as <T>(v: T | undefined) => v is T);
   const currentParagraph = game.state.currentParagraphId
     ? paragraphs[game.state.currentParagraphId]
     : null;
@@ -261,19 +263,18 @@ export const Game: React.FC = () => {
             />
           </div>
 
-          {setupSteps.length > 0 ? (
+          {setupPages.length > 0 ? (
             <PrepareView
               currentStep={game.state.currentSetupStep}
-              totalSteps={setupSteps.length}
-              setupSteps={setupSteps}
+              totalSteps={setupPages.length}
+              pages={setupPages}
+              choices={setupChoices}
               scenarioId={scenarioId}
-              startParagraphId={currentScenario?.startParagraphId ?? "1"}
               onPrev={() => game.prevSetupStep()}
               onNext={() => game.nextSetupStep()}
               onStart={() => {
                 game.resetSetupStep();
                 game.toggleSetup();
-                game.setParagraph(currentScenario?.startParagraphId ?? "1");
               }}
               onChoice={(nextParagraphId) => {
                 game.resetSetupStep();
