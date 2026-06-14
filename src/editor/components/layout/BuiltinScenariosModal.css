@@ -78,7 +78,9 @@
   padding: 1rem;
   text-align: left;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 
 .builtin-modal__item:hover {

@@ -1,14 +1,23 @@
-import type { EditorScenario, EditorParagraph, EditorLetter, EditorSetup, EditorChoice } from "../context/editorTypes";
-import type { Scenario, Paragraph } from "../../types";
-import { SCENARIOS, PARAGRAPHS, SETUP_DATA, LETTERS_DATA } from "../../scenarios";
+import type {
+  EditorScenario,
+  EditorParagraph,
+  EditorLetter,
+  EditorSetup,
+  EditorChoice,
+} from "../context/editorTypes";
+import type { Scenario } from "../../types";
+import {
+  SCENARIOS,
+  PARAGRAPHS,
+  SETUP_DATA,
+  LETTERS_DATA,
+} from "../../scenarios";
 
 /**
  * List of available built-in scenarios for import into the editor.
  * Only scenarios with complete data (paragraphs + setup) are available.
  */
-export const AVAILABLE_BUILTIN_SCENARIOS = [
-  "droga-donikad",
-] as const;
+export const AVAILABLE_BUILTIN_SCENARIOS = ["droga-donikad"] as const;
 
 /**
  * Copy a built-in scenario into the editor as a new editable scenario.
@@ -25,20 +34,19 @@ export function copyBuiltinScenarioToEditor(
   if (!scenario) return null;
 
   // Get paragraphs for this scenario
-  const paragraphIds = Object.keys(PARAGRAPHS);
+  const scenarioParagraphs = PARAGRAPHS[scenarioId];
+  if (!scenarioParagraphs) return null;
 
-  const paragraphs: EditorParagraph[] = paragraphIds.map((id) => {
-    const p = PARAGRAPHS[id] as unknown as Paragraph;
-    // Normalize ID to string (game Paragraph.id can be string | string[])
-    const paragraphId = Array.isArray(p.id) ? p.id[0] : p.id;
-
-    return {
-      id: paragraphId,
-      pages: p.contentPages ?? [],
-      choices: (p.choices ?? []) as EditorChoice[],
-      variants: {},
-    };
-  });
+  const paragraphs: EditorParagraph[] = Object.entries(scenarioParagraphs).map(
+    ([id, p]) => {
+      return {
+        id,
+        pages: p.contentPages ?? [],
+        choices: (p.choices ?? []) as EditorChoice[],
+        variants: {},
+      };
+    },
+  );
 
   // Get setup for this scenario
   const setupData = SETUP_DATA[scenarioId];

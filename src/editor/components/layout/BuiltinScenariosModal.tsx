@@ -22,7 +22,9 @@ export const BuiltinScenariosModal: React.FC<BuiltinScenariosModalProps> = ({
       <div className="builtin-modal__overlay" onClick={onClose} />
       <div className="builtin-modal__dialog">
         <div className="builtin-modal__header">
-          <h2 className="builtin-modal__title">Importuj wbudowany scenariusz</h2>
+          <h2 className="builtin-modal__title">
+            Importuj wbudowany scenariusz
+          </h2>
           <button
             className="builtin-modal__close"
             onClick={onClose}
@@ -47,7 +49,9 @@ export const BuiltinScenariosModal: React.FC<BuiltinScenariosModalProps> = ({
                   onClose();
                 }}
               >
-                <div className="builtin-modal__item-title">{scenario.title}</div>
+                <div className="builtin-modal__item-title">
+                  {scenario.title}
+                </div>
                 {scenario.description && (
                   <div className="builtin-modal__item-description">
                     {scenario.description}
