@@ -10,6 +10,8 @@ import { GraphView } from "../components/graph/GraphView";
 import { ImagesPanel } from "./ImagesPanel";
 import { LettersEditor } from "../components/layout/LettersEditor";
 import { SetupEditor } from "../components/layout/SetupEditor";
+import { BuiltinScenariosModal } from "../components/layout/BuiltinScenariosModal";
+import { copyBuiltinScenarioToEditor } from "../utils/builtinScenarios";
 import "./EditorHome.css";
 
 interface EditorHomeProps {
@@ -26,6 +28,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
   const [importing, setImporting] = useState(false);
   const [confirmNew, setConfirmNew] = useState(false);
   const [confirmDiscard, setConfirmDiscard] = useState(false);
+  const [showBuiltinModal, setShowBuiltinModal] = useState(false);
   const metaErrors = useMetaErrors();
   const hasErrors = Object.keys(metaErrors).length > 0;
 
@@ -84,6 +87,21 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
     window.location.reload();
   };
 
+  const handleImportBuiltin = (scenarioId: string) => {
+    if (state.scenario) {
+      setConfirmNew(true);
+      return;
+    }
+    const builtinScenario = copyBuiltinScenarioToEditor(scenarioId);
+    if (!builtinScenario) {
+      setError("Nie udało się załadować wbudowanego scenariusza.");
+      return;
+    }
+    dispatch({ type: "LOAD_SCENARIO", payload: builtinScenario });
+    setError(null);
+    onSectionChange("meta");
+  };
+
   // Resolve alias IDs to their primary paragraph ID before navigating
   const handleNavigate = (id: string) => {
     const primary = state.scenario?.paragraphs.find((p) =>
@@ -122,6 +140,12 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
             style={{ display: "none" }}
           />
         </label>
+        <button
+          className="editor-btn editor-btn--secondary"
+          onClick={() => setShowBuiltinModal(true)}
+        >
+          📦 Importuj wbudowany
+        </button>
         {state.scenario && (
           <button
             className="editor-btn editor-btn--primary"
@@ -160,6 +184,12 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
             </button>
           ))}
       </div>
+
+      <BuiltinScenariosModal
+        isOpen={showBuiltinModal}
+        onClose={() => setShowBuiltinModal(false)}
+        onSelect={handleImportBuiltin}
+      />
 
       {error && <p className="editor-home__error">{error}</p>}
 
