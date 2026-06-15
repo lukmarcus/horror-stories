@@ -37,13 +37,16 @@ export function copyBuiltinScenarioToEditor(
   const scenarioParagraphs = PARAGRAPHS[scenarioId];
   if (!scenarioParagraphs) return null;
 
-  const paragraphs: EditorParagraph[] = Object.entries(scenarioParagraphs).map(
-    ([id, p]) => {
+  const paragraphs: EditorParagraph[] = Object.values(scenarioParagraphs).map(
+    (p) => {
+      const paragraphId = Array.isArray(p.id) ? p.id[0] : p.id;
+      const aliases = Array.isArray(p.id) ? p.id.slice(1) : [];
+      
       return {
-        id,
-        pages: p.contentPages ?? [],
+        id: paragraphId,
+        ...(aliases.length > 0 ? { aliases } : {}),
+        pages: p.contentPages ?? [[]],
         choices: (p.choices ?? []) as EditorChoice[],
-        variants: {},
       };
     },
   );

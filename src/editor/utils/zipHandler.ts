@@ -91,12 +91,12 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
       (p.aliases ?? []).length > 0 ? [p.id, ...(p.aliases ?? [])] : p.id;
 
     // ── Prosty (simple) paragraph ──
-    if (!p.variants) {
+    if (!p.variants || Object.keys(p.variants).length === 0) {
       const cleanChoices = (p.choices ?? []).map(exportChoice);
       return {
         id: idField,
         ...(p.text !== undefined ? { text: p.text } : {}),
-        ...(p.pages !== undefined ? { pages: p.pages } : {}),
+        contentPages: p.pages ?? [[]],
         ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
         ...accessibleFromEntry,
       };
@@ -118,7 +118,7 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     return {
       id: idField,
       ...(p.pages !== undefined && p.pages.length > 0
-        ? { pages: p.pages }
+        ? { contentPages: p.pages }
         : {}),
       ...(selectorChoices.length > 0 ? { choices: selectorChoices } : {}),
       variants: exportedVariants,
@@ -238,10 +238,16 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
               ).map(addId),
             };
           }
+          // Support both contentPages (game format) and pages (editor format) for intro
+          const introPages = Array.isArray(pObj.contentPages)
+            ? pObj.contentPages
+            : Array.isArray(pObj.pages)
+              ? pObj.pages
+              : [[]];
           return {
             id: rawId,
             ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
-            ...(Array.isArray(pObj.pages) ? { pages: pObj.pages } : {}),
+            pages: introPages,
             variantSelectors,
             variants,
             ...(Array.isArray(pObj.accessibleFrom)
@@ -260,11 +266,17 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
         const choices = ((pObj.choices ?? []) as Record<string, unknown>[]).map(
           addId,
         );
+        // Support both contentPages (game format) and pages (editor format)
+        const pages = Array.isArray(pObj.contentPages)
+          ? pObj.contentPages
+          : Array.isArray(pObj.pages)
+            ? pObj.pages
+            : [[]];
         return {
           id: rawId,
           ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
           ...(pObj.text !== undefined ? { text: String(pObj.text) } : {}),
-          ...(Array.isArray(pObj.pages) ? { pages: pObj.pages } : {}),
+          pages,
           ...(choices.length > 0 ? { choices } : {}),
           ...(Array.isArray(pObj.accessibleFrom)
             ? { accessibleFrom: pObj.accessibleFrom }

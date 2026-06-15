@@ -115,7 +115,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
       <div className="editor-home__toolbar">
         {confirmNew ? (
           <span className="editor-home__inline-confirm">
-            <span>Na pewno? Utracisz bierzący scenariusz.</span>
+            <span>Na pewno? Utracisz bieżący scenariusz.</span>
             <button
               className="editor-btn editor-btn--danger"
               onClick={handleNewConfirm}
