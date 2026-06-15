@@ -8,15 +8,17 @@ export interface BlockOpts {
   styles: ReadonlySet<"b" | "i" | "u">;
   color: ColorName | null;
   size: SizeName | null;
+  spacing?: "none";
 }
 
 export const EMPTY_BLOCK_OPTS: BlockOpts = {
   styles: new Set(),
   color: null,
   size: null,
+  spacing: undefined,
 };
 
-const BLOCK_PREFIX_RE = /^(\[(?:b|i|u|c:[a-z]+|s:[a-z]+)\])*/;
+const BLOCK_PREFIX_RE = /^(\[(?:b|i|u|c:[a-z]+|s:[a-z]+|sp:none)\])*/;
 
 export function parseBlockPrefixes(
   line: string,
@@ -37,7 +39,10 @@ export function parseBlockPrefixes(
     sizeM && (SIZES as readonly string[]).includes(sizeM[1])
       ? (sizeM[1] as SizeName)
       : null;
-  return { styles, color, size, content };
+  const spacing = prefixStr.includes("[sp:none]")
+    ? ("none" as const)
+    : undefined;
+  return { styles, color, size, spacing, content };
 }
 
 export function buildLine(
@@ -45,8 +50,10 @@ export function buildLine(
   styles: ReadonlySet<"b" | "i" | "u">,
   color: ColorName | null,
   size: SizeName | null,
+  spacing?: "none",
 ): string {
   let prefix = "";
+  if (spacing === "none") prefix += "[sp:none]";
   if (styles.has("b")) prefix += "[b]";
   if (styles.has("i")) prefix += "[i]";
   if (styles.has("u")) prefix += "[u]";
@@ -71,6 +78,7 @@ export function pageToText(page: ContentBlock[]): string {
       if (b.type === "image")
         return `[img: ${b.image ?? ""}${b.size ? ` ${b.size}` : ""}]`;
       let prefix = "";
+      if (b.spacing === "none") prefix += "[sp:none]";
       const styles = Array.isArray(b.style)
         ? b.style
         : b.style
@@ -95,7 +103,13 @@ export function textToPage(text: string): ContentBlock[] {
       if (imgM[2]) block.size = imgM[2] as ContentBlock["size"];
       return block;
     }
-    const { styles: style, color, size, content } = parseBlockPrefixes(line);
+    const {
+      styles: style,
+      color,
+      size,
+      spacing,
+      content,
+    } = parseBlockPrefixes(line);
     const block: ContentBlock = { type: "text", text: content };
     const styleArr: ("bold" | "italic" | "underline")[] = [];
     if (style.has("b")) styleArr.push("bold");
@@ -105,6 +119,7 @@ export function textToPage(text: string): ContentBlock[] {
     else if (styleArr.length > 1) block.style = styleArr;
     if (color) block.color = color;
     if (size) block.size = size;
+    if (spacing) block.spacing = spacing;
     return block;
   });
 }
