@@ -7,6 +7,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.11] - 2026-06-15
+
+### Dodano
+
+- Edytor: przycisk „Importuj wbudowany scenariusz" — pozwala załadować jeden z wbudowanych scenariuszy do edytora jako szablon do dalszej modyfikacji
+
+---
+
 ## [0.2.10] - 2026-06-13
 
 ### Dodano
