@@ -5,11 +5,9 @@ import {
 } from "./userParagraphConverter";
 
 describe("editorParagraphToGameParagraph", () => {
-  it("konwertuje pojedynczy akapit na contentPages[0]", () => {
+  it("konwertuje pojedynczy akapit na pages[0]", () => {
     const result = editorParagraphToGameParagraph({ id: "1", text: "Witaj." });
-    expect(result.contentPages).toEqual([
-      [{ text: "Witaj.", spacing: "none" }],
-    ]);
+    expect(result.pages).toEqual([[{ text: "Witaj.", spacing: "none" }]]);
   });
 
   it("każda linia to osobny blok", () => {
@@ -17,10 +15,10 @@ describe("editorParagraphToGameParagraph", () => {
       id: "1",
       text: "Pierwsza linia\nDruga linia\nTrzecia linia",
     });
-    expect(result.contentPages![0]).toHaveLength(3);
-    expect(result.contentPages![0][0]).toEqual({ text: "Pierwsza linia" });
-    expect(result.contentPages![0][1]).toEqual({ text: "Druga linia" });
-    expect(result.contentPages![0][2]).toEqual({
+    expect(result.pages![0]).toHaveLength(3);
+    expect(result.pages![0][0]).toEqual({ text: "Pierwsza linia" });
+    expect(result.pages![0][1]).toEqual({ text: "Druga linia" });
+    expect(result.pages![0][2]).toEqual({
       text: "Trzecia linia",
       spacing: "none",
     });
@@ -31,7 +29,7 @@ describe("editorParagraphToGameParagraph", () => {
       id: "1",
       text: "Akapit 1\n\nAkapit 2",
     });
-    expect(result.contentPages![0]).toHaveLength(2);
+    expect(result.pages![0]).toHaveLength(2);
   });
 
   it("pomija linie składające się tylko z białych znaków", () => {
@@ -39,7 +37,7 @@ describe("editorParagraphToGameParagraph", () => {
       id: "1",
       text: "Treść\n   \nDalej",
     });
-    expect(result.contentPages![0]).toHaveLength(2);
+    expect(result.pages![0]).toHaveLength(2);
   });
 
   it("ostatni blok ma spacing: none", () => {
@@ -47,19 +45,19 @@ describe("editorParagraphToGameParagraph", () => {
       id: "1",
       text: "Linia 1\nLinia 2",
     });
-    const page = result.contentPages![0];
+    const page = result.pages![0];
     expect(page[page.length - 1].spacing).toBe("none");
     expect(page[0].spacing).toBeUndefined();
   });
 
-  it("zwraca pusty contentPages gdy brak tekstu", () => {
+  it("zwraca pusty pages gdy brak tekstu", () => {
     const result = editorParagraphToGameParagraph({ id: "5" });
-    expect(result.contentPages).toEqual([[]]);
+    expect(result.pages).toEqual([[]]);
   });
 
-  it("zwraca pusty contentPages gdy tekst jest pustym stringiem", () => {
+  it("zwraca pusty pages gdy tekst jest pustym stringiem", () => {
     const result = editorParagraphToGameParagraph({ id: "5", text: "" });
-    expect(result.contentPages).toEqual([[]]);
+    expect(result.pages).toEqual([[]]);
   });
 
   it("zachowuje id paragrafu", () => {
@@ -91,6 +89,6 @@ describe("buildUserParagraphMap", () => {
 
   it("każdy paragraf przechodzi przez konwersję formatu", () => {
     const map = buildUserParagraphMap([{ id: "7", text: "Akapit" }]);
-    expect(map["7"].contentPages).toBeDefined();
+    expect(map["7"].pages).toBeDefined();
   });
 });

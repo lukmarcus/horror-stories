@@ -41,11 +41,11 @@ export function copyBuiltinScenarioToEditor(
     (p) => {
       const paragraphId = Array.isArray(p.id) ? p.id[0] : p.id;
       const aliases = Array.isArray(p.id) ? p.id.slice(1) : [];
-      
+
       return {
         id: paragraphId,
         ...(aliases.length > 0 ? { aliases } : {}),
-        pages: p.contentPages ?? [[]],
+        pages: p.pages ?? [[]],
         choices: (p.choices ?? []) as EditorChoice[],
       };
     },

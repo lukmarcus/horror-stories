@@ -96,12 +96,10 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
     !paragraph.hasDiceRoll;
 
   // Handle content pages - auto-detect if multiple pages exist
-  const hasPages = paragraph.contentPages && paragraph.contentPages.length > 1;
-  const maxPage = paragraph.contentPages
-    ? paragraph.contentPages.length - 1
-    : 0;
-  const currentContent = paragraph.contentPages
-    ? paragraph.contentPages[currentPage]
+  const hasPages = paragraph.pages && paragraph.pages.length > 1;
+  const maxPage = paragraph.pages ? paragraph.pages.length - 1 : 0;
+  const currentContent = paragraph.pages
+    ? paragraph.pages[currentPage]
     : paragraph.content;
 
   // Show input only on last page of dead-end paragraphs

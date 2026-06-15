@@ -24,9 +24,15 @@
     {
       "id": "2",
       "text": "Za drzwiami po lewej czeka schłodzona klatka schodowa. Luz powietrza zmraża Ci skórę. W oddali słychać [figure:tajemnicze kroki]... czy to ty? Czy [figure:ktoś inny] jest w tym budynku? Na ścianie widać [item:starą notatkę].",
-      "accessibleFrom": ["1"],
+      "accessibleFrom": [
+        "1"
+      ],
       "choices": [
-        { "id": "c4", "text": "Wejdź na schody", "nextParagraphId": "5" },
+        {
+          "id": "c4",
+          "text": "Wejdź na schody",
+          "nextParagraphId": "5"
+        },
         {
           "id": "c5",
           "text": "Wróć i wybierz inne drzwi",
@@ -37,9 +43,15 @@
     {
       "id": "3",
       "text": "Środkowe drzwi otwierają się na jasną bibliotekę. Półki książek sięgają sufitu. Pamiętasz — przyszedłeś tutaj szukać [item:zaginionej księgi]. Czy ona jest tutaj? Na biurku widać [token:klucz] i [board:mapę starą].",
-      "accessibleFrom": ["1"],
+      "accessibleFrom": [
+        "1"
+      ],
       "choices": [
-        { "id": "c6", "text": "Przeszukaj półki", "nextParagraphId": "6" },
+        {
+          "id": "c6",
+          "text": "Przeszukaj półki",
+          "nextParagraphId": "6"
+        },
         {
           "id": "c7",
           "text": "Sprawdź zbliżające się kroki",
@@ -49,21 +61,25 @@
     },
     {
       "id": "4",
-      "accessibleFrom": ["1"],
+      "accessibleFrom": [
+        "1"
+      ],
       "text": "Prawe drzwi prowadzą do oszałamiającego widoku — znaleźliście się na dachu budynku. [figure:Miasto] rozciąga się poniżej, a [board:dach] jest całkowicie pusty. Chyba że [figure:coś się rusza] w cieniu..."
     },
     {
       "id": "5",
-      "accessibleFrom": ["2", "4"],
+      "accessibleFrom": [
+        "2",
+        "4"
+      ],
       "text": "Koniec scenariusza: Nie przetrwałeś. Schody zawalają się pod Twoimi nogami."
     },
     {
       "id": "6",
-      "accessibleFrom": ["3"],
+      "accessibleFrom": [
+        "3"
+      ],
       "text": "🎉 Znalazłeś [item:zaginioną księgę]! Twoja przygoda dobiegła końca — i to zwycięskiego! [figure:Księga] lśni w świetle, a jej karty zawierają [board:tajemne znaki]."
     }
   ]
 }
-
-
-

@@ -52,7 +52,7 @@ export interface Paragraph {
   id: string | string[]; // Can be single ID or array of IDs for paragraphs accessible from multiple sources
   text?: string;
   content?: ContentBlock[];
-  contentPages?: ContentBlock[][];
+  pages?: ContentBlock[][];
   choices?: Choice[];
   variants?: Record<string, Paragraph>; // For variant content
   image?: string;

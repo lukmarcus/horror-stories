@@ -2,8 +2,10 @@
   "paragraphs": [
     {
       "id": "1",
-      "accessibleFrom": ["37"],
-      "contentPages": [
+      "accessibleFrom": [
+        "37"
+      ],
+      "pages": [
         [
           {
             "text": "Odrzuć żeton planszy <room id='37'/> (słowo odrzuć oznacza odłożenie tego elementu do puli z której pochodzi) i zastąp go żetonem otwartych drzwi (<symbol id='drzwi-otwarte'/>)."
@@ -25,8 +27,10 @@
     },
     {
       "id": "2",
-      "accessibleFrom": ["26"],
-      "contentPages": [
+      "accessibleFrom": [
+        "26"
+      ],
+      "pages": [
         [
           {
             "style": "italic",
@@ -37,9 +41,21 @@
       "choices": []
     },
     {
-      "id": ["3", "15", "52", "62", "73", "81", "101", "126", "155"],
-      "accessibleFrom": ["111"],
-      "contentPages": [
+      "id": [
+        "3",
+        "15",
+        "52",
+        "62",
+        "73",
+        "81",
+        "101",
+        "126",
+        "155"
+      ],
+      "accessibleFrom": [
+        "111"
+      ],
+      "pages": [
         [
           {
             "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
@@ -50,7 +66,7 @@
     },
     {
       "id": "9",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Którą postacią jesteś?"
@@ -147,7 +163,7 @@
     },
     {
       "id": "12",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Drewniane drzwi z wyrytym na nich napisem: <em>\"Gdy winy odpokutowane, otworzą się bramy, rozjaśni się mrok\"</em>."
@@ -174,7 +190,7 @@
     },
     {
       "id": "14",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Obraz podpisany na ramie jako <em>Czyściec</em>. Widzisz na nim <span class='color-red'>ośmioro</span> ludzi, z których <span class='color-red'>czworo</span> jest wciąganych przez aniołów ku czemuś, co wygląda jak niebo."
@@ -188,7 +204,7 @@
     },
     {
       "id": "26",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Kto robi ten ruch?"
@@ -249,7 +265,7 @@
     },
     {
       "id": "29",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Wyłóż planszę 3<letter id='b'/>, a na jej <span class='color-purple'>N</span> połóż <room id='69'/> (tak, aby leżało jednocześnie również na <span class='color-purple'>S</span> planszy 14)."
@@ -264,7 +280,7 @@
     },
     {
       "id": "30",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Odrzuć <span class='color-blue'>żeton</span> <letter id='a'/> z toru czasu."
@@ -357,8 +373,10 @@
     },
     {
       "id": "34",
-      "accessibleFrom": ["137"],
-      "contentPages": [
+      "accessibleFrom": [
+        "137"
+      ],
+      "pages": [
         [
           {
             "text": "Jeśli wskazano przedmiot z cyfrą rzymską LIII dobierz 1<symbol id='pd'/>, odrzuć <room id='137'/> i <story id='liii'/>. Połóż <story id='xiii'/> do swojego ekwipunku (odrzuć ewentualnie nadmiarowe przedmioty odkryte na planszy)."
@@ -369,7 +387,7 @@
     },
     {
       "id": "35",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Wyłóż planszę 16<letter id='a'/>, a na jego środku <room id='173'/> oraz <room id='14'/>."
@@ -404,8 +422,10 @@
     },
     {
       "id": "36",
-      "accessibleFrom": ["111"],
-      "contentPages": [
+      "accessibleFrom": [
+        "111"
+      ],
+      "pages": [
         [
           {
             "text": "Rzeźba przesuwa się na bok odsłaniając przejście prowadzące dalej. W miejscu rzeźby postaw <symbol id='drzwi-otwarte'/> (czyli <span class='color-purple'>W</span> planszy 1). <span class='color-blue'>Odrzuć</span> <room id='111'/>."
@@ -416,7 +436,7 @@
     },
     {
       "id": "37",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Wybierz jedną z opcji spośród:"
@@ -436,7 +456,7 @@
     },
     {
       "id": "38",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Spoglądasz właśnie na obraz, w którym <span class='color-red'>cztery</span> osoby znajdujące się w ogniu spoglądają na anioły nad nimi. Sprawiają wrażenie jakoby porzuciły wszelką nadzieję."
@@ -450,8 +470,10 @@
     },
     {
       "id": "39",
-      "accessibleFrom": ["12"],
-      "contentPages": [
+      "accessibleFrom": [
+        "12"
+      ],
+      "pages": [
         [
           {
             "text": "Jeśli dobrano co najmniej 6<symbol id='gwiazda'/>, odrzuć <room id='12'/> i w jej miejscu połóż <symbol id='drzwi-otwarte'/>."
@@ -462,8 +484,11 @@
     },
     {
       "id": "40",
-      "accessibleFrom": ["9", "65"],
-      "contentPages": [
+      "accessibleFrom": [
+        "9",
+        "65"
+      ],
+      "pages": [
         [
           {
             "text": "Postaw stojącą figurkę <person id='patrick'/> na planszy 2<letter id='a'/>."
@@ -518,7 +543,7 @@
     },
     {
       "id": "48",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Zielony klucz z zawieszoną kartką <em>\"Nie powinien był prowadzić\"</em>."
@@ -529,7 +554,7 @@
     },
     {
       "id": "49",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Wyłóż planszę 13<letter id='a'/>, na jego <span class='color-purple'>W</span> wyłóż <room id='12'/>, a na środku <room id='38'/>."
@@ -564,7 +589,7 @@
     },
     {
       "id": "50",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Wielkie stalowe masywne drzwi. Może jest jakiś sposób ich otwarcia, bo próba siłowego otwarcia skończy się najwyżej złamaniem sobie czegoś. Paragraf nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
@@ -575,8 +600,10 @@
     },
     {
       "id": "51",
-      "accessibleFrom": ["12"],
-      "contentPages": [
+      "accessibleFrom": [
+        "12"
+      ],
+      "pages": [
         [
           {
             "text": "Jeśli wskazano przedmiot z cyfrą rzymską <strong>XIII</strong> dobierz 1<symbol id='pd'/>, odrzuć <room id='12'/> i w jej miejscu połóż <symbol id='drzwi-zamkniete'/>. Odrzuć <story id='xiii'/>."
@@ -587,7 +614,7 @@
     },
     {
       "id": "53",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Wybierz jedną z opcji spośród:"
@@ -607,8 +634,10 @@
     },
     {
       "id": "54",
-      "accessibleFrom": ["69"],
-      "contentPages": [
+      "accessibleFrom": [
+        "69"
+      ],
+      "pages": [
         [
           {
             "text": "Wkładasz tam głowę, ale nie dostrzegasz ABSOLUTNIE niczego. Może jednak lepsze to niż zginąć z ręki klauna, których śmiertelnie się boisz nawet, gdy nie próbują Cię zamordować? Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
@@ -619,8 +648,10 @@
     },
     {
       "id": "55",
-      "accessibleFrom": ["99"],
-      "contentPages": [
+      "accessibleFrom": [
+        "99"
+      ],
+      "pages": [
         [
           {
             "style": "italic",
@@ -635,7 +666,7 @@
     },
     {
       "id": "61",
-      "contentPages": [
+      "pages": [
         [
           {
             "style": "italic",
@@ -656,8 +687,10 @@
     },
     {
       "id": "65",
-      "accessibleFrom": ["123"],
-      "contentPages": [
+      "accessibleFrom": [
+        "123"
+      ],
+      "pages": [
         [
           {
             "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
@@ -707,7 +740,7 @@
     },
     {
       "id": "69",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Pulsuje równomiernie przeraźliwie jasnym światłem. Nie jesteś przez to w stanie zobaczyć co jest po drugiej stronie. Wybierz jedną z opcji spośród:"
@@ -731,8 +764,10 @@
     },
     {
       "id": "70",
-      "accessibleFrom": ["53"],
-      "contentPages": [
+      "accessibleFrom": [
+        "53"
+      ],
+      "pages": [
         [
           {
             "text": "Odrzuć <room id='53'/> (oznacza to odłożenie do puli z której pochodzi)."
@@ -755,7 +790,7 @@
     },
     {
       "id": "75",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Wyłóż (w zasięgu wzroku graczy) cztery losowe karty z tzw. \"talii rozwoju\", czyli kart z nadrukowanym symbolem <symbol id='pd'/>. Stanowią \"rynek talii rozwoju\"."
@@ -790,7 +825,7 @@
     },
     {
       "id": "77",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Dostaw planszę 14<letter id='a'/> przy symbolu <span class='color-purple'>E</span> planszy 12<letter id='a'/>. Przestaw swoją figurkę do planszy 14<letter id='a'/>. Figurka, która odkrywa nową planszę, zawsze może (po zapoznaniu z paragrafem) przestawić się do nowoodkrytej planszy."
@@ -829,8 +864,10 @@
     },
     {
       "id": "80",
-      "accessibleFrom": ["99"],
-      "contentPages": [
+      "accessibleFrom": [
+        "99"
+      ],
+      "pages": [
         [
           {
             "text": "<person id='patrick'/><em>Źle</em> - odpowiada. <em>Boli mnie każda część ciała i prawdopodobnie mam złamaną nogę. Gdyby nie adrenalina pewnie zwijałbym się z bólu, ale okoliczności do tego nie sprzyjają. A u ciebie?</em>"
@@ -848,8 +885,10 @@
     },
     {
       "id": "82",
-      "accessibleFrom": ["173"],
-      "contentPages": [
+      "accessibleFrom": [
+        "173"
+      ],
+      "pages": [
         [
           {
             "text": "Znajdujesz <story id='liii'/>. Dodaj ją do swojego ekwipunku. Odrzuć <room id='173'/>."
@@ -860,7 +899,7 @@
     },
     {
       "id": "83",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Odrzuć <letter id='b'/> z toru czasu. Połóż obok planszy <enemy id='klaun'/> żeton <status id='zielony'/>. Od tej pory rzuca do końca scenariusza jedną kością więcej."
@@ -871,7 +910,7 @@
     },
     {
       "id": "84",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Klucz z podwieszoną do niego kartką. Napisano na niej <em>\"cierpienie uszlachetnia\"</em>. Dziwne."
@@ -882,7 +921,7 @@
     },
     {
       "id": "87",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Wyłóż planszę 11<letter id='a'/>, a na jej środku <room id='137'/>, zaś na jej <span class='color-blue'>N</span> i <span class='color-blue'>S</span> wyłóż <symbol id='drzwi-zamkniete'/>."
@@ -925,8 +964,10 @@
     },
     {
       "id": "99",
-      "accessibleFrom": ["9"],
-      "contentPages": [
+      "accessibleFrom": [
+        "9"
+      ],
+      "pages": [
         [
           {
             "text": "Jest roztrzęsiony i sprawia wrażenie, jakby jeszcze nie mógł otrząsnąć się z szoku. Ślady walki o życie i przerażające wspomnienia malowały się na jego twarzy. Wybierz jedną z opcji spośród:"
@@ -958,7 +999,7 @@
     },
     {
       "id": "100",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Śmierć. Sprawdź kogo dotyczy."
@@ -1060,8 +1101,10 @@
     },
     {
       "id": "105",
-      "accessibleFrom": ["1"],
-      "contentPages": [
+      "accessibleFrom": [
+        "1"
+      ],
+      "pages": [
         [
           {
             "text": "Wyłóż planszę 2<letter id='a'/> na <span class='color-purple'>E</span>. Odrzuć <room id='121'/>."
@@ -1101,7 +1144,7 @@
     },
     {
       "id": "110",
-      "contentPages": [
+      "pages": [
         [
           {
             "style": "italic",
@@ -1124,7 +1167,7 @@
     },
     {
       "id": "111",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Kamienna tabliczka z następującą treścią:"
@@ -1187,8 +1230,10 @@
     },
     {
       "id": "112",
-      "accessibleFrom": ["99"],
-      "contentPages": [
+      "accessibleFrom": [
+        "99"
+      ],
+      "pages": [
         [
           {
             "style": "italic",
@@ -1200,8 +1245,10 @@
     },
     {
       "id": "113",
-      "accessibleFrom": ["82"],
-      "contentPages": [
+      "accessibleFrom": [
+        "82"
+      ],
+      "pages": [
         [
           {
             "text": "Książka zatytułowana \"Odkupienie\" autorstwa … no właśnie na okładce brakuje tytułu kogo. W środku są tylko puste kartki."
@@ -1212,7 +1259,7 @@
     },
     {
       "id": "116",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Wyłóż planszę 1<letter id='a'/>. Na jego <span class='color-blue'>W</span> połóż <room id='111'/>. Na środku wyłóż 3 losowe <symbol id='przedmiot-losowy'/>."
@@ -1226,7 +1273,7 @@
     },
     {
       "id": "117",
-      "contentPages": [
+      "pages": [
         [
           {
             "style": "italic",
@@ -1238,7 +1285,7 @@
     },
     {
       "id": "121",
-      "contentPages": [
+      "pages": [
         [
           {
             "style": "italic",
@@ -1253,7 +1300,7 @@
     },
     {
       "id": "123",
-      "contentPages": [
+      "pages": [
         [
           {
             "style": "italic",
@@ -1277,7 +1324,7 @@
     },
     {
       "id": "137",
-      "contentPages": [
+      "pages": [
         [
           {
             "style": "italic",
@@ -1301,7 +1348,7 @@
     },
     {
       "id": "147",
-      "contentPages": [
+      "pages": [
         [
           {
             "style": "italic",
@@ -1313,7 +1360,7 @@
     },
     {
       "id": "151",
-      "contentPages": [
+      "pages": [
         [
           {
             "style": "italic",
@@ -1338,7 +1385,7 @@
     },
     {
       "id": "173",
-      "contentPages": [
+      "pages": [
         [
           {
             "text": "Sterta książek."
@@ -1365,8 +1412,11 @@
     },
     {
       "id": "180",
-      "accessibleFrom": ["69", "100"],
-      "contentPages": [
+      "accessibleFrom": [
+        "69",
+        "100"
+      ],
+      "pages": [
         [
           {
             "text": "Odrzuć wszystkie plansze <strong>inne</strong> niż 12,14 i 2. Odrzuć wszystkie elementy na odrzuconych planszach. Odrzuć <room id='69'/>. Połóż figurkę <person id='patrick'/> leżącą na planszy 2<letter id='a'/>."

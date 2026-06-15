@@ -35,23 +35,23 @@ export const createParagraphMap = (
     // Clone the paragraph and add spacing: "none" to the last content block
     const paragraph = { ...p };
 
-    // Handle contentPages (2D array: array of pages, each page is array of blocks)
+    // Handle pages (2D array: array of pages, each page is array of blocks)
     if (
-      paragraph.contentPages &&
-      Array.isArray(paragraph.contentPages) &&
-      paragraph.contentPages.length > 0
+      paragraph.pages &&
+      Array.isArray(paragraph.pages) &&
+      paragraph.pages.length > 0
     ) {
-      const lastPageIndex = paragraph.contentPages.length - 1;
-      const lastPage = paragraph.contentPages[lastPageIndex];
+      const lastPageIndex = paragraph.pages.length - 1;
+      const lastPage = paragraph.pages[lastPageIndex];
 
       if (Array.isArray(lastPage) && lastPage.length > 0) {
         const lastBlockIndex = lastPage.length - 1;
         const lastBlock = lastPage[lastBlockIndex];
 
         if (lastBlock && !lastBlock.spacing) {
-          // Clone contentPages with the updated last block
-          paragraph.contentPages = [
-            ...paragraph.contentPages.slice(0, lastPageIndex),
+          // Clone pages with the updated last block
+          paragraph.pages = [
+            ...paragraph.pages.slice(0, lastPageIndex),
             [
               ...lastPage.slice(0, lastBlockIndex),
               { ...lastBlock, spacing: "none" as const },

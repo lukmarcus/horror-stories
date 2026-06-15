@@ -129,7 +129,7 @@ describe("ParagraphView", () => {
   it("shows page controls for multi-page paragraph", () => {
     const para: Paragraph = {
       ...baseParagraph,
-      contentPages: [
+      pages: [
         [{ text: "Page 1", spacing: "none" }],
         [{ text: "Page 2", spacing: "none" }],
       ],
@@ -150,7 +150,7 @@ describe("ParagraphView", () => {
   it("starts on first page and shows subtitle", () => {
     const para: Paragraph = {
       ...baseParagraph,
-      contentPages: [
+      pages: [
         [{ text: "Page 1", spacing: "none" }],
         [{ text: "Page 2", spacing: "none" }],
       ],
@@ -169,7 +169,7 @@ describe("ParagraphView", () => {
   it("navigates to next page on Następny click", () => {
     const para: Paragraph = {
       ...baseParagraph,
-      contentPages: [
+      pages: [
         [{ text: "Page 1", spacing: "none" }],
         [{ text: "Page 2", spacing: "none" }],
       ],
@@ -189,7 +189,7 @@ describe("ParagraphView", () => {
   it("Poprzedni button is disabled on first page", () => {
     const para: Paragraph = {
       ...baseParagraph,
-      contentPages: [
+      pages: [
         [{ text: "Page 1", spacing: "none" }],
         [{ text: "Page 2", spacing: "none" }],
       ],
@@ -347,7 +347,7 @@ describe("ParagraphView", () => {
     const para: Paragraph = {
       ...baseParagraph,
       variants: {
-        "variant-1": { id: "variant-1", contentPages: [[]], choices: [] },
+        "variant-1": { id: "variant-1", pages: [[]], choices: [] },
       },
       choices: [{ id: "v1", text: "Wariant A", nextVariantId: "variant-1" }],
     };

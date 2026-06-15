@@ -9,15 +9,25 @@
           "text": "Wejdź przez główne wejście",
           "nextParagraphId": "2"
         },
-        { "id": "c2", "text": "Spróbuj wejść z tyłu", "nextParagraphId": "3" }
+        {
+          "id": "c2",
+          "text": "Spróbuj wejść z tyłu",
+          "nextParagraphId": "3"
+        }
       ]
     },
     {
       "id": "2",
       "text": "Główne lobby szpitala jest puste i posnute kurzem. Stare [item:zagęszczacze] medyczne leżą przewrócone na podłodze. Słychać trzask schodów — coś się porusza piętrami wyżej.",
-      "accessibleFrom": ["1"],
+      "accessibleFrom": [
+        "1"
+      ],
       "choices": [
-        { "id": "c3", "text": "Wejdź na schody", "nextParagraphId": "4" },
+        {
+          "id": "c3",
+          "text": "Wejdź na schody",
+          "nextParagraphId": "4"
+        },
         {
           "id": "c4",
           "text": "Przeszukaj biuro recepcji",
@@ -28,28 +38,37 @@
     {
       "id": "3",
       "text": "Tylne wejście prowadzi do [figure:kuchni szpitalnej]]. Na stołach stoje zmumifikowana [item:jedzenie]]. To miejsce pachnie śmiercią i zapomnieniem.",
-      "accessibleFrom": ["1"],
+      "accessibleFrom": [
+        "1"
+      ],
       "choices": [
-        { "id": "c5", "text": "Przejdź dalej", "nextParagraphId": "6" }
+        {
+          "id": "c5",
+          "text": "Przejdź dalej",
+          "nextParagraphId": "6"
+        }
       ]
     },
     {
       "id": "4",
-      "accessibleFrom": ["2"],
+      "accessibleFrom": [
+        "2"
+      ],
       "text": "Na schodach czekała na Ciebie pułapka. Stopnie zawaliły się pod Twoim ciężarem. Koniec przygody."
     },
     {
       "id": "5",
-      "accessibleFrom": ["2"],
+      "accessibleFrom": [
+        "2"
+      ],
       "text": "W szufladzie recepcji znajdujesz [item:zabytkowy dziennik]] pacjentów. Zawiera on szokujące prawdy o tym co się tu działo..."
     },
     {
       "id": "6",
-      "accessibleFrom": ["3"],
+      "accessibleFrom": [
+        "3"
+      ],
       "text": "W kuchni znajdujesz [item:stare przepisy]] i notatki lekarzy. Tajemnica szpitala powoli się ujawnia."
     }
   ]
 }
-
-
-

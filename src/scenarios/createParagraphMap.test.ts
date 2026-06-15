@@ -53,12 +53,12 @@ describe("createParagraphMap", () => {
     expect(lastBlock.spacing).toBe("none");
   });
 
-  it("should add spacing:none to last block of last page in contentPages", () => {
+  it("should add spacing:none to last block of last page in pages", () => {
     const paragraphs: Paragraph[] = [
       {
         id: "1",
         text: "test",
-        contentPages: [
+        pages: [
           [{ type: "text", html: "Page 1" }],
           [
             { type: "text", html: "Page 2 block 1" },
@@ -68,11 +68,11 @@ describe("createParagraphMap", () => {
       },
     ];
     const map = createParagraphMap(paragraphs);
-    const lastPage = map["1"].contentPages![1];
+    const lastPage = map["1"].pages![1];
     const lastBlock = lastPage[lastPage.length - 1];
     expect(lastBlock.spacing).toBe("none");
     // First page should remain untouched
-    expect(map["1"].contentPages![0][0].spacing).toBeUndefined();
+    expect(map["1"].pages![0][0].spacing).toBeUndefined();
   });
 
   it("should not mutate original paragraphs array", () => {

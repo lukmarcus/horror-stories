@@ -8,7 +8,7 @@ describe("Layout Flags", () => {
         id: "30",
         text: "Setup page 1",
         isMultiPage: true,
-        contentPages: [
+        pages: [
           [{ type: "text", html: "Page 1 content" }],
           [{ type: "text", html: "Page 2 content" }],
           [{ type: "text", html: "Page 3 content" }],
@@ -16,7 +16,7 @@ describe("Layout Flags", () => {
       };
 
       expect(paragraph.isMultiPage).toBe(true);
-      expect(paragraph.contentPages).toHaveLength(3);
+      expect(paragraph.pages).toHaveLength(3);
     });
 
     it("should handle single page paragraphs without flag", () => {
@@ -79,7 +79,7 @@ describe("Layout Flags", () => {
         text: "Multi-page with horizontal choices",
         isMultiPage: true,
         areChoicesHorizontal: true,
-        contentPages: [
+        pages: [
           [{ type: "text", html: "Page 1" }],
           [{ type: "text", html: "Page 2" }],
         ],
