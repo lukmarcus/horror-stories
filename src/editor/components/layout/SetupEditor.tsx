@@ -2,6 +2,7 @@ import React, { useContext, useMemo, useState } from "react";
 import { EditorContext } from "../../context/editorTypes";
 import type { EditorChoice } from "../../context/editorTypes";
 import { PagesEditor } from "../paragraph/PagesEditor";
+import { PagesPreview } from "../paragraph/PagesPreview";
 import { ChoiceRow } from "../paragraph/ChoiceRow";
 import { ChoiceAddRow } from "../paragraph/ChoiceAddRow";
 import { sortParagraphIds } from "../../utils/editorUtils";
@@ -71,13 +72,23 @@ export const SetupEditor: React.FC = () => {
 
       {setup && (
         <>
-          <PagesEditor
-            paragraphId="__setup__"
-            pages={pages}
-            onPagesChange={(newPages) =>
-              dispatch({ type: "SET_SETUP_PAGES", payload: newPages })
-            }
-          />
+          <div className="setup-editor__content">
+            <div className="setup-editor__editor">
+              <PagesEditor
+                paragraphId="__setup__"
+                pages={pages}
+                onPagesChange={(newPages) =>
+                  dispatch({ type: "SET_SETUP_PAGES", payload: newPages })
+                }
+              />
+            </div>
+            <div className="setup-editor__preview">
+              <h3 className="setup-editor__preview-title">Podgląd</h3>
+              <div className="setup-editor__preview-content">
+                <PagesPreview pages={pages} emptyMessage="Brak treści setupu" />
+              </div>
+            </div>
+          </div>
 
           <div className="setup-editor__choices">
             <h3 className="setup-editor__choices-title">
