@@ -87,19 +87,25 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
     window.location.reload();
   };
 
-  const handleImportBuiltin = (scenarioId: string) => {
+  const handleImportBuiltin = async (scenarioId: string) => {
     if (state.scenario) {
       setConfirmNew(true);
       return;
     }
-    const builtinScenario = copyBuiltinScenarioToEditor(scenarioId);
-    if (!builtinScenario) {
-      setError("Nie udało się załadować wbudowanego scenariusza.");
-      return;
+    try {
+      const builtinScenario = await copyBuiltinScenarioToEditor(scenarioId);
+      if (!builtinScenario) {
+        setError("Nie udało się załadować wbudowanego scenariusza.");
+        return;
+      }
+      dispatch({ type: "LOAD_SCENARIO", payload: builtinScenario });
+      setError(null);
+      onSectionChange("meta");
+    } catch (err) {
+      setError(
+        `Błąd podczas ładowania scenariusza: ${err instanceof Error ? err.message : String(err)}`,
+      );
     }
-    dispatch({ type: "LOAD_SCENARIO", payload: builtinScenario });
-    setError(null);
-    onSectionChange("meta");
   };
 
   // Resolve alias IDs to their primary paragraph ID before navigating

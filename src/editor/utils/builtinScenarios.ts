@@ -30,9 +30,9 @@ export const AVAILABLE_BUILTIN_SCENARIOS = ["droga-donikad"] as const;
  * @param scenarioId - ID of the scenario to copy
  * @returns EditorScenario ready for editing, or null if not found
  */
-export function copyBuiltinScenarioToEditor(
+export async function copyBuiltinScenarioToEditor(
   scenarioId: string,
-): EditorScenario | null {
+): Promise<EditorScenario | null> {
   const scenario = SCENARIOS[scenarioId] as Scenario | undefined;
   if (!scenario) return null;
 
@@ -84,9 +84,8 @@ export function copyBuiltinScenarioToEditor(
     }),
   );
 
-  // Get images for this scenario
-  // Note: Built-in scenarios don't export images to keep bundle size manageable
-  const images = {};
+  // Load images for this scenario
+  const images = await loadScenarioImages(scenarioId);
 
   return {
     meta: {
@@ -99,6 +98,74 @@ export function copyBuiltinScenarioToEditor(
     letters,
     images,
   };
+}
+
+/**
+ * Load all images for a scenario from the images/ folder.
+ * Converts them to data URLs for use in the editor.
+ */
+async function loadScenarioImages(
+  scenarioId: string,
+): Promise<Record<string, string>> {
+  // List of known images for droga-donikad
+  const imageFiles: Record<string, string[]> = {
+    "droga-donikad": [
+      "czarny-worek.jpg",
+      "jessica-ekwipunek-talia.jpg",
+      "jessica-ekwipunek.jpg",
+      "jessica-figurka.jpg",
+      "jessica-plansza.jpg",
+      "karta-gwiazda.jpg",
+      "karta-negatywna.jpg",
+      "karta-rozwoju.jpg",
+      "karta1.jpg",
+      "karta2.jpg",
+      "karta3.jpg",
+      "karty-akcji.jpg",
+      "karty-odrzucone.jpg",
+      "klaun-akcje.jpg",
+      "klaun-planszetka.jpg",
+      "opis-scenariusza.jpg",
+      "paragrafy.jpg",
+      "patrick-talia.jpg",
+      "plansza-12.jpg",
+      "plansza-14.jpg",
+      "podnies-przedmioty.jpg",
+      "rana-ciezka.jpg",
+      "rip.jpg",
+      "tor-czasu.jpg",
+    ],
+  };
+
+  const files = imageFiles[scenarioId];
+  if (!files) return {};
+
+  const images: Record<string, string> = {};
+  const basePath = `/src/scenarios/${scenarioId}/images`;
+
+  for (const filename of files) {
+    try {
+      const response = await fetch(`${basePath}/${filename}`);
+      if (!response.ok) continue;
+
+      const blob = await response.blob();
+      const reader = new FileReader();
+
+      await new Promise<void>((resolve, reject) => {
+        reader.onload = () => {
+          const id = filename.replace(/\.[^.]+$/, "");
+          images[id] = reader.result as string;
+          resolve();
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    } catch (error) {
+      console.warn(`Failed to load image ${filename}:`, error);
+    }
+  }
+
+  return images;
 }
 
 /**
