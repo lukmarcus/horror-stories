@@ -107,61 +107,44 @@ export async function copyBuiltinScenarioToEditor(
 async function loadScenarioImages(
   scenarioId: string,
 ): Promise<Record<string, string>> {
-  // List of known images for droga-donikad
-  const imageFiles: Record<string, string[]> = {
-    "droga-donikad": [
-      "czarny-worek.jpg",
-      "jessica-ekwipunek-talia.jpg",
-      "jessica-ekwipunek.jpg",
-      "jessica-figurka.jpg",
-      "jessica-plansza.jpg",
-      "karta-gwiazda.jpg",
-      "karta-negatywna.jpg",
-      "karta-rozwoju.jpg",
-      "karta1.jpg",
-      "karta2.jpg",
-      "karta3.jpg",
-      "karty-akcji.jpg",
-      "karty-odrzucone.jpg",
-      "klaun-akcje.jpg",
-      "klaun-planszetka.jpg",
-      "opis-scenariusza.jpg",
-      "paragrafy.jpg",
-      "patrick-talia.jpg",
-      "plansza-12.jpg",
-      "plansza-14.jpg",
-      "podnies-przedmioty.jpg",
-      "rana-ciezka.jpg",
-      "rip.jpg",
-      "tor-czasu.jpg",
-    ],
-  };
+  if (scenarioId !== "droga-donikad") return {};
 
-  const files = imageFiles[scenarioId];
-  if (!files) return {};
+  // Use Vite's import.meta.glob to import all images at build time
+  const imageModules = import.meta.glob(
+    "../../scenarios/droga-donikad/images/*.{jpg,jpeg,png}",
+    { eager: false, query: "?url", import: "default" },
+  ) as Record<string, () => Promise<string>>;
 
   const images: Record<string, string> = {};
-  const basePath = `/src/scenarios/${scenarioId}/images`;
 
-  for (const filename of files) {
+  for (const [path, importFn] of Object.entries(imageModules)) {
     try {
-      const response = await fetch(`${basePath}/${filename}`);
+      // Get the URL from Vite
+      const url = await importFn();
+
+      // Fetch and convert to data URL
+      const response = await fetch(url);
       if (!response.ok) continue;
 
       const blob = await response.blob();
-      const reader = new FileReader();
-
-      await new Promise<void>((resolve, reject) => {
-        reader.onload = () => {
-          const id = filename.replace(/\.[^.]+$/, "");
-          images[id] = reader.result as string;
-          resolve();
-        };
+      const dataUrl = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
         reader.onerror = reject;
         reader.readAsDataURL(blob);
       });
+
+      // Extract filename without extension as ID
+      const filename =
+        path
+          .split("/")
+          .pop()
+          ?.replace(/\.[^.]+$/, "") ?? "";
+      if (filename) {
+        images[filename] = dataUrl;
+      }
     } catch (error) {
-      console.warn(`Failed to load image ${filename}:`, error);
+      console.warn(`Failed to load image from ${path}:`, error);
     }
   }
 
