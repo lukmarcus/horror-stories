@@ -5,17 +5,14 @@
       "text": "Budzisz się w swoim [item:łóżku]]. Noc jest absolutnie czarna. Droga do okna to tylko kilka kroków, ale czujesz że coś nie jest w porządku. Powietrze jest gęste, a w kącie pokoju słychać cichy szept.",
       "choices": [
         {
-          "id": "c1",
           "text": "Włącz światło",
           "nextParagraphId": "2"
         },
         {
-          "id": "c2",
           "text": "Wstań ostrożnie",
           "nextParagraphId": "3"
         },
         {
-          "id": "c3",
           "text": "Zostań w łóżku i słuchaj",
           "nextParagraphId": "4"
         }
@@ -29,12 +26,10 @@
       ],
       "choices": [
         {
-          "id": "c4",
           "text": "Podejdź do lustra",
           "nextParagraphId": "5"
         },
         {
-          "id": "c5",
           "text": "Uciekaj z pokoju",
           "nextParagraphId": "6"
         }
@@ -48,7 +43,6 @@
       ],
       "choices": [
         {
-          "id": "c6",
           "text": "Wejdź do korytarza",
           "nextParagraphId": "7"
         }
@@ -59,8 +53,7 @@
       "text": "Szept się wzmacnia. To robi się coraz głośniejsze. [figure:Coś]] powoli zbliża się do Twojego łóżka.",
       "accessibleFrom": [
         "1"
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "5",

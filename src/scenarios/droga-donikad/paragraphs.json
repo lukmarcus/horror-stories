@@ -37,8 +37,7 @@
             "text": "<person id='jessica'/> Tylko tyle, że mnie odwoziłeś. Musiałam zasnąć, bo chwilę potem wybudziłam się tutaj."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": [
@@ -61,8 +60,7 @@
             "text": "Rzeźba wydaje się ani drgnąć. Najwyraźniej nie była to poprawna odpowiedź. W ramach kary wykonaj teraz jedną akcję <symbol id='przeciwnik'/> (nie zużywa to akcji <symbol id='przeciwnik'/>, gdy nadejdzie jego normalna tura)."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "9",
@@ -121,8 +119,7 @@
               "nextParagraphId": "40"
             },
             {
-              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-              "nextParagraphId": ""
+              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
             }
           ]
         },
@@ -140,12 +137,10 @@
               "nextParagraphId": "99"
             },
             {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
-              "nextParagraphId": ""
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>."
             },
             {
-              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-              "nextParagraphId": ""
+              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
             }
           ]
         },
@@ -156,8 +151,7 @@
                 "text": "... Głowa nie daje Ci żyć. Domyślasz się, że trochę przesadziłeś na imprezie. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
               }
             ]
-          ],
-          "choices": []
+          ]
         }
       }
     },
@@ -183,8 +177,7 @@
           "nextParagraphId": "39"
         },
         {
-          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-          "nextParagraphId": ""
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
         }
       ]
     },
@@ -199,8 +192,7 @@
             "text": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "26",
@@ -232,8 +224,7 @@
                 "text": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
               }
             ]
-          ],
-          "choices": []
+          ]
         },
         "patrick": {
           "contentPages": [
@@ -252,12 +243,10 @@
               "nextParagraphId": "2"
             },
             {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>.",
-              "nextParagraphId": ""
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>."
             },
             {
-              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-              "nextParagraphId": ""
+              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
             }
           ]
         }
@@ -275,8 +264,7 @@
             "text": "Jak to możliwe, że wcześniej nie dostrzegliście wielkiej dziury w ścianie?"
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "30",
@@ -368,8 +356,7 @@
             "text": "Jeśli czytasz to po turze <person id='patrick'/>, to oznacza, że czas aktywować klauna!"
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "34",
@@ -382,8 +369,7 @@
             "text": "Jeśli wskazano przedmiot z cyfrą rzymską LIII dobierz 1<symbol id='pd'/>, odrzuć <room id='137'/> i <story id='liii'/>. Połóż <story id='xiii'/> do swojego ekwipunku (odrzuć ewentualnie nadmiarowe przedmioty odkryte na planszy)."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "35",
@@ -415,8 +401,7 @@
           "nextParagraphId": "75"
         },
         {
-          "text": "wróć",
-          "nextParagraphId": ""
+          "text": "wróć"
         }
       ]
     },
@@ -431,8 +416,7 @@
             "text": "Rzeźba przesuwa się na bok odsłaniając przejście prowadzące dalej. W miejscu rzeźby postaw <symbol id='drzwi-otwarte'/> (czyli <span class='color-purple'>W</span> planszy 1). <span class='color-blue'>Odrzuć</span> <room id='111'/>."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "37",
@@ -449,8 +433,7 @@
           "nextParagraphId": "1"
         },
         {
-          "text": "Jeśli żadnego przedmiotu nie posiadasz lub zmieniłaś zdanie, opuść ten paragraf (wybranie opcji opuszczenia paragrafu jej nie przywraca; można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)",
-          "nextParagraphId": ""
+          "text": "Jeśli żadnego przedmiotu nie posiadasz lub zmieniłaś zdanie, opuść ten paragraf (wybranie opcji opuszczenia paragrafu jej nie przywraca; można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
         }
       ]
     },
@@ -465,8 +448,7 @@
             "text": "(<span class='color-red'>!!!</span>) Można wracać już do raz sprawdzonych paragrafów jeśli tylko chcemy przypomnieć sobie co tam było, ale NIE można wybierać żadnej z opcji jeśli tylko zaglądamy tam, aby sobie przypomnieć co było np. napisane)"
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "39",
@@ -479,8 +461,7 @@
             "text": "Jeśli dobrano co najmniej 6<symbol id='gwiazda'/>, odrzuć <room id='12'/> i w jej miejscu połóż <symbol id='drzwi-otwarte'/>."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "40",
@@ -538,8 +519,7 @@
             "text": "Załóżmy, że Jessica zużyła obie swoje akcje. W takiej sytuacji następuje tura Patricka. Gracz/e kontrolują na przemian dwie postacie (<span class='color-red'>każda posiada po 2 akcje w turze</span>), aż do końca scenariusza."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "48",
@@ -549,8 +529,7 @@
             "text": "Zielony klucz z zawieszoną kartką <em>\"Nie powinien był prowadzić\"</em>."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "49",
@@ -582,8 +561,7 @@
           "nextParagraphId": "75"
         },
         {
-          "text": "wróć",
-          "nextParagraphId": ""
+          "text": "wróć"
         }
       ]
     },
@@ -595,8 +573,7 @@
             "text": "Wielkie stalowe masywne drzwi. Może jest jakiś sposób ich otwarcia, bo próba siłowego otwarcia skończy się najwyżej złamaniem sobie czegoś. Paragraf nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "51",
@@ -609,8 +586,7 @@
             "text": "Jeśli wskazano przedmiot z cyfrą rzymską <strong>XIII</strong> dobierz 1<symbol id='pd'/>, odrzuć <room id='12'/> i w jej miejscu połóż <symbol id='drzwi-zamkniete'/>. Odrzuć <story id='xiii'/>."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "53",
@@ -627,8 +603,7 @@
           "nextParagraphId": "70"
         },
         {
-          "text": "Opuść ten paragraf (ale pamiętaj, że każde wskazanie <symbol id='paragraf'/> oznacza konieczność dobrania wierzchniej <symbol id='karta-akcji'/>, nawet jeśli wskazujesz paragraf, który już znasz; <span class='color-red'>ponadto NIE przywróci ci to zużytej na wskazanie <symbol id='paragraf'/> akcji</span>)",
-          "nextParagraphId": ""
+          "text": "Opuść ten paragraf (ale pamiętaj, że każde wskazanie <symbol id='paragraf'/> oznacza konieczność dobrania wierzchniej <symbol id='karta-akcji'/>, nawet jeśli wskazujesz paragraf, który już znasz; <span class='color-red'>ponadto NIE przywróci ci to zużytej na wskazanie <symbol id='paragraf'/> akcji</span>)"
         }
       ]
     },
@@ -643,8 +618,7 @@
             "text": "Wkładasz tam głowę, ale nie dostrzegasz ABSOLUTNIE niczego. Może jednak lepsze to niż zginąć z ręki klauna, których śmiertelnie się boisz nawet, gdy nie próbują Cię zamordować? Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "55",
@@ -661,8 +635,7 @@
             "text": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "61",
@@ -682,8 +655,7 @@
             "text": "W razie potrzeby jest możliwości wymiany przedmiotami poprzez rozmowę z inną postacią. Paragraf nie prowadzi dalej co oznacza, że opuszczasz go (nie przywraca Ci to zużytej na sprawdzenie akcji)"
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "65",
@@ -733,8 +705,7 @@
                 "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
               }
             ]
-          ],
-          "choices": []
+          ]
         }
       }
     },
@@ -757,8 +728,7 @@
           "nextParagraphId": "180"
         },
         {
-          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-          "nextParagraphId": ""
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
         }
       ]
     },
@@ -785,8 +755,7 @@
             "text": "(<span class='color-red'>!!!</span>) Ilekroć należałoby dobrać <symbol id='karta-akcji'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='karta-akcji'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='karta-akcji'/>)."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "75",
@@ -820,8 +789,7 @@
             "text": "Przykład: deklarujesz dobranie 3 kart. Dociągasz pierwszą. Nie posiada żadnego tekstu. Potem dobierasz drugą. Posiada jakiś efekt, który musisz rozpatrzyć natychmiast. Dobierasz trzecią. Również posiada tekst, który rozpatrujesz."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "77",
@@ -859,8 +827,7 @@
             "text": "Ilekroć należałoby dobrać <symbol id='karta-akcji'/>, ale nie można, bo wyczerpie się talia postaci, dopiero wtedy formuje się nową ze swojego stosu odrzuconego (przetasowuje i kładzie rewersem, czyli stroną z <symbol id='karta-akcji'/>) i dobiera brakujące. Nawet jeśli akurat dobrano ostatnią kartę z talii i posiadasz wyłącznie stos kart odrzuconych NIE możesz sformować talii bez wyraźnego polecenia (np. dobranie kolejnej <symbol id='karta-akcji'/>)."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "80",
@@ -880,8 +847,7 @@
             "text": "<span class='color-green'>Paragraf</span> nie prowadzi dalej. Ilekroć tak się dzieje po prostu go opuść."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "82",
@@ -894,8 +860,7 @@
             "text": "Znajdujesz <story id='liii'/>. Dodaj ją do swojego ekwipunku. Odrzuć <room id='173'/>."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "83",
@@ -905,8 +870,7 @@
             "text": "Odrzuć <letter id='b'/> z toru czasu. Połóż obok planszy <enemy id='klaun'/> żeton <status id='zielony'/>. Od tej pory rzuca do końca scenariusza jedną kością więcej."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "84",
@@ -916,8 +880,7 @@
             "text": "Klucz z podwieszoną do niego kartką. Napisano na niej <em>\"cierpienie uszlachetnia\"</em>. Dziwne."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "87",
@@ -959,8 +922,7 @@
             "text": "Przekaż do Jessice. Nie zmienia on swojego właściciela (chyba, że scenariusz wyraźnie powie inaczej)."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "99",
@@ -988,12 +950,10 @@
           "nextParagraphId": "55"
         },
         {
-          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami.",
-          "nextParagraphId": ""
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
         },
         {
-          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-          "nextParagraphId": ""
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
         }
       ]
     },
@@ -1028,8 +988,7 @@
                 "text": "<enemy id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
               }
             ]
-          ],
-          "choices": []
+          ]
         },
         "jessica": {
           "contentPages": [
@@ -1084,8 +1043,7 @@
                 "text": "Gra toczy się dalej."
               }
             ]
-          ],
-          "choices": []
+          ]
         },
         "patrick-tylko": {
           "contentPages": [
@@ -1094,8 +1052,7 @@
                 "text": "Gra toczy się dalej."
               }
             ]
-          ],
-          "choices": []
+          ]
         }
       }
     },
@@ -1139,8 +1096,7 @@
             "text": "<span class='color-red'>Znajdź sposób na przejście dalej.</span>"
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "110",
@@ -1162,8 +1118,7 @@
             "text": "Odrzuć <room id='110'/>. Jeśli masz niewykorzystane akcje, wykorzystaj je."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "111",
@@ -1223,8 +1178,7 @@
           "nextParagraphId": "155"
         },
         {
-          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)",
-          "nextParagraphId": ""
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
         }
       ]
     },
@@ -1240,8 +1194,7 @@
             "text": "<person id='patrick'/> Ostatnie co pamiętam to silne światło. Mam równie dużo pytań co ty."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "113",
@@ -1254,8 +1207,7 @@
             "text": "Książka zatytułowana \"Odkupienie\" autorstwa … no właśnie na okładce brakuje tytułu kogo. W środku są tylko puste kartki."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "116",
@@ -1268,8 +1220,7 @@
             "text": "Zawsze są wykładane odkryte, chyba, że scenariusz powie inaczej. Użycie efektu <symbol id='przedmiot-losowy'/> zużywa jedną akcję."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "117",
@@ -1280,8 +1231,7 @@
             "text": "Szeroki, nienaturalny uśmiech rozciąga się od ucha do ucha, a jego spękana, kredowobiała skóra zdaje się być napięta do granic możliwości. Oczy? Zbyt duże, zbyt czarne, jakby nie miały dna – otchłanie, w których odbija się strach tych, którzy na niego spojrzą. Jego kostium, kiedyś być może kolorowy, jest teraz przybrudzony, poplamiony czymś, czego lepiej nie identyfikować. Jego dłonie, zbyt długie i kościste, zakończone są paznokciami niczym cienkie ostrza. Pachnie czymś słodkim, ale zepsutym, jak wata cukrowa zmieszana z odorem rozkładu. Jedyne co chcesz teraz zrobić to uciekać jak najdalej od tego czegoś."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "121",
@@ -1295,8 +1245,7 @@
             "text": "<span class='color-red'>Opuść paragraf</span> (ilekroć nie prowadzi dalej, oznacza to, że możesz zająć się teraz czymś innym; nie przywraca ci to akcji wykorzystanej na sprawdzenie paragrafu)."
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "123",
@@ -1317,8 +1266,7 @@
           "nextParagraphId": "65"
         },
         {
-          "text": "Opuszczam paragraf.",
-          "nextParagraphId": ""
+          "text": "Opuszczam paragraf."
         }
       ]
     },
@@ -1341,8 +1289,7 @@
           "nextParagraphId": "34"
         },
         {
-          "text": "Opuszczam paragraf.",
-          "nextParagraphId": ""
+          "text": "Opuszczam paragraf."
         }
       ]
     },
@@ -1355,8 +1302,7 @@
             "text": "Starszy mężczyzna, którego już wcześniej widziałaś. Dlaczego masz wrażenie, że przeżywasz jakieś deja vu i już … już to robiłaś?"
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "151",
@@ -1380,8 +1326,7 @@
             "text": "<span class='size-xl color-red'>KONIEC SCENARIUSZA. SCHOWAJ WSZYSTKIE ELEMENTY DO PUDEŁKA. MOŻESZ ZAGRAĆ KOLEJNY.</span>"
           }
         ]
-      ],
-      "choices": []
+      ]
     },
     {
       "id": "173",
@@ -1401,12 +1346,10 @@
           "nextParagraphId": "82"
         },
         {
-          "text": "Dobierz jeden losowy <symbol id='przedmiot-losowy'/>. Możesz położyć go w ekwipunku.",
-          "nextParagraphId": ""
+          "text": "Dobierz jeden losowy <symbol id='przedmiot-losowy'/>. Możesz położyć go w ekwipunku."
         },
         {
-          "text": "Opuszczam paragraf.",
-          "nextParagraphId": ""
+          "text": "Opuszczam paragraf."
         }
       ]
     },
@@ -1437,8 +1380,7 @@
             "text": "Turę rozgrywa już wyłącznie Jessica."
           }
         ]
-      ],
-      "choices": []
+      ]
     }
   ]
 }

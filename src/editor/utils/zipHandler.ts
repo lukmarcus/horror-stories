@@ -95,10 +95,10 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
       const cleanChoices = (p.choices ?? []).map(exportChoice);
       return {
         id: idField,
+        ...accessibleFromEntry,
         ...(p.text !== undefined ? { text: p.text } : {}),
         pages: p.pages ?? [[]],
         ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
-        ...accessibleFromEntry,
       };
     }
 
@@ -117,12 +117,12 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
 
     return {
       id: idField,
+      ...accessibleFromEntry,
       ...(p.pages !== undefined && p.pages.length > 0
         ? { pages: p.pages }
         : {}),
       ...(selectorChoices.length > 0 ? { choices: selectorChoices } : {}),
       variants: exportedVariants,
-      ...accessibleFromEntry,
     };
   });
 

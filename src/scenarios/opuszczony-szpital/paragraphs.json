@@ -5,12 +5,10 @@
       "text": "Stoisz przed [item:wejściem] do opuszczonego szpitala. Budynek wynurza się z mroku jak szkielet giganta. Okna są zasłonięte, a drzwi wiszą na starych zawiasach. Czujesz ziąb emanujący z budynku.",
       "choices": [
         {
-          "id": "c1",
           "text": "Wejdź przez główne wejście",
           "nextParagraphId": "2"
         },
         {
-          "id": "c2",
           "text": "Spróbuj wejść z tyłu",
           "nextParagraphId": "3"
         }
@@ -24,12 +22,10 @@
       ],
       "choices": [
         {
-          "id": "c3",
           "text": "Wejdź na schody",
           "nextParagraphId": "4"
         },
         {
-          "id": "c4",
           "text": "Przeszukaj biuro recepcji",
           "nextParagraphId": "5"
         }
@@ -43,7 +39,6 @@
       ],
       "choices": [
         {
-          "id": "c5",
           "text": "Przejdź dalej",
           "nextParagraphId": "6"
         }
