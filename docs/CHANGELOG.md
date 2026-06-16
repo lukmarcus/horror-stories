@@ -7,11 +7,17 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.2.11] - 2026-06-15
+## [0.2.11] - 2026-06-16
 
 ### Dodano
 
-- Edytor: przycisk „Importuj wbudowany scenariusz" — pozwala załadować jeden z wbudowanych scenariuszy do edytora jako szablon do dalszej modyfikacji
+- Edytor: możliwość zaimportowania wbudowanych scenariuszy jako szablon — kliknij „Importuj wbudowany scenariusz" w menu głównym edytora, wybierz scenariusz i edytuj go według własnych potrzeb
+- Edytor: kontrola odstępów między akapitami — przycisk „⏶" w pasku narzędzi pozwala usunąć przerwy między wybranymi blokami tekstu dla lepszej kontroli układu
+- Edytor: podgląd przygotowania podczas edycji — edytor i podgląd setupu wyświetlane obok siebie dla łatwiejszej pracy
+
+### Zmieniono
+
+- Ulepszony format zapisu scenariuszy — zaimportowane i wyeksportowane pliki `.horrorstory` są teraz bardziej zwięzłe i czytelne (automatyczna konwersja przy imporcie starszych plików)
 
 ---
 
