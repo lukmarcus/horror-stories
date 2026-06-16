@@ -4,6 +4,7 @@ import type {
   EditorLetter,
   EditorSetup,
   EditorChoice,
+  EditorVariant,
 } from "../context/editorTypes";
 import type { Scenario, Paragraph } from "../../types";
 import { SCENARIOS, SETUP_DATA, LETTERS_DATA } from "../../scenarios";
@@ -45,20 +46,46 @@ export async function copyBuiltinScenarioToEditor(
     const aliases = Array.isArray(p.id) ? p.id.slice(1) : [];
 
     // Remove runtime-added spacing: "none" from last block
-    const pages = (p.pages ?? [[]]).map((page, pageIdx, allPages) => {
-      if (pageIdx === allPages.length - 1 && page.length > 0) {
-        // Last page - remove spacing from last block if it was auto-added
-        return page.map((block, blockIdx) => {
-          if (blockIdx === page.length - 1 && block.spacing === "none") {
-            const { spacing: _spacing, ...rest } = block;
-            return rest;
-          }
-          return block;
-        });
-      }
-      return page;
-    });
+    const cleanPages = (pgs: typeof p.pages) =>
+      (pgs ?? [[]]).map((page, pageIdx, allPages) => {
+        if (pageIdx === allPages.length - 1 && page.length > 0) {
+          // Last page - remove spacing from last block if it was auto-added
+          return page.map((block, blockIdx) => {
+            if (blockIdx === page.length - 1 && block.spacing === "none") {
+              const { spacing: _spacing, ...rest } = block;
+              return rest;
+            }
+            return block;
+          });
+        }
+        return page;
+      });
 
+    const pages = cleanPages(p.pages);
+
+    // Handle variant paragraphs
+    if (p.variants && Object.keys(p.variants).length > 0) {
+      const variants: Record<string, EditorVariant> = {};
+      for (const [vid, variant] of Object.entries(p.variants)) {
+        variants[vid] = {
+          pages: cleanPages(variant.pages),
+          ...(variant.areChoicesHorizontal
+            ? { areChoicesHorizontal: true }
+            : {}),
+          choices: (variant.choices ?? []) as EditorChoice[],
+        };
+      }
+
+      return {
+        id: paragraphId,
+        ...(aliases.length > 0 ? { aliases } : {}),
+        pages,
+        variantSelectors: (p.choices ?? []) as EditorChoice[],
+        variants,
+      };
+    }
+
+    // Simple paragraph
     return {
       id: paragraphId,
       ...(aliases.length > 0 ? { aliases } : {}),
