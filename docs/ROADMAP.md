@@ -6,20 +6,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.2.11 - Edytor: import wbudowanych scenariuszy
-
-### Zakres
-
-- Możliwość skopiowania wbudowanego scenariusza do edytora jako baza do edycji
-- Wbudowane scenariusze są read-only — edytuje się kopię
-- Wszystkie pola scenariusza obsługiwane w edytorze (możliwe po v0.2.10)
-
-### Status
-
-- ⏳ Nie rozpoczęte
-
----
-
 ## Notatki na przyszłość
 
 - Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10

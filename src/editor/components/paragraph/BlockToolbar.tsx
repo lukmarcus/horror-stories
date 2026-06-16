@@ -9,6 +9,7 @@ export interface BlockToolbarProps {
   onToggleStyle: (tag: "b" | "i" | "u") => void;
   onSetColor: (color: string) => void;
   onSetSize: (size: string) => void;
+  onToggleSpacing: () => void;
   onClear: () => void;
   onInsertBlockImage?: (id: string) => void;
 }
@@ -21,6 +22,7 @@ export const BlockToolbar: React.FC<BlockToolbarProps> = ({
   onToggleStyle,
   onSetColor,
   onSetSize,
+  onToggleSpacing,
   onClear,
   onInsertBlockImage,
 }) => {
@@ -87,6 +89,19 @@ export const BlockToolbar: React.FC<BlockToolbarProps> = ({
             {s}
           </button>
         ))}
+      </div>
+      <div className="pages-editor__toolbar-sep" />
+      <div className="pages-editor__toolbar-group">
+        <button
+          className={btn(activeOpts.spacing === "none")}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            onToggleSpacing();
+          }}
+          title="Bez przerwy względem poprzedniego akapitu"
+        >
+          ⏶
+        </button>
       </div>
       <div className="pages-editor__toolbar-sep" />
       <div className="pages-editor__toolbar-group">

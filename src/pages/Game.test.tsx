@@ -177,18 +177,18 @@ describe("Game - Variant System", () => {
   // Mock paragraph with variants
   const variantParagraph = {
     id: "9-test",
-    contentPages: [[{ text: "Którą postacią jesteś?" }]],
+    pages: [[{ text: "Którą postacią jesteś?" }]],
     choices: [
       { text: "Jessica", nextVariantId: "jessica" },
       { text: "Patrick", nextVariantId: "patrick" },
     ],
     variants: {
       jessica: {
-        contentPages: [[{ text: "Poznałaś go na imprezie." }]],
+        pages: [[{ text: "Poznałaś go na imprezie." }]],
         choices: [{ text: "Dalej", nextVariantId: "jessica-detail" }],
       },
       patrick: {
-        contentPages: [[{ text: "Głowa nie daje Ci żyć." }]],
+        pages: [[{ text: "Głowa nie daje Ci żyć." }]],
         choices: [],
       },
     },
@@ -199,8 +199,8 @@ describe("Game - Variant System", () => {
     const accumulated: { text: string }[] = [];
 
     // Add main paragraph content
-    if (variantParagraph.contentPages) {
-      for (const page of variantParagraph.contentPages) {
+    if (variantParagraph.pages) {
+      for (const page of variantParagraph.pages) {
         accumulated.push(...page);
       }
     }
@@ -211,8 +211,8 @@ describe("Game - Variant System", () => {
         variantParagraph.variants?.[
           variantId as keyof typeof variantParagraph.variants
         ];
-      if (variant?.contentPages) {
-        for (const page of variant.contentPages) {
+      if (variant?.pages) {
+        for (const page of variant.pages) {
           accumulated.push(...page);
         }
       }
@@ -228,8 +228,8 @@ describe("Game - Variant System", () => {
     const accumulated: { text: string }[] = [];
 
     // Add main content
-    if (variantParagraph.contentPages) {
-      for (const page of variantParagraph.contentPages) {
+    if (variantParagraph.pages) {
+      for (const page of variantParagraph.pages) {
         accumulated.push(...page);
       }
     }
@@ -240,8 +240,8 @@ describe("Game - Variant System", () => {
         variantParagraph.variants?.[
           variantId as keyof typeof variantParagraph.variants
         ];
-      if (variant?.contentPages) {
-        for (const page of variant.contentPages) {
+      if (variant?.pages) {
+        for (const page of variant.pages) {
           accumulated.push(...page);
         }
       }

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import type { Paragraph } from "../types";
 
 interface MockVariant {
-  contentPages?: Array<Array<{ text: string }>>;
+  pages?: Array<Array<{ text: string }>>;
   text?: string;
   choices?: Array<{
     text: string;
@@ -15,7 +15,7 @@ interface MockVariant {
 interface MockParagraph {
   id: string;
   text?: string;
-  contentPages?: Array<Array<{ text: string }>>;
+  pages?: Array<Array<{ text: string }>>;
   choices?: Array<{
     text: string;
     nextParagraphId?: string;
@@ -255,7 +255,7 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
         id: "30",
         text: "Tutorial paragraph",
         isMultiPage: true,
-        contentPages: [
+        pages: [
           [{ type: "text", html: "Page 1" }],
           [{ type: "text", html: "Page 2" }],
           [{ type: "text", html: "Page 3" }],
@@ -264,7 +264,7 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
       };
 
       expect(multiPageParagraph.isMultiPage).toBe(true);
-      expect(multiPageParagraph.contentPages!.length).toBe(4);
+      expect(multiPageParagraph.pages!.length).toBe(4);
     });
   });
 
@@ -384,28 +384,28 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
       // Simulate paragraph with variants
       const paragraph: MockParagraph = {
         id: "9",
-        contentPages: [[{ text: "Choose a character" }]],
+        pages: [[{ text: "Choose a character" }]],
         variants: {
-          jessica: { contentPages: [[{ text: "Jessica's story" }]] },
-          patrick: { contentPages: [[{ text: "Patrick's story" }]] },
+          jessica: { pages: [[{ text: "Jessica's story" }]] },
+          patrick: { pages: [[{ text: "Patrick's story" }]] },
         },
       };
 
       let variantPath: string[] = ["jessica"];
 
       // Get accumulated content
-      let content = [...(paragraph.contentPages?.[0] ?? [])];
+      let content = [...(paragraph.pages?.[0] ?? [])];
       if (variantPath.length > 0) {
         const variant = paragraph.variants?.[variantPath[0]] as MockVariant;
-        if (variant?.contentPages) {
-          content.push(...variant.contentPages[0]);
+        if (variant?.pages) {
+          content.push(...variant.pages[0]);
         }
       }
       expect(content).toHaveLength(2); // main + variant
 
       // Refresh clears variants
       variantPath = [];
-      content = [...(paragraph.contentPages?.[0] ?? [])];
+      content = [...(paragraph.pages?.[0] ?? [])];
       expect(content).toHaveLength(1); // only main
     });
   });
@@ -456,7 +456,7 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
     it("should support variants within single paragraph", () => {
       const modernParagraph = {
         id: "9",
-        contentPages: [[{ text: "Którą postacią jesteś?" }]],
+        pages: [[{ text: "Którą postacią jesteś?" }]],
         choices: [
           { text: "Jessica", nextVariantId: "jessica" },
           { text: "Patrick", nextVariantId: "patrick" },
@@ -464,11 +464,11 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
         areChoicesHorizontal: true,
         variants: {
           jessica: {
-            contentPages: [[{ text: "Jessica's content" }]],
+            pages: [[{ text: "Jessica's content" }]],
             choices: [{ text: "Continue", nextParagraphId: "26" }],
           },
           patrick: {
-            contentPages: [[{ text: "Patrick's content" }]],
+            pages: [[{ text: "Patrick's content" }]],
             choices: [{ text: "Continue", nextParagraphId: "26" }],
           },
         },
@@ -482,9 +482,9 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
     it("should display only selected variant (reset display, not accumulation)", () => {
       const paragraph: MockParagraph = {
         id: "9",
-        contentPages: [[{ text: "Main content" }]],
+        pages: [[{ text: "Main content" }]],
         variants: {
-          jessica: { contentPages: [[{ text: "Jessica only" }]] },
+          jessica: { pages: [[{ text: "Jessica only" }]] },
         },
       };
 
@@ -493,7 +493,7 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
       // Get content for display (reset mode - only last variant)
       const lastVariantId = variantPath[variantPath.length - 1];
       const lastVariant = paragraph.variants?.[lastVariantId] as MockVariant;
-      const displayContent = lastVariant?.contentPages?.[0] ?? [];
+      const displayContent = lastVariant?.pages?.[0] ?? [];
 
       expect(displayContent).toHaveLength(1);
       expect(displayContent[0].text).toBe("Jessica only"); // NOT including main content
@@ -554,25 +554,25 @@ describe("Multi-page dead-end paragraphs - currentPage reset (v0.1.0 bug fix)", 
     // Simulating paragraph 77 (2 pages, dead-end)
     const para77: MockParagraph = {
       id: "77",
-      contentPages: [[{ text: "Page 1" }], [{ text: "Page 2" }]],
+      pages: [[{ text: "Page 1" }], [{ text: "Page 2" }]],
       choices: [],
     };
 
     // Simulating paragraph 121 (1 page, dead-end)
     const para121: MockParagraph = {
       id: "121",
-      contentPages: [[{ text: "Dead end content" }]],
+      pages: [[{ text: "Dead end content" }]],
       choices: [],
     };
 
     // With proper reset, when navigating to 121:
     // currentPage should be 0, maxPage should be 0
     // Condition (0 === 0) = true, input should appear
-    const page77MaxPage = para77.contentPages
-      ? para77.contentPages.length - 1
+    const page77MaxPage = para77.pages
+      ? para77.pages.length - 1
       : 0;
-    const page121MaxPage = para121.contentPages
-      ? para121.contentPages.length - 1
+    const page121MaxPage = para121.pages
+      ? para121.pages.length - 1
       : 0;
 
     expect(page77MaxPage).toBe(1);

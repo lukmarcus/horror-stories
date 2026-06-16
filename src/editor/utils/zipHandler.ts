@@ -91,14 +91,14 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
       (p.aliases ?? []).length > 0 ? [p.id, ...(p.aliases ?? [])] : p.id;
 
     // ── Prosty (simple) paragraph ──
-    if (!p.variants) {
+    if (!p.variants || Object.keys(p.variants).length === 0) {
       const cleanChoices = (p.choices ?? []).map(exportChoice);
       return {
         id: idField,
-        ...(p.text !== undefined ? { text: p.text } : {}),
-        ...(p.pages !== undefined ? { pages: p.pages } : {}),
-        ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
         ...accessibleFromEntry,
+        ...(p.text !== undefined ? { text: p.text } : {}),
+        pages: p.pages ?? [[]],
+        ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
       };
     }
 
@@ -109,7 +109,7 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     for (const [vid, variant] of Object.entries(p.variants)) {
       const variantChoices = (variant.choices ?? []).map(exportChoice);
       exportedVariants[vid] = {
-        ...(variant.pages !== undefined ? { contentPages: variant.pages } : {}),
+        ...(variant.pages !== undefined ? { pages: variant.pages } : {}),
         ...(variant.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
         ...(variantChoices.length > 0 ? { choices: variantChoices } : {}),
       };
@@ -117,12 +117,12 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
 
     return {
       id: idField,
+      ...accessibleFromEntry,
       ...(p.pages !== undefined && p.pages.length > 0
         ? { pages: p.pages }
         : {}),
       ...(selectorChoices.length > 0 ? { choices: selectorChoices } : {}),
       variants: exportedVariants,
-      ...accessibleFromEntry,
     };
   });
 
@@ -215,7 +215,7 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
         });
 
         if (pObj.variants && typeof pObj.variants === "object") {
-          // Variant paragraph: choices → variantSelectors, variants: contentPages → pages
+          // Variant paragraph: choices → variantSelectors, variants: pages → pages
           const rawId = Array.isArray(pObj.id)
             ? String((pObj.id as unknown[])[0])
             : String(pObj.id);
@@ -229,8 +229,14 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
           for (const [vid, v] of Object.entries(
             pObj.variants as Record<string, Record<string, unknown>>,
           )) {
+            // Support both pages (current) and contentPages (legacy) for variants
+            const variantPages = Array.isArray(v.pages)
+              ? v.pages
+              : Array.isArray(v.contentPages)
+                ? v.contentPages
+                : [[]];
             variants[vid] = {
-              pages: v.contentPages ?? [[]],
+              pages: variantPages,
               ...(v.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
               choices: (Array.isArray(v.choices)
                 ? (v.choices as Record<string, unknown>[])
@@ -238,10 +244,16 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
               ).map(addId),
             };
           }
+          // Support both pages (current) and contentPages (legacy) for intro
+          const introPages = Array.isArray(pObj.pages)
+            ? pObj.pages
+            : Array.isArray(pObj.contentPages)
+              ? pObj.contentPages
+              : [[]];
           return {
             id: rawId,
             ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
-            ...(Array.isArray(pObj.pages) ? { pages: pObj.pages } : {}),
+            pages: introPages,
             variantSelectors,
             variants,
             ...(Array.isArray(pObj.accessibleFrom)
@@ -260,11 +272,17 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
         const choices = ((pObj.choices ?? []) as Record<string, unknown>[]).map(
           addId,
         );
+        // Support both pages (current) and contentPages (legacy)
+        const pages = Array.isArray(pObj.pages)
+          ? pObj.pages
+          : Array.isArray(pObj.contentPages)
+            ? pObj.contentPages
+            : [[]];
         return {
           id: rawId,
           ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
           ...(pObj.text !== undefined ? { text: String(pObj.text) } : {}),
-          ...(Array.isArray(pObj.pages) ? { pages: pObj.pages } : {}),
+          pages,
           ...(choices.length > 0 ? { choices } : {}),
           ...(Array.isArray(pObj.accessibleFrom)
             ? { accessibleFrom: pObj.accessibleFrom }

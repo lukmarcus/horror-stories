@@ -10,9 +10,10 @@ export interface Paragraph {
   id: string | string[]; // Unikatowy ID — string lub tablica stringów
 
   // Zawartość
-  text?: string; // Stary format tekstu
-  content?: ContentBlock[]; // Jedna strona treści
-  contentPages?: ContentBlock[][]; // Wielostronicowa treść
+  text?: string; // Stary format tekstu (legacy)
+  content?: ContentBlock[]; // Jedna strona treści (legacy)
+  pages?: ContentBlock[][]; // Wielostronicowa treść (aktualny standard od v0.2.11)
+  contentPages?: ContentBlock[][]; // Legacy nazwa dla pages (import obsługuje dla wstecznej kompatybilności)
 
   // Nawigacja
   choices?: Choice[];
@@ -113,7 +114,7 @@ export interface DiceResult {
 ```json
 {
   "id": "10",
-  "contentPages": [
+  "pages": [
     [{ "text": "Pierwsza strona" }],
     [{ "text": "Druga strona" }],
     [{ "text": "Trzecia strona" }]
@@ -148,7 +149,7 @@ export interface DiceResult {
 ```json
 {
   "id": "9",
-  "contentPages": [[{ "text": "Którą postacią jesteś?" }]],
+  "pages": [[{ "text": "Którą postacią jesteś?" }]],
   "choices": [
     {
       "text": "Jessica",
@@ -161,7 +162,7 @@ export interface DiceResult {
   ],
   "variants": {
     "jessica": {
-      "contentPages": [[{ "text": "Poznałaś Patrick'a na imprezie." }]],
+      "pages": [[{ "text": "Poznałaś Patrick'a na imprezie." }]],
       "choices": [
         {
           "text": "Idę do kuchni",
@@ -170,7 +171,7 @@ export interface DiceResult {
       ]
     },
     "patrick": {
-      "contentPages": [[{ "text": "Głowa ta nie daje Ci żyć." }]],
+      "pages": [[{ "text": "Głowa ta nie daje Ci żyć." }]],
       "choices": [
         {
           "text": "Idę do kuchni",
@@ -187,7 +188,7 @@ export interface DiceResult {
 ```json
 {
   "id": "50",
-  "contentPages": [
+  "pages": [
     [
       { "text": "Jesteś w pokoju ze złowrogą atmosferą." },
       { "image": "dark-room", "spacing": "none" },
@@ -208,7 +209,7 @@ export interface DiceResult {
 ```json
 {
   "id": "9",
-  "contentPages": [[{ "text": "Wybierz postać" }]],
+  "pages": [[{ "text": "Wybierz postać" }]],
   "choices": [
     {
       "text": "Jessica",
@@ -217,7 +218,7 @@ export interface DiceResult {
   ],
   "variants": {
     "jessica": {
-      "contentPages": [[{ "text": "Jessica view" }]],
+      "pages": [[{ "text": "Jessica view" }]],
       "choices": [
         {
           "text": "Detale",
@@ -226,7 +227,7 @@ export interface DiceResult {
       ],
       "variants": {
         "jessica-detail": {
-          "contentPages": [[{ "text": "Jessica detailed view" }]],
+          "pages": [[{ "text": "Jessica detailed view" }]],
           "choices": [
             {
               "text": "Wróć do wyboru",
@@ -266,7 +267,7 @@ Obsługiwane tagi w polu `text`:
 ```json
 {
   "id": "15",
-  "contentPages": [
+  "pages": [
     [
       {
         "text": "Ostatni akapit przed przyciskami"
@@ -344,14 +345,15 @@ Opcjonalny plik z krokami przygotowania wyświetlanymi przed startem gry.
 
 ## Version History
 
-| Version | Change                            | Example                                     |
-| ------- | --------------------------------- | ------------------------------------------- |
-| v0.0.9  | Initial format                    | `"text": "..."`                             |
-| v0.0.10 | Multi-page, Rich text             | `"contentPages": [[...]]`                   |
-| v0.0.12 | Variants, Reset display           | `"variants": {...}`                         |
-| v0.1.0  | DiceResult, content (single-page) | `"hasDiceRoll": true`                       |
-| v0.1.1  | id jako tablica, isConditional    | `"id": ["5", "6"]`, `"isConditional": true` |
-| v0.2.9  | letters.json, setup.json          | żetony alfabetu, kroki przygotowania        |
+| Version | Change                                        | Example                                     |
+| ------- | --------------------------------------------- | ------------------------------------------- |
+| v0.0.9  | Initial format                                | `"text": "..."`                             |
+| v0.0.10 | Multi-page, Rich text                         | `"contentPages": [[...]]`                   |
+| v0.0.12 | Variants, Reset display                       | `"variants": {...}`                         |
+| v0.1.0  | DiceResult, content (single-page)             | `"hasDiceRoll": true`                       |
+| v0.1.1  | id jako tablica, isConditional                | `"id": ["5", "6"]`, `"isConditional": true` |
+| v0.2.9  | letters.json, setup.json                      | żetony alfabetu, kroki przygotowania        |
+| v0.2.11 | pages (zamiast contentPages), spacing control | `"pages": [[...]]`, `"spacing": "none"`     |
 
 ## Best Practices
 

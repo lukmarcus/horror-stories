@@ -4,10 +4,15 @@
       "id": "1",
       "text": "Budzisz się w swoim [item:łóżku]]. Noc jest absolutnie czarna. Droga do okna to tylko kilka kroków, ale czujesz że coś nie jest w porządku. Powietrze jest gęste, a w kącie pokoju słychać cichy szept.",
       "choices": [
-        { "id": "c1", "text": "Włącz światło", "nextParagraphId": "2" },
-        { "id": "c2", "text": "Wstań ostrożnie", "nextParagraphId": "3" },
         {
-          "id": "c3",
+          "text": "Włącz światło",
+          "nextParagraphId": "2"
+        },
+        {
+          "text": "Wstań ostrożnie",
+          "nextParagraphId": "3"
+        },
+        {
           "text": "Zostań w łóżku i słuchaj",
           "nextParagraphId": "4"
         }
@@ -16,43 +21,60 @@
     {
       "id": "2",
       "text": "Światło rozprasza ciemność. Pokój wygląda normalnie, ale [figure:coś jest nie tak]]. Twoje odbicie w lustrze miga. Czy to naprawdę Ty?",
-      "accessibleFrom": ["1"],
+      "accessibleFrom": [
+        "1"
+      ],
       "choices": [
-        { "id": "c4", "text": "Podejdź do lustra", "nextParagraphId": "5" },
-        { "id": "c5", "text": "Uciekaj z pokoju", "nextParagraphId": "6" }
+        {
+          "text": "Podejdź do lustra",
+          "nextParagraphId": "5"
+        },
+        {
+          "text": "Uciekaj z pokoju",
+          "nextParagraphId": "6"
+        }
       ]
     },
     {
       "id": "3",
       "text": "Powoli wychodzisz z łóżka. Podłoga jest zimna i lepka. W mroku widzisz [item:otwarcie drzwi]] do korytarza. Tam czeka noc.",
-      "accessibleFrom": ["1"],
+      "accessibleFrom": [
+        "1"
+      ],
       "choices": [
-        { "id": "c6", "text": "Wejdź do korytarza", "nextParagraphId": "7" }
+        {
+          "text": "Wejdź do korytarza",
+          "nextParagraphId": "7"
+        }
       ]
     },
     {
       "id": "4",
       "text": "Szept się wzmacnia. To robi się coraz głośniejsze. [figure:Coś]] powoli zbliża się do Twojego łóżka.",
-      "accessibleFrom": ["1"],
-      "choices": []
+      "accessibleFrom": [
+        "1"
+      ]
     },
     {
       "id": "5",
-      "accessibleFrom": ["2"],
+      "accessibleFrom": [
+        "2"
+      ],
       "text": "To nie było Twoje odbicie. Coś innego patrzało z drugiej strony lustra. Teraz jest tutaj."
     },
     {
       "id": "6",
-      "accessibleFrom": ["2"],
+      "accessibleFrom": [
+        "2"
+      ],
       "text": "Uciekasz z domu o północy. Możliwe że przetrwałeś... ale co Cię będzie czekać jutro?"
     },
     {
       "id": "7",
-      "accessibleFrom": ["3"],
+      "accessibleFrom": [
+        "3"
+      ],
       "text": "Korytarz rozciąga się bez końca. Wreszcie rozumiesz: nigdy stąd nie wyjdziesz."
     }
   ]
 }
-
-
-

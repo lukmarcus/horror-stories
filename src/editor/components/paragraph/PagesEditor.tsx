@@ -109,8 +109,8 @@ const PageEditor: React.FC<PageEditorProps> = ({
     const el = ref.current;
     if (!el) return;
     const { line } = getCurrentLineRange(el.value, el.selectionStart);
-    const { styles, color, size } = parseBlockPrefixes(line);
-    setActiveOpts({ styles, color, size });
+    const { styles, color, size, spacing } = parseBlockPrefixes(line);
+    setActiveOpts({ styles, color, size, spacing });
   }, []);
 
   const wrap = (before: string, after: string) =>
@@ -148,9 +148,15 @@ const PageEditor: React.FC<PageEditorProps> = ({
     if (!el) return;
     const pos = el.selectionStart;
     const { start, end, line } = getCurrentLineRange(text, pos);
-    const { styles, color, size, content } = parseBlockPrefixes(line);
-    const next = modify({ styles, color, size });
-    const newLine = buildLine(content, next.styles, next.color, next.size);
+    const { styles, color, size, spacing, content } = parseBlockPrefixes(line);
+    const next = modify({ styles, color, size, spacing });
+    const newLine = buildLine(
+      content,
+      next.styles,
+      next.color,
+      next.size,
+      next.spacing,
+    );
     const delta = newLine.length - line.length;
     onChange(text.slice(0, start) + newLine + text.slice(end));
     setActiveOpts(next);
@@ -180,6 +186,12 @@ const PageEditor: React.FC<PageEditorProps> = ({
       size: opts.size === size ? null : (size as SizeName),
     }));
 
+  const toggleBlockSpacing = () =>
+    applyToCurrentLine((opts) => ({
+      ...opts,
+      spacing: opts.spacing === "none" ? undefined : "none",
+    }));
+
   const clearBlock = () => applyToCurrentLine(() => ({ ...EMPTY_BLOCK_OPTS }));
 
   return (
@@ -206,6 +218,7 @@ const PageEditor: React.FC<PageEditorProps> = ({
           onToggleStyle={toggleBlockStyle}
           onSetColor={setBlockColor}
           onSetSize={setBlockSize}
+          onToggleSpacing={toggleBlockSpacing}
           onClear={clearBlock}
           onInsertBlockImage={insertBlockImage}
         />
@@ -220,7 +233,7 @@ const PageEditor: React.FC<PageEditorProps> = ({
         onClick={updateActive}
         onKeyUp={updateActive}
         placeholder={
-          "Każda linia = osobny akapit\nObraz: [img: ścieżka/do/pliku.jpg lg]\nStyl akapitu: [b], [i], [u], [c:red], [s:xl] na początku linii"
+          "Każda linia = osobny akapit\nObraz: [img: ścieżka/do/pliku.jpg lg]\nStyl akapitu: [sp:none], [b], [i], [u], [c:red], [s:xl] na początku linii"
         }
         rows={12}
         spellCheck={false}

@@ -29,7 +29,7 @@ function editorVariantToGameParagraph(
     id: variantId,
     ...(pages.length === 1
       ? { content: pages[0] }
-      : { contentPages: pages, isMultiPage: true }),
+      : { pages, isMultiPage: true }),
     choices,
     ...(variant.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
   };
@@ -40,8 +40,8 @@ function editorVariantToGameParagraph(
  *
  * - If `pages` is set: uses ContentBlock[][] directly.
  *   - 1 page  → content: pages[0]  (no isMultiPage)
- *   - 2+ pages → contentPages: pages, isMultiPage: true
- * - Falls back to legacy `text` field: each non-empty line → ContentBlock in contentPages[0].
+ *   - 2+ pages → pages, isMultiPage: true
+ * - Falls back to legacy `text` field: each non-empty line → ContentBlock in pages[0].
  */
 export function editorParagraphToGameParagraph(
   editorParagraph: EditorParagraph,
@@ -63,7 +63,7 @@ export function editorParagraphToGameParagraph(
       id: editorParagraph.id,
       ...(pages.length === 1
         ? { content: pages[0] }
-        : { contentPages: pages, isMultiPage: true }),
+        : { pages, isMultiPage: true }),
       choices,
       variants,
     };
@@ -81,7 +81,7 @@ export function editorParagraphToGameParagraph(
     }
     return {
       id: editorParagraph.id,
-      contentPages: pages,
+      pages,
       isMultiPage: true,
       choices,
     };
@@ -99,7 +99,7 @@ export function editorParagraphToGameParagraph(
 
   return {
     id: editorParagraph.id,
-    contentPages: contentPage.length > 0 ? [contentPage] : [[]],
+    pages: contentPage.length > 0 ? [contentPage] : [[]],
     choices,
   };
 }

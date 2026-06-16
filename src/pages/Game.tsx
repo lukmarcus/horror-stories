@@ -141,11 +141,9 @@ export const Game: React.FC = () => {
     // Strip variants so !!displayParagraph.variants is false for nested variants
     return {
       ...currentParagraph,
-      contentPages:
-        lastVariant.contentPages ||
-        (lastVariant.content
-          ? [lastVariant.content]
-          : currentParagraph.contentPages),
+      pages:
+        lastVariant.pages ||
+        (lastVariant.content ? [lastVariant.content] : currentParagraph.pages),
       content: lastVariant.content,
       choices: lastVariant.choices || currentParagraph.choices,
       areChoicesHorizontal: lastVariant.areChoicesHorizontal,

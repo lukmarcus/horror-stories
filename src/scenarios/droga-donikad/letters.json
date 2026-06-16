@@ -1,6 +1,12 @@
 {
   "letters": [
-    { "id": "a", "paragraphId": "30" },
-    { "id": "b", "paragraphId": "83" }
+    {
+      "id": "A",
+      "paragraphId": "30"
+    },
+    {
+      "id": "B",
+      "paragraphId": "83"
+    }
   ]
 }

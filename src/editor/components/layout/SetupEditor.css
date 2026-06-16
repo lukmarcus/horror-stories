@@ -1,5 +1,5 @@
 .setup-editor {
-  max-width: 800px;
+  max-width: 1400px;
 }
 
 .setup-editor__title {
@@ -19,6 +19,43 @@
   font-size: 0.85rem;
   color: #555;
   margin: 0 0 1.5rem;
+}
+
+.setup-editor__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.setup-editor__editor {
+  min-width: 0;
+}
+
+.setup-editor__preview {
+  min-width: 0;
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+.setup-editor__preview-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #888;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.setup-editor__preview-content {
+  padding: 1rem;
+  background: #1a1a1a;
+  border: 1px solid #2e2e2e;
+  border-radius: 6px;
+  min-height: 200px;
 }
 
 .setup-editor__step {
