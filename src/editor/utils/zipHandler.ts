@@ -229,8 +229,14 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
           for (const [vid, v] of Object.entries(
             pObj.variants as Record<string, Record<string, unknown>>,
           )) {
+            // Support both pages (current) and contentPages (legacy) for variants
+            const variantPages = Array.isArray(v.pages)
+              ? v.pages
+              : Array.isArray(v.contentPages)
+                ? v.contentPages
+                : [[]];
             variants[vid] = {
-              pages: v.pages ?? [[]],
+              pages: variantPages,
               ...(v.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
               choices: (Array.isArray(v.choices)
                 ? (v.choices as Record<string, unknown>[])

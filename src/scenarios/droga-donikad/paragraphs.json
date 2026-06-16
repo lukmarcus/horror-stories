@@ -83,7 +83,7 @@
       ],
       "variants": {
         "jessica": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "Poznałaś go na imprezie. Wracaliście jednym autem."
@@ -106,7 +106,7 @@
           "areChoicesHorizontal": true
         },
         "patrick-lezy": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "Wybierz jedną z opcji spośród:"
@@ -124,7 +124,7 @@
           ]
         },
         "patrick-stoi": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "Wybierz jedną z opcji spośród:"
@@ -145,7 +145,7 @@
           ]
         },
         "patrick": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "... Głowa nie daje Ci żyć. Domyślasz się, że trochę przesadziłeś na imprezie. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
@@ -218,7 +218,7 @@
       ],
       "variants": {
         "jessica": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
@@ -227,7 +227,7 @@
           ]
         },
         "patrick": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "Poznałaś ją na imprezie i zaproponowałeś, że odwieziesz ją do domu. Co prawda nie byłeś w szczytowej formie, ale było niedaleko, a w nocy ruch był znikomy ruch."
@@ -684,7 +684,7 @@
       ],
       "variants": {
         "patrick-leży": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
@@ -699,7 +699,7 @@
           ]
         },
         "patrick-stoi": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
@@ -982,7 +982,7 @@
       ],
       "variants": {
         "klaun": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "<enemy id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
@@ -991,7 +991,7 @@
           ]
         },
         "jessica": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "<person id='jessica'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
@@ -1014,7 +1014,7 @@
           "areChoicesHorizontal": true
         },
         "patrick": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "<person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
@@ -1037,7 +1037,7 @@
           "areChoicesHorizontal": true
         },
         "jessica-tylko": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "Gra toczy się dalej."
@@ -1046,7 +1046,7 @@
           ]
         },
         "patrick-tylko": {
-          "contentPages": [
+          "pages": [
             [
               {
                 "text": "Gra toczy się dalej."
