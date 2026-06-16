@@ -109,7 +109,7 @@ export function editorReducer(
             return undefined;
           })(),
         },
-        isDirty: false,
+        isDirty: true,
         activeParagraphId: null,
       };
     case "MARK_SAVED":

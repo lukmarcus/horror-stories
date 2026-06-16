@@ -117,7 +117,7 @@ describe("editorReducer", () => {
       expect(state.scenario!.paragraphs.some((p) => p.id === "100")).toBe(true);
     });
 
-    it("resetuje isDirty i activeParagraphId", () => {
+    it("ustawia isDirty na true i resetuje activeParagraphId", () => {
       const dirty: EditorState = {
         scenario: { meta: EMPTY_META, paragraphs: [{ id: "100" }] },
         isDirty: true,
@@ -127,7 +127,7 @@ describe("editorReducer", () => {
         type: "LOAD_SCENARIO",
         payload: { meta: EMPTY_META, paragraphs: [{ id: "100" }] },
       });
-      expect(state.isDirty).toBe(false);
+      expect(state.isDirty).toBe(true);
       expect(state.activeParagraphId).toBeNull();
     });
   });
