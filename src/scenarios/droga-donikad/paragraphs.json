@@ -724,6 +724,7 @@
     },
     {
       "id": "75",
+      "accessibleFrom": ["35", "49"],
       "pages": [
         [
           {
@@ -1153,7 +1154,6 @@
     },
     {
       "id": "113",
-      "accessibleFrom": ["82"],
       "pages": [
         [
           {
