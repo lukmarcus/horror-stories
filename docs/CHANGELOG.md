@@ -18,6 +18,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Zmieniono
 
 - Kod: usunięto podwójne rzutowania typów przy imporcie scenariuszy JSON — lepsza zgodność typów TypeScript
+- Kod: dodano komentarze wyjaśniające celowe użycie `eslint-disable` w `Game.tsx` (synchronizacja URL z state wymaga jednostronnych dependency arrays)
 
 ---
 
