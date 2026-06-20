@@ -13,6 +13,11 @@ import szpital from "./opuszczony-szpital/paragraphs.json";
 import koszmar from "./nocny-koszmar/paragraphs.json";
 
 /**
+ * Type for imported JSON paragraph data
+ */
+type ImportedParagraphs = { paragraphs: Paragraph[] };
+
+/**
  * Available game scenarios - loaded from index.json
  */
 export const SCENARIOS: Record<string, Scenario> = Object.fromEntries(
@@ -87,16 +92,16 @@ export const createParagraphMap = (
 
 export const PARAGRAPHS: Record<string, Record<string, Paragraph>> = {
   "droga-donikad": createParagraphMap(
-    droga.paragraphs as unknown as Paragraph[],
+    (droga as ImportedParagraphs).paragraphs,
   ),
   "tajemna-biblioteka": createParagraphMap(
-    biblioteka.paragraphs as unknown as Paragraph[],
+    (biblioteka as ImportedParagraphs).paragraphs,
   ),
   "opuszczony-szpital": createParagraphMap(
-    szpital.paragraphs as unknown as Paragraph[],
+    (szpital as ImportedParagraphs).paragraphs,
   ),
   "nocny-koszmar": createParagraphMap(
-    koszmar.paragraphs as unknown as Paragraph[],
+    (koszmar as ImportedParagraphs).paragraphs,
   ),
 };
 

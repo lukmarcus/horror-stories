@@ -7,6 +7,20 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.2.12] - 2026-06-22
+
+### Naprawiono
+
+- Edytor: importowane scenariusze teraz zapisują się do IndexedDB i pozostają dostępne po odświeżeniu strony
+- Edytor: eksport scenariuszy generuje bardziej zwięzły JSON — proste tablice (np. `id`, `accessibleFrom`) są teraz w jednej linii zamiast rozłożone na wiele wierszy
+- Scenariusz „Droga donikąd": poprawiono `accessibleFrom` w paragrafach 75 i 113
+
+### Zmieniono
+
+- Kod: usunięto podwójne rzutowania typów przy imporcie scenariuszy JSON — lepsza zgodność typów TypeScript
+
+---
+
 ## [0.2.11] - 2026-06-16
 
 ### Dodano
