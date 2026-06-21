@@ -19,6 +19,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - Kod: usunięto podwójne rzutowania typów przy imporcie scenariuszy JSON — lepsza zgodność typów TypeScript
 - Kod: dodano komentarze wyjaśniające celowe użycie `eslint-disable` w `Game.tsx` (synchronizacja URL z state wymaga jednostronnych dependency arrays)
+- Kod: refaktoryzacja `LettersEditor` — wydzielono `LetterRow` i `AddLetterForm` jako osobne komponenty, redukcja z 402 do 110 linii głównego pliku
 
 ---
 

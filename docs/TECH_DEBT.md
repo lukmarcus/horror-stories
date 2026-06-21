@@ -15,17 +15,6 @@ Plan zadań technicznych. Kolejność według priorytetu (ocena 1–10: ryzyko �
 
 ---
 
-
-
-### ★ 5/10 — `LettersEditor.tsx` — podział komponentu i redukcja stanu
-
-**Plik:** `src/editor/components/layout/LettersEditor.tsx` (402 linie)
-**Problem:** Jeden komponent obsługuje: listę liter, dodawanie, edycję inline, usuwanie z konfirmacją, autocomplete paragrafów. 8 różnych `useState` (confirmDeleteId, newLetter, newParaInput, addError, editingValues, editErrors, addFocused, addHighlighted).
-**Działanie:** Wydzielić `LetterRow` (pojedynczy wiersz z edycją i usuwaniem) i `AddLetterForm` (formularz dodawania z autocomplete). Ewentualnie zastąpić multiple `useState` przez `useReducer`.
-**Ryzyko:** niskie — dobrze odseparowana logika, mało zależności. **Nakład:** ~2 h.
-
----
-
 ### ★ 4/10 — `ParagraphView.tsx` — uproszczenie logiki wariantów
 
 **Plik:** `src/components/text/ParagraphText/ParagraphView.tsx` (394 linie)
@@ -64,5 +53,11 @@ Plan zadań technicznych. Kolejność według priorytetu (ocena 1–10: ryzyko �
 ### ✅ `Game.tsx` — eslint-disable bez uzasadnienia
 
 **Status:** Rozwiązane — dodano komentarze wyjaśniające celowe użycie częściowych dependency arrays w trzech useEffect (synchronizacja URL ↔ state wymaga jednostronnych triggerów).
+
+---
+
+### ✅ `LettersEditor.tsx` — podział komponentu i redukcja stanu
+
+**Status:** Rozwiązane — wydzielono `LetterRow` (148 linii) i `AddLetterForm` (141 linii) jako osobne komponenty. Główny `LettersEditor` zredukowany z 402 do 110 linii. Wszystkie 8 stanów lokalnych przeniesione do podkomponentów. Testy (30): 100% przechodzi.
 
 ---
