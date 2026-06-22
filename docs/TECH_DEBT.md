@@ -24,15 +24,6 @@ Plan zadań technicznych. Kolejność według priorytetu (ocena 1–10: ryzyko �
 
 ---
 
-### ★ 3/10 — `RichText.tsx` — cleanup parsera inline formatowania
-
-**Plik:** `src/components/text/RichText/RichText.tsx` (351 linii)
-**Problem:** Parser tekstu z inline formatowaniem (**bold**, _italic_, {{alias}}, [[dice]], [[conditional]], [[info]]) działa poprawnie, ale logika parsowania jest rozproszona w jednym długim komponencie.
-**Działanie:** Wydzielić funkcje parsujące jako utility: `parseInlineFormatting()`, `parseSpecialTags()`. Można rozważyć cache dla często używanych wzorców.
-**Ryzyko:** niskie — stabilny komponent, rzadko modyfikowany. **Nakład:** ~1.5 h.
-
----
-
 ### ★ 3/10 — `VariantEditor.tsx` i `EnemyView.tsx` — podobny wzorzec do `LettersEditor`
 
 **Pliki:** `src/editor/components/paragraph/VariantEditor.tsx` (264 linie), `src/components/views/EnemyView/EnemyView.tsx` (262 linie)
@@ -59,5 +50,11 @@ Plan zadań technicznych. Kolejność według priorytetu (ocena 1–10: ryzyko �
 ### ✅ `LettersEditor.tsx` — podział komponentu i redukcja stanu
 
 **Status:** Rozwiązane — wydzielono `LetterRow` (148 linii) i `AddLetterForm` (141 linii) jako osobne komponenty. Główny `LettersEditor` zredukowany z 402 do 110 linii. Wszystkie 8 stanów lokalnych przeniesione do podkomponentów. Testy (30): 100% przechodzi.
+
+---
+
+### ✅ `RichText.tsx` — cleanup parsera inline formatowania
+
+**Status:** Rozwiązane — wydzielono `customTagRenderers.tsx` (190 linii) i `contentBlockRenderer.tsx` (126 linii) jako utility functions. Główny `RichText.tsx` zredukowany z 351 do 34 linii. Testy (55): 100% przechodzi.
 
 ---
