@@ -6,6 +6,7 @@ import { EditorPreview } from "./EditorPreview";
 import { VariantsSection } from "./VariantsSection";
 import { SimpleModeEditor } from "./SimpleModeEditor";
 import { VariantModeEditor } from "./VariantModeEditor";
+import { ParagraphHeader } from "./ParagraphHeader";
 import "./EditorParagraphView.css";
 
 interface EditorParagraphViewProps {
@@ -29,10 +30,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const paragraph = scenarioParagraphs?.find((p) => p.id === paragraphId);
 
   const [focusedTargetId, setFocusedTargetId] = useState<string | null>(null);
-  const [confirmSwitchSimple, setConfirmSwitchSimple] = useState(false);
-  const [confirmDeleteParagraph, setConfirmDeleteParagraph] = useState(false);
-  const [newAlias, setNewAlias] = useState("");
-  const [aliasError, setAliasError] = useState("");
 
   const availableIds = useMemo(
     () =>
@@ -65,7 +62,8 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
   const paragraphLetter = useMemo(
     () =>
-      state.scenario?.letters?.find((l) => l.paragraphId === paragraphId)?.id,
+      state.scenario?.letters?.find((l) => l.paragraphId === paragraphId)?.id ??
+      null,
     [state.scenario?.letters, paragraphId],
   );
 
@@ -83,20 +81,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const isDeath = paragraphId === "100";
   const isVariantMode = !!paragraph.variants;
 
-  // ── Mode toggle ──
-
-  const handleSwitchToVariant = () => {
-    dispatch({ type: "ENABLE_VARIANT_MODE", payload: paragraphId });
-  };
-
-  const handleSwitchToSimple = () => {
-    if (variantIds.length > 0) {
-      setConfirmSwitchSimple(true);
-      return;
-    }
-    dispatch({ type: "DISABLE_VARIANT_MODE", payload: paragraphId });
-  };
-
   // ── Simple mode choice handlers ──
 
   const handleUpdateChoice = (choice: EditorChoice) => {
@@ -108,189 +92,48 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
     }
   };
 
-  // ── Variant selector handlers ──
-
-  const handleAddAlias = () => {
-    const val = newAlias.trim();
-    if (!val) return;
-    if (val === paragraphId) {
-      setAliasError("To już jest główny ID");
-      return;
-    }
-    if ((paragraph.aliases ?? []).includes(val)) {
-      setAliasError("Już istnieje");
-      return;
-    }
-    if (usedIds.has(val)) {
-      setAliasError("Zajęty przez inny paragraf");
-      return;
-    }
-    dispatch({ type: "ADD_ALIAS", payload: { paragraphId, alias: val } });
-    setNewAlias("");
-    setAliasError("");
-  };
-
   return (
     <div className="editor-paragraph-view">
-      {/* Header */}
-      <div className="editor-paragraph-view__header">
-        <div className="editor-paragraph-view__header-left">
-          <div className="editor-paragraph-view__title-row">
-            <h1 className="editor-paragraph-view__title">§{paragraphId}</h1>
-            <div className="editor-paragraph-view__aliases">
-              {(paragraph.aliases ?? []).map((alias) => (
-                <span
-                  key={alias}
-                  className="editor-paragraph-view__alias-badge"
-                >
-                  §{alias}
-                  <button
-                    className="editor-paragraph-view__alias-remove"
-                    onClick={() =>
-                      dispatch({
-                        type: "REMOVE_ALIAS",
-                        payload: { paragraphId, alias },
-                      })
-                    }
-                    title={`Usuń alias §${alias}`}
-                  >
-                    ×
-                  </button>
-                </span>
-              ))}
-              <input
-                className="editor-paragraph-view__alias-input"
-                type="text"
-                placeholder="+ alias"
-                value={newAlias}
-                onChange={(e) => {
-                  setNewAlias(e.target.value);
-                  setAliasError("");
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") handleAddAlias();
-                }}
-              />
-              {aliasError && (
-                <span className="editor-paragraph-view__alias-error">
-                  {aliasError}
-                </span>
-              )}
-            </div>
-          </div>
-          <div className="editor-paragraph-view__incoming">
-            <span className="editor-paragraph-view__incoming-label">
-              Prowadzi tutaj:
-            </span>
-            {incomingFrom.length > 0 ? (
-              incomingFrom.map((id) => (
-                <button
-                  key={id}
-                  className="editor-paragraph-view__incoming-tag"
-                  onClick={() => onNavigate(id)}
-                  title={`Przejdź do §${id}`}
-                >
-                  §{id}
-                </button>
-              ))
-            ) : (
-              <span className="editor-paragraph-view__incoming-empty">
-                brak połączeń
-              </span>
-            )}
-          </div>
-          {paragraphLetter && (
-            <div className="editor-paragraph-view__incoming">
-              <span className="editor-paragraph-view__incoming-label">
-                Dostępna przez literę:
-              </span>
-              <button
-                className="editor-paragraph-view__incoming-tag editor-paragraph-view__incoming-tag--letter"
-                onClick={onNavigateToLetters}
-                title="Przejdź do żetonów alfabetu"
-              >
-                {paragraphLetter}
-              </button>
-            </div>
-          )}
-        </div>
-        <div className="editor-paragraph-view__header-right">
-          <div className="editor-paragraph-view__mode-toggle">
-            <button
-              className={`editor-paragraph-view__mode-btn${!isVariantMode ? " editor-paragraph-view__mode-btn--active" : ""}`}
-              onClick={isVariantMode ? handleSwitchToSimple : undefined}
-              disabled={!isVariantMode}
-            >
-              Prosty
-            </button>
-            <button
-              className={`editor-paragraph-view__mode-btn${isVariantMode ? " editor-paragraph-view__mode-btn--active" : ""}`}
-              onClick={!isVariantMode ? handleSwitchToVariant : undefined}
-              disabled={isVariantMode}
-            >
-              Wariantowy
-            </button>
-          </div>
-          {confirmSwitchSimple && (
-            <span className="editor-paragraph-view__inline-confirm">
-              <span>Usunąć wszystkie warianty?</span>
-              <button
-                className="editor-paragraph-view__inline-confirm-yes"
-                onClick={() => {
-                  setConfirmSwitchSimple(false);
-                  dispatch({
-                    type: "DISABLE_VARIANT_MODE",
-                    payload: paragraphId,
-                  });
-                }}
-              >
-                Tak
-              </button>
-              <button
-                className="editor-paragraph-view__inline-confirm-no"
-                onClick={() => setConfirmSwitchSimple(false)}
-              >
-                Anuluj
-              </button>
-            </span>
-          )}
-          {confirmDeleteParagraph ? (
-            <span className="editor-paragraph-view__inline-confirm">
-              <span>Usunąć §{paragraphId}?</span>
-              <button
-                className="editor-paragraph-view__inline-confirm-yes"
-                onClick={() => {
-                  setConfirmDeleteParagraph(false);
-                  onRemove(paragraphId);
-                }}
-              >
-                Tak
-              </button>
-              <button
-                className="editor-paragraph-view__inline-confirm-no"
-                onClick={() => setConfirmDeleteParagraph(false)}
-              >
-                Anuluj
-              </button>
-            </span>
-          ) : (
-            <button
-              className="editor-paragraph-view__remove-btn"
-              onClick={
-                isDeath ? undefined : () => setConfirmDeleteParagraph(true)
-              }
-              disabled={isDeath}
-              title={
-                isDeath
-                  ? "Nie można usunąć paragrafu §100"
-                  : `Usuń §${paragraphId}`
-              }
-            >
-              {isDeath ? "Nie można usunąć" : "Usuń paragraf"}
-            </button>
-          )}
-        </div>
-      </div>
+      <ParagraphHeader
+        paragraphId={paragraphId}
+        paragraph={paragraph}
+        isVariantMode={isVariantMode}
+        isDeath={isDeath}
+        incomingFrom={incomingFrom}
+        paragraphLetter={paragraphLetter}
+        variantIds={variantIds}
+        onNavigate={onNavigate}
+        onNavigateToLetters={onNavigateToLetters}
+        onRemove={onRemove}
+        onAddAlias={(alias) => {
+          if (alias === paragraphId) return "To już jest główny ID";
+          if ((paragraph.aliases ?? []).includes(alias)) return "Już istnieje";
+          if (usedIds.has(alias)) return "Zajęty przez inny paragraf";
+          dispatch({
+            type: "ADD_ALIAS",
+            payload: { paragraphId, alias },
+          });
+          return null;
+        }}
+        onRemoveAlias={(alias) =>
+          dispatch({
+            type: "REMOVE_ALIAS",
+            payload: { paragraphId, alias },
+          })
+        }
+        onSwitchToSimple={() =>
+          dispatch({
+            type: "DISABLE_VARIANT_MODE",
+            payload: paragraphId,
+          })
+        }
+        onSwitchToVariant={() =>
+          dispatch({
+            type: "ENABLE_VARIANT_MODE",
+            payload: paragraphId,
+          })
+        }
+      />
 
       <div className="editor-paragraph-view__columns">
         <div className="editor-paragraph-view__editor">
