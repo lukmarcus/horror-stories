@@ -6,8 +6,8 @@ import { PagesEditor } from "./PagesEditor";
 import { ChoiceTextInput } from "./ChoiceTextInput";
 import { ChoiceRow } from "./ChoiceRow";
 import { ChoiceAddRow } from "./ChoiceAddRow";
-import { VariantEditor } from "./VariantEditor";
 import { EditorPreview } from "./EditorPreview";
+import { VariantsSection } from "./VariantsSection";
 import "./EditorParagraphView.css";
 
 interface EditorParagraphViewProps {
@@ -31,7 +31,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const paragraph = scenarioParagraphs?.find((p) => p.id === paragraphId);
 
   const [focusedTargetId, setFocusedTargetId] = useState<string | null>(null);
-  const [newVariantId, setNewVariantId] = useState("");
   const [focusedSelectorId, setFocusedSelectorId] = useState<string | null>(
     null,
   );
@@ -531,72 +530,18 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
       {/* Warianty — poza gridem, pełna szerokość */}
       {isVariantMode && (
-        <div className="editor-paragraph-view__variants-section">
-          <h2 className="editor-paragraph-view__label">Warianty</h2>
-
-          {variantIds.length === 0 && (
-            <p className="editor-paragraph-view__variants-empty">
-              Brak wariantów — dodaj pierwszy poniżej.
-            </p>
-          )}
-
-          {variantIds.map((vid) => (
-            <VariantEditor
-              key={vid}
-              paragraphId={paragraphId}
-              variantId={vid}
-              variant={paragraph.variants![vid]}
-              variantIds={variantIds}
-              paragraphIds={availableIds}
-            />
-          ))}
-
-          <div className="editor-paragraph-view__variant-add-footer">
-            <h2 className="editor-paragraph-view__label">Nowy wariant</h2>
-            <div className="editor-paragraph-view__variant-add-row">
-              <input
-                className="editor-paragraph-view__variant-add-input"
-                type="text"
-                value={newVariantId}
-                onChange={(e) =>
-                  setNewVariantId(
-                    e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""),
-                  )
-                }
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && newVariantId.trim()) {
-                    dispatch({
-                      type: "ADD_VARIANT",
-                      payload: {
-                        paragraphId,
-                        variantId: newVariantId.trim(),
-                      },
-                    });
-                    setNewVariantId("");
-                  }
-                }}
-                placeholder="nazwa-nowego-wariantu"
-              />
-              <button
-                className="editor-paragraph-view__variant-add-btn"
-                onClick={() => {
-                  if (!newVariantId.trim()) return;
-                  dispatch({
-                    type: "ADD_VARIANT",
-                    payload: {
-                      paragraphId,
-                      variantId: newVariantId.trim(),
-                    },
-                  });
-                  setNewVariantId("");
-                }}
-                disabled={!newVariantId.trim()}
-              >
-                + Dodaj wariant
-              </button>
-            </div>
-          </div>
-        </div>
+        <VariantsSection
+          paragraphId={paragraphId}
+          paragraph={paragraph}
+          variantIds={variantIds}
+          availableIds={availableIds}
+          onAddVariant={(variantId) =>
+            dispatch({
+              type: "ADD_VARIANT",
+              payload: { paragraphId, variantId },
+            })
+          }
+        />
       )}
     </div>
   );
