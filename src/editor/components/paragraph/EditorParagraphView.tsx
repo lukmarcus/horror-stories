@@ -1,9 +1,5 @@
 ﻿import React, { useMemo, useState } from "react";
 import { useEditor } from "../../context/useEditor";
-import { ParagraphText } from "../../../components/text/ParagraphText/ParagraphText";
-import { RichText } from "../../../components/text/RichText/RichText";
-import { PagesPreview } from "./PagesPreview";
-import { Button } from "../../../components/ui/Button";
 import type { EditorChoice } from "../../context/editorTypes";
 import { filterIds, sortParagraphIds } from "../../utils/editorUtils";
 import { PagesEditor } from "./PagesEditor";
@@ -11,6 +7,7 @@ import { ChoiceTextInput } from "./ChoiceTextInput";
 import { ChoiceRow } from "./ChoiceRow";
 import { ChoiceAddRow } from "./ChoiceAddRow";
 import { VariantEditor } from "./VariantEditor";
+import { EditorPreview } from "./EditorPreview";
 import "./EditorParagraphView.css";
 
 interface EditorParagraphViewProps {
@@ -524,80 +521,12 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
         </div>
 
         {/* Preview — oba tryby */}
-        <div className="editor-paragraph-view__preview">
-          <h2 className="editor-paragraph-view__label">Podgląd</h2>
-          <div className="editor-paragraph-view__preview-content">
-            {isVariantMode ? (
-              <>
-                <PagesPreview
-                  pages={paragraph.pages ?? [[]]}
-                  emptyMessage="Brak treści wprowadzającej"
-                />
-                {(paragraph.variantSelectors ?? []).length > 0 && (
-                  <fieldset className="choices choices--horizontal">
-                    <legend className="sr-only">Wybierz wariant</legend>
-                    {(paragraph.variantSelectors ?? []).map((s) => (
-                      <Button key={s.id} variant="primary" size="lg">
-                        {s.text}
-                      </Button>
-                    ))}
-                  </fieldset>
-                )}
-              </>
-            ) : (
-              <>
-                {hasPages ? (
-                  <PagesPreview pages={pages!} />
-                ) : text ? (
-                  text
-                    .split("\n")
-                    .map((line, i) => (
-                      <ParagraphText
-                        key={i}
-                        text={line}
-                        className="editor-paragraph-view__preview-paragraph"
-                      />
-                    ))
-                ) : (
-                  <p className="editor-paragraph-view__preview-empty">
-                    Brak treści
-                  </p>
-                )}
-                {(paragraph.choices ?? []).length > 0 && (
-                  <fieldset className="choices choices--vertical">
-                    <legend className="sr-only">Dostępne wybory</legend>
-                    {(paragraph.choices ?? []).map((choice) => (
-                      <Button
-                        key={choice.id}
-                        variant="primary"
-                        size="lg"
-                        onClick={() =>
-                          choice.nextParagraphId &&
-                          onNavigate(choice.nextParagraphId)
-                        }
-                        disabled={
-                          !choice.nextParagraphId && !choice.nextVariantId
-                        }
-                        title={
-                          choice.nextParagraphId
-                            ? `Przejdź do §${choice.nextParagraphId}`
-                            : choice.nextVariantId
-                              ? `Wariant: ${choice.nextVariantId}`
-                              : undefined
-                        }
-                      >
-                        <RichText
-                          content={[{ type: "text", text: choice.text }]}
-                          images={scenarioImages}
-                        />
-                      </Button>
-                    ))}
-                  </fieldset>
-                )}
-              </>
-            )}
-          </div>
-        </div>
+        <EditorPreview
+          paragraph={paragraph}
+          isVariantMode={isVariantMode}
+          scenarioImages={scenarioImages}
+          onNavigate={onNavigate}
+        />
       </div>
 
       {/* Warianty — poza gridem, pełna szerokość */}
