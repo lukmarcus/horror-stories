@@ -1,13 +1,11 @@
 ﻿import React, { useMemo, useState } from "react";
 import { useEditor } from "../../context/useEditor";
 import type { EditorChoice } from "../../context/editorTypes";
-import { filterIds, sortParagraphIds } from "../../utils/editorUtils";
-import { PagesEditor } from "./PagesEditor";
-import { ChoiceTextInput } from "./ChoiceTextInput";
-import { ChoiceRow } from "./ChoiceRow";
-import { ChoiceAddRow } from "./ChoiceAddRow";
+import { sortParagraphIds } from "../../utils/editorUtils";
 import { EditorPreview } from "./EditorPreview";
 import { VariantsSection } from "./VariantsSection";
+import { SimpleModeEditor } from "./SimpleModeEditor";
+import { VariantModeEditor } from "./VariantModeEditor";
 import "./EditorParagraphView.css";
 
 interface EditorParagraphViewProps {
@@ -31,9 +29,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
   const paragraph = scenarioParagraphs?.find((p) => p.id === paragraphId);
 
   const [focusedTargetId, setFocusedTargetId] = useState<string | null>(null);
-  const [focusedSelectorId, setFocusedSelectorId] = useState<string | null>(
-    null,
-  );
   const [confirmSwitchSimple, setConfirmSwitchSimple] = useState(false);
   const [confirmDeleteParagraph, setConfirmDeleteParagraph] = useState(false);
   const [newAlias, setNewAlias] = useState("");
@@ -87,9 +82,6 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
   const isDeath = paragraphId === "100";
   const isVariantMode = !!paragraph.variants;
-  const text = paragraph.text ?? "";
-  const pages = paragraph.pages ?? null;
-  const hasPages = pages !== null;
 
   // ── Mode toggle ──
 
@@ -302,220 +294,86 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
 
       <div className="editor-paragraph-view__columns">
         <div className="editor-paragraph-view__editor">
-          {/* ── TRYB PROSTY ── */}
           {!isVariantMode && (
-            <>
-              {hasPages ? (
-                <>
-                  <h2 className="editor-paragraph-view__label">Treść</h2>
-                  <PagesEditor paragraphId={paragraphId} pages={pages} />
-                </>
-              ) : (
-                <>
-                  <label
-                    className="editor-paragraph-view__label"
-                    htmlFor={`paragraph-text-${paragraphId}`}
-                  >
-                    Treść{" "}
-                    <span className="editor-paragraph-view__label-hint">
-                      (stary format — tylko tekst)
-                    </span>
-                  </label>
-                  <textarea
-                    id={`paragraph-text-${paragraphId}`}
-                    className="editor-paragraph-view__textarea"
-                    value={text}
-                    onChange={(e) =>
-                      dispatch({
-                        type: "SET_PARAGRAPH_TEXT",
-                        payload: { id: paragraphId, text: e.target.value },
-                      })
-                    }
-                    placeholder="Wpisz treść paragrafu…"
-                    rows={12}
-                  />
-                  <button
-                    className="editor-paragraph-view__migrate-btn"
-                    onClick={() =>
-                      dispatch({
-                        type: "CONVERT_TEXT_TO_PAGES",
-                        payload: paragraphId,
-                      })
-                    }
-                  >
-                    Przekonwertuj na bloki
-                  </button>
-                </>
-              )}
-
-              <div className="editor-paragraph-view__choices">
-                <h3 className="editor-paragraph-view__label">Wybory</h3>
-
-                {(paragraph.choices ?? []).map((choice) => (
-                  <ChoiceRow
-                    key={choice.id}
-                    choice={choice}
-                    paragraphIds={availableIds}
-                    focusedId={focusedTargetId}
-                    setFocusedId={setFocusedTargetId}
-                    onUpdate={handleUpdateChoice}
-                    onRemove={(id) =>
-                      dispatch({
-                        type: "REMOVE_CHOICE",
-                        payload: { paragraphId, choiceId: id },
-                      })
-                    }
-                  />
-                ))}
-
-                <ChoiceAddRow
-                  prefixLabel="§"
-                  targetList={availableIds}
-                  onAdd={(text, target) => {
-                    if (target === paragraphId) return;
-                    const choice: EditorChoice = {
-                      id: crypto.randomUUID(),
-                      text,
-                      nextParagraphId: target,
-                    };
-                    dispatch({
-                      type: "ADD_CHOICE",
-                      payload: { paragraphId, choice },
-                    });
-                    if (
-                      target &&
-                      !availableIds.includes(target) &&
-                      target !== paragraphId
-                    ) {
-                      dispatch({
-                        type: "ADD_PARAGRAPH_SILENT",
-                        payload: target,
-                      });
-                    }
-                  }}
-                />
-              </div>
-            </>
+            <SimpleModeEditor
+              paragraphId={paragraphId}
+              paragraph={paragraph}
+              availableIds={availableIds}
+              focusedTargetId={focusedTargetId}
+              setFocusedTargetId={setFocusedTargetId}
+              onUpdateChoice={handleUpdateChoice}
+              onRemoveChoice={(id) =>
+                dispatch({
+                  type: "REMOVE_CHOICE",
+                  payload: { paragraphId, choiceId: id },
+                })
+              }
+              onAddChoice={(text, target) => {
+                if (target === paragraphId) return;
+                const choice: EditorChoice = {
+                  id: crypto.randomUUID(),
+                  text,
+                  nextParagraphId: target,
+                };
+                dispatch({
+                  type: "ADD_CHOICE",
+                  payload: { paragraphId, choice },
+                });
+                if (
+                  target &&
+                  !availableIds.includes(target) &&
+                  target !== paragraphId
+                ) {
+                  dispatch({
+                    type: "ADD_PARAGRAPH_SILENT",
+                    payload: target,
+                  });
+                }
+              }}
+              onSetText={(text) =>
+                dispatch({
+                  type: "SET_PARAGRAPH_TEXT",
+                  payload: { id: paragraphId, text },
+                })
+              }
+              onConvertToPages={() =>
+                dispatch({
+                  type: "CONVERT_TEXT_TO_PAGES",
+                  payload: paragraphId,
+                })
+              }
+            />
           )}
 
-          {/* ── TRYB WARIANTOWY ── */}
           {isVariantMode && (
-            <>
-              <h2 className="editor-paragraph-view__label">
-                Treść wprowadzająca
-              </h2>
-              <PagesEditor
-                paragraphId={paragraphId}
-                pages={paragraph.pages ?? [[]]}
-                singlePage
-              />
-              <h3 className="editor-paragraph-view__label">
-                Selektor wariantów (→ poziome przyciski)
-              </h3>
-              {(paragraph.variantSelectors ?? []).map((choice) => (
-                <div
-                  key={choice.id}
-                  className="editor-paragraph-view__choice-row"
-                >
-                  <ChoiceTextInput
-                    value={choice.text}
-                    onChange={(t) =>
-                      dispatch({
-                        type: "UPDATE_VARIANT_SELECTOR",
-                        payload: {
-                          paragraphId,
-                          choice: { ...choice, text: t },
-                        },
-                      })
-                    }
-                    placeholder="Tekst przycisku"
-                  />
-                  <div className="editor-paragraph-view__choice-target-wrap">
-                    <span className="editor-paragraph-view__choice-target-prefix editor-paragraph-view__choice-target-prefix--variant">
-                      W
-                    </span>
-                    <input
-                      className="editor-paragraph-view__choice-target"
-                      type="text"
-                      value={choice.nextVariantId ?? ""}
-                      onChange={(e) =>
-                        dispatch({
-                          type: "UPDATE_VARIANT_SELECTOR",
-                          payload: {
-                            paragraphId,
-                            choice: {
-                              ...choice,
-                              nextVariantId: e.target.value,
-                            },
-                          },
-                        })
-                      }
-                      onFocus={() => setFocusedSelectorId(choice.id)}
-                      onBlur={() => setFocusedSelectorId(null)}
-                      placeholder="?"
-                    />
-                    {focusedSelectorId === choice.id &&
-                      filterIds(choice.nextVariantId ?? "", variantIds).length >
-                        0 && (
-                        <ul className="editor-paragraph-view__choice-dropdown">
-                          {filterIds(
-                            choice.nextVariantId ?? "",
-                            variantIds,
-                          ).map((id) => (
-                            <li
-                              key={id}
-                              className="editor-paragraph-view__choice-dropdown-item"
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                dispatch({
-                                  type: "UPDATE_VARIANT_SELECTOR",
-                                  payload: {
-                                    paragraphId,
-                                    choice: { ...choice, nextVariantId: id },
-                                  },
-                                });
-                              }}
-                            >
-                              W:{id}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                  </div>
-                  <button
-                    className="editor-paragraph-view__choice-remove"
-                    onClick={() =>
-                      dispatch({
-                        type: "REMOVE_VARIANT_SELECTOR",
-                        payload: { paragraphId, choiceId: choice.id },
-                      })
-                    }
-                    title="Usuń przycisk"
-                  >
-                    ✕
-                  </button>
-                </div>
-              ))}
-              <ChoiceAddRow
-                placeholder="Tekst nowego przycisku"
-                prefixLabel="W"
-                prefixIsVariant
-                targetList={variantIds}
-                requireTarget
-                addButtonTitle="Dodaj przycisk selektora"
-                onAdd={(text, target) => {
-                  const choice: EditorChoice = {
-                    id: crypto.randomUUID(),
-                    text,
-                    nextVariantId: target,
-                  };
-                  dispatch({
-                    type: "ADD_VARIANT_SELECTOR",
-                    payload: { paragraphId, choice },
-                  });
-                }}
-              />
-            </>
+            <VariantModeEditor
+              paragraphId={paragraphId}
+              paragraph={paragraph}
+              variantIds={variantIds}
+              onUpdateSelector={(choice) =>
+                dispatch({
+                  type: "UPDATE_VARIANT_SELECTOR",
+                  payload: { paragraphId, choice },
+                })
+              }
+              onRemoveSelector={(choiceId) =>
+                dispatch({
+                  type: "REMOVE_VARIANT_SELECTOR",
+                  payload: { paragraphId, choiceId },
+                })
+              }
+              onAddSelector={(text, target) => {
+                const choice: EditorChoice = {
+                  id: crypto.randomUUID(),
+                  text,
+                  nextVariantId: target,
+                };
+                dispatch({
+                  type: "ADD_VARIANT_SELECTOR",
+                  payload: { paragraphId, choice },
+                });
+              }}
+            />
           )}
         </div>
 
