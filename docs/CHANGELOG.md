@@ -24,6 +24,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Kod: refaktoryzacja `EnemyView` — wydzielono `EnemyTiles`, `DiceButtons`, `DiceResult` i `ActionDisplay` jako osobne komponenty, redukcja z 262 do 168 linii głównego pliku
 - Kod: refaktoryzacja `VariantEditor` — wydzielono `VariantHeader` i `VariantPreview` jako osobne komponenty, redukcja z 264 do 147 linii głównego pliku (-44%)
 - Kod: refaktoryzacja `ParagraphView` — wydzielono `ParagraphNavigation`, `ChoicesSection` i `DiceResultDisplay` jako osobne komponenty, redukcja z 394 do 280 linii głównego pliku (-29%)
+- Kod: refaktoryzacja `EditorParagraphView` — wydzielono 5 podkomponentów (`EditorPreview`, `VariantsSection`, `SimpleModeEditor`, `VariantModeEditor`, `ParagraphHeader`), redukcja z 674 do 249 linii głównego pliku (-63%)
 
 ---
 
