@@ -7,24 +7,13 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.2.12] - 2026-06-22
+## [0.2.12] - 2026-06-27
 
 ### Naprawiono
 
 - Edytor: importowane scenariusze teraz zapisują się do IndexedDB i pozostają dostępne po odświeżeniu strony
 - Edytor: eksport scenariuszy generuje bardziej zwięzły JSON — proste tablice (np. `id`, `accessibleFrom`) są teraz w jednej linii zamiast rozłożone na wiele wierszy
 - Scenariusz „Droga donikąd": poprawiono `accessibleFrom` w paragrafach 75 i 113
-
-### Zmieniono
-
-- Kod: usunięto podwójne rzutowania typów przy imporcie scenariuszy JSON — lepsza zgodność typów TypeScript
-- Kod: dodano komentarze wyjaśniające celowe użycie `eslint-disable` w `Game.tsx` (synchronizacja URL z state wymaga jednostronnych dependency arrays)
-- Kod: refaktoryzacja `LettersEditor` — wydzielono `LetterRow` i `AddLetterForm` jako osobne komponenty, redukcja z 402 do 110 linii głównego pliku
-- Kod: refaktoryzacja `RichText` — wydzielono `customTagRenderers` i `contentBlockRenderer` jako utility functions, redukcja z 351 do 34 linii głównego pliku
-- Kod: refaktoryzacja `EnemyView` — wydzielono `EnemyTiles`, `DiceButtons`, `DiceResult` i `ActionDisplay` jako osobne komponenty, redukcja z 262 do 168 linii głównego pliku
-- Kod: refaktoryzacja `VariantEditor` — wydzielono `VariantHeader` i `VariantPreview` jako osobne komponenty, redukcja z 264 do 147 linii głównego pliku (-44%)
-- Kod: refaktoryzacja `ParagraphView` — wydzielono `ParagraphNavigation`, `ChoicesSection` i `DiceResultDisplay` jako osobne komponenty, redukcja z 394 do 280 linii głównego pliku (-29%)
-- Kod: refaktoryzacja `EditorParagraphView` — wydzielono 5 podkomponentów (`EditorPreview`, `VariantsSection`, `SimpleModeEditor`, `VariantModeEditor`, `ParagraphHeader`), redukcja z 674 do 249 linii głównego pliku (-63%)
 
 ---
 

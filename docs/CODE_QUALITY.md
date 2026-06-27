@@ -10,7 +10,7 @@ Wytyczne dla utrzymania wysokiej jakości kodu w projekcie.
 | **Imports**    | Barrel exports via `index.ts`                    |
 | **TypeScript** | Strict mode, no `any`, wszystko typowane         |
 | **Components** | PascalCase, props interface, style colocated     |
-| **Tests**      | `*.test.tsx` obok kodu, 627+ testów (v0.2.10)    |
+| **Tests**      | `*.test.tsx` obok kodu, 739+ testów (v0.2.12)    |
 | **CSS**        | BEM naming, global + component-scoped            |
 | **Commits**    | Conventional: `feat:/fix:/refactor:/test:/docs:` |
 
@@ -76,7 +76,7 @@ src/
 - Edge cases (przypadki graniczne)
 - Error handling (obsługa błędów)
 
-**Current:** 627 passing tests ✅
+**Current:** 739 passing tests ✅ (v0.2.12)
 
 See [TESTING_GUIDE.md](TESTING_GUIDE.md) for patterns.
 
