@@ -7,6 +7,23 @@ import type { Scenario } from "../../types";
 
 const FILE_EXTENSION = ".horrorstory";
 
+/**
+ * Compress simple arrays in JSON string to single line.
+ * Arrays containing only strings/numbers are compacted.
+ */
+function compactSimpleArrays(jsonString: string): string {
+  // Match arrays with only simple values (strings or numbers) on separate lines
+  // Pattern: [\n    "value",\n    "value"\n  ]
+  return jsonString.replace(
+    /\[\n(\s+)("(?:[^"\\]|\\.)*"|\d+)(,\n\1("(?:[^"\\]|\\.)*"|\d+))*\n\s*\]/g,
+    (match) => {
+      // Extract all values from the match
+      const values = match.match(/"(?:[^"\\]|\\.)*"|\d+/g) || [];
+      return "[" + values.join(", ") + "]";
+    },
+  );
+}
+
 function isString(v: unknown): v is string {
   return typeof v === "string";
 }
@@ -126,17 +143,24 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     };
   });
 
-  zip.file("meta.json", JSON.stringify(scenario.meta, null, 2));
+  zip.file(
+    "meta.json",
+    compactSimpleArrays(JSON.stringify(scenario.meta, null, 2)),
+  );
   zip.file(
     "paragraphs.json",
-    JSON.stringify({ paragraphs: paragraphsExported }, null, 2),
+    compactSimpleArrays(
+      JSON.stringify({ paragraphs: paragraphsExported }, null, 2),
+    ),
   );
 
   // Pack letters.json if present
   if (scenario.letters && scenario.letters.length > 0) {
     zip.file(
       "letters.json",
-      JSON.stringify({ letters: scenario.letters }, null, 2),
+      compactSimpleArrays(
+        JSON.stringify({ letters: scenario.letters }, null, 2),
+      ),
     );
   }
 
@@ -145,15 +169,17 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     const { pages, choices } = scenario.setup;
     zip.file(
       "setup.json",
-      JSON.stringify(
-        {
-          pages,
-          ...(choices && choices.length > 0
-            ? { choices: choices.map(exportChoice) }
-            : {}),
-        },
-        null,
-        2,
+      compactSimpleArrays(
+        JSON.stringify(
+          {
+            pages,
+            ...(choices && choices.length > 0
+              ? { choices: choices.map(exportChoice) }
+              : {}),
+          },
+          null,
+          2,
+        ),
       ),
     );
   }

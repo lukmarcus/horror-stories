@@ -1,7 +1,10 @@
 import React from "react";
-import type { Enemy, ActionOutcome } from "../../../types";
-import { RichText } from "../../text/RichText/RichText";
+import type { Enemy } from "../../../types";
 import { OptionButton } from "../../ui";
+import { EnemyTiles } from "./EnemyTiles";
+import { DiceButtons } from "./DiceButtons";
+import { DiceResult } from "./DiceResult";
+import { ActionDisplay } from "./ActionDisplay";
 import "./EnemyView.css";
 
 interface EnemyViewProps {
@@ -107,68 +110,27 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
           <div className="game__scenario-label">Przeciwnik</div>
         </div>
 
-        {/* Enemy tiles */}
-        <div className="enemy-view__tiles">
-          {enemies.map((enemy) => (
-            <button
-              key={enemy.id}
-              className={`enemy-view__tile${selectedEnemyId === enemy.id ? " enemy-view__tile--selected" : ""}`}
-              onClick={() => setSelectedEnemyId(enemy.id)}
-              aria-pressed={selectedEnemyId === enemy.id}
-            >
-              <img
-                src={`${import.meta.env.BASE_URL}assets/images/persons/${enemy.image}.jpg`}
-                alt={enemy.name}
-                className="enemy-view__tile-image"
-              />
-              <span className="enemy-view__tile-name">{enemy.name}</span>
-            </button>
-          ))}
-        </div>
+        <EnemyTiles
+          enemies={enemies}
+          selectedEnemyId={selectedEnemyId}
+          onSelect={setSelectedEnemyId}
+        />
 
         {selectedEnemy && (
           <>
-            {/* Dice buttons — base + modifiers */}
-            <div className="enemy-view__dice-buttons">
-              {(() => {
-                const base = selectedEnemy.playerVariants[0];
-                if (!base) return null;
-                const baseCount = base.diceCount;
-                const counts = Array.from(
-                  new Set([
-                    baseCount,
-                    ...(diceModifiers ?? []).map((m) => baseCount + m),
-                  ]),
-                )
-                  .filter((n) => n > 0)
-                  .sort((a, b) => a - b);
-                return counts.map((n) => (
-                  <button
-                    key={n}
-                    className="enemy-view__dice-btn"
-                    disabled={isRolling}
-                    onClick={() => onRoll(n)}
-                  >
-                    {n} × 🎲
-                  </button>
-                ));
-              })()}
-            </div>
+            <DiceButtons
+              baseCount={selectedEnemy.playerVariants[0]?.diceCount ?? 1}
+              diceModifiers={diceModifiers}
+              isRolling={isRolling}
+              onRoll={onRoll}
+            />
 
-            {/* Dice result */}
-            {(isRolling || lastDiceResult !== null) && (
-              <div className="enemy-view__result">
-                <span className="enemy-view__result-value">
-                  {diceRolls.length > 1
-                    ? `${diceRolls.join(" + ")} = ${lastDiceResult ?? "..."}`
-                    : diceRolls.length === 1
-                      ? `${diceRolls[0]}`
-                      : "..."}
-                </span>
-              </div>
-            )}
+            <DiceResult
+              isRolling={isRolling}
+              diceRolls={diceRolls}
+              lastDiceResult={lastDiceResult}
+            />
 
-            {/* Matched action */}
             {lastDiceResult !== null &&
               !isRolling &&
               currentActionIndex !== null &&
@@ -178,80 +140,24 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
                 const action = variant.actions[currentActionIndex];
                 if (!action) return null;
 
-                if (action.condition && !conditionConfirmed) {
-                  return (
-                    <div className="enemy-view__action">
-                      <div className="enemy-view__action-name">
-                        {action.name}
-                      </div>
-                      <div className="enemy-view__action-condition">
-                        <RichText text={action.condition} />
-                      </div>
-                      <div className="enemy-view__action-condition-buttons">
-                        <button
-                          className="enemy-view__condition-btn enemy-view__condition-btn--yes"
-                          onClick={() => {
-                            setConditionConfirmed(true);
-                            if (action.actionDiceCount) {
-                              void rollActionDice(action.actionDiceCount);
-                            }
-                          }}
-                        >
-                          Prawda
-                        </button>
-                        <button
-                          className="enemy-view__condition-btn enemy-view__condition-btn--no"
-                          onClick={() => {
-                            setCurrentActionIndex(currentActionIndex - 1);
-                            setConditionConfirmed(false);
-                            setActionDiceResult(null);
-                          }}
-                        >
-                          Fałsz
-                        </button>
-                      </div>
-                    </div>
-                  );
-                }
-
                 return (
-                  <div className="enemy-view__action">
-                    <div className="enemy-view__action-name">{action.name}</div>
-                    {actionDiceResult !== null && (
-                      <div className="enemy-view__action-dice-result">
-                        {actionDiceResult.length > 1
-                          ? `${actionDiceResult.join(" + ")} = ${actionDiceResult.reduce((a, b) => a + b, 0)}`
-                          : `${actionDiceResult[0]}`}
-                      </div>
-                    )}
-                    {!actionDiceRolling &&
-                      (!action.actionDiceCount || actionDiceResult !== null) &&
-                      (() => {
-                        if (
-                          action.actionOutcomes &&
-                          actionDiceResult !== null
-                        ) {
-                          const total = actionDiceResult.reduce(
-                            (a, b) => a + b,
-                            0,
-                          );
-                          const outcome: ActionOutcome | undefined =
-                            action.actionOutcomes.find((o) =>
-                              o.values.includes(total),
-                            );
-                          return outcome ? (
-                            <div className="enemy-view__action-description">
-                              <RichText text={outcome.description} />
-                            </div>
-                          ) : null;
-                        }
-                        return action.description ? (
-                          <div className="enemy-view__action-description">
-                            <RichText text={action.description} />
-                          </div>
-                        ) : null;
-                      })()}
-                  </div>
+                  <ActionDisplay
+                    action={action}
+                    conditionConfirmed={conditionConfirmed}
+                    actionDiceResult={actionDiceResult}
+                    actionDiceRolling={actionDiceRolling}
+                    onConditionTrue={() => {
+                      setConditionConfirmed(true);
+                      if (action.actionDiceCount) {
+                        void rollActionDice(action.actionDiceCount);
+                      }
+                    }}
+                    onConditionFalse={() => {
+                      setCurrentActionIndex(currentActionIndex - 1);
+                      setConditionConfirmed(false);
+                      setActionDiceResult(null);
+                    }}
+                  />
                 );
               })()}
           </>

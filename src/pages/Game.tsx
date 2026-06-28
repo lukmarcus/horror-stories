@@ -38,6 +38,8 @@ export const Game: React.FC = () => {
       isUrlDrivenChange.current = true;
       game.setParagraph(parFromUrl);
     }
+    // Intentionally depends only on location.search, not game object.
+    // Adding game to deps would cause re-runs on every state change, breaking the one-way sync.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
@@ -60,6 +62,8 @@ export const Game: React.FC = () => {
     } else {
       navigate({ search: "" }, { replace: false });
     }
+    // Intentionally depends only on currentParagraphId, not navigate or location.
+    // navigate is stable (react-router), location would cause circular updates.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game.state.currentParagraphId]);
 
@@ -116,6 +120,8 @@ export const Game: React.FC = () => {
     ) {
       game.clearVariants();
     }
+    // Intentionally depends only on currentParagraphId to trigger on paragraph changes.
+    // Adding game/currentParagraph would cause excessive re-runs or stale closure issues.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game.state.currentParagraphId]);
 

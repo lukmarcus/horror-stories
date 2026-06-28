@@ -2,10 +2,12 @@ import React from "react";
 import type { Paragraph } from "../../../types";
 import { ParagraphText } from "../../text/ParagraphText/ParagraphText";
 import { RichText } from "../../text/RichText/RichText";
-import { ConditionalChoice } from "../../text/ConditionalChoice/ConditionalChoice";
 import { InputView } from "../InputView/InputView";
 import { SectionHeader } from "../../ui/SectionHeader";
-import { Button, OptionButton } from "../../ui";
+import { OptionButton } from "../../ui";
+import { ParagraphNavigation } from "./ParagraphNavigation";
+import { ChoicesSection } from "./ChoicesSection";
+import { DiceResultDisplay } from "./DiceResultDisplay";
 import "./ParagraphView.css";
 
 interface ParagraphViewProps {
@@ -84,11 +86,12 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   }, [currentParagraphId]);
 
   // Check if dice roll was successful
-  const isDiceRollSuccess =
+  const isDiceRollSuccess = !!(
     paragraph.hasDiceRoll &&
     paragraph.diceResult &&
     lastDiceResult !== null &&
-    lastDiceResult > paragraph.diceResult.threshold;
+    lastDiceResult > paragraph.diceResult.threshold
+  );
 
   // Check if paragraph is dead end (no choices, no dice)
   const isDeadEnd =
@@ -96,7 +99,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
     !paragraph.hasDiceRoll;
 
   // Handle content pages - auto-detect if multiple pages exist
-  const hasPages = paragraph.pages && paragraph.pages.length > 1;
+  const hasPages = !!(paragraph.pages && paragraph.pages.length > 1);
   const maxPage = paragraph.pages ? paragraph.pages.length - 1 : 0;
   const currentContent = paragraph.pages
     ? paragraph.pages[currentPage]
@@ -114,47 +117,16 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
 
   return (
     <>
-      <nav className="game__content-nav">
-        {hasVariants && variantPathLength > 0 && onRefreshVariants && (
-          <OptionButton
-            icon="🔄"
-            line1="Odśwież"
-            line2={`#${currentParagraphId}`}
-            onClick={onRefreshVariants}
-          />
-        )}
-
-        {onBackToAlphabet && (
-          <OptionButton
-            icon="◀️"
-            line1="Żetony"
-            line2="alfabetu"
-            onClick={onBackToAlphabet}
-          />
-        )}
-
-        {accessibleFrom &&
-          accessibleFrom.length > 0 &&
-          onNavigateToParagraph && (
-            <>
-              {accessibleFrom.map((paragraphId) => (
-                <OptionButton
-                  key={`back-to-${paragraphId}`}
-                  icon="◀️"
-                  line1={`§${paragraphId}`}
-                  onClick={() => onNavigateToParagraph(paragraphId)}
-                />
-              ))}
-            </>
-          )}
-
-        <OptionButton
-          icon="◀️"
-          line1="Menu"
-          line2="scenariusza"
-          onClick={onBack}
-        />
-      </nav>
+      <ParagraphNavigation
+        currentParagraphId={currentParagraphId}
+        hasVariants={hasVariants}
+        variantPathLength={variantPathLength}
+        accessibleFrom={accessibleFrom}
+        onRefreshVariants={onRefreshVariants}
+        onBackToAlphabet={onBackToAlphabet}
+        onNavigateToParagraph={onNavigateToParagraph}
+        onBack={onBack}
+      />
 
       <div
         className="paragraph-display game__scenario"
@@ -201,27 +173,12 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
         {paragraph.hasDiceRoll &&
           paragraph.diceResult &&
           lastDiceResult !== null && (
-            <div className="dice-result" role="status" aria-live="assertive">
-              <p>
-                {isDiceRollSuccess
-                  ? paragraph.diceResult.successText
-                  : paragraph.diceResult.failText}
-              </p>
-              <Button
-                variant="primary"
-                onClick={() =>
-                  onChoice(
-                    isDiceRollSuccess
-                      ? paragraph.diceResult!.successNextId
-                      : paragraph.diceResult!.failNextId,
-                    false,
-                  )
-                }
-                aria-label="Przejść do następnego paragrafu"
-              >
-                PRZEJDŹ
-              </Button>
-            </div>
+            <DiceResultDisplay
+              diceResult={paragraph.diceResult}
+              lastDiceResult={lastDiceResult}
+              isDiceRollSuccess={isDiceRollSuccess}
+              onChoice={onChoice}
+            />
           )}
 
         {hasPages && (
@@ -242,45 +199,17 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
           </div>
         )}
 
-        {variantChoices.length > 0 && isHorizontal && (
-          <fieldset
-            className="choices choices--horizontal"
-            aria-label="Dostępne warianty"
-          >
-            <legend className="sr-only">Wybierz wariant</legend>
-            {variantChoices.map((choice, idx) => {
-              const choiceKey = choice.id || `choice-${idx}`;
-              return (
-                <Button
-                  key={choiceKey}
-                  variant="primary"
-                  size="lg"
-                  onClick={() => {
-                    if (choice.nextVariantId) {
-                      onChoice(choice.nextVariantId, true);
-                    } else if (choice.nextParagraphId === "") {
-                      onBack();
-                    } else if (choice.nextParagraphId) {
-                      onChoice(choice.nextParagraphId, false);
-                    }
-                  }}
-                  aria-label={choice.text || ""}
-                >
-                  {choice.text && choice.text.includes("<") ? (
-                    <RichText
-                      text={choice.text}
-                      scenarioId={scenarioId}
-                      images={images}
-                      noSpacing
-                    />
-                  ) : (
-                    choice.text
-                  )}
-                </Button>
-              );
-            })}
-          </fieldset>
-        )}
+        <ChoicesSection
+          choices={variantChoices}
+          isHorizontal={true}
+          hasPages={hasPages}
+          currentPage={currentPage}
+          maxPage={maxPage}
+          scenarioId={scenarioId}
+          images={images}
+          onChoice={onChoice}
+          onBack={onBack}
+        />
       </div>
 
       {showDeadEndInput && (
@@ -336,59 +265,17 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
         </div>
       )}
 
-      {regularChoices.length > 0 && (!hasPages || currentPage === maxPage) && (
-        <fieldset
-          className="choices choices--vertical"
-          aria-label="Dostępne wybory"
-        >
-          <legend className="sr-only">Wybierz następny paragraf</legend>
-          {regularChoices.map((choice, idx) => {
-            const choiceKey = choice.id || `choice-${idx}`;
-            if (choice.isConditional) {
-              return (
-                <ConditionalChoice
-                  key={choiceKey}
-                  choice={choice}
-                  onYes={() =>
-                    choice.yesNextId && onChoice(choice.yesNextId, false)
-                  }
-                  onNo={() =>
-                    choice.noNextId && onChoice(choice.noNextId, false)
-                  }
-                />
-              );
-            }
-            return (
-              <Button
-                key={choiceKey}
-                variant="primary"
-                size="lg"
-                onClick={() => {
-                  if (choice.nextVariantId) {
-                    onChoice(choice.nextVariantId, true);
-                  } else if (choice.nextParagraphId === "") {
-                    onBack();
-                  } else if (choice.nextParagraphId) {
-                    onChoice(choice.nextParagraphId, false);
-                  }
-                }}
-                aria-label={choice.text || ""}
-              >
-                {choice.text && choice.text.includes("<") ? (
-                  <RichText
-                    text={choice.text}
-                    scenarioId={scenarioId}
-                    images={images}
-                    noSpacing
-                  />
-                ) : (
-                  choice.text
-                )}
-              </Button>
-            );
-          })}
-        </fieldset>
-      )}
+      <ChoicesSection
+        choices={regularChoices}
+        isHorizontal={false}
+        hasPages={hasPages}
+        currentPage={currentPage}
+        maxPage={maxPage}
+        scenarioId={scenarioId}
+        images={images}
+        onChoice={onChoice}
+        onBack={onBack}
+      />
     </>
   );
 };
