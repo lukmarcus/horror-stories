@@ -42,13 +42,15 @@ Szczegóły każdej fazy w [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
 
 ### Progress Tracking
 
+- [x] Faza 0: Planowanie ✅
+- [x] Dane: Alfabet A-Z (letters.json + 26 PNG) ✅
 - [ ] Faza 1: Przygotowanie danych ⏳
 - [ ] Faza 2: Integracja kodu
 - [ ] Faza 3: Testowanie mechanik
 - [ ] Faza 4: Bugfixy
 - [ ] Faza 5: Dokumentacja
 
-**Status:** 🚧 W trakcie realizacji (2026-06-28) - Faza 0: Planowanie ✅
+**Status:** 🚧 W trakcie realizacji (2026-06-30) - Faza 1: Dane alfabetu ✅
 
 ---
 

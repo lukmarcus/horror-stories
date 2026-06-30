@@ -7,6 +7,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.3.0] - Unreleased
+
+### Dodano
+
+- Dane: pełny alfabet A-Z jako żetony liter — wszystkie 26 liter alfabetu dostępne w grze (wcześniej tylko A i B)
+
+---
+
 ## [0.2.12] - 2026-06-27
 
 ### Naprawiono
