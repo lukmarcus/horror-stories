@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "id": "xlix",
+      "paragraphId": 21,
+      "description": "Pizza"
+    },
+    {
+      "id": "xlv",
+      "paragraphId": 43,
+      "description": "Plik banknotów"
+    },
+    {
       "id": "xiii",
       "paragraphId": 48,
       "description": "Zielony klucz"
@@ -11,14 +21,29 @@
       "description": "Odcięta męska ręka"
     },
     {
+      "id": "lii",
+      "paragraphId": 63,
+      "description": "TODO"
+    },
+    {
       "id": "xvii",
       "paragraphId": 84,
       "description": "Czerwony klucz"
     },
     {
+      "id": "xlvi",
+      "paragraphId": 89,
+      "description": "Wycinek gazety"
+    },
+    {
       "id": "liii",
       "paragraphId": 113,
       "description": "Książka z pustymi kartkami"
+    },
+    {
+      "id": "xii",
+      "paragraphId": 140,
+      "description": "Whiskey"
     }
   ]
 }
