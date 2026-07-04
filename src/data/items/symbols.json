@@ -10,7 +10,7 @@
     },
     {
       "id": "cecha",
-      "name": "Cech"
+      "name": "Cecha"
     },
     {
       "id": "czas",
@@ -27,6 +27,10 @@
     {
       "id": "drzwi-zamkniete",
       "name": "Drzwi zamknięte"
+    },
+    {
+      "id": "dialog",
+      "name": "Dialog"
     },
     {
       "id": "gwiazda",
