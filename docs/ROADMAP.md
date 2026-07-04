@@ -10,65 +10,35 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 - Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10
 - **Edytor: rzut kostką** — edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy); gdy pojawi się pierwszy scenariusz korzystający z tej funkcji
+- **Edytor: cover image support** — możliwość dodania grafiki tła dla scenariusza (cover.jpg) widocznej na liście scenariuszy; obecnie tylko wbudowane scenariusze mają cover, user scenarios nie mają tej opcji
+- **Edytor: inteligentne dodawanie postaci** — postacie mają `paragraphId` (jak litery), więc przy wyborze postaci do scenariusza automatycznie dodawać paragrafy do spisu z imieniem w nawiasie (np. "§16 (Josh)"); wymaga zmiany UI z checkboxów na dropdowny (wybór konkretnej postaci do konkretnego paragrafu)
 - **Osobne pliki JSON per zasób scenariusza** — zamiast `paragraphs.json` jeden plik per paragraf (`paragraphs/1.json`, `paragraphs/77.json`...); poprawa git diff i DX edytora; wymaga refaktoru loadingu w `index.ts` i ZIP handlera; sensowne przy scenariuszach 200+ paragrafów
 
 ---
 
-## Milestone v0.3.0 - Party Time (Scenariusz 1)
+## Milestone v0.3.1 - Party Time Scenario + Editor Improvements
 
-### Filozofia
+### Zakres v0.3.1
 
-Każda wersja 0.x.0 = **1 nowy scenariusz** + bugfixy + małe ulepszenia.
+**Główny cel: Import scenariusza "Party time" + ulepszenia edytora**
 
-**📋 Pełny przewodnik:** [ADDING_SCENARIO.md](ADDING_SCENARIO.md) - szczegółowe checklisty i instrukcje
+**Scenariusz Party time:**
 
----
+- Import paragraphs.json, setup.json, letters.json
+- Dodanie do `scenarios/index.ts`
+- Testowanie mechanik i gameplay
+- Bugfixy
 
-### Zakres v0.3.0
+**Edytor - nowe funkcje:**
 
-**Główny cel: Import i integracja scenariusza "Party time"**
+- Cover image support dla user scenarios
+- Inteligentne dodawanie postaci z auto-paragrafami
 
-**5 faz realizacji:**
+**📋 Pełny przewodnik:** [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
 
-1. **Przygotowanie danych** (2-3h) - import JSON, grafik, enemies, items
-2. **Integracja kodu** (30-60min) - dodanie do `scenarios/index.ts`, `enemies/index.ts`
-3. **Testowanie mechanik** (1-2h) - gameplay testing, weryfikacja grafik
-4. **Bugfixy** (zależnie od znalezionych) - naprawa problemów
-5. **Dokumentacja** (30min) - CHANGELOG, README
+### Status
 
-Szczegóły każdej fazy w [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
-
----
-
-### Progress Tracking
-
-- [x] Faza 0: Planowanie ✅
-- [x] Dane: Alfabet A-Z (letters.json + 26 PNG) ✅
-- [x] Dane: Items (roomItems.json + storyItems.json) ✅
-- [x] Dane: Postacie (persons.json + 8 JPG) ✅
-- [x] Dane: Symbole (symbols.json + cecha.png + dialog.png) ✅
-- [ ] Faza 1: Przygotowanie danych ⏳
-- [ ] Faza 2: Integracja kodu
-- [ ] Faza 3: Testowanie mechanik
-- [ ] Faza 4: Bugfixy
-- [ ] Faza 5: Dokumentacja
-
-**Status:** 🚧 W trakcie realizacji (2026-07-05) - Faza 1: Przygotowanie danych
-
----
-
-### Checklist gotowości do release
-
-Pełny checklist w [ADDING_SCENARIO.md](ADDING_SCENARIO.md#checklist-gotowości-do-release)
-
-**Quick check:**
-
-- [ ] Scenariusz ukończalny (start → §100)
-- [ ] Wszystkie grafiki się wczytują
-- [ ] `npm run build` + `npm test` + `npm run lint` ✅
-- [ ] Dokumentacja zaktualizowana
-- [ ] Branch zmergowany do main
-- [ ] Tag v0.3.0 utworzony
+- ⏳ Planowane (po v0.3.0)
 
 ---
 
@@ -76,11 +46,11 @@ Pełny checklist w [ADDING_SCENARIO.md](ADDING_SCENARIO.md#checklist-gotowości-
 
 ### Zakres
 
-Ten sam proces co v0.3.0 - szablon w [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
+**Scenariusz "Eksperyment"** — według procesu opisanego w [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
 
 ### Status
 
-- ⏳ Oczekuje na v0.3.0
+- ⏳ Planowane (po v0.3.1)
 
 ---
 
@@ -98,7 +68,6 @@ Ten sam proces co v0.3.0 - szablon w [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
 
 **Features do rozważenia między wersjami:**
 
-- Cover image support (v0.4.x lub v0.5.x)
 - Audio system (v0.8.x lub v0.9.x)
 - Save system (v0.9.x lub before v1.0.0)
 
