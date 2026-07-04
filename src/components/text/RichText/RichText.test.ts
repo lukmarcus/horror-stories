@@ -79,7 +79,7 @@ describe("RichText data helpers", () => {
     });
 
     it("returns undefined for unknown letter", () => {
-      expect(getLetter("z")).toBeUndefined();
+      expect(getLetter("ą")).toBeUndefined();
     });
   });
 
