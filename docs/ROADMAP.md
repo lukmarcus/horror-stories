@@ -46,13 +46,14 @@ Szczegóły każdej fazy w [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
 - [x] Dane: Alfabet A-Z (letters.json + 26 PNG) ✅
 - [x] Dane: Items (roomItems.json + storyItems.json) ✅
 - [x] Dane: Postacie (persons.json + 8 JPG) ✅
+- [x] Dane: Symbol (symbols.json + cecha.jpg) ✅
 - [ ] Faza 1: Przygotowanie danych ⏳
 - [ ] Faza 2: Integracja kodu
 - [ ] Faza 3: Testowanie mechanik
 - [ ] Faza 4: Bugfixy
 - [ ] Faza 5: Dokumentacja
 
-**Status:** 🚧 W trakcie realizacji (2026-07-03) - Faza 1: Przygotowanie danych
+**Status:** 🚧 W trakcie realizacji (2026-07-04) - Faza 1: Przygotowanie danych
 
 ---
 

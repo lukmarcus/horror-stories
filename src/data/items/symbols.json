@@ -9,6 +9,10 @@
       "name": "Amunicja do strzelby"
     },
     {
+      "id": "cecha",
+      "name": "Cech"
+    },
+    {
       "id": "czas",
       "name": "Czas"
     },

@@ -14,6 +14,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Dane: pełny alfabet A-Z jako żetony liter — wszystkie 26 liter alfabetu dostępne w grze (wcześniej tylko A i B)
 - Dane: nowe przedmioty z scenariusza „Party time" — 8 roomItems i 5 storyItems
 - Dane: nowe postacie z scenariusza „Party time" — 8 postaci (Jeff, Patrick, Josh, Jessica, Margaret, gość od pizzy, policjant, sąsiad)
+- Dane: nowy symbol "Cecha" dla scenariusza „Party time"
 
 ---
 
