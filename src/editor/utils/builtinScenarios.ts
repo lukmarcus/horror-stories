@@ -111,6 +111,14 @@ export async function copyBuiltinScenarioToEditor(
     }),
   );
 
+  // Get persons from meta and convert to EditorPerson[] (without paragraphId)
+  const persons: EditorScenario["persons"] = (scenario.persons ?? []).map(
+    (name) => ({
+      id: name.toLowerCase().replace(/\s+/g, "-"),
+      paragraphId: "", // Empty - author can assign later in PersonsEditor
+    }),
+  );
+
   // Load images for this scenario
   const images = await loadScenarioImages(scenarioId);
 
@@ -123,6 +131,7 @@ export async function copyBuiltinScenarioToEditor(
     paragraphs,
     setup,
     letters,
+    persons,
     images,
   };
 }

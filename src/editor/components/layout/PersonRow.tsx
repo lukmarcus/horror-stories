@@ -58,16 +58,16 @@ export const PersonRow: React.FC<PersonRowProps> = ({
   };
 
   return (
-    <div className="letters-editor__row">
-      <span className="letters-editor__letter-badge">{personName}</span>
+    <div className="item-editor__row">
+      <span className="item-editor__item-badge">{personName}</span>
 
-      <div className="letters-editor__edit-para">
+      <div className="item-editor__edit-para">
         <div
-          className={`letters-editor__para-wrap${editError ? " letters-editor__para-wrap--error" : ""}`}
+          className={`item-editor__para-wrap${editError ? " item-editor__para-wrap--error" : ""}`}
         >
-          <span className="letters-editor__para-prefix">§</span>
+          <span className="item-editor__para-prefix">§</span>
           <input
-            className="letters-editor__para-target"
+            className="item-editor__para-target"
             type="text"
             value={editVal}
             onChange={(e) => {
@@ -106,12 +106,12 @@ export const PersonRow: React.FC<PersonRowProps> = ({
             }}
           />
           {focused && editOptions.length > 0 && (
-            <ul className="letters-editor__para-dropdown" role="listbox">
+            <ul className="item-editor__para-dropdown" role="listbox">
               {editOptions.map((pid, index) => (
                 <li
                   key={pid}
                   role="option"
-                  className={`letters-editor__para-dropdown-item${highlighted === index ? " letters-editor__para-dropdown-item--highlighted" : ""}`}
+                  className={`item-editor__para-dropdown-item${highlighted === index ? " item-editor__para-dropdown-item--highlighted" : ""}`}
                   onMouseDown={(e) => {
                     e.preventDefault();
                     setEditingValue(pid);
@@ -124,14 +124,12 @@ export const PersonRow: React.FC<PersonRowProps> = ({
             </ul>
           )}
         </div>
-        {editError && (
-          <div className="letters-editor__row-error">{editError}</div>
-        )}
+        {editError && <div className="item-editor__row-error">{editError}</div>}
       </div>
 
       {confirmDelete ? (
-        <span className="letters-editor__confirm">
-          <span className="letters-editor__confirm-text">Usunąć?</span>
+        <span className="item-editor__confirm">
+          <span className="item-editor__confirm-text">Usunąć?</span>
           <button
             className="editor-btn editor-btn--danger editor-btn--sm"
             onClick={() => onDelete(personId)}
@@ -147,7 +145,7 @@ export const PersonRow: React.FC<PersonRowProps> = ({
         </span>
       ) : (
         <button
-          className="letters-editor__remove"
+          className="item-editor__remove"
           onClick={() => setConfirmDelete(true)}
           title="Usuń przypisanie"
         >

@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from "react";
 import { EditorContext } from "../../context/editorTypes";
 import { PersonRow } from "./PersonRow";
 import { AddPersonForm } from "./AddPersonForm";
-import "./LettersEditor.css"; // Reuse same styles
+import "./ItemEditor.css";
 import personsData from "../../../data/items/persons.json";
 
 // Get all available person IDs from persons.json
@@ -96,17 +96,17 @@ export const PersonsEditor: React.FC = () => {
     ALL_PERSONS.find((p) => p.id === id)?.name ?? id;
 
   return (
-    <div className="letters-editor">
-      <h2 className="letters-editor__title">Postacie</h2>
-      <p className="letters-editor__hint">
+    <div className="item-editor">
+      <h2 className="item-editor__title">Postacie</h2>
+      <p className="item-editor__hint">
         Każda postać odpowiada paragrafowi, w którym jest spotykana. Postać i
         paragraf są automatycznie dodawane do spisu.
       </p>
 
       {persons.length > 0 && (
-        <div className="letters-editor__section">
-          <div className="letters-editor__label">Przypisane postacie</div>
-          <div className="letters-editor__list">
+        <div className="item-editor__section">
+          <div className="item-editor__label">Przypisane postacie</div>
+          <div className="item-editor__list">
             {persons.map((person) => (
               <PersonRow
                 key={person.id}
@@ -131,7 +131,7 @@ export const PersonsEditor: React.FC = () => {
           onAdd={handleAddPerson}
         />
       ) : (
-        <div className="letters-editor__note">
+        <div className="item-editor__note">
           Wszystkie postacie ({ALL_PERSONS.length}) zostały już przypisane.
         </div>
       )}
