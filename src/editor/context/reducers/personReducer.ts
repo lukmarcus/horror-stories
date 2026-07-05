@@ -42,23 +42,6 @@ export function personReducer(
         },
         isDirty: true,
       };
-    case "UPDATE_PERSON":
-      if (!state.scenario) return state;
-      return {
-        ...state,
-        scenario: {
-          ...state.scenario,
-          persons: (state.scenario.persons ?? []).map((p) =>
-            p.id === action.payload.id
-              ? {
-                  id: action.payload.id,
-                  paragraphId: action.payload.paragraphId,
-                }
-              : p,
-          ),
-        },
-        isDirty: true,
-      };
     default:
       return state;
   }

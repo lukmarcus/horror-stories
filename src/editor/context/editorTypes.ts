@@ -200,10 +200,6 @@ export type EditorAction =
       payload: { id: string; paragraphId: string };
     }
   | { type: "REMOVE_PERSON"; payload: string }
-  | {
-      type: "UPDATE_PERSON";
-      payload: { id: string; paragraphId: string };
-    }
   | { type: "ADD_SETUP_PAGE" }
   | { type: "REMOVE_SETUP_PAGE"; payload: number }
   | {
