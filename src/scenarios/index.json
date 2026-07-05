@@ -7,9 +7,9 @@
       "minPlayerCount": 1,
       "maxPlayerCount": 2,
       "duration": 120,
-      "characters": ["Jessica", "Patrick"],
+      "persons": ["Jessica", "Patrick"],
       "notes": "drugi gracz dołącza po około 20 min",
-      "enemyIds": ["klaun"],
+      "enemies": ["klaun"],
       "enemyDiceModifiers": [1]
     },
     {

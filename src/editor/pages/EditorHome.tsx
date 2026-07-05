@@ -9,6 +9,7 @@ import { EditorParagraphView } from "../components/paragraph/EditorParagraphView
 import { GraphView } from "../components/graph/GraphView";
 import { ImagesPanel } from "./ImagesPanel";
 import { LettersEditor } from "../components/layout/LettersEditor";
+import { PersonsEditor } from "../components/layout/PersonsEditor";
 import { SetupEditor } from "../components/layout/SetupEditor";
 import { BuiltinScenariosModal } from "../components/layout/BuiltinScenariosModal";
 import { copyBuiltinScenarioToEditor } from "../utils/builtinScenarios";
@@ -225,6 +226,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
       )}
       {state.scenario && activeSection === "images" && <ImagesPanel />}
       {state.scenario && activeSection === "letters" && <LettersEditor />}
+      {state.scenario && activeSection === "persons" && <PersonsEditor />}
       {state.scenario && activeSection === "setup" && <SetupEditor />}
       {state.scenario && activeSection === "enemy" && <EnemyMetaEditor />}
       {state.scenario &&
@@ -232,6 +234,7 @@ export const EditorHome: React.FC<EditorHomeProps> = ({
         activeSection !== "graph" &&
         activeSection !== "images" &&
         activeSection !== "letters" &&
+        activeSection !== "persons" &&
         activeSection !== "setup" &&
         activeSection !== "enemy" && (
           <EditorParagraphView

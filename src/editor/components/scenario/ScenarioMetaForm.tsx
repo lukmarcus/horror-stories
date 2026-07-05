@@ -183,9 +183,9 @@ export const ScenarioMetaForm: React.FC = () => {
             <label key={char.id} className="meta-form__check-row">
               <input
                 type="checkbox"
-                checked={(meta.characters ?? []).includes(char.name)}
+                checked={(meta.persons ?? []).includes(char.name)}
                 onChange={(e) => {
-                  const current = meta.characters ?? [];
+                  const current = meta.persons ?? [];
                   const next = e.target.checked
                     ? [...current, char.name]
                     : current.filter((c) => c !== char.name);
@@ -193,7 +193,7 @@ export const ScenarioMetaForm: React.FC = () => {
                     type: "SET_META",
                     payload: {
                       ...meta,
-                      characters: next.length ? next : undefined,
+                      persons: next.length ? next : undefined,
                     },
                   });
                 }}

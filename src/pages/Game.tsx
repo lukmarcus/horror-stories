@@ -103,7 +103,7 @@ export const Game: React.FC = () => {
   )
     .slice()
     .sort((a, b) => a.id.localeCompare(b.id));
-  const enemies = (currentScenario?.enemyIds ?? [])
+  const enemies = (currentScenario?.enemies ?? [])
     .map((id) => getEnemy(id))
     .filter(Boolean as unknown as <T>(v: T | undefined) => v is T);
   const currentParagraph = game.state.currentParagraphId

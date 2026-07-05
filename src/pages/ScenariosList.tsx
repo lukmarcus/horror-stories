@@ -178,11 +178,11 @@ export const ScenariosList: React.FC = () => {
             </div>
 
             {/* Characters */}
-            {scenario.characters && scenario.characters.length > 0 && (
+            {scenario.persons && scenario.persons.length > 0 && (
               <div className="scenarios-list__metadata">
                 <h3 className="scenarios-list__metadata-title">Postacie</h3>
                 <p className="scenarios-list__metadata-content">
-                  {scenario.characters.join(", ")}
+                  {scenario.persons.join(", ")}
                 </p>
               </div>
             )}

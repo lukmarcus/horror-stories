@@ -94,9 +94,9 @@ export interface Scenario {
   minPlayerCount: number | null;
   maxPlayerCount: number | null;
   duration: number | null;
-  characters?: string[];
+  persons?: string[];
   notes?: string;
-  enemyIds?: string[];
+  enemies?: string[];
   enemyDiceModifiers?: number[];
 }
 

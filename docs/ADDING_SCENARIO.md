@@ -46,9 +46,9 @@ src/scenarios/{scenario-id}/
     "minPlayerCount": 1,
     "maxPlayerCount": 2,
     "duration": 90,
-    "characters": ["Postać 1", "Postać 2"],
+    "persons": ["Postać 1", "Postać 2"],
     "notes": "Dodatkowe uwagi",
-    "enemyIds": ["wrog-id"],
+    "enemies": ["wrog-id"],
     "enemyDiceModifiers": [1]
   }
   ```
@@ -73,7 +73,7 @@ src/scenarios/{scenario-id}/
 
 - [ ] Dodanie `src/data/enemies/{nazwa}.json`
 - [ ] Dodanie `public/assets/images/enemies/{nazwa}.png`
-- [ ] Dodanie ID wroga do `enemyIds` w meta scenariusza
+- [ ] Dodanie ID wroga do `enemies` w meta scenariusza
 
 #### Przedmioty (Items)
 
@@ -121,12 +121,13 @@ src/scenarios/{scenario-id}/
 - [ ] Dodanie nowych persons (jeśli są) + grafiki
 - [ ] Dodanie grafik nowych liter (jeśli są)
 
-#### Postacie (Characters)
+#### Postacie (Persons)
 
 **Jeśli scenariusz używa nowych postaci:**
 
-- [ ] Dodanie do `src/data/characters/` (struktura do ustalenia)
-- [ ] Dodanie do pola `characters` w meta scenariusza
+- [ ] Dodanie do pola `persons` w meta scenariusza (tylko nazwy, bez paragrafów)
+
+**Uwaga:** Paragrafy postaci są przypisywane tylko w edytorze (dla wygody autora). W meta scenariusza zapisujemy tylko listę nazw postaci wyświetlaną na liście scenariuszy.
 
 ### C. Weryfikacja danych
 
@@ -382,7 +383,7 @@ Zaktualizuj liczby:
 
 - [ ] Wszystkie nowe enemies dodane do `src/data/enemies/` + grafiki
 - [ ] Wszystkie nowe items dodane do odpowiednich JSON + grafiki
-- [ ] Wszystkie nowe characters dodane (jeśli są)
+- [ ] Wszystkie nowe persons dodane do meta scenariusza (jeśli są)
 - [ ] Brak duplikatów ID w bazie danych
 
 ### Testy techniczne

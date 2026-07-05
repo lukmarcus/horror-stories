@@ -12,14 +12,14 @@ export const EnemyMetaEditor: React.FC = () => {
   const setMeta = (patch: Partial<typeof meta>) =>
     dispatch({ type: "SET_META", payload: { ...meta, ...patch } });
 
-  const selectedIds = meta.enemyIds ?? [];
+  const selectedIds = meta.enemies ?? [];
   const modifiers = meta.enemyDiceModifiers ?? [];
 
   const toggleEnemy = (id: string, checked: boolean) => {
     const next = checked
       ? [...selectedIds, id]
       : selectedIds.filter((e) => e !== id);
-    setMeta({ enemyIds: next.length ? next : undefined });
+    setMeta({ enemies: next.length ? next : undefined });
   };
 
   const toggleModifier = (val: number, checked: boolean) => {

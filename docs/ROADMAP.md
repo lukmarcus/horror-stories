@@ -10,8 +10,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 - Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10
 - **Edytor: rzut kostką** — edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy); gdy pojawi się pierwszy scenariusz korzystający z tej funkcji
-- **Edytor: cover image support** — możliwość dodania grafiki tła dla scenariusza (cover.jpg) widocznej na liście scenariuszy; obecnie tylko wbudowane scenariusze mają cover, user scenarios nie mają tej opcji
-- **Edytor: inteligentne dodawanie postaci** — postacie mają `paragraphId` (jak litery), więc przy wyborze postaci do scenariusza automatycznie dodawać paragrafy do spisu z imieniem w nawiasie (np. "§16 (Josh)"); wymaga zmiany UI z checkboxów na dropdowny (wybór konkretnej postaci do konkretnego paragrafu)
 - **Osobne pliki JSON per zasób scenariusza** — zamiast `paragraphs.json` jeden plik per paragraf (`paragraphs/1.json`, `paragraphs/77.json`...); poprawa git diff i DX edytora; wymaga refaktoru loadingu w `index.ts` i ZIP handlera; sensowne przy scenariuszach 200+ paragrafów
 
 ---
@@ -20,7 +18,24 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Zakres v0.3.1
 
-**Główny cel: Import scenariusza "Party time" + ulepszenia edytora**
+**Główny cel: Import scenariusza "Party time" + naprawy edytora**
+
+**Edytor - naprawy krytyczne:**
+
+1. **PersonsEditor (nowy komponent)**
+   - **Problem:** `characters/index.ts` ma tylko 2 postacie (jessica, patrick) bez `paragraphId`, a `persons.json` ma 8 postaci Z `paragraphId`; edytor nie wczytuje automatycznie wszystkich postaci
+   - **Rozwiązanie:** System analogiczny do `LettersEditor`:
+     - Automatyczne wczytywanie wszystkich postaci z `persons.json`
+     - Dropdown UI: wybór postaci → przypisz do paragrafu (np. "Josh → §16")
+     - Autocomplete paragrafów z możliwością tworzenia nowych
+     - Walidacja czy paragraf nie ma już treści (ostrzeżenie przed nadpisaniem)
+     - W bocznym panelu tag "(postać: Josh)" jak dla liter
+     - Dodanie do sidebar jako osobna sekcja "Postacie"
+
+2. **Cover image support**
+   - Możliwość dodania grafiki tła dla scenariusza (cover.jpg) widocznej na liście scenariuszy
+   - Obecnie tylko wbudowane scenariusze mają cover, user scenarios nie mają tej opcji
+   - Upload image → zapisanie w EditorScenario → export do ZIP
 
 **Scenariusz Party time:**
 
@@ -29,16 +44,12 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - Testowanie mechanik i gameplay
 - Bugfixy
 
-**Edytor - nowe funkcje:**
-
-- Cover image support dla user scenarios
-- Inteligentne dodawanie postaci z auto-paragrafami
-
 **📋 Pełny przewodnik:** [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
 
 ### Status
 
-- ⏳ Planowane (po v0.3.0)
+- ⏳ Planowane - Branch v0.3.1 utworzony (2026-07-05)
+- ❗ **Blokada:** Edytor nie ma pełnej listy postaci, trzeba najpierw naprawić PersonsEditor
 
 ---
 
