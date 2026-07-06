@@ -37,7 +37,7 @@ export const EditorPreview: React.FC<EditorPreviewProps> = ({
                 <legend className="sr-only">Wybierz wariant</legend>
                 {(paragraph.variantSelectors ?? []).map((s) => (
                   <Button key={s.id} variant="primary" size="lg">
-                    {s.text}
+                    <RichText text={s.text} noSpacing />
                   </Button>
                 ))}
               </fieldset>
