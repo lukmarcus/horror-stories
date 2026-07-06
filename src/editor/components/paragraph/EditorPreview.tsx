@@ -84,8 +84,9 @@ export const EditorPreview: React.FC<EditorPreviewProps> = ({
                     }
                   >
                     <RichText
-                      content={[{ type: "text", text: choice.text }]}
+                      text={choice.text}
                       images={scenarioImages}
+                      noSpacing
                     />
                   </Button>
                 ))}

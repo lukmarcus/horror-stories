@@ -186,7 +186,7 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                 )}
                 {!isAlias && personByParagraphId[id] && (
                   <span className="editor-sidebar__paragraph-tag">
-                    &nbsp;(postać: {personByParagraphId[id]})
+                    &nbsp;({personByParagraphId[id]})
                   </span>
                 )}
               </span>
