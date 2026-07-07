@@ -14,33 +14,56 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.3.1 - Party Time Scenario + Editor Improvements
+## Milestone v0.3.1 - PersonsEditor + Editor Improvements
 
 ### Zakres v0.3.1
 
-**Główny cel: Import scenariusza "Party time" + naprawy edytora**
+**Główny cel: Naprawa PersonsEditor i poprawki edytora**
 
-**Edytor - naprawy krytyczne:**
+**Edytor - ukończone:**
 
-1. **PersonsEditor (nowy komponent)**
-   - **Problem:** `characters/index.ts` ma tylko 2 postacie (jessica, patrick) bez `paragraphId`, a `persons.json` ma 8 postaci Z `paragraphId`; edytor nie wczytuje automatycznie wszystkich postaci
-   - **Rozwiązanie:** System analogiczny do `LettersEditor`:
-     - Automatyczne wczytywanie wszystkich postaci z `persons.json`
-     - Dropdown UI: wybór postaci → przypisz do paragrafu (np. "Josh → §16")
-     - Autocomplete paragrafów z możliwością tworzenia nowych
-     - Walidacja czy paragraf nie ma już treści (ostrzeżenie przed nadpisaniem)
-     - W bocznym panelu tag "(postać: Josh)" jak dla liter
-     - Dodanie do sidebar jako osobna sekcja "Postacie"
+1. ✅ **PersonsEditor (nowy komponent)**
+   - Automatyczne wczytywanie wszystkich postaci z `persons.json`
+   - Dropdown UI: wybór postaci z automatycznym przypisaniem `paragraphId`
+   - W bocznym panelu tag "(PersonName)" dla paragrafów postaci
+   - Dodanie do sidebar jako sekcja "Postacie"
+   - Uproszczony model: `paragraphId` stały (z `persons.json`), nie edytowalny
 
-2. **Cover image support**
-   - Możliwość dodania grafiki tła dla scenariusza (cover.jpg) widocznej na liście scenariuszy
-   - Obecnie tylko wbudowane scenariusze mają cover, user scenarios nie mają tej opcji
-   - Upload image → zapisanie w EditorScenario → export do ZIP
+2. ✅ **Metadata refactoring**
+   - Ujednolicone nazewnictwo: `characters` → `persons`, `enemyIds` → `enemies`
+   - Automatyczna konwersja przy imporcie wbudowanych scenariuszy
+
+3. ✅ **UI fixes**
+   - Wspólny `ItemEditor.css` dla PersonsEditor i LettersEditor
+   - Poprawione renderowanie obrazków w wyborach (custom tags)
+   - Poprawiony format tagów w sidebarze
+
+4. ✅ **Scenario optimization**
+   - Połączono duplikaty wariantów w §100 (droga-donikad)
+
+**Cover image support:**
+
+- ⏳ Przełożone na przyszłe wersje (nie krytyczne dla Party time)
 
 **Scenariusz Party time:**
 
-- Import paragraphs.json, setup.json, letters.json
-- Dodanie do `scenarios/index.ts`
+- ⏳ Gotowy do importu po ukończeniu PersonsEditor
+
+### Status
+
+- ✅ **Ukończone** - 2026-07-07 (PersonsEditor + poprawki edytora)
+- ⏳ Pozostaje: Import scenariusza Party time (planowany w następnej sesji)
+
+---
+
+## Milestone v0.3.2 - Party Time Scenario Import
+
+### Zakres
+
+**Scenariusz "Party time":**
+
+- Import paragraphs.json, setup.json, letters.json, images
+- Dodanie do `scenarios/index.json`
 - Testowanie mechanik i gameplay
 - Bugfixy
 
@@ -48,8 +71,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- ⏳ Planowane - Branch v0.3.1 utworzony (2026-07-05)
-- ❗ **Blokada:** Edytor nie ma pełnej listy postaci, trzeba najpierw naprawić PersonsEditor
+- ⏳ Planowane (po v0.3.1)
 
 ---
 

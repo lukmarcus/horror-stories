@@ -7,6 +7,25 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.3.1] - 2026-07-07
+
+### Dodano
+
+- Edytor: zarządzanie postaciami — nowa sekcja „Postacie" w bocznym menu pozwala wybrać które postacie występują w scenariuszu; każda postać ma przypisany stały paragraf (jak fizyczna figurka w grze)
+- Edytor: znaczniki postaci w spisie paragrafów — paragrafy przypisane do postaci wyświetlają teraz nazwę postaci w nawiasie, np. §9 (Patrick)
+
+### Zmieniono
+
+- Edytor: import wbudowanych scenariuszy — postacie są teraz automatycznie wczytywane z prawidłowymi przypisaniami do paragrafów
+- Scenariusz „Droga donikąd" §100 — uproszczono wybory wariantów śmierci (usunięto duplikaty)
+
+### Naprawiono
+
+- Edytor: obrazki postaci w podglądzie — wybory zawierające obrazki (np. tagi `<person>`) są teraz wyświetlane poprawnie zamiast jako surowy kod HTML
+- Edytor: format znaczników w spisie paragrafów — uproszczono wyświetlanie z „(postać: Patrick)" na „(Patrick)"
+
+---
+
 ## [0.3.0] - 2026-07-05
 
 ### Dodano
