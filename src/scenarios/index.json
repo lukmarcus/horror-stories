@@ -15,10 +15,13 @@
     {
       "id": "party-time",
       "title": "Party time",
-      "description": "",
-      "minPlayerCount": null,
-      "maxPlayerCount": null,
-      "duration": null
+      "description": "W nostalgicznych latach 90. dawni znajomi spotykają się w Castle Rock na pożegnalnej imprezie, która zamyka beztroski rozdział ich życia.",
+      "minPlayerCount": 1,
+      "maxPlayerCount": 4,
+      "duration": 120,
+      "persons": ["Josh", "Patrick", "Jessica", "Margaret"],
+      "enemies": [],
+      "enemyDiceModifiers": []
     },
     {
       "id": "eksperyment",

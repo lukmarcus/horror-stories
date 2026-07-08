@@ -1,0 +1,28 @@
+{
+  "letters": [
+    {
+      "id": "A",
+      "paragraphId": "3"
+    },
+    {
+      "id": "B",
+      "paragraphId": "100"
+    },
+    {
+      "id": "G",
+      "paragraphId": "80"
+    },
+    {
+      "id": "H",
+      "paragraphId": "35"
+    },
+    {
+      "id": "W",
+      "paragraphId": "121"
+    },
+    {
+      "id": "Z",
+      "paragraphId": "116"
+    }
+  ]
+}
