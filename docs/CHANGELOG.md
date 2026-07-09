@@ -23,6 +23,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - Edytor: obrazki postaci w podglądzie — wybory zawierające obrazki (np. tagi `<person>`) są teraz wyświetlane poprawnie zamiast jako surowy kod HTML
 - Edytor: format znaczników w spisie paragrafów — uproszczono wyświetlanie z „(postać: Patrick)" na „(Patrick)"
+- Gra: ukrycie przycisku „Przeciwnik" w scenariuszach bez przeciwnika — przycisk nie pojawia się już w menu gdy scenariusz nie ma zdefiniowanych enemies
 
 ---
 

@@ -43,24 +43,20 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 **Cover image support:**
 
-- ⏳ Przełożone na przyszłe wersje (nie krytyczne dla Party time)
-
-**Scenariusz Party time:**
-
-- ⏳ Gotowy do importu po ukończeniu PersonsEditor
+- ⏳ Przełożone na przyszłe wersje
 
 ### Status
 
 - ✅ **Ukończone** - 2026-07-07 (PersonsEditor + poprawki edytora)
-- ⏳ Pozostaje: Import scenariusza Party time (planowany w następnej sesji)
+- ✅ Ukrycie przycisku przeciwnika gdy brak enemies
 
 ---
 
-## Milestone v0.3.2 - Party Time Scenario Import
+## Milestone v0.3.2 - Eksperyment (Scenariusz 2)
 
 ### Zakres
 
-**Scenariusz "Party time":**
+**Scenariusz "Eksperyment":**
 
 - Import paragraphs.json, setup.json, letters.json, images
 - Dodanie do `scenarios/index.json`
@@ -75,15 +71,15 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.4.0 - Eksperyment (Scenariusz 2)
+## Milestone v0.4.0 - Kolejny dzień w pracy (Scenariusz 3)
 
 ### Zakres
 
-**Scenariusz "Eksperyment"** — według procesu opisanego w [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
+**Scenariusz "Kolejny dzień w pracy"** — według procesu opisanego w [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
 
 ### Status
 
-- ⏳ Planowane (po v0.3.1)
+- ⏳ Planowane (po v0.3.2)
 
 ---
 
@@ -91,7 +87,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 **Kolejność (wstępna):**
 
-- v0.5.0: Kolejny dzień w pracy (Scenariusz 3)
+- v0.5.0: Party time
 - v0.6.0: Śmiertelna zabawa (Scenariusz 4)
 - v0.7.0: Świnki trzy i wilk (Scenariusz 5)
 - v0.8.0: Do samego końca (Scenariusz 6)
