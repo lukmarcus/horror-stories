@@ -15,10 +15,11 @@
     {
       "id": "eksperyment",
       "title": "Eksperyment",
-      "description": "",
-      "minPlayerCount": null,
-      "maxPlayerCount": null,
-      "duration": null
+      "description": "Po zakończeniu studenckiej imprezy grupa przyjaciół budzi się zamknięta w tajemniczym betonowym pomieszczeniu, zmuszona odkryć, kto ich uwięził i z jakiego powodu.",
+      "minPlayerCount": 1,
+      "maxPlayerCount": 4,
+      "duration": 150,
+      "persons": ["Jessica", "Josh", "Margaret", "Patrick", "Jeff"]
     },
     {
       "id": "party-time",
