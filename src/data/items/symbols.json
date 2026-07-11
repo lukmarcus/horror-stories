@@ -41,6 +41,22 @@
       "name": "Karta akcji"
     },
     {
+      "id": "karta-osłabienie",
+      "name": "Karta osłabienia"
+    },
+    {
+      "id": "karta-xxx",
+      "name": "Karta XXX"
+    },
+    {
+      "id": "kosc",
+      "name": "Kość"
+    },
+    {
+      "id": "nieprzytomny",
+      "name": "Nieprzytomny"
+    },
+    {
       "id": "paragraf",
       "name": "Paragraf scenariusza"
     },
