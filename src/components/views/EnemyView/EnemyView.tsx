@@ -1,11 +1,37 @@
 import React from "react";
-import type { Enemy } from "../../../types";
+import type { Enemy, EnemyAction } from "../../../types";
 import { OptionButton } from "../../ui";
 import { EnemyTiles } from "./EnemyTiles";
 import { DiceButtons } from "./DiceButtons";
 import { DiceResult } from "./DiceResult";
 import { ActionDisplay } from "./ActionDisplay";
 import "./EnemyView.css";
+
+/**
+ * Merges action definitions with action mapping to create runtime actions
+ */
+function buildActions(enemy: Enemy, variantIndex: number): EnemyAction[] {
+  const variant = enemy.playerVariants[variantIndex];
+  if (!variant) return [];
+
+  return variant.actionMapping
+    .map((mapping): EnemyAction | null => {
+      const definition = enemy.actions.find((a) => a.id === mapping.id);
+      if (!definition) {
+        console.warn(
+          `Action definition not found for id: ${mapping.id} in enemy: ${enemy.id}`,
+        );
+        return null;
+      }
+      const action: EnemyAction = {
+        ...definition,
+        ...(mapping.value !== undefined && { value: mapping.value }),
+        ...(mapping.valueMin !== undefined && { valueMin: mapping.valueMin }),
+      };
+      return action;
+    })
+    .filter((a): a is EnemyAction => a !== null);
+}
 
 interface EnemyViewProps {
   enemies: Enemy[];
@@ -56,27 +82,28 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
   };
 
   const selectedEnemy = enemies.find((e) => e.id === selectedEnemyId);
+  const actions = React.useMemo(
+    () => (selectedEnemy ? buildActions(selectedEnemy, 0) : []),
+    [selectedEnemy],
+  );
 
   // Reset on new roll result
   React.useEffect(() => {
     if (lastDiceResult !== null && selectedEnemy) {
-      const variant = selectedEnemy.playerVariants[0];
-      if (variant) {
-        const idx = variant.actions.findIndex((a) =>
-          a.valueMin !== undefined
-            ? lastDiceResult >= a.valueMin
-            : a.value?.includes(lastDiceResult),
-        );
-        setCurrentActionIndex(idx >= 0 ? idx : null);
-        setConditionConfirmed(false);
-        setActionDiceResult(null);
-        setActionDiceRolling(false);
-      }
+      const idx = actions.findIndex((a) =>
+        a.valueMin !== undefined
+          ? lastDiceResult >= a.valueMin
+          : a.value?.includes(lastDiceResult),
+      );
+      setCurrentActionIndex(idx >= 0 ? idx : null);
+      setConditionConfirmed(false);
+      setActionDiceResult(null);
+      setActionDiceRolling(false);
     } else {
       setCurrentActionIndex(null);
       setConditionConfirmed(false);
     }
-  }, [lastDiceResult, selectedEnemy]);
+  }, [lastDiceResult, selectedEnemy, actions]);
 
   // Reset when rolling starts
   React.useEffect(() => {
@@ -137,9 +164,7 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
               !isRolling &&
               currentActionIndex !== null &&
               (() => {
-                const variant = selectedEnemy.playerVariants[0];
-                if (!variant) return null;
-                const action = variant.actions[currentActionIndex];
+                const action = actions[currentActionIndex];
                 if (!action) return null;
 
                 return (

@@ -7,42 +7,48 @@ const mockEnemy: Enemy = {
   id: "klaun",
   name: "Klaun",
   image: "klaun",
+  actions: [
+    {
+      id: "nieuwaga",
+      name: "Nieuwaga",
+      condition: "",
+      description: "Utrata jednej akcji.",
+    },
+    {
+      id: "ruch",
+      name: "Ruch",
+      condition: "Warunek ruchu.",
+      actionDiceCount: 1,
+      description: "Porusz się o tyle pól.",
+    },
+    {
+      id: "atak",
+      name: "Atak",
+      condition: "Warunek ataku.",
+      actionDiceCount: 1,
+      actionOutcomes: [
+        { values: [1, 2], description: "Nic się nie dzieje." },
+        { values: [3, 4, 5, 6], description: "Figurka traci życie." },
+      ],
+      description: "",
+    },
+    {
+      id: "ucieczka",
+      name: "Ucieczka",
+      condition: "Warunek ucieczki.",
+      description: "Klaun ucieka.",
+    },
+  ],
   playerVariants: [
     {
       players: "1-2",
       actionsPerTurn: 2,
       diceCount: 2,
-      actions: [
-        {
-          value: [1, 2],
-          name: "Nieuwaga",
-          condition: "",
-          description: "Utrata jednej akcji.",
-        },
-        {
-          value: [3, 4],
-          name: "Ruch",
-          condition: "Warunek ruchu.",
-          actionDiceCount: 1,
-          description: "Porusz się o tyle pól.",
-        },
-        {
-          value: [5, 6],
-          name: "Atak",
-          condition: "Warunek ataku.",
-          actionDiceCount: 1,
-          actionOutcomes: [
-            { values: [1, 2], description: "Nic się nie dzieje." },
-            { values: [3, 4, 5, 6], description: "Figurka traci życie." },
-          ],
-          description: "",
-        },
-        {
-          value: [7, 8],
-          name: "Ucieczka",
-          condition: "Warunek ucieczki.",
-          description: "Klaun ucieka.",
-        },
+      actionMapping: [
+        { id: "nieuwaga", value: [1, 2] },
+        { id: "ruch", value: [3, 4] },
+        { id: "atak", value: [5, 6] },
+        { id: "ucieczka", value: [7, 8] },
       ],
     },
   ],
@@ -187,24 +193,28 @@ describe("EnemyView", () => {
       id: "test",
       name: "Test",
       image: "test",
+      actions: [
+        {
+          id: "low",
+          name: "Low",
+          condition: "",
+          description: "Low value action",
+        },
+        {
+          id: "high",
+          name: "High",
+          condition: "",
+          description: "High value action (10+)",
+        },
+      ],
       playerVariants: [
         {
           players: "1",
           actionsPerTurn: 1,
           diceCount: 2,
-          actions: [
-            {
-              value: [1, 2],
-              name: "Low",
-              condition: "",
-              description: "Low value action",
-            },
-            {
-              valueMin: 10,
-              name: "High",
-              condition: "",
-              description: "High value action (10+)",
-            },
+          actionMapping: [
+            { id: "low", value: [1, 2] },
+            { id: "high", valueMin: 10 },
           ],
         },
       ],
@@ -232,19 +242,20 @@ describe("EnemyView", () => {
       id: "drugi",
       name: "Drugi",
       image: "drugi",
+      actions: [
+        {
+          id: "akcja-drugiego",
+          name: "Akcja Drugiego",
+          condition: "",
+          description: "Opis Drugiego.",
+        },
+      ],
       playerVariants: [
         {
           players: "1-2",
           actionsPerTurn: 1,
           diceCount: 1,
-          actions: [
-            {
-              value: [1, 2, 3, 4, 5, 6],
-              name: "Akcja Drugiego",
-              condition: "",
-              description: "Opis Drugiego.",
-            },
-          ],
+          actionMapping: [{ id: "akcja-drugiego", value: [1, 2, 3, 4, 5, 6] }],
         },
       ],
     };

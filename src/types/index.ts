@@ -108,9 +108,34 @@ export interface ActionOutcome {
   description: string;
 }
 
+/**
+ * Enemy action definition (without dice value mapping)
+ */
+export interface EnemyActionDefinition {
+  id: string;
+  name: string;
+  condition: string;
+  description: string;
+  actionDiceCount?: number;
+  actionOutcomes?: ActionOutcome[];
+}
+
+/**
+ * Mapping of dice values to action ID
+ */
+export interface EnemyActionMapping {
+  id: string; // References EnemyActionDefinition.id
+  value?: number[]; // Specific dice values [1, 2, 3]
+  valueMin?: number; // Open-ended range "X and above"
+}
+
+/**
+ * Combined action (for runtime use after merging definition + mapping)
+ */
 export interface EnemyAction {
-  value?: number[];       // Specific dice values [1, 2, 3]
-  valueMin?: number;      // Open-ended range "X and above"
+  id: string;
+  value?: number[]; // Specific dice values [1, 2, 3]
+  valueMin?: number; // Open-ended range "X and above"
   name: string;
   condition: string;
   description: string;
@@ -125,7 +150,7 @@ export interface EnemyPlayerVariant {
   players: string;
   actionsPerTurn: number;
   diceCount: number;
-  actions: EnemyAction[];
+  actionMapping: EnemyActionMapping[];
 }
 
 /**
@@ -135,5 +160,6 @@ export interface Enemy {
   id: string;
   name: string;
   image: string;
+  actions: EnemyActionDefinition[];
   playerVariants: EnemyPlayerVariant[];
 }
