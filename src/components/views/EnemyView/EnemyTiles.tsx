@@ -22,7 +22,7 @@ export const EnemyTiles: React.FC<EnemyTilesProps> = ({
           aria-pressed={selectedEnemyId === enemy.id}
         >
           <img
-            src={`${import.meta.env.BASE_URL}assets/images/persons/${enemy.image}.jpg`}
+            src={`${import.meta.env.BASE_URL}assets/images/enemies/${enemy.image}.jpg`}
             alt={enemy.name}
             className="enemy-view__tile-image"
           />

@@ -13,6 +13,8 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - Edytor: zarządzanie postaciami — nowa sekcja „Postacie" w bocznym menu pozwala wybrać które postacie występują w scenariuszu; każda postać ma przypisany stały paragraf (jak fizyczna figurka w grze)
 - Edytor: znaczniki postaci w spisie paragrafów — paragrafy przypisane do postaci wyświetlają teraz nazwę postaci w nawiasie, np. §9 (Patrick)
+- Przeciwnicy: wsparcie dla otwartych zakresów akcji — możliwość użycia `valueMin` dla akcji typu „10 i więcej" zamiast wypisywania wszystkich wartości
+- Dane: nowe symbole dla akcji przeciwników (karta osłabienia, karta XXX, nieprzytomny)
 
 ### Zmieniono
 
@@ -24,6 +26,8 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Edytor: obrazki postaci w podglądzie — wybory zawierające obrazki (np. tagi `<person>`) są teraz wyświetlane poprawnie zamiast jako surowy kod HTML
 - Edytor: format znaczników w spisie paragrafów — uproszczono wyświetlanie z „(postać: Patrick)" na „(Patrick)"
 - Gra: ukrycie przycisku „Przeciwnik" w scenariuszach bez przeciwnika — przycisk nie pojawia się już w menu gdy scenariusz nie ma zdefiniowanych enemies
+- Gra: obrazki przeciwników — poprawiono ścieżkę do obrazów (enemies/ zamiast persons/)
+- Dane: naprawiono wyświetlanie symbolu kości w akcjach przeciwników
 
 ---
 
