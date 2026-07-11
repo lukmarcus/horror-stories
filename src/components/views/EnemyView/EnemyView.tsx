@@ -63,7 +63,9 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
       const variant = selectedEnemy.playerVariants[0];
       if (variant) {
         const idx = variant.actions.findIndex((a) =>
-          a.value.includes(lastDiceResult),
+          a.valueMin !== undefined
+            ? lastDiceResult >= a.valueMin
+            : a.value?.includes(lastDiceResult),
         );
         setCurrentActionIndex(idx >= 0 ? idx : null);
         setConditionConfirmed(false);

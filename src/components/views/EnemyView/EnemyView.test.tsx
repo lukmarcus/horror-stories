@@ -182,6 +182,51 @@ describe("EnemyView", () => {
     });
   });
 
+  describe("valueMin support", () => {
+    const enemyWithValueMin: Enemy = {
+      id: "test",
+      name: "Test",
+      image: "test",
+      playerVariants: [
+        {
+          players: "1",
+          actionsPerTurn: 1,
+          diceCount: 2,
+          actions: [
+            {
+              value: [1, 2],
+              name: "Low",
+              condition: "",
+              description: "Low value action",
+            },
+            {
+              valueMin: 10,
+              name: "High",
+              condition: "",
+              description: "High value action (10+)",
+            },
+          ],
+        },
+      ],
+    };
+
+    it("selects action with valueMin when result >= valueMin", () => {
+      renderWithResult([5, 5], 10, { enemies: [enemyWithValueMin] });
+      expect(screen.getByText("High")).toBeDefined();
+      expect(screen.getByText("High value action (10+)")).toBeDefined();
+    });
+
+    it("selects action with valueMin when result > valueMin", () => {
+      renderWithResult([6, 6], 12, { enemies: [enemyWithValueMin] });
+      expect(screen.getByText("High")).toBeDefined();
+    });
+
+    it("selects value-based action when result < valueMin", () => {
+      renderWithResult([1, 1], 2, { enemies: [enemyWithValueMin] });
+      expect(screen.getByText("Low")).toBeDefined();
+    });
+  });
+
   describe("multiple enemies", () => {
     const secondEnemy: Enemy = {
       id: "drugi",

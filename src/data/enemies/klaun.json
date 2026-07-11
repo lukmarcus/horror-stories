@@ -62,7 +62,7 @@
           "description": "Przestaw <person id='klaun'/> do figurki gracza bez <symbol id='rana-ciezka'/> na planszy z najwyższą cyfrą."
         },
         {
-          "value": [10, 11, 12, 13, 14, 15, 16, 17, 18],
+          "valueMin": 10,
           "name": "Hipnoza",
           "condition": "Na planszy Klauna nie ma wszystkich figurek kontrolowanych przez graczy.",
           "description": "Wszyscy gracze oprócz tych z żetonem <symbol id='rana-ciezka'/> (począwszy od 1 gracza i dalej wg. wskazówek zegara) muszą przemieścić się do dwóch pomieszczeń w kierunku <person id='klaun'/> i zakończyć ruch na polu z <person id='klaun'/> jeśli to możliwe.\nJeśli na drodze znajdują się <symbol id='drzwi-zamkniete'/>, przekręca się je na drugą stronę i przechodzi dalej."

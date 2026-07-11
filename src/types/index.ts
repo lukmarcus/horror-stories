@@ -109,7 +109,8 @@ export interface ActionOutcome {
 }
 
 export interface EnemyAction {
-  value: number[];
+  value?: number[];       // Specific dice values [1, 2, 3]
+  valueMin?: number;      // Open-ended range "X and above"
   name: string;
   condition: string;
   description: string;
