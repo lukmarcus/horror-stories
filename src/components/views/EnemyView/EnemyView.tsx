@@ -36,6 +36,8 @@ function buildActions(enemy: Enemy, variantIndex: number): EnemyAction[] {
 interface EnemyViewProps {
   enemies: Enemy[];
   diceModifiers?: number[];
+  minPlayerCount?: number | null;
+  maxPlayerCount?: number | null;
   onClose: () => void;
   isRolling: boolean;
   diceRolls: number[];
@@ -46,6 +48,8 @@ interface EnemyViewProps {
 export const EnemyView: React.FC<EnemyViewProps> = ({
   enemies,
   diceModifiers,
+  minPlayerCount,
+  maxPlayerCount,
   onClose,
   isRolling,
   diceRolls,
@@ -55,6 +59,8 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
   const [selectedEnemyId, setSelectedEnemyId] = React.useState<string>(
     enemies[0]?.id ?? "",
   );
+  const [selectedVariantIndex, setSelectedVariantIndex] =
+    React.useState<number>(0);
   const [currentActionIndex, setCurrentActionIndex] = React.useState<
     number | null
   >(null);
@@ -82,9 +88,27 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
   };
 
   const selectedEnemy = enemies.find((e) => e.id === selectedEnemyId);
+
+  // Filter variants based on scenario player count range
+  const availableVariants = React.useMemo(() => {
+    if (!selectedEnemy) return [];
+    if (!minPlayerCount && !maxPlayerCount)
+      return selectedEnemy.playerVariants;
+
+    const min = minPlayerCount ?? 1;
+    const max = maxPlayerCount ?? 99;
+
+    return selectedEnemy.playerVariants.filter(
+      (variant) => variant.minPlayers <= max && variant.maxPlayers >= min,
+    );
+  }, [selectedEnemy, minPlayerCount, maxPlayerCount]);
+
   const actions = React.useMemo(
-    () => (selectedEnemy ? buildActions(selectedEnemy, 0) : []),
-    [selectedEnemy],
+    () =>
+      selectedEnemy && availableVariants.length > 0
+        ? buildActions(selectedEnemy, selectedVariantIndex)
+        : [],
+    [selectedEnemy, availableVariants, selectedVariantIndex],
   );
 
   // Reset on new roll result
@@ -117,11 +141,20 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
 
   // Reset when enemy changes
   React.useEffect(() => {
+    setSelectedVariantIndex(0);
     setCurrentActionIndex(null);
     setConditionConfirmed(false);
     setActionDiceResult(null);
     setActionDiceRolling(false);
   }, [selectedEnemyId]);
+
+  // Reset action state when variant changes
+  React.useEffect(() => {
+    setCurrentActionIndex(null);
+    setConditionConfirmed(false);
+    setActionDiceResult(null);
+    setActionDiceRolling(false);
+  }, [selectedVariantIndex]);
 
   return (
     <>
@@ -145,10 +178,29 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
           onSelect={setSelectedEnemyId}
         />
 
+        {selectedEnemy && availableVariants.length > 1 && (
+          <div className="enemy-view__variant-selector">
+            <div className="enemy-view__variant-label">Liczba graczy:</div>
+            <div className="enemy-view__variant-buttons">
+              {availableVariants.map((variant, index) => (
+                <button
+                  key={index}
+                  className={`enemy-view__variant-btn ${selectedVariantIndex === index ? "enemy-view__variant-btn--selected" : ""}`}
+                  onClick={() => setSelectedVariantIndex(index)}
+                >
+                  {variant.minPlayers === variant.maxPlayers
+                    ? variant.minPlayers
+                    : `${variant.minPlayers}-${variant.maxPlayers}`}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {selectedEnemy && (
           <>
             <DiceButtons
-              baseCount={selectedEnemy.playerVariants[0]?.diceCount ?? 1}
+              baseCount={availableVariants[selectedVariantIndex]?.diceCount ?? 1}
               diceModifiers={diceModifiers}
               isRolling={isRolling}
               onRoll={onRoll}

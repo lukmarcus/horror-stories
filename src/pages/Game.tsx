@@ -365,6 +365,8 @@ export const Game: React.FC = () => {
           <EnemyView
             enemies={enemies as import("../types").Enemy[]}
             diceModifiers={currentScenario?.enemyDiceModifiers}
+            minPlayerCount={currentScenario?.minPlayerCount}
+            maxPlayerCount={currentScenario?.maxPlayerCount}
             onClose={() => {
               game.toggleEnemyView();
               game.clearDiceResult();

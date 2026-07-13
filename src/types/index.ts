@@ -147,7 +147,8 @@ export interface EnemyAction {
  * Enemy stats for a specific player count
  */
 export interface EnemyPlayerVariant {
-  players: string;
+  minPlayers: number;
+  maxPlayers: number;
   actionsPerTurn: number;
   diceCount: number;
   actionMapping: EnemyActionMapping[];

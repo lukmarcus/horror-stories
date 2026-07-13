@@ -51,7 +51,8 @@
   ],
   "playerVariants": [
     {
-      "players": "1-2",
+      "minPlayers": 1,
+      "maxPlayers": 2,
       "actionsPerTurn": 3,
       "diceCount": 3,
       "actionMapping": [
@@ -65,7 +66,8 @@
       ]
     },
     {
-      "players": "3-4",
+      "minPlayers": 3,
+      "maxPlayers": 4,
       "actionsPerTurn": 3,
       "diceCount": 3,
       "actionMapping": [
