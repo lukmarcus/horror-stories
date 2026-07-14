@@ -76,6 +76,11 @@
       "description": "Żółty klucz"
     },
     {
+      "id": "li",
+      "paragraphId": 124,
+      "description": "Dłoń"
+    },
+    {
       "id": "lii",
       "paragraphId": 63,
       "description": "Folder"
