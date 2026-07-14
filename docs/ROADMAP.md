@@ -41,13 +41,24 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 4. ✅ **Scenario optimization**
    - Połączono duplikaty wariantów w §100 (droga-donikad)
 
+5. ✅ **Enemy variants system**
+   - Automatyczne filtrowanie wariantów przeciwników na podstawie zakresu graczy scenariusza
+   - Zmiana struktury z `players: "1-2"` na `minPlayers/maxPlayers`
+   - Selektor wariantów UI dla różnej liczby graczy
+   - Grafiki przeciwników: Klaun i Wilkołak
+
+6. ✅ **Assets for future scenarios**
+   - Grafiki postaci: Steven, Lauren, Jack z przypisanymi paragrafami
+   - Grafiki przeciwników z nowymi symbolami (krwawienie, spowolnienie, nieprzytomny)
+   - 12 nowych storyItems dla przyszłych scenariuszy
+
 **Cover image support:**
 
 - ⏳ Przełożone na przyszłe wersje
 
 ### Status
 
-- ✅ **Ukończone** - 2026-07-07 (PersonsEditor + poprawki edytora)
+- ✅ **Ukończone** - 2026-07-14 (PersonsEditor + poprawki edytora + Enemy variants)
 - ✅ Ukrycie przycisku przeciwnika gdy brak enemies
 
 ---

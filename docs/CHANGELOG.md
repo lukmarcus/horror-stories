@@ -14,11 +14,17 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Edytor: zarządzanie postaciami — nowa sekcja „Postacie" w bocznym menu pozwala wybrać które postacie występują w scenariuszu; każda postać ma przypisany stały paragraf (jak fizyczna figurka w grze)
 - Edytor: znaczniki postaci w spisie paragrafów — paragrafy przypisane do postaci wyświetlają teraz nazwę postaci w nawiasie, np. §9 (Patrick)
 - Przeciwnicy: wsparcie dla otwartych zakresów akcji — możliwość użycia `valueMin` dla akcji typu „10 i więcej" zamiast wypisywania wszystkich wartości
-- Dane: nowe symbole dla akcji przeciwników (karta osłabienia, karta XXX, nieprzytomny)
+- Przeciwnicy: automatyczne filtrowanie wariantów — warianty przeciwników są teraz filtrowane na podstawie zakresu graczy scenariusza (minPlayers/maxPlayers zamiast tekstowego `players`)
+- Przeciwnicy: selektor wariantów dla różnej liczby graczy — gdy przeciwnik ma wiele wariantów pasujących do scenariusza, gracz może wybrać odpowiedni dla swojej liczby graczy
+- Dane: nowe symbole dla akcji przeciwników (krwawienie, spowolnienie, nieprzytomny) — zastąpiono tymczasowe ID (karta-osłabienie, karta-xxx)
+- Dane: grafiki przeciwników — Klaun i Wilkołak z przypisanymi paragrafami
+- Dane: grafiki postaci — Steven (§159), Lauren (§62), Jack (§94)
+- Dane: grafiki storyItems — 12 nowych przedmiotów fabularnych (i, iii, iv, vi, x, l, xxiv, xxxvi, liv, lv, lvi, mmdvx)
 
 ### Zmieniono
 
 - Edytor: import wbudowanych scenariuszy — postacie są teraz automatycznie wczytywane z prawidłowymi przypisaniami do paragrafów
+- Przeciwnicy: struktura wariantów — `players: "1-2"` zastąpione przez `minPlayers: 1, maxPlayers: 2` dla precyzyjniejszego filtrowania
 - Scenariusz „Droga donikąd" §100 — uproszczono wybory wariantów śmierci (usunięto duplikaty)
 
 ### Naprawiono
