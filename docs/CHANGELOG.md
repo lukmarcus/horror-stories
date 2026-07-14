@@ -7,33 +7,32 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.3.1] - 2026-07-07
+## [0.3.1] - 2026-07-15
 
 ### Dodano
 
 - Edytor: zarządzanie postaciami — nowa sekcja „Postacie" w bocznym menu pozwala wybrać które postacie występują w scenariuszu; każda postać ma przypisany stały paragraf (jak fizyczna figurka w grze)
-- Edytor: znaczniki postaci w spisie paragrafów — paragrafy przypisane do postaci wyświetlają teraz nazwę postaci w nawiasie, np. §9 (Patrick)
-- Przeciwnicy: wsparcie dla otwartych zakresów akcji — możliwość użycia `valueMin` dla akcji typu „10 i więcej" zamiast wypisywania wszystkich wartości
-- Przeciwnicy: automatyczne filtrowanie wariantów — warianty przeciwników są teraz filtrowane na podstawie zakresu graczy scenariusza (minPlayers/maxPlayers zamiast tekstowego `players`)
-- Przeciwnicy: selektor wariantów dla różnej liczby graczy — gdy przeciwnik ma wiele wariantów pasujących do scenariusza, gracz może wybrać odpowiedni dla swojej liczby graczy
-- Dane: nowe symbole dla akcji przeciwników (krwawienie, spowolnienie, nieprzytomny) — zastąpiono tymczasowe ID (karta-osłabienie, karta-xxx)
-- Dane: grafiki przeciwników — Klaun i Wilkołak z przypisanymi paragrafami
-- Dane: grafiki postaci — Steven (§159), Lauren (§62), Jack (§94)
-- Dane: grafiki storyItems — 12 nowych przedmiotów fabularnych (i, iii, iv, vi, x, l, xxiv, xxxvi, liv, lv, lvi, mmdvx)
+- Edytor: znaczniki postaci w spisie paragrafów — paragrafy przypisane do postaci wyświetlają nazwę postaci w nawiasie, np. §9 (Patrick)
+- Gra: automatyczne filtrowanie wariantów przeciwników — warianty są filtrowane na podstawie zakresu graczy w scenariuszu
+- Gra: selektor wariantów przeciwnika — gdy dostępnych jest więcej wariantów, można wybrać odpowiedni dla swojej liczby graczy
+- Dane: grafika przeciwnika — Wilkołak z przypisanym paragrafem
+- Dane: grafika Klauna — ulepszona jakość istniejącego obrazu
+- Dane: grafiki postaci — Steven, Lauren, Jack z przypisanymi paragrafami
+- Dane: nowe symbole — krwawienie, spowolnienie, nieprzytomny
+- Dane: 12 nowych przedmiotów fabularnych (storyItems)
+- Dane: 10 nowych przedmiotów z pokoi (roomItems)
 
 ### Zmieniono
 
 - Edytor: import wbudowanych scenariuszy — postacie są teraz automatycznie wczytywane z prawidłowymi przypisaniami do paragrafów
-- Przeciwnicy: struktura wariantów — `players: "1-2"` zastąpione przez `minPlayers: 1, maxPlayers: 2` dla precyzyjniejszego filtrowania
-- Scenariusz „Droga donikąd" §100 — uproszczono wybory wariantów śmierci (usunięto duplikaty)
 
 ### Naprawiono
 
-- Edytor: obrazki postaci w podglądzie — wybory zawierające obrazki (np. tagi `<person>`) są teraz wyświetlane poprawnie zamiast jako surowy kod HTML
-- Edytor: format znaczników w spisie paragrafów — uproszczono wyświetlanie z „(postać: Patrick)" na „(Patrick)"
-- Gra: ukrycie przycisku „Przeciwnik" w scenariuszach bez przeciwnika — przycisk nie pojawia się już w menu gdy scenariusz nie ma zdefiniowanych enemies
-- Gra: obrazki przeciwników — poprawiono ścieżkę do obrazów (enemies/ zamiast persons/)
-- Dane: naprawiono wyświetlanie symbolu kości w akcjach przeciwników
+- Edytor: obrazki postaci w podglądzie — wybory zawierające tagi z grafikami wyświetlają się poprawnie zamiast jako surowy kod HTML
+- Edytor: format znaczników w spisie paragrafów — uproszczono wyświetlanie nazw postaci
+- Gra: ukrycie przycisku „Przeciwnik" w scenariuszach bez przeciwnika — przycisk pojawia się tylko gdy scenariusz ma zdefiniowanych przeciwników
+- Gra: poprawiono ścieżki do obrazów przeciwników
+- Gra: naprawiono wyświetlanie symbolu kości w akcjach przeciwników
 
 ---
 
@@ -42,9 +41,10 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Dodano
 
 - Dane: pełny alfabet A-Z jako żetony liter — wszystkie 26 liter alfabetu dostępne w grze (wcześniej tylko A i B)
-- Dane: nowe przedmioty z scenariusza „Party time" — 8 roomItems i 5 storyItems z grafikami
-- Dane: nowe postacie z scenariusza „Party time" — 8 postaci z grafikami (Jeff, Patrick, Josh, Jessica, Margaret, gość od pizzy, policjant, sąsiad)
-- Dane: nowe symbole dla scenariusza „Party time" — Cecha i Dialog
+- Dane: 8 nowych przedmiotów z pokoi (roomItems) z grafikami
+- Dane: 5 nowych przedmiotów fabularnych (storyItems) z grafikami
+- Dane: 8 nowych postaci z grafikami — Jeff, Patrick, Josh, Jessica, Margaret, gość od pizzy, policjant, sąsiad
+- Dane: nowe symbole — Cecha i Dialog
 - Dokumentacja: przewodnik ADDING_SCENARIO.md — kompletny szablon procesu dodawania nowych scenariuszy
 
 ---
