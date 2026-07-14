@@ -45,7 +45,7 @@
         },
         {
           "values": [2, 3, 4, 5, 6],
-          "description": "Każda figurka na planszy z Klaunem NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/>, dodaje do swojego stosu odrzuconego kartę <symbol id='karta-osłabienie'/> z puli ogólnej."
+          "description": "Każda figurka na planszy z Klaunem NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/>, dodaje do swojego stosu odrzuconego kartę <symbol id='krwawienie'/> z puli ogólnej."
         }
       ],
       "description": ""

@@ -20,7 +20,7 @@
       "id": "gruchot-kosci",
       "name": "Gruchot kości",
       "condition": "Na planszy z tobą są figurki bez <symbol id='rana-ciezka'/> i inne niż <symbol id='przeciwnik'/>.",
-      "description": "Każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/>, dodaje do swojego stosu odrzuconego <symbol id='karta-osłabienie'/>."
+      "description": "Każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/>, dodaje do swojego stosu odrzuconego <symbol id='spowolnienie'/>."
     },
     {
       "id": "atak",
@@ -33,7 +33,7 @@
       "name": "Zranienie",
       "condition": "Na planszy z tobą są figurki bez <symbol id='rana-ciezka'/> i inne niż <symbol id='przeciwnik'/>.",
       "actionDiceCount": 1,
-      "description": "Rzuć 1<symbol id='kosc'/>. Każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/> może dobrać do 2<symbol id='karta-akcji'/> bez rozpatrywania ich efektów. Każda z nich, która ma tyle samo lub mniej <symbol id='gwiazda'/> niż twój wynik na <symbol id='kosc'/>, dodaje do swojego stosu odrzuconego jedną <symbol id='karta-xxx'/>."
+      "description": "Rzuć 1<symbol id='kosc'/>. Każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/> może dobrać do 2<symbol id='karta-akcji'/> bez rozpatrywania ich efektów. Każda z nich, która ma tyle samo lub mniej <symbol id='gwiazda'/> niż twój wynik na <symbol id='kosc'/>, dodaje do swojego stosu odrzuconego jedną <symbol id='krwawienie'/>."
     },
     {
       "id": "glod",

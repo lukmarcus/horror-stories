@@ -41,12 +41,12 @@
       "name": "Karta akcji"
     },
     {
-      "id": "karta-osłabienie",
-      "name": "Karta osłabienia"
+      "id": "spowolnienie",
+      "name": "Spowolnienie"
     },
     {
-      "id": "karta-xxx",
-      "name": "Karta XXX"
+      "id": "krwawienie",
+      "name": "Krwawienie"
     },
     {
       "id": "kosc",
