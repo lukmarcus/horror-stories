@@ -7,6 +7,18 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.3.2] - W trakcie
+
+### Dodano
+
+- Scenariusz: szkielet „Eksperyment" — można importować w edytorze jako szablon do wypełnienia
+
+### Naprawiono
+
+- Edytor: automatyczne tworzenie paragrafu przy dodawaniu postaci — gdy dodajesz postać, odpowiadający jej paragraf jest teraz automatycznie tworzony
+
+---
+
 ## [0.3.1] - 2026-07-15
 
 ### Dodano
@@ -16,7 +28,6 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Gra: automatyczne filtrowanie wariantów przeciwników — warianty są filtrowane na podstawie zakresu graczy w scenariuszu
 - Gra: selektor wariantów przeciwnika — gdy dostępnych jest więcej wariantów, można wybrać odpowiedni dla swojej liczby graczy
 - Dane: grafika przeciwnika — Wilkołak z przypisanym paragrafem
-- Dane: grafika Klauna — ulepszona jakość istniejącego obrazu
 - Dane: grafiki postaci — Steven, Lauren, Jack z przypisanymi paragrafami
 - Dane: nowe symbole — krwawienie, spowolnienie, nieprzytomny
 - Dane: 12 nowych przedmiotów fabularnych (storyItems)

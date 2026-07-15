@@ -21,16 +21,18 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 **Scenariusz "Eksperyment":**
 
-- Import paragraphs.json, setup.json, letters.json, images
-- Dodanie do `scenarios/index.json`
-- Testowanie mechanik i gameplay
-- Bugfixy
+- ✅ Szkielet scenariusza z możliwością importu w edytorze
+- ⏳ Import pełnych paragraphs.json (w trakcie wypełniania)
+- ⏳ Import setup.json
+- ⏳ Import obrazków scenariusza
+- ⏳ Testowanie mechanik i gameplay
+- ⏳ Bugfixy
 
 **📋 Pełny przewodnik:** [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
 
 ### Status
 
-- ⏳ Planowane (po v0.3.1)
+- 🔄 **W trakcie** - 2026-07-16 (szkielet gotowy, wypełnianie treści)
 
 ---
 
