@@ -36,7 +36,7 @@ export const VariantPreview: React.FC<VariantPreviewProps> = ({
                       : undefined
                 }
               >
-                <RichText content={[{ type: "text", text: choice.text }]} />
+                <RichText text={choice.text} noSpacing />
               </Button>
             ))}
           </fieldset>

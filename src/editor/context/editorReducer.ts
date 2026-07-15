@@ -4,6 +4,7 @@ import { DEATH_PARAGRAPH, ensureDeath } from "./reducers/reducerUtils";
 import { paragraphReducer } from "./reducers/paragraphReducer";
 import { variantReducer } from "./reducers/variantReducer";
 import { letterReducer } from "./reducers/letterReducer";
+import { personReducer } from "./reducers/personReducer";
 import { setupReducer } from "./reducers/setupReducer";
 import { imageReducer } from "./reducers/imageReducer";
 
@@ -35,6 +36,7 @@ export function editorReducer(
           paragraphs: [DEATH_PARAGRAPH],
           images: {},
           letters: [],
+          persons: [],
         },
         isDirty: false,
         activeParagraphId: null,
@@ -49,6 +51,7 @@ export function editorReducer(
               paragraphs: [DEATH_PARAGRAPH],
               images: {},
               letters: [],
+              persons: [],
             },
         isDirty: true,
       };
@@ -74,6 +77,9 @@ export function editorReducer(
                 ...l,
                 id: String(l.id).toUpperCase(),
               }))
+            : [],
+          persons: Array.isArray(action.payload.persons)
+            ? action.payload.persons
             : [],
           setup: (() => {
             const raw = action.payload as unknown as Record<string, unknown>;
@@ -121,6 +127,7 @@ export function editorReducer(
     paragraphReducer,
     variantReducer,
     letterReducer,
+    personReducer,
     setupReducer,
     imageReducer,
   ].reduce((s, reducer) => reducer(s, action), state);

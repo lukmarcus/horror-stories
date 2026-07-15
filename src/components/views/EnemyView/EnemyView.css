@@ -36,6 +36,49 @@
   color: var(--color-text);
 }
 
+.enemy-view__variant-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) 0;
+}
+
+.enemy-view__variant-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.enemy-view__variant-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.enemy-view__variant-btn {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.enemy-view__variant-btn:hover {
+  border-color: var(--color-accent);
+}
+
+.enemy-view__variant-btn--selected {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text-on-primary);
+}
+
 .enemy-view__dice-buttons {
   display: flex;
   gap: var(--spacing-md);

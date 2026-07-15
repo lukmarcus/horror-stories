@@ -1,0 +1,84 @@
+{
+  "id": "wilkolak",
+  "name": "Wilkołak",
+  "image": "wilkolak",
+  "actions": [
+    {
+      "id": "nieuwaga",
+      "name": "Nieuwaga",
+      "condition": "",
+      "description": "Przepada jedna akcja."
+    },
+    {
+      "id": "ruch",
+      "name": "Ruch",
+      "condition": "Na planszy z tobą są wyłącznie figurki <symbol id='przeciwnik'/> i/lub figurki z żetonem <symbol id='rana-ciezka'/>.",
+      "actionDiceCount": 1,
+      "description": "Rzuć 1<symbol id='kosc'/>. Porusz się przez tyle odkrytych plansz przez <symbol id='drzwi-wywazone'/> i / lub <symbol id='drzwi-otwarte'/> w kierunku najbliższej figurki (INNEJ niż tej z <symbol id='rana-ciezka'/> oraz <symbol id='przeciwnik'/>) ile wyniósł wynik na <symbol id='kosc'/> minus jeden. W przypadku remisu w odległości, do tej z większą liczbą <symbol id='zycie'/>.\nW przypadku dalszego remisu, do tej z mniejszą ilością <symbol id='drzwi-zamkniete'/> na drodze. W ostateczności do posiadacza żetonu 1. gracza.\nJeśli masz się przemieścić, ale drogę blokują <symbol id='drzwi-zamkniete'/>, a pozostały Ci co najmniej dwa niewykorzystane punkty ruchu (z rzutu <symbol id='kosc'/>) zamień blokujące <symbol id='drzwi-zamkniete'/> na <symbol id='drzwi-otwarte'/> i zakończ akcję. W innym wypadku zakończ ruch."
+    },
+    {
+      "id": "gruchot-kosci",
+      "name": "Gruchot kości",
+      "condition": "Na planszy z tobą są figurki bez <symbol id='rana-ciezka'/> i inne niż <symbol id='przeciwnik'/>.",
+      "description": "Każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/>, dodaje do swojego stosu odrzuconego <symbol id='spowolnienie'/>."
+    },
+    {
+      "id": "atak",
+      "name": "Atak",
+      "condition": "Na planszy z tobą są figurki bez <symbol id='rana-ciezka'/> i inne niż <symbol id='przeciwnik'/>.",
+      "description": "Każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/>, odrzuca 1<symbol id='zycie'/>."
+    },
+    {
+      "id": "zranienie",
+      "name": "Zranienie",
+      "condition": "Na planszy z tobą są figurki bez <symbol id='rana-ciezka'/> i inne niż <symbol id='przeciwnik'/>.",
+      "actionDiceCount": 1,
+      "description": "Rzuć 1<symbol id='kosc'/>. Każda figurka na planszy z Tobą NIE będąca <symbol id='przeciwnik'/> i bez <symbol id='rana-ciezka'/> może dobrać do 2<symbol id='karta-akcji'/> bez rozpatrywania ich efektów. Każda z nich, która ma tyle samo lub mniej <symbol id='gwiazda'/> niż twój wynik na <symbol id='kosc'/>, dodaje do swojego stosu odrzuconego jedną <symbol id='krwawienie'/>."
+    },
+    {
+      "id": "glod",
+      "name": "Głód",
+      "condition": "Na planszy z tobą lub sąsiadującej jest żeton planszy z <symbol id='nieprzytomny'> / leżąca figurka z <symbol id='nieprzytomny'>.",
+      "description": "Jeśli na planszy z Tobą znajduje się jakikolwiek element z <symbol id='nieprzytomny'>, odrzuć losowo jeden z nich, aby dobrać 1<symbol id='zycie'/>. Jeśli go brak, ale element z symbolem <symbol id='nieprzytomny'> znajduje się na sąsiedniej planszy, do której prowadzi <symbol id='drzwi-wywazone'/> lub <symbol id='drzwi-otwarte'/>, porusz tam <symbol id='wilkolak'/> i odrzuć stamtąd losowy <symbol id='nieprzytomny'/>. Jeśli masz więcej niż jedną trasę, rusz do planszy z wyższą cyfrą. Po usunięciu <symbol id='nieprzytomny'/>, dobierz ZIELONY status."
+    },
+    {
+      "id": "szal-zniszczenia",
+      "name": "Szał zniszczenia",
+      "condition": "",
+      "actionDiceCount": 1,
+      "description": ""
+    }
+  ],
+  "playerVariants": [
+    {
+      "minPlayers": 1,
+      "maxPlayers": 2,
+      "actionsPerTurn": 3,
+      "diceCount": 3,
+      "actionMapping": [
+        { "id": "nieuwaga", "value": [1, 2, 3, 4] },
+        { "id": "ruch", "value": [5, 6] },
+        { "id": "gruchot-kosci", "value": [7, 8] },
+        { "id": "atak", "value": [9, 10] },
+        { "id": "zranienie", "value": [11, 12] },
+        { "id": "glod", "value": [13, 14] },
+        { "id": "szal-zniszczenia", "valueMin": 15 }
+      ]
+    },
+    {
+      "minPlayers": 3,
+      "maxPlayers": 4,
+      "actionsPerTurn": 3,
+      "diceCount": 3,
+      "actionMapping": [
+        { "id": "nieuwaga", "value": [1, 2, 3] },
+        { "id": "ruch", "value": [4, 5] },
+        { "id": "gruchot-kosci", "value": [6, 7] },
+        { "id": "atak", "value": [8, 9] },
+        { "id": "zranienie", "value": [10, 11] },
+        { "id": "glod", "value": [12, 13] },
+        { "id": "szal-zniszczenia", "valueMin": 14 }
+      ]
+    }
+  ]
+}

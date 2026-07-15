@@ -7,22 +7,23 @@
       "minPlayerCount": 1,
       "maxPlayerCount": 2,
       "duration": 120,
-      "characters": ["Jessica", "Patrick"],
+      "persons": ["Jessica", "Patrick"],
       "notes": "drugi gracz dołącza po około 20 min",
-      "enemyIds": ["klaun"],
+      "enemies": ["klaun"],
       "enemyDiceModifiers": [1]
-    },
-    {
-      "id": "party-time",
-      "title": "Party time",
-      "description": "",
-      "minPlayerCount": null,
-      "maxPlayerCount": null,
-      "duration": null
     },
     {
       "id": "eksperyment",
       "title": "Eksperyment",
+      "description": "Po zakończeniu studenckiej imprezy grupa przyjaciół budzi się zamknięta w tajemniczym betonowym pomieszczeniu, zmuszona odkryć, kto ich uwięził i z jakiego powodu.",
+      "minPlayerCount": 1,
+      "maxPlayerCount": 4,
+      "duration": 150,
+      "persons": ["Jessica", "Josh", "Margaret", "Patrick", "Jeff"]
+    },
+    {
+      "id": "party-time",
+      "title": "Party time",
       "description": "",
       "minPlayerCount": null,
       "maxPlayerCount": null,

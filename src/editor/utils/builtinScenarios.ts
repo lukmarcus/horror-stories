@@ -8,6 +8,7 @@ import type {
 } from "../context/editorTypes";
 import type { Scenario, Paragraph } from "../../types";
 import { SCENARIOS, SETUP_DATA, LETTERS_DATA } from "../../scenarios";
+import personsData from "../../data/items/persons.json";
 
 // Import raw JSON data directly to avoid runtime transformations
 import drogaParagraphs from "../../scenarios/droga-donikad/paragraphs.json";
@@ -111,6 +112,19 @@ export async function copyBuiltinScenarioToEditor(
     }),
   );
 
+  // Get persons from meta and convert to EditorPerson[]
+  const persons: EditorScenario["persons"] = (scenario.persons ?? [])
+    .map((name) => {
+      const personId = name.toLowerCase().replace(/\s+/g, "-");
+      const personData = personsData.items.find((p) => p.id === personId);
+      if (!personData) return null;
+      return {
+        id: personId,
+        paragraphId: String(personData.paragraphId ?? ""),
+      };
+    })
+    .filter((p): p is { id: string; paragraphId: string } => p !== null);
+
   // Load images for this scenario
   const images = await loadScenarioImages(scenarioId);
 
@@ -123,6 +137,7 @@ export async function copyBuiltinScenarioToEditor(
     paragraphs,
     setup,
     letters,
+    persons,
     images,
   };
 }

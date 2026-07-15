@@ -41,6 +41,11 @@ export interface EditorLetter {
   paragraphId: string;
 }
 
+export interface EditorPerson {
+  id: string;
+  paragraphId: string;
+}
+
 export interface EditorSetup {
   /** Pages of content blocks — each page shown as one step */
   pages: ContentBlock[][];
@@ -57,6 +62,8 @@ export interface EditorScenario {
   images?: Record<string, string>;
   /** Scenario letters mapping */
   letters?: EditorLetter[];
+  /** Scenario persons mapping */
+  persons?: EditorPerson[];
 }
 
 export interface EditorState {
@@ -184,6 +191,15 @@ export type EditorAction =
       type: "UPDATE_LETTER";
       payload: { id: string; paragraphId: string };
     }
+  | {
+      type: "LOAD_PERSONS";
+      payload: { persons: Array<{ id: string; paragraphId: string }> };
+    }
+  | {
+      type: "ADD_PERSON";
+      payload: { id: string; paragraphId: string };
+    }
+  | { type: "REMOVE_PERSON"; payload: string }
   | { type: "ADD_SETUP_PAGE" }
   | { type: "REMOVE_SETUP_PAGE"; payload: number }
   | {

@@ -23,6 +23,16 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
     (state.scenario?.letters ?? []).map((l) => [l.paragraphId, l.id]),
   );
 
+  const personByParagraphId = Object.fromEntries(
+    (state.scenario?.persons ?? []).map((p) => [
+      p.paragraphId,
+      p.id
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" "),
+    ]),
+  );
+
   const allEntries = sortParagraphIds(
     (state.scenario?.paragraphs ?? []).flatMap((p) => [
       p.id,
@@ -94,6 +104,18 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
           {state.scenario && (
             <button
               className={`editor-sidebar__item ${
+                activeSection === "persons"
+                  ? "editor-sidebar__item--active"
+                  : ""
+              }`}
+              onClick={() => onSectionChange("persons")}
+            >
+              Postacie
+            </button>
+          )}
+          {state.scenario && (
+            <button
+              className={`editor-sidebar__item ${
                 activeSection === "enemy" ? "editor-sidebar__item--active" : ""
               }`}
               onClick={() => onSectionChange("enemy")}
@@ -160,6 +182,11 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                 {!isAlias && letterByParagraphId[id] && (
                   <span className="editor-sidebar__paragraph-tag">
                     &nbsp;(litera {letterByParagraphId[id]})
+                  </span>
+                )}
+                {!isAlias && personByParagraphId[id] && (
+                  <span className="editor-sidebar__paragraph-tag">
+                    &nbsp;({personByParagraphId[id]})
                   </span>
                 )}
               </span>

@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from "react";
 import { EditorContext } from "../../context/editorTypes";
 import { LetterRow } from "./LetterRow";
 import { AddLetterForm } from "./AddLetterForm";
-import "./LettersEditor.css";
+import "./ItemEditor.css";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -82,17 +82,17 @@ export const LettersEditor: React.FC = () => {
   };
 
   return (
-    <div className="letters-editor">
-      <h2 className="letters-editor__title">Żetony alfabetu</h2>
-      <p className="letters-editor__hint">
+    <div className="item-editor">
+      <h2 className="item-editor__title">Żetony alfabetu</h2>
+      <p className="item-editor__hint">
         Każda litera odpowiada paragrafowi odkrywanemu przez gracza po
         znalezieniu żetonu.
       </p>
 
       {letters.length > 0 && (
-        <div className="letters-editor__section">
-          <div className="letters-editor__label">Przypisane litery</div>
-          <div className="letters-editor__list">
+        <div className="item-editor__section">
+          <div className="item-editor__label">Przypisane litery</div>
+          <div className="item-editor__list">
             {letters.map((letter) => (
               <LetterRow
                 key={letter.id}
@@ -116,7 +116,7 @@ export const LettersEditor: React.FC = () => {
           onAdd={handleAddLetter}
         />
       ) : (
-        <div className="letters-editor__note">
+        <div className="item-editor__note">
           Wszystkie litery (A–Z) zostały już przypisane.
         </div>
       )}

@@ -41,6 +41,22 @@
       "name": "Karta akcji"
     },
     {
+      "id": "spowolnienie",
+      "name": "Spowolnienie"
+    },
+    {
+      "id": "krwawienie",
+      "name": "Krwawienie"
+    },
+    {
+      "id": "kosc",
+      "name": "Kość"
+    },
+    {
+      "id": "nieprzytomny",
+      "name": "Nieprzytomny"
+    },
+    {
       "id": "paragraf",
       "name": "Paragraf scenariusza"
     },

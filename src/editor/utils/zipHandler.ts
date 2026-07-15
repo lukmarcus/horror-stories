@@ -143,9 +143,22 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
     };
   });
 
+  // Generate meta.persons from editor persons list
+  const personsForMeta = (scenario.persons ?? []).map((p) =>
+    p.id
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" "),
+  );
+
+  const metaWithPersons = {
+    ...scenario.meta,
+    ...(personsForMeta.length > 0 ? { persons: personsForMeta } : {}),
+  };
+
   zip.file(
     "meta.json",
-    compactSimpleArrays(JSON.stringify(scenario.meta, null, 2)),
+    compactSimpleArrays(JSON.stringify(metaWithPersons, null, 2)),
   );
   zip.file(
     "paragraphs.json",

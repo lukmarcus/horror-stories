@@ -969,7 +969,7 @@
             },
             {
               "text": "Tylko Jessica posiada żeton ciężkiej rany.",
-              "nextVariantId": "jessica-tylko"
+              "nextVariantId": "graj-dalej"
             }
           ]
         },
@@ -992,20 +992,11 @@
             },
             {
               "text": "Tylko Patrick posiada żeton ciężkiej rany.",
-              "nextVariantId": "patrick-tylko"
+              "nextVariantId": "graj-dalej"
             }
           ]
         },
-        "jessica-tylko": {
-          "pages": [
-            [
-              {
-                "text": "Gra toczy się dalej."
-              }
-            ]
-          ]
-        },
-        "patrick-tylko": {
+        "graj-dalej": {
           "pages": [
             [
               {

@@ -10,7 +10,6 @@ import {
   toSlug,
   validateMeta,
 } from "./scenarioMetaValidation";
-import { CHARACTERS } from "../../../data/characters";
 import "./ScenarioMetaForm.css";
 
 export const ScenarioMetaForm: React.FC = () => {
@@ -170,37 +169,6 @@ export const ScenarioMetaForm: React.FC = () => {
             <span className="meta-form__suffix">min</span>
           </div>
           {fieldError("duration")}
-        </div>
-      </div>
-
-      <div className="meta-form__field">
-        <label className="meta-form__label">Postacie</label>
-        <span className="meta-form__hint">
-          Opcjonalne. Widoczne na karcie scenariusza.
-        </span>
-        <div className="meta-form__checklist">
-          {CHARACTERS.map((char) => (
-            <label key={char.id} className="meta-form__check-row">
-              <input
-                type="checkbox"
-                checked={(meta.characters ?? []).includes(char.name)}
-                onChange={(e) => {
-                  const current = meta.characters ?? [];
-                  const next = e.target.checked
-                    ? [...current, char.name]
-                    : current.filter((c) => c !== char.name);
-                  dispatch({
-                    type: "SET_META",
-                    payload: {
-                      ...meta,
-                      characters: next.length ? next : undefined,
-                    },
-                  });
-                }}
-              />
-              {char.name}
-            </label>
-          ))}
         </div>
       </div>
 

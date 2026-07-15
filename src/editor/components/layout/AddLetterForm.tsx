@@ -53,15 +53,15 @@ export const AddLetterForm: React.FC<AddLetterFormProps> = ({
   const autocompleteOptions = filterIds(paraInput, availableParasForAdd);
 
   return (
-    <div className="letters-editor__section">
-      <div className="letters-editor__label">Dodaj literę</div>
-      <p className="letters-editor__add-hint">
+    <div className="item-editor__section">
+      <div className="item-editor__label">Dodaj literę</div>
+      <p className="item-editor__add-hint">
         Możesz wpisać istniejący lub nowy numer § — zostanie automatycznie
         utworzony.
       </p>
-      <div className="letters-editor__add-row">
+      <div className="item-editor__add-row">
         <select
-          className="letters-editor__select letters-editor__select--letter"
+          className="item-editor__select item-editor__select--item"
           value={effectiveLetter}
           onChange={(e) => setSelectedLetter(e.target.value)}
         >
@@ -72,10 +72,10 @@ export const AddLetterForm: React.FC<AddLetterFormProps> = ({
           ))}
         </select>
 
-        <div className="letters-editor__para-wrap">
-          <span className="letters-editor__para-prefix">§</span>
+        <div className="item-editor__para-wrap">
+          <span className="item-editor__para-prefix">§</span>
           <input
-            className="letters-editor__para-target"
+            className="item-editor__para-target"
             type="text"
             value={paraInput}
             onChange={(e) => {
@@ -116,12 +116,12 @@ export const AddLetterForm: React.FC<AddLetterFormProps> = ({
             placeholder="numer…"
           />
           {focused && autocompleteOptions.length > 0 && (
-            <ul className="letters-editor__para-dropdown" role="listbox">
+            <ul className="item-editor__para-dropdown" role="listbox">
               {autocompleteOptions.map((pid, index) => (
                 <li
                   key={pid}
                   role="option"
-                  className={`letters-editor__para-dropdown-item${highlighted === index ? " letters-editor__para-dropdown-item--highlighted" : ""}`}
+                  className={`item-editor__para-dropdown-item${highlighted === index ? " item-editor__para-dropdown-item--highlighted" : ""}`}
                   onMouseDown={(e) => {
                     e.preventDefault();
                     setParaInput(pid);
@@ -143,7 +143,7 @@ export const AddLetterForm: React.FC<AddLetterFormProps> = ({
           Dodaj
         </button>
       </div>
-      {error && <div className="letters-editor__error">{error}</div>}
+      {error && <div className="item-editor__error">{error}</div>}
     </div>
   );
 };

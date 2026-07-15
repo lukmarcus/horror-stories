@@ -7,14 +7,44 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.3.1] - 2026-07-15
+
+### Dodano
+
+- Edytor: zarządzanie postaciami — nowa sekcja „Postacie" w bocznym menu pozwala wybrać które postacie występują w scenariuszu; każda postać ma przypisany stały paragraf (jak fizyczna figurka w grze)
+- Edytor: znaczniki postaci w spisie paragrafów — paragrafy przypisane do postaci wyświetlają nazwę postaci w nawiasie, np. §9 (Patrick)
+- Gra: automatyczne filtrowanie wariantów przeciwników — warianty są filtrowane na podstawie zakresu graczy w scenariuszu
+- Gra: selektor wariantów przeciwnika — gdy dostępnych jest więcej wariantów, można wybrać odpowiedni dla swojej liczby graczy
+- Dane: grafika przeciwnika — Wilkołak z przypisanym paragrafem
+- Dane: grafika Klauna — ulepszona jakość istniejącego obrazu
+- Dane: grafiki postaci — Steven, Lauren, Jack z przypisanymi paragrafami
+- Dane: nowe symbole — krwawienie, spowolnienie, nieprzytomny
+- Dane: 12 nowych przedmiotów fabularnych (storyItems)
+- Dane: 10 nowych przedmiotów z pokoi (roomItems)
+
+### Zmieniono
+
+- Edytor: import wbudowanych scenariuszy — postacie są teraz automatycznie wczytywane z prawidłowymi przypisaniami do paragrafów
+
+### Naprawiono
+
+- Edytor: obrazki postaci w podglądzie — wybory zawierające tagi z grafikami wyświetlają się poprawnie zamiast jako surowy kod HTML
+- Edytor: format znaczników w spisie paragrafów — uproszczono wyświetlanie nazw postaci
+- Gra: ukrycie przycisku „Przeciwnik" w scenariuszach bez przeciwnika — przycisk pojawia się tylko gdy scenariusz ma zdefiniowanych przeciwników
+- Gra: poprawiono ścieżki do obrazów przeciwników
+- Gra: naprawiono wyświetlanie symbolu kości w akcjach przeciwników
+
+---
+
 ## [0.3.0] - 2026-07-05
 
 ### Dodano
 
 - Dane: pełny alfabet A-Z jako żetony liter — wszystkie 26 liter alfabetu dostępne w grze (wcześniej tylko A i B)
-- Dane: nowe przedmioty z scenariusza „Party time" — 8 roomItems i 5 storyItems z grafikami
-- Dane: nowe postacie z scenariusza „Party time" — 8 postaci z grafikami (Jeff, Patrick, Josh, Jessica, Margaret, gość od pizzy, policjant, sąsiad)
-- Dane: nowe symbole dla scenariusza „Party time" — Cecha i Dialog
+- Dane: 8 nowych przedmiotów z pokoi (roomItems) z grafikami
+- Dane: 5 nowych przedmiotów fabularnych (storyItems) z grafikami
+- Dane: 8 nowych postaci z grafikami — Jeff, Patrick, Josh, Jessica, Margaret, gość od pizzy, policjant, sąsiad
+- Dane: nowe symbole — Cecha i Dialog
 - Dokumentacja: przewodnik ADDING_SCENARIO.md — kompletny szablon procesu dodawania nowych scenariuszy
 
 ---

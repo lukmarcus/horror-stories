@@ -1,14 +1,34 @@
 {
   "items": [
     {
-      "id": "xlix",
-      "paragraphId": 21,
-      "description": "Pizza"
+      "id": "i",
+      "paragraphId": 72,
+      "description": "Diament"
     },
     {
-      "id": "xlv",
-      "paragraphId": 43,
-      "description": "Plik banknotów"
+      "id": "iii",
+      "paragraphId": 0,
+      "description": "Nóż - Po dodaniu do ekwipunku dobierz kartę 1 i kartę 2 .  Przy odłożeniu odrzuć je."
+    },
+    {
+      "id": "iv",
+      "paragraphId": 0,
+      "description": "Karabin - Po dodaniu do ekwipunku dobierz kartę 15, a przy odłożeniu odrzuć."
+    },
+    {
+      "id": "vi",
+      "paragraphId": 85,
+      "description": "Płyta CD"
+    },
+    {
+      "id": "x",
+      "paragraphId": 139,
+      "description": "Woda"
+    },
+    {
+      "id": "xii",
+      "paragraphId": 140,
+      "description": "Whiskey"
     },
     {
       "id": "xiii",
@@ -21,14 +41,24 @@
       "description": "Odcięta męska ręka"
     },
     {
-      "id": "lii",
-      "paragraphId": 63,
-      "description": "TODO"
-    },
-    {
       "id": "xvii",
       "paragraphId": 84,
       "description": "Czerwony klucz"
+    },
+    {
+      "id": "xxiv",
+      "paragraphId": 222,
+      "description": "Butelka"
+    },
+    {
+      "id": "xxxvi",
+      "paragraphId": 106,
+      "description": "Identyfikator"
+    },
+    {
+      "id": "xlv",
+      "paragraphId": 43,
+      "description": "Plik banknotów"
     },
     {
       "id": "xlvi",
@@ -36,14 +66,49 @@
       "description": "Wycinek gazety"
     },
     {
+      "id": "xlix",
+      "paragraphId": 21,
+      "description": "Pizza"
+    },
+    {
+      "id": "l",
+      "paragraphId": 150,
+      "description": "Żółty klucz"
+    },
+    {
+      "id": "li",
+      "paragraphId": 124,
+      "description": "Dłoń"
+    },
+    {
+      "id": "lii",
+      "paragraphId": 63,
+      "description": "Folder"
+    },
+    {
       "id": "liii",
       "paragraphId": 113,
       "description": "Książka z pustymi kartkami"
     },
     {
-      "id": "xii",
-      "paragraphId": 140,
-      "description": "Whiskey"
+      "id": "liv",
+      "paragraphId": 76,
+      "description": "Wycinki z gazet"
+    },
+    {
+      "id": "lv",
+      "paragraphId": 59,
+      "description": "Notatki"
+    },
+    {
+      "id": "lvi",
+      "paragraphId": 56,
+      "description": "Notatki"
+    },
+    {
+      "id": "mmdvx",
+      "paragraphId": 0,
+      "description": "Mop i wiadro - Po dodaniu do ekwipunku dobierz kartę 17 . Przy odłożeniu odrzuć je."
     }
   ]
 }

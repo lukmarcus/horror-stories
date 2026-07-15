@@ -91,9 +91,7 @@ export const createParagraphMap = (
 };
 
 export const PARAGRAPHS: Record<string, Record<string, Paragraph>> = {
-  "droga-donikad": createParagraphMap(
-    (droga as ImportedParagraphs).paragraphs,
-  ),
+  "droga-donikad": createParagraphMap((droga as ImportedParagraphs).paragraphs),
   "tajemna-biblioteka": createParagraphMap(
     (biblioteka as ImportedParagraphs).paragraphs,
   ),
