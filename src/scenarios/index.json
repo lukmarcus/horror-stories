@@ -19,7 +19,8 @@
       "minPlayerCount": 1,
       "maxPlayerCount": 4,
       "duration": 150,
-      "persons": ["Jessica", "Josh", "Margaret", "Patrick", "Jeff"]
+      "persons": ["Jessica", "Josh", "Margaret", "Patrick", "Jeff"],
+      "enemies": ["wilkolak"]
     },
     {
       "id": "party-time",
