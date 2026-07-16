@@ -5,10 +5,164 @@
       "pages": [
         [
           {
-            "text": ""
+            "text": "Sprawdzasz jako:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"jessica\"/><person id=\"josh\"/><person id=\"margaret\"/><person id=\"patrick\"/>",
+          "nextVariantId": "nie-jeff"
+        },
+        {
+          "text": "<person id=\"jeff\"/>",
+          "nextVariantId": "jeff"
+        }
+      ],
+      "variants": {
+        "jeff": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "nie-jeff": {
+          "pages": [
+            [
+              {
+                "text": "Czy Jeff <person id=\"jeff\"/> leży?"
+              }
+            ]
+          ]
+        },
+        "jeff-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jeffem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "jeff-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jeffem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "2",
+      "pages": [
+        [
+          {
+            "text": "Znajdujesz nóż. <span class='color-blue'>Dodaj</span> <story id=\"iii\"/> do swojego ekwipunku. <span class='color-blue'>Odrzuć</span> <room id=\"160\"/>."
           }
         ]
       ]
+    },
+    {
+      "id": "3",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"120\"/>, a następnie <span class='color-blue'>wyłóż</span> <room id=\"71\"/> na planszy <span class='color-purple'>8</span><letter id=\"a\"/>. Na ekranie pojawia się komunikat: \"<em>Dostęp przyznany</em>\". Dobierz 1<symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "4",
+      "pages": [
+        [
+          {
+            "text": "Zjadasz ją, ale kiedy ledwie chwilę później zaczyna boleć Cię żołądek zdajesz sobie sprawę, że może nie był to dobry pomysł. "
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"xlix\"/> i dobierz 2<symbol id=\"zycie\"/>. <span class='color-blue'>Wtasuj</span> XXXXXXXXXXXXXXXXXXXXXXXXXX do swojej talii."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "5",
+      "pages": [
+        [
+          {
+            "text": "Liczysz na jakiś efekt. Może nawet uda Ci się coś otworzyć. Kto wie dokąd może Cię to doprowadzić. Milisekundę później okazuje się, że donikąd, gdy ucina Ci rękę. Twój rozpaczliwy krzyk nic tu nie pomoże. Na przyszłość nie będziesz wsadzał drugiej ręki do podejrzanie wyglądających dziur."
+          },
+          {
+            "text": "<span class='color-blue'>Połóż</span> <story id=\"li\"/> na środku planszy na której stoisz."
+          },
+          {
+            "text": "Czy <letter id=\"y\"/> jest na <span class='color-yellow'>AKTYWNE</span> toru czasu?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "y-tak"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "y-nie"
+        }
+      ],
+      "variants": {
+        "y-tak": {
+          "pages": [
+            [
+              {
+                "text": "Nic się nie dzieje."
+              }
+            ]
+          ]
+        },
+        "y-nie": {
+          "pages": [
+            [
+              {
+                "text": "Dodaj dwie YYYYYYYYYYYYYYYYYYYYYY do swojego stosu odrzuconego i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>. Następnie wyłóż <letter id=\"y\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
+              }
+            ]
+          ]
+        }
+      }
     },
     {
       "id": "9",
