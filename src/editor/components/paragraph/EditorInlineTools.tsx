@@ -30,6 +30,14 @@ const DropdownPicker: React.FC<DropdownPickerProps> = ({
   const [open, setOpen] = useState(false);
   const containerRef = useClickOutside(open, () => setOpen(false));
 
+  const handleItemClick = (e: React.MouseEvent) => {
+    // Close dropdown when clicking on any button inside
+    const target = e.target as HTMLElement;
+    if (target.tagName === "BUTTON" || target.closest("button")) {
+      setOpen(false);
+    }
+  };
+
   return (
     <div className={containerClass} ref={containerRef}>
       <button
@@ -42,7 +50,7 @@ const DropdownPicker: React.FC<DropdownPickerProps> = ({
       >
         {toggleContent}
       </button>
-      {open && children}
+      {open && <div onMouseDown={handleItemClick}>{children}</div>}
     </div>
   );
 };
@@ -121,7 +129,9 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
               e.preventDefault();
               onSelect(item.id);
             }}
-            title={item.sublabel ? `${item.label}\n${item.sublabel}` : item.label}
+            title={
+              item.sublabel ? `${item.label}\n${item.sublabel}` : item.label
+            }
           >
             <img src={item.imagePath} alt={item.label} />
           </button>
