@@ -2,56 +2,46 @@
   "pages": [
     [
       {
-        "type": "text",
         "text": "Wybierz minimum dwie spośród figurek <person id=\"jessica\"/><person id=\"josh\"/><person id=\"margaret\"/><person id=\"patrick\"/><person id=\"jeff\"/>. Grając solo ma się pod kontrolą dwie postacie. Na 3 graczy każdy kontroluje po jednej, na 4 graczy również. Jeśli w grze są tylko dwie figurki, każda z nich dobiera 4<symbol id=\"zycie\"/>. Jeśli są trzy, dobierają po 3<symbol id=\"zycie\"/>. Jeśli są cztery, dobierają po 2<symbol id=\"zycie\"/> każda."
       },
       {
-        "type": "text",
         "text": "<span class='color-blue'>Wyłóż</span> planszę 1<letter id=\"a\"/>, a w nim <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>E</span> i <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>W</span>. <span class='color-blue'>Wyłóż</span> tam stojące figurki postaci biorących udział w grze."
       },
       {
-        "type": "text",
         "text": "Jeśli w scenariuszu biorą udział dwie postacie, na <u>torze czasu</u> połóż <letter id=\"b\"/> na polu 4, zaś <letter id=\"a\"/> na polu 2. Jeśli trzy postacie, na torze czasu połóż <letter id=\"b\"/> na polu 4, zaś <letter id=\"a\"/> na polu 1. Jeśli zaś biorą udział cztery postacie, na torze czasu połóż <letter id=\"b\"/> na polu 3, zaś <letter id=\"a\"/> na polu 1."
       }
     ],
     [
       {
-        "type": "text",
-        "text": "DLA KAŻDEJ Z POSTACI SFORMUJ TALIĘ:  2 x , 2 x , 2 x .",
-        "size": "lg"
+        "size": "lg",
+        "text": "DLA KAŻDEJ Z POSTACI SFORMUJ TALIĘ:  2 x , 2 x , 2 x ."
       },
       {
-        "type": "text",
         "text": "<span class='color-blue'>Wyłóż</span> ekwipunki postaci biorących udział w scenariuszu. <span class='color-blue'>Wyłóż</span> jedna obok drugiej cztery losowe karty z talii rozwoju. "
       },
       {
-        "type": "text",
         "text": "Wyznacz kolejność postaci do końca scenariusza (<span class='color-red'>raz ustalona do końca scenariusza nie może zostać zmieniona</span>) i przekaż znacznik pierwszego gracza dla tej postaci, która rozpoczyna jako pierwsza. <u>Każda z postaci posiada 2 akcje</u>."
       }
     ],
     [
       {
-        "type": "text",
-        "text": "Jeszcze przed chwilą świętowaliście koniec roku akademickiego.",
-        "style": "italic"
+        "style": "italic",
+        "text": "Jeszcze przed chwilą świętowaliście koniec roku akademickiego."
       },
       {
-        "type": "text",
-        "text": "Muzyka grała głośno, światła pulsowały, a rozmowy mieszały się z wybuchami śmiechu. Panowała atmosfera beztroski. Ostatnie co pamiętacie to nieostre sylwetki tańczących znajomych. A teraz? Teraz jest... ciemno. Nie ma okien. Nie ma światła. Nie ma też żadnych dźwięków - poza nerwowym oddechem. Gdy zaczynacie odzyskiwać przytomność, otaczająca was cisza wydaje się wręcz przerażająca. Czoło pulsuje bólem, a żołądek podpowiada, że coś poszło bardzo nie tak.",
-        "style": "italic"
+        "style": "italic",
+        "text": "Muzyka grała głośno, światła pulsowały, a rozmowy mieszały się z wybuchami śmiechu. Panowała atmosfera beztroski. Ostatnie co pamiętacie to nieostre sylwetki tańczących znajomych. A teraz? Teraz jest... ciemno. Nie ma okien. Nie ma światła. Nie ma też żadnych dźwięków - poza nerwowym oddechem. Gdy zaczynacie odzyskiwać przytomność, otaczająca was cisza wydaje się wręcz przerażająca. Czoło pulsuje bólem, a żołądek podpowiada, że coś poszło bardzo nie tak."
       },
       {
-        "type": "text",
-        "text": "Gdzie jesteśmy? - to pierwsze pytanie, które pojawia się w waszych głowach, gdy się wybudzacie. Kieszenie są puste. Klucze, telefony, portfele – wszystko zniknęło. Przeszukiwanie ubrania nie przynosi żadnego tropu, żadnej podpowiedzi. Gdy oczy powoli przyzwyczajają się do ciemności, zaczynacie dostrzegać więcej. Betonowa podłoga, surowe ściany, słaby zapach wilgoci i metalu. Ktoś was tu zamknął. Pytanie tylko – dlaczego?",
-        "style": "italic"
+        "style": "italic",
+        "text": "Gdzie jesteśmy? - to pierwsze pytanie, które pojawia się w waszych głowach, gdy się wybudzacie. Kieszenie są puste. Klucze, telefony, portfele – wszystko zniknęło. Przeszukiwanie ubrania nie przynosi żadnego tropu, żadnej podpowiedzi. Gdy oczy powoli przyzwyczajają się do ciemności, zaczynacie dostrzegać więcej. Betonowa podłoga, surowe ściany, słaby zapach wilgoci i metalu. Ktoś was tu zamknął. Pytanie tylko – dlaczego?"
       }
     ],
     [
       {
-        "type": "text",
-        "text": "SCENARIUSZ SIĘ ROZPOCZYNA!",
+        "size": "xl",
         "color": "red",
-        "size": "xl"
+        "text": "SCENARIUSZ SIĘ ROZPOCZYNA!"
       }
     ]
   ]
