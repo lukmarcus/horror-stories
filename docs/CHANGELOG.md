@@ -12,10 +12,13 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Dodano
 
 - Scenariusz: szkielet „Eksperyment" — można importować w edytorze jako szablon do wypełnienia
+- Scenariusz: treść „Eksperyment" — paragrafy §1-5, §7-10
 
 ### Naprawiono
 
 - Edytor: automatyczne tworzenie paragrafu przy dodawaniu postaci — gdy dodajesz postać, odpowiadający jej paragraf jest teraz automatycznie tworzony
+- Edytor: automatyczne zamykanie listy rozwijanej po wyborze symbolu/grafiki — menu z wyborem zamyka się automatycznie po kliknięciu przycisku
+- Edytor: format eksportu setup.json — edytor teraz poprawnie eksportuje bloki treści bez pola `type` i z właściwą kolejnością właściwości (zgodnie z formatem w src/scenarios/\*/setup.json)
 
 ---
 

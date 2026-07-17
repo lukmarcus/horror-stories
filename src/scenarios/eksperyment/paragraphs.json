@@ -165,21 +165,122 @@
       }
     },
     {
+      "id": "7",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 8<letter id=\"a\"/>, <room id=\"118\"/> na jego <span class='color-purple'>E</span>. "
+          },
+          {
+            "text": "Następnie na jego środku <span class='color-blue'>wyłóż</span> <room id=\"120\"/>, <room id=\"58\"/>, <room id=\"112\"/>, <story id=\"liv\"/> oraz <story id=\"lv\"/>. "
+          },
+          {
+            "text": "Co to za miejsce? Pełne monitorów z mnóstwem informacji na ekranie, których nie rozumiesz. Liczne obrazy z kamer, które najwyraźniej mają widok na wszystko w tym obiekcie - także na pokój w którym się wybudziliście. Wzrok skupiasz na komputerze <room id=\"120\"/>, wycinkach z gazet zawieszonych na ścianie <story id=\"liv\"/> i notatkach rozłożonych na biurku <story id=\"lv\"/>. Kiedy podnosisz głowę zauważasz w rogu coś wyglądającego na wzór bezpiecznika <room id=\"58\"/>. Jednak to wszystko blednie w obliczu wielkich, stalowych, prowadzących na wschód drzwiach <room id=\"118\"/>. "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "8",
+      "pages": [
+        [
+          {
+            "text": "Wysuwają się ostrza, które momentalnie ucinają nogę czyniąc ją niezdatną do użytku. Odrzuć ją ze ekwipunku."
+          }
+        ]
+      ]
+    },
+    {
       "id": "9",
       "pages": [
         [
           {
-            "text": ""
+            "text": "Sprawdzasz jako:"
           }
         ]
-      ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"jessica\"/><person id=\"josh\"/><person id=\"margaret\"/><person id=\"jeff\"/>",
+          "nextVariantId": "nie-patrick"
+        },
+        {
+          "text": "<person id=\"patrick\"/>",
+          "nextVariantId": "patrick"
+        }
+      ],
+      "variants": {
+        "patrick": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "nie-patrick": {
+          "pages": [
+            []
+          ]
+        },
+        "patrick-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "patrick-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "10",
       "pages": [
         [
           {
-            "text": ""
+            "text": "Odrzuć <letter id=\"a\"/>. Każda postać dodaje do swojego stosu odrzuconego jedną ZZZZZZZZZZZZZZZZZZZZZZ. "
+          },
+          {
+            "style": "italic",
+            "text": "Dopada was ból głowy. Skutki wczorajszej nocy nie pozostawiają złudzeń, że bawiliście się wczoraj jakby nie miało być jutra."
           }
         ]
       ]
