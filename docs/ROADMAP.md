@@ -8,6 +8,13 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ## Notatki na przyszłość
 
+- **Refactor: zastąpienie wariantów aliasami paragrafów** — obecnie warianty (variants) komplikują edytor i kod. Zamiast tego:
+  - Paragraf §100 z wariantami → osobne paragrafy §100a, §100b, §100c
+  - Dodanie pola `areChoicesHorizontal` do zwykłych paragrafów (nie tylko wariantów) — przyciski na górze strony zamiast wybory na dole
+  - Uproszczenie edytora — jeden widok dla wszystkich paragrafów, bez specjalnego trybu wariantów
+  - Lepsza nawigacja — wszystkie "warianty" widoczne w spisie jako aliasy
+  - Migracja istniejących scenariuszy (droga-donikad: §15, §36, §100, §105; eksperyment: §1, §5, §9)
+  - Breaking change — zaplanować na v0.4.0
 - Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10
 - **Edytor: rzut kostką** — edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy); gdy pojawi się pierwszy scenariusz korzystający z tej funkcji
 - **Osobne pliki JSON per zasób scenariusza** — zamiast `paragraphs.json` jeden plik per paragraf (`paragraphs/1.json`, `paragraphs/77.json`...); poprawa git diff i DX edytora; wymaga refaktoru loadingu w `index.ts` i ZIP handlera; sensowne przy scenariuszach 200+ paragrafów
