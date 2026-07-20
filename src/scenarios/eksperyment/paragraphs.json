@@ -44,6 +44,17 @@
                 "text": "Czy Jeff <person id=\"jeff\"/> leży?"
               }
             ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "jeff-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "jeff-stoi"
+            }
           ]
         },
         "jeff-lezy": {
@@ -229,7 +240,22 @@
         },
         "nie-patrick": {
           "pages": [
-            []
+            [
+              {
+                "text": "Czy Patrick <person id=\"patrick\"/> leży?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "patrick-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "patrick-stoi"
+            }
           ]
         },
         "patrick-lezy": {
@@ -382,11 +408,139 @@
       ]
     },
     {
+      "id": "15",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 3<letter id=\"a\"/>, <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>S</span> i <span class='color-purple'>E</span>. "
+          },
+          {
+            "text": "Następnie na jego środku <span class='color-blue'>wyłóż</span> <room id=\"38\"/>, <story id=\"xlv\"/>, zaś <room id=\"47\"/> na <span class='color-purple'>N</span>. "
+          },
+          {
+            "text": "Trafiasz do miejsca, które przypomina salon gościnny w starym stylu. Na ścianach ktoś zadał sobie trud powieszenia pięknych obrazów z czego jeden z nich <room id=\"38\"/> wygląda na lekko odchylony. W kącie wesoło trzaska sobie kominek <room id=\"47\"/> i czujesz, że czas tu spędzony byłby miły, gdyby nie fakt, że nie masz pojęcia gdzie się teraz znajdujesz. Ktoś zostawił odręczną notkę <story id=\"xlv\"/>. Może ona da wam odpowiedź na to gdzie się znaleźliście?"
+          }
+        ]
+      ]
+    },
+    {
       "id": "16",
       "pages": [
         [
           {
-            "text": ""
+            "text": "Sprawdzasz jako:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"jessica\"/><person id=\"margaret\"/><person id=\"patrick\"/><person id=\"jeff\"/>",
+          "nextVariantId": "nie-josh"
+        },
+        {
+          "text": "<person id=\"josh\"/>",
+          "nextVariantId": "josh"
+        }
+      ],
+      "variants": {
+        "josh": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "nie-josh": {
+          "pages": [
+            [
+              {
+                "text": "Czy Josh <person id=\"josh\"/> leży?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "josh-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "josh-stoi"
+            }
+          ]
+        },
+        "josh-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Joshem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "josh-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Joshem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "17",
+      "pages": [
+        [
+          {
+            "text": "Masz wrażenie, że przez chwilę nawet Ci się przysłuchuje, ale to wrażenie mija z chwilą, gdy zadaje Ci piekielnie bolesny cios, który wywraca Cię na podłogę. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć 2</span><symbol id=\"zycie\"/>. "
+          },
+          {
+            "text": "Wyłóż <letter id=\"y\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "19",
+      "pages": [
+        [
+          {
+            "text": "Niszczysz bezpiecznik, który razi Cię prądem. Przynajmniej wielkie pancerne drzwi obok ulegają otwarciu.  "
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć 1</span><symbol id=\"zycie\"/>, dodaj do swojego stosu odrzuconego trzy karty AAAAAAAAAAAAAAAAA oraz <span class='color-blue'>odrzuć</span> <room id=\"58\"/>. Następnie: <span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. "
           }
         ]
       ]
@@ -401,11 +555,7 @@
     {
       "id": "26",
       "pages": [
-        [
-          {
-            "text": ""
-          }
-        ]
+        []
       ]
     },
     {
