@@ -286,6 +286,102 @@
       ]
     },
     {
+      "id": "11",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> swoją figurkę z planszy."
+          },
+          {
+            "text": "Czy jesteś ostatnią figurką na planszy kontrolowaną przez graczy bez <symbol id=\"rana-ciezka\"/>"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak",
+          "nextVariantId": "ostatni"
+        },
+        {
+          "text": "Nie",
+          "nextVariantId": "nie-ostatni"
+        }
+      ],
+      "variants": {
+        "ostatni": {
+          "pages": [
+            [
+              {
+                "text": "Każda pozostała figurka graczy na planszy z <symbol id=\"rana-ciezka\"/> umiera z powodu obrażeń i scenariusz się kończy."
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "W tym wypadku przejdź do <span class='color-green'>31</span>.",
+              "nextParagraphId": "31"
+            }
+          ]
+        },
+        "nie-ostatni": {
+          "pages": [
+            [
+              {
+                "text": "Pozostałe figurki graczy wykonują swoje tury."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "12",
+      "pages": [
+        [
+          {
+            "text": "Solidne drzwi z wygrawerowanym symbolem kruka. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot w swoim ekwipunku z którym chcesz wejść w interakcję i przejdź do <span class='color-green'>20</span>.",
+          "nextParagraphId": "20"
+        },
+        {
+          "text": "Pokaż im swoją wyższość i zwyczajnie je wyważ! Dobierz do 4<symbol id=\"karta-akcji\"/> i przejdź do <span class='color-green'>113</span>.",
+          "nextParagraphId": "113"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "pages": [
+        [
+          {
+            "text": "Z środka wypadają rozmaite rzeczy. <span class='color-blue'>Wyłóż</span> 3<symbol id=\"przedmiot-losowy\"/> na planszy <span class='color-purple'>2</span><letter id=\"a\"/> i odrzuć <room id=\"13\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "14",
+      "pages": [
+        [
+          {
+            "text": "Obrazek z czarnym kociakiem trzymającym się gałęzi. Sprawia wrażenie jakby miał zaraz spaść. Poniżej znajduje się napis \"<em>Trzymaj się</em>\". Postanawiasz wziąć to sobie do serca i za wszelką cenę walczyć dalej!"
+          },
+          {
+            "text": "Możesz wtasować do 3<symbol id=\"karta-akcji\"/> dowolnych kart ze swojego stosu odrzuconego do talii. Jeśli to zrobisz, <span class='color-blue'>odrzuć</span> <room id=\"14\"/>."
+          }
+        ]
+      ]
+    },
+    {
       "id": "16",
       "pages": [
         [
@@ -293,6 +389,13 @@
             "text": ""
           }
         ]
+      ]
+    },
+    {
+      "id": "20",
+      "accessibleFrom": ["12"],
+      "pages": [
+        []
       ]
     },
     {
@@ -337,6 +440,13 @@
     },
     {
       "id": "100",
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "113",
+      "accessibleFrom": ["12"],
       "pages": [
         []
       ]
