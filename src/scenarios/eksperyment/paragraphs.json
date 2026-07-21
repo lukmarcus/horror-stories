@@ -118,6 +118,7 @@
     },
     {
       "id": "4",
+      "accessibleFrom": ["21"],
       "pages": [
         [
           {
@@ -549,7 +550,119 @@
       "id": "20",
       "accessibleFrom": ["12"],
       "pages": [
-        []
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć dwie wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<story id=\"vii\"/>",
+          "nextVariantId": "vii"
+        },
+        {
+          "text": "<story id=\"xvii\"/>",
+          "nextVariantId": "xvii"
+        },
+        {
+          "text": "<story id=\"xxvi\"/>",
+          "nextVariantId": "xxvi"
+        },
+        {
+          "text": "<story id=\"lvii\"/>",
+          "nextVariantId": "lvii"
+        },
+        {
+          "text": "<story id=\"xxix\"/>",
+          "nextVariantId": "xxix"
+        }
+      ],
+      "variants": {
+        "vii": {
+          "pages": [
+            [
+              {
+                "text": "Nieco je uszkadzasz. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+              }
+            ]
+          ]
+        },
+        "xvii": {
+          "pages": [
+            [
+              {
+                "text": "<room id=\"12\"/> zastąp <symbol id=\"drzwi-otwarte\"/>. Odrzuć <story id=\"xvii\"/>."
+              }
+            ]
+          ]
+        },
+        "xxvi": {
+          "pages": [
+            [
+              {
+                "text": "Nieco je uszkadzasz. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+              }
+            ]
+          ]
+        },
+        "lvii": {
+          "pages": [
+            [
+              {
+                "text": "Nieco je uszkadzasz łomem. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+              }
+            ]
+          ]
+        },
+        "xxix": {
+          "pages": [
+            [
+              {
+                "text": "Nieco je uszkadzasz śrubokrętem. <span class='color-blue'>Połóż 1</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "21",
+      "pages": [
+        [
+          {
+            "text": "Jeszcze całkiem ciepła, ale wyglądająca na mało apetyczną. Może zachowała przynajmniej jakieś wartości odżywcze. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Zjedz kawałek (przejdź do <span class='color-green'>4</span>)",
+          "nextParagraphId": "4"
+        },
+        {
+          "text": "Nie wygląda na zbyt świeżą. Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 11<letter id=\"a\"/>, a w nim <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>E</span>, zaś <room id=\"118\"/> na <span class='color-purple'>W</span> (o ile nie zostały wcześniej odrzucone). "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "23",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 4<letter id=\"a\"/>, a na środku 2<symbol id=\"przedmiot-losowy\"/> i <story id=\"mmdvx\"/>, <room id=\"52\"/> na <span class='color-purple'>N</span>, <room id=\"119\"/> na <span class='color-purple'>E</span>."
+          }
+        ]
       ]
     },
     {
