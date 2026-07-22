@@ -194,6 +194,7 @@
     },
     {
       "id": "8",
+      "accessibleFrom": ["24"],
       "pages": [
         [
           {
@@ -666,19 +667,217 @@
       ]
     },
     {
+      "id": "24",
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<story id=\"xiii\"/>",
+          "nextParagraphId": "8"
+        },
+        {
+          "text": "<story id=\"xiv\"/>",
+          "nextParagraphId": "105"
+        },
+        {
+          "text": "<story id=\"xv\"/>",
+          "nextParagraphId": "32"
+        },
+        {
+          "text": "<story id=\"xviii\"/>",
+          "nextParagraphId": "8"
+        },
+        {
+          "text": "<story id=\"mmdvx\"/>",
+          "nextParagraphId": "54"
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 6<letter id=\"a\"/>, a w nim <room id=\"46\"/> na <span class='color-purple'>E</span>, <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>S</span>. Na jego środku <room id=\"60\"/> oraz <room id=\"160\"/>. "
+          },
+          {
+            "text": "Lodówka (<room id=\"46\"/>), szafka (<room id=\"160\"/>) i telefon (<room id=\"60\"/>)!."
+          }
+        ]
+      ]
+    },
+    {
       "id": "26",
       "pages": [
-        []
-      ]
+        [
+          {
+            "text": "Sprawdzasz jako:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"josh\"/><person id=\"margaret\"/><person id=\"patrick\"/><person id=\"jeff\"/>",
+          "nextVariantId": "nie-jessica"
+        },
+        {
+          "text": "<person id=\"jessica\"/>",
+          "nextVariantId": "jessica"
+        }
+      ],
+      "variants": {
+        "jessica": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "nie-jessica": {
+          "pages": [
+            [
+              {
+                "text": "Czy Jessica <person id=\"jessica\"/> leży?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "jessica-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "jessica-stoi"
+            }
+          ]
+        },
+        "jessica-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jessicą wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "jessica-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jessicą wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "27",
       "pages": [
         [
           {
-            "text": ""
+            "text": "Z głośników rozlokowanych na ścianach dobiega kobiecy głos:"
+          },
+          {
+            "style": "italic",
+            "text": "Schwytajcie Martina zanim będzie za późno. Wiem, że pomogłyby kamery termowizyjne, ale jesteśmy już mądrzejsi po szkodzie i po wszystkim je zamontujemy. Zadbajcie też o to, aby przywrócić zasilanie dla komory podtrzymujących stworzenie w śpiączce, bo według systemu może wybudzić się lada moment. Odezwijcie się, bo nie dajecie od dłuższego czasu znaku życia."
+          }
+        ],
+        [
+          {
+            "size": "lg",
+            "text": "Rozpatrz teraz wszystkie kroki po kolei:"
+          },
+          {
+            "text": "- <span class='color-blue'>Odrzuć</span> <letter id=\"b\"/> z toru czasu i <span class='color-blue'>połóż</span> tam <letter id=\"c\"/> na polu 1."
+          },
+          {
+            "text": "- <span class='color-blue'>Połóż</span> planszetkę <symbol id=\"przeciwnik\"/> stroną odpowiadającą liczbie figurek kontrolowanych przez graczy (patrz obrazek po prawej)"
+          },
+          {
+            "text": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+          },
+          {
+            "text": "- Obok niej <span class='color-blue'>połóż</span>: 7<symbol id=\"zycie\"/> w grze na 2 graczy, 8<symbol id=\"zycie\"/> w grze na 3 graczy, 10<symbol id=\"zycie\"/> na 4 graczy"
+          },
+          {
+            "text": "- Na łączeniu plansz <span class='color-purple'>1</span><letter id=\"a\"/> i <span class='color-purple'>2</span><letter id=\"a\"/> odwróć <symbol id=\"drzwi-otwarte\"/> na stronę <symbol id=\"drzwi-zamkniete\"/>. Jeśli w tym miejscu było <symbol id=\"drzwi-wywazone\"/>, zastąp je <symbol id=\"drzwi-zamkniete\"/>. Analogicznie zrób dla łączenia plansz <span class='color-purple'>1</span><letter id=\"a\"/> i <span class='color-purple'>3</span><letter id=\"a\"/>."
+          }
+        ],
+        [
+          {
+            "text": "Jeśli jakakolwiek figurka (wasza lub wroga) po zakończeniu CZYJEJKOLWIEK tury posiada 0<symbol id=\"zycie\"/> <span class='color-red'>MUSISZ</span> przejść do paragrafu <span class='color-green'>100</span> (żeton ma o tym przypominać)."
+          },
+          {
+            "text": "DDDDDDDDDDDDDDDDDDDDDDDDD"
           }
         ]
+      ]
+    },
+    {
+      "id": "28",
+      "pages": [
+        [
+          {
+            "text": "Wyłóż planszę <span class='color-purple'>8</span><letter id=\"a\"/>. Połóż <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>N</span> planszy <span class='color-purple'>8</span><letter id=\"a\"/>."
+          },
+          {
+            "text": "Następnie na jego środku wyłóż <room id=\"120\"/>, <room id=\"58\"/>, <room id=\"112\"/>, <story id=\"liv\"/> oraz <story id=\"lv\"/>. "
+          },
+          {
+            "text": "Co to za miejsce? Monitory wyświetlające niezrozumiałe dla Ciebie informacje. Liczne obrazy z kamer, które najwyraźniej mają widok na wszystko w tym obiekcie - także na wasz pokój w którym się wybudziliście. Wzrok skupiasz na komputerze <room id=\"120\"/>, wycinkach z gazet zawieszonych na ścianie <story id=\"liv\"/> i notatkach rozłożonych na biurku <story id=\"lv\"/>. Kiedy podnosisz głowę zauważasz w rogu coś wyglądającego na wzór bezpiecznika <room id=\"58\"/>. Jednak niekwestionowaną gwiazdą tego pomieszczenia są wielkie, wyglądające na stalowe, drzwi <room id=\"118\"/> prowadzące na wschód. "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "32",
+      "accessibleFrom": ["24"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "54",
+      "accessibleFrom": ["24"],
+      "pages": [
+        []
       ]
     },
     {
@@ -703,6 +902,13 @@
     },
     {
       "id": "100",
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "105",
+      "accessibleFrom": ["24"],
       "pages": [
         []
       ]
