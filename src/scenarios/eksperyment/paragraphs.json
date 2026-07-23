@@ -855,7 +855,7 @@
       "pages": [
         [
           {
-            "text": "Wyłóż planszę <span class='color-purple'>8</span><letter id=\"a\"/>. Połóż <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>N</span> planszy <span class='color-purple'>8</span><letter id=\"a\"/>."
+            "text": "<span class='color-blue'>Wyłóż</span> planszę <span class='color-purple'>8</span><letter id=\"a\"/>. Połóż <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>N</span> planszy <span class='color-purple'>8</span><letter id=\"a\"/>."
           },
           {
             "text": "Następnie na jego środku wyłóż <room id=\"120\"/>, <room id=\"58\"/>, <room id=\"112\"/>, <story id=\"liv\"/> oraz <story id=\"lv\"/>. "
@@ -867,10 +867,109 @@
       ]
     },
     {
+      "id": "29",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 2<letter id=\"a\"/>. Na jego środku <room id=\"64\"/>, <room id=\"65\"/>, <story id=\"lii\"/> oraz <room id=\"41\"/>."
+          },
+          {
+            "text": "Pokój przypominający coś w rodzaju laboratorium. Jego wystrój, choć sterylny, momentalnie sprawia, że Twoja wyobraźnia zaczyna pracować na pełnych obrotach. Zwłaszcza, gdy widzisz gigantyczną komorę <room id=\"64\"/> wypełnioną jakąś ciemną, nieprzeniknioną mazią. Aby dodać temu wszystkiemu dziwności, jest też wielki, pusty szklany pojemnik <room id=\"65\"/>. W pomieszczeniu jest coś rodzaju bezpiecznika, który nosi ślady fizycznego uszkodzenia i z którego wydobywają się iskry <room id=\"41\"/>. Na stole leży folder <story id=\"lii\"/> zatytułowany \"<em>Obiekt 072</em>\". Nie masz bladego pojęcia co to może być za miejsce, ale podskórnie czujesz, że raczej chcesz je niezwłocznie opuścić."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "30",
+      "pages": [
+        [
+          {
+            "text": "Czy <letter id=\"z\"/> jest na <span class='color-yellow'>AKTYWNE</span>?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "z-tak"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "z-nie"
+        }
+      ],
+      "variants": {
+        "z-tak": {
+          "pages": [
+            [
+              {
+                "text": "Jeśli ponawiasz ten paragraf, gdy już <letter id=\"z\"/> jest na <span class='color-yellow'>AKTYWNE</span> toru czasu, tylko tracisz czas."
+              }
+            ]
+          ]
+        },
+        "z-nie": {
+          "pages": [
+            [
+              {
+                "text": "Jeśli brak <letter id=\"z\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu <span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/>, a następnie cofnij o jedno pole (w kierunku 0) żeton <letter id=\"b\"/> na torze czasu. <span class='color-blue'>Wyłóż</span> <letter id=\"z\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "31",
+      "accessibleFrom": ["11"],
+      "pages": [
+        [
+          {
+            "text": "Powietrze pachniało rdzą, wilgocią i starym olejem, gdy z trzaskiem zatrzasnęły się za tobą ciężkie, stalowe drzwi. Z każdej strony otaczał cię półmrok – zimny, przerwany jedynie pulsującym światłem awaryjnych lamp, które co chwilę gasły i zapalały się z niepokojącym sykiem. Korytarz prowadzący ku wyjściu był wąski, pełen pajęczyn kabli zwisających z sufitu. Echo twoich kroków odbijało się od ścian, a każde skrzypnięcie wydawało się podejrzanie głośne – jakby mogło zwabić to, co przed chwilą ledwo zostawiłeś za sobą. Na końcu korytarza widać było masywne drzwi ewakuacyjne, pokryte rdzą i oznaczone wyblakłym symbolem wyjścia. Trzeba było jeszcze przejść przez pokój kontrolny – pomieszczenie z wybitymi szybami i konsolami, które wciąż migotały resztkami zasilania. Z bijącym sercem dopadłeś drzwi i szarpnąłeś za ciężką dźwignię. Zawiasy włazu ustąpiły. Chłodne nocne powietrze buchnęło w twarz – pachniało mokrą ziemią i wolnością. Za progiem rozciągał się las, gęsty, pełen cieni, ale teraz każdy cień wydawał się lepszy niż mrok tego miejsca. "
+          },
+          {
+            "text": "O całym zajściu, po kilkunastu godzinach pieszej wędrówki, o całym zajściu dowiedziała się miejscowa policja. Naturalnie nie dawała wiary w to co usłyszeli, ale procedury wymagały, aby wysłać tam patrol. Centrala otrzymała informację, że żadnego włazu nie znaleźli. Nazajutrz udaliście się tam razem z nimi i … mieli rację. Tam, gdzie powinien być, porastała gęsta trawa. Wykopana w tym miejscu dziura niczego nie odsłoniła. Zupełnie jakby niczego tam nie było. Miesiące przyjmowania silnych leków i terapii zaczęły przynosić skutki. W końcu udawało się przesypiać całą noc. Nie było już potrzeby kilkukrotnego sprawdzania zamków w drzwiach. Powoli twoje życie wracało do normy. Do czasu, aż znów pojawiły się doniesienia o kolejnych tajemniczych zniknięciach."
+          },
+          {
+            "color": "red",
+            "size": "xl",
+            "text": "KONIEC SCENARIUSZA"
+          }
+        ]
+      ]
+    },
+    {
       "id": "32",
       "accessibleFrom": ["24"],
       "pages": [
-        []
+        [
+          {
+            "text": "Widzisz jak na panelu pojawia się zielone światło, obraz reprezentujący kciuk wystawiony w górę oraz słyszysz beznamiętny, kobiecy głos: \"<em>Witaj doktorze Jack</em>\". <span class='color-blue'>Połóż</span> <letter id=\"f\"/> w AKTYWNE. Jeśli znajduje się tam już <letter id=\"e\"/>, <letter id=\"d\"/> lub <letter id=\"p\"/>, przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "33",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 9<letter id=\"a\"/>, a na jego środku <room id=\"79\"/> i 2<symbol id=\"przedmiot-losowy\"/>, zaś <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>E</span>. "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "34",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 14<letter id=\"a\"/>, a na jego środku: <room id=\"121\"/>, 3 x <symbol id=\"przedmiot-losowy\"/> oraz <story id=\"iv\"/>. "
+          },
+          {
+            "text": "Zadajesz sobie pytanie ile przeciętnie osób ma za lodówką ukryty pokój, który wygląda jak  lokum seryjnego zabójcy. Spowijający niemal wszystko mrok sprawia, że ledwie dostrzegasz leżącego na ziemi człowieka."
+          }
+        ]
       ]
     },
     {
