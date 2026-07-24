@@ -523,6 +523,7 @@
     },
     {
       "id": "17",
+      "accessibleFrom": ["40"],
       "pages": [
         [
           {
@@ -973,6 +974,72 @@
       ]
     },
     {
+      "id": "36",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 15<letter id=\"a\"/>, w nim <room id=\"50\"/> na <span class='color-purple'>E</span>, <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>N</span>, zaś na środku <room id=\"69\"/> oraz <room id=\"123\"/>. "
+          },
+          {
+            "text": "Twoją uwagę przykuwają WIELKIE drzwi. Takie, które prawdopodobnie oddzielają Cię od upragnionej wolności. Wiesz to, bo nad nimi widnieje rozpalający Twój umysł, napis \"<em>WYJŚCIE</em>\".  Porzucasz jakąkolwiek nadzieję siłowego ich otwarcia, bo zbytnio miłujesz swoje kruche kości. Może sposobem ich otwarcia jest otwór w ścianie obok wielkich wrót <room id=\"69\"/>, a może dziwna rzeźba <room id=\"123\"/>  wyciągająca w Twoim kierunku ręce jakby o coś prosiła."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "38",
+      "pages": [
+        [
+          {
+            "text": "Obraz ukazujący chorobliwie wręcz wychudzonego mężczyznę z kosą na czarnym koniu, tratującego kilkoro nieszczęśników. Obraz wydaje się być dziwnie wypukły. Kiedy go dotykasz dociera do Ciebie, że coś za nim ukryto. Gdyby mieć pod ręką coś ostrego może dałoby się go rozciąć. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot w swoim ekwipunku, którym chcesz wejść w interakcję (przejdź do <span class='color-green'>49</span>)",
+          "nextParagraphId": "49"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "40",
+      "pages": [
+        [
+          {
+            "text": "Wielka bestia naprzeciw, której spoglądasz w jej wielkie, wściekłe czerwone ślepia. Nie wiesz czy na pewno dobrze robisz, ale zobaczmy dokąd Cię to zaprowadzi. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Jeśli posiadasz <story id=\"iii\"/> wbij mu go w oko (przejdź do <span class='color-green'>157</span>)",
+          "nextParagraphId": "157"
+        },
+        {
+          "text": "Jeśli posiadasz <story id=\"iii\"/> wbij mu go w nogę (przejdź do <span class='color-green'>193</span>)",
+          "nextParagraphId": "193"
+        },
+        {
+          "text": "(Jeśli brak <letter id=\"y\"/> na AKTYWNE toru czasu) Dogadaj się z nim! (przejdź do <span class='color-green'>17</span>)",
+          "nextParagraphId": "17"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "49",
+      "accessibleFrom": ["38"],
+      "pages": [
+        []
+      ]
+    },
+    {
       "id": "54",
       "accessibleFrom": ["24"],
       "pages": [
@@ -1027,6 +1094,20 @@
             "text": ""
           }
         ]
+      ]
+    },
+    {
+      "id": "157",
+      "accessibleFrom": ["40"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "193",
+      "accessibleFrom": ["40"],
+      "pages": [
+        []
       ]
     }
   ]
