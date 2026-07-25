@@ -1033,6 +1033,55 @@
       ]
     },
     {
+      "id": "41",
+      "pages": [
+        [
+          {
+            "text": "Bezpiecznik, który nosi wyraźne ślady uszkodzeń. Cały jest popękany i co jakiś czas trzaskają z niego iskry. Biegną od niego kable w rożnych kierunkach, a jeden z nich prowadzi do tej dziwnej komory (<room id=\"64\"/>). <span class='color-blue'>Odrzuć</span> <room id=\"41\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "42",
+      "pages": [
+        [
+          {
+            "text": "Uderzasz mopem w bezpiecznik. Przez ułamek sekundy wydawało się, że to daremny trud. Chwilę później rozległ się jednak niski, przeciągły zgrzyt. Masywne drzwi zaczęły się otwierać - powoli, nieuchronnie, z dźwiękiem, który nie pozostawiał wątpliwości, że właśnie stało się coś, czego nie da się cofnąć."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"58\"/> <span class='color-blue'>oraz swój 1</span><symbol id=\"zycie\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "43",
+      "pages": [
+        [
+          {
+            "text": "Odręczna notka podpisana przez niejaką Lauren:"
+          },
+          {
+            "text": "\"<em>Nawet jestem pod wrażeniem tego, że 072 zdołał się przebić przez ścianę w łazience, ale czas najwyższy ją naprawić. Bo nie satysfakcjonuje mnie stan w którym, że każdy może przesunąć regał, aby wejść do mojego biura</em>\"."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"xlv\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "44",
+      "pages": [
+        [
+          {
+            "text": "Pusta butelka. <span class='color-blue'>Dodaj</span> <story id=\"xxiv\"/> do swojego ekwipunku."
+          }
+        ]
+      ]
+    },
+    {
       "id": "49",
       "accessibleFrom": ["38"],
       "pages": [
