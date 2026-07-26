@@ -14,6 +14,10 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Scenariusz: szkielet „Eksperyment" — można importować w edytorze jako szablon do wypełnienia
 - Scenariusz: treść „Eksperyment" — paragrafy §1-50 (nie wszystkie numery są wypełnione)
 
+### Zmieniono
+
+- **Refaktor danych przedmiotów** — zunifikowana struktura JSON dla storyItems, roomItems, randomItems. Centralny plik `items.json` zawiera wszystkie dane przedmiotów, a pliki kategorii (`storyItems.json`, `roomItems.json`, `randomItems.json`) to tylko tablice ID. Ułatwia to pracę w edytorze i eliminuje duplikację danych.
+
 ### Naprawiono
 
 - Edytor: automatyczne tworzenie paragrafu przy dodawaniu postaci — gdy dodajesz postać, odpowiadający jej paragraf jest teraz automatycznie tworzony

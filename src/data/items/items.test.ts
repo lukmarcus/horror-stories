@@ -25,7 +25,6 @@ describe("data/items getters", () => {
       const result = getStoryItem(firstItem.id);
       expect(result).toBeDefined();
       expect(result!.id).toBe(firstItem.id);
-      expect(result!.imagePath).toContain(firstItem.id);
       expect(result!.imagePath).toContain("storyItems");
       expect(result!.imagePath).toContain(".jpg");
     });

@@ -1,24 +1,3 @@
 {
-  "items": [
-    {
-      "id": "i",
-      "description": null
-    },
-    {
-      "id": "ii",
-      "description": "Coś z worka"
-    },
-    {
-      "id": "iii",
-      "description": null
-    },
-    {
-      "id": "iv",
-      "description": null
-    },
-    {
-      "id": "v",
-      "description": "Z czarnego worka"
-    }
-  ]
+  "items": ["i", "ii", "iii", "iv", "v"]
 }

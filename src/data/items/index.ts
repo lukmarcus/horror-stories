@@ -1,13 +1,22 @@
-import storyItemsData from "./storyItems.json";
-import roomItemsData from "./roomItems.json";
-import randomItemsData from "./randomItems.json";
+import itemsData from "./items.json";
+import storyItemIdsData from "./storyItems.json";
+import roomItemIdsData from "./roomItems.json";
+import randomItemIdsData from "./randomItems.json";
 import symbolsData from "./symbols.json";
 import statusesData from "./statuses.json";
 import personsData from "./persons.json";
 import enemiesData from "./enemies.json";
 import lettersData from "./letters.json";
 
-// Types
+// Central item type
+interface CentralItem {
+  name: string;
+  paragraphId?: number;
+  description?: string | null;
+  categories: string[];
+}
+
+// Types (backward compatible)
 export interface StoryItem {
   id: string; // Roman numeral
   paragraphId?: number | null;
@@ -49,30 +58,79 @@ export interface Letter {
   id: string;
 }
 
-// Exports
-export const storyItems: StoryItem[] = storyItemsData.items;
-export const roomItems: RoomItem[] = roomItemsData.items;
-export const randomItems: RandomItem[] = randomItemsData.items;
+// Central items lookup
+const items = itemsData as Record<string, CentralItem>;
+
+// Build category arrays from IDs
+export const storyItems: StoryItem[] = storyItemIdsData.items.map((id) => {
+  const item = items[id];
+  return {
+    id,
+    paragraphId: item.paragraphId ?? 0,
+    description: item.description ?? item.name,
+  };
+});
+
+export const roomItems: RoomItem[] = roomItemIdsData.items.map((id) => {
+  const item = items[id];
+  return {
+    id: typeof id === "string" ? parseInt(id, 10) : id,
+    name: item.name,
+  };
+});
+
+export const randomItems: RandomItem[] = randomItemIdsData.items.map((id) => {
+  const item = items[id];
+  return {
+    id,
+    description: item.description,
+  };
+});
+
 export const symbols: Symbol[] = symbolsData.symbols;
 export const statuses: Status[] = statusesData.items;
 export const persons: Person[] = personsData.items;
 export const enemies: Enemy[] = enemiesData.items;
 export const letters: Letter[] = lettersData.items;
 
-// Helpers
+// Image path helper - uses legacy folder structure (storyItems/, roomItems/, randomItems/)
+// TODO: Migrate to unified items/ folder in future version
+const getItemImagePath = (
+  id: string,
+  category: "story" | "room" | "random",
+): string => {
+  const item = items[id];
+  if (!item) return "";
+
+  // Determine folder based on category
+  const folderMap = {
+    story: "storyItems",
+    room: "roomItems",
+    random: "randomItems",
+  };
+  const folder = folderMap[category];
+
+  // Determine file name
+  let fileName: string;
+  if (category === "room" && item.paragraphId) {
+    // Room items use paragraphId as filename
+    fileName = String(item.paragraphId);
+  } else if (category === "story" && item.paragraphId && item.paragraphId > 0) {
+    // Story items with paragraphId use the roman ID (legacy naming)
+    fileName = id;
+  } else {
+    // Default: use ID
+    fileName = id;
+  }
+
+  return `${import.meta.env.BASE_URL}assets/images/${folder}/${fileName}.jpg`;
+};
+
+// Legacy helper for non-item types
 const getImagePath = (
   id: string | number,
-  type:
-    | "storyItems"
-    | "roomItems"
-    | "randomItems"
-    | "symbols"
-    | "statuses"
-    | "persons"
-    | "enemies"
-    | "letters",
+  type: "symbols" | "statuses" | "persons" | "enemies" | "letters",
 ): string => {
-  // Determine extension based on type
   const extension = type === "symbols" || type === "letters" ? "png" : "jpg";
   return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
 };
@@ -81,9 +139,11 @@ export const getRandomItem = (
   id: string,
 ): (RandomItem & { imagePath: string }) | undefined => {
   const item = randomItems.find((r) => r.id === id);
-  return item
-    ? { ...item, imagePath: getImagePath(id, "randomItems") }
-    : undefined;
+  if (!item) return undefined;
+
+  // Map conflicting IDs: random "i" is stored as "i-random" in items.json
+  const lookupId = id === "i" ? "i-random" : id;
+  return { ...item, imagePath: getItemImagePath(lookupId, "random") };
 };
 
 export const getStoryItem = (
@@ -91,7 +151,7 @@ export const getStoryItem = (
 ): (StoryItem & { imagePath: string }) | undefined => {
   const item = storyItems.find((item) => item.id === id);
   return item
-    ? { ...item, imagePath: getImagePath(id, "storyItems") }
+    ? { ...item, imagePath: getItemImagePath(id, "story") }
     : undefined;
 };
 
@@ -101,7 +161,7 @@ export const getRoomItem = (
   const numId = typeof id === "string" ? parseInt(id, 10) : id;
   const roomItem = roomItems.find((item) => item.id === numId);
   return roomItem
-    ? { ...roomItem, imagePath: getImagePath(numId, "roomItems") }
+    ? { ...roomItem, imagePath: getItemImagePath(String(numId), "room") }
     : undefined;
 };
 

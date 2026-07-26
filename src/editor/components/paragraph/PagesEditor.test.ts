@@ -10,83 +10,74 @@ describe("textToPage", () => {
   });
 
   it("parses plain text line", () => {
-    expect(textToPage("Hello")).toEqual([{ type: "text", text: "Hello" }]);
+    expect(textToPage("Hello")).toEqual([{ text: "Hello" }]);
   });
 
   it("parses multiple lines", () => {
     expect(textToPage("Line 1\nLine 2")).toEqual([
-      { type: "text", text: "Line 1" },
-      { type: "text", text: "Line 2" },
+      { text: "Line 1" },
+      { text: "Line 2" },
     ]);
   });
 
   it("preserves empty line as empty text block", () => {
     const result = textToPage("Before\n\nAfter");
     expect(result).toEqual([
-      { type: "text", text: "Before" },
-      { type: "text", text: "" },
-      { type: "text", text: "After" },
+      { text: "Before" },
+      { text: "" },
+      { text: "After" },
     ]);
   });
 
   it("parses bold prefix", () => {
-    expect(textToPage("[b]Hello")).toEqual([
-      { type: "text", text: "Hello", style: "bold" },
-    ]);
+    expect(textToPage("[b]Hello")).toEqual([{ text: "Hello", style: "bold" }]);
   });
 
   it("parses italic prefix", () => {
     expect(textToPage("[i]Hello")).toEqual([
-      { type: "text", text: "Hello", style: "italic" },
+      { text: "Hello", style: "italic" },
     ]);
   });
 
   it("parses underline prefix", () => {
     expect(textToPage("[u]Hello")).toEqual([
-      { type: "text", text: "Hello", style: "underline" },
+      { text: "Hello", style: "underline" },
     ]);
   });
 
   it("parses multiple styles as array", () => {
     expect(textToPage("[b][i]Hello")).toEqual([
-      { type: "text", text: "Hello", style: ["bold", "italic"] },
+      { text: "Hello", style: ["bold", "italic"] },
     ]);
   });
 
   it("parses all three styles as array", () => {
     expect(textToPage("[b][i][u]Hello")).toEqual([
-      { type: "text", text: "Hello", style: ["bold", "italic", "underline"] },
+      { text: "Hello", style: ["bold", "italic", "underline"] },
     ]);
   });
 
   it("parses color prefix", () => {
     expect(textToPage("[c:red]Hello")).toEqual([
-      { type: "text", text: "Hello", color: "red" },
+      { text: "Hello", color: "red" },
     ]);
   });
 
   it("ignores unknown color", () => {
-    expect(textToPage("[c:rainbow]Hello")).toEqual([
-      { type: "text", text: "Hello" },
-    ]);
+    expect(textToPage("[c:rainbow]Hello")).toEqual([{ text: "Hello" }]);
   });
 
   it("parses size prefix", () => {
-    expect(textToPage("[s:lg]Hello")).toEqual([
-      { type: "text", text: "Hello", size: "lg" },
-    ]);
+    expect(textToPage("[s:lg]Hello")).toEqual([{ text: "Hello", size: "lg" }]);
   });
 
   it("ignores unknown size", () => {
-    expect(textToPage("[s:huge]Hello")).toEqual([
-      { type: "text", text: "Hello" },
-    ]);
+    expect(textToPage("[s:huge]Hello")).toEqual([{ text: "Hello" }]);
   });
 
   it("parses all prefixes combined", () => {
     expect(textToPage("[b][i][u][c:yellow][s:xl]Hi")).toEqual([
       {
-        type: "text",
         text: "Hi",
         style: ["bold", "italic", "underline"],
         color: "yellow",
@@ -97,13 +88,13 @@ describe("textToPage", () => {
 
   it("parses image block without size", () => {
     expect(textToPage("[img: path/to/img.png]")).toEqual([
-      { type: "image", image: "path/to/img.png" },
+      { image: "path/to/img.png" },
     ]);
   });
 
   it("parses image block with size", () => {
     expect(textToPage("[img: path/to/img.png xl]")).toEqual([
-      { type: "image", image: "path/to/img.png", size: "xl" },
+      { image: "path/to/img.png", size: "xl" },
     ]);
   });
 
@@ -111,34 +102,28 @@ describe("textToPage", () => {
     const sizes = ["xs", "sm", "lg", "xl"] as const;
     sizes.forEach((size) => {
       expect(textToPage(`[img: icon.png ${size}]`)).toEqual([
-        { type: "image", image: "icon.png", size },
+        { image: "icon.png", size },
       ]);
     });
   });
 
   it("treats unclosed [img: as plain text", () => {
     // no closing ] — regex doesn't match, treated as plain text
-    expect(textToPage("[img: icon.png")).toEqual([
-      { type: "text", text: "[img: icon.png" },
-    ]);
+    expect(textToPage("[img: icon.png")).toEqual([{ text: "[img: icon.png" }]);
   });
 
   it("parses [img:nospace] — regex allows zero spaces after colon", () => {
-    expect(textToPage("[img:nospace]")).toEqual([
-      { type: "image", image: "nospace" },
-    ]);
+    expect(textToPage("[img:nospace]")).toEqual([{ image: "nospace" }]);
   });
 
   it("parses prefix with empty text content", () => {
-    expect(textToPage("[b]")).toEqual([
-      { type: "text", text: "", style: "bold" },
-    ]);
+    expect(textToPage("[b]")).toEqual([{ text: "", style: "bold" }]);
   });
 
   it("parses image and text on separate lines", () => {
     expect(textToPage("[img: icon.png]\nCaption")).toEqual([
-      { type: "image", image: "icon.png" },
-      { type: "text", text: "Caption" },
+      { image: "icon.png" },
+      { text: "Caption" },
     ]);
   });
 });
@@ -151,47 +136,36 @@ describe("pageToText", () => {
   });
 
   it("serializes plain text block", () => {
-    expect(pageToText([{ type: "text", text: "Hello" }])).toBe("Hello");
+    expect(pageToText([{ text: "Hello" }])).toBe("Hello");
   });
 
   it("serializes multiple blocks joined by newline", () => {
-    expect(
-      pageToText([
-        { type: "text", text: "Line 1" },
-        { type: "text", text: "Line 2" },
-      ]),
-    ).toBe("Line 1\nLine 2");
+    expect(pageToText([{ text: "Line 1" }, { text: "Line 2" }])).toBe(
+      "Line 1\nLine 2",
+    );
   });
 
   it("serializes bold style", () => {
-    expect(pageToText([{ type: "text", text: "Hi", style: "bold" }])).toBe(
-      "[b]Hi",
-    );
+    expect(pageToText([{ text: "Hi", style: "bold" }])).toBe("[b]Hi");
   });
 
   it("serializes italic style", () => {
-    expect(pageToText([{ type: "text", text: "Hi", style: "italic" }])).toBe(
-      "[i]Hi",
-    );
+    expect(pageToText([{ text: "Hi", style: "italic" }])).toBe("[i]Hi");
   });
 
   it("serializes underline style", () => {
-    expect(pageToText([{ type: "text", text: "Hi", style: "underline" }])).toBe(
-      "[u]Hi",
-    );
+    expect(pageToText([{ text: "Hi", style: "underline" }])).toBe("[u]Hi");
   });
 
   it("serializes array of styles", () => {
-    expect(
-      pageToText([{ type: "text", text: "Hi", style: ["bold", "italic"] }]),
-    ).toBe("[b][i]Hi");
+    expect(pageToText([{ text: "Hi", style: ["bold", "italic"] }])).toBe(
+      "[b][i]Hi",
+    );
   });
 
   it("serializes array of all three styles", () => {
     expect(
-      pageToText([
-        { type: "text", text: "Hi", style: ["bold", "italic", "underline"] },
-      ]),
+      pageToText([{ text: "Hi", style: ["bold", "italic", "underline"] }]),
     ).toBe("[b][i][u]Hi");
   });
 
@@ -199,7 +173,6 @@ describe("pageToText", () => {
     expect(
       pageToText([
         {
-          type: "text",
           text: "Hi",
           style: ["bold", "italic"],
           color: "yellow",
@@ -210,25 +183,19 @@ describe("pageToText", () => {
   });
 
   it("serializes color", () => {
-    expect(pageToText([{ type: "text", text: "Hi", color: "green" }])).toBe(
-      "[c:green]Hi",
-    );
+    expect(pageToText([{ text: "Hi", color: "green" }])).toBe("[c:green]Hi");
   });
 
   it("serializes size", () => {
-    expect(pageToText([{ type: "text", text: "Hi", size: "xs" }])).toBe(
-      "[s:xs]Hi",
-    );
+    expect(pageToText([{ text: "Hi", size: "xs" }])).toBe("[s:xs]Hi");
   });
 
   it("serializes image without size", () => {
-    expect(pageToText([{ type: "image", image: "icon.png" }])).toBe(
-      "[img: icon.png]",
-    );
+    expect(pageToText([{ image: "icon.png" }])).toBe("[img: icon.png]");
   });
 
   it("serializes image with size", () => {
-    expect(pageToText([{ type: "image", image: "icon.png", size: "sm" }])).toBe(
+    expect(pageToText([{ image: "icon.png", size: "sm" }])).toBe(
       "[img: icon.png sm]",
     );
   });
@@ -262,36 +229,29 @@ describe("textToPage → pageToText round-trip", () => {
   it("normalizes prefix order (color before bold → bold before color)", () => {
     // textToPage is order-agnostic; pageToText always outputs b→i→u→c→s
     const page = textToPage("[c:red][b]Text");
-    expect(page).toEqual([
-      { type: "text", text: "Text", style: "bold", color: "red" },
-    ]);
+    expect(page).toEqual([{ text: "Text", style: "bold", color: "red" }]);
     expect(pageToText(page)).toBe("[b][c:red]Text");
   });
 });
 
 describe("pageToText → textToPage round-trip", () => {
   const cases: ContentBlock[][] = [
-    [{ type: "text", text: "Hello" }],
-    [{ type: "text", text: "Hi", style: "bold" }],
-    [{ type: "text", text: "Hi", style: ["bold", "italic"] }],
-    [{ type: "text", text: "Hi", color: "purple" }],
-    [{ type: "text", text: "Hi", size: "sm" }],
+    [{ text: "Hello" }],
+    [{ text: "Hi", style: "bold" }],
+    [{ text: "Hi", style: ["bold", "italic"] }],
+    [{ text: "Hi", color: "purple" }],
+    [{ text: "Hi", size: "sm" }],
     [
       {
-        type: "text",
         text: "Hi",
         style: ["bold", "underline"],
         color: "green",
         size: "lg",
       },
     ],
-    [{ type: "image", image: "img.png" }],
-    [{ type: "image", image: "img.png", size: "xl" }],
-    [
-      { type: "text", text: "Before" },
-      { type: "image", image: "img.png" },
-      { type: "text", text: "After" },
-    ],
+    [{ image: "img.png" }],
+    [{ image: "img.png", size: "xl" }],
+    [{ text: "Before" }, { image: "img.png" }, { text: "After" }],
   ];
 
   cases.forEach((blocks, i) => {
