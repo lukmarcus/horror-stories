@@ -12,7 +12,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Dodano
 
 - Scenariusz: szkielet „Eksperyment" — można importować w edytorze jako szablon do wypełnienia
-- Scenariusz: treść „Eksperyment" — paragrafy §1-44 (nie wszystkie numery są wypełnione)
+- Scenariusz: treść „Eksperyment" — paragrafy §1-50 (nie wszystkie numery są wypełnione)
 
 ### Naprawiono
 

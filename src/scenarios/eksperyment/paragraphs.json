@@ -1082,10 +1082,80 @@
       ]
     },
     {
+      "id": "46",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przesuń ją. Dobierz do 4<symbol id=\"karta-akcji\"/>. Jeśli uzyskasz co najmniej 4<symbol id=\"gwiazda\"/> przejdź do <span class='color-green'>153</span>. Mając mniej opuść paragraf i zakończ akcję.",
+          "nextParagraphId": "153"
+        },
+        {
+          "text": "<span class='color-blue'>Dodaj</span> do swojego ekwipunku pizzę (<story id=\"xlix\"/>)."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "47",
+      "pages": [
+        [
+          {
+            "text": "Odnosisz wrażenie, że w płomieniach coś błyszczy. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot w swoim ekwipunku, którym chcesz wejść w interakcję (przejdź do <span class='color-green'>149</span>)",
+          "nextParagraphId": "149"
+        },
+        {
+          "text": "Zaryzykuj i wsadź na krótką chwilę rękę do ognia. Może coś stamtąd wyciągniesz. Dobierz do 4<symbol id=\"karta-akcji\"/> i przejdź do <span class='color-green'>93</span>.",
+          "nextParagraphId": "93"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
       "id": "49",
       "accessibleFrom": ["38"],
       "pages": [
-        []
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          },
+          {
+            "text": "<b>III</b>, <b>VII</b>, <b>XIX</b>, <b>XX</b> - udało Ci się wyciąć kawałek bez niszczenia obrazu, a w środku znajdujesz klucz z symbolem tarczy (<span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/> i <span class='color-blue'>odrzuć</span> <room id=\"38\"/>). <span class='color-blue'>Dodaj</span> <story id=\"xiii\"/> do swojego ekwipunku."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "50",
+      "pages": [
+        [
+          {
+            "text": "Skupiasz wzrok na hipnotyzującym napisie \"<em>Wyjście</em>\". Oczami wyobraźni widzisz już co robisz po drugiej stronie. Wiedziesz tam dalej swoje życie, ale wolne od porwań, tajemnic oraz grozy. No i oczywiście żadnych imprez! Jednak słodka wolność kryje się za wielkimi wrotami. Nie masz pojęcia od czego zacząć ich otwieranie. Może wskazówką jest niewielki kwadratowy otwór na ich środku? A może dwie lampy nad drzwiami próbują Ci coś powiedzieć? Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z drzwiami (przejdź wtedy do <span class='color-green'>73</span>)"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
       ]
     },
     {
@@ -1116,6 +1186,13 @@
       ]
     },
     {
+      "id": "93",
+      "accessibleFrom": ["47"],
+      "pages": [
+        []
+      ]
+    },
+    {
       "id": "100",
       "pages": [
         []
@@ -1131,6 +1208,20 @@
     {
       "id": "113",
       "accessibleFrom": ["12"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "149",
+      "accessibleFrom": ["47"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "153",
+      "accessibleFrom": ["46"],
       "pages": [
         []
       ]
