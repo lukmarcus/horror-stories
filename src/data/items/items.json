@@ -3,7 +3,7 @@
     "name": "Diament",
     "paragraphId": 72,
     "description": "Diament",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "iii": {
     "name": "Nóż",
@@ -19,103 +19,103 @@
     "name": "Płyta CD",
     "paragraphId": 85,
     "description": "Płyta CD",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "x": {
     "name": "Woda",
     "paragraphId": 139,
     "description": "Woda",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "xii": {
     "name": "Whiskey",
     "paragraphId": 140,
     "description": "Whiskey",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "xiii": {
     "name": "Zielony klucz",
     "paragraphId": 48,
     "description": "Zielony klucz",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "xiv": {
     "name": "Odcięta męska ręka",
     "paragraphId": 61,
     "description": "Odcięta męska ręka",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "xvii": {
     "name": "Czerwony klucz",
     "paragraphId": 84,
     "description": "Czerwony klucz",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "xxiv": {
     "name": "Butelka",
     "paragraphId": 222,
     "description": "Butelka",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "xxxvi": {
     "name": "Identyfikator",
     "paragraphId": 106,
     "description": "Identyfikator",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "xlv": {
     "name": "Plik banknotów",
     "paragraphId": 43,
     "description": "Plik banknotów",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "xlvi": {
     "name": "Wycinek gazety",
     "paragraphId": 89,
     "description": "Wycinek gazety",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "xlix": {
     "name": "Pizza",
     "paragraphId": 21,
     "description": "Pizza",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "l": {
     "name": "Żółty klucz",
     "paragraphId": 150,
     "description": "Żółty klucz",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "li": {
     "name": "Dłoń",
     "paragraphId": 124,
     "description": "Dłoń",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "lii": {
     "name": "Folder",
     "paragraphId": 63,
     "description": "Folder",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "liii": {
     "name": "Książka z pustymi kartkami",
     "paragraphId": 113,
     "description": "Książka z pustymi kartkami",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "liv": {
     "name": "Wycinki z gazet",
     "paragraphId": 76,
     "description": "Wycinki z gazet",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "lv": {
     "name": "Notatnik",
     "paragraphId": 59,
     "description": "Notatnik",
-    "categories": ["story"]
+    "categories": ["story", "room"]
   },
   "12": {
     "name": "Drzwi zielone",

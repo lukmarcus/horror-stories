@@ -71,13 +71,22 @@ export const storyItems: StoryItem[] = storyItemIdsData.items.map((id) => {
   };
 });
 
-export const roomItems: RoomItem[] = roomItemIdsData.items.map((id) => {
-  const item = items[id];
-  return {
-    id: typeof id === "string" ? parseInt(id, 10) : id,
-    name: item.name,
-  };
-});
+export const roomItems: RoomItem[] = roomItemIdsData.items.map(
+  (paragraphId) => {
+    // Find item by paragraphId in items.json
+    const entry = Object.entries(items).find(
+      ([_, item]) => item.paragraphId === paragraphId,
+    );
+    if (!entry) {
+      throw new Error(`No item found for paragraphId ${paragraphId}`);
+    }
+    const [, item] = entry;
+    return {
+      id: paragraphId as number,
+      name: item.name,
+    };
+  },
+);
 
 export const randomItems: RandomItem[] = randomItemIdsData.items.map((id) => {
   const item = items[id];
@@ -99,9 +108,6 @@ const getItemImagePath = (
   id: string,
   category: "story" | "room" | "random",
 ): string => {
-  const item = items[id];
-  if (!item) return "";
-
   // Determine folder based on category
   const folderMap = {
     story: "storyItems",
@@ -112,14 +118,14 @@ const getItemImagePath = (
 
   // Determine file name
   let fileName: string;
-  if (category === "room" && item.paragraphId) {
-    // Room items use paragraphId as filename
-    fileName = String(item.paragraphId);
-  } else if (category === "story" && item.paragraphId && item.paragraphId > 0) {
-    // Story items with paragraphId use the roman ID (legacy naming)
+  if (category === "room") {
+    // Room items: id is paragraphId, use it directly
+    fileName = id;
+  } else if (category === "story") {
+    // Story items: id is roman numeral, use it directly
     fileName = id;
   } else {
-    // Default: use ID
+    // Random items: use ID
     fileName = id;
   }
 
