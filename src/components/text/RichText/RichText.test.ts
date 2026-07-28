@@ -111,7 +111,7 @@ describe("RichText data helpers", () => {
     it("returns random item for known id", () => {
       const result = getRandomItem("i");
       expect(result).toBeDefined();
-      expect(result?.imagePath).toContain("randomItems/i-random."); // Uses prefixed ID
+      expect(result?.imagePath).toContain("items/i-random."); // Uses prefixed ID
     });
 
     it("returns undefined for unknown id", () => {
@@ -123,7 +123,7 @@ describe("RichText data helpers", () => {
     it("returns story item for known id", () => {
       const result = getStoryItem("xiii");
       expect(result).toBeDefined();
-      expect(result?.imagePath).toContain("xiii"); // Uses roman ID (legacy naming)
+      expect(result?.imagePath).toContain("48"); // Uses paragraphId (priority naming)
     });
   });
 

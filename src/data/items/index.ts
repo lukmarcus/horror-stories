@@ -102,34 +102,23 @@ export const persons: Person[] = personsData.items;
 export const enemies: Enemy[] = enemiesData.items;
 export const letters: Letter[] = lettersData.items;
 
-// Image path helper - uses legacy folder structure (storyItems/, roomItems/, randomItems/)
-// TODO: Migrate to unified items/ folder in future version
+// Image path helper - unified items/ folder with priority naming (paragraphId > roman > name)
 const getItemImagePath = (
   id: string,
   category: "story" | "room" | "random",
 ): string => {
-  // Determine folder based on category
-  const folderMap = {
-    story: "storyItems",
-    room: "roomItems",
-    random: "randomItems",
-  };
-  const folder = folderMap[category];
-
-  // Determine file name
   let fileName: string;
+
   if (category === "room") {
-    // Room items: id is paragraphId, use it directly
-    fileName = id;
-  } else if (category === "story") {
-    // Story items: id is roman numeral, use it directly
+    // Room items: id is already the paragraphId
     fileName = id;
   } else {
-    // Random items: use ID
-    fileName = id;
+    // Story/random items: check if item has paragraphId, use it with priority
+    const item = items[id];
+    fileName = item?.paragraphId?.toString() ?? id;
   }
 
-  return `${import.meta.env.BASE_URL}assets/images/${folder}/${fileName}.jpg`;
+  return `${import.meta.env.BASE_URL}assets/images/items/${fileName}.jpg`;
 };
 
 // Legacy helper for non-item types

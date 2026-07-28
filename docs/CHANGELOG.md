@@ -17,6 +17,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 ### Zmieniono
 
 - **Refaktor danych przedmiotów** — zunifikowana struktura JSON dla storyItems, roomItems, randomItems. Centralny plik `items.json` zawiera wszystkie dane przedmiotów, a pliki kategorii (`storyItems.json`, `roomItems.json`, `randomItems.json`) to tylko tablice ID. Ułatwia to pracę w edytorze i eliminuje duplikację danych.
+- **Migracja grafik przedmiotów** — wszystkie grafiki przedmiotów przeniesione do wspólnego folderu `items/` z nazwami według priorytetu: numer paragrafu (jeśli istnieje) > numer rzymski > nazwa. Eliminuje duplikację plików i upraszcza zarządzanie grafikami.
 
 ### Naprawiono
 

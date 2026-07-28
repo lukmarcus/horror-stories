@@ -288,6 +288,17 @@
     "paragraphId": 173,
     "categories": ["room"]
   },
+  "lvi": {
+    "name": "Notatki",
+    "paragraphId": 56,
+    "description": "Notatki",
+    "categories": ["story", "room"]
+  },
+  "mmdvx": {
+    "name": "Mop i wiadro",
+    "description": "Mop i wiadro - Po dodaniu do ekwipunku dobierz kartę 17 . Przy odłożeniu odrzuć je.",
+    "categories": ["story"]
+  },
   "i-random": {
     "name": "Przedmiot losowy I",
     "description": null,
