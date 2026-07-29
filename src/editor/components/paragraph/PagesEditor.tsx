@@ -134,15 +134,6 @@ const PageEditor: React.FC<PageEditorProps> = ({
     });
   };
 
-  const insertSnippet = (snippet: string, cursorFromEnd?: number) =>
-    textInsert.insertSnippet(
-      ref.current,
-      text,
-      onChange,
-      snippet,
-      cursorFromEnd,
-    );
-
   const applyToCurrentLine = (modify: (opts: BlockOpts) => BlockOpts) => {
     const el = ref.current;
     if (!el) return;
@@ -211,7 +202,6 @@ const PageEditor: React.FC<PageEditorProps> = ({
         <InlineToolbar
           onWrap={wrap}
           onInsertAtCursor={insertAtCursor}
-          onInsertSnippet={insertSnippet}
         />
         <BlockToolbar
           activeOpts={activeOpts}

@@ -1,9 +1,8 @@
 import React from "react";
-import { ColorPicker, ImagePicker, SnippetPicker } from "./EditorInlineTools";
+import { ColorPicker, ImagePicker } from "./EditorInlineTools";
 import type { ImagePickerItem } from "./EditorInlineTools";
 import { useEditor } from "../../context/useEditor";
 import {
-  SPAN_SNIPPETS,
   SYMBOL_PICKER_ITEMS,
   ROOM_PICKER_ITEMS,
   PERSON_PICKER_ITEMS,
@@ -17,13 +16,11 @@ import {
 export interface InlineToolbarProps {
   onWrap: (before: string, after: string) => void;
   onInsertAtCursor: (snippet: string) => void;
-  onInsertSnippet: (snippet: string, cursorFromEnd?: number) => void;
 }
 
 export const InlineToolbar: React.FC<InlineToolbarProps> = ({
   onWrap,
   onInsertAtCursor,
-  onInsertSnippet,
 }) => {
   const { state } = useEditor();
   const scenarioImages = state.scenario?.images ?? {};
@@ -70,13 +67,7 @@ export const InlineToolbar: React.FC<InlineToolbarProps> = ({
       <div className="pages-editor__toolbar-group">
         <ColorPicker
           onSelect={(c) => onWrap(`<span class='color-${c}'>`, "</span>")}
-          title="Kolor zaznaczenia"
-        />
-        <SnippetPicker
-          items={SPAN_SNIPPETS}
-          toggleLabel={"</>"}
-          title="Wstaw kolorowy span"
-          onSelect={onInsertSnippet}
+          title="Kolor zaznaczenia - wybierz funkcję tekstu"
         />
       </div>
       <div className="pages-editor__toolbar-sep" />

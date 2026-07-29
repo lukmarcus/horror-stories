@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useClickOutside } from "../../../hooks/useClickOutside";
 import {
   COLORS,
+  COLOR_LABELS,
   type ColorName,
   type ImagePickerItem,
 } from "./editorPickerData";
@@ -85,9 +86,9 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
             e.preventDefault();
             onSelect(color);
           }}
-          title={`Kolor: ${color}`}
+          title={COLOR_LABELS[color]}
         >
-          A
+          {COLOR_LABELS[color]}
         </button>
       ))}
     </div>
