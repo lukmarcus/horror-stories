@@ -67,7 +67,7 @@ export interface ColorPickerProps {
 
 export const ColorPicker: React.FC<ColorPickerProps> = ({
   onSelect,
-  label = "A",
+  label = "🎨",
   activeColor,
   title = "Kolor",
 }) => (

@@ -18,7 +18,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - **Refaktor danych przedmiotów** — zunifikowana struktura JSON dla storyItems, roomItems, randomItems. Centralny plik `items.json` zawiera wszystkie dane przedmiotów, a pliki kategorii (`storyItems.json`, `roomItems.json`, `randomItems.json`) to tylko tablice ID. Ułatwia to pracę w edytorze i eliminuje duplikację danych.
 - **Migracja grafik przedmiotów** — wszystkie grafiki przedmiotów przeniesione do wspólnego folderu `items/` z nazwami według priorytetu: numer paragrafu (jeśli istnieje) > numer rzymski > nazwa. Eliminuje duplikację plików i upraszcza zarządzanie grafikami.
-- **Edytor: ulepszenie menu kolorów tekstu** — usunięto zbędne menu `</>`, menu kolorów teraz pokazuje nazwę funkcji każdego koloru (§ Paragraf, ⚠ Uwaga, 🎁 Nagroda, 📰 News, ⭐ Ważne). Łatwiejsze i szybsze formatowanie tekstu.
+- **Edytor: ulepszenie menu kolorów tekstu** — usunięto zbędne menu `</>`, menu kolorów teraz pokazuje nazwę funkcji każdego koloru (§ Paragraf, ❗ Ważne, 🎁 Nagroda, 🧭 Kierunki, ⏰ Tor czasu). Ikonka menu zmieniona na 🎨. Łatwiejsze i szybsze formatowanie tekstu.
 
 ### Naprawiono
 

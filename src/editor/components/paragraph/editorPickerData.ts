@@ -23,10 +23,10 @@ export const COLORS = ["yellow", "red", "purple", "green", "blue"] as const;
 export type ColorName = (typeof COLORS)[number];
 export const COLOR_LABELS: Record<ColorName, string> = {
   green: "§ Paragraf",
-  red: "⚠ Uwaga",
+  red: "❗ Ważne",
   blue: "🎁 Nagroda",
-  purple: "📰 News",
-  yellow: "⭐ Ważne",
+  purple: "🧭 Kierunki (N/E/W/S)",
+  yellow: "⏰ Tor czasu",
 };
 // ── Image picker item type ─────────────────────────────
 
