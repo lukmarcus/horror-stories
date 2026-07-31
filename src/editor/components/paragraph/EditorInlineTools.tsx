@@ -88,7 +88,10 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
           }}
           title={COLOR_LABELS[color]}
         >
-          {COLOR_LABELS[color]}
+          <span className="pages-editor__color-btn-indicator">■</span>
+          <span className="pages-editor__color-btn-label">
+            {COLOR_LABELS[color]}
+          </span>
         </button>
       ))}
     </div>
