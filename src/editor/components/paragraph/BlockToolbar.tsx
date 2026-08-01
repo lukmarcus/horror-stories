@@ -70,7 +70,7 @@ export const BlockToolbar: React.FC<BlockToolbarProps> = ({
       <div className="pages-editor__toolbar-group">
         <ColorPicker
           onSelect={onSetColor}
-          label="¶A"
+          label="🎨"
           activeColor={activeOpts.color}
         />
       </div>

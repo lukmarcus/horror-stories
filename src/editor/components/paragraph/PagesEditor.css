@@ -185,9 +185,11 @@
 }
 
 .pages-editor__color-btn-indicator {
-  font-size: 1.2em;
+  font-size: 1.4em;
   line-height: 1;
   flex-shrink: 0;
+  width: 1.5em;
+  text-align: center;
 }
 
 .pages-editor__color-btn-label {
@@ -195,19 +197,24 @@
   white-space: nowrap;
 }
 
-.pages-editor__color-btn--yellow {
+.pages-editor__color-btn--yellow .pages-editor__color-btn-indicator,
+.pages-editor__color-btn--yellow .pages-editor__color-btn-label {
   color: #d4a017;
 }
-.pages-editor__color-btn--red {
+.pages-editor__color-btn--red .pages-editor__color-btn-indicator,
+.pages-editor__color-btn--red .pages-editor__color-btn-label {
   color: #cc4444;
 }
-.pages-editor__color-btn--purple {
+.pages-editor__color-btn--purple .pages-editor__color-btn-indicator,
+.pages-editor__color-btn--purple .pages-editor__color-btn-label {
   color: #9966cc;
 }
-.pages-editor__color-btn--green {
+.pages-editor__color-btn--green .pages-editor__color-btn-indicator,
+.pages-editor__color-btn--green .pages-editor__color-btn-label {
   color: #4caf50;
 }
-.pages-editor__color-btn--blue {
+.pages-editor__color-btn--blue .pages-editor__color-btn-indicator,
+.pages-editor__color-btn--blue .pages-editor__color-btn-label {
   color: #5599cc;
 }
 

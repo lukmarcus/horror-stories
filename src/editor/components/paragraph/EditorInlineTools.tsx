@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useClickOutside } from "../../../hooks/useClickOutside";
 import {
   COLORS,
+  COLOR_ICONS,
   COLOR_LABELS,
   type ColorName,
   type ImagePickerItem,
@@ -86,9 +87,11 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
             e.preventDefault();
             onSelect(color);
           }}
-          title={COLOR_LABELS[color]}
+          title={`${COLOR_ICONS[color]} ${COLOR_LABELS[color]}`}
         >
-          <span className="pages-editor__color-btn-indicator">■</span>
+          <span className="pages-editor__color-btn-indicator">
+            {COLOR_ICONS[color]}
+          </span>
           <span className="pages-editor__color-btn-label">
             {COLOR_LABELS[color]}
           </span>
