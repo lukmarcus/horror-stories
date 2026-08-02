@@ -1159,10 +1159,119 @@
       ]
     },
     {
+      "id": "51",
+      "pages": [
+        [
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "<person id=\"steven\"/> 991, słucham"
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "(TY) Potrzebujemy pilnej pomocy!"
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "<person id=\"steven\"/> Co takiego się dzieje?"
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "(TY) Nie mamy czasu tego tłumaczyć. Nasze życie jest w niebezpieczeństwie."
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "<person id=\"steven\"/> Sprowadzę pomoc. Gdzie jesteście?"
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "(TY) … Nie wiemy. W jakimś … miejscu. Nie mu tu żadnych okien, nie wiemy w jakiej okolicy jesteśmy."
+          },
+          {
+            "style": "italic",
+            "text": "<person id=\"steven\"/> Dajcie mi chwilę, spróbuje was namierzyć … (po kilkunastu sekundach odpowiada) … dziwne … nie jesteśmy w stanie. Coś blokuje sygnał. Nie odkładajcie słuchawki, ale ukryjcie się gdzieś jeśli grozi wam niebezpieczeństwo. Jak tylko uda mi się znaleźć waszą lokalizację wyślę tam kogoś."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"60\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "52",
+      "pages": [
+        [
+          {
+            "text": "Czy masz DDDDDDDDDDDDDDD?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "tak"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "nie"
+        }
+      ],
+      "variants": {
+        "tak": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<span class='color-blue'>Odrzuć</span> DDDDDDDDDDDDDDD z talii i przetasuj ją lub ze stosu odrzuconego. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
+            },
+            {
+              "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z toaletą i przejdź do <span class='color-green'>70</span>.",
+              "nextParagraphId": "70"
+            },
+            {
+              "text": "Opuść paragraf."
+            }
+          ]
+        },
+        "nie": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z toaletą i przejdź do <span class='color-green'>70</span>.",
+              "nextParagraphId": "70"
+            },
+            {
+              "text": "Opuść paragraf."
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "54",
       "accessibleFrom": ["24"],
       "pages": [
-        []
+        [
+          {
+            "text": "O mały włos! Z pozoru zwykła szczelina w ścianie z panelem dotykowym na jego końcu kryła coś znacznie groźniejszego. Gdy tylko mop został wsunięty do środka, wyskoczyły stalowe ostrza, błyskawiczne jak pułapka, i natychmiast przecięły go na pół czyniąc go bezużytecznym ku twojej rozpaczy. <span class='color-blue'>Odrzuć</span> <story id=\"mmdvx\"/>."
+          }
+        ]
       ]
     },
     {
@@ -1173,6 +1282,13 @@
             "text": ""
           }
         ]
+      ]
+    },
+    {
+      "id": "70",
+      "accessibleFrom": ["52"],
+      "pages": [
+        []
       ]
     },
     {
