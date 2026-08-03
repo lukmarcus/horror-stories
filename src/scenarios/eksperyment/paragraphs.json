@@ -537,6 +537,7 @@
     },
     {
       "id": "19",
+      "accessibleFrom": ["58"],
       "pages": [
         [
           {
@@ -1160,6 +1161,7 @@
     },
     {
       "id": "51",
+      "accessibleFrom": ["60"],
       "pages": [
         [
           {
@@ -1279,7 +1281,190 @@
       "pages": [
         [
           {
-            "text": ""
+            "text": "Sprawdzasz jako:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"josh\"/><person id=\"jessica\"/><person id=\"patrick\"/><person id=\"jeff\"/>",
+          "nextVariantId": "nie-margaret"
+        },
+        {
+          "text": "<person id=\"margaret\"/>",
+          "nextVariantId": "margaret"
+        }
+      ],
+      "variants": {
+        "nie-margaret": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "margaret": {
+          "pages": [
+            [
+              {
+                "text": "Czy Jessica <person id=\"margaret\"/> leży?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "margaret-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "margaret-stoi"
+            }
+          ]
+        },
+        "margaret-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Margaret wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "margaret-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Margaret wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "56",
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Musimy rozważyć instalację kamer termowizyjnych w naszym skrzydle. Ostatnia ucieczka Martina kosztowała życie stażysty. Udusił biedaka, aby uniemożliwić mu zaalarmowanie kogokolwiek. Pracujemy już w warunkach wystarczająco niebezpiecznych."
+          },
+          {
+            "style": "italic",
+            "text": "Należy również natychmiast rozwiązać problem przerw w dostawach prądu. To właśnie chwilowy brak zasilania pozwolił mu otworzyć klatkę. Nie możemy dopuścić do sytuacji, w której energia przestanie zasilać komorę - wtedy zagrożeni będziemy nie tylko my."
+          },
+          {
+            "text": "<span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/> i <span class='color-blue'>odrzuć</span> <room id=\"56\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "57",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 10<letter id=\"a\"/>, na jego środku 2<symbol id=\"przedmiot-losowy\"/>, <room id=\"147\"/>, <room id=\"56\"/>, <room id=\"85\"/> zaś <room id=\"12\"/> na <span class='color-purple'>E</span> (zignoruj jeśli zostało wcześniej usunięte)."
+          },
+          {
+            "text": "Zapach perfum, a także sam wygląd pomieszczenia podpowiada, gdzie się znajdujesz – to kobiece biuro, które zawalają liczne notatki <room id=\"56\"/>. Całość tego przyjemnego wrażenia rujnuje tylko fakt, że w centrum pokoju znajduje się jakaś nieprzytomna kobieta <room id=\"147\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "58",
+      "pages": [
+        [
+          {
+            "text": "Wygląda na jakiś bezpiecznik połączony kablami z pancernymi drzwiami w tym samym pomieszczeniu. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku którym chcesz wejść w interakcję z bezpiecznikiem (przejdź do 132)",
+          "nextParagraphId": "132"
+        },
+        {
+          "text": "Uderz w to gołą ręką nie zważając na konsekwencje (przejdź do 19)",
+          "nextParagraphId": "19"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "59",
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Zadbajcie o to, aby ustały wszelkie przerwy w dostawie prądu. Mamy świadomość, że nie możemy zwrócić się do miasta o podłączenie do miejskiej infrastruktury — nasze działania nie spotkałyby się z ich poparciem. W związku z tym konieczne jest pilne sprawdzenie stanu agregatów. Należy to powiedzieć jasno i bez niedomówień: brak zasilania spowoduje wyłączenie komory, w której przetrzymujemy „072”, celi Martina oraz mechanizmów zabezpieczających drzwi pomiędzy moim laboratorium a pozostałą częścią strefy. Otwarcie tych przejść nie tylko umożliwi ucieczkę naszym „ochotnikom”, lecz także - po tym, jak zajmie się nimi „072” - skieruje zagrożenie bezpośrednio na nas."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"59\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "60",
+      "pages": [
+        [
+          {
+            "text": "Telefon! Szybko, zadzwoń po kogoś! Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Zadzwoń po służby! Niech ktoś was stąd zabierze! (przejdź do 51)",
+          "nextParagraphId": "51"
+        },
+        {
+          "text": "Nie trać czasu, bo i tak pewnie nic z tego nie będzie. <span class='color-blue'>Odrzuć</span> <room id=\"60\"/>, opuść paragraf i <span class='color-blue'>zyskaj dwie akcje</span>."
+        }
+      ]
+    },
+    {
+      "id": "61",
+      "pages": [
+        [
+          {
+            "text": "Ręka pani w kitlu naukowca. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
           }
         ]
       ]
@@ -1324,6 +1509,13 @@
     {
       "id": "113",
       "accessibleFrom": ["12"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "132",
+      "accessibleFrom": ["58"],
       "pages": [
         []
       ]
