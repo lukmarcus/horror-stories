@@ -132,6 +132,7 @@
     },
     {
       "id": "5",
+      "accessibleFrom": ["69"],
       "pages": [
         [
           {
@@ -670,6 +671,7 @@
     },
     {
       "id": "24",
+      "accessibleFrom": ["69"],
       "pages": [
         [
           {
@@ -883,6 +885,7 @@
     },
     {
       "id": "30",
+      "accessibleFrom": ["64"],
       "pages": [
         [
           {
@@ -1152,7 +1155,8 @@
       ],
       "choices": [
         {
-          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z drzwiami (przejdź wtedy do <span class='color-green'>73</span>)"
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z drzwiami (przejdź wtedy do <span class='color-green'>73</span>)",
+          "nextParagraphId": "73"
         },
         {
           "text": "Opuść paragraf."
@@ -1414,11 +1418,11 @@
       ],
       "choices": [
         {
-          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku którym chcesz wejść w interakcję z bezpiecznikiem (przejdź do 132)",
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku którym chcesz wejść w interakcję z bezpiecznikiem (przejdź do <span class='color-green'>132</span>)",
           "nextParagraphId": "132"
         },
         {
-          "text": "Uderz w to gołą ręką nie zważając na konsekwencje (przejdź do 19)",
+          "text": "Uderz w to gołą ręką nie zważając na konsekwencje (przejdź do <span class='color-green'>19</span>)",
           "nextParagraphId": "19"
         },
         {
@@ -1451,7 +1455,7 @@
       ],
       "choices": [
         {
-          "text": "Zadzwoń po służby! Niech ktoś was stąd zabierze! (przejdź do 51)",
+          "text": "Zadzwoń po służby! Niech ktoś was stąd zabierze! (przejdź do <span class='color-green'>51</span>)",
           "nextParagraphId": "51"
         },
         {
@@ -1470,8 +1474,279 @@
       ]
     },
     {
+      "id": "62",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot ze swojego ekwipunku którym chcesz wejść w interakcję z leżącą kobietą (przejdź do <span class='color-green'>111</span>)",
+          "nextParagraphId": "111"
+        },
+        {
+          "text": "Dobierz 1<symbol id=\"karta-akcji\"/> bez rozpatrywania efektu, aby przemieścić się razem z <person id=\"lauren\"/> o jedną planszę przez <symbol id=\"drzwi-otwarte\"/> lub <symbol id=\"drzwi-wywazone\"/>."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "63",
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Nie bawcie się moją aparaturą bez mojego wyraźnego pozwolenia. Wypuszczenie go na wolność to kwestia zaledwie kilku kliknięć. Osobiście nie mam nic przeciwko temu, aby was pożarło. Niczego to was jednak nie nauczy, a mi tylko przysporzy sprzątania – podpisano Jack."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"63\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "64",
+      "pages": [
+        [
+          {
+            "text": "Ogromny, szklany pojemnik wypełniała gęsta, ciemna ciecz, skrywająca swoją zawartość przed światem. Nie potrafiłeś określić, co było w tobie silniejsze - pragnienie poznania prawdy o tym, co znajduje się w środku, czy instynktowna potrzeba natychmiastowej ucieczki. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Nie mogę się oprzeć. Próbuję zobaczyć co znajduje się w środku (przejdź do <span class='color-green'>140</span>)",
+          "nextParagraphId": "140"
+        },
+        {
+          "text": "Wciskam losowo wszystkie dostępne guziki (przejdź do <span class='color-green'>30</span>)",
+          "nextParagraphId": "30"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "65",
+      "pages": [
+        [
+          {
+            "text": "Niewielki, niemal laboratoryjny szklany pojemnik mieścił w sobie więcej, niż można było przypuszczać. Wewnątrz znajdowała się mała, metalowa toaleta przymocowana do tylnej ściany, zestaw podstawowych sanitariatów oraz - w rogu - niedbale porzucone ubrania: koszula, spodnie, para butów. Leżały tak, jakby ktoś po prostu… zniknął. Nie było żadnych oznak obecności. Drzwi pozostawały otwarte na oścież. <span class='color-blue'>Odrzuć</span> <room id=\"65\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "66",
+      "pages": [
+        [
+          {
+            "text": "Oddajesz strzał w bezpiecznik. Przez ułamek sekundy wydawało się, że to daremny trud. Chwilę później rozległ się jednak niski, przeciągły zgrzyt. Masywne drzwi zaczęły się otwierać - powoli, nieuchronnie, z dźwiękiem, który nie pozostawiał wątpliwości, że właśnie stało się coś, czego nie da się cofnąć. <span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"58\"/> <span class='color-blue'>oraz swój 1</span><symbol id=\"zycie\"/>. <span class='color-blue'>Odrzuć</span> <symbol id=\"amunicja-strzelba\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "69",
+      "pages": [
+        [
+          {
+            "text": "Otwór w ścianie na którego końcu najwyraźniej widnieje jakiś panel z symbolem odcisku palca. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z otworem (przejdź do <span class='color-green'><span class='color-green'>24</span></span>)",
+          "nextParagraphId": "24"
+        },
+        {
+          "text": "Wsadź tam swoją rękę (przejdź do 5)",
+          "nextParagraphId": "5"
+        },
+        {
+          "text": "Wsadź tam cudzą dłoń jeśli jakąś masz… pod ręką (przejdź do <span class='color-green'>77</span>)",
+          "nextParagraphId": "77"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
       "id": "70",
       "accessibleFrom": ["52"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu, opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          },
+          {
+            "text": "XXIV - <span class='color-blue'>odrzuć</span> <room id=\"222\"/>. <span class='color-blue'>Dodaj</span> do ekwipunku <room id=\"139\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "71",
+      "pages": [
+        [
+          {
+            "text": "Logujesz się na komputerze. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. Jeśli to zrobisz, <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>"
+        },
+        {
+          "text": "<span class='color-blue'>Przekręć</span> na drugą stronę jedne <symbol id=\"drzwi-zamkniete\"/> lub <symbol id=\"drzwi-otwarte\"/> na dowolnej planszy."
+        },
+        {
+          "text": "Przejrzyj folder \"<em>Wyniki ostatnich eksperymentów obiektu 072</em>\" (przejdź do <span class='color-green'>86</span>)",
+          "nextParagraphId": "86"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "72",
+      "pages": [
+        [
+          {
+            "text": "Nie wiesz czy to prawdziwy diament, czy jego bardzo wierna replika."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "73",
+      "accessibleFrom": ["50"],
+      "pages": [
+        [
+          {
+            "text": "Jeśli wskazany przez Ciebie przedmiot posiadał L w prawym górnym rogu?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "tak-l"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "nie-l"
+        }
+      ],
+      "variants": {
+        "tak-l": {
+          "pages": [
+            [
+              {
+                "text": "Klucz o dziwnej końcówce pasował wprost idealnie. <span class='color-blue'>Odrzuć</span> <room id=\"150\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+              },
+              {
+                "text": "Połóż <letter id=\"d\"/> na <span class='color-yellow'>AKTYWNE</span>. Jedna z lampek nad drzwiami zmienia natychmiast kolor na zielony."
+              },
+              {
+                "text": "Czy w <span class='color-yellow'>AKTYWNE</span> znajduje się już żeton <letter id=\"e\"/>, <letter id=\"f\"/> lub <letter id=\"p\"/>?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "tak-88"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "nie-88"
+            }
+          ]
+        },
+        "nie-l": {
+          "pages": [
+            [
+              {
+                "text": "Opuść natychmiast paragraf."
+              }
+            ]
+          ]
+        },
+        "tak-88": {
+          "pages": [
+            [
+              {
+                "text": "Przejdź do <span class='color-green'>88</span>."
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Przejdź do <span class='color-green'>88</span>.",
+              "nextParagraphId": "88"
+            }
+          ]
+        },
+        "nie-88": {
+          "pages": [
+            [
+              {
+                "text": "Nic się nie dzieje."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "75",
+      "pages": [
+        [
+          {
+            "text": "Uderzenie w bezpiecznik gołą pięścią spowodował ogromny ból, który rozlał się po nadgarstku. Przez ułamek sekundy wydawało się, że był to daremny trud. Chwilę później rozległ się jednak niski, przeciągły zgrzyt. Masywne drzwi zaczęły się otwierać - powoli, nieuchronnie, z dźwiękiem, który nie pozostawiał wątpliwości, że właśnie stało się coś, czego nie da się cofnąć. <span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"58\"/> <span class='color-blue'>oraz swój 1</span><symbol id=\"zycie\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "76",
+      "pages": [
+        [
+          {
+            "text": "Pożółkły wycinek z miejscowej gazety opisywał głośne zaginięcie grupy młodych ludzi. W artykule padały nazwiska, cytaty z zaniepokojonych bliskich oraz wypowiedzi lokalnych mieszkańców, którzy tłumnie ruszyli na poszukiwania. Dziś, poza najbliższymi, nikt już o nich nie pamięta. Prawdopodobnie właśnie podzieliliście ich los — i to o was będzie wkrótce przez krótką chwilę głośno. <span class='color-blue'>Odrzuć</span> <room id=\"76\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "77",
+      "accessibleFrom": ["69"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "86",
+      "accessibleFrom": ["71"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "88",
+      "accessibleFrom": ["73"],
       "pages": [
         []
       ]
@@ -1507,6 +1782,13 @@
       ]
     },
     {
+      "id": "111",
+      "accessibleFrom": ["62"],
+      "pages": [
+        []
+      ]
+    },
+    {
       "id": "113",
       "accessibleFrom": ["12"],
       "pages": [
@@ -1516,6 +1798,13 @@
     {
       "id": "132",
       "accessibleFrom": ["58"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "140",
+      "accessibleFrom": ["64"],
       "pages": [
         []
       ]
