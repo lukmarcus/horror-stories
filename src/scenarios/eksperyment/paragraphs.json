@@ -945,7 +945,7 @@
     },
     {
       "id": "32",
-      "accessibleFrom": ["24"],
+      "accessibleFrom": ["24", "77"],
       "pages": [
         [
           {
@@ -1734,7 +1734,90 @@
       "id": "77",
       "accessibleFrom": ["69"],
       "pages": [
-        []
+        [
+          {
+            "text": "Czy jesteś na 15<letter id=\"a\"/>?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "tak-15a"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "nie-15a"
+        }
+      ],
+      "variants": {
+        "tak-15a": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wsadź rękę należącą do <room id=\"147\"/> (przejdź do <span class='color-green'>105</span>)",
+              "nextParagraphId": "105"
+            },
+            {
+              "text": "Wsadź rękę należącą do <room id=\"121\"/> (przejdź do <span class='color-green'>32</span>)",
+              "nextParagraphId": "32"
+            },
+            {
+              "text": "Wsadź rękę należącą do <person id=\"lauren\"/> (przejdź do <span class='color-green'>105</span>)",
+              "nextParagraphId": "105"
+            },
+            {
+              "text": "Wsadź rękę należącą do <person id=\"jack\"/> (przejdź do <span class='color-green'>32</span>)",
+              "nextParagraphId": "32"
+            },
+            {
+              "text": "Opuść paragraf."
+            }
+          ]
+        },
+        "nie-15a": {
+          "pages": [
+            [
+              {
+                "text": "Opuść paragraf."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "78",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 9<letter id=\"a\"/>, a na jego środku <room id=\"14\"/> i 2<symbol id=\"przedmiot-losowy\"/>, zaś <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>E</span> (jeśli łączenie jest wolne)."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "79",
+      "pages": [
+        [
+          {
+            "text": "Obrazek z czarnym kociakiem trzymającym się gałęzi. Sprawia wrażenie jakby miał zaraz spaść. Poniżej znajduje się napis \"<em>Trzymaj się</em>\". Postanawiasz wziąć to sobie do serca i za wszelką cenę walczyć dalej! Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Możesz wtasować do 4<symbol id=\"karta-akcji\"/> dowolnych kart ze swojego stosu odrzuconego do talii. Jeśli to zrobisz, <span class='color-blue'>odrzuć</span> <room id=\"79\"/>."
+        },
+        {
+          "text": "Nie czas teraz na to. Opuść paragraf."
+        }
       ]
     },
     {
@@ -1776,7 +1859,7 @@
     },
     {
       "id": "105",
-      "accessibleFrom": ["24"],
+      "accessibleFrom": ["24", "77"],
       "pages": [
         []
       ]
