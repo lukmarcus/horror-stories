@@ -1821,17 +1821,138 @@
       ]
     },
     {
+      "id": "80",
+      "pages": [
+        [
+          {
+            "text": "Jeśli uzyskasz co najmniej 6<symbol id=\"gwiazda\"/> <span class='color-blue'>odrzuć</span> <room id=\"118\"/> i zastąp <symbol id=\"drzwi-wywazone\"/>. Każdy nieudany test <span class='color-blue'>kładzie</span> jedno <symbol id=\"zycie\"/> przy <room id=\"118\"/>. Każde <symbol id=\"zycie\"/> leżące przy <room id=\"118\"/> oznacza, że potrzeba 1<symbol id=\"gwiazda\"/> mniej."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "81",
+      "pages": [
+        [
+          {
+            "text": "Chwyciłeś go za nadgarstek, próbując wyczuć puls. Nic. Skóra była zimna, martwa. Na jego szyi widniały dziwne, ciemne siniaki. Odnosisz wrażenie, że masz do czynienia z ofiarą uduszenia."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "82",
+      "pages": [
+        [
+          {
+            "text": "Patrzysz niczym zahipnotyzowany na taniec trzaskających iskier - aż do chwili, gdy jedna z nich trafia ci w oko. Na szczęście okazuje się niegroźna, lecz w duchu przyrzekasz sobie, że nigdy więcej nie będziesz polewać instalacji elektrycznych wodą."
+          },
+          {
+            "text": "<span class='color-blue'>Zastąp</span> <room id=\"118\"/> żetonem <symbol id=\"drzwi-otwarte\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"139\"/> i <span class='color-blue'>dobierz</span> <room id=\"222\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"58\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "83",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 11<letter id=\"a\"/>, na jego środku 3<symbol id=\"przedmiot-losowy\"/> oraz <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>E</span>. Czy ten koszmar się kiedyś skończy? A może skończy się wraz z Tobą?"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "84",
+      "pages": [
+        [
+          {
+            "text": "Duży, mosiężny klucz z symbolem kruka. Opuść paragraf. <span class='color-blue'>Zyskujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "85",
+      "pages": [
+        [
+          {
+            "text": "Na płycie napisano \"<em>autoryzator</em>\". Opuść paragraf. <span class='color-blue'>Zyskujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
       "id": "86",
       "accessibleFrom": ["71"],
       "pages": [
-        []
+        [
+          {
+            "text": "Notka z podpiskiem \"<em>przekazać Helen</em>\". Jest tu czyjeś pismo:"
+          },
+          {
+            "style": "italic",
+            "text": "Obiekt odrzuca każdy pokarm inny niż mięso zwierzęce lub ludzkie. Dorosłe osobniki osiągają nawet 2,5 metra wzrostu, choć istnieją niepotwierdzone doniesienia terenowe o jeszcze większych egzemplarzach. Nietypowa budowa anatomiczna umożliwia im poruszanie się z prędkością przekraczającą 45 mil na godzinę, co sprawia, że jakakolwiek próba pieszej ucieczki jest z góry skazana na niepowodzenie. Nasz egzemplarz pozostaje obecnie w tubie regeneracyjnej. Jest osłabiony na skutek testów jego zdolności regeneracyjnych. Nawet strzał ze strzelby z bliskiej odległości nie wywarł na nim istotnego wrażenia; mimo to zdarzenie to doprowadziło do znaczącego osłabienia organizmu. Stąd konieczność jego regeneracji w komorze. Do odzyskania pełni sił będzie potrzebował prawdopodobnie jeszcze kilku godzin. Zdolność obiektu do stopniowej odbudowy tkanek pozostaje dla nas poważnym wyzwaniem badawczym, ale jednocześnie otwiera ogromne perspektywy finansowe. Każde państwo zapłaciłoby każdą cenę za technologię umożliwiającą natychmiastowy powrót ciężko rannych żołnierzy na pole walki. W dalszej perspektywie rozwiązanie to mogłoby znaleźć również zastosowanie cywilne."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "87",
+      "pages": [
+        [
+          {
+            "text": "Szturchasz ją mopem z całym sił, ale bez rezultatu. Czujesz się z tym dziwnie."
+          }
+        ]
       ]
     },
     {
       "id": "88",
       "accessibleFrom": ["73"],
       "pages": [
-        []
+        [
+          {
+            "text": "Obie lampy nad drzwiami świecą się już na zielono, a wielkie masywne drzwi ku Twojej radości otwierają się. Nie czekaj, ale biegnij! Biegnij jakby świat miał się kończyć i dbaj tylko o siebie! <span class='color-blue'>Odrzuć</span> <room id=\"50\"/> i w ich miejscu <span class='color-blue'>połóż</span> <symbol id=\"drzwi-otwarte\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "89",
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Wilkołak stanowi hipotetyczny, mityczno-zoonotyczny organizm wykazujący cechy zarówno człowieka, jak i dużych drapieżnych psowatych (Canis lupus). Podstawową cechą wyróżniającą jest zdolność do okresowej transformacji morfologicznej, najczęściej synchronizowanej z fazami Księżyca, ze szczególnym nasileniem podczas pełni. Proces transformacji obejmuje głęboką reorganizację tkanki mięśniowej, wydłużenie kości długich kończyn, przebudowę czaszki oraz rozwój pełnego owłosienia ciała."
+          },
+          {
+            "style": "italic",
+            "text": "<b>Morfologia</b> - w formie wilczej osobniki osiągają wzrost od 210 do 250 cm oraz masę ciała w zakresie 120–180 kg. Charakteryzują się skrajnie rozwiniętą muskulaturą, powiększonymi kłami o długości do 6 cm oraz keratynowymi pazurami zdolnymi do zadawania głębokich, penetrujących ran. Układ szkieletowy wykazuje zwiększoną zawartość kolagenu i minerałów, co umożliwia absorpcję znacznych przeciążeń mechanicznych."
+          },
+          {
+            "style": "italic",
+            "text": "Zmysły słuchu i węchu są wyostrzone nawet do pięćdziesięciokrotności ludzkich norm. Zdolności fizyczne wielokrotnie przewyższają możliwości człowieka; osobniki są w stanie poruszać się z prędkością 60–70 km/h na krótkich dystansach. W formie bestialskiej obserwuje się wysoki poziom agresji, szczególnie w obecności bodźców zapachowych związanych z krwią. W stanie ludzkim wilkołaki zachowują świadomość oraz ciągłość pamięci, choć mogą występować epizody amnezji, zwłaszcza o charakterze pourazowym."
+          },
+          {
+            "style": "italic",
+            "text": "<b>Patogeneza i hipotetyczna etiologia</b> - przekazach folklorystycznych źródłem przemiany jest zazwyczaj „klątwa” lub ugryzienie innego wilkołaka. Hipotetyczne modele naukowe zakładają jednak istnienie nieznanego czynnika biologicznego - wirusa lub prionu - zdolnego do oddziaływania na strukturę DNA i uruchamiania ekstremalnych zmian fenotypowych w określonych warunkach środowiskowych."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "90",
+      "pages": [
+        [
+          {
+            "text": "Przykładasz dłoń naukowca do panelu. Czujnik reaguje natychmiast - powierzchnia rozświetla się zielonym światłem. "
+          },
+          {
+            "text": "<span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"106\"/> i <room id=\"120\"/>, a następnie <span class='color-blue'>wyłóż</span> na środku <room id=\"71\"/>."
+          }
+        ]
       ]
     },
     {
