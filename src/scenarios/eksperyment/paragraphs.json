@@ -1960,7 +1960,33 @@
       "pages": [
         [
           {
-            "text": ""
+            "text": "<span class='color-blue'>Odrzuć</span> <letter id=\"g\"/> z toru czasu. Następnie sprawdź najwyższą cyfrę na polu planszy, na którym znajduje się postać kontrolowana przez graczy (jeżeli na danym polu znajduje się więcej niż jedna figurka, gracze wybierają jedną z nich). Ta postać — podobnie jak wszystkie pozostałe postacie kontrolowane przez graczy — rozpatruje poniższy tekst."
+          },
+          {
+            "style": "italic",
+            "text": "Czujesz cudze dłonie na swojej szyi. Jest to o tyle dziwne, że nikogo nie dostrzegasz. Czujesz jak się zaciskają odbierając Ci dech w piersiach. Szarpiesz się z całych sił odpychając … napastnika? Nie wiesz, bo niczego nie dostrzegasz. "
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> 1<symbol id=\"zycie\"/>, a następnie:"
+          },
+          {
+            "text": "<span class='color-blue'>Przełóż</span> <letter id=\"g\"/> na pole 3 toru czasu jeśli w grze biorą udział 2 figurki."
+          },
+          {
+            "text": "<span class='color-blue'>Przełóż</span> <letter id=\"g\"/> na pole 2 toru czasu jeśli w grze biorą udział 3 figurki."
+          },
+          {
+            "text": "<span class='color-blue'>Przełóż</span> <letter id=\"g\"/> na pole 2 toru czasu jeśli w grze biorą udział 4 figurki."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "92",
+      "pages": [
+        [
+          {
+            "text": "Ręka naukowca. Jeszcze ciepła. Opuść paragraf. <span class='color-blue'>Zyskujesz akcję</span>."
           }
         ]
       ]
@@ -1969,7 +1995,39 @@
       "id": "93",
       "accessibleFrom": ["47"],
       "pages": [
-        []
+        [
+          {
+            "text": "Sprawdź sumę i rozpatrz odpowiedni wynik: "
+          },
+          {
+            "text": "4<symbol id=\"gwiazda\"/> lub niższy: ból jest trudny do zniesienia i cofasz rękę nim. <span class='color-blue'>Dodaj</span> z puli ogólnej FFFFFFFFFFFF do swojego stosu odrzuconego."
+          },
+          {
+            "text": "4<symbol id=\"gwiazda\"/> lub wyższy: twoim oczom ukazuje się diament (<room id=\"72\"/>). Dodaj go do ekwipunku. <span class='color-blue'>Dobierz</span> 2<symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"47\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "94",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot ze swojego ekwipunku, którym chcesz wejść z nim w interakcję (przejdź do <span class='color-green'>135</span>)",
+          "nextParagraphId": "135"
+        },
+        {
+          "text": "Dobierz 1 bez rozpatrywania, aby przemieścić się razem z <person id=\"jack\"/> o jedną planszę przez <symbol id=\"drzwi-otwarte\"/> lub <symbol id=\"drzwi-wywazone\"/>."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
       ]
     },
     {
@@ -2002,6 +2060,13 @@
     {
       "id": "132",
       "accessibleFrom": ["58"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "135",
+      "accessibleFrom": ["94"],
       "pages": [
         []
       ]
