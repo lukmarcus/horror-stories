@@ -316,6 +316,7 @@
     },
     {
       "id": "11",
+      "accessibleFrom": ["98"],
       "pages": [
         [
           {
@@ -2027,6 +2028,59 @@
         },
         {
           "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "95",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 4<letter id=\"a\"/>, na środku <story id=\"mmdvx\"/> oraz 2<symbol id=\"przedmiot-losowy\"/>, <room id=\"52\"/> na <span class='color-purple'>N</span>, zaś <room id=\"119\"/> na łączenie plansz 4<letter id=\"a\"/> i 10<letter id=\"a\"/> (zignoruj jeśli <room id=\"119\"/> zostało wcześniej odrzucone)."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "96",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 10<letter id=\"a\"/>, na jego środku 2<symbol id=\"przedmiot-losowy\"/>, <room id=\"147\"/>, <room id=\"56\"/>, <room id=\"85\"/>, zaś <room id=\"12\"/> na <span class='color-purple'>W</span> (zignoruj jeśli zostało wcześniej usunięte). "
+          },
+          {
+            "style": "italic",
+            "text": "Zapach perfum, a także sam wygląd pomieszczenia podpowiada, gdzie się znajdujesz – to kobiece biuro, które zawalają liczne notatki <room id=\"56\"/>. Całość tego przyjemnego wrażenia rujnuje tylko fakt, że w centrum pokoju znajduje się jakaś nieprzytomna kobieta <room id=\"147\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "97",
+      "pages": [
+        [
+          {
+            "text": "Szyb jest ciemny i pełen pajęczyn, które wplątują Ci się we włosy. Całe pół metra czołgania się dalej trafiasz na coś co wygląda na klucz. Bierzesz go ze sobą i wyczołgujesz się z powrotem. <span class='color-blue'>Dodaj</span> <room id=\"150\"/> do swojego ekwipunku. <span class='color-blue'>Odrzuć</span> <symbol id=\"drzwi-wywazone\"/> z <span class='color-purple'>E</span> planszy 13<letter id=\"a\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "98",
+      "pages": [
+        [
+          {
+            "text": "Ciemny tunel, na którego końcu ledwie majaczy zarys światła. Albo wysiadły korki, albo ktoś zapomniał uregulować rachunki za prąd. Idziesz po omacku, nie wiedząc, dokąd prowadzi ta droga. Po drugiej stronie równie dobrze może czaić się coś jeszcze gorszego, lecz na razie nie masz wyboru - pozostaje śmierć z łap stwora albo krok w nieznane.. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Ucieknij! Zakończ to szaleństwo! Przejdź do <span class='color-green'>11</span>. (<span class='color-red'>UWAGA</span>: jeśli jesteś ostatnią figurką kontrolowaną przez graczy, każda pozostała figurka graczy na planszy z <symbol id=\"rana-ciezka\"/> umiera z powodu obrażeń)",
+          "nextParagraphId": "11"
+        },
+        {
+          "text": "Nie możesz tak po prostu uciec. Opuść paragraf."
         }
       ]
     },
