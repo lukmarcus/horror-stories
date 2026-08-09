@@ -1945,6 +1945,7 @@
     },
     {
       "id": "90",
+      "accessibleFrom": ["102"],
       "pages": [
         [
           {
@@ -2087,14 +2088,151 @@
     {
       "id": "100",
       "pages": [
-        []
+        [
+          {
+            "text": "Wskaż kogo to dotyczy i przejdź do stosownego paragrafu:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Utrata wszystkich <symbol id=\"zycie\"/> przez jednego lub więcej spośród <person id=\"josh\"/><person id=\"patrick\"/><person id=\"jessica\"/><person id=\"margaret\"/> (przejdź do <span class='color-green'>191</span>)",
+          "nextParagraphId": "191"
+        },
+        {
+          "text": "(Utrata wszystkich <symbol id=\"zycie\"/> przez to co was goni) (przejdź do <span class='color-green'>192</span>)",
+          "nextParagraphId": "192"
+        }
+      ]
+    },
+    {
+      "id": "101",
+      "pages": [
+        [
+          {
+            "text": "Własność pani naukowiec. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "102",
+      "pages": [
+        [
+          {
+            "text": "Jeśli wskazany przedmiot <b>NIE</b> posiada <b>VI</b> lub <b>XXXVI</b> dobierz 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu i opuść paragraf. Jeśli posiada <b>VI</b> lub <b>XXXVI</b> czytaj dalej."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>XIV</b> - przejdź do <span class='color-green'>109</span>",
+          "nextParagraphId": "109"
+        },
+        {
+          "text": "<b>XV</b> - przejdź do <span class='color-green'>90</span>",
+          "nextParagraphId": "90"
+        },
+        {
+          "text": "<b>VI</b> – przejdź do <span class='color-green'>220</span>",
+          "nextParagraphId": "220"
+        },
+        {
+          "text": "<b>XXXVI</b> – przejdź do <span class='color-green'>185</span>",
+          "nextParagraphId": "185"
+        },
+        {
+          "text": "<b>XXXVII</b> – przejdź do <span class='color-green'>185</span>",
+          "nextParagraphId": "185"
+        }
+      ]
+    },
+    {
+      "id": "103",
+      "pages": [
+        [
+          {
+            "text": "Brzydzisz się sobą, ale udało Ci się wejść w posiadanie cudzej kończyny. "
+          },
+          {
+            "text": "<span class='color-blue'>Dodaj</span> do ekwipunku <room id=\"92\"/> lub <room id=\"114\"/> (o ile któregoś nie usunięto z gry). <span class='color-blue'>Dodaj</span> również do swojego stosu odrzuconego FFFFFFFFFFFFFFFFFF (robi Ci się niedobrze)."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "104",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 13<letter id=\"a\"/>, a w nim <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>N</span>, zaś <room id=\"146\"/> na <span class='color-purple'>E</span>. Zwykły hol. Taki przeciętny, wręcz obraźliwie nudny. Na wschodzie dostrzegasz szyb wentylacyjny <room id=\"146\"/>."
+          }
+        ]
       ]
     },
     {
       "id": "105",
       "accessibleFrom": ["24", "77"],
       "pages": [
-        []
+        [
+          {
+            "text": "Widzisz jak na panelu pojawia się zielone światło, obraz reprezentujący kciuk wystawiony w górę oraz komunikat \"<em>Witaj, doktor Lauren</em>\". <span class='color-blue'>Wyłóż</span> <letter id=\"p\"/> w <span class='color-yellow'>AKTYWNE</span>. Jeśli znajduje się tam już <letter id=\"e\"/>, <letter id=\"d\"/> lub <letter id=\"f\"/>, przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "106",
+      "pages": [
+        [
+          {
+            "text": "Na zdjęciu widać uśmiechniętą brunetkę z podpisem \"<em>zastępca kierownika sekcji laboratoryjnej, Lauren Miller</em>\". Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "107",
+      "pages": [
+        [
+          {
+            "text": "Wyłóż planszę 12<letter id=\"a\"/>, a także <room id=\"12\"/> na <span class='color-purple'>W</span> (<span class='color-red'>o ile nie zostały wcześniej odrzucone</span>), zaś <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>S</span>. Na środku wyłóż 2<symbol id=\"przedmiot-losowy\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "108",
+      "pages": [
+        [
+          {
+            "text": "Wyłóż planszę 6<letter id=\"a\"/>, a w nim <room id=\"46\"/> na <span class='color-purple'>E</span>. Na jego środku <room id=\"60\"/> oraz <room id=\"160\"/>."
+          },
+          {
+            "text": "Lodówka (<room id=\"46\"/>), szafka (<room id=\"160\"/>) i telefon! (<room id=\"60\"/>)."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "109",
+      "accessibleFrom": ["102"],
+      "pages": [
+        [
+          {
+            "text": "Przykładasz rękę pani naukowiec do panelu i panel dotykowy świeci się na zielono. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"106\"/> i <room id=\"120\"/>, a następnie wyłóż na środku <room id=\"71\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "110",
+      "pages": [
+        [
+          {
+            "text": "Usuwasz kratkę, która blokowała wejście do szybu. <span class='color-blue'>Odrzuć</span> <room id=\"146\"/> i zastąp <symbol id=\"drzwi-otwarte\"/>."
+          }
+        ]
       ]
     },
     {
@@ -2164,8 +2302,36 @@
       ]
     },
     {
+      "id": "185",
+      "accessibleFrom": ["102"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "191",
+      "accessibleFrom": ["100"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "192",
+      "accessibleFrom": ["100"],
+      "pages": [
+        []
+      ]
+    },
+    {
       "id": "193",
       "accessibleFrom": ["40"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "220",
+      "accessibleFrom": ["102"],
       "pages": [
         []
       ]
