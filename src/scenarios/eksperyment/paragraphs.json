@@ -1823,6 +1823,7 @@
     },
     {
       "id": "80",
+      "accessibleFrom": ["118"],
       "pages": [
         [
           {
@@ -1901,6 +1902,7 @@
     },
     {
       "id": "87",
+      "accessibleFrom": ["111"],
       "pages": [
         [
           {
@@ -1922,6 +1924,7 @@
     },
     {
       "id": "89",
+      "accessibleFrom": ["112"],
       "pages": [
         [
           {
@@ -2239,12 +2242,148 @@
       "id": "111",
       "accessibleFrom": ["62"],
       "pages": [
-        []
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 bez rozpatrywania efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>III</b> – dobierz 1<symbol id=\"karta-akcji\"/> i przejdź do <span class='color-green'>128</span>",
+          "nextParagraphId": "128"
+        },
+        {
+          "text": "<b>VII</b> – przejdź do <span class='color-green'>128</span>",
+          "nextParagraphId": "128"
+        },
+        {
+          "text": "<b>X</b>, <b>LIII</b> – <span class='color-green'>122</span>",
+          "nextParagraphId": "122"
+        },
+        {
+          "text": "<b>MMDVX</b> - <span class='color-green'>87</span>",
+          "nextParagraphId": "87"
+        }
+      ]
+    },
+    {
+      "id": "112",
+      "pages": [
+        [
+          {
+            "text": "Szafka z dokumentami. Wydaje się mieścić sporo folderów z których tylko kilka wydaje się wam interesować. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Raport na temat obiektu \"<em>072</em>\"  (przejdź do <span class='color-green'>89</span>)",
+          "nextParagraphId": "89"
+        },
+        {
+          "text": "Raport na temat obiektu \"<em>068</em>\"  (przejdź do <span class='color-green'>173</span>)",
+          "nextParagraphId": "173"
+        },
+        {
+          "text": "Notka pozostawiona wewnątrz mówiąca coś o \"<em>nowych ochotnikach</em>\"  (przejdź do <span class='color-green'>158</span>)",
+          "nextParagraphId": "158"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
       ]
     },
     {
       "id": "113",
       "accessibleFrom": ["12"],
+      "pages": [
+        [
+          {
+            "text": "Mając co najmniej 6<symbol id=\"gwiazda\"/> <span class='color-blue'>odrzuć</span> <room id=\"12\"/> i zastąp je <symbol id=\"drzwi-wywazone\"/> (każdy leżący pod nimi <symbol id=\"zycie\"/> oznacza, że potrzeba 1<symbol id=\"gwiazda\"/> mniej). Odrzucając <room id=\"12\"/> odrzuć także leżące pod nim <symbol id=\"zycie\"/>."
+          },
+          {
+            "text": "Przy nieudanym teście <span class='color-blue'>połóż 1</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "114",
+      "pages": [
+        [
+          {
+            "text": "Noga naukowca, który najwyraźniej królem parkietu już nie zostanie. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "115",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 13<letter id=\"a\"/>, <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>N</span> i <span class='color-purple'>S</span>, zaś <room id=\"146\"/> na <span class='color-purple'>E</span>. Zwykły hol. Taki przeciętny, wręcz obraźliwie nudny. Na wschodzie dostrzegasz szyb wentylacyjny <room id=\"146\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "116",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 5<letter id=\"a\"/>, a na jego środku 2<symbol id=\"przedmiot-losowy\"/>, <room id=\"53\"/> oraz <room id=\"112\"/>. "
+          },
+          {
+            "text": "Wygląda na biuro. Specyficzny zapach tytoniu, niechlujny wystrój oraz bałagan na biurku <room id=\"53\"/> sugerują, że należy do mężczyzny. Niezamknięta szafka <room id=\"112\"/> może zdradzić jakieś jego sekrety."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "117",
+      "pages": [
+        [
+          {
+            "text": "Nie reaguje na twoje energicznie szturchanie go mopem. W tej sytuacji odpowiedź musi być tylko jedna – prawdopodobnie nie żyje."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "118",
+      "pages": [
+        [
+          {
+            "text": "Pancerne drzwi stoją nieruchomo, przytłaczające, jakby już samą obecnością odcinały drogę dalej. Ich gabaryty nie pozostawiają wątpliwości – siłowe rozwiązanie nie wchodzi w grę. Przez krótką chwilę rozpaczliwie szukasz czegokolwiek - zamka, szczeliny, słabego punktu, który pozwoliłby choć udawać, że masz wybór. Nic. Tylko gładka, martwa powierzchnia i niepozorny panel, czekający na kartę lub identyfikator, których nie masz i nigdy nie miałeś. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot w ekwipunku, którym chcesz wejść w interakcję z pancernymi drzwiami (przejdź do <span class='color-green'>136</span>)",
+          "nextParagraphId": "136"
+        },
+        {
+          "text": "Poddaj swoje ciało próbie i wyważ je! Dobierz do 4<symbol id=\"karta-akcji\"/>, a następnie przejdź do <span class='color-green'>80</span>.",
+          "nextParagraphId": "80"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "122",
+      "accessibleFrom": ["111"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "128",
+      "accessibleFrom": ["111"],
       "pages": [
         []
       ]
@@ -2259,6 +2398,13 @@
     {
       "id": "135",
       "accessibleFrom": ["94"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "136",
+      "accessibleFrom": ["118"],
       "pages": [
         []
       ]
@@ -2297,6 +2443,20 @@
     {
       "id": "157",
       "accessibleFrom": ["40"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "158",
+      "accessibleFrom": ["112"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "173",
+      "accessibleFrom": ["112"],
       "pages": [
         []
       ]
