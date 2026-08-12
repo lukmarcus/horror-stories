@@ -1078,6 +1078,7 @@
     },
     {
       "id": "44",
+      "accessibleFrom": ["119"],
       "pages": [
         [
           {
@@ -1834,6 +1835,7 @@
     },
     {
       "id": "81",
+      "accessibleFrom": ["121"],
       "pages": [
         [
           {
@@ -2120,6 +2122,7 @@
     },
     {
       "id": "102",
+      "accessibleFrom": ["120"],
       "pages": [
         [
           {
@@ -2375,17 +2378,158 @@
       ]
     },
     {
+      "id": "119",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Otwórz regał, tam na pewno coś w jest! (przejdź do <span class='color-green'>44</span>)",
+          "nextParagraphId": "44"
+        },
+        {
+          "text": "(Jeśli <room id=\"119\"/> stoi na <span class='color-purple'>E</span>) Spróbuj przesunąć regał. Dobierz do 3<symbol id=\"karta-akcji\"/> i mając co najmniej 3<symbol id=\"gwiazda\"/> przejdź do <span class='color-green'>130</span>.",
+          "nextParagraphId": "130"
+        },
+        {
+          "text": "Mając niższy wynik opuść ten paragraf."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "120",
+      "pages": [
+        [
+          {
+            "text": "Na ekranie wyświetla się informacja: \"<em>potrzebny autoryzator</em>\". Dostrzegasz napęd na płyty oraz coś w rodzaju panelu dotykowego. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot w ekwipunku, którym chcesz wejść w interakcję (przejdź do <span class='color-green'>102</span>)",
+          "nextParagraphId": "102"
+        },
+        {
+          "text": "Spróbuj złamać hasło. Dobierz do 4<symbol id=\"karta-akcji\"/> i przejdź do <span class='color-green'>143</span>.",
+          "nextParagraphId": "143"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "121",
+      "pages": [
+        [
+          {
+            "text": "Leżący na ziemi mężczyzna, na oko pewnie powyżej czterdziestki. Ubrany w fartuch laboratoryjny. Posiniaczona i zakrwawiona twarz. Co tu się dzieje!? Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przeszukaj go (przejdź do <span class='color-green'>133</span>)",
+          "nextParagraphId": "133"
+        },
+        {
+          "text": "Wskaż przedmiot w ekwipunku, którym chcesz wejść w interakcję (przejdź do <span class='color-green'>135</span>)",
+          "nextParagraphId": "135"
+        },
+        {
+          "text": "Dobierz 1<symbol id=\"karta-akcji\"/> bez rozpatrywania efektu, aby przemieścić się razem z <room id=\"121\"/> do sąsiedniej planszy przez <symbol id=\"drzwi-otwarte\"/> lub <symbol id=\"drzwi-wywazone\"/>"
+        },
+        {
+          "text": "Ustal, czy można mu pomóc (przejdź do <span class='color-green'>81</span>)",
+          "nextParagraphId": "81"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
       "id": "122",
       "accessibleFrom": ["111"],
       "pages": [
-        []
+        [
+          {
+            "text": "Oblewasz ją, ale nie dostrzegasz żadnej reakcji. <span class='color-blue'>Odrzuć</span> <room id=\"139\"/>. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "123",
+      "pages": [
+        [
+          {
+            "text": "Rzeźba z wyciągniętymi rękami, które sprawiają wrażenie jakby o coś prosiły. Tuż pod nimi wygrawerowano słowa: \"<em>Cennym się staje gdy mu się czasu daje, wartość otrzymuje, gdy się go zeszlifuje</em>\". Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot w ekwipunku, którym wejdziesz w interakcję i przejdź do <span class='color-green'>137</span>.",
+          "nextParagraphId": "137"
+        }
+      ]
+    },
+    {
+      "id": "124",
+      "pages": [
+        [
+          {
+            "text": "Po cholerę było wsadzać ją tam, gdzie nie należy. Opuść paragraf. <span class='color-blue'>Zyskujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "127",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 15<letter id=\"a\"/>, <room id=\"50\"/> na <span class='color-purple'>E</span>, <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>W</span> (jeśli wolne łączenie), zaś na środku <room id=\"69\"/> oraz <room id=\"123\"/>. "
+          },
+          {
+            "text": "Twoją uwagę przykuwają WIELKIE drzwi. Może nawet w zasadzie wrota. Takie, które prawdopodobnie oddzielają Cię od upragnionej wolności. Wiesz to, bo nad nimi widnieje rozpalający Twój umysł, napis \"<em>WYJŚCIE</em>\". Porzucasz jakąkolwiek nadzieję siłowego ich otwarcia, bo zbytnio miłujesz swoje kruche kości. Może sposobem ich otwarcia jest otwór w ścianie obok wielkich wrót <room id=\"69\"/>, a może dziwna rzeźba <room id=\"123\"/> wyciągająca w Twoim kierunku ręce jakby o coś prosiła."
+          }
+        ]
       ]
     },
     {
       "id": "128",
       "accessibleFrom": ["111"],
       "pages": [
-        []
+        [
+          {
+            "text": "<span class='color-blue'>Dodaj</span> (o ile któreś nie zostało usunięte z gry) <room id=\"61\"/> lub <room id=\"101\"/> do swojego ekwipunku. Czujesz się z tym fatalnie. <span class='color-blue'>Dodaj</span> FFFFFFFFFFFFFFFFF do swojego stosu odrzuconego."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "130",
+      "accessibleFrom": ["119"],
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Kto by pomyślał, że za regałem znajdowała się ogromna dziura. "
+          },
+          {
+            "text": "<span class='color-blue'>Przełóż</span> <room id=\"119\"/> na środek planszy 4<letter id=\"a\"/>, zaś na jej <span class='color-purple'>E</span> połóż <symbol id=\"drzwi-wywazone\"/>."
+          }
+        ]
       ]
     },
     {
@@ -2396,8 +2540,15 @@
       ]
     },
     {
+      "id": "133",
+      "accessibleFrom": ["121"],
+      "pages": [
+        []
+      ]
+    },
+    {
       "id": "135",
-      "accessibleFrom": ["94"],
+      "accessibleFrom": ["94", "121"],
       "pages": [
         []
       ]
@@ -2410,8 +2561,22 @@
       ]
     },
     {
+      "id": "137",
+      "accessibleFrom": ["123"],
+      "pages": [
+        []
+      ]
+    },
+    {
       "id": "140",
       "accessibleFrom": ["64"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "143",
+      "accessibleFrom": ["120"],
       "pages": [
         []
       ]
