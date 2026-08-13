@@ -1049,6 +1049,7 @@
     },
     {
       "id": "42",
+      "accessibleFrom": ["132"],
       "pages": [
         [
           {
@@ -1546,6 +1547,7 @@
     },
     {
       "id": "66",
+      "accessibleFrom": ["132"],
       "pages": [
         [
           {
@@ -1714,6 +1716,7 @@
     },
     {
       "id": "75",
+      "accessibleFrom": ["132"],
       "pages": [
         [
           {
@@ -1846,6 +1849,7 @@
     },
     {
       "id": "82",
+      "accessibleFrom": ["132"],
       "pages": [
         [
           {
@@ -2536,14 +2540,65 @@
       "id": "132",
       "accessibleFrom": ["58"],
       "pages": [
-        []
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie bez rozpatrywania efektu, a następnie opuść paragraf. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>III</b> – przejdź do <span class='color-green'>75</span>",
+          "nextParagraphId": "75"
+        },
+        {
+          "text": "<b>VII</b> – przejdź do <span class='color-green'>75</span>",
+          "nextParagraphId": "75"
+        },
+        {
+          "text": "<b>X</b> – przejdź do <span class='color-green'>82</span>",
+          "nextParagraphId": "82"
+        },
+        {
+          "text": "<b>XXVI</b> – przejdź do <span class='color-green'>75</span>",
+          "nextParagraphId": "75"
+        },
+        {
+          "text": "<b>XXIX</b> lub <b>XXXIX</b> – przejdź do <span class='color-green'>75</span>",
+          "nextParagraphId": "75"
+        },
+        {
+          "text": "<b>MMDVX</b> – przejdź do <span class='color-green'>42</span>",
+          "nextParagraphId": "42"
+        },
+        {
+          "text": "<b>IV</b> – tylko jeśli masz <symbol id=\"amunicja-strzelba\"/> przejdź do <span class='color-green'>66</span>",
+          "nextParagraphId": "66"
+        }
       ]
     },
     {
       "id": "133",
       "accessibleFrom": ["121"],
       "pages": [
-        []
+        [
+          {
+            "text": "W kieszeniach znajdujesz plakietkę z imieniem \"<em>Jack</em>\".  Znajdujesz u niego również mosiężny klucz z symbolem kruka. <span class='color-blue'>Dodaj</span> <room id=\"148\"/> oraz <room id=\"84\"/> do swojego ekwipunku."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"121\"/>, zastąp ją leżącą figurką <person id=\"jack\"/> stroną z <symbol id=\"nieprzytomny\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "134",
+      "pages": [
+        [
+          {
+            "text": "Wyłóż planszę 12<letter id=\"a\"/> oraz <room id=\"12\"/> na <span class='color-purple'>W</span> (<span class='color-red'>o ile nie zostały odrzucone, w takim przypadku zignoruj</span>). Na środku wyłóż 2<symbol id=\"przedmiot-losowy\"/>."
+          }
+        ]
       ]
     },
     {
