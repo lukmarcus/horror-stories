@@ -2159,6 +2159,7 @@
     },
     {
       "id": "103",
+      "accessibleFrom": ["135"],
       "pages": [
         [
           {
@@ -2350,6 +2351,7 @@
     },
     {
       "id": "117",
+      "accessibleFrom": ["135"],
       "pages": [
         [
           {
@@ -2605,28 +2607,94 @@
       "id": "135",
       "accessibleFrom": ["94", "121"],
       "pages": [
-        []
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>III</b> -  dobierz 1 <symbol id=\"karta-akcji\"/>bez rozpatrywania efektu i przejdź do <span class='color-green'>103</span>",
+          "nextParagraphId": "103"
+        },
+        {
+          "text": "<b>VII</b> – przejdź do <span class='color-green'>103</span>",
+          "nextParagraphId": "103"
+        },
+        {
+          "text": "<b>X</b> / <b>LIII</b> – oblewasz go, ale nie zauważasz żadnej reakcji. Pewnie, gdyby żył, to momentalnie postawiłoby go do pionu"
+        },
+        {
+          "text": "<b>MMDVX</b> – przejdź do <span class='color-green'>117</span>",
+          "nextParagraphId": "117"
+        }
       ]
     },
     {
       "id": "136",
       "accessibleFrom": ["118"],
       "pages": [
-        []
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 bez rozpatrywania efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>VIII</b> – <span class='color-blue'>połóż</span> <symbol id=\"zycie\"/> przy <room id=\"118\"/>"
+        },
+        {
+          "text": "<b>XXVI</b> - <span class='color-blue'>połóż</span> <symbol id=\"zycie\"/> przy <room id=\"118\"/>"
+        },
+        {
+          "text": "<b>XXXVI</b> lub <b>XXXVII</b> – <span class='color-blue'>odrzuć</span> <room id=\"118\"/> w to miejsce wyłóż <symbol id=\"drzwi-otwarte\"/>. Drzwi momentalnie stają przed Tobą otworem."
+        }
       ]
     },
     {
       "id": "137",
       "accessibleFrom": ["123"],
       "pages": [
-        []
+        [
+          {
+            "text": "Jeśli <b>NIE</b> wskazano <b>I</b> opuść paragraf i zakończ akcję. Jeśli wskazano <b>I</b> czytaj dalej."
+          },
+          {
+            "text": "Diament wydaje się pasować idealnie, a ręce zaciskają się na tyle mocno, że już go nie odzyskasz. Widzisz jak jedna z dwóch lampek nad masywnymi drzwiami zapala się na zielono. <span class='color-blue'>Odrzuć</span> <room id=\"123\"/> i <room id=\"72\"/>, <span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/>. <span class='color-blue'>Połóż</span> <letter id=\"e\"/> w <span class='color-yellow'>AKTYWNE</span>. Jeśli znajduje się tam już <letter id=\"d\"/>, <letter id=\"p\"/> lub <letter id=\"f\"/>, przejdź od razu do przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "139",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Napij się. <span class='color-blue'>Odrzuć</span> <room id=\"139\"/> i <span class='color-blue'>dodaj</span> do ekwipunku <room id=\"222\"/>. Następnie przejdź do <span class='color-green'>221</span>.",
+          "nextParagraphId": "221"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
       ]
     },
     {
       "id": "140",
       "accessibleFrom": ["64"],
       "pages": [
-        []
+        [
+          {
+            "text": "Zbliżasz twarz do wielkiej, szklanej tuby wypełnionej gęstą, ciemną cieczą, aby spróbować przebić się przez nią wzrokiem. Nie wiesz, czy wyobraźnia płata Ci figle, czy faktycznie dostrzegasz ledwie widoczne zarysy jakiejś nienaturalnie wielkiej sylwetki."
+          }
+        ]
       ]
     },
     {
@@ -2712,6 +2780,13 @@
     {
       "id": "220",
       "accessibleFrom": ["102"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "221",
+      "accessibleFrom": ["139"],
       "pages": [
         []
       ]
