@@ -2238,6 +2238,7 @@
     },
     {
       "id": "110",
+      "accessibleFrom": ["141"],
       "pages": [
         [
           {
@@ -2248,7 +2249,7 @@
     },
     {
       "id": "111",
-      "accessibleFrom": ["62"],
+      "accessibleFrom": ["62", "147"],
       "pages": [
         [
           {
@@ -2698,15 +2699,155 @@
       ]
     },
     {
+      "id": "141",
+      "accessibleFrom": ["146"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>IV</b> – (tylko jeśli posiadasz <symbol id=\"amunicja-strzelba\"/>) przejdź do <span class='color-green'>152</span>",
+          "nextParagraphId": "152"
+        },
+        {
+          "text": "<b>XXIX</b> – przejdź do <span class='color-green'>110</span>",
+          "nextParagraphId": "110"
+        },
+        {
+          "text": "<b>XXVI</b> – przejdź do <span class='color-green'>110</span>",
+          "nextParagraphId": "110"
+        },
+        {
+          "text": "<b>LVII</b> - przejdź do <span class='color-green'>151</span>",
+          "nextParagraphId": "151"
+        }
+      ]
+    },
+    {
+      "id": "142",
+      "accessibleFrom": ["147"],
+      "pages": [
+        [
+          {
+            "text": "W kieszeniach znajdujesz plakietkę z imieniem \"<em>Lauren</em>\". <span class='color-blue'>Dodaj</span> do swojego ekwipunku <room id=\"106\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"147\"/> i zastąp go leżącą figurką <person id=\"lauren\"/> stroną z <symbol id=\"nieprzytomny\"/>."
+          }
+        ]
+      ]
+    },
+    {
       "id": "143",
       "accessibleFrom": ["120"],
       "pages": [
-        []
+        [
+          {
+            "text": "Zsumuj <symbol id=\"gwiazda\"/>. Mając co najmniej 5<symbol id=\"gwiazda\"/> przejdź do <span class='color-green'>3</span>. W innym wypadku opuść paragraf."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "146",
+      "pages": [
+        [
+          {
+            "text": "Szyb wentylacyjny zabezpieczony kratką. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym wejść w interakcję z kratką (przejdź do <span class='color-green'>141</span>)",
+          "nextParagraphId": "141"
+        },
+        {
+          "text": "Wyrwij ją. Dobierz do 3<symbol id=\"karta-akcji\"/> i jeśli uzyskasz co najmniej 5<symbol id=\"gwiazda\"/>, odrzuć <room id=\"146\"/> i zastąp ją <symbol id=\"drzwi-wywazone\"/>."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "147",
+      "pages": [
+        [
+          {
+            "text": "Na oko trzydziestoparoletnia kobieta ubrana w laboratoryjny fartuch. Co się tu wydarzyło? Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z tą kobietą (przejdź do <span class='color-green'>111</span>)",
+          "nextParagraphId": "111"
+        },
+        {
+          "text": "Dobierz 1<symbol id=\"karta-akcji\"/> bez rozpatrywania efektu. Przemieść się razem z <room id=\"147\"/> do sąsiedniej planszy przez <symbol id=\"drzwi-otwarte\"/> lub <symbol id=\"drzwi-wywazone\"/>."
+        },
+        {
+          "text": "Upewnij się, czy nie jest już za późno (przejdź do <span class='color-green'>182</span>)",
+          "nextParagraphId": "182"
+        },
+        {
+          "text": "Przeszukaj ją (przejdź do <span class='color-green'>142</span>)",
+          "nextParagraphId": "142"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "148",
+      "pages": [
+        [
+          {
+            "text": "Plastikowa plakietka ze zdjęciem i podpisem: <em>Jack Torrence, kierownik sekcji laboratoryjnej</em>. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
       ]
     },
     {
       "id": "149",
       "accessibleFrom": ["47"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2<symbol id=\"karta-akcji\"/> bez ich aktywacji, a następnie opuść paragraf. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          },
+          {
+            "text": "<b>LVII</b> / <b>XXIX</b> / <b>MMDVX</b> – udaje Cię wygrzebać coś co wygląda na diament <room id=\"72\"/>. Dodaj <room id=\"72\"/> do swojego ekwipunku. <span class='color-blue'>Odrzuć</span> <room id=\"47\"/>."
+          },
+          {
+            "text": "<b>X</b> – płomienie momentalnie wygasają, a twoim oczom ukazuje się diament <room id=\"72\"/>. Znajdował się w specjalnie wytłoczonym dla niego miejscu. Nie wyglądało to jakby ktoś go tam wrzucił przypadkowo, ale raczej… zaprojektował to? <room id=\"139\"/>, która została użyta do oblania, zamień na <story id=\"xxiv\"/>, zaś <room id=\"139\"/> <span class='color-blue'>odrzuć</span>. <span class='color-blue'>Dodaj</span> <room id=\"72\"/> do swojego. <span class='color-blue'>Dobierz 2</span><symbol id=\"pd\"/> i odrzuć <room id=\"47\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "150",
+      "pages": [
+        [
+          {
+            "text": "Klucz w kolorze żółtym. Nie ma płaskiej końcówki, jak to w kluczach jakie do tej pory widziałeś, ale jest kwadratowa."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "151",
+      "accessibleFrom": ["141"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "152",
+      "accessibleFrom": ["141"],
       "pages": [
         []
       ]
@@ -2745,6 +2886,13 @@
     {
       "id": "173",
       "accessibleFrom": ["112"],
+      "pages": [
+        []
+      ]
+    },
+    {
+      "id": "182",
+      "accessibleFrom": ["147"],
       "pages": [
         []
       ]
