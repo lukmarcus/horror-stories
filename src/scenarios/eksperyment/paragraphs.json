@@ -2842,21 +2842,33 @@
       "id": "151",
       "accessibleFrom": ["141"],
       "pages": [
-        []
+        [
+          {
+            "text": "Łom wykonał kawał dobrej roboty. Usuwasz kratkę, która blokowała wejście do szybu. <span class='color-blue'>Odrzuć</span> <room id=\"146\"/> i zastąp <symbol id=\"drzwi-otwarte\"/>."
+          }
+        ]
       ]
     },
     {
       "id": "152",
       "accessibleFrom": ["141"],
       "pages": [
-        []
+        [
+          {
+            "text": "Celny strzał załatwił sprawę. <span class='color-blue'>Odrzuć</span> <room id=\"146\"/> i <symbol id=\"amunicja-strzelba\"/>. Wyłóż <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>E</span>."
+          }
+        ]
       ]
     },
     {
       "id": "153",
       "accessibleFrom": ["46"],
       "pages": [
-        []
+        [
+          {
+            "text": "Kto by pomyślał – ukryte przejście! Musisz chyba częściej korzystać z usług intuicji. <span class='color-blue'>Przełóż</span> <room id=\"46\"/> z <span class='color-purple'>E</span> na środek planszy 6<letter id=\"a\"/>, a w jej miejsce wyłóż <symbol id=\"drzwi-wywazone\"/> na <span class='color-purple'>E</span>."
+          }
+        ]
       ]
     },
     {
@@ -2864,7 +2876,36 @@
       "pages": [
         [
           {
-            "text": ""
+            "style": "bold",
+            "size": "xl",
+            "text": "BOOM!"
+          },
+          {
+            "text": "Huk rozstrzaskującego się szkła, a chwilę potem mrożący krew w żyłach ryk przypominający skowyt rannego zwierzęcia. Podskórnie czujesz, że to początek zbliżających się kłopotów. Szybko, szukaj wyjścia!"
+          },
+          {
+            "text": "Każda figurka kontrolowana przez graczy <span class='color-blue'>dobiera 1</span><symbol id=\"pd\"/>."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <letter id=\"c\"/> z toru czasu. <span class='color-blue'>Wyłóż</span> tam <letter id=\"g\"/> na polu 6 (dla 1-2 graczy) / polu 5 (na 3-4 graczy)"
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"64\"/> z planszy 2<letter id=\"a\"/> (jeśli została odkryta)."
+          }
+        ],
+        [
+          {
+            "text": "Na planszy 2<letter id=\"a\"/> <span class='color-blue'>postaw</span> figurkę <enemy id=\"wilkolak\"/> (jeśli plansza <u>nie</u> została odkryte, postaw ją w na planszy 1<letter id=\"a\"/>, a na <span class='color-purple'>W</span> planszy 1<letter id=\"a\"/> połóż wtedy <symbol id=\"drzwi-wywazone\"/> (odrzucając z łączenia wcześniejszy element)."
+          },
+          {
+            "color": "red",
+            "text": "Od momentu pojawienia się <symbol id=\"przeciwnik\"/> zawsze po turze ostatniej postaci kontrolowanej przez graczy oraz ewentualnym rozpatrzeniu wydarzeń (gdyby swoimi działaniami jakieś uruchomiła), swoją turę rozpoczyna figurka <symbol id=\"przeciwnik\"/>."
+          },
+          {
+            "text": "To <b>COŚ</b> zniszczyło pojemnik w którym się znajdowało. Stworzenie rozgląda się wściekle po pomieszczeniu, aby po chwili dezorientacji zacząć wydawać z siebie nieludzkie odgłosy od których włosy jeżą się na głowie. Przypomina żądną krwi kulkę futra, ale taką z kłami, pazurami i na oko 3 metrami wzrostu. Szczypanie nic nie daje. To jest prawdziwe."
+          },
+          {
+            "text": "Jeśli turę miała ostatnia w rundzie figurka, aktywuje się <symbol id=\"przeciwnik\"/>."
           }
         ]
       ]
