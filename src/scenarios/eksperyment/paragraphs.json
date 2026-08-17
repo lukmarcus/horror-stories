@@ -98,6 +98,7 @@
     },
     {
       "id": "2",
+      "accessibleFrom": ["160"],
       "pages": [
         [
           {
@@ -2914,14 +2915,44 @@
       "id": "157",
       "accessibleFrom": ["40"],
       "pages": [
-        []
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"iii\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>. Połóż na planszetce <symbol id=\"przeciwnik\"/> status <status id=\"niebieski\"/>."
+          }
+        ]
       ]
     },
     {
       "id": "158",
       "accessibleFrom": ["112"],
       "pages": [
-        []
+        [
+          {
+            "text": "<em>Testy na zwierzętach zostały zakończone. Nadszedł czas na testy na ludziach. Celem było sprawdzenie w warunkach praktycznych, czy porwana grupa studentów przeżyje kontakt z obiektem objętym likantropią oraz czy dojdzie do ich przemiany. Niestety, z powodu zaniedbania stażysty bestia nie została nakarmiona. W rezultacie, zamiast pozostawić choć jednego osobnika przy życiu, w ułamku sekund rozszarpała wszystkich na strzępy. Potrzebujemy nowych „ochotników”. Tym razem należy dopilnować, aby stażysta nakarmił obiekt — przynajmniej jeden osobnik musi przeżyć. Obiekt należy wypuścić natychmiast po przebudzeniu, zanim zdąży odzyskać pełnię sił. W przeciwnym razie ponownie nie będzie czego zbierać</em> – podpisano Jack."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "160",
+      "pages": [
+        [
+          {
+            "text": "Zamknięta szafka. Wybierz jedną z opcji spośród:"
+          },
+          {
+            "text": "Spróbuj się do niej dostać. Dobierz do 3<symbol id=\"karta-akcji\"/> - suma 3 i mniej <symbol id=\"gwiazda\"/> oznacza, że masz opuścić paragraf. Wynik 4 lub więcej <symbol id=\"gwiazda\"/>, przejście do <span class='color-green'>2</span>."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przejście do <span class='color-green'>2</span>.",
+          "nextParagraphId": "2"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
       ]
     },
     {
