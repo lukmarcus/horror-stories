@@ -2959,21 +2959,46 @@
       "id": "173",
       "accessibleFrom": ["112"],
       "pages": [
-        []
+        [
+          {
+            "text": "Folder oznaczony jako obiekt „068”. Zżerana ciekawością zaczynasz czytać."
+          },
+          {
+            "text": "<em>Istota humanoidalna, u której skóra uległa trwałemu przekształceniu w metamateriał węglowy, czyniący ją całkowicie niewidoczną dla ludzkiego oka. Mówiąc potocznie — obiekt jest niewidzialny. Przyszedł na świat jako wcześniak. Rodzice byli zmuszeni odebrać poród w domu. Nie jesteśmy w stanie określić, co musieli czuć, słysząc płacz nowo narodzonego dziecka, którego fragmenty widoczne były jedynie we krwi matki. Szybko powiązaliśmy ten przypadek ze zgłoszeniem gwałtu, które kobieta złożyła na policji osiem miesięcy wcześniej. Z raportów wynika, że stanowczo utrzymywała, iż padła ofiarą napaści, choć nie widziała sprawcy. Dochodzenie wszczęto, jednak z uwagi na całkowity brak poszlak zostało ono umorzone. W dniu porodu zapukaliśmy do drzwi, ujawniając prawdę o zaistniałych wydarzeniach. Zapewniliśmy rodziców, że zajmiemy się Martinem najlepiej, jak to możliwe, a także pokryjemy wszelkie koszty związane z ich milczeniem. Bliscy i znajomi zostali poinformowani o poronieniu</em> – podpisano Lauren."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "174",
+      "pages": [
+        [
+          {
+            "text": "Zbiera Ci na wymioty. <span class='color-red'>Tracisz akcję</span>."
+          }
+        ]
       ]
     },
     {
       "id": "182",
       "accessibleFrom": ["147"],
       "pages": [
-        []
+        [
+          {
+            "text": "Brak pulsu i liczne sińce na szyi sugerujące uduszenie wskazują na to, że na wszelką pomoc za późno."
+          }
+        ]
       ]
     },
     {
       "id": "185",
       "accessibleFrom": ["102"],
       "pages": [
-        []
+        [
+          {
+            "text": "<span class='color-blue'>Dobierz </span>1<symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"106\"/> i <room id=\"120\"/>, a następnie <span class='color-blue'>wyłóż</span> na środku <room id=\"71\"/>. "
+          }
+        ]
       ]
     },
     {
