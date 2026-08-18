@@ -3005,35 +3005,83 @@
       "id": "191",
       "accessibleFrom": ["100"],
       "pages": [
-        []
+        [
+          {
+            "text": "W tym momencie, każda z kontrolowanych graczy postaci, jeśli nie posiada choć 1<symbol id=\"zycie\"/>, <span class='color-blue'>dobiera</span> żeton ciężkiej rany (ignoruje jeśli już posiada)."
+          },
+          {
+            "text": "<symbol id=\"rana-ciezka\"/>"
+          },
+          {
+            "text": "Postać staje się poważnie ranna. Od tej pory wykonując akcję „RUCH” z akcji ogólnych, musi odjąć od finalnego wyniku 2<symbol id=\"gwiazda\"/>. Gdy tylko postać uzyska choć 1<symbol id=\"zycie\"/>, <span class='color-blue'>odrzuca</span> żeton ciężkiej rany. "
+          },
+          {
+            "text": "Jeśli posiadają go wszystkie postacie kontrolowane przez graczy, <span class='color-red'>scenariusz zostaje przegrany</span>. Ten eksperyment skończył się tak jak w pierwotnych założeniach, czyli tragicznie. Kto umarł, ten nie żyje."
+          }
+        ]
       ]
     },
     {
       "id": "192",
       "accessibleFrom": ["100"],
       "pages": [
-        []
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> figurkę tego co was goniło. "
+          },
+          {
+            "text": "Na twarzach ocalałych maluje się wyraźna ulga, podszyta jednak dumą z tego, że udało się powalić to coś. Nikt nie ma jednak pewności, czy fakt, że mimo odniesionych ran wciąż oddycha, nie oznacza, że jeszcze się podniesie. Wszyscy są zgodni co do jednego — nigdy więcej nie chcieliby mierzyć się z czymś podobnym."
+          },
+          {
+            "text": "Jeśli brak <letter id=\"g\"/> na torze czasu, <span class='color-blue'>połóż</span> <letter id=\"g\"/> na pole 1 toru czasu."
+          }
+        ]
       ]
     },
     {
       "id": "193",
       "accessibleFrom": ["40"],
       "pages": [
-        []
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"iii\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>. Połóż obok planszetki <symbol id=\"przeciwnik\"/> status <status id=\"czerwony\"/>."
+          }
+        ]
       ]
     },
     {
       "id": "220",
       "accessibleFrom": ["102"],
       "pages": [
-        []
+        [
+          {
+            "text": "Najwyraźniej trzeba być geniuszem - bo kto inny wpadłby na pomysł, żeby podłączyć płytę do komputera. Ku zaskoczeniu okazuje się jednak, że to działa. Płyta zostaje zaakceptowana, a na ekranie pojawia się komunikat o przyznanym dostępie."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"85\"/> i <room id=\"120\"/>, a następnie <span class='color-blue'>wyłóż</span> na środku <room id=\"71\"/>. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
       ]
     },
     {
       "id": "221",
       "accessibleFrom": ["139"],
       "pages": [
-        []
+        [
+          {
+            "text": "No ja bym tego nie robił ze względu na pochodzenie tej wody. <span class='color-blue'>Dodaj</span> do stosu odrzuconego jedną GGGGGGGGGGGGGGGGGGGGG."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "222",
+      "pages": [
+        [
+          {
+            "text": "Pusta butelka. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
       ]
     }
   ]
