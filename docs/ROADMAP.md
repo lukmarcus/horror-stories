@@ -43,6 +43,32 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
+## Milestone v0.3.3 - Uzupełnienie grafik i karty
+
+### Zakres
+
+**Grafiki dla "Eksperyment":**
+
+- ⏳ Utworzenie brakujących grafik story items (6: vii, xvii, xxvi, lvii, xxix, xv, xviii)
+- ⏳ Utworzenie brakujących grafik room items (5: 92, 101, 114, 146, 148)
+- ⏳ Utworzenie brakujących statusów (2: niebieski, czerwony)
+- ⏳ Dodanie brakujących story items do items.json
+
+**Nowy typ zasobu - Karty:**
+
+- ⏳ Dodanie wsparcia dla grafik kart (cards) w grze
+- ⏳ Dodanie wsparcia dla kart w edytorze
+- ⏳ System wyświetlania kart w interfejsie gry
+- ⏳ Zastąpienie placeholderów tekstowych w Eksperymencie (11 wystąpień)
+
+**📋 Szczegóły:** [EKSPERYMENT_MISSING_ASSETS.md](EKSPERYMENT_MISSING_ASSETS.md)
+
+### Status
+
+- ⏳ Planowane (po ukończeniu v0.3.2)
+
+---
+
 ## Milestone v0.4.0 - Kolejny dzień w pracy (Scenariusz 3)
 
 ### Zakres

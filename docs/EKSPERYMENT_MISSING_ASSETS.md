@@ -1,16 +1,17 @@
 # Eksperyment - Brakujące grafiki i placeholdery
 
-Data wygenerowania: 2026-08-10
+Data wygenerowania: 2026-08-20 (aktualizacja: pełne skanowanie po imporcie wszystkich 148 paragrafów)
 
 ## Podsumowanie
 
 Po weryfikacji z uwzględnieniem refaktoru nazw plików (priorytet: paragraphId → rzymskie → name):
 
 - **Story items:** 6 faktycznie brakujących (nie ma w items.json), 10 przemianowanych (już istnieją)
-- **Room items:** 3 faktycznie brakujące (92, 114, 146), 1 istnieje (52)
-- **Placeholdery tekstowe:** 9 do zastąpienia
+- **Room items:** 5 faktycznie brakujących (92, 101, 114, 146, 148), reszta istnieje
+- **Statusy:** 2 brakujące (niebieski, czerwony)
+- **Placeholdery tekstowe:** 11 do zastąpienia
 
-**Łącznie do utworzenia: 9 plików graficznych + 9 tekstów**
+**Łącznie do utworzenia: 13 plików graficznych (11 items + 2 statusy) + 11 tekstów**
 
 ## Brakujące grafiki przedmiotów (story items)
 
@@ -49,14 +50,32 @@ Te przedmioty są używane w scenariuszu, ale w ogóle nie istnieją w `items.js
 
 ## Brakujące grafiki pomieszczeń/przedmiotów (room items)
 
-| ID    | Status      | Paragrafy  |
-| ----- | ----------- | ---------- |
-| `52`  | ✅ Istnieje | §23, §95   |
-| `92`  | ❌ Brakuje  | §103       |
-| `114` | ❌ Brakuje  | §103       |
-| `146` | ❌ Brakuje  | §104, §110 |
+### ❌ Brakujące pliki
 
-**Faktycznie brakuje: 3 pliki graficzne**
+| ID    | Paragrafy                          |
+| ----- | ---------------------------------- |
+| `92`  | §103                               |
+| `101` | §125 (nowy, wykryty po §110)       |
+| `114` | §103                               |
+| `146` | §104, §110                         |
+| `148` | §139, §175 (nowy, wykryty po §110) |
+
+**Faktycznie brakuje: 5 plików graficznych**
+
+### ✅ Istniejące pliki (przykłady nowych wykrytych po §110)
+
+52, 12, 46, 47, 50, 53, 61, 64, 69, 71, 72, 84, 85, 106, 112, 118, 119, 120, 121, 123, 139, 147, 222
+
+## Brakujące statusy (status items)
+
+| ID          | Paragrafy |
+| ----------- | --------- |
+| `niebieski` | §157      |
+| `czerwony`  | §193      |
+
+**Faktycznie brakuje: 2 pliki graficzne statusów**
+
+**Istniejące:** zielony
 
 ## Placeholdery tekstowe do zastąpienia
 
@@ -111,8 +130,23 @@ Te przedmioty są używane w scenariuszu, ale w ogóle nie istnieją w `items.js
 - **Kontekst:** "Dodaj również do swojego stosu odrzuconego FFFFFFFFFFFFFFFFFF (robi Ci się niedobrze)"
 - **Prawdopodobnie:** Nazwa karty akcji
 
+### §128
+
+- **Placeholder:** `FFFFFFFFFFFFFFFFF`
+- **Kontekst:** "Dodaj FFFFFFFFFFFFFFFFF do swojego stosu odrzuconego" (po dobraniu przedmiotu 61 lub 101)
+- **Prawdopodobnie:** Nazwa karty akcji (inny placeholder F!)
+
+### §221
+
+- **Placeholder:** `GGGGGGGGGGGGGGGGGGGGG`
+- **Kontekst:** "Dodaj do stosu odrzuconego jedną GGGGGGGGGGGGGGGGGGGGG"
+- **Prawdopodobnie:** Nazwa karty akcji
+
 ## Akcje do wykonania
 
 1. **Dodać do items.json:** 6 story items (vii, xvii, xxvi, lvii, xxix, xv, xviii)
-2. **Stworzyć grafiki:** 9 plików (6 story items + 3 room items: 92, 114, 146)
-3. **Zastąpić placeholdery:** 9 wystąpień w 8 paragrafach (nazwy kart akcji z dokumentacji gry)
+2. **Stworzyć grafiki:** 13 plików
+   - Story items: 6 (vii, xvii, xxvi, lvii, xxix, xv, xviii)
+   - Room items: 5 (92, 101, 114, 146, 148)
+   - Statusy: 2 (niebieski, czerwony)
+3. **Zastąpić placeholdery:** 11 wystąpień w 10 paragrafach (nazwy kart akcji z dokumentacji gry)
