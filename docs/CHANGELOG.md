@@ -7,25 +7,23 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.3.2] - W trakcie
+## [0.3.2] - 2026-08-20
 
 ### Dodano
 
-- Scenariusz: szkielet „Eksperyment" — można importować w edytorze jako szablon do wypełnienia
-- Scenariusz: treść „Eksperyment" — kompletny import 148 paragrafów (§1-§222)
+- Scenariusz "Eksperyment" — nowy pełny scenariusz dostępny do gry (148 paragrafów, §1-§222)
+- Edytor: możliwość importu scenariusza "Eksperyment" jako szablon do tworzenia własnych wariantów
 
 ### Zmieniono
 
-- **Refaktor danych przedmiotów** — zunifikowana struktura JSON dla storyItems, roomItems, randomItems. Centralny plik `items.json` zawiera wszystkie dane przedmiotów, a pliki kategorii (`storyItems.json`, `roomItems.json`, `randomItems.json`) to tylko tablice ID. Ułatwia to pracę w edytorze i eliminuje duplikację danych.
-- **Migracja grafik przedmiotów** — wszystkie grafiki przedmiotów przeniesione do wspólnego folderu `items/` z nazwami według priorytetu: numer paragrafu (jeśli istnieje) > numer rzymski > nazwa. Eliminuje duplikację plików i upraszcza zarządzanie grafikami.
-- **Edytor: ulepszenie menu kolorów tekstu** — usunięto zbędne menu `</>` ze wszystkich toolbarów edycji tekstu, menu kolorów zmienione na układ pionowy z kolorowymi wskaźnikami po lewej i opisami funkcji po prawej (§ Paragraf, ❗ Ważne, 🎁 Nagroda, 🧭 Kierunki, ⏰ Tor czasu). Ikonka menu zmieniona na 🎨 we wszystkich miejscach. Łatwiejsze i szybsze formatowanie tekstu.
+- Edytor: uproszczone zarządzanie przedmiotami — przedmioty są teraz łatwiejsze do edycji i organizacji dzięki zunifikowanej strukturze danych
+- Edytor: ulepszenie menu kolorów tekstu — usunięto zbędne menu `</>`, menu kolorów ma teraz czytelny układ pionowy z kolorowymi wskaźnikami i opisami funkcji (§ Paragraf, ❗ Ważne, 🎁 Nagroda, 🧭 Kierunki, ⏰ Tor czasu), ikonka zmieniona na 🎨
 
 ### Naprawiono
 
-- Edytor: automatyczne tworzenie paragrafu przy dodawaniu postaci — gdy dodajesz postać, odpowiadający jej paragraf jest teraz automatycznie tworzony
-- Edytor: automatyczne tworzenie paragrafu w wyborach wariantów — gdy dodajesz lub edytujesz wybór w wariancie prowadzący do nieistniejącego paragrafu, paragraf jest teraz automatycznie tworzony (analogicznie jak w głównym paragrafie)
-- Edytor: automatyczne zamykanie listy rozwijanej po wyborze symbolu/grafiki — menu z wyborem zamyka się automatycznie po kliknięciu przycisku
-- Edytor: format eksportu setup.json — edytor teraz poprawnie eksportuje bloki treści bez pola `type` i z właściwą kolejnością właściwości (zgodnie z formatem w src/scenarios/\*/setup.json)
+- Edytor: automatyczne tworzenie paragrafów — dodając postać lub wybór prowadzący do nieistniejącego paragrafu, paragraf jest teraz automatycznie tworzony
+- Edytor: zamykanie menu po wyborze — menu z wyborem grafik/symboli zamyka się automatycznie po kliknięciu
+- Edytor: poprawiony eksport — eksportowane pliki scenariuszy mają teraz poprawny format
 
 ---
 

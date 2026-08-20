@@ -22,27 +22,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.3.2 - Eksperyment (Scenariusz 2)
-
-### Zakres
-
-**Scenariusz "Eksperyment":**
-
-- ✅ Szkielet scenariusza z możliwością importu w edytorze
-- ⏳ Import pełnych paragraphs.json (w trakcie wypełniania)
-- ⏳ Import setup.json
-- ⏳ Import obrazków scenariusza
-- ⏳ Testowanie mechanik i gameplay
-- ⏳ Bugfixy
-
-**📋 Pełny przewodnik:** [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
-
-### Status
-
-- 🔄 **W trakcie** - 2026-07-16 (szkielet gotowy, wypełnianie treści)
-
----
-
 ## Milestone v0.3.3 - Uzupełnienie grafik i karty
 
 ### Zakres
@@ -65,7 +44,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- ⏳ Planowane (po ukończeniu v0.3.2)
+- ⏳ Planowane
 
 ---
 
