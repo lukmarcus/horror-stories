@@ -12,17 +12,22 @@ import personsData from "../../data/items/persons.json";
 
 // Import raw JSON data directly to avoid runtime transformations
 import drogaParagraphs from "../../scenarios/droga-donikad/paragraphs.json";
+import eksperymentParagraphs from "../../scenarios/eksperyment/paragraphs.json";
 
 // Map of raw paragraph data by scenario ID
 const RAW_PARAGRAPHS: Record<string, { paragraphs: Paragraph[] }> = {
   "droga-donikad": drogaParagraphs as { paragraphs: Paragraph[] },
+  eksperyment: eksperymentParagraphs as { paragraphs: Paragraph[] },
 };
 
 /**
  * List of available built-in scenarios for import into the editor.
  * Only scenarios with complete data (paragraphs + setup) are available.
  */
-export const AVAILABLE_BUILTIN_SCENARIOS = ["droga-donikad"] as const;
+export const AVAILABLE_BUILTIN_SCENARIOS = [
+  "droga-donikad",
+  "eksperyment",
+] as const;
 
 /**
  * Copy a built-in scenario into the editor as a new editable scenario.

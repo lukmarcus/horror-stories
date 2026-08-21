@@ -30,6 +30,12 @@ export const PersonsEditor: React.FC = () => {
     [usedPersons],
   );
 
+  // List of all paragraph IDs in the scenario
+  const paragraphIds = useMemo(
+    () => (editorCtx?.state.scenario?.paragraphs ?? []).map((p) => p.id),
+    [editorCtx?.state.scenario?.paragraphs],
+  );
+
   // Auto-fix persons with missing paragraphId (from old saves)
   useEffect(() => {
     if (!editorCtx?.state.scenario?.persons) return;
@@ -64,6 +70,9 @@ export const PersonsEditor: React.FC = () => {
   };
 
   const handleAddPerson = (personId: string, paragraphId: string) => {
+    if (!paragraphIds.includes(paragraphId)) {
+      dispatch({ type: "ADD_PARAGRAPH_SILENT", payload: paragraphId });
+    }
     dispatch({
       type: "ADD_PERSON",
       payload: { id: personId, paragraphId },

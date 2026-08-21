@@ -22,6 +22,21 @@ import {
 export const COLORS = ["yellow", "red", "purple", "green", "blue"] as const;
 export type ColorName = (typeof COLORS)[number];
 
+export const COLOR_ICONS: Record<ColorName, string> = {
+  green: "§",
+  red: "❗",
+  blue: "🎁",
+  purple: "🧭",
+  yellow: "⏰",
+};
+
+export const COLOR_LABELS: Record<ColorName, string> = {
+  green: "Paragraf",
+  red: "Ważne",
+  blue: "Nagroda",
+  purple: "Kierunki (N/E/W/S)",
+  yellow: "Tor czasu",
+};
 // ── Image picker item type ─────────────────────────────
 
 export interface ImagePickerItem {

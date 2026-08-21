@@ -96,12 +96,24 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
                   variantIds={isHorizontal ? variantIds : undefined}
                   focusedId={focusedId}
                   setFocusedId={setFocusedId}
-                  onUpdate={(c) =>
+                  onUpdate={(c) => {
                     dispatch({
                       type: "UPDATE_VARIANT_CHOICE",
                       payload: { paragraphId, variantId, choice: c },
-                    })
-                  }
+                    });
+                    // Auto-create paragraph if it doesn't exist (only for paragraph targets)
+                    const target = (c.nextParagraphId ?? "").trim();
+                    if (
+                      target &&
+                      !paragraphIds.includes(target) &&
+                      target !== paragraphId
+                    ) {
+                      dispatch({
+                        type: "ADD_PARAGRAPH_SILENT",
+                        payload: target,
+                      });
+                    }
+                  }}
                   onRemove={(id) =>
                     dispatch({
                       type: "REMOVE_VARIANT_CHOICE",
@@ -131,6 +143,18 @@ export const VariantEditor: React.FC<VariantEditorProps> = ({
                     type: "ADD_VARIANT_CHOICE",
                     payload: { paragraphId, variantId, choice },
                   });
+                  // Auto-create paragraph if it doesn't exist (only for paragraph targets, not variants)
+                  if (
+                    !newChoiceIsVariant &&
+                    target &&
+                    !paragraphIds.includes(target) &&
+                    target !== paragraphId
+                  ) {
+                    dispatch({
+                      type: "ADD_PARAGRAPH_SILENT",
+                      payload: target,
+                    });
+                  }
                 }}
               />
             </div>

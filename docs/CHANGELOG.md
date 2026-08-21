@@ -7,6 +7,26 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.3.2] - 2026-08-20
+
+### Dodano
+
+- Scenariusz "Eksperyment" — nowy pełny scenariusz dostępny do gry (148 paragrafów, §1-§222)
+- Edytor: możliwość importu scenariusza "Eksperyment" jako szablon do tworzenia własnych wariantów
+
+### Zmieniono
+
+- Edytor: uproszczone zarządzanie przedmiotami — przedmioty są teraz łatwiejsze do edycji i organizacji dzięki zunifikowanej strukturze danych
+- Edytor: ulepszenie menu kolorów tekstu — usunięto zbędne menu `</>`, menu kolorów ma teraz czytelny układ pionowy z kolorowymi wskaźnikami i opisami funkcji (§ Paragraf, ❗ Ważne, 🎁 Nagroda, 🧭 Kierunki, ⏰ Tor czasu), ikonka zmieniona na 🎨
+
+### Naprawiono
+
+- Edytor: automatyczne tworzenie paragrafów — dodając postać lub wybór prowadzący do nieistniejącego paragrafu, paragraf jest teraz automatycznie tworzony
+- Edytor: zamykanie menu po wyborze — menu z wyborem grafik/symboli zamyka się automatycznie po kliknięciu
+- Edytor: poprawiony eksport — eksportowane pliki scenariuszy mają teraz poprawny format
+
+---
+
 ## [0.3.1] - 2026-07-15
 
 ### Dodano
@@ -16,7 +36,6 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Gra: automatyczne filtrowanie wariantów przeciwników — warianty są filtrowane na podstawie zakresu graczy w scenariuszu
 - Gra: selektor wariantów przeciwnika — gdy dostępnych jest więcej wariantów, można wybrać odpowiedni dla swojej liczby graczy
 - Dane: grafika przeciwnika — Wilkołak z przypisanym paragrafem
-- Dane: grafika Klauna — ulepszona jakość istniejącego obrazu
 - Dane: grafiki postaci — Steven, Lauren, Jack z przypisanymi paragrafami
 - Dane: nowe symbole — krwawienie, spowolnienie, nieprzytomny
 - Dane: 12 nowych przedmiotów fabularnych (storyItems)

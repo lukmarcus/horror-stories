@@ -1,10 +1,9 @@
 import React, { useRef } from "react";
 import * as textInsert from "../../utils/textInsert";
-import { ColorPicker, ImagePicker, SnippetPicker } from "./EditorInlineTools";
+import { ColorPicker, ImagePicker } from "./EditorInlineTools";
 import type { ImagePickerItem } from "./EditorInlineTools";
 import { useEditor } from "../../context/useEditor";
 import {
-  SPAN_SNIPPETS,
   SYMBOL_PICKER_ITEMS,
   ROOM_PICKER_ITEMS,
   PERSON_PICKER_ITEMS,
@@ -41,15 +40,6 @@ export const ChoiceTextInput: React.FC<ChoiceTextInputProps> = ({
 
   const wrap = (before: string, after: string) =>
     textInsert.wrapSelection(ref.current, value, onChange, before, after);
-
-  const insertSnippet = (snippet: string, cursorFromEnd?: number) =>
-    textInsert.insertSnippet(
-      ref.current,
-      value,
-      onChange,
-      snippet,
-      cursorFromEnd,
-    );
 
   return (
     <div className="choice-text-input">
@@ -90,13 +80,7 @@ export const ChoiceTextInput: React.FC<ChoiceTextInputProps> = ({
         <div className="pages-editor__toolbar-group">
           <ColorPicker
             onSelect={(c) => wrap(`<span class='color-${c}'>`, "</span>")}
-            title="Kolor zaznaczenia"
-          />
-          <SnippetPicker
-            items={SPAN_SNIPPETS}
-            toggleLabel={"</>"}
-            title="Wstaw kolorowy span"
-            onSelect={insertSnippet}
+            title="Kolor zaznaczenia - wybierz funkcję tekstu"
           />
         </div>
         <div className="pages-editor__toolbar-sep" />

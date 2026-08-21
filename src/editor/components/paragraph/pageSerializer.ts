@@ -75,8 +75,7 @@ export function getCurrentLineRange(
 export function pageToText(page: ContentBlock[]): string {
   return page
     .map((b) => {
-      if (b.type === "image")
-        return `[img: ${b.image ?? ""}${b.size ? ` ${b.size}` : ""}]`;
+      if (b.image) return `[img: ${b.image}${b.size ? ` ${b.size}` : ""}]`;
       let prefix = "";
       if (b.spacing === "none") prefix += "[sp:none]";
       const styles = Array.isArray(b.style)
@@ -99,7 +98,7 @@ export function textToPage(text: string): ContentBlock[] {
   return text.split("\n").map((line) => {
     const imgM = line.match(/^\[img:\s*(.*?)(?:\s+(xs|sm|lg|xl))?\]$/);
     if (imgM) {
-      const block: ContentBlock = { type: "image", image: imgM[1].trim() };
+      const block: ContentBlock = { image: imgM[1].trim() };
       if (imgM[2]) block.size = imgM[2] as ContentBlock["size"];
       return block;
     }
@@ -110,16 +109,22 @@ export function textToPage(text: string): ContentBlock[] {
       spacing,
       content,
     } = parseBlockPrefixes(line);
-    const block: ContentBlock = { type: "text", text: content };
+    
+    // Build block with properties in correct order: spacing, style, color, size, text
+    const block: ContentBlock = {};
+    if (spacing) block.spacing = spacing;
+    
     const styleArr: ("bold" | "italic" | "underline")[] = [];
     if (style.has("b")) styleArr.push("bold");
     if (style.has("i")) styleArr.push("italic");
     if (style.has("u")) styleArr.push("underline");
     if (styleArr.length === 1) block.style = styleArr[0];
     else if (styleArr.length > 1) block.style = styleArr;
+    
     if (color) block.color = color;
     if (size) block.size = size;
-    if (spacing) block.spacing = spacing;
+    block.text = content;
+    
     return block;
   });
 }

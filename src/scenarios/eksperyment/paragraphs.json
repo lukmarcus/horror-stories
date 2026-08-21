@@ -1,0 +1,3088 @@
+{
+  "paragraphs": [
+    {
+      "id": "1",
+      "pages": [
+        [
+          {
+            "text": "Sprawdzasz jako:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"jessica\"/><person id=\"josh\"/><person id=\"margaret\"/><person id=\"patrick\"/>",
+          "nextVariantId": "nie-jeff"
+        },
+        {
+          "text": "<person id=\"jeff\"/>",
+          "nextVariantId": "jeff"
+        }
+      ],
+      "variants": {
+        "jeff": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "nie-jeff": {
+          "pages": [
+            [
+              {
+                "text": "Czy Jeff <person id=\"jeff\"/> leży?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "jeff-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "jeff-stoi"
+            }
+          ]
+        },
+        "jeff-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jeffem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "jeff-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jeffem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "2",
+      "accessibleFrom": ["160"],
+      "pages": [
+        [
+          {
+            "text": "Znajdujesz nóż. <span class='color-blue'>Dodaj</span> <story id=\"iii\"/> do swojego ekwipunku. <span class='color-blue'>Odrzuć</span> <room id=\"160\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "3",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"120\"/>, a następnie <span class='color-blue'>wyłóż</span> <room id=\"71\"/> na planszy <span class='color-purple'>8</span><letter id=\"a\"/>. Na ekranie pojawia się komunikat: \"<em>Dostęp przyznany</em>\". Dobierz 1<symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "4",
+      "accessibleFrom": ["21"],
+      "pages": [
+        [
+          {
+            "text": "Zjadasz ją, ale kiedy ledwie chwilę później zaczyna boleć Cię żołądek zdajesz sobie sprawę, że może nie był to dobry pomysł. "
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"xlix\"/> i dobierz 2<symbol id=\"zycie\"/>. <span class='color-blue'>Wtasuj</span> XXXXXXXXXXXXXXXXXXXXXXXXXX do swojej talii."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "5",
+      "accessibleFrom": ["69"],
+      "pages": [
+        [
+          {
+            "text": "Liczysz na jakiś efekt. Może nawet uda Ci się coś otworzyć. Kto wie dokąd może Cię to doprowadzić. Milisekundę później okazuje się, że donikąd, gdy ucina Ci rękę. Twój rozpaczliwy krzyk nic tu nie pomoże. Na przyszłość nie będziesz wsadzał drugiej ręki do podejrzanie wyglądających dziur."
+          },
+          {
+            "text": "<span class='color-blue'>Połóż</span> <story id=\"li\"/> na środku planszy na której stoisz."
+          },
+          {
+            "text": "Czy <letter id=\"y\"/> jest na <span class='color-yellow'>AKTYWNE</span> toru czasu?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "y-tak"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "y-nie"
+        }
+      ],
+      "variants": {
+        "y-tak": {
+          "pages": [
+            [
+              {
+                "text": "Nic się nie dzieje."
+              }
+            ]
+          ]
+        },
+        "y-nie": {
+          "pages": [
+            [
+              {
+                "text": "Dodaj dwie YYYYYYYYYYYYYYYYYYYYYY do swojego stosu odrzuconego i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>. Następnie wyłóż <letter id=\"y\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "7",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 8<letter id=\"a\"/>, <room id=\"118\"/> na jego <span class='color-purple'>E</span>. "
+          },
+          {
+            "text": "Następnie na jego środku <span class='color-blue'>wyłóż</span> <room id=\"120\"/>, <room id=\"58\"/>, <room id=\"112\"/>, <story id=\"liv\"/> oraz <story id=\"lv\"/>. "
+          },
+          {
+            "text": "Co to za miejsce? Pełne monitorów z mnóstwem informacji na ekranie, których nie rozumiesz. Liczne obrazy z kamer, które najwyraźniej mają widok na wszystko w tym obiekcie - także na pokój w którym się wybudziliście. Wzrok skupiasz na komputerze <room id=\"120\"/>, wycinkach z gazet zawieszonych na ścianie <story id=\"liv\"/> i notatkach rozłożonych na biurku <story id=\"lv\"/>. Kiedy podnosisz głowę zauważasz w rogu coś wyglądającego na wzór bezpiecznika <room id=\"58\"/>. Jednak to wszystko blednie w obliczu wielkich, stalowych, prowadzących na wschód drzwiach <room id=\"118\"/>. "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "8",
+      "accessibleFrom": ["24"],
+      "pages": [
+        [
+          {
+            "text": "Wysuwają się ostrza, które momentalnie ucinają nogę czyniąc ją niezdatną do użytku. Odrzuć ją ze ekwipunku."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "9",
+      "pages": [
+        [
+          {
+            "text": "Sprawdzasz jako:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"jessica\"/><person id=\"josh\"/><person id=\"margaret\"/><person id=\"jeff\"/>",
+          "nextVariantId": "nie-patrick"
+        },
+        {
+          "text": "<person id=\"patrick\"/>",
+          "nextVariantId": "patrick"
+        }
+      ],
+      "variants": {
+        "patrick": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "nie-patrick": {
+          "pages": [
+            [
+              {
+                "text": "Czy Patrick <person id=\"patrick\"/> leży?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "patrick-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "patrick-stoi"
+            }
+          ]
+        },
+        "patrick-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "patrick-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "10",
+      "pages": [
+        [
+          {
+            "text": "Odrzuć <letter id=\"a\"/>. Każda postać dodaje do swojego stosu odrzuconego jedną ZZZZZZZZZZZZZZZZZZZZZZ. "
+          },
+          {
+            "style": "italic",
+            "text": "Dopada was ból głowy. Skutki wczorajszej nocy nie pozostawiają złudzeń, że bawiliście się wczoraj jakby nie miało być jutra."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "11",
+      "accessibleFrom": ["98"],
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> swoją figurkę z planszy."
+          },
+          {
+            "text": "Czy jesteś ostatnią figurką na planszy kontrolowaną przez graczy bez <symbol id=\"rana-ciezka\"/>"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak",
+          "nextVariantId": "ostatni"
+        },
+        {
+          "text": "Nie",
+          "nextVariantId": "nie-ostatni"
+        }
+      ],
+      "variants": {
+        "ostatni": {
+          "pages": [
+            [
+              {
+                "text": "Każda pozostała figurka graczy na planszy z <symbol id=\"rana-ciezka\"/> umiera z powodu obrażeń i scenariusz się kończy."
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "W tym wypadku przejdź do <span class='color-green'>31</span>.",
+              "nextParagraphId": "31"
+            }
+          ]
+        },
+        "nie-ostatni": {
+          "pages": [
+            [
+              {
+                "text": "Pozostałe figurki graczy wykonują swoje tury."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "12",
+      "pages": [
+        [
+          {
+            "text": "Solidne drzwi z wygrawerowanym symbolem kruka. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot w swoim ekwipunku z którym chcesz wejść w interakcję i przejdź do <span class='color-green'>20</span>.",
+          "nextParagraphId": "20"
+        },
+        {
+          "text": "Pokaż im swoją wyższość i zwyczajnie je wyważ! Dobierz do 4<symbol id=\"karta-akcji\"/> i przejdź do <span class='color-green'>113</span>.",
+          "nextParagraphId": "113"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "pages": [
+        [
+          {
+            "text": "Z środka wypadają rozmaite rzeczy. <span class='color-blue'>Wyłóż</span> 3<symbol id=\"przedmiot-losowy\"/> na planszy <span class='color-purple'>2</span><letter id=\"a\"/> i odrzuć <room id=\"13\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "14",
+      "pages": [
+        [
+          {
+            "text": "Obrazek z czarnym kociakiem trzymającym się gałęzi. Sprawia wrażenie jakby miał zaraz spaść. Poniżej znajduje się napis \"<em>Trzymaj się</em>\". Postanawiasz wziąć to sobie do serca i za wszelką cenę walczyć dalej!"
+          },
+          {
+            "text": "Możesz wtasować do 3<symbol id=\"karta-akcji\"/> dowolnych kart ze swojego stosu odrzuconego do talii. Jeśli to zrobisz, <span class='color-blue'>odrzuć</span> <room id=\"14\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "15",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 3<letter id=\"a\"/>, <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>S</span> i <span class='color-purple'>E</span>. "
+          },
+          {
+            "text": "Następnie na jego środku <span class='color-blue'>wyłóż</span> <room id=\"38\"/>, <story id=\"xlv\"/>, zaś <room id=\"47\"/> na <span class='color-purple'>N</span>. "
+          },
+          {
+            "text": "Trafiasz do miejsca, które przypomina salon gościnny w starym stylu. Na ścianach ktoś zadał sobie trud powieszenia pięknych obrazów z czego jeden z nich <room id=\"38\"/> wygląda na lekko odchylony. W kącie wesoło trzaska sobie kominek <room id=\"47\"/> i czujesz, że czas tu spędzony byłby miły, gdyby nie fakt, że nie masz pojęcia gdzie się teraz znajdujesz. Ktoś zostawił odręczną notkę <story id=\"xlv\"/>. Może ona da wam odpowiedź na to gdzie się znaleźliście?"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "16",
+      "pages": [
+        [
+          {
+            "text": "Sprawdzasz jako:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"jessica\"/><person id=\"margaret\"/><person id=\"patrick\"/><person id=\"jeff\"/>",
+          "nextVariantId": "nie-josh"
+        },
+        {
+          "text": "<person id=\"josh\"/>",
+          "nextVariantId": "josh"
+        }
+      ],
+      "variants": {
+        "josh": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "nie-josh": {
+          "pages": [
+            [
+              {
+                "text": "Czy Josh <person id=\"josh\"/> leży?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "josh-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "josh-stoi"
+            }
+          ]
+        },
+        "josh-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Joshem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "josh-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Joshem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "17",
+      "accessibleFrom": ["40"],
+      "pages": [
+        [
+          {
+            "text": "Masz wrażenie, że przez chwilę nawet Ci się przysłuchuje, ale to wrażenie mija z chwilą, gdy zadaje Ci piekielnie bolesny cios, który wywraca Cię na podłogę. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć 2</span><symbol id=\"zycie\"/>. "
+          },
+          {
+            "text": "Wyłóż <letter id=\"y\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "19",
+      "accessibleFrom": ["58"],
+      "pages": [
+        [
+          {
+            "text": "Niszczysz bezpiecznik, który razi Cię prądem. Przynajmniej wielkie pancerne drzwi obok ulegają otwarciu.  "
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć 1</span><symbol id=\"zycie\"/>, dodaj do swojego stosu odrzuconego trzy karty AAAAAAAAAAAAAAAAA oraz <span class='color-blue'>odrzuć</span> <room id=\"58\"/>. Następnie: <span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "20",
+      "accessibleFrom": ["12"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć dwie wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<story id=\"vii\"/>",
+          "nextVariantId": "vii"
+        },
+        {
+          "text": "<story id=\"xvii\"/>",
+          "nextVariantId": "xvii"
+        },
+        {
+          "text": "<story id=\"xxvi\"/>",
+          "nextVariantId": "xxvi"
+        },
+        {
+          "text": "<story id=\"lvii\"/>",
+          "nextVariantId": "lvii"
+        },
+        {
+          "text": "<story id=\"xxix\"/>",
+          "nextVariantId": "xxix"
+        }
+      ],
+      "variants": {
+        "vii": {
+          "pages": [
+            [
+              {
+                "text": "Nieco je uszkadzasz. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+              }
+            ]
+          ]
+        },
+        "xvii": {
+          "pages": [
+            [
+              {
+                "text": "<room id=\"12\"/> zastąp <symbol id=\"drzwi-otwarte\"/>. Odrzuć <story id=\"xvii\"/>."
+              }
+            ]
+          ]
+        },
+        "xxvi": {
+          "pages": [
+            [
+              {
+                "text": "Nieco je uszkadzasz. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+              }
+            ]
+          ]
+        },
+        "lvii": {
+          "pages": [
+            [
+              {
+                "text": "Nieco je uszkadzasz łomem. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+              }
+            ]
+          ]
+        },
+        "xxix": {
+          "pages": [
+            [
+              {
+                "text": "Nieco je uszkadzasz śrubokrętem. <span class='color-blue'>Połóż 1</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "21",
+      "pages": [
+        [
+          {
+            "text": "Jeszcze całkiem ciepła, ale wyglądająca na mało apetyczną. Może zachowała przynajmniej jakieś wartości odżywcze. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Zjedz kawałek (przejdź do <span class='color-green'>4</span>)",
+          "nextParagraphId": "4"
+        },
+        {
+          "text": "Nie wygląda na zbyt świeżą. Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 11<letter id=\"a\"/>, a w nim <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>E</span>, zaś <room id=\"118\"/> na <span class='color-purple'>W</span> (o ile nie zostały wcześniej odrzucone). "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "23",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 4<letter id=\"a\"/>, a na środku 2<symbol id=\"przedmiot-losowy\"/> i <story id=\"mmdvx\"/>, <room id=\"52\"/> na <span class='color-purple'>N</span>, <room id=\"119\"/> na <span class='color-purple'>E</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "24",
+      "accessibleFrom": ["69"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<story id=\"xiii\"/>",
+          "nextParagraphId": "8"
+        },
+        {
+          "text": "<story id=\"xiv\"/>",
+          "nextParagraphId": "105"
+        },
+        {
+          "text": "<story id=\"xv\"/>",
+          "nextParagraphId": "32"
+        },
+        {
+          "text": "<story id=\"xviii\"/>",
+          "nextParagraphId": "8"
+        },
+        {
+          "text": "<story id=\"mmdvx\"/>",
+          "nextParagraphId": "54"
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 6<letter id=\"a\"/>, a w nim <room id=\"46\"/> na <span class='color-purple'>E</span>, <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>S</span>. Na jego środku <room id=\"60\"/> oraz <room id=\"160\"/>. "
+          },
+          {
+            "text": "Lodówka (<room id=\"46\"/>), szafka (<room id=\"160\"/>) i telefon (<room id=\"60\"/>)!."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "26",
+      "pages": [
+        [
+          {
+            "text": "Sprawdzasz jako:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"josh\"/><person id=\"margaret\"/><person id=\"patrick\"/><person id=\"jeff\"/>",
+          "nextVariantId": "nie-jessica"
+        },
+        {
+          "text": "<person id=\"jessica\"/>",
+          "nextVariantId": "jessica"
+        }
+      ],
+      "variants": {
+        "jessica": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "nie-jessica": {
+          "pages": [
+            [
+              {
+                "text": "Czy Jessica <person id=\"jessica\"/> leży?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "jessica-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "jessica-stoi"
+            }
+          ]
+        },
+        "jessica-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jessicą wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "jessica-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jessicą wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "27",
+      "pages": [
+        [
+          {
+            "text": "Z głośników rozlokowanych na ścianach dobiega kobiecy głos:"
+          },
+          {
+            "style": "italic",
+            "text": "Schwytajcie Martina zanim będzie za późno. Wiem, że pomogłyby kamery termowizyjne, ale jesteśmy już mądrzejsi po szkodzie i po wszystkim je zamontujemy. Zadbajcie też o to, aby przywrócić zasilanie dla komory podtrzymujących stworzenie w śpiączce, bo według systemu może wybudzić się lada moment. Odezwijcie się, bo nie dajecie od dłuższego czasu znaku życia."
+          }
+        ],
+        [
+          {
+            "size": "lg",
+            "text": "Rozpatrz teraz wszystkie kroki po kolei:"
+          },
+          {
+            "text": "- <span class='color-blue'>Odrzuć</span> <letter id=\"b\"/> z toru czasu i <span class='color-blue'>połóż</span> tam <letter id=\"c\"/> na polu 1."
+          },
+          {
+            "text": "- <span class='color-blue'>Połóż</span> planszetkę <symbol id=\"przeciwnik\"/> stroną odpowiadającą liczbie figurek kontrolowanych przez graczy (patrz obrazek po prawej)"
+          },
+          {
+            "text": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+          },
+          {
+            "text": "- Obok niej <span class='color-blue'>połóż</span>: 7<symbol id=\"zycie\"/> w grze na 2 graczy, 8<symbol id=\"zycie\"/> w grze na 3 graczy, 10<symbol id=\"zycie\"/> na 4 graczy"
+          },
+          {
+            "text": "- Na łączeniu plansz <span class='color-purple'>1</span><letter id=\"a\"/> i <span class='color-purple'>2</span><letter id=\"a\"/> odwróć <symbol id=\"drzwi-otwarte\"/> na stronę <symbol id=\"drzwi-zamkniete\"/>. Jeśli w tym miejscu było <symbol id=\"drzwi-wywazone\"/>, zastąp je <symbol id=\"drzwi-zamkniete\"/>. Analogicznie zrób dla łączenia plansz <span class='color-purple'>1</span><letter id=\"a\"/> i <span class='color-purple'>3</span><letter id=\"a\"/>."
+          }
+        ],
+        [
+          {
+            "text": "Jeśli jakakolwiek figurka (wasza lub wroga) po zakończeniu CZYJEJKOLWIEK tury posiada 0<symbol id=\"zycie\"/> <span class='color-red'>MUSISZ</span> przejść do paragrafu <span class='color-green'>100</span> (żeton ma o tym przypominać)."
+          },
+          {
+            "text": "DDDDDDDDDDDDDDDDDDDDDDDDD"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "28",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę <span class='color-purple'>8</span><letter id=\"a\"/>. Połóż <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>N</span> planszy <span class='color-purple'>8</span><letter id=\"a\"/>."
+          },
+          {
+            "text": "Następnie na jego środku wyłóż <room id=\"120\"/>, <room id=\"58\"/>, <room id=\"112\"/>, <story id=\"liv\"/> oraz <story id=\"lv\"/>. "
+          },
+          {
+            "text": "Co to za miejsce? Monitory wyświetlające niezrozumiałe dla Ciebie informacje. Liczne obrazy z kamer, które najwyraźniej mają widok na wszystko w tym obiekcie - także na wasz pokój w którym się wybudziliście. Wzrok skupiasz na komputerze <room id=\"120\"/>, wycinkach z gazet zawieszonych na ścianie <story id=\"liv\"/> i notatkach rozłożonych na biurku <story id=\"lv\"/>. Kiedy podnosisz głowę zauważasz w rogu coś wyglądającego na wzór bezpiecznika <room id=\"58\"/>. Jednak niekwestionowaną gwiazdą tego pomieszczenia są wielkie, wyglądające na stalowe, drzwi <room id=\"118\"/> prowadzące na wschód. "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "29",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 2<letter id=\"a\"/>. Na jego środku <room id=\"64\"/>, <room id=\"65\"/>, <story id=\"lii\"/> oraz <room id=\"41\"/>."
+          },
+          {
+            "text": "Pokój przypominający coś w rodzaju laboratorium. Jego wystrój, choć sterylny, momentalnie sprawia, że Twoja wyobraźnia zaczyna pracować na pełnych obrotach. Zwłaszcza, gdy widzisz gigantyczną komorę <room id=\"64\"/> wypełnioną jakąś ciemną, nieprzeniknioną mazią. Aby dodać temu wszystkiemu dziwności, jest też wielki, pusty szklany pojemnik <room id=\"65\"/>. W pomieszczeniu jest coś rodzaju bezpiecznika, który nosi ślady fizycznego uszkodzenia i z którego wydobywają się iskry <room id=\"41\"/>. Na stole leży folder <story id=\"lii\"/> zatytułowany \"<em>Obiekt 072</em>\". Nie masz bladego pojęcia co to może być za miejsce, ale podskórnie czujesz, że raczej chcesz je niezwłocznie opuścić."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "30",
+      "accessibleFrom": ["64"],
+      "pages": [
+        [
+          {
+            "text": "Czy <letter id=\"z\"/> jest na <span class='color-yellow'>AKTYWNE</span>?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "z-tak"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "z-nie"
+        }
+      ],
+      "variants": {
+        "z-tak": {
+          "pages": [
+            [
+              {
+                "text": "Jeśli ponawiasz ten paragraf, gdy już <letter id=\"z\"/> jest na <span class='color-yellow'>AKTYWNE</span> toru czasu, tylko tracisz czas."
+              }
+            ]
+          ]
+        },
+        "z-nie": {
+          "pages": [
+            [
+              {
+                "text": "Jeśli brak <letter id=\"z\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu <span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/>, a następnie cofnij o jedno pole (w kierunku 0) żeton <letter id=\"b\"/> na torze czasu. <span class='color-blue'>Wyłóż</span> <letter id=\"z\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "31",
+      "accessibleFrom": ["11"],
+      "pages": [
+        [
+          {
+            "text": "Powietrze pachniało rdzą, wilgocią i starym olejem, gdy z trzaskiem zatrzasnęły się za tobą ciężkie, stalowe drzwi. Z każdej strony otaczał cię półmrok – zimny, przerwany jedynie pulsującym światłem awaryjnych lamp, które co chwilę gasły i zapalały się z niepokojącym sykiem. Korytarz prowadzący ku wyjściu był wąski, pełen pajęczyn kabli zwisających z sufitu. Echo twoich kroków odbijało się od ścian, a każde skrzypnięcie wydawało się podejrzanie głośne – jakby mogło zwabić to, co przed chwilą ledwo zostawiłeś za sobą. Na końcu korytarza widać było masywne drzwi ewakuacyjne, pokryte rdzą i oznaczone wyblakłym symbolem wyjścia. Trzeba było jeszcze przejść przez pokój kontrolny – pomieszczenie z wybitymi szybami i konsolami, które wciąż migotały resztkami zasilania. Z bijącym sercem dopadłeś drzwi i szarpnąłeś za ciężką dźwignię. Zawiasy włazu ustąpiły. Chłodne nocne powietrze buchnęło w twarz – pachniało mokrą ziemią i wolnością. Za progiem rozciągał się las, gęsty, pełen cieni, ale teraz każdy cień wydawał się lepszy niż mrok tego miejsca. "
+          },
+          {
+            "text": "O całym zajściu, po kilkunastu godzinach pieszej wędrówki, o całym zajściu dowiedziała się miejscowa policja. Naturalnie nie dawała wiary w to co usłyszeli, ale procedury wymagały, aby wysłać tam patrol. Centrala otrzymała informację, że żadnego włazu nie znaleźli. Nazajutrz udaliście się tam razem z nimi i … mieli rację. Tam, gdzie powinien być, porastała gęsta trawa. Wykopana w tym miejscu dziura niczego nie odsłoniła. Zupełnie jakby niczego tam nie było. Miesiące przyjmowania silnych leków i terapii zaczęły przynosić skutki. W końcu udawało się przesypiać całą noc. Nie było już potrzeby kilkukrotnego sprawdzania zamków w drzwiach. Powoli twoje życie wracało do normy. Do czasu, aż znów pojawiły się doniesienia o kolejnych tajemniczych zniknięciach."
+          },
+          {
+            "color": "red",
+            "size": "xl",
+            "text": "KONIEC SCENARIUSZA"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "32",
+      "accessibleFrom": ["24", "77"],
+      "pages": [
+        [
+          {
+            "text": "Widzisz jak na panelu pojawia się zielone światło, obraz reprezentujący kciuk wystawiony w górę oraz słyszysz beznamiętny, kobiecy głos: \"<em>Witaj doktorze Jack</em>\". <span class='color-blue'>Połóż</span> <letter id=\"f\"/> w AKTYWNE. Jeśli znajduje się tam już <letter id=\"e\"/>, <letter id=\"d\"/> lub <letter id=\"p\"/>, przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "33",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 9<letter id=\"a\"/>, a na jego środku <room id=\"79\"/> i 2<symbol id=\"przedmiot-losowy\"/>, zaś <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>E</span>. "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "34",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 14<letter id=\"a\"/>, a na jego środku: <room id=\"121\"/>, 3 x <symbol id=\"przedmiot-losowy\"/> oraz <story id=\"iv\"/>. "
+          },
+          {
+            "text": "Zadajesz sobie pytanie ile przeciętnie osób ma za lodówką ukryty pokój, który wygląda jak  lokum seryjnego zabójcy. Spowijający niemal wszystko mrok sprawia, że ledwie dostrzegasz leżącego na ziemi człowieka."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "36",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 15<letter id=\"a\"/>, w nim <room id=\"50\"/> na <span class='color-purple'>E</span>, <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>N</span>, zaś na środku <room id=\"69\"/> oraz <room id=\"123\"/>. "
+          },
+          {
+            "text": "Twoją uwagę przykuwają WIELKIE drzwi. Takie, które prawdopodobnie oddzielają Cię od upragnionej wolności. Wiesz to, bo nad nimi widnieje rozpalający Twój umysł, napis \"<em>WYJŚCIE</em>\".  Porzucasz jakąkolwiek nadzieję siłowego ich otwarcia, bo zbytnio miłujesz swoje kruche kości. Może sposobem ich otwarcia jest otwór w ścianie obok wielkich wrót <room id=\"69\"/>, a może dziwna rzeźba <room id=\"123\"/>  wyciągająca w Twoim kierunku ręce jakby o coś prosiła."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "38",
+      "pages": [
+        [
+          {
+            "text": "Obraz ukazujący chorobliwie wręcz wychudzonego mężczyznę z kosą na czarnym koniu, tratującego kilkoro nieszczęśników. Obraz wydaje się być dziwnie wypukły. Kiedy go dotykasz dociera do Ciebie, że coś za nim ukryto. Gdyby mieć pod ręką coś ostrego może dałoby się go rozciąć. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot w swoim ekwipunku, którym chcesz wejść w interakcję (przejdź do <span class='color-green'>49</span>)",
+          "nextParagraphId": "49"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "40",
+      "pages": [
+        [
+          {
+            "text": "Wielka bestia naprzeciw, której spoglądasz w jej wielkie, wściekłe czerwone ślepia. Nie wiesz czy na pewno dobrze robisz, ale zobaczmy dokąd Cię to zaprowadzi. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Jeśli posiadasz <story id=\"iii\"/> wbij mu go w oko (przejdź do <span class='color-green'>157</span>)",
+          "nextParagraphId": "157"
+        },
+        {
+          "text": "Jeśli posiadasz <story id=\"iii\"/> wbij mu go w nogę (przejdź do <span class='color-green'>193</span>)",
+          "nextParagraphId": "193"
+        },
+        {
+          "text": "(Jeśli brak <letter id=\"y\"/> na AKTYWNE toru czasu) Dogadaj się z nim! (przejdź do <span class='color-green'>17</span>)",
+          "nextParagraphId": "17"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "41",
+      "pages": [
+        [
+          {
+            "text": "Bezpiecznik, który nosi wyraźne ślady uszkodzeń. Cały jest popękany i co jakiś czas trzaskają z niego iskry. Biegną od niego kable w rożnych kierunkach, a jeden z nich prowadzi do tej dziwnej komory (<room id=\"64\"/>). <span class='color-blue'>Odrzuć</span> <room id=\"41\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "42",
+      "accessibleFrom": ["132"],
+      "pages": [
+        [
+          {
+            "text": "Uderzasz mopem w bezpiecznik. Przez ułamek sekundy wydawało się, że to daremny trud. Chwilę później rozległ się jednak niski, przeciągły zgrzyt. Masywne drzwi zaczęły się otwierać - powoli, nieuchronnie, z dźwiękiem, który nie pozostawiał wątpliwości, że właśnie stało się coś, czego nie da się cofnąć."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"58\"/> <span class='color-blue'>oraz swój 1</span><symbol id=\"zycie\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "43",
+      "pages": [
+        [
+          {
+            "text": "Odręczna notka podpisana przez niejaką Lauren:"
+          },
+          {
+            "text": "\"<em>Nawet jestem pod wrażeniem tego, że 072 zdołał się przebić przez ścianę w łazience, ale czas najwyższy ją naprawić. Bo nie satysfakcjonuje mnie stan w którym, że każdy może przesunąć regał, aby wejść do mojego biura</em>\"."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"xlv\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "44",
+      "accessibleFrom": ["119"],
+      "pages": [
+        [
+          {
+            "text": "Pusta butelka. <span class='color-blue'>Dodaj</span> <story id=\"xxiv\"/> do swojego ekwipunku."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "46",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przesuń ją. Dobierz do 4<symbol id=\"karta-akcji\"/>. Jeśli uzyskasz co najmniej 4<symbol id=\"gwiazda\"/> przejdź do <span class='color-green'>153</span>. Mając mniej opuść paragraf i zakończ akcję.",
+          "nextParagraphId": "153"
+        },
+        {
+          "text": "<span class='color-blue'>Dodaj</span> do swojego ekwipunku pizzę (<story id=\"xlix\"/>)."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "47",
+      "pages": [
+        [
+          {
+            "text": "Odnosisz wrażenie, że w płomieniach coś błyszczy. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot w swoim ekwipunku, którym chcesz wejść w interakcję (przejdź do <span class='color-green'>149</span>)",
+          "nextParagraphId": "149"
+        },
+        {
+          "text": "Zaryzykuj i wsadź na krótką chwilę rękę do ognia. Może coś stamtąd wyciągniesz. Dobierz do 4<symbol id=\"karta-akcji\"/> i przejdź do <span class='color-green'>93</span>.",
+          "nextParagraphId": "93"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "49",
+      "accessibleFrom": ["38"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          },
+          {
+            "text": "<b>III</b>, <b>VII</b>, <b>XIX</b>, <b>XX</b> - udało Ci się wyciąć kawałek bez niszczenia obrazu, a w środku znajdujesz klucz z symbolem tarczy (<span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/> i <span class='color-blue'>odrzuć</span> <room id=\"38\"/>). <span class='color-blue'>Dodaj</span> <story id=\"xiii\"/> do swojego ekwipunku."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "50",
+      "pages": [
+        [
+          {
+            "text": "Skupiasz wzrok na hipnotyzującym napisie \"<em>Wyjście</em>\". Oczami wyobraźni widzisz już co robisz po drugiej stronie. Wiedziesz tam dalej swoje życie, ale wolne od porwań, tajemnic oraz grozy. No i oczywiście żadnych imprez! Jednak słodka wolność kryje się za wielkimi wrotami. Nie masz pojęcia od czego zacząć ich otwieranie. Może wskazówką jest niewielki kwadratowy otwór na ich środku? A może dwie lampy nad drzwiami próbują Ci coś powiedzieć? Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z drzwiami (przejdź wtedy do <span class='color-green'>73</span>)",
+          "nextParagraphId": "73"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "51",
+      "accessibleFrom": ["60"],
+      "pages": [
+        [
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "<person id=\"steven\"/> 991, słucham"
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "(TY) Potrzebujemy pilnej pomocy!"
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "<person id=\"steven\"/> Co takiego się dzieje?"
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "(TY) Nie mamy czasu tego tłumaczyć. Nasze życie jest w niebezpieczeństwie."
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "<person id=\"steven\"/> Sprowadzę pomoc. Gdzie jesteście?"
+          },
+          {
+            "spacing": "none",
+            "style": "italic",
+            "text": "(TY) … Nie wiemy. W jakimś … miejscu. Nie mu tu żadnych okien, nie wiemy w jakiej okolicy jesteśmy."
+          },
+          {
+            "style": "italic",
+            "text": "<person id=\"steven\"/> Dajcie mi chwilę, spróbuje was namierzyć … (po kilkunastu sekundach odpowiada) … dziwne … nie jesteśmy w stanie. Coś blokuje sygnał. Nie odkładajcie słuchawki, ale ukryjcie się gdzieś jeśli grozi wam niebezpieczeństwo. Jak tylko uda mi się znaleźć waszą lokalizację wyślę tam kogoś."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"60\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "52",
+      "pages": [
+        [
+          {
+            "text": "Czy masz DDDDDDDDDDDDDDD?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "tak"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "nie"
+        }
+      ],
+      "variants": {
+        "tak": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<span class='color-blue'>Odrzuć</span> DDDDDDDDDDDDDDD z talii i przetasuj ją lub ze stosu odrzuconego. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
+            },
+            {
+              "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z toaletą i przejdź do <span class='color-green'>70</span>.",
+              "nextParagraphId": "70"
+            },
+            {
+              "text": "Opuść paragraf."
+            }
+          ]
+        },
+        "nie": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z toaletą i przejdź do <span class='color-green'>70</span>.",
+              "nextParagraphId": "70"
+            },
+            {
+              "text": "Opuść paragraf."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "54",
+      "accessibleFrom": ["24"],
+      "pages": [
+        [
+          {
+            "text": "O mały włos! Z pozoru zwykła szczelina w ścianie z panelem dotykowym na jego końcu kryła coś znacznie groźniejszego. Gdy tylko mop został wsunięty do środka, wyskoczyły stalowe ostrza, błyskawiczne jak pułapka, i natychmiast przecięły go na pół czyniąc go bezużytecznym ku twojej rozpaczy. <span class='color-blue'>Odrzuć</span> <story id=\"mmdvx\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "55",
+      "pages": [
+        [
+          {
+            "text": "Sprawdzasz jako:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<person id=\"josh\"/><person id=\"jessica\"/><person id=\"patrick\"/><person id=\"jeff\"/>",
+          "nextVariantId": "nie-margaret"
+        },
+        {
+          "text": "<person id=\"margaret\"/>",
+          "nextVariantId": "margaret"
+        }
+      ],
+      "variants": {
+        "nie-margaret": {
+          "pages": [
+            [
+              {
+                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+            },
+            {
+              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "margaret": {
+          "pages": [
+            [
+              {
+                "text": "Czy Jessica <person id=\"margaret\"/> leży?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "margaret-lezy"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "margaret-stoi"
+            }
+          ]
+        },
+        "margaret-lezy": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Margaret wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        },
+        "margaret-stoi": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Margaret wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+            },
+            {
+              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "56",
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Musimy rozważyć instalację kamer termowizyjnych w naszym skrzydle. Ostatnia ucieczka Martina kosztowała życie stażysty. Udusił biedaka, aby uniemożliwić mu zaalarmowanie kogokolwiek. Pracujemy już w warunkach wystarczająco niebezpiecznych."
+          },
+          {
+            "style": "italic",
+            "text": "Należy również natychmiast rozwiązać problem przerw w dostawach prądu. To właśnie chwilowy brak zasilania pozwolił mu otworzyć klatkę. Nie możemy dopuścić do sytuacji, w której energia przestanie zasilać komorę - wtedy zagrożeni będziemy nie tylko my."
+          },
+          {
+            "text": "<span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/> i <span class='color-blue'>odrzuć</span> <room id=\"56\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "57",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 10<letter id=\"a\"/>, na jego środku 2<symbol id=\"przedmiot-losowy\"/>, <room id=\"147\"/>, <room id=\"56\"/>, <room id=\"85\"/> zaś <room id=\"12\"/> na <span class='color-purple'>E</span> (zignoruj jeśli zostało wcześniej usunięte)."
+          },
+          {
+            "text": "Zapach perfum, a także sam wygląd pomieszczenia podpowiada, gdzie się znajdujesz – to kobiece biuro, które zawalają liczne notatki <room id=\"56\"/>. Całość tego przyjemnego wrażenia rujnuje tylko fakt, że w centrum pokoju znajduje się jakaś nieprzytomna kobieta <room id=\"147\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "58",
+      "pages": [
+        [
+          {
+            "text": "Wygląda na jakiś bezpiecznik połączony kablami z pancernymi drzwiami w tym samym pomieszczeniu. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku którym chcesz wejść w interakcję z bezpiecznikiem (przejdź do <span class='color-green'>132</span>)",
+          "nextParagraphId": "132"
+        },
+        {
+          "text": "Uderz w to gołą ręką nie zważając na konsekwencje (przejdź do <span class='color-green'>19</span>)",
+          "nextParagraphId": "19"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "59",
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Zadbajcie o to, aby ustały wszelkie przerwy w dostawie prądu. Mamy świadomość, że nie możemy zwrócić się do miasta o podłączenie do miejskiej infrastruktury — nasze działania nie spotkałyby się z ich poparciem. W związku z tym konieczne jest pilne sprawdzenie stanu agregatów. Należy to powiedzieć jasno i bez niedomówień: brak zasilania spowoduje wyłączenie komory, w której przetrzymujemy „072”, celi Martina oraz mechanizmów zabezpieczających drzwi pomiędzy moim laboratorium a pozostałą częścią strefy. Otwarcie tych przejść nie tylko umożliwi ucieczkę naszym „ochotnikom”, lecz także - po tym, jak zajmie się nimi „072” - skieruje zagrożenie bezpośrednio na nas."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"59\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "60",
+      "pages": [
+        [
+          {
+            "text": "Telefon! Szybko, zadzwoń po kogoś! Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Zadzwoń po służby! Niech ktoś was stąd zabierze! (przejdź do <span class='color-green'>51</span>)",
+          "nextParagraphId": "51"
+        },
+        {
+          "text": "Nie trać czasu, bo i tak pewnie nic z tego nie będzie. <span class='color-blue'>Odrzuć</span> <room id=\"60\"/>, opuść paragraf i <span class='color-blue'>zyskaj dwie akcje</span>."
+        }
+      ]
+    },
+    {
+      "id": "61",
+      "pages": [
+        [
+          {
+            "text": "Ręka pani w kitlu naukowca. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "62",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot ze swojego ekwipunku którym chcesz wejść w interakcję z leżącą kobietą (przejdź do <span class='color-green'>111</span>)",
+          "nextParagraphId": "111"
+        },
+        {
+          "text": "Dobierz 1<symbol id=\"karta-akcji\"/> bez rozpatrywania efektu, aby przemieścić się razem z <person id=\"lauren\"/> o jedną planszę przez <symbol id=\"drzwi-otwarte\"/> lub <symbol id=\"drzwi-wywazone\"/>."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "63",
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Nie bawcie się moją aparaturą bez mojego wyraźnego pozwolenia. Wypuszczenie go na wolność to kwestia zaledwie kilku kliknięć. Osobiście nie mam nic przeciwko temu, aby was pożarło. Niczego to was jednak nie nauczy, a mi tylko przysporzy sprzątania – podpisano Jack."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"63\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "64",
+      "pages": [
+        [
+          {
+            "text": "Ogromny, szklany pojemnik wypełniała gęsta, ciemna ciecz, skrywająca swoją zawartość przed światem. Nie potrafiłeś określić, co było w tobie silniejsze - pragnienie poznania prawdy o tym, co znajduje się w środku, czy instynktowna potrzeba natychmiastowej ucieczki. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Nie mogę się oprzeć. Próbuję zobaczyć co znajduje się w środku (przejdź do <span class='color-green'>140</span>)",
+          "nextParagraphId": "140"
+        },
+        {
+          "text": "Wciskam losowo wszystkie dostępne guziki (przejdź do <span class='color-green'>30</span>)",
+          "nextParagraphId": "30"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "65",
+      "pages": [
+        [
+          {
+            "text": "Niewielki, niemal laboratoryjny szklany pojemnik mieścił w sobie więcej, niż można było przypuszczać. Wewnątrz znajdowała się mała, metalowa toaleta przymocowana do tylnej ściany, zestaw podstawowych sanitariatów oraz - w rogu - niedbale porzucone ubrania: koszula, spodnie, para butów. Leżały tak, jakby ktoś po prostu… zniknął. Nie było żadnych oznak obecności. Drzwi pozostawały otwarte na oścież. <span class='color-blue'>Odrzuć</span> <room id=\"65\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "66",
+      "accessibleFrom": ["132"],
+      "pages": [
+        [
+          {
+            "text": "Oddajesz strzał w bezpiecznik. Przez ułamek sekundy wydawało się, że to daremny trud. Chwilę później rozległ się jednak niski, przeciągły zgrzyt. Masywne drzwi zaczęły się otwierać - powoli, nieuchronnie, z dźwiękiem, który nie pozostawiał wątpliwości, że właśnie stało się coś, czego nie da się cofnąć. <span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"58\"/> <span class='color-blue'>oraz swój 1</span><symbol id=\"zycie\"/>. <span class='color-blue'>Odrzuć</span> <symbol id=\"amunicja-strzelba\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "69",
+      "pages": [
+        [
+          {
+            "text": "Otwór w ścianie na którego końcu najwyraźniej widnieje jakiś panel z symbolem odcisku palca. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z otworem (przejdź do <span class='color-green'><span class='color-green'>24</span></span>)",
+          "nextParagraphId": "24"
+        },
+        {
+          "text": "Wsadź tam swoją rękę (przejdź do 5)",
+          "nextParagraphId": "5"
+        },
+        {
+          "text": "Wsadź tam cudzą dłoń jeśli jakąś masz… pod ręką (przejdź do <span class='color-green'>77</span>)",
+          "nextParagraphId": "77"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "70",
+      "accessibleFrom": ["52"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu, opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          },
+          {
+            "text": "XXIV - <span class='color-blue'>odrzuć</span> <room id=\"222\"/>. <span class='color-blue'>Dodaj</span> do ekwipunku <room id=\"139\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "71",
+      "pages": [
+        [
+          {
+            "text": "Logujesz się na komputerze. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. Jeśli to zrobisz, <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>"
+        },
+        {
+          "text": "<span class='color-blue'>Przekręć</span> na drugą stronę jedne <symbol id=\"drzwi-zamkniete\"/> lub <symbol id=\"drzwi-otwarte\"/> na dowolnej planszy."
+        },
+        {
+          "text": "Przejrzyj folder \"<em>Wyniki ostatnich eksperymentów obiektu 072</em>\" (przejdź do <span class='color-green'>86</span>)",
+          "nextParagraphId": "86"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "72",
+      "pages": [
+        [
+          {
+            "text": "Nie wiesz czy to prawdziwy diament, czy jego bardzo wierna replika."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "73",
+      "accessibleFrom": ["50"],
+      "pages": [
+        [
+          {
+            "text": "Jeśli wskazany przez Ciebie przedmiot posiadał L w prawym górnym rogu?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "tak-l"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "nie-l"
+        }
+      ],
+      "variants": {
+        "tak-l": {
+          "pages": [
+            [
+              {
+                "text": "Klucz o dziwnej końcówce pasował wprost idealnie. <span class='color-blue'>Odrzuć</span> <room id=\"150\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+              },
+              {
+                "text": "Połóż <letter id=\"d\"/> na <span class='color-yellow'>AKTYWNE</span>. Jedna z lampek nad drzwiami zmienia natychmiast kolor na zielony."
+              },
+              {
+                "text": "Czy w <span class='color-yellow'>AKTYWNE</span> znajduje się już żeton <letter id=\"e\"/>, <letter id=\"f\"/> lub <letter id=\"p\"/>?"
+              }
+            ]
+          ],
+          "areChoicesHorizontal": true,
+          "choices": [
+            {
+              "text": "Tak.",
+              "nextVariantId": "tak-88"
+            },
+            {
+              "text": "Nie.",
+              "nextVariantId": "nie-88"
+            }
+          ]
+        },
+        "nie-l": {
+          "pages": [
+            [
+              {
+                "text": "Opuść natychmiast paragraf."
+              }
+            ]
+          ]
+        },
+        "tak-88": {
+          "pages": [
+            [
+              {
+                "text": "Przejdź do <span class='color-green'>88</span>."
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Przejdź do <span class='color-green'>88</span>.",
+              "nextParagraphId": "88"
+            }
+          ]
+        },
+        "nie-88": {
+          "pages": [
+            [
+              {
+                "text": "Nic się nie dzieje."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "75",
+      "accessibleFrom": ["132"],
+      "pages": [
+        [
+          {
+            "text": "Uderzenie w bezpiecznik gołą pięścią spowodował ogromny ból, który rozlał się po nadgarstku. Przez ułamek sekundy wydawało się, że był to daremny trud. Chwilę później rozległ się jednak niski, przeciągły zgrzyt. Masywne drzwi zaczęły się otwierać - powoli, nieuchronnie, z dźwiękiem, który nie pozostawiał wątpliwości, że właśnie stało się coś, czego nie da się cofnąć. <span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"58\"/> <span class='color-blue'>oraz swój 1</span><symbol id=\"zycie\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "76",
+      "pages": [
+        [
+          {
+            "text": "Pożółkły wycinek z miejscowej gazety opisywał głośne zaginięcie grupy młodych ludzi. W artykule padały nazwiska, cytaty z zaniepokojonych bliskich oraz wypowiedzi lokalnych mieszkańców, którzy tłumnie ruszyli na poszukiwania. Dziś, poza najbliższymi, nikt już o nich nie pamięta. Prawdopodobnie właśnie podzieliliście ich los — i to o was będzie wkrótce przez krótką chwilę głośno. <span class='color-blue'>Odrzuć</span> <room id=\"76\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "77",
+      "accessibleFrom": ["69"],
+      "pages": [
+        [
+          {
+            "text": "Czy jesteś na 15<letter id=\"a\"/>?"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextVariantId": "tak-15a"
+        },
+        {
+          "text": "Nie.",
+          "nextVariantId": "nie-15a"
+        }
+      ],
+      "variants": {
+        "tak-15a": {
+          "pages": [
+            [
+              {
+                "text": "Wybierz jedną z opcji spośród:"
+              }
+            ]
+          ],
+          "choices": [
+            {
+              "text": "Wsadź rękę należącą do <room id=\"147\"/> (przejdź do <span class='color-green'>105</span>)",
+              "nextParagraphId": "105"
+            },
+            {
+              "text": "Wsadź rękę należącą do <room id=\"121\"/> (przejdź do <span class='color-green'>32</span>)",
+              "nextParagraphId": "32"
+            },
+            {
+              "text": "Wsadź rękę należącą do <person id=\"lauren\"/> (przejdź do <span class='color-green'>105</span>)",
+              "nextParagraphId": "105"
+            },
+            {
+              "text": "Wsadź rękę należącą do <person id=\"jack\"/> (przejdź do <span class='color-green'>32</span>)",
+              "nextParagraphId": "32"
+            },
+            {
+              "text": "Opuść paragraf."
+            }
+          ]
+        },
+        "nie-15a": {
+          "pages": [
+            [
+              {
+                "text": "Opuść paragraf."
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "78",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 9<letter id=\"a\"/>, a na jego środku <room id=\"14\"/> i 2<symbol id=\"przedmiot-losowy\"/>, zaś <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>E</span> (jeśli łączenie jest wolne)."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "79",
+      "pages": [
+        [
+          {
+            "text": "Obrazek z czarnym kociakiem trzymającym się gałęzi. Sprawia wrażenie jakby miał zaraz spaść. Poniżej znajduje się napis \"<em>Trzymaj się</em>\". Postanawiasz wziąć to sobie do serca i za wszelką cenę walczyć dalej! Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Możesz wtasować do 4<symbol id=\"karta-akcji\"/> dowolnych kart ze swojego stosu odrzuconego do talii. Jeśli to zrobisz, <span class='color-blue'>odrzuć</span> <room id=\"79\"/>."
+        },
+        {
+          "text": "Nie czas teraz na to. Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "80",
+      "accessibleFrom": ["118"],
+      "pages": [
+        [
+          {
+            "text": "Jeśli uzyskasz co najmniej 6<symbol id=\"gwiazda\"/> <span class='color-blue'>odrzuć</span> <room id=\"118\"/> i zastąp <symbol id=\"drzwi-wywazone\"/>. Każdy nieudany test <span class='color-blue'>kładzie</span> jedno <symbol id=\"zycie\"/> przy <room id=\"118\"/>. Każde <symbol id=\"zycie\"/> leżące przy <room id=\"118\"/> oznacza, że potrzeba 1<symbol id=\"gwiazda\"/> mniej."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "81",
+      "accessibleFrom": ["121"],
+      "pages": [
+        [
+          {
+            "text": "Chwyciłeś go za nadgarstek, próbując wyczuć puls. Nic. Skóra była zimna, martwa. Na jego szyi widniały dziwne, ciemne siniaki. Odnosisz wrażenie, że masz do czynienia z ofiarą uduszenia."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "82",
+      "accessibleFrom": ["132"],
+      "pages": [
+        [
+          {
+            "text": "Patrzysz niczym zahipnotyzowany na taniec trzaskających iskier - aż do chwili, gdy jedna z nich trafia ci w oko. Na szczęście okazuje się niegroźna, lecz w duchu przyrzekasz sobie, że nigdy więcej nie będziesz polewać instalacji elektrycznych wodą."
+          },
+          {
+            "text": "<span class='color-blue'>Zastąp</span> <room id=\"118\"/> żetonem <symbol id=\"drzwi-otwarte\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"139\"/> i <span class='color-blue'>dobierz</span> <room id=\"222\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"58\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "83",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 11<letter id=\"a\"/>, na jego środku 3<symbol id=\"przedmiot-losowy\"/> oraz <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>E</span>. Czy ten koszmar się kiedyś skończy? A może skończy się wraz z Tobą?"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "84",
+      "pages": [
+        [
+          {
+            "text": "Duży, mosiężny klucz z symbolem kruka. Opuść paragraf. <span class='color-blue'>Zyskujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "85",
+      "pages": [
+        [
+          {
+            "text": "Na płycie napisano \"<em>autoryzator</em>\". Opuść paragraf. <span class='color-blue'>Zyskujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "86",
+      "accessibleFrom": ["71"],
+      "pages": [
+        [
+          {
+            "text": "Notka z podpiskiem \"<em>przekazać Helen</em>\". Jest tu czyjeś pismo:"
+          },
+          {
+            "style": "italic",
+            "text": "Obiekt odrzuca każdy pokarm inny niż mięso zwierzęce lub ludzkie. Dorosłe osobniki osiągają nawet 2,5 metra wzrostu, choć istnieją niepotwierdzone doniesienia terenowe o jeszcze większych egzemplarzach. Nietypowa budowa anatomiczna umożliwia im poruszanie się z prędkością przekraczającą 45 mil na godzinę, co sprawia, że jakakolwiek próba pieszej ucieczki jest z góry skazana na niepowodzenie. Nasz egzemplarz pozostaje obecnie w tubie regeneracyjnej. Jest osłabiony na skutek testów jego zdolności regeneracyjnych. Nawet strzał ze strzelby z bliskiej odległości nie wywarł na nim istotnego wrażenia; mimo to zdarzenie to doprowadziło do znaczącego osłabienia organizmu. Stąd konieczność jego regeneracji w komorze. Do odzyskania pełni sił będzie potrzebował prawdopodobnie jeszcze kilku godzin. Zdolność obiektu do stopniowej odbudowy tkanek pozostaje dla nas poważnym wyzwaniem badawczym, ale jednocześnie otwiera ogromne perspektywy finansowe. Każde państwo zapłaciłoby każdą cenę za technologię umożliwiającą natychmiastowy powrót ciężko rannych żołnierzy na pole walki. W dalszej perspektywie rozwiązanie to mogłoby znaleźć również zastosowanie cywilne."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "87",
+      "accessibleFrom": ["111"],
+      "pages": [
+        [
+          {
+            "text": "Szturchasz ją mopem z całym sił, ale bez rezultatu. Czujesz się z tym dziwnie."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "88",
+      "accessibleFrom": ["73"],
+      "pages": [
+        [
+          {
+            "text": "Obie lampy nad drzwiami świecą się już na zielono, a wielkie masywne drzwi ku Twojej radości otwierają się. Nie czekaj, ale biegnij! Biegnij jakby świat miał się kończyć i dbaj tylko o siebie! <span class='color-blue'>Odrzuć</span> <room id=\"50\"/> i w ich miejscu <span class='color-blue'>połóż</span> <symbol id=\"drzwi-otwarte\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "89",
+      "accessibleFrom": ["112"],
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Wilkołak stanowi hipotetyczny, mityczno-zoonotyczny organizm wykazujący cechy zarówno człowieka, jak i dużych drapieżnych psowatych (Canis lupus). Podstawową cechą wyróżniającą jest zdolność do okresowej transformacji morfologicznej, najczęściej synchronizowanej z fazami Księżyca, ze szczególnym nasileniem podczas pełni. Proces transformacji obejmuje głęboką reorganizację tkanki mięśniowej, wydłużenie kości długich kończyn, przebudowę czaszki oraz rozwój pełnego owłosienia ciała."
+          },
+          {
+            "style": "italic",
+            "text": "<b>Morfologia</b> - w formie wilczej osobniki osiągają wzrost od 210 do 250 cm oraz masę ciała w zakresie 120–180 kg. Charakteryzują się skrajnie rozwiniętą muskulaturą, powiększonymi kłami o długości do 6 cm oraz keratynowymi pazurami zdolnymi do zadawania głębokich, penetrujących ran. Układ szkieletowy wykazuje zwiększoną zawartość kolagenu i minerałów, co umożliwia absorpcję znacznych przeciążeń mechanicznych."
+          },
+          {
+            "style": "italic",
+            "text": "Zmysły słuchu i węchu są wyostrzone nawet do pięćdziesięciokrotności ludzkich norm. Zdolności fizyczne wielokrotnie przewyższają możliwości człowieka; osobniki są w stanie poruszać się z prędkością 60–70 km/h na krótkich dystansach. W formie bestialskiej obserwuje się wysoki poziom agresji, szczególnie w obecności bodźców zapachowych związanych z krwią. W stanie ludzkim wilkołaki zachowują świadomość oraz ciągłość pamięci, choć mogą występować epizody amnezji, zwłaszcza o charakterze pourazowym."
+          },
+          {
+            "style": "italic",
+            "text": "<b>Patogeneza i hipotetyczna etiologia</b> - przekazach folklorystycznych źródłem przemiany jest zazwyczaj „klątwa” lub ugryzienie innego wilkołaka. Hipotetyczne modele naukowe zakładają jednak istnienie nieznanego czynnika biologicznego - wirusa lub prionu - zdolnego do oddziaływania na strukturę DNA i uruchamiania ekstremalnych zmian fenotypowych w określonych warunkach środowiskowych."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "90",
+      "accessibleFrom": ["102"],
+      "pages": [
+        [
+          {
+            "text": "Przykładasz dłoń naukowca do panelu. Czujnik reaguje natychmiast - powierzchnia rozświetla się zielonym światłem. "
+          },
+          {
+            "text": "<span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"106\"/> i <room id=\"120\"/>, a następnie <span class='color-blue'>wyłóż</span> na środku <room id=\"71\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "91",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <letter id=\"g\"/> z toru czasu. Następnie sprawdź najwyższą cyfrę na polu planszy, na którym znajduje się postać kontrolowana przez graczy (jeżeli na danym polu znajduje się więcej niż jedna figurka, gracze wybierają jedną z nich). Ta postać — podobnie jak wszystkie pozostałe postacie kontrolowane przez graczy — rozpatruje poniższy tekst."
+          },
+          {
+            "style": "italic",
+            "text": "Czujesz cudze dłonie na swojej szyi. Jest to o tyle dziwne, że nikogo nie dostrzegasz. Czujesz jak się zaciskają odbierając Ci dech w piersiach. Szarpiesz się z całych sił odpychając … napastnika? Nie wiesz, bo niczego nie dostrzegasz. "
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> 1<symbol id=\"zycie\"/>, a następnie:"
+          },
+          {
+            "text": "<span class='color-blue'>Przełóż</span> <letter id=\"g\"/> na pole 3 toru czasu jeśli w grze biorą udział 2 figurki."
+          },
+          {
+            "text": "<span class='color-blue'>Przełóż</span> <letter id=\"g\"/> na pole 2 toru czasu jeśli w grze biorą udział 3 figurki."
+          },
+          {
+            "text": "<span class='color-blue'>Przełóż</span> <letter id=\"g\"/> na pole 2 toru czasu jeśli w grze biorą udział 4 figurki."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "92",
+      "pages": [
+        [
+          {
+            "text": "Ręka naukowca. Jeszcze ciepła. Opuść paragraf. <span class='color-blue'>Zyskujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "93",
+      "accessibleFrom": ["47"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź sumę i rozpatrz odpowiedni wynik: "
+          },
+          {
+            "text": "4<symbol id=\"gwiazda\"/> lub niższy: ból jest trudny do zniesienia i cofasz rękę nim. <span class='color-blue'>Dodaj</span> z puli ogólnej FFFFFFFFFFFF do swojego stosu odrzuconego."
+          },
+          {
+            "text": "4<symbol id=\"gwiazda\"/> lub wyższy: twoim oczom ukazuje się diament (<room id=\"72\"/>). Dodaj go do ekwipunku. <span class='color-blue'>Dobierz</span> 2<symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"47\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "94",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot ze swojego ekwipunku, którym chcesz wejść z nim w interakcję (przejdź do <span class='color-green'>135</span>)",
+          "nextParagraphId": "135"
+        },
+        {
+          "text": "Dobierz 1 bez rozpatrywania, aby przemieścić się razem z <person id=\"jack\"/> o jedną planszę przez <symbol id=\"drzwi-otwarte\"/> lub <symbol id=\"drzwi-wywazone\"/>."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "95",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 4<letter id=\"a\"/>, na środku <story id=\"mmdvx\"/> oraz 2<symbol id=\"przedmiot-losowy\"/>, <room id=\"52\"/> na <span class='color-purple'>N</span>, zaś <room id=\"119\"/> na łączenie plansz 4<letter id=\"a\"/> i 10<letter id=\"a\"/> (zignoruj jeśli <room id=\"119\"/> zostało wcześniej odrzucone)."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "96",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 10<letter id=\"a\"/>, na jego środku 2<symbol id=\"przedmiot-losowy\"/>, <room id=\"147\"/>, <room id=\"56\"/>, <room id=\"85\"/>, zaś <room id=\"12\"/> na <span class='color-purple'>W</span> (zignoruj jeśli zostało wcześniej usunięte). "
+          },
+          {
+            "style": "italic",
+            "text": "Zapach perfum, a także sam wygląd pomieszczenia podpowiada, gdzie się znajdujesz – to kobiece biuro, które zawalają liczne notatki <room id=\"56\"/>. Całość tego przyjemnego wrażenia rujnuje tylko fakt, że w centrum pokoju znajduje się jakaś nieprzytomna kobieta <room id=\"147\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "97",
+      "pages": [
+        [
+          {
+            "text": "Szyb jest ciemny i pełen pajęczyn, które wplątują Ci się we włosy. Całe pół metra czołgania się dalej trafiasz na coś co wygląda na klucz. Bierzesz go ze sobą i wyczołgujesz się z powrotem. <span class='color-blue'>Dodaj</span> <room id=\"150\"/> do swojego ekwipunku. <span class='color-blue'>Odrzuć</span> <symbol id=\"drzwi-wywazone\"/> z <span class='color-purple'>E</span> planszy 13<letter id=\"a\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "98",
+      "pages": [
+        [
+          {
+            "text": "Ciemny tunel, na którego końcu ledwie majaczy zarys światła. Albo wysiadły korki, albo ktoś zapomniał uregulować rachunki za prąd. Idziesz po omacku, nie wiedząc, dokąd prowadzi ta droga. Po drugiej stronie równie dobrze może czaić się coś jeszcze gorszego, lecz na razie nie masz wyboru - pozostaje śmierć z łap stwora albo krok w nieznane.. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Ucieknij! Zakończ to szaleństwo! Przejdź do <span class='color-green'>11</span>. (<span class='color-red'>UWAGA</span>: jeśli jesteś ostatnią figurką kontrolowaną przez graczy, każda pozostała figurka graczy na planszy z <symbol id=\"rana-ciezka\"/> umiera z powodu obrażeń)",
+          "nextParagraphId": "11"
+        },
+        {
+          "text": "Nie możesz tak po prostu uciec. Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "100",
+      "pages": [
+        [
+          {
+            "text": "Wskaż kogo to dotyczy i przejdź do stosownego paragrafu:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Utrata wszystkich <symbol id=\"zycie\"/> przez jednego lub więcej spośród <person id=\"josh\"/><person id=\"patrick\"/><person id=\"jessica\"/><person id=\"margaret\"/> (przejdź do <span class='color-green'>191</span>)",
+          "nextParagraphId": "191"
+        },
+        {
+          "text": "(Utrata wszystkich <symbol id=\"zycie\"/> przez to co was goni) (przejdź do <span class='color-green'>192</span>)",
+          "nextParagraphId": "192"
+        }
+      ]
+    },
+    {
+      "id": "101",
+      "pages": [
+        [
+          {
+            "text": "Własność pani naukowiec. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "102",
+      "accessibleFrom": ["120"],
+      "pages": [
+        [
+          {
+            "text": "Jeśli wskazany przedmiot <b>NIE</b> posiada <b>VI</b> lub <b>XXXVI</b> dobierz 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania ich efektu i opuść paragraf. Jeśli posiada <b>VI</b> lub <b>XXXVI</b> czytaj dalej."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>XIV</b> - przejdź do <span class='color-green'>109</span>",
+          "nextParagraphId": "109"
+        },
+        {
+          "text": "<b>XV</b> - przejdź do <span class='color-green'>90</span>",
+          "nextParagraphId": "90"
+        },
+        {
+          "text": "<b>VI</b> – przejdź do <span class='color-green'>220</span>",
+          "nextParagraphId": "220"
+        },
+        {
+          "text": "<b>XXXVI</b> – przejdź do <span class='color-green'>185</span>",
+          "nextParagraphId": "185"
+        },
+        {
+          "text": "<b>XXXVII</b> – przejdź do <span class='color-green'>185</span>",
+          "nextParagraphId": "185"
+        }
+      ]
+    },
+    {
+      "id": "103",
+      "accessibleFrom": ["135"],
+      "pages": [
+        [
+          {
+            "text": "Brzydzisz się sobą, ale udało Ci się wejść w posiadanie cudzej kończyny. "
+          },
+          {
+            "text": "<span class='color-blue'>Dodaj</span> do ekwipunku <room id=\"92\"/> lub <room id=\"114\"/> (o ile któregoś nie usunięto z gry). <span class='color-blue'>Dodaj</span> również do swojego stosu odrzuconego FFFFFFFFFFFFFFFFFF (robi Ci się niedobrze)."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "104",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 13<letter id=\"a\"/>, a w nim <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>N</span>, zaś <room id=\"146\"/> na <span class='color-purple'>E</span>. Zwykły hol. Taki przeciętny, wręcz obraźliwie nudny. Na wschodzie dostrzegasz szyb wentylacyjny <room id=\"146\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "105",
+      "accessibleFrom": ["24", "77"],
+      "pages": [
+        [
+          {
+            "text": "Widzisz jak na panelu pojawia się zielone światło, obraz reprezentujący kciuk wystawiony w górę oraz komunikat \"<em>Witaj, doktor Lauren</em>\". <span class='color-blue'>Wyłóż</span> <letter id=\"p\"/> w <span class='color-yellow'>AKTYWNE</span>. Jeśli znajduje się tam już <letter id=\"e\"/>, <letter id=\"d\"/> lub <letter id=\"f\"/>, przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "106",
+      "pages": [
+        [
+          {
+            "text": "Na zdjęciu widać uśmiechniętą brunetkę z podpisem \"<em>zastępca kierownika sekcji laboratoryjnej, Lauren Miller</em>\". Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "107",
+      "pages": [
+        [
+          {
+            "text": "Wyłóż planszę 12<letter id=\"a\"/>, a także <room id=\"12\"/> na <span class='color-purple'>W</span> (<span class='color-red'>o ile nie zostały wcześniej odrzucone</span>), zaś <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>S</span>. Na środku wyłóż 2<symbol id=\"przedmiot-losowy\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "108",
+      "pages": [
+        [
+          {
+            "text": "Wyłóż planszę 6<letter id=\"a\"/>, a w nim <room id=\"46\"/> na <span class='color-purple'>E</span>. Na jego środku <room id=\"60\"/> oraz <room id=\"160\"/>."
+          },
+          {
+            "text": "Lodówka (<room id=\"46\"/>), szafka (<room id=\"160\"/>) i telefon! (<room id=\"60\"/>)."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "109",
+      "accessibleFrom": ["102"],
+      "pages": [
+        [
+          {
+            "text": "Przykładasz rękę pani naukowiec do panelu i panel dotykowy świeci się na zielono. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"106\"/> i <room id=\"120\"/>, a następnie wyłóż na środku <room id=\"71\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "110",
+      "accessibleFrom": ["141"],
+      "pages": [
+        [
+          {
+            "text": "Usuwasz kratkę, która blokowała wejście do szybu. <span class='color-blue'>Odrzuć</span> <room id=\"146\"/> i zastąp <symbol id=\"drzwi-otwarte\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "111",
+      "accessibleFrom": ["62", "147"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 bez rozpatrywania efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>III</b> – dobierz 1<symbol id=\"karta-akcji\"/> i przejdź do <span class='color-green'>128</span>",
+          "nextParagraphId": "128"
+        },
+        {
+          "text": "<b>VII</b> – przejdź do <span class='color-green'>128</span>",
+          "nextParagraphId": "128"
+        },
+        {
+          "text": "<b>X</b>, <b>LIII</b> – <span class='color-green'>122</span>",
+          "nextParagraphId": "122"
+        },
+        {
+          "text": "<b>MMDVX</b> - <span class='color-green'>87</span>",
+          "nextParagraphId": "87"
+        }
+      ]
+    },
+    {
+      "id": "112",
+      "pages": [
+        [
+          {
+            "text": "Szafka z dokumentami. Wydaje się mieścić sporo folderów z których tylko kilka wydaje się wam interesować. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Raport na temat obiektu \"<em>072</em>\"  (przejdź do <span class='color-green'>89</span>)",
+          "nextParagraphId": "89"
+        },
+        {
+          "text": "Raport na temat obiektu \"<em>068</em>\"  (przejdź do <span class='color-green'>173</span>)",
+          "nextParagraphId": "173"
+        },
+        {
+          "text": "Notka pozostawiona wewnątrz mówiąca coś o \"<em>nowych ochotnikach</em>\"  (przejdź do <span class='color-green'>158</span>)",
+          "nextParagraphId": "158"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "113",
+      "accessibleFrom": ["12"],
+      "pages": [
+        [
+          {
+            "text": "Mając co najmniej 6<symbol id=\"gwiazda\"/> <span class='color-blue'>odrzuć</span> <room id=\"12\"/> i zastąp je <symbol id=\"drzwi-wywazone\"/> (każdy leżący pod nimi <symbol id=\"zycie\"/> oznacza, że potrzeba 1<symbol id=\"gwiazda\"/> mniej). Odrzucając <room id=\"12\"/> odrzuć także leżące pod nim <symbol id=\"zycie\"/>."
+          },
+          {
+            "text": "Przy nieudanym teście <span class='color-blue'>połóż 1</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "114",
+      "pages": [
+        [
+          {
+            "text": "Noga naukowca, który najwyraźniej królem parkietu już nie zostanie. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "115",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 13<letter id=\"a\"/>, <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>N</span> i <span class='color-purple'>S</span>, zaś <room id=\"146\"/> na <span class='color-purple'>E</span>. Zwykły hol. Taki przeciętny, wręcz obraźliwie nudny. Na wschodzie dostrzegasz szyb wentylacyjny <room id=\"146\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "116",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 5<letter id=\"a\"/>, a na jego środku 2<symbol id=\"przedmiot-losowy\"/>, <room id=\"53\"/> oraz <room id=\"112\"/>. "
+          },
+          {
+            "text": "Wygląda na biuro. Specyficzny zapach tytoniu, niechlujny wystrój oraz bałagan na biurku <room id=\"53\"/> sugerują, że należy do mężczyzny. Niezamknięta szafka <room id=\"112\"/> może zdradzić jakieś jego sekrety."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "117",
+      "accessibleFrom": ["135"],
+      "pages": [
+        [
+          {
+            "text": "Nie reaguje na twoje energicznie szturchanie go mopem. W tej sytuacji odpowiedź musi być tylko jedna – prawdopodobnie nie żyje."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "118",
+      "pages": [
+        [
+          {
+            "text": "Pancerne drzwi stoją nieruchomo, przytłaczające, jakby już samą obecnością odcinały drogę dalej. Ich gabaryty nie pozostawiają wątpliwości – siłowe rozwiązanie nie wchodzi w grę. Przez krótką chwilę rozpaczliwie szukasz czegokolwiek - zamka, szczeliny, słabego punktu, który pozwoliłby choć udawać, że masz wybór. Nic. Tylko gładka, martwa powierzchnia i niepozorny panel, czekający na kartę lub identyfikator, których nie masz i nigdy nie miałeś. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot w ekwipunku, którym chcesz wejść w interakcję z pancernymi drzwiami (przejdź do <span class='color-green'>136</span>)",
+          "nextParagraphId": "136"
+        },
+        {
+          "text": "Poddaj swoje ciało próbie i wyważ je! Dobierz do 4<symbol id=\"karta-akcji\"/>, a następnie przejdź do <span class='color-green'>80</span>.",
+          "nextParagraphId": "80"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "119",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Otwórz regał, tam na pewno coś w jest! (przejdź do <span class='color-green'>44</span>)",
+          "nextParagraphId": "44"
+        },
+        {
+          "text": "(Jeśli <room id=\"119\"/> stoi na <span class='color-purple'>E</span>) Spróbuj przesunąć regał. Dobierz do 3<symbol id=\"karta-akcji\"/> i mając co najmniej 3<symbol id=\"gwiazda\"/> przejdź do <span class='color-green'>130</span>.",
+          "nextParagraphId": "130"
+        },
+        {
+          "text": "Mając niższy wynik opuść ten paragraf."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "120",
+      "pages": [
+        [
+          {
+            "text": "Na ekranie wyświetla się informacja: \"<em>potrzebny autoryzator</em>\". Dostrzegasz napęd na płyty oraz coś w rodzaju panelu dotykowego. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot w ekwipunku, którym chcesz wejść w interakcję (przejdź do <span class='color-green'>102</span>)",
+          "nextParagraphId": "102"
+        },
+        {
+          "text": "Spróbuj złamać hasło. Dobierz do 4<symbol id=\"karta-akcji\"/> i przejdź do <span class='color-green'>143</span>.",
+          "nextParagraphId": "143"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "121",
+      "pages": [
+        [
+          {
+            "text": "Leżący na ziemi mężczyzna, na oko pewnie powyżej czterdziestki. Ubrany w fartuch laboratoryjny. Posiniaczona i zakrwawiona twarz. Co tu się dzieje!? Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przeszukaj go (przejdź do <span class='color-green'>133</span>)",
+          "nextParagraphId": "133"
+        },
+        {
+          "text": "Wskaż przedmiot w ekwipunku, którym chcesz wejść w interakcję (przejdź do <span class='color-green'>135</span>)",
+          "nextParagraphId": "135"
+        },
+        {
+          "text": "Dobierz 1<symbol id=\"karta-akcji\"/> bez rozpatrywania efektu, aby przemieścić się razem z <room id=\"121\"/> do sąsiedniej planszy przez <symbol id=\"drzwi-otwarte\"/> lub <symbol id=\"drzwi-wywazone\"/>"
+        },
+        {
+          "text": "Ustal, czy można mu pomóc (przejdź do <span class='color-green'>81</span>)",
+          "nextParagraphId": "81"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "122",
+      "accessibleFrom": ["111"],
+      "pages": [
+        [
+          {
+            "text": "Oblewasz ją, ale nie dostrzegasz żadnej reakcji. <span class='color-blue'>Odrzuć</span> <room id=\"139\"/>. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "123",
+      "pages": [
+        [
+          {
+            "text": "Rzeźba z wyciągniętymi rękami, które sprawiają wrażenie jakby o coś prosiły. Tuż pod nimi wygrawerowano słowa: \"<em>Cennym się staje gdy mu się czasu daje, wartość otrzymuje, gdy się go zeszlifuje</em>\". Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot w ekwipunku, którym wejdziesz w interakcję i przejdź do <span class='color-green'>137</span>.",
+          "nextParagraphId": "137"
+        }
+      ]
+    },
+    {
+      "id": "124",
+      "pages": [
+        [
+          {
+            "text": "Po cholerę było wsadzać ją tam, gdzie nie należy. Opuść paragraf. <span class='color-blue'>Zyskujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "127",
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Wyłóż</span> planszę 15<letter id=\"a\"/>, <room id=\"50\"/> na <span class='color-purple'>E</span>, <symbol id=\"drzwi-zamkniete\"/> na <span class='color-purple'>W</span> (jeśli wolne łączenie), zaś na środku <room id=\"69\"/> oraz <room id=\"123\"/>. "
+          },
+          {
+            "text": "Twoją uwagę przykuwają WIELKIE drzwi. Może nawet w zasadzie wrota. Takie, które prawdopodobnie oddzielają Cię od upragnionej wolności. Wiesz to, bo nad nimi widnieje rozpalający Twój umysł, napis \"<em>WYJŚCIE</em>\". Porzucasz jakąkolwiek nadzieję siłowego ich otwarcia, bo zbytnio miłujesz swoje kruche kości. Może sposobem ich otwarcia jest otwór w ścianie obok wielkich wrót <room id=\"69\"/>, a może dziwna rzeźba <room id=\"123\"/> wyciągająca w Twoim kierunku ręce jakby o coś prosiła."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "128",
+      "accessibleFrom": ["111"],
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Dodaj</span> (o ile któreś nie zostało usunięte z gry) <room id=\"61\"/> lub <room id=\"101\"/> do swojego ekwipunku. Czujesz się z tym fatalnie. <span class='color-blue'>Dodaj</span> FFFFFFFFFFFFFFFFF do swojego stosu odrzuconego."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "130",
+      "accessibleFrom": ["119"],
+      "pages": [
+        [
+          {
+            "style": "italic",
+            "text": "Kto by pomyślał, że za regałem znajdowała się ogromna dziura. "
+          },
+          {
+            "text": "<span class='color-blue'>Przełóż</span> <room id=\"119\"/> na środek planszy 4<letter id=\"a\"/>, zaś na jej <span class='color-purple'>E</span> połóż <symbol id=\"drzwi-wywazone\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "132",
+      "accessibleFrom": ["58"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie bez rozpatrywania efektu, a następnie opuść paragraf. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>III</b> – przejdź do <span class='color-green'>75</span>",
+          "nextParagraphId": "75"
+        },
+        {
+          "text": "<b>VII</b> – przejdź do <span class='color-green'>75</span>",
+          "nextParagraphId": "75"
+        },
+        {
+          "text": "<b>X</b> – przejdź do <span class='color-green'>82</span>",
+          "nextParagraphId": "82"
+        },
+        {
+          "text": "<b>XXVI</b> – przejdź do <span class='color-green'>75</span>",
+          "nextParagraphId": "75"
+        },
+        {
+          "text": "<b>XXIX</b> lub <b>XXXIX</b> – przejdź do <span class='color-green'>75</span>",
+          "nextParagraphId": "75"
+        },
+        {
+          "text": "<b>MMDVX</b> – przejdź do <span class='color-green'>42</span>",
+          "nextParagraphId": "42"
+        },
+        {
+          "text": "<b>IV</b> – tylko jeśli masz <symbol id=\"amunicja-strzelba\"/> przejdź do <span class='color-green'>66</span>",
+          "nextParagraphId": "66"
+        }
+      ]
+    },
+    {
+      "id": "133",
+      "accessibleFrom": ["121"],
+      "pages": [
+        [
+          {
+            "text": "W kieszeniach znajdujesz plakietkę z imieniem \"<em>Jack</em>\".  Znajdujesz u niego również mosiężny klucz z symbolem kruka. <span class='color-blue'>Dodaj</span> <room id=\"148\"/> oraz <room id=\"84\"/> do swojego ekwipunku."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"121\"/>, zastąp ją leżącą figurką <person id=\"jack\"/> stroną z <symbol id=\"nieprzytomny\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "134",
+      "pages": [
+        [
+          {
+            "text": "Wyłóż planszę 12<letter id=\"a\"/> oraz <room id=\"12\"/> na <span class='color-purple'>W</span> (<span class='color-red'>o ile nie zostały odrzucone, w takim przypadku zignoruj</span>). Na środku wyłóż 2<symbol id=\"przedmiot-losowy\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "135",
+      "accessibleFrom": ["94", "121"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>III</b> -  dobierz 1 <symbol id=\"karta-akcji\"/>bez rozpatrywania efektu i przejdź do <span class='color-green'>103</span>",
+          "nextParagraphId": "103"
+        },
+        {
+          "text": "<b>VII</b> – przejdź do <span class='color-green'>103</span>",
+          "nextParagraphId": "103"
+        },
+        {
+          "text": "<b>X</b> / <b>LIII</b> – oblewasz go, ale nie zauważasz żadnej reakcji. Pewnie, gdyby żył, to momentalnie postawiłoby go do pionu"
+        },
+        {
+          "text": "<b>MMDVX</b> – przejdź do <span class='color-green'>117</span>",
+          "nextParagraphId": "117"
+        }
+      ]
+    },
+    {
+      "id": "136",
+      "accessibleFrom": ["118"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 bez rozpatrywania efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>VIII</b> – <span class='color-blue'>połóż</span> <symbol id=\"zycie\"/> przy <room id=\"118\"/>"
+        },
+        {
+          "text": "<b>XXVI</b> - <span class='color-blue'>połóż</span> <symbol id=\"zycie\"/> przy <room id=\"118\"/>"
+        },
+        {
+          "text": "<b>XXXVI</b> lub <b>XXXVII</b> – <span class='color-blue'>odrzuć</span> <room id=\"118\"/> w to miejsce wyłóż <symbol id=\"drzwi-otwarte\"/>. Drzwi momentalnie stają przed Tobą otworem."
+        }
+      ]
+    },
+    {
+      "id": "137",
+      "accessibleFrom": ["123"],
+      "pages": [
+        [
+          {
+            "text": "Jeśli <b>NIE</b> wskazano <b>I</b> opuść paragraf i zakończ akcję. Jeśli wskazano <b>I</b> czytaj dalej."
+          },
+          {
+            "text": "Diament wydaje się pasować idealnie, a ręce zaciskają się na tyle mocno, że już go nie odzyskasz. Widzisz jak jedna z dwóch lampek nad masywnymi drzwiami zapala się na zielono. <span class='color-blue'>Odrzuć</span> <room id=\"123\"/> i <room id=\"72\"/>, <span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/>. <span class='color-blue'>Połóż</span> <letter id=\"e\"/> w <span class='color-yellow'>AKTYWNE</span>. Jeśli znajduje się tam już <letter id=\"d\"/>, <letter id=\"p\"/> lub <letter id=\"f\"/>, przejdź od razu do przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "139",
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Napij się. <span class='color-blue'>Odrzuć</span> <room id=\"139\"/> i <span class='color-blue'>dodaj</span> do ekwipunku <room id=\"222\"/>. Następnie przejdź do <span class='color-green'>221</span>.",
+          "nextParagraphId": "221"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "140",
+      "accessibleFrom": ["64"],
+      "pages": [
+        [
+          {
+            "text": "Zbliżasz twarz do wielkiej, szklanej tuby wypełnionej gęstą, ciemną cieczą, aby spróbować przebić się przez nią wzrokiem. Nie wiesz, czy wyobraźnia płata Ci figle, czy faktycznie dostrzegasz ledwie widoczne zarysy jakiejś nienaturalnie wielkiej sylwetki."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "141",
+      "accessibleFrom": ["146"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2 wierzchnie <symbol id=\"karta-akcji\"/> bez rozpatrywania efektu, a następnie opuść paragraf i zakończ akcję. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<b>IV</b> – (tylko jeśli posiadasz <symbol id=\"amunicja-strzelba\"/>) przejdź do <span class='color-green'>152</span>",
+          "nextParagraphId": "152"
+        },
+        {
+          "text": "<b>XXIX</b> – przejdź do <span class='color-green'>110</span>",
+          "nextParagraphId": "110"
+        },
+        {
+          "text": "<b>XXVI</b> – przejdź do <span class='color-green'>110</span>",
+          "nextParagraphId": "110"
+        },
+        {
+          "text": "<b>LVII</b> - przejdź do <span class='color-green'>151</span>",
+          "nextParagraphId": "151"
+        }
+      ]
+    },
+    {
+      "id": "142",
+      "accessibleFrom": ["147"],
+      "pages": [
+        [
+          {
+            "text": "W kieszeniach znajdujesz plakietkę z imieniem \"<em>Lauren</em>\". <span class='color-blue'>Dodaj</span> do swojego ekwipunku <room id=\"106\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"147\"/> i zastąp go leżącą figurką <person id=\"lauren\"/> stroną z <symbol id=\"nieprzytomny\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "143",
+      "accessibleFrom": ["120"],
+      "pages": [
+        [
+          {
+            "text": "Zsumuj <symbol id=\"gwiazda\"/>. Mając co najmniej 5<symbol id=\"gwiazda\"/> przejdź do <span class='color-green'>3</span>. W innym wypadku opuść paragraf."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "146",
+      "pages": [
+        [
+          {
+            "text": "Szyb wentylacyjny zabezpieczony kratką. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym wejść w interakcję z kratką (przejdź do <span class='color-green'>141</span>)",
+          "nextParagraphId": "141"
+        },
+        {
+          "text": "Wyrwij ją. Dobierz do 3<symbol id=\"karta-akcji\"/> i jeśli uzyskasz co najmniej 5<symbol id=\"gwiazda\"/>, odrzuć <room id=\"146\"/> i zastąp ją <symbol id=\"drzwi-wywazone\"/>."
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "147",
+      "pages": [
+        [
+          {
+            "text": "Na oko trzydziestoparoletnia kobieta ubrana w laboratoryjny fartuch. Co się tu wydarzyło? Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z tą kobietą (przejdź do <span class='color-green'>111</span>)",
+          "nextParagraphId": "111"
+        },
+        {
+          "text": "Dobierz 1<symbol id=\"karta-akcji\"/> bez rozpatrywania efektu. Przemieść się razem z <room id=\"147\"/> do sąsiedniej planszy przez <symbol id=\"drzwi-otwarte\"/> lub <symbol id=\"drzwi-wywazone\"/>."
+        },
+        {
+          "text": "Upewnij się, czy nie jest już za późno (przejdź do <span class='color-green'>182</span>)",
+          "nextParagraphId": "182"
+        },
+        {
+          "text": "Przeszukaj ją (przejdź do <span class='color-green'>142</span>)",
+          "nextParagraphId": "142"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "148",
+      "pages": [
+        [
+          {
+            "text": "Plastikowa plakietka ze zdjęciem i podpisem: <em>Jack Torrence, kierownik sekcji laboratoryjnej</em>. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "149",
+      "accessibleFrom": ["47"],
+      "pages": [
+        [
+          {
+            "text": "Sprawdź rzymską cyfrę przedmiotu, który zadeklarowano. Jeśli jej tu nie ma, odrzuć 2<symbol id=\"karta-akcji\"/> bez ich aktywacji, a następnie opuść paragraf. Jeśli cyfra została tu jednak ujęta, wprowadź efekt, który został do niej przypisany:"
+          },
+          {
+            "text": "<b>LVII</b> / <b>XXIX</b> / <b>MMDVX</b> – udaje Cię wygrzebać coś co wygląda na diament <room id=\"72\"/>. Dodaj <room id=\"72\"/> do swojego ekwipunku. <span class='color-blue'>Odrzuć</span> <room id=\"47\"/>."
+          },
+          {
+            "text": "<b>X</b> – płomienie momentalnie wygasają, a twoim oczom ukazuje się diament <room id=\"72\"/>. Znajdował się w specjalnie wytłoczonym dla niego miejscu. Nie wyglądało to jakby ktoś go tam wrzucił przypadkowo, ale raczej… zaprojektował to? <room id=\"139\"/>, która została użyta do oblania, zamień na <story id=\"xxiv\"/>, zaś <room id=\"139\"/> <span class='color-blue'>odrzuć</span>. <span class='color-blue'>Dodaj</span> <room id=\"72\"/> do swojego. <span class='color-blue'>Dobierz 2</span><symbol id=\"pd\"/> i odrzuć <room id=\"47\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "150",
+      "pages": [
+        [
+          {
+            "text": "Klucz w kolorze żółtym. Nie ma płaskiej końcówki, jak to w kluczach jakie do tej pory widziałeś, ale jest kwadratowa."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "151",
+      "accessibleFrom": ["141"],
+      "pages": [
+        [
+          {
+            "text": "Łom wykonał kawał dobrej roboty. Usuwasz kratkę, która blokowała wejście do szybu. <span class='color-blue'>Odrzuć</span> <room id=\"146\"/> i zastąp <symbol id=\"drzwi-otwarte\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "152",
+      "accessibleFrom": ["141"],
+      "pages": [
+        [
+          {
+            "text": "Celny strzał załatwił sprawę. <span class='color-blue'>Odrzuć</span> <room id=\"146\"/> i <symbol id=\"amunicja-strzelba\"/>. Wyłóż <symbol id=\"drzwi-otwarte\"/> na <span class='color-purple'>E</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "153",
+      "accessibleFrom": ["46"],
+      "pages": [
+        [
+          {
+            "text": "Kto by pomyślał – ukryte przejście! Musisz chyba częściej korzystać z usług intuicji. <span class='color-blue'>Przełóż</span> <room id=\"46\"/> z <span class='color-purple'>E</span> na środek planszy 6<letter id=\"a\"/>, a w jej miejsce wyłóż <symbol id=\"drzwi-wywazone\"/> na <span class='color-purple'>E</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "155",
+      "pages": [
+        [
+          {
+            "style": "bold",
+            "size": "xl",
+            "text": "BOOM!"
+          },
+          {
+            "text": "Huk rozstrzaskującego się szkła, a chwilę potem mrożący krew w żyłach ryk przypominający skowyt rannego zwierzęcia. Podskórnie czujesz, że to początek zbliżających się kłopotów. Szybko, szukaj wyjścia!"
+          },
+          {
+            "text": "Każda figurka kontrolowana przez graczy <span class='color-blue'>dobiera 1</span><symbol id=\"pd\"/>."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <letter id=\"c\"/> z toru czasu. <span class='color-blue'>Wyłóż</span> tam <letter id=\"g\"/> na polu 6 (dla 1-2 graczy) / polu 5 (na 3-4 graczy)"
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"64\"/> z planszy 2<letter id=\"a\"/> (jeśli została odkryta)."
+          }
+        ],
+        [
+          {
+            "text": "Na planszy 2<letter id=\"a\"/> <span class='color-blue'>postaw</span> figurkę <enemy id=\"wilkolak\"/> (jeśli plansza <u>nie</u> została odkryte, postaw ją w na planszy 1<letter id=\"a\"/>, a na <span class='color-purple'>W</span> planszy 1<letter id=\"a\"/> połóż wtedy <symbol id=\"drzwi-wywazone\"/> (odrzucając z łączenia wcześniejszy element)."
+          },
+          {
+            "color": "red",
+            "text": "Od momentu pojawienia się <symbol id=\"przeciwnik\"/> zawsze po turze ostatniej postaci kontrolowanej przez graczy oraz ewentualnym rozpatrzeniu wydarzeń (gdyby swoimi działaniami jakieś uruchomiła), swoją turę rozpoczyna figurka <symbol id=\"przeciwnik\"/>."
+          },
+          {
+            "text": "To <b>COŚ</b> zniszczyło pojemnik w którym się znajdowało. Stworzenie rozgląda się wściekle po pomieszczeniu, aby po chwili dezorientacji zacząć wydawać z siebie nieludzkie odgłosy od których włosy jeżą się na głowie. Przypomina żądną krwi kulkę futra, ale taką z kłami, pazurami i na oko 3 metrami wzrostu. Szczypanie nic nie daje. To jest prawdziwe."
+          },
+          {
+            "text": "Jeśli turę miała ostatnia w rundzie figurka, aktywuje się <symbol id=\"przeciwnik\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "157",
+      "accessibleFrom": ["40"],
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"iii\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>. Połóż na planszetce <symbol id=\"przeciwnik\"/> status <status id=\"niebieski\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "158",
+      "accessibleFrom": ["112"],
+      "pages": [
+        [
+          {
+            "text": "<em>Testy na zwierzętach zostały zakończone. Nadszedł czas na testy na ludziach. Celem było sprawdzenie w warunkach praktycznych, czy porwana grupa studentów przeżyje kontakt z obiektem objętym likantropią oraz czy dojdzie do ich przemiany. Niestety, z powodu zaniedbania stażysty bestia nie została nakarmiona. W rezultacie, zamiast pozostawić choć jednego osobnika przy życiu, w ułamku sekund rozszarpała wszystkich na strzępy. Potrzebujemy nowych „ochotników”. Tym razem należy dopilnować, aby stażysta nakarmił obiekt — przynajmniej jeden osobnik musi przeżyć. Obiekt należy wypuścić natychmiast po przebudzeniu, zanim zdąży odzyskać pełnię sił. W przeciwnym razie ponownie nie będzie czego zbierać</em> – podpisano Jack."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "160",
+      "pages": [
+        [
+          {
+            "text": "Zamknięta szafka. Wybierz jedną z opcji spośród:"
+          },
+          {
+            "text": "Spróbuj się do niej dostać. Dobierz do 3<symbol id=\"karta-akcji\"/> - suma 3 i mniej <symbol id=\"gwiazda\"/> oznacza, że masz opuścić paragraf. Wynik 4 lub więcej <symbol id=\"gwiazda\"/>, przejście do <span class='color-green'>2</span>."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przejście do <span class='color-green'>2</span>.",
+          "nextParagraphId": "2"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
+    },
+    {
+      "id": "173",
+      "accessibleFrom": ["112"],
+      "pages": [
+        [
+          {
+            "text": "Folder oznaczony jako obiekt „068”. Zżerana ciekawością zaczynasz czytać."
+          },
+          {
+            "text": "<em>Istota humanoidalna, u której skóra uległa trwałemu przekształceniu w metamateriał węglowy, czyniący ją całkowicie niewidoczną dla ludzkiego oka. Mówiąc potocznie — obiekt jest niewidzialny. Przyszedł na świat jako wcześniak. Rodzice byli zmuszeni odebrać poród w domu. Nie jesteśmy w stanie określić, co musieli czuć, słysząc płacz nowo narodzonego dziecka, którego fragmenty widoczne były jedynie we krwi matki. Szybko powiązaliśmy ten przypadek ze zgłoszeniem gwałtu, które kobieta złożyła na policji osiem miesięcy wcześniej. Z raportów wynika, że stanowczo utrzymywała, iż padła ofiarą napaści, choć nie widziała sprawcy. Dochodzenie wszczęto, jednak z uwagi na całkowity brak poszlak zostało ono umorzone. W dniu porodu zapukaliśmy do drzwi, ujawniając prawdę o zaistniałych wydarzeniach. Zapewniliśmy rodziców, że zajmiemy się Martinem najlepiej, jak to możliwe, a także pokryjemy wszelkie koszty związane z ich milczeniem. Bliscy i znajomi zostali poinformowani o poronieniu</em> – podpisano Lauren."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "174",
+      "pages": [
+        [
+          {
+            "text": "Zbiera Ci na wymioty. <span class='color-red'>Tracisz akcję</span>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "182",
+      "accessibleFrom": ["147"],
+      "pages": [
+        [
+          {
+            "text": "Brak pulsu i liczne sińce na szyi sugerujące uduszenie wskazują na to, że na wszelką pomoc za późno."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "185",
+      "accessibleFrom": ["102"],
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Dobierz </span>1<symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"106\"/> i <room id=\"120\"/>, a następnie <span class='color-blue'>wyłóż</span> na środku <room id=\"71\"/>. "
+          }
+        ]
+      ]
+    },
+    {
+      "id": "191",
+      "accessibleFrom": ["100"],
+      "pages": [
+        [
+          {
+            "text": "W tym momencie, każda z kontrolowanych graczy postaci, jeśli nie posiada choć 1<symbol id=\"zycie\"/>, <span class='color-blue'>dobiera</span> żeton ciężkiej rany (ignoruje jeśli już posiada)."
+          },
+          {
+            "text": "<symbol id=\"rana-ciezka\"/>"
+          },
+          {
+            "text": "Postać staje się poważnie ranna. Od tej pory wykonując akcję „RUCH” z akcji ogólnych, musi odjąć od finalnego wyniku 2<symbol id=\"gwiazda\"/>. Gdy tylko postać uzyska choć 1<symbol id=\"zycie\"/>, <span class='color-blue'>odrzuca</span> żeton ciężkiej rany. "
+          },
+          {
+            "text": "Jeśli posiadają go wszystkie postacie kontrolowane przez graczy, <span class='color-red'>scenariusz zostaje przegrany</span>. Ten eksperyment skończył się tak jak w pierwotnych założeniach, czyli tragicznie. Kto umarł, ten nie żyje."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "192",
+      "accessibleFrom": ["100"],
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> figurkę tego co was goniło. "
+          },
+          {
+            "text": "Na twarzach ocalałych maluje się wyraźna ulga, podszyta jednak dumą z tego, że udało się powalić to coś. Nikt nie ma jednak pewności, czy fakt, że mimo odniesionych ran wciąż oddycha, nie oznacza, że jeszcze się podniesie. Wszyscy są zgodni co do jednego — nigdy więcej nie chcieliby mierzyć się z czymś podobnym."
+          },
+          {
+            "text": "Jeśli brak <letter id=\"g\"/> na torze czasu, <span class='color-blue'>połóż</span> <letter id=\"g\"/> na pole 1 toru czasu."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "193",
+      "accessibleFrom": ["40"],
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"iii\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>. Połóż obok planszetki <symbol id=\"przeciwnik\"/> status <status id=\"czerwony\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "220",
+      "accessibleFrom": ["102"],
+      "pages": [
+        [
+          {
+            "text": "Najwyraźniej trzeba być geniuszem - bo kto inny wpadłby na pomysł, żeby podłączyć płytę do komputera. Ku zaskoczeniu okazuje się jednak, że to działa. Płyta zostaje zaakceptowana, a na ekranie pojawia się komunikat o przyznanym dostępie."
+          },
+          {
+            "text": "<span class='color-blue'>Odrzuć</span> <room id=\"85\"/> i <room id=\"120\"/>, a następnie <span class='color-blue'>wyłóż</span> na środku <room id=\"71\"/>. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "221",
+      "accessibleFrom": ["139"],
+      "pages": [
+        [
+          {
+            "text": "No ja bym tego nie robił ze względu na pochodzenie tej wody. <span class='color-blue'>Dodaj</span> do stosu odrzuconego jedną GGGGGGGGGGGGGGGGGGGGG."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "222",
+      "pages": [
+        [
+          {
+            "text": "Pusta butelka. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -25,8 +25,7 @@ describe("data/items getters", () => {
       const result = getStoryItem(firstItem.id);
       expect(result).toBeDefined();
       expect(result!.id).toBe(firstItem.id);
-      expect(result!.imagePath).toContain(firstItem.id);
-      expect(result!.imagePath).toContain("storyItems");
+      expect(result!.imagePath).toContain("items");
       expect(result!.imagePath).toContain(".jpg");
     });
 
@@ -40,7 +39,7 @@ describe("data/items getters", () => {
       const firstItem = roomItems[0];
       const result = getRoomItem(firstItem.id);
       expect(result).toBeDefined();
-      expect(result!.imagePath).toContain("roomItems");
+      expect(result!.imagePath).toContain("items");
       expect(result!.imagePath).toContain(".jpg");
     });
 
@@ -137,7 +136,7 @@ describe("data/items getters", () => {
       const result = getRandomItem(firstItem.id);
       expect(result).toBeDefined();
       expect(result!.id).toBe(firstItem.id);
-      expect(result!.imagePath).toContain("randomItems");
+      expect(result!.imagePath).toContain("items");
       expect(result!.imagePath).toContain(".jpg");
     });
 
