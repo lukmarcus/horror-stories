@@ -7,6 +7,7 @@ import statusesData from "./statuses.json";
 import personsData from "./persons.json";
 import enemiesData from "./enemies.json";
 import lettersData from "./letters.json";
+import cardsData from "./cards.json";
 
 // Central item type
 interface CentralItem {
@@ -58,6 +59,12 @@ export interface Letter {
   id: string;
 }
 
+export interface Card {
+  id: string;
+  name: string;
+  description: string;
+}
+
 // Central items lookup
 const items = itemsData as Record<string, CentralItem>;
 
@@ -101,6 +108,11 @@ export const statuses: Status[] = statusesData.items;
 export const persons: Person[] = personsData.items;
 export const enemies: Enemy[] = enemiesData.items;
 export const letters: Letter[] = lettersData.items;
+export const cards: Card[] = Object.entries(cardsData).map(([id, card]) => ({
+  id,
+  name: card.name,
+  description: card.description || "",
+}));
 
 // Image path helper - unified items/ folder with priority naming (paragraphId > roman > name)
 const getItemImagePath = (
@@ -124,7 +136,7 @@ const getItemImagePath = (
 // Legacy helper for non-item types
 const getImagePath = (
   id: string | number,
-  type: "symbols" | "statuses" | "persons" | "enemies" | "letters",
+  type: "symbols" | "statuses" | "persons" | "enemies" | "letters" | "cards",
 ): string => {
   const extension = type === "symbols" || type === "letters" ? "png" : "jpg";
   return `${import.meta.env.BASE_URL}assets/images/${type}/${id}.${extension}`;
@@ -204,4 +216,11 @@ export const getStatus = (
   return status
     ? { ...status, imagePath: getImagePath(id, "statuses") }
     : undefined;
+};
+
+export const getCard = (
+  id: string,
+): (Card & { imagePath: string }) | undefined => {
+  const card = cards.find((c) => c.id === id);
+  return card ? { ...card, imagePath: getImagePath(id, "cards") } : undefined;
 };

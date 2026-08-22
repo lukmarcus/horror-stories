@@ -1,0 +1,14 @@
+{
+  "a": {
+    "name": "Karta A",
+    "description": "Opis karty A"
+  },
+  "b": {
+    "name": "Karta B",
+    "description": "Opis karty B"
+  },
+  "c": {
+    "name": "Karta C",
+    "description": "Opis karty C"
+  }
+}

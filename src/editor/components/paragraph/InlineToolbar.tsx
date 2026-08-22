@@ -11,6 +11,7 @@ import {
   STATUS_PICKER_ITEMS,
   LETTER_PICKER_ITEMS,
   RANDOM_PICKER_ITEMS,
+  CARD_PICKER_ITEMS,
 } from "./editorPickerData";
 
 export interface InlineToolbarProps {
@@ -167,6 +168,18 @@ export const InlineToolbar: React.FC<InlineToolbarProps> = ({
             />
           }
           title="Wstaw przedmiot losowy"
+        />
+        <ImagePicker
+          items={CARD_PICKER_ITEMS}
+          onSelect={(id) => onInsertAtCursor(`<card id="${id}"/>`)}
+          toggleContent={
+            <img
+              src={CARD_PICKER_ITEMS[0].imagePath}
+              alt="karta"
+              className="pages-editor__picker-icon"
+            />
+          }
+          title="Wstaw kartę akcji"
         />
         {scenarioImageItems.length > 0 && (
           <ImagePicker

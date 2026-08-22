@@ -7,6 +7,7 @@ import {
   statuses,
   letters,
   randomItems,
+  cards,
   getSymbol,
   getRoomItem,
   getPerson,
@@ -15,6 +16,7 @@ import {
   getStatus,
   getLetter,
   getRandomItem,
+  getCard,
 } from "../../../data/items";
 
 // ── Color ─────────────────────────────────────────────
@@ -98,6 +100,13 @@ export const RANDOM_PICKER_ITEMS: ImagePickerItem[] = randomItems.map((r) => ({
   imagePath: getRandomItem(r.id)!.imagePath,
   label: `Przedmiot losowy ${r.id.toUpperCase()}`,
   sublabel: r.description || undefined,
+}));
+
+export const CARD_PICKER_ITEMS: ImagePickerItem[] = cards.map((c) => ({
+  id: c.id,
+  imagePath: getCard(c.id)!.imagePath,
+  label: `Karta ${c.name}`,
+  sublabel: c.description || undefined,
 }));
 
 export { SPAN_SNIPPETS } from "./snippets";

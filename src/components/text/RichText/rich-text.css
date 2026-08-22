@@ -102,6 +102,7 @@
 .random-item-image,
 .story-item-image,
 .room-item-image,
+.card-image,
 .inline-image {
   height: 1.4em;
   width: auto;
