@@ -66,7 +66,7 @@ export const ROOM_PICKER_ITEMS: ImagePickerItem[] = roomItems.map((r) => ({
 export const PERSON_PICKER_ITEMS: ImagePickerItem[] = persons.map((p) => ({
   id: p.id,
   imagePath: getPerson(p.id)!.imagePath,
-  label: p.id.charAt(0).toUpperCase() + p.id.slice(1),
+  label: p.name ?? p.id,
 }));
 
 export const ENEMY_PICKER_ITEMS: ImagePickerItem[] = enemies.map((e) => ({
