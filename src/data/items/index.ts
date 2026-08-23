@@ -47,6 +47,7 @@ export interface Status {
 
 export interface Person {
   id: string;
+  name?: string;
   paragraphId?: number | null;
 }
 

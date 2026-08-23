@@ -10,10 +10,7 @@ const ALL_PERSONS = personsData.items
   .filter((p) => p.paragraphId !== undefined)
   .map((p) => ({
     id: p.id,
-    name: p.id
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" "),
+    name: p.name ?? p.id,
     paragraphId: String(p.paragraphId),
   }));
 
