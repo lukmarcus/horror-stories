@@ -53,6 +53,7 @@ export interface Person {
 
 export interface Enemy {
   id: string;
+  name?: string;
   paragraphId?: number | null;
 }
 

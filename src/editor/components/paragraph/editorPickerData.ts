@@ -72,7 +72,7 @@ export const PERSON_PICKER_ITEMS: ImagePickerItem[] = persons.map((p) => ({
 export const ENEMY_PICKER_ITEMS: ImagePickerItem[] = enemies.map((e) => ({
   id: e.id,
   imagePath: getEnemy(e.id)!.imagePath,
-  label: e.id.charAt(0).toUpperCase() + e.id.slice(1),
+  label: e.name ?? e.id,
 }));
 
 export const STORY_PICKER_ITEMS: ImagePickerItem[] = storyItems.map((s) => ({

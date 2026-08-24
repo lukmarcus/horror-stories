@@ -7,6 +7,24 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.3.3] - W przygotowaniu
+
+### Dodano
+
+- Karty — nowy typ zasobu graficznego w grze i edytorze (placeholder: A, B, C)
+- Edytor: możliwość wstawiania kart w tekście paragrafów i wyborów
+- Postacie i przeciwnicy — dodano pole name dla polskich znaków (np. "Gość od pizzy", "Wilkołak")
+
+### Zmieniono
+
+- Edytor: w menu wyboru grafik postacie i przeciwnicy wyświetlają nazwę zamiast identyfikatora (lepsze UX dla polskich znaków)
+
+### Naprawiono
+
+- Usunięto zduplikowany folder characters — wszystkie dane postaci są teraz w jednolitej strukturze items/persons.json
+
+---
+
 ## [0.3.2] - 2026-08-20
 
 ### Dodano
