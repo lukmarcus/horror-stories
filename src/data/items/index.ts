@@ -11,22 +11,23 @@ import cardsData from "./cards.json";
 
 // Central item type
 interface CentralItem {
+  romanId?: string;
   name: string;
-  paragraphId?: number;
   description?: string | null;
   categories: string[];
 }
 
 // Types (backward compatible)
 export interface StoryItem {
-  id: string; // Roman numeral
-  paragraphId?: number | null;
+  id: string; // Key from items.json (paragraphId or roman numeral)
+  romanId?: string;
   description?: string | null;
 }
 
 export interface RoomItem {
   id: number; // Paragraph number
   name?: string;
+  romanId?: string;
 }
 
 export interface RandomItem {
@@ -71,34 +72,44 @@ export interface Card {
 const items = itemsData as Record<string, CentralItem>;
 
 // Build category arrays from IDs
-export const storyItems: StoryItem[] = storyItemIdsData.items.map((id) => {
-  const item = items[id];
+export const storyItems: StoryItem[] = storyItemIdsData.items.map((romanId) => {
+  // Find item by romanId in items.json (or by key if no paragraphId)
+  const entry = Object.entries(items).find(
+    ([key, item]) => item.romanId === romanId || key === romanId,
+  );
+  if (!entry) {
+    throw new Error(`No item found for romanId ${romanId}`);
+  }
+  const [key, item] = entry;
   return {
-    id,
-    paragraphId: item.paragraphId ?? 0,
+    id: key,
+    romanId: item.romanId ?? key,
     description: item.description ?? item.name,
   };
 });
 
 export const roomItems: RoomItem[] = roomItemIdsData.items.map(
   (paragraphId) => {
-    // Find item by paragraphId in items.json
-    const entry = Object.entries(items).find(
-      ([_, item]) => item.paragraphId === paragraphId,
-    );
-    if (!entry) {
+    // Find item by key (key is paragraphId)
+    const item = items[String(paragraphId)];
+    if (!item) {
       throw new Error(`No item found for paragraphId ${paragraphId}`);
     }
-    const [, item] = entry;
     return {
       id: paragraphId as number,
       name: item.name,
+      romanId: item.romanId,
     };
   },
 );
 
 export const randomItems: RandomItem[] = randomItemIdsData.items.map((id) => {
-  const item = items[id];
+  // Map conflicting IDs: random "i" is stored as "i-random" in items.json
+  const lookupId = id === "i" ? "i-random" : id;
+  const item = items[lookupId];
+  if (!item) {
+    throw new Error(`No item found for randomItem ${id}`);
+  }
   return {
     id,
     description: item.description,
@@ -116,23 +127,10 @@ export const cards: Card[] = Object.entries(cardsData).map(([id, card]) => ({
   description: card.description || "",
 }));
 
-// Image path helper - unified items/ folder with priority naming (paragraphId > roman > name)
-const getItemImagePath = (
-  id: string,
-  category: "story" | "room" | "random",
-): string => {
-  let fileName: string;
-
-  if (category === "room") {
-    // Room items: id is already the paragraphId
-    fileName = id;
-  } else {
-    // Story/random items: check if item has paragraphId, use it with priority
-    const item = items[id];
-    fileName = item?.paragraphId?.toString() ?? id;
-  }
-
-  return `${import.meta.env.BASE_URL}assets/images/items/${fileName}.jpg`;
+// Image path helper - unified items/ folder
+// Key in items.json IS the filename (paragraphId > roman > name)
+const getItemImagePath = (key: string): string => {
+  return `${import.meta.env.BASE_URL}assets/images/items/${key}.jpg`;
 };
 
 // Legacy helper for non-item types
@@ -152,16 +150,14 @@ export const getRandomItem = (
 
   // Map conflicting IDs: random "i" is stored as "i-random" in items.json
   const lookupId = id === "i" ? "i-random" : id;
-  return { ...item, imagePath: getItemImagePath(lookupId, "random") };
+  return { ...item, imagePath: getItemImagePath(lookupId) };
 };
 
 export const getStoryItem = (
-  id: string,
+  romanId: string,
 ): (StoryItem & { imagePath: string }) | undefined => {
-  const item = storyItems.find((item) => item.id === id);
-  return item
-    ? { ...item, imagePath: getItemImagePath(id, "story") }
-    : undefined;
+  const item = storyItems.find((item) => item.romanId === romanId);
+  return item ? { ...item, imagePath: getItemImagePath(item.id) } : undefined;
 };
 
 export const getRoomItem = (
@@ -170,7 +166,7 @@ export const getRoomItem = (
   const numId = typeof id === "string" ? parseInt(id, 10) : id;
   const roomItem = roomItems.find((item) => item.id === numId);
   return roomItem
-    ? { ...roomItem, imagePath: getItemImagePath(String(numId), "room") }
+    ? { ...roomItem, imagePath: getItemImagePath(String(numId)) }
     : undefined;
 };
 

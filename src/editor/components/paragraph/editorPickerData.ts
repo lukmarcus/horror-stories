@@ -76,9 +76,9 @@ export const ENEMY_PICKER_ITEMS: ImagePickerItem[] = enemies.map((e) => ({
 }));
 
 export const STORY_PICKER_ITEMS: ImagePickerItem[] = storyItems.map((s) => ({
-  id: s.id,
-  imagePath: getStoryItem(s.id)!.imagePath,
-  label: `Przedmiot fabularny ${s.id.toUpperCase()}${s.paragraphId != null ? ` (§${s.paragraphId})` : ""}`,
+  id: s.romanId || s.id,
+  imagePath: getStoryItem(s.romanId || s.id)!.imagePath,
+  label: `Przedmiot fabularny ${(s.romanId || s.id).toUpperCase()}${!isNaN(Number(s.id)) ? ` (§${s.id})` : ""}`,
   sublabel: s.description || undefined,
 }));
 

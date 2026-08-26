@@ -1,9 +1,287 @@
 {
-  "i": {
+  "12": {
+    "name": "Drzwi zielone",
+    "categories": ["room"]
+  },
+  "13": {
+    "name": "Szafka",
+    "categories": ["room"]
+  },
+  "14": {
+    "name": "Obraz",
+    "categories": ["room"]
+  },
+  "21": {
+    "romanId": "xlix",
+    "name": "Pizza",
+    "description": "Pizza",
+    "categories": ["story", "room"]
+  },
+  "37": {
+    "name": "Drzwi czerwone",
+    "categories": ["room"]
+  },
+  "38": {
+    "name": "Obraz",
+    "categories": ["room"]
+  },
+  "41": {
+    "name": "Wanna",
+    "categories": ["room"]
+  },
+  "42": {
+    "name": "Gablotka szklana",
+    "categories": ["room"]
+  },
+  "43": {
+    "romanId": "xlv",
+    "name": "Plik banknotów",
+    "description": "Plik banknotów",
+    "categories": ["story", "room"]
+  },
+  "46": {
+    "name": "Lodówka",
+    "categories": ["room"]
+  },
+  "47": {
+    "name": "Gablotka szklana",
+    "categories": ["room"]
+  },
+  "48": {
+    "romanId": "xiii",
+    "name": "Zielony klucz",
+    "description": "Zielony klucz",
+    "categories": ["story", "room"]
+  },
+  "50": {
+    "name": "Drzwi żółte",
+    "categories": ["room"]
+  },
+  "52": {
+    "name": "Toaleta",
+    "categories": ["room"]
+  },
+  "53": {
+    "name": "Biurko",
+    "categories": ["room"]
+  },
+  "56": {
+    "romanId": "lvi",
+    "name": "Notatki",
+    "description": "Notatki",
+    "categories": ["story", "room"]
+  },
+  "58": {
+    "name": "Bezpiecznik",
+    "categories": ["room"]
+  },
+  "59": {
+    "romanId": "lv",
+    "name": "Notatnik",
+    "description": "Notatnik",
+    "categories": ["story", "room"]
+  },
+  "60": {
+    "name": "Telefon",
+    "categories": ["room"]
+  },
+  "61": {
+    "romanId": "xiv",
+    "name": "Odcięta męska ręka",
+    "description": "Odcięta męska ręka",
+    "categories": ["story", "room"]
+  },
+  "63": {
+    "romanId": "lii",
+    "name": "Folder",
+    "description": "Folder",
+    "categories": ["story", "room"]
+  },
+  "64": {
+    "name": "Gigantyczna komora",
+    "categories": ["room"]
+  },
+  "65": {
+    "name": "Szklany pojemnik",
+    "categories": ["room"]
+  },
+  "66": {
+    "name": "Lustro",
+    "categories": ["room"]
+  },
+  "69": {
+    "name": "Dziura",
+    "categories": ["room"]
+  },
+  "71": {
+    "name": "Komputer",
+    "categories": ["room"]
+  },
+  "72": {
+    "romanId": "i",
     "name": "Diament",
-    "paragraphId": 72,
     "description": "Diament",
     "categories": ["story", "room"]
+  },
+  "76": {
+    "romanId": "liv",
+    "name": "Wycinki z gazet",
+    "description": "Wycinki z gazet",
+    "categories": ["story", "room"]
+  },
+  "79": {
+    "name": "Obraz",
+    "categories": ["room"]
+  },
+  "84": {
+    "romanId": "xvii",
+    "name": "Czerwony klucz",
+    "description": "Czerwony klucz",
+    "categories": ["story", "room"]
+  },
+  "85": {
+    "romanId": "vi",
+    "name": "Płyta CD",
+    "description": "Płyta CD",
+    "categories": ["story", "room"]
+  },
+  "89": {
+    "romanId": "xlvi",
+    "name": "Wycinek gazety",
+    "description": "Wycinek gazety",
+    "categories": ["story", "room"]
+  },
+  "92": {
+    "romanId": "xv",
+    "name": "Ręka",
+    "description": "Ręka",
+    "categories": ["story", "room"]
+  },
+  "101": {
+    "romanId": "xlvii",
+    "name": "Noga",
+    "description": "Noga",
+    "categories": ["story", "room"]
+  },
+  "106": {
+    "romanId": "xxxvi",
+    "name": "Identyfikator",
+    "description": "Identyfikator",
+    "categories": ["story", "room"]
+  },
+  "110": {
+    "name": "Priorytet",
+    "categories": ["room"]
+  },
+  "111": {
+    "name": "Rzeźba",
+    "categories": ["room"]
+  },
+  "112": {
+    "name": "Szuflady",
+    "categories": ["room"]
+  },
+  "113": {
+    "romanId": "liii",
+    "name": "Książka z pustymi kartkami",
+    "description": "Książka z pustymi kartkami",
+    "categories": ["story", "room"]
+  },
+  "114": {
+    "romanId": "xviii",
+    "name": "Noga",
+    "description": "Noga",
+    "categories": ["story", "room"]
+  },
+  "118": {
+    "name": "Drzwi",
+    "categories": ["room"]
+  },
+  "119": {
+    "name": "Szafki",
+    "categories": ["room"]
+  },
+  "120": {
+    "name": "Komputer",
+    "categories": ["room"]
+  },
+  "121": {
+    "name": "Ciało",
+    "categories": ["room"]
+  },
+  "123": {
+    "name": "Dłonie",
+    "categories": ["room"]
+  },
+  "124": {
+    "romanId": "li",
+    "name": "Dłoń",
+    "description": "Dłoń",
+    "categories": ["story", "room"]
+  },
+  "137": {
+    "name": "Regał",
+    "categories": ["room"]
+  },
+  "139": {
+    "romanId": "x",
+    "name": "Woda",
+    "description": "Woda",
+    "categories": ["story", "room"]
+  },
+  "140": {
+    "romanId": "xii",
+    "name": "Whiskey",
+    "description": "Whiskey",
+    "categories": ["story", "room"]
+  },
+  "146": {
+    "name": "Szyb wentylacyjny",
+    "categories": ["room"]
+  },
+  "147": {
+    "name": "Ciało",
+    "categories": ["room"]
+  },
+  "148": {
+    "romanId": "xxxvii",
+    "name": "Plakietka z imieniem",
+    "description": "Plakietka z imieniem",
+    "categories": ["story", "room"]
+  },
+  "150": {
+    "romanId": "l",
+    "name": "Żółty klucz",
+    "description": "Żółty klucz",
+    "categories": ["story", "room"]
+  },
+  "151": {
+    "name": "Priorytet",
+    "categories": ["room"]
+  },
+  "160": {
+    "name": "Szafka",
+    "categories": ["room"]
+  },
+  "173": {
+    "name": "Książki",
+    "categories": ["room"]
+  },
+  "222": {
+    "romanId": "xxiv",
+    "name": "Butelka",
+    "description": "Butelka",
+    "categories": ["story", "room"]
+  },
+  "i-random": {
+    "name": "Przedmiot losowy I",
+    "description": null,
+    "categories": ["random"]
+  },
+  "ii": {
+    "name": "Przedmiot losowy II",
+    "description": "Coś z worka",
+    "categories": ["random"]
   },
   "iii": {
     "name": "Nóż",
@@ -15,299 +293,10 @@
     "description": "Karabin - Po dodaniu do ekwipunku dobierz kartę 15, a przy odłożeniu odrzuć.",
     "categories": ["story", "random"]
   },
-  "vi": {
-    "name": "Płyta CD",
-    "paragraphId": 85,
-    "description": "Płyta CD",
-    "categories": ["story", "room"]
-  },
-  "x": {
-    "name": "Woda",
-    "paragraphId": 139,
-    "description": "Woda",
-    "categories": ["story", "room"]
-  },
-  "xii": {
-    "name": "Whiskey",
-    "paragraphId": 140,
-    "description": "Whiskey",
-    "categories": ["story", "room"]
-  },
-  "xiii": {
-    "name": "Zielony klucz",
-    "paragraphId": 48,
-    "description": "Zielony klucz",
-    "categories": ["story", "room"]
-  },
-  "xiv": {
-    "name": "Odcięta męska ręka",
-    "paragraphId": 61,
-    "description": "Odcięta męska ręka",
-    "categories": ["story", "room"]
-  },
-  "xvii": {
-    "name": "Czerwony klucz",
-    "paragraphId": 84,
-    "description": "Czerwony klucz",
-    "categories": ["story", "room"]
-  },
-  "xxiv": {
-    "name": "Butelka",
-    "paragraphId": 222,
-    "description": "Butelka",
-    "categories": ["story", "room"]
-  },
-  "xxxvi": {
-    "name": "Identyfikator",
-    "paragraphId": 106,
-    "description": "Identyfikator",
-    "categories": ["story", "room"]
-  },
-  "xlv": {
-    "name": "Plik banknotów",
-    "paragraphId": 43,
-    "description": "Plik banknotów",
-    "categories": ["story", "room"]
-  },
-  "xlvi": {
-    "name": "Wycinek gazety",
-    "paragraphId": 89,
-    "description": "Wycinek gazety",
-    "categories": ["story", "room"]
-  },
-  "xlix": {
-    "name": "Pizza",
-    "paragraphId": 21,
-    "description": "Pizza",
-    "categories": ["story", "room"]
-  },
-  "l": {
-    "name": "Żółty klucz",
-    "paragraphId": 150,
-    "description": "Żółty klucz",
-    "categories": ["story", "room"]
-  },
-  "li": {
-    "name": "Dłoń",
-    "paragraphId": 124,
-    "description": "Dłoń",
-    "categories": ["story", "room"]
-  },
-  "lii": {
-    "name": "Folder",
-    "paragraphId": 63,
-    "description": "Folder",
-    "categories": ["story", "room"]
-  },
-  "liii": {
-    "name": "Książka z pustymi kartkami",
-    "paragraphId": 113,
-    "description": "Książka z pustymi kartkami",
-    "categories": ["story", "room"]
-  },
-  "liv": {
-    "name": "Wycinki z gazet",
-    "paragraphId": 76,
-    "description": "Wycinki z gazet",
-    "categories": ["story", "room"]
-  },
-  "lv": {
-    "name": "Notatnik",
-    "paragraphId": 59,
-    "description": "Notatnik",
-    "categories": ["story", "room"]
-  },
-  "12": {
-    "name": "Drzwi zielone",
-    "paragraphId": 12,
-    "categories": ["room"]
-  },
-  "13": {
-    "name": "Szafka",
-    "paragraphId": 13,
-    "categories": ["room"]
-  },
-  "14": {
-    "name": "Obraz",
-    "paragraphId": 14,
-    "categories": ["room"]
-  },
-  "37": {
-    "name": "Drzwi czerwone",
-    "paragraphId": 37,
-    "categories": ["room"]
-  },
-  "38": {
-    "name": "Obraz",
-    "paragraphId": 38,
-    "categories": ["room"]
-  },
-  "41": {
-    "name": "Wanna",
-    "paragraphId": 41,
-    "categories": ["room"]
-  },
-  "42": {
-    "name": "Gablotka szklana",
-    "paragraphId": 42,
-    "categories": ["room"]
-  },
-  "46": {
-    "name": "Lodówka",
-    "paragraphId": 46,
-    "categories": ["room"]
-  },
-  "47": {
-    "name": "Gablotka szklana",
-    "paragraphId": 47,
-    "categories": ["room"]
-  },
-  "48": {
-    "name": "Drzwi zielone",
-    "paragraphId": 48,
-    "description": "Zielony klucz",
-    "categories": ["room"]
-  },
-  "50": {
-    "name": "Drzwi żółte",
-    "paragraphId": 50,
-    "categories": ["room"]
-  },
-  "52": {
-    "name": "Toaleta",
-    "paragraphId": 52,
-    "categories": ["room"]
-  },
-  "53": {
-    "name": "Biurko",
-    "paragraphId": 53,
-    "categories": ["room"]
-  },
-  "58": {
-    "name": "Bezpiecznik",
-    "paragraphId": 58,
-    "categories": ["room"]
-  },
-  "60": {
-    "name": "Telefon",
-    "paragraphId": 60,
-    "categories": ["room"]
-  },
-  "64": {
-    "name": "Gigantyczna komora",
-    "paragraphId": 64,
-    "categories": ["room"]
-  },
-  "65": {
-    "name": "Szklany pojemnik",
-    "paragraphId": 65,
-    "categories": ["room"]
-  },
-  "66": {
-    "name": "Lustro",
-    "paragraphId": 66,
-    "categories": ["room"]
-  },
-  "69": {
-    "name": "Dziura",
-    "paragraphId": 69,
-    "categories": ["room"]
-  },
-  "71": {
-    "name": "Komputer",
-    "paragraphId": 71,
-    "categories": ["room"]
-  },
-  "79": {
-    "name": "Obraz",
-    "paragraphId": 79,
-    "categories": ["room"]
-  },
-  "110": {
-    "name": "Priorytet",
-    "paragraphId": 110,
-    "categories": ["room"]
-  },
-  "111": {
-    "name": "Rzeźba",
-    "paragraphId": 111,
-    "categories": ["room"]
-  },
-  "112": {
-    "name": "Szuflady",
-    "paragraphId": 112,
-    "categories": ["room"]
-  },
-  "118": {
-    "name": "Drzwi",
-    "paragraphId": 118,
-    "categories": ["room"]
-  },
-  "119": {
-    "name": "Szafki",
-    "paragraphId": 119,
-    "categories": ["room"]
-  },
-  "120": {
-    "name": "Komputer",
-    "paragraphId": 120,
-    "categories": ["room"]
-  },
-  "121": {
-    "name": "Ciało",
-    "paragraphId": 121,
-    "categories": ["room"]
-  },
-  "123": {
-    "name": "Dłonie",
-    "paragraphId": 123,
-    "categories": ["room"]
-  },
-  "137": {
-    "name": "Regał",
-    "paragraphId": 137,
-    "categories": ["room"]
-  },
-  "147": {
-    "name": "Ciało",
-    "paragraphId": 147,
-    "categories": ["room"]
-  },
-  "151": {
-    "name": "Priorytet",
-    "paragraphId": 151,
-    "categories": ["room"]
-  },
-  "160": {
-    "name": "Szafka",
-    "paragraphId": 160,
-    "categories": ["room"]
-  },
-  "173": {
-    "name": "Książki",
-    "paragraphId": 173,
-    "categories": ["room"]
-  },
-  "lvi": {
-    "name": "Notatki",
-    "paragraphId": 56,
-    "description": "Notatki",
-    "categories": ["story", "room"]
-  },
   "mmdvx": {
     "name": "Mop i wiadro",
     "description": "Mop i wiadro - Po dodaniu do ekwipunku dobierz kartę 17 . Przy odłożeniu odrzuć je.",
     "categories": ["story"]
-  },
-  "i-random": {
-    "name": "Przedmiot losowy I",
-    "description": null,
-    "categories": ["random"]
-  },
-  "ii": {
-    "name": "Przedmiot losowy II",
-    "description": "Coś z worka",
-    "categories": ["random"]
   },
   "v": {
     "name": "Przedmiot losowy V",
