@@ -14,10 +14,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Karty — nowy typ zasobu graficznego w grze i edytorze (placeholder: A, B, C)
 - Edytor: możliwość wstawiania kart w tekście paragrafów i wyborów
 - Postacie i przeciwnicy — dodano pole name dla polskich znaków (np. "Gość od pizzy", "Wilkołak")
+- Eksperyment: 5 nowych żetonów planszy (92, 101, 114, 146, 148)
+- Eksperyment: 2 nowe żetony statusu (czerwony, niebieski)
 
 ### Zmieniono
 
 - Edytor: w menu wyboru grafik postacie i przeciwnicy wyświetlają nazwę zamiast identyfikatora (lepsze UX dla polskich znaków)
+- Struktura items.json — klucze teraz odpowiadają nazwom plików graficznych (priorytet: paragraphId → romanId → name), co ułatwia zarządzanie zasobami
+- Porządek w items.json — usunięto zbędne pola description gdzie wartość była identyczna z name
 
 ### Naprawiono
 

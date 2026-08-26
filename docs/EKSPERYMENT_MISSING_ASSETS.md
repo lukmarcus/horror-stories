@@ -1,17 +1,18 @@
 # Eksperyment - Brakujące grafiki i placeholdery
 
-Data wygenerowania: 2026-08-20 (aktualizacja: pełne skanowanie po imporcie wszystkich 148 paragrafów)
+Data wygenerowania: 2026-08-20  
+**Ostatnia aktualizacja: 2026-08-26**
 
 ## Podsumowanie
 
-Po weryfikacji z uwzględnieniem refaktoru nazw plików (priorytet: paragraphId → rzymskie → name):
+Po dodaniu nowych grafik (2026-08-26):
 
-- **Story items:** 6 faktycznie brakujących (nie ma w items.json), 10 przemianowanych (już istnieją)
-- **Room items:** 5 faktycznie brakujących (92, 101, 114, 146, 148), reszta istnieje
-- **Statusy:** 2 brakujące (niebieski, czerwony)
+- **Story items:** 5 faktycznie brakujących (vii, xvii, xxvi, lvii, xxix), 2 dodane (xv, xviii)
+- **Room items:** ✅ Wszystkie dodane (92, 101, 114, 146, 148)
+- **Statusy:** ✅ Wszystkie dodane (niebieski, czerwony)
 - **Placeholdery tekstowe:** 11 do zastąpienia
 
-**Łącznie do utworzenia: 13 plików graficznych (11 items + 2 statusy) + 11 tekstów**
+**Łącznie pozostało do utworzenia: 5 plików graficznych (story items) + 11 tekstów**
 
 ## Brakujące grafiki przedmiotów (story items)
 
@@ -36,31 +37,36 @@ Te przedmioty mają grafiki pod nazwami z `paragraphId` (priorytet: paragraphId 
 
 Te przedmioty są używane w scenariuszu, ale w ogóle nie istnieją w `items.json`:
 
-| ID      | Status               | Paragrafy |
-| ------- | -------------------- | --------- |
-| `vii`   | ❌ Brak w items.json | §20       |
-| `xvii`  | ❌ Brak w items.json | §20       |
-| `xxvi`  | ❌ Brak w items.json | §20       |
-| `lvii`  | ❌ Brak w items.json | §20       |
-| `xxix`  | ❌ Brak w items.json | §20       |
-| `xv`    | ❌ Brak w items.json | §24       |
-| `xviii` | ❌ Brak w items.json | §24       |
+| ID     | Status               | Paragrafy |
+| ------ | -------------------- | --------- |
+| `vii`  | ❌ Brak w items.json | §20       |
+| `xvii` | ❌ Brak w items.json | §20       |
+| `xxvi` | ❌ Brak w items.json | §20       |
+| `lvii` | ❌ Brak w items.json | §20       |
+| `xxix` | ❌ Brak w items.json | §20       |
 
-**Faktycznie brakuje: 6 przedmiotów** (trzeba dodać do items.json i stworzyć grafiki)
+**Faktycznie brakuje: 5 przedmiotów** (trzeba dodać do items.json i stworzyć grafiki)
+
+### ✅ Dodane (2026-08-26)
+
+| ID      | Plik         | Status | Paragrafy |
+| ------- | ------------ | ------ | --------- |
+| `xv`    | `92.jpg` ✅  | Dodane | §24       |
+| `xviii` | `114.jpg` ✅ | Dodane | §24       |
 
 ## Brakujące grafiki pomieszczeń/przedmiotów (room items)
 
-### ❌ Brakujące pliki
+### ✅ Wszystkie dodane (2026-08-26)
 
-| ID    | Paragrafy                          |
-| ----- | ---------------------------------- |
-| `92`  | §103                               |
-| `101` | §125 (nowy, wykryty po §110)       |
-| `114` | §103                               |
-| `146` | §104, §110                         |
-| `148` | §139, §175 (nowy, wykryty po §110) |
+| ID    | Status    | Paragrafy                          |
+| ----- | --------- | ---------------------------------- |
+| `92`  | ✅ Dodane | §103                               |
+| `101` | ✅ Dodane | §125 (nowy, wykryty po §110)       |
+| `114` | ✅ Dodane | §103                               |
+| `146` | ✅ Dodane | §104, §110                         |
+| `148` | ✅ Dodane | §139, §175 (nowy, wykryty po §110) |
 
-**Faktycznie brakuje: 5 plików graficznych**
+**Wszystkie room items kompletne! ✅**
 
 ### ✅ Istniejące pliki (przykłady nowych wykrytych po §110)
 
@@ -68,14 +74,16 @@ Te przedmioty są używane w scenariuszu, ale w ogóle nie istnieją w `items.js
 
 ## Brakujące statusy (status items)
 
-| ID          | Paragrafy |
-| ----------- | --------- |
-| `niebieski` | §157      |
-| `czerwony`  | §193      |
+### ✅ Wszystkie dodane (2026-08-26)
 
-**Faktycznie brakuje: 2 pliki graficzne statusów**
+| ID          | Status    | Paragrafy |
+| ----------- | --------- | --------- |
+| `niebieski` | ✅ Dodane | §157      |
+| `czerwony`  | ✅ Dodane | §193      |
 
-**Istniejące:** zielony
+**Wszystkie statusy kompletne! ✅**
+
+**Istniejące:** zielony, niebieski, czerwony
 
 ## Placeholdery tekstowe do zastąpienia
 
@@ -144,9 +152,15 @@ Te przedmioty są używane w scenariuszu, ale w ogóle nie istnieją w `items.js
 
 ## Akcje do wykonania
 
-1. **Dodać do items.json:** 6 story items (vii, xvii, xxvi, lvii, xxix, xv, xviii)
-2. **Stworzyć grafiki:** 13 plików
-   - Story items: 6 (vii, xvii, xxvi, lvii, xxix, xv, xviii)
-   - Room items: 5 (92, 101, 114, 146, 148)
-   - Statusy: 2 (niebieski, czerwony)
+### ✅ Zakończone (2026-08-26)
+
+1. ~~**Dodać do items.json:** 2 story items (xv, xviii)~~ ✅
+2. ~~**Stworzyć grafiki:**~~ ✅
+   - ~~Room items: 5 (92, 101, 114, 146, 148)~~ ✅
+   - ~~Statusy: 2 (niebieski, czerwony)~~ ✅
+
+### ❌ Pozostało do zrobienia
+
+1. **Dodać do items.json:** 5 story items (vii, xvii, xxvi, lvii, xxix)
+2. **Stworzyć grafiki:** 5 plików (vii, xvii, xxvi, lvii, xxix)
 3. **Zastąpić placeholdery:** 11 wystąpień w 10 paragrafach (nazwy kart akcji z dokumentacji gry)
