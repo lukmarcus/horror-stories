@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "id": "czerwony",
+      "name": "Czerwony",
+      "description": "Stałe -1 kość (max 1 na figurkę)"
+    },
+    {
+      "id": "niebieski",
+      "name": "Niebieski",
+      "description": "W najbliższej turze -1 kość (max 1 na figurkę)"
+    },
+    {
       "id": "zielony",
       "name": "Zielony",
       "description": "Stałe +1 kość (max 1 na figurkę)"
