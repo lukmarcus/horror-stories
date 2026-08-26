@@ -14,7 +14,6 @@
   "21": {
     "romanId": "xlix",
     "name": "Pizza",
-    "description": "Pizza",
     "categories": ["story", "room"]
   },
   "37": {
@@ -36,7 +35,6 @@
   "43": {
     "romanId": "xlv",
     "name": "Plik banknotów",
-    "description": "Plik banknotów",
     "categories": ["story", "room"]
   },
   "46": {
@@ -50,7 +48,6 @@
   "48": {
     "romanId": "xiii",
     "name": "Zielony klucz",
-    "description": "Zielony klucz",
     "categories": ["story", "room"]
   },
   "50": {
@@ -68,7 +65,6 @@
   "56": {
     "romanId": "lvi",
     "name": "Notatki",
-    "description": "Notatki",
     "categories": ["story", "room"]
   },
   "58": {
@@ -78,7 +74,6 @@
   "59": {
     "romanId": "lv",
     "name": "Notatnik",
-    "description": "Notatnik",
     "categories": ["story", "room"]
   },
   "60": {
@@ -88,13 +83,11 @@
   "61": {
     "romanId": "xiv",
     "name": "Odcięta męska ręka",
-    "description": "Odcięta męska ręka",
     "categories": ["story", "room"]
   },
   "63": {
     "romanId": "lii",
     "name": "Folder",
-    "description": "Folder",
     "categories": ["story", "room"]
   },
   "64": {
@@ -120,13 +113,11 @@
   "72": {
     "romanId": "i",
     "name": "Diament",
-    "description": "Diament",
     "categories": ["story", "room"]
   },
   "76": {
     "romanId": "liv",
     "name": "Wycinki z gazet",
-    "description": "Wycinki z gazet",
     "categories": ["story", "room"]
   },
   "79": {
@@ -136,37 +127,31 @@
   "84": {
     "romanId": "xvii",
     "name": "Czerwony klucz",
-    "description": "Czerwony klucz",
     "categories": ["story", "room"]
   },
   "85": {
     "romanId": "vi",
     "name": "Płyta CD",
-    "description": "Płyta CD",
     "categories": ["story", "room"]
   },
   "89": {
     "romanId": "xlvi",
     "name": "Wycinek gazety",
-    "description": "Wycinek gazety",
     "categories": ["story", "room"]
   },
   "92": {
     "romanId": "xv",
     "name": "Ręka",
-    "description": "Ręka",
     "categories": ["story", "room"]
   },
   "101": {
     "romanId": "xlvii",
     "name": "Noga",
-    "description": "Noga",
     "categories": ["story", "room"]
   },
   "106": {
     "romanId": "xxxvi",
     "name": "Identyfikator",
-    "description": "Identyfikator",
     "categories": ["story", "room"]
   },
   "110": {
@@ -184,13 +169,11 @@
   "113": {
     "romanId": "liii",
     "name": "Książka z pustymi kartkami",
-    "description": "Książka z pustymi kartkami",
     "categories": ["story", "room"]
   },
   "114": {
     "romanId": "xviii",
     "name": "Noga",
-    "description": "Noga",
     "categories": ["story", "room"]
   },
   "118": {
@@ -216,7 +199,6 @@
   "124": {
     "romanId": "li",
     "name": "Dłoń",
-    "description": "Dłoń",
     "categories": ["story", "room"]
   },
   "137": {
@@ -226,13 +208,11 @@
   "139": {
     "romanId": "x",
     "name": "Woda",
-    "description": "Woda",
     "categories": ["story", "room"]
   },
   "140": {
     "romanId": "xii",
     "name": "Whiskey",
-    "description": "Whiskey",
     "categories": ["story", "room"]
   },
   "146": {
@@ -246,13 +226,11 @@
   "148": {
     "romanId": "xxxvii",
     "name": "Plakietka z imieniem",
-    "description": "Plakietka z imieniem",
     "categories": ["story", "room"]
   },
   "150": {
     "romanId": "l",
     "name": "Żółty klucz",
-    "description": "Żółty klucz",
     "categories": ["story", "room"]
   },
   "151": {
@@ -270,12 +248,10 @@
   "222": {
     "romanId": "xxiv",
     "name": "Butelka",
-    "description": "Butelka",
     "categories": ["story", "room"]
   },
   "i-random": {
     "name": "Przedmiot losowy I",
-    "description": null,
     "categories": ["random"]
   },
   "ii": {
