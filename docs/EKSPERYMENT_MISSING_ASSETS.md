@@ -5,14 +5,14 @@ Data wygenerowania: 2026-08-20
 
 ## Podsumowanie
 
-Po dodaniu nowych grafik (2026-08-26):
+Po dodaniu nowych grafik (2026-08-26) i weryfikacji (2026-08-27):
 
-- **Story items:** 5 faktycznie brakujących (vii, xvii, xxvi, lvii, xxix), 2 dodane (xv, xviii)
+- **Story items:** 4 faktycznie brakujących (vii, xxvi, lvii, xxix), 3 dodane (xv, xviii, xvii ✅)
 - **Room items:** ✅ Wszystkie dodane (92, 101, 114, 146, 148)
 - **Statusy:** ✅ Wszystkie dodane (niebieski, czerwony)
 - **Placeholdery tekstowe:** 11 do zastąpienia
 
-**Łącznie pozostało do utworzenia: 5 plików graficznych (story items) + 11 tekstów**
+**Łącznie pozostało do utworzenia: 4 pliki graficzne (story items) + 11 tekstów**
 
 ## Brakujące grafiki przedmiotów (story items)
 
@@ -40,12 +40,11 @@ Te przedmioty są używane w scenariuszu, ale w ogóle nie istnieją w `items.js
 | ID     | Status               | Paragrafy |
 | ------ | -------------------- | --------- |
 | `vii`  | ❌ Brak w items.json | §20       |
-| `xvii` | ❌ Brak w items.json | §20       |
 | `xxvi` | ❌ Brak w items.json | §20       |
 | `lvii` | ❌ Brak w items.json | §20       |
 | `xxix` | ❌ Brak w items.json | §20       |
 
-**Faktycznie brakuje: 5 przedmiotów** (trzeba dodać do items.json i stworzyć grafiki)
+**Faktycznie brakuje: 4 przedmioty** (trzeba dodać do items.json i stworzyć grafiki)
 
 ### ✅ Dodane (2026-08-26)
 
@@ -154,13 +153,13 @@ Te przedmioty są używane w scenariuszu, ale w ogóle nie istnieją w `items.js
 
 ### ✅ Zakończone (2026-08-26)
 
-1. ~~**Dodać do items.json:** 2 story items (xv, xviii)~~ ✅
+1. ~~**Dodać do items.json:** 2 story items (xv, xviii)~~ ✅ + **xvii (weryfikacja 2026-08-27: już istniał jako 84.jpg)** ✅
 2. ~~**Stworzyć grafiki:**~~ ✅
    - ~~Room items: 5 (92, 101, 114, 146, 148)~~ ✅
    - ~~Statusy: 2 (niebieski, czerwony)~~ ✅
 
 ### ❌ Pozostało do zrobienia
 
-1. **Dodać do items.json:** 5 story items (vii, xvii, xxvi, lvii, xxix)
-2. **Stworzyć grafiki:** 5 plików (vii, xvii, xxvi, lvii, xxix)
+1. **Dodać do items.json:** 4 story items (vii, xxvi, lvii, xxix)
+2. **Stworzyć grafiki:** 4 pliki (vii, xxvi, lvii, xxix)
 3. **Zastąpić placeholdery:** 11 wystąpień w 10 paragrafach (nazwy kart akcji z dokumentacji gry)
