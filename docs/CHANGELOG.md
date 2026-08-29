@@ -16,6 +16,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Postacie i przeciwnicy — dodano pole name dla polskich znaków (np. "Gość od pizzy", "Wilkołak")
 - Eksperyment: 5 nowych żetonów planszy (92, 101, 114, 146, 148)
 - Eksperyment: 2 nowe żetony statusu (czerwony, niebieski)
+- Eksperyment: 4 nowe przedmioty fabularne (Siekiera, Karabin, Śrubokręt, Łom)
 
 ### Zmieniono
 

@@ -5,14 +5,14 @@ Data wygenerowania: 2026-08-20
 
 ## Podsumowanie
 
-Po dodaniu nowych grafik (2026-08-26) i weryfikacji (2026-08-27):
+Po dodaniu nowych grafik (2026-08-26) i weryfikacji (2026-08-29):
 
-- **Story items:** 4 faktycznie brakujących (vii, xxvi, lvii, xxix), 3 dodane (xv, xviii, xvii ✅)
+- **Story items:** ✅ Wszystkie dodane (vii, xxvi, lvii, xxix, xv, xviii, xvii)
 - **Room items:** ✅ Wszystkie dodane (92, 101, 114, 146, 148)
 - **Statusy:** ✅ Wszystkie dodane (niebieski, czerwony)
 - **Placeholdery tekstowe:** 11 do zastąpienia
 
-**Łącznie pozostało do utworzenia: 4 pliki graficzne (story items) + 11 tekstów**
+**Łącznie pozostało: 11 tekstów do zastąpienia nazwami kart akcji**
 
 ## Brakujące grafiki przedmiotów (story items)
 
@@ -35,23 +35,18 @@ Te przedmioty mają grafiki pod nazwami z `paragraphId` (priorytet: paragraphId 
 
 ### ❌ Naprawdę brakujące (nie ma w items.json)
 
-Te przedmioty są używane w scenariuszu, ale w ogóle nie istnieją w `items.json`:
+_Wszystkie brakujące przedmioty zostały dodane! ✅_
 
-| ID     | Status               | Paragrafy |
-| ------ | -------------------- | --------- |
-| `vii`  | ❌ Brak w items.json | §20       |
-| `xxvi` | ❌ Brak w items.json | §20       |
-| `lvii` | ❌ Brak w items.json | §20       |
-| `xxix` | ❌ Brak w items.json | §20       |
+### ✅ Dodane (2026-08-26, 2026-08-31)
 
-**Faktycznie brakuje: 4 przedmioty** (trzeba dodać do items.json i stworzyć grafiki)
-
-### ✅ Dodane (2026-08-26)
-
-| ID      | Plik         | Status | Paragrafy |
-| ------- | ------------ | ------ | --------- |
-| `xv`    | `92.jpg` ✅  | Dodane | §24       |
-| `xviii` | `114.jpg` ✅ | Dodane | §24       |
+| ID      | Plik          | Status | Paragrafy |
+| ------- | ------------- | ------ | --------- |
+| `xv`    | `92.jpg` ✅   | Dodane | §24       |
+| `xviii` | `114.jpg` ✅  | Dodane | §24       |
+| `vii`   | `vii.jpg` ✅  | Dodane | §20       |
+| `xxvi`  | `xxvi.jpg` ✅ | Dodane | §20       |
+| `lvii`  | `lvii.jpg` ✅ | Dodane | §20       |
+| `xxix`  | `xxix.jpg` ✅ | Dodane | §20       |
 
 ## Brakujące grafiki pomieszczeń/przedmiotów (room items)
 

@@ -286,17 +286,17 @@
   },
   "vii": {
     "name": "Siekiera",
-    "description": "Przy dodaniu do ekwipunku dobierz 8[karta] i 9[karta]. Przy odłożeniu odrzuć je.",
+    "description": "Przy dodaniu do ekwipunku dobierz kartę 8 i kartę 9. Przy odłożeniu odrzuć je.",
     "categories": ["story"]
   },
   "xxix": {
     "name": "Śrubokręt",
-    "description": "Przy dobraniu weź 3[karta] i 4[karta], a przy odrzuceniu odłóż je.",
+    "description": "Przy dobraniu weź kartę 3 i kartę 4, a przy odrzuceniu odłóż je.",
     "categories": ["story", "random"]
   },
   "xxvi": {
     "name": "Karabin",
-    "description": "Po dodaniu do ekwipunku dobierz 16[karta], a przy odłożeniu odrzuć.",
+    "description": "Po dodaniu do ekwipunku dobierz kartę 16, a przy odłożeniu odrzuć.",
     "categories": ["story"]
   }
 }
