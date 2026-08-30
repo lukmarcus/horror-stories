@@ -104,9 +104,7 @@ export const roomItems: RoomItem[] = roomItemIdsData.items.map(
 );
 
 export const randomItems: RandomItem[] = randomItemIdsData.items.map((id) => {
-  // Map conflicting IDs: random "i" is stored as "i-random" in items.json
-  const lookupId = id === "i" ? "i-random" : id;
-  const item = items[lookupId];
+  const item = items[id];
   if (!item) {
     throw new Error(`No item found for randomItem ${id}`);
   }

@@ -250,15 +250,6 @@
     "name": "Butelka",
     "categories": ["story", "room"]
   },
-  "i-random": {
-    "name": "Przedmiot losowy I",
-    "categories": ["random"]
-  },
-  "ii": {
-    "name": "Przedmiot losowy II",
-    "description": "Coś z worka",
-    "categories": ["random"]
-  },
   "iii": {
     "name": "Nóż",
     "description": "Nóż - Po dodaniu do ekwipunku dobierz kartę 1 i kartę 2 .  Przy odłożeniu odrzuć je.",
@@ -278,11 +269,6 @@
     "name": "Mop i wiadro",
     "description": "Mop i wiadro - Po dodaniu do ekwipunku dobierz kartę 17 . Przy odłożeniu odrzuć je.",
     "categories": ["story"]
-  },
-  "v": {
-    "name": "Przedmiot losowy V",
-    "description": "Z czarnego worka",
-    "categories": ["random"]
   },
   "vii": {
     "name": "Siekiera",
