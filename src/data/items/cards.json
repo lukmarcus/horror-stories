@@ -1,14 +1,14 @@
 {
-  "a": {
-    "name": "Karta A",
-    "description": "Opis karty A"
+  "krwawienie": {
+    "name": "Krwawienie",
+    "description": "Karta krwawienia"
   },
-  "b": {
-    "name": "Karta B",
-    "description": "Opis karty B"
+  "zatrucie": {
+    "name": "Zatrucie",
+    "description": "Karta zatrucia"
   },
-  "c": {
-    "name": "Karta C",
-    "description": "Opis karty C"
+  "zranienie": {
+    "name": "Zranienie",
+    "description": "Karta zranienia"
   }
 }
