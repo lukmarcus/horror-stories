@@ -126,7 +126,7 @@
             "text": "Zjadasz ją, ale kiedy ledwie chwilę później zaczyna boleć Cię żołądek zdajesz sobie sprawę, że może nie był to dobry pomysł. "
           },
           {
-            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"xlix\"/> i dobierz 2<symbol id=\"zycie\"/>. <span class='color-blue'>Wtasuj</span> XXXXXXXXXXXXXXXXXXXXXXXXXX do swojej talii."
+            "text": "<span class='color-blue'>Odrzuć</span> <story id=\"xlix\"/> i dobierz 2<symbol id=\"zycie\"/>. <span class='color-blue'>Wtasuj</span> <card id=\"zatrucie\"/> do swojej talii."
           }
         ]
       ]
@@ -171,7 +171,7 @@
           "pages": [
             [
               {
-                "text": "Dodaj dwie YYYYYYYYYYYYYYYYYYYYYY do swojego stosu odrzuconego i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>. Następnie wyłóż <letter id=\"y\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
+                "text": "Dodaj dwie <card id=\"krwawienie\"/> do swojego stosu odrzuconego i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>. Następnie wyłóż <letter id=\"y\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
               }
             ]
           ]
@@ -306,7 +306,7 @@
       "pages": [
         [
           {
-            "text": "Odrzuć <letter id=\"a\"/>. Każda postać dodaje do swojego stosu odrzuconego jedną ZZZZZZZZZZZZZZZZZZZZZZ. "
+            "text": "Odrzuć <letter id=\"a\"/>. Każda postać dodaje do swojego stosu odrzuconego jedną <card id=\"zranienie\"/>. "
           },
           {
             "style": "italic",

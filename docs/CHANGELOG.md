@@ -11,18 +11,20 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ### Dodano
 
-- Karty — nowy typ zasobu graficznego w grze i edytorze (placeholder: A, B, C)
+- Karty — nowy typ zasobu graficznego w grze i edytorze (Zatrucie, Krwawienie, Zranienie)
 - Edytor: możliwość wstawiania kart w tekście paragrafów i wyborów
 - Postacie i przeciwnicy — dodano pole name dla polskich znaków (np. "Gość od pizzy", "Wilkołak")
 - Eksperyment: 5 nowych żetonów planszy (92, 101, 114, 146, 148)
 - Eksperyment: 2 nowe żetony statusu (czerwony, niebieski)
 - Eksperyment: 4 nowe przedmioty fabularne (Siekiera, Karabin, Śrubokręt, Łom)
+- Eksperyment: 3 karty akcji z opisami (Zatrucie, Krwawienie, Zranienie)
 
 ### Zmieniono
 
 - Edytor: w menu wyboru grafik postacie i przeciwnicy wyświetlają nazwę zamiast identyfikatora (lepsze UX dla polskich znaków)
 - Struktura items.json — klucze teraz odpowiadają nazwom plików graficznych (priorytet: paragraphId → romanId → name), co ułatwia zarządzanie zasobami
 - Porządek w items.json — usunięto zbędne pola description gdzie wartość była identyczna z name
+- Przedmioty losowe — usunięto przykładowe przedmioty (i-random, ii, v), pozostawiono tylko używane w grze
 
 ### Naprawiono
 

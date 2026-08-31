@@ -1,18 +1,19 @@
 # Eksperyment - Brakujące grafiki i placeholdery
 
 Data wygenerowania: 2026-08-20  
-**Ostatnia aktualizacja: 2026-08-26**
+**Ostatnia aktualizacja: 2026-09-01**
 
 ## Podsumowanie
 
-Po dodaniu nowych grafik (2026-08-26) i weryfikacji (2026-08-29):
+Po dodaniu nowych grafik (2026-08-26) i weryfikacji (2026-09-01):
 
 - **Story items:** ✅ Wszystkie dodane (vii, xxvi, lvii, xxix, xv, xviii, xvii)
 - **Room items:** ✅ Wszystkie dodane (92, 101, 114, 146, 148)
 - **Statusy:** ✅ Wszystkie dodane (niebieski, czerwony)
-- **Placeholdery tekstowe:** 11 do zastąpienia
+- **Karty:** ✅ 3 karty dodane (zatrucie, krwawienie, zranienie)
+- **Placeholdery tekstowe:** 8 pozostałych do zastąpienia (3 zastąpione kartami)
 
-**Łącznie pozostało: 11 tekstów do zastąpienia nazwami kart akcji**
+**Łącznie pozostało: 8 tekstów do zastąpienia**
 
 ## Brakujące grafiki przedmiotów (story items)
 
@@ -81,23 +82,23 @@ _Wszystkie brakujące przedmioty zostały dodane! ✅_
 
 ## Placeholdery tekstowe do zastąpienia
 
-### §4
+### ✅ §4 - Zastąpione
 
-- **Placeholder:** `XXXXXXXXXXXXXXXXXXXXXXXXXX`
-- **Kontekst:** "Wtasuj XXXXXXXXXXXXXXXXXXXXXXXXXX do swojej talii."
-- **Prawdopodobnie:** Nazwa karty akcji
+- **Było:** `XXXXXXXXXXXXXXXXXXXXXXXXXX`
+- **Teraz:** zatrucie
+- **Kontekst:** "Wtasuj zatrucie do swojej talii."
 
-### §5
+### ✅ §5 - Zastąpione
 
-- **Placeholder:** `YYYYYYYYYYYYYYYYYYYYYY`
-- **Kontekst:** "Dodaj dwie YYYYYYYYYYYYYYYYYYYYYY do swojego stosu odrzuconego"
-- **Prawdopodobnie:** Nazwa karty akcji
+- **Było:** `YYYYYYYYYYYYYYYYYYYYYY`
+- **Teraz:** krwawienie
+- **Kontekst:** "Dodaj dwie krwawienie do swojego stosu odrzuconego"
 
-### §10
+### ✅ §10 - Zastąpione
 
-- **Placeholder:** `ZZZZZZZZZZZZZZZZZZZZZZ`
-- **Kontekst:** "Każda postać dodaje do swojego stosu odrzuconego jedną ZZZZZZZZZZZZZZZZZZZZZZ"
-- **Prawdopodobnie:** Nazwa karty akcji
+- **Było:** `ZZZZZZZZZZZZZZZZZZZZZZ`
+- **Teraz:** zranienie
+- **Kontekst:** "Każda postać dodaje do swojego stosu odrzuconego jedną zranienie"
 
 ### §19
 
