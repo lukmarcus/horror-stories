@@ -11,9 +11,9 @@ Po dodaniu nowych grafik (2026-08-26) i weryfikacji (2026-09-01):
 - **Room items:** ✅ Wszystkie dodane (92, 101, 114, 146, 148)
 - **Statusy:** ✅ Wszystkie dodane (niebieski, czerwony)
 - **Karty:** ✅ 3 karty dodane (zatrucie, krwawienie, zranienie)
-- **Placeholdery tekstowe:** 8 pozostałych do zastąpienia (3 zastąpione kartami)
+- **Placeholdery tekstowe:** 2 pozostałe do zastąpienia (9 zastąpionych kartami)
 
-**Łącznie pozostało: 8 tekstów do zastąpienia**
+**Łącznie pozostało: 2 teksty do zastąpienia**
 
 ## Brakujące grafiki przedmiotów (story items)
 
@@ -85,26 +85,26 @@ _Wszystkie brakujące przedmioty zostały dodane! ✅_
 ### ✅ §4 - Zastąpione
 
 - **Było:** `XXXXXXXXXXXXXXXXXXXXXXXXXX`
-- **Teraz:** zatrucie
-- **Kontekst:** "Wtasuj zatrucie do swojej talii."
+- **Teraz:** `<card id="zatrucie"/>`
+- **Kontekst:** "Wtasuj `<card id="zatrucie"/>` do swojej talii."
 
 ### ✅ §5 - Zastąpione
 
 - **Było:** `YYYYYYYYYYYYYYYYYYYYYY`
-- **Teraz:** krwawienie
-- **Kontekst:** "Dodaj dwie krwawienie do swojego stosu odrzuconego"
+- **Teraz:** `<card id="krwawienie"/>`
+- **Kontekst:** "Dodaj dwie `<card id="krwawienie"/>` do swojego stosu odrzuconego"
 
 ### ✅ §10 - Zastąpione
 
 - **Było:** `ZZZZZZZZZZZZZZZZZZZZZZ`
-- **Teraz:** zranienie
-- **Kontekst:** "Każda postać dodaje do swojego stosu odrzuconego jedną zranienie"
+- **Teraz:** `<card id="zranienie"/>`
+- **Kontekst:** "Każda postać dodaje do swojego stosu odrzuconego jedną `<card id="zranienie"/>`"
 
-### §19
+### ✅ §19 - Zastąpione
 
-- **Placeholder:** `AAAAAAAAAAAAAAAAA`
-- **Kontekst:** "dodaj do swojego stosu odrzuconego trzy karty AAAAAAAAAAAAAAAAA"
-- **Prawdopodobnie:** Nazwa karty akcji
+- **Było:** `AAAAAAAAAAAAAAAAA`
+- **Teraz:** `<card id="zranienie"/>` (3 karty)
+- **Kontekst:** "dodaj do swojego stosu odrzuconego trzy karty `<card id="zranienie"/>`"
 
 ### §27
 
@@ -115,35 +115,35 @@ _Wszystkie brakujące przedmioty zostały dodane! ✅_
 - **Kontekst:** Żeton przypominający
 - **Prawdopodobnie:** Grafika letter/symbol
 
-### §52
+### ✅ §52 - Zastąpione
 
-- **Placeholder:** `DDDDDDDDDDDDDDD` (2 wystąpienia)
-- **Kontekst:** "Czy masz DDDDDDDDDDDDDDD?" oraz "Odrzuć DDDDDDDDDDDDDDD z talii"
-- **Prawdopodobnie:** Nazwa karty akcji lub przedmiotu
+- **Było:** `DDDDDDDDDDDDDDD` (2 wystąpienia)
+- **Teraz:** `<card id="zatrucie"/>`
+- **Kontekst:** "Czy masz `<card id="zatrucie"/>`?" oraz "Odrzuć `<card id="zatrucie"/>` z talii"
 
-### §93
+### ✅ §93 - Zastąpione
 
-- **Placeholder:** `FFFFFFFFFFFF`
-- **Kontekst:** "Dodaj z puli ogólnej FFFFFFFFFFFF do swojego stosu odrzuconego"
-- **Prawdopodobnie:** Nazwa karty akcji
+- **Było:** `FFFFFFFFFFFF`
+- **Teraz:** `<card id="zranienie"/>`
+- **Kontekst:** "Dodaj z puli ogólnej `<card id="zranienie"/>` do swojego stosu odrzuconego"
 
-### §103
+### ✅ §103 - Zastąpione
 
-- **Placeholder:** `FFFFFFFFFFFFFFFFFF`
-- **Kontekst:** "Dodaj również do swojego stosu odrzuconego FFFFFFFFFFFFFFFFFF (robi Ci się niedobrze)"
-- **Prawdopodobnie:** Nazwa karty akcji
+- **Było:** `FFFFFFFFFFFFFFFFFF`
+- **Teraz:** `<card id="zatrucie"/>`
+- **Kontekst:** "Dodaj również do swojego stosu odrzuconego `<card id="zatrucie"/>` (robi Ci się niedobrze)"
 
-### §128
+### ✅ §128 - Zastąpione
 
-- **Placeholder:** `FFFFFFFFFFFFFFFFF`
-- **Kontekst:** "Dodaj FFFFFFFFFFFFFFFFF do swojego stosu odrzuconego" (po dobraniu przedmiotu 61 lub 101)
-- **Prawdopodobnie:** Nazwa karty akcji (inny placeholder F!)
+- **Było:** `FFFFFFFFFFFFFFFFF`
+- **Teraz:** `<card id="zatrucie"/>`
+- **Kontekst:** "Dodaj `<card id="zatrucie"/>` do swojego stosu odrzuconego" (po dobraniu przedmiotu 61 lub 101)
 
-### §221
+### ✅ §221 - Zastąpione
 
-- **Placeholder:** `GGGGGGGGGGGGGGGGGGGGG`
-- **Kontekst:** "Dodaj do stosu odrzuconego jedną GGGGGGGGGGGGGGGGGGGGG"
-- **Prawdopodobnie:** Nazwa karty akcji
+- **Było:** `GGGGGGGGGGGGGGGGGGGGG`
+- **Teraz:** `<card id="zatrucie"/>`
+- **Kontekst:** "Dodaj do stosu odrzuconego jedną `<card id="zatrucie"/>`"
 
 ## Akcje do wykonania
 

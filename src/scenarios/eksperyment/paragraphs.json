@@ -547,7 +547,7 @@
             "text": "Niszczysz bezpiecznik, który razi Cię prądem. Przynajmniej wielkie pancerne drzwi obok ulegają otwarciu.  "
           },
           {
-            "text": "<span class='color-blue'>Odrzuć 1</span><symbol id=\"zycie\"/>, dodaj do swojego stosu odrzuconego trzy karty AAAAAAAAAAAAAAAAA oraz <span class='color-blue'>odrzuć</span> <room id=\"58\"/>. Następnie: <span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. "
+            "text": "<span class='color-blue'>Odrzuć 1</span><symbol id=\"zycie\"/>, dodaj do swojego stosu odrzuconego trzy karty <card id=\"zranienie\"/> oraz <span class='color-blue'>odrzuć</span> <room id=\"58\"/>. Następnie: <span class='color-blue'>Odrzuć</span> <room id=\"118\"/> i zastąp je <symbol id=\"drzwi-otwarte\"/>. "
           }
         ]
       ]
@@ -1217,7 +1217,7 @@
       "pages": [
         [
           {
-            "text": "Czy masz DDDDDDDDDDDDDDD?"
+            "text": "Czy masz <card id=\"zatrucie\"/>?"
           }
         ]
       ],
@@ -1242,7 +1242,7 @@
           ],
           "choices": [
             {
-              "text": "<span class='color-blue'>Odrzuć</span> DDDDDDDDDDDDDDD z talii i przetasuj ją lub ze stosu odrzuconego. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
+              "text": "<span class='color-blue'>Odrzuć</span> <card id=\"zatrucie\"/> z talii i przetasuj ją lub ze stosu odrzuconego. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
             },
             {
               "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z toaletą i przejdź do <span class='color-green'>70</span>.",
@@ -2012,7 +2012,7 @@
             "text": "Sprawdź sumę i rozpatrz odpowiedni wynik: "
           },
           {
-            "text": "4<symbol id=\"gwiazda\"/> lub niższy: ból jest trudny do zniesienia i cofasz rękę nim. <span class='color-blue'>Dodaj</span> z puli ogólnej FFFFFFFFFFFF do swojego stosu odrzuconego."
+            "text": "4<symbol id=\"gwiazda\"/> lub niższy: ból jest trudny do zniesienia i cofasz rękę nim. <span class='color-blue'>Dodaj</span> z puli ogólnej <card id=\"zranienie\"/> do swojego stosu odrzuconego."
           },
           {
             "text": "4<symbol id=\"gwiazda\"/> lub wyższy: twoim oczom ukazuje się diament (<room id=\"72\"/>). Dodaj go do ekwipunku. <span class='color-blue'>Dobierz</span> 2<symbol id=\"pd\"/>. <span class='color-blue'>Odrzuć</span> <room id=\"47\"/>."
@@ -2167,7 +2167,7 @@
             "text": "Brzydzisz się sobą, ale udało Ci się wejść w posiadanie cudzej kończyny. "
           },
           {
-            "text": "<span class='color-blue'>Dodaj</span> do ekwipunku <room id=\"92\"/> lub <room id=\"114\"/> (o ile któregoś nie usunięto z gry). <span class='color-blue'>Dodaj</span> również do swojego stosu odrzuconego FFFFFFFFFFFFFFFFFF (robi Ci się niedobrze)."
+            "text": "<span class='color-blue'>Dodaj</span> do ekwipunku <room id=\"92\"/> lub <room id=\"114\"/> (o ile któregoś nie usunięto z gry). <span class='color-blue'>Dodaj</span> również do swojego stosu odrzuconego <card id=\"zatrucie\"/> (robi Ci się niedobrze)."
           }
         ]
       ]
@@ -2520,7 +2520,7 @@
       "pages": [
         [
           {
-            "text": "<span class='color-blue'>Dodaj</span> (o ile któreś nie zostało usunięte z gry) <room id=\"61\"/> lub <room id=\"101\"/> do swojego ekwipunku. Czujesz się z tym fatalnie. <span class='color-blue'>Dodaj</span> FFFFFFFFFFFFFFFFF do swojego stosu odrzuconego."
+            "text": "<span class='color-blue'>Dodaj</span> (o ile któreś nie zostało usunięte z gry) <room id=\"61\"/> lub <room id=\"101\"/> do swojego ekwipunku. Czujesz się z tym fatalnie. <span class='color-blue'>Dodaj</span> <card id=\"zatrucie\"/> do swojego stosu odrzuconego."
           }
         ]
       ]
@@ -3069,7 +3069,7 @@
       "pages": [
         [
           {
-            "text": "No ja bym tego nie robił ze względu na pochodzenie tej wody. <span class='color-blue'>Dodaj</span> do stosu odrzuconego jedną GGGGGGGGGGGGGGGGGGGGG."
+            "text": "No ja bym tego nie robił ze względu na pochodzenie tej wody. <span class='color-blue'>Dodaj</span> do stosu odrzuconego jedną <card id=\"zatrucie\"/>."
           }
         ]
       ]

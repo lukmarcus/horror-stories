@@ -17,7 +17,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Eksperyment: 5 nowych żetonów planszy (92, 101, 114, 146, 148)
 - Eksperyment: 2 nowe żetony statusu (czerwony, niebieski)
 - Eksperyment: 4 nowe przedmioty fabularne (Siekiera, Karabin, Śrubokręt, Łom)
-- Eksperyment: 3 karty akcji z opisami (Zatrucie, Krwawienie, Zranienie)
+- Eksperyment: 3 karty akcji z opisami (Zatrucie, Krwawienie, Zranienie) i zastąpienie placeholderów w 9 paragrafach (§4, §5, §10, §19, §52, §93, §103, §128, §221)
 
 ### Zmieniono
 
