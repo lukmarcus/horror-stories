@@ -79,6 +79,82 @@
   color: var(--color-text-on-primary);
 }
 
+.enemy-view__status-toggles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) 0 0;
+}
+
+.enemy-view__status-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.enemy-view__status-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.enemy-view__status-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.enemy-view__status-btn:hover {
+  border-color: var(--color-accent);
+}
+
+.enemy-view__status-image {
+  width: auto;
+  height: 48px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+
+.enemy-view__status-btn--active .enemy-view__status-image {
+  opacity: 1;
+}
+
+.enemy-view__status-modifier {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0 4px;
+  font-size: var(--font-size-xs, 0.7rem);
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.enemy-view__status-btn--czerwony.enemy-view__status-btn--active {
+  border-color: #b23b3b;
+}
+
+.enemy-view__status-btn--niebieski.enemy-view__status-btn--active {
+  border-color: #3b6fb2;
+}
+
+.enemy-view__status-btn--zielony.enemy-view__status-btn--active {
+  border-color: #3b9b53;
+}
+
 .enemy-view__dice-buttons {
   display: flex;
   gap: var(--spacing-md);

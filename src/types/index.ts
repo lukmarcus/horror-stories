@@ -97,7 +97,6 @@ export interface Scenario {
   persons?: string[];
   notes?: string;
   enemies?: string[];
-  enemyDiceModifiers?: number[];
 }
 
 /**

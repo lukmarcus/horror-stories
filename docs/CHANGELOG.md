@@ -18,6 +18,8 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Eksperyment: 2 nowe żetony statusu (czerwony, niebieski)
 - Eksperyment: 4 nowe przedmioty fabularne (Siekiera, Karabin, Śrubokręt, Łom)
 - Eksperyment: 3 karty akcji z opisami (Zatrucie, Krwawienie, Zranienie) i zastąpienie placeholderów w 9 paragrafach (§4, §5, §10, §19, §52, §93, §103, §128, §221)
+- Gra: widok przeciwnika — przełączane statusy (Czerwony, Niebieski, Zielony) z grafikami zamiast ręcznego liczenia modyfikatorów; przycisk rzutu kością sam pokazuje wyliczoną liczbę kości
+- Dane: pole `statuses` przy przeciwniku — określa, które statusy dany przeciwnik może faktycznie otrzymać (Klaun: zielony; Wilkołak: czerwony, niebieski), więc widok pokazuje tylko trafne przełączniki
 
 ### Zmieniono
 
@@ -25,6 +27,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Struktura items.json — klucze teraz odpowiadają nazwom plików graficznych (priorytet: paragraphId → romanId → name), co ułatwia zarządzanie zasobami
 - Porządek w items.json — usunięto zbędne pola description gdzie wartość była identyczna z name
 - Przedmioty losowe — usunięto przykładowe przedmioty (i-random, ii, v), pozostawiono tylko używane w grze
+- Gra: usunięto scenariuszowe pole `enemyDiceModifiers` — zastąpione ogólnym mechanizmem statusów przeciwnika (patrz wyżej)
 
 ### Naprawiono
 

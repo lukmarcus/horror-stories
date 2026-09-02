@@ -2,10 +2,17 @@ import React from "react";
 import type { Enemy, EnemyAction } from "../../../types";
 import { OptionButton } from "../../ui";
 import { EnemyTiles } from "./EnemyTiles";
+import { EnemyStatusToggles } from "./EnemyStatusToggles";
 import { DiceButtons } from "./DiceButtons";
 import { DiceResult } from "./DiceResult";
 import { ActionDisplay } from "./ActionDisplay";
+import { statuses } from "../../../data/items";
 import "./EnemyView.css";
+
+// Only statuses that affect the enemy's dice roll are offered as toggles here
+const DICE_STATUS_OPTIONS = statuses.filter(
+  (s) => typeof s.diceModifier === "number",
+);
 
 /**
  * Merges action definitions with action mapping to create runtime actions
@@ -35,7 +42,6 @@ function buildActions(enemy: Enemy, variantIndex: number): EnemyAction[] {
 
 interface EnemyViewProps {
   enemies: Enemy[];
-  diceModifiers?: number[];
   minPlayerCount?: number | null;
   maxPlayerCount?: number | null;
   onClose: () => void;
@@ -47,7 +53,6 @@ interface EnemyViewProps {
 
 export const EnemyView: React.FC<EnemyViewProps> = ({
   enemies,
-  diceModifiers,
   minPlayerCount,
   maxPlayerCount,
   onClose,
@@ -69,6 +74,21 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
     number[] | null
   >(null);
   const [actionDiceRolling, setActionDiceRolling] = React.useState(false);
+  const [activeStatusIds, setActiveStatusIds] = React.useState<Set<string>>(
+    new Set(),
+  );
+
+  const toggleStatus = (id: string): void => {
+    setActiveStatusIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
 
   const rollActionDice = async (count: number): Promise<void> => {
     setActionDiceRolling(true);
@@ -92,8 +112,7 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
   // Filter variants based on scenario player count range
   const availableVariants = React.useMemo(() => {
     if (!selectedEnemy) return [];
-    if (!minPlayerCount && !maxPlayerCount)
-      return selectedEnemy.playerVariants;
+    if (!minPlayerCount && !maxPlayerCount) return selectedEnemy.playerVariants;
 
     const min = minPlayerCount ?? 1;
     const max = maxPlayerCount ?? 99;
@@ -146,6 +165,7 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
     setConditionConfirmed(false);
     setActionDiceResult(null);
     setActionDiceRolling(false);
+    setActiveStatusIds(new Set());
   }, [selectedEnemyId]);
 
   // Reset action state when variant changes
@@ -199,9 +219,20 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
 
         {selectedEnemy && (
           <>
+            <EnemyStatusToggles
+              statuses={DICE_STATUS_OPTIONS}
+              activeStatusIds={activeStatusIds}
+              onToggle={toggleStatus}
+            />
+
             <DiceButtons
-              baseCount={availableVariants[selectedVariantIndex]?.diceCount ?? 1}
-              diceModifiers={diceModifiers}
+              diceCount={Math.max(
+                1,
+                (availableVariants[selectedVariantIndex]?.diceCount ?? 1) +
+                  DICE_STATUS_OPTIONS.filter((s) =>
+                    activeStatusIds.has(s.id),
+                  ).reduce((sum, s) => sum + (s.diceModifier ?? 0), 0),
+              )}
               isRolling={isRolling}
               onRoll={onRoll}
             />

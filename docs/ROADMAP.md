@@ -42,6 +42,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 **📋 Szczegóły:** [EKSPERYMENT_MISSING_ASSETS.md](EKSPERYMENT_MISSING_ASSETS.md)
 
+**Dodatkowo (nieplanowane, dodane w trakcie prac nad v0.3.3):**
+
+- ✅ Widok przeciwnika — przełączane statusy (Czerwony, Niebieski, Zielony) z grafikami zamiast serii przycisków rzutu wyliczanych ręcznie ze scenariuszowego `enemyDiceModifiers`; przycisk rzutu sam wylicza liczbę kości
+- ✅ Statusy ograniczone per przeciwnik (pole `statuses` w danych wroga) — widok pokazuje tylko przełączniki faktycznie używane w danym scenariuszu
+
 ### Status
 
 - ⏳ Planowane

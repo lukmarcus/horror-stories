@@ -44,6 +44,7 @@ export interface Status {
   id: string;
   name?: string | null;
   description?: string | null;
+  diceModifier?: number;
 }
 
 export interface Person {

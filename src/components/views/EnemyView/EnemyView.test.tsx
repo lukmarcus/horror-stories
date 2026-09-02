@@ -55,9 +55,31 @@ const mockEnemy: Enemy = {
   ],
 };
 
+const secondEnemyStub: Enemy = {
+  id: "drugi",
+  name: "Drugi",
+  image: "drugi",
+  actions: [
+    {
+      id: "akcja-drugiego",
+      name: "Akcja Drugiego",
+      condition: "",
+      description: "Opis Drugiego.",
+    },
+  ],
+  playerVariants: [
+    {
+      minPlayers: 1,
+      maxPlayers: 2,
+      actionsPerTurn: 1,
+      diceCount: 2,
+      actionMapping: [{ id: "akcja-drugiego", valueMin: 1 }],
+    },
+  ],
+};
+
 const makeProps = (overrides = {}) => ({
   enemies: [mockEnemy],
-  diceModifiers: undefined as number[] | undefined,
   minPlayerCount: undefined as number | null | undefined,
   maxPlayerCount: undefined as number | null | undefined,
   onClose: vi.fn(),
@@ -113,45 +135,68 @@ describe("EnemyView", () => {
   });
 
   describe("dice buttons", () => {
-    it("renders only base dice button when no modifiers", () => {
+    it("renders only base dice button when no status is active", () => {
       render(<EnemyView {...makeProps()} />);
       expect(screen.getByText("2 × 🎲")).toBeDefined();
       expect(screen.queryByText("1 × 🎲")).toBeNull();
       expect(screen.queryByText("3 × 🎲")).toBeNull();
     });
 
-    it("renders base and modified buttons with positive modifier", () => {
-      render(<EnemyView {...makeProps({ diceModifiers: [1] })} />);
-      expect(screen.getByText("2 × 🎲")).toBeDefined();
+    it("increases dice count when Zielony status is toggled on", () => {
+      render(<EnemyView {...makeProps()} />);
+      fireEvent.click(screen.getByRole("button", { name: /Zielony/ }));
       expect(screen.getByText("3 × 🎲")).toBeDefined();
+      expect(screen.queryByText("2 × 🎲")).toBeNull();
     });
 
-    it("renders base and modified buttons with negative modifier", () => {
-      render(<EnemyView {...makeProps({ diceModifiers: [-1] })} />);
+    it("decreases dice count when Czerwony status is toggled on", () => {
+      render(<EnemyView {...makeProps()} />);
+      fireEvent.click(screen.getByRole("button", { name: /Czerwony/ }));
       expect(screen.getByText("1 × 🎲")).toBeDefined();
-      expect(screen.getByText("2 × 🎲")).toBeDefined();
     });
 
-    it("does not render button when modifier would produce 0 dice", () => {
-      render(<EnemyView {...makeProps({ diceModifiers: [-2] })} />);
+    it("clamps dice count to a minimum of 1 when modifiers would go below zero", () => {
+      render(<EnemyView {...makeProps()} />);
+      fireEvent.click(screen.getByRole("button", { name: /Czerwony/ }));
+      fireEvent.click(screen.getByRole("button", { name: /Niebieski/ }));
+      expect(screen.getByText("1 × 🎲")).toBeDefined();
       expect(screen.queryByText("0 × 🎲")).toBeNull();
+    });
+
+    it("toggles status off when clicked again", () => {
+      render(<EnemyView {...makeProps()} />);
+      const zielonyBtn = screen.getByRole("button", { name: /Zielony/ });
+      fireEvent.click(zielonyBtn);
+      expect(screen.getByText("3 × 🎲")).toBeDefined();
+      fireEvent.click(zielonyBtn);
       expect(screen.getByText("2 × 🎲")).toBeDefined();
     });
 
-    it("calls onRoll with correct count when dice button clicked", () => {
-      const props = makeProps({ diceModifiers: [1] });
+    it("calls onRoll with the computed dice count when dice button clicked", () => {
+      const props = makeProps();
       render(<EnemyView {...props} />);
+      fireEvent.click(screen.getByRole("button", { name: /Zielony/ }));
       fireEvent.click(screen.getByText("3 × 🎲"));
       expect(props.onRoll).toHaveBeenCalledWith(3);
     });
 
-    it("disables dice buttons when isRolling is true", () => {
+    it("disables dice button when isRolling is true", () => {
       render(<EnemyView {...makeProps({ isRolling: true })} />);
       const buttons = screen.getAllByRole("button");
       const diceButtons = buttons.filter((b) => b.textContent?.includes("🎲"));
       diceButtons.forEach((btn) => {
         expect(btn.hasAttribute("disabled")).toBe(true);
       });
+    });
+
+    it("resets active statuses when the selected enemy changes", () => {
+      render(
+        <EnemyView {...makeProps({ enemies: [mockEnemy, secondEnemyStub] })} />,
+      );
+      fireEvent.click(screen.getByRole("button", { name: /Zielony/ }));
+      expect(screen.getByText("3 × 🎲")).toBeDefined();
+      fireEvent.click(screen.getByRole("button", { name: /Drugi/ }));
+      expect(screen.getByText("2 × 🎲")).toBeDefined();
     });
   });
 
