@@ -2,6 +2,7 @@
   "id": "klaun",
   "name": "Klaun",
   "image": "klaun",
+  "statuses": ["zielony"],
   "actions": [
     {
       "id": "nieuwaga",

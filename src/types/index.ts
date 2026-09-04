@@ -160,6 +160,7 @@ export interface Enemy {
   id: string;
   name: string;
   image: string;
+  statuses?: string[];
   actions: EnemyActionDefinition[];
   playerVariants: EnemyPlayerVariant[];
 }

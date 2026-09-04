@@ -109,6 +109,15 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
 
   const selectedEnemy = enemies.find((e) => e.id === selectedEnemyId);
 
+  // Only offer statuses the currently selected enemy can actually receive
+  const availableStatusOptions = React.useMemo(
+    () =>
+      DICE_STATUS_OPTIONS.filter((s) =>
+        selectedEnemy?.statuses?.includes(s.id),
+      ),
+    [selectedEnemy],
+  );
+
   // Filter variants based on scenario player count range
   const availableVariants = React.useMemo(() => {
     if (!selectedEnemy) return [];
@@ -220,7 +229,7 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
         {selectedEnemy && (
           <>
             <EnemyStatusToggles
-              statuses={DICE_STATUS_OPTIONS}
+              statuses={availableStatusOptions}
               activeStatusIds={activeStatusIds}
               onToggle={toggleStatus}
             />
@@ -229,9 +238,9 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
               diceCount={Math.max(
                 1,
                 (availableVariants[selectedVariantIndex]?.diceCount ?? 1) +
-                  DICE_STATUS_OPTIONS.filter((s) =>
-                    activeStatusIds.has(s.id),
-                  ).reduce((sum, s) => sum + (s.diceModifier ?? 0), 0),
+                  availableStatusOptions
+                    .filter((s) => activeStatusIds.has(s.id))
+                    .reduce((sum, s) => sum + (s.diceModifier ?? 0), 0),
               )}
               isRolling={isRolling}
               onRoll={onRoll}

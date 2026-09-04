@@ -7,6 +7,7 @@ const mockEnemy: Enemy = {
   id: "klaun",
   name: "Klaun",
   image: "klaun",
+  statuses: ["czerwony", "niebieski", "zielony"],
   actions: [
     {
       id: "nieuwaga",
@@ -197,6 +198,19 @@ describe("EnemyView", () => {
       expect(screen.getByText("3 × 🎲")).toBeDefined();
       fireEvent.click(screen.getByRole("button", { name: /Drugi/ }));
       expect(screen.getByText("2 × 🎲")).toBeDefined();
+    });
+
+    it("only renders statuses allowed for the selected enemy", () => {
+      const zielonyOnlyEnemy: Enemy = {
+        ...mockEnemy,
+        id: "zielony-only",
+        name: "Testowy",
+        statuses: ["zielony"],
+      };
+      render(<EnemyView {...makeProps({ enemies: [zielonyOnlyEnemy] })} />);
+      expect(screen.getByRole("button", { name: /Zielony/ })).toBeDefined();
+      expect(screen.queryByRole("button", { name: /Czerwony/ })).toBeNull();
+      expect(screen.queryByRole("button", { name: /Niebieski/ })).toBeNull();
     });
   });
 
