@@ -482,7 +482,7 @@
             "text": "<person id='patrick'/> Poważnie nie wiem jak się tu znaleźliśmy."
           },
           {
-            "text": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <image id='karta1'/> + dwóch <image id='karta2'/> + dwóch <image id='karta3'/>"
+            "text": "Wyłóż planszę postaci Patricka. Sformuj dla niego talię złożoną z poniższych kart i przetasuj: dwóch <card id='0-gwiazdek'/> + dwóch <card id='1-gwiazdka'/> + dwóch <card id='2-gwiazdki'/>"
           },
           {
             "image": "patrick-talia"

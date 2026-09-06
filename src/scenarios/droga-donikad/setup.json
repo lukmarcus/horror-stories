@@ -17,7 +17,7 @@
       },
       {
         "size": "xl",
-        "text": "Dwóch <image id='karta1'/> + dwóch <image id='karta2'/> + dwóch <image id='karta3'/>"
+        "text": "Dwóch <card id='0-gwiazdek'/> + dwóch <card id='1-gwiazdka'/> + dwóch <card id='2-gwiazdki'/>"
       }
     ],
     [
