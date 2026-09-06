@@ -1,19 +1,20 @@
 # Eksperyment - Brakujące grafiki i placeholdery
 
 Data wygenerowania: 2026-08-20  
-**Ostatnia aktualizacja: 2026-09-01**
+**Ostatnia aktualizacja: 2026-09-06**
 
 ## Podsumowanie
 
-Po dodaniu nowych grafik (2026-08-26) i weryfikacji (2026-09-01):
+Po dodaniu nowych grafik (2026-08-26) i weryfikacji (2026-09-01, 2026-09-06):
 
 - **Story items:** ✅ Wszystkie dodane (vii, xxvi, lvii, xxix, xv, xviii, xvii)
 - **Room items:** ✅ Wszystkie dodane (92, 101, 114, 146, 148)
 - **Statusy:** ✅ Wszystkie dodane (niebieski, czerwony)
-- **Karty:** ✅ 3 karty dodane (zatrucie, krwawienie, zranienie)
-- **Placeholdery tekstowe:** 2 pozostałe do zastąpienia (9 zastąpionych kartami)
+- **Karty:** ✅ 3 karty dodane (zatrucie, krwawienie, zranienie) + 3 karty bazowe (0/1/2 gwiazdek)
+- **Placeholdery tekstowe:** 1 pozostały do zastąpienia (10 zastąpionych)
+- **setup.json:** ✅ nie był objęty tym dokumentem — brakujące karty gwiazdkowe w talii startowej znalezione i uzupełnione
 
-**Łącznie pozostało: 2 teksty do zastąpienia**
+**Łącznie pozostało: 1 tekst do zastąpienia**
 
 ## Brakujące grafiki przedmiotów (story items)
 
@@ -108,12 +109,16 @@ _Wszystkie brakujące przedmioty zostały dodane! ✅_
 
 ### §27
 
-- **Placeholder 1:** `CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC`
-- **Kontekst:** Obrazek planszętki przeciwnika
-- **Prawdopodobnie:** Grafika enemy
+- **Placeholder 1:** ✅ Zastąpiony — `<image id="wilkolak"/>` (grafika planszetki przeciwnika)
 - **Placeholder 2:** `DDDDDDDDDDDDDDDDDDDDDDDDD`
 - **Kontekst:** Żeton przypominający
 - **Prawdopodobnie:** Grafika letter/symbol
+
+### ✅ setup.json - Zastąpione (2026-09-06, nie było w tym pliku)
+
+- **Było:** "DLA KAŻDEJ Z POSTACI SFORMUJ TALIĘ:  2 x , 2 x , 2 x ." (puste miejsca po kartach)
+- **Teraz:** `2 x <card id='0-gwiazdek'/>, 2 x <card id='1-gwiazdka'/>, 2 x <card id='2-gwiazdki'/>`
+- **Kontekst:** Startowa talia postaci — ten sam wzorzec co w droga-donikad
 
 ### ✅ §52 - Zastąpione
 

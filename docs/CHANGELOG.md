@@ -20,6 +20,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Eksperyment: 3 karty akcji z opisami (Zatrucie, Krwawienie, Zranienie) i zastąpienie placeholderów w 9 paragrafach (§4, §5, §10, §19, §52, §93, §103, §128, §221)
 - Gra: widok przeciwnika — przełączane statusy (Czerwony, Niebieski, Zielony) z grafikami zamiast ręcznego liczenia modyfikatorów; przycisk rzutu kością sam pokazuje wyliczoną liczbę kości
 - Dane: pole `statuses` przy przeciwniku — określa, które statusy dany przeciwnik może faktycznie otrzymać (Klaun: zielony; Wilkołak: czerwony, niebieski), więc widok pokazuje tylko trafne przełączniki
+- Karty: 3 karty bazowe bez efektu specjalnego (0 gwiazdek, 1 gwiazdka, 2 gwiazdki) — używane w startowych taliach postaci
 
 ### Zmieniono
 
@@ -28,10 +29,12 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Porządek w items.json — usunięto zbędne pola description gdzie wartość była identyczna z name
 - Przedmioty losowe — usunięto przykładowe przedmioty (i-random, ii, v), pozostawiono tylko używane w grze
 - Gra: usunięto scenariuszowe pole `enemyDiceModifiers` — zastąpione ogólnym mechanizmem statusów przeciwnika (patrz wyżej)
+- Droga donikąd: startowa talia Patricka linkuje teraz do wspólnych kart gwiazdkowych (`<card id='0-gwiazdek'/>` itd.) zamiast lokalnych grafik karta1/karta2/karta3 — usunięto nieużywane pliki
 
 ### Naprawiono
 
 - Usunięto zduplikowany folder characters — wszystkie dane postaci są teraz w jednolitej strukturze items/persons.json
+- Eksperyment: setup.json — uzupełniono brakujące karty gwiazdkowe w opisie startowej talii postaci (placeholder nie był objęty dokumentem EKSPERYMENT_MISSING_ASSETS.md)
 
 ---
 

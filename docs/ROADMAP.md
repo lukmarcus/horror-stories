@@ -46,6 +46,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 - ✅ Widok przeciwnika — przełączane statusy (Czerwony, Niebieski, Zielony) z grafikami zamiast serii przycisków rzutu wyliczanych ręcznie ze scenariuszowego `enemyDiceModifiers`; przycisk rzutu sam wylicza liczbę kości
 - ✅ Statusy ograniczone per przeciwnik (pole `statuses` w danych wroga) — widok pokazuje tylko przełączniki faktycznie używane w danym scenariuszu
+- ✅ 3 karty bazowe bez efektu (0/1/2 gwiazdek) — startowe talie postaci w droga-donikad i eksperyment linkują teraz do nich zamiast lokalnych grafik/pustych placeholderów
 
 ### Status
 
