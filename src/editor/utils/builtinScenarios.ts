@@ -154,17 +154,18 @@ export async function copyBuiltinScenarioToEditor(
 async function loadScenarioImages(
   scenarioId: string,
 ): Promise<Record<string, string>> {
-  if (scenarioId !== "droga-donikad") return {};
-
-  // Use Vite's import.meta.glob to import all images at build time
+  // Use Vite's import.meta.glob to import all scenario images at build time
+  // (glob pattern must be a static string literal, so we filter by scenarioId at runtime)
   const imageModules = import.meta.glob(
-    "../../scenarios/droga-donikad/images/*.{jpg,jpeg,png}",
+    "../../scenarios/*/images/*.{jpg,jpeg,png}",
     { eager: false, query: "?url", import: "default" },
   ) as Record<string, () => Promise<string>>;
 
   const images: Record<string, string> = {};
 
   for (const [path, importFn] of Object.entries(imageModules)) {
+    if (!path.includes(`/scenarios/${scenarioId}/images/`)) continue;
+
     try {
       // Get the URL from Vite
       const url = await importFn();
