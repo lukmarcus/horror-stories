@@ -30,11 +30,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Przedmioty losowe — usunięto przykładowe przedmioty (i-random, ii, v), pozostawiono tylko używane w grze
 - Gra: usunięto scenariuszowe pole `enemyDiceModifiers` — zastąpione ogólnym mechanizmem statusów przeciwnika (patrz wyżej)
 - Droga donikąd: startowa talia Patricka linkuje teraz do wspólnych kart gwiazdkowych (`<card id='0-gwiazdek'/>` itd.) zamiast lokalnych grafik karta1/karta2/karta3 — usunięto nieużywane pliki
+- Droga donikąd: obrazki kart "karta-negatywna" i "karta-gwiazda" zastąpione odwołaniami do wspólnych kart (`krwawienie`, `2-gwiazdki`) — usunięto zduplikowane pliki graficzne
+- Bloki obrazków w treści paragrafów (`{"image": "id"}`) sprawdzają teraz najpierw wspólny rejestr kart, zanim spróbują lokalnej grafiki scenariusza — pozwala to podmieniać lokalne duplikaty na wspólne zasoby bez zmiany rozmiaru wyświetlania
 
 ### Naprawiono
 
 - Usunięto zduplikowany folder characters — wszystkie dane postaci są teraz w jednolitej strukturze items/persons.json
 - Eksperyment: setup.json — uzupełniono brakujące karty gwiazdkowe w opisie startowej talii postaci (placeholder nie był objęty dokumentem EKSPERYMENT_MISSING_ASSETS.md)
+- Edytor: podgląd grafik scenariusza — obrazy były ładowane tylko dla droga-donikad, przez co grafiki Eksperymentu (np. wilkołak w §27) nie wyświetlały się w podglądzie edytora; działa teraz dla każdego wbudowanego scenariusza
 
 ---
 
