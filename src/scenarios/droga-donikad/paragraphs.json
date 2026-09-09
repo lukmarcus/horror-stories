@@ -300,7 +300,7 @@
             "text": "Żeby było to jeszcze jaśniejsze, ostatnią postacią graczy jest ta, która wykonuje swoją turę tuż przed posiadaczem znacznika 1 gracza (patrz obrazek po prawej)."
           },
           {
-            "image": "rip"
+            "image": "smierc-zeton"
           },
           {
             "text": "W tym scenariuszu będzie miało to miejsce zawsze po <person id='patrick'/>."
@@ -878,7 +878,7 @@
             "text": "Przy ekwipunku <person id='jessica'/> oraz <person id='patrick'/> połóż po 3<symbol id='zycie'/> dla każdego. Reprezentuje ich zdrowie. Wraz z utratą ostatniego sprawdza się paragraf <span class='color-green'>100</span> o czym ma przypominać żeton pierwszego gracza (obrazek po prawej)."
           },
           {
-            "image": "rip"
+            "image": "smierc-zeton"
           },
           {
             "text": "Przekaż do Jessice. Nie zmienia on swojego właściciela (chyba, że scenariusz wyraźnie powie inaczej)."
@@ -957,7 +957,7 @@
                 "text": "<person id='jessica'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
               },
               {
-                "image": "rana-ciezka"
+                "image": "rana-ciezka-zeton"
               }
             ]
           ],
@@ -980,7 +980,7 @@
                 "text": "<person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
               },
               {
-                "image": "rana-ciezka"
+                "image": "rana-ciezka-zeton"
               }
             ]
           ],
