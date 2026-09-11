@@ -28,19 +28,19 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 **Grafiki dla "Eksperyment":**
 
-- ⏳ Utworzenie brakujących grafik story items (6: vii, xvii, xxvi, lvii, xxix, xv, xviii)
-- ⏳ Utworzenie brakujących grafik room items (5: 92, 101, 114, 146, 148)
-- ⏳ Utworzenie brakujących statusów (2: niebieski, czerwony)
-- ⏳ Dodanie brakujących story items do items.json
+- ✅ Utworzenie brakujących grafik story items (6: vii, xvii, xxvi, lvii, xxix, xv, xviii)
+- ✅ Utworzenie brakujących grafik room items (5: 92, 101, 114, 146, 148)
+- ✅ Utworzenie brakujących statusów (2: niebieski, czerwony)
+- ✅ Dodanie brakujących story items do items.json
 
 **Nowy typ zasobu - Karty:**
 
-- ⏳ Dodanie wsparcia dla grafik kart (cards) w grze
-- ⏳ Dodanie wsparcia dla kart w edytorze
-- ⏳ System wyświetlania kart w interfejsie gry
-- ⏳ Zastąpienie placeholderów tekstowych w Eksperymencie (11 wystąpień)
+- ✅ Dodanie wsparcia dla grafik kart (cards) w grze
+- ✅ Dodanie wsparcia dla kart w edytorze
+- ✅ System wyświetlania kart w interfejsie gry
+- ✅ Zastąpienie placeholderów tekstowych w Eksperymencie (11 wystąpień + setup.json)
 
-**📋 Szczegóły:** [EKSPERYMENT_MISSING_ASSETS.md](EKSPERYMENT_MISSING_ASSETS.md)
+**Szczegóły postępów zostały przeniesione do [CHANGELOG.md](CHANGELOG.md).**
 
 **Dodatkowo (nieplanowane, dodane w trakcie prac nad v0.3.3):**
 
@@ -49,10 +49,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ 3 karty bazowe bez efektu (0/1/2 gwiazdek) — startowe talie postaci w droga-donikad i eksperyment linkują teraz do nich zamiast lokalnych grafik/pustych placeholderów
 - ✅ Droga donikąd: "karta-negatywna" i "karta-gwiazda" zastąpione wspólnymi kartami (`krwawienie`, `2-gwiazdki`); duplikaty grafik usunięte
 - ✅ Edytor: naprawiono ładowanie obrazków podglądu dla wszystkich wbudowanych scenariuszy (wcześniej działało tylko dla droga-donikad)
+- ✅ Symbole `smierc-zeton` i `rana-ciezka-zeton` — przeniesione z lokalnych grafik droga-donikad do wspólnego folderu symboli, użyte również w Eksperymencie (§27)
 
 ### Status
 
-- ⏳ Planowane
+- ✅ Zakończone (2026-09-10)
 
 ---
 
