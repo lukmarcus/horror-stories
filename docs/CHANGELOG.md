@@ -7,39 +7,27 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.3.3] - W przygotowaniu
+## [0.3.3] - 2026-09-12
 
 ### Dodano
 
-- Karty — nowy typ zasobu graficznego w grze i edytorze (Zatrucie, Krwawienie, Zranienie)
+- Karty — nowy typ zasobu graficznego w grze i edytorze: Zatrucie, Krwawienie, Zranienie oraz 3 karty bazowe bez efektu specjalnego (0/1/2 gwiazdek) używane w startowych taliach postaci
 - Edytor: możliwość wstawiania kart w tekście paragrafów i wyborów
-- Postacie i przeciwnicy — dodano pole name dla polskich znaków (np. "Gość od pizzy", "Wilkołak")
-- Eksperyment: 5 nowych żetonów planszy (92, 101, 114, 146, 148)
-- Eksperyment: 2 nowe żetony statusu (czerwony, niebieski)
-- Eksperyment: 4 nowe przedmioty fabularne (Siekiera, Karabin, Śrubokręt, Łom)
-- Eksperyment: 3 karty akcji z opisami (Zatrucie, Krwawienie, Zranienie) i zastąpienie placeholderów w 9 paragrafach (§4, §5, §10, §19, §52, §93, §103, §128, §221)
-- Gra: widok przeciwnika — przełączane statusy (Czerwony, Niebieski, Zielony) z grafikami zamiast ręcznego liczenia modyfikatorów; przycisk rzutu kością sam pokazuje wyliczoną liczbę kości
-- Dane: pole `statuses` przy przeciwniku — określa, które statusy dany przeciwnik może faktycznie otrzymać (Klaun: zielony; Wilkołak: czerwony, niebieski), więc widok pokazuje tylko trafne przełączniki
-- Karty: 3 karty bazowe bez efektu specjalnego (0 gwiazdek, 1 gwiazdka, 2 gwiazdki) — używane w startowych taliach postaci
+- Postacie i przeciwnicy wyświetlają teraz swoje nazwy (np. "Gość od pizzy", "Wilkołak") zamiast wewnętrznych identyfikatorów
+- Eksperyment: 5 nowych żetonów planszy (92, 101, 114, 146, 148), 2 nowe żetony statusu (czerwony, niebieski), 4 nowe przedmioty fabularne (Siekiera, Karabin, Śrubokręt, Łom)
+- Gra: widok przeciwnika — statusy (Czerwony, Niebieski, Zielony) zaznacza się teraz ikonami, a liczba kości do rzutu wylicza się automatycznie zamiast ręcznego liczenia modyfikatorów
+- Żeton śmierci i żeton ciężkiej rany — dawniej dostępne tylko w Droga donikąd, teraz są ogólnymi symbolami używanymi też w Eksperymencie (§27)
 
 ### Zmieniono
 
 - Edytor: w menu wyboru grafik postacie i przeciwnicy wyświetlają nazwę zamiast identyfikatora (lepsze UX dla polskich znaków)
-- Struktura items.json — klucze teraz odpowiadają nazwom plików graficznych (priorytet: paragraphId → romanId → name), co ułatwia zarządzanie zasobami
-- Porządek w items.json — usunięto zbędne pola description gdzie wartość była identyczna z name
-- Przedmioty losowe — usunięto przykładowe przedmioty (i-random, ii, v), pozostawiono tylko używane w grze
-- Gra: usunięto scenariuszowe pole `enemyDiceModifiers` — zastąpione ogólnym mechanizmem statusów przeciwnika (patrz wyżej)
-- Droga donikąd: startowa talia Patricka linkuje teraz do wspólnych kart gwiazdkowych (`<card id='0-gwiazdek'/>` itd.) zamiast lokalnych grafik karta1/karta2/karta3 — usunięto nieużywane pliki
-- Droga donikąd: obrazki kart "karta-negatywna" i "karta-gwiazda" zastąpione odwołaniami do wspólnych kart (`krwawienie`, `2-gwiazdki`) — usunięto zduplikowane pliki graficzne
-- Bloki obrazków w treści paragrafów (`{"image": "id"}`) sprawdzają teraz najpierw wspólny rejestr kart i symboli, zanim spróbują lokalnej grafiki scenariusza — pozwala to podmieniać lokalne duplikaty na wspólne zasoby bez zmiany rozmiaru wyświetlania
-- Symbole: dodano `smierc-zeton` (żelokalizowany dawniej jako "rip" w droga-donikąd) i `rana-ciezka-zeton` (dawniej lokalna grafika "rana-ciezka") — obie grafiki przeniesione do wspólnego folderu symboli, używane teraz również w Eksperymencie (§27)
+- Droga donikąd: odświeżona grafika kart w startowej talii Patricka
+- Usunięto z edytora przykładowe przedmioty (i-random, ii, v), które nie były używane w żadnym scenariuszu
+- Eksperyment: zastąpiono tekst zastępczy prawdziwymi grafikami kart w 9 paragrafach (§4, §5, §10, §19, §52, §93, §103, §128, §221), uzupełniono brakujące grafiki kart w opisie przygotowania talii startowej postaci oraz ostatni brakujący żeton w §27
 
 ### Naprawiono
 
-- Usunięto zduplikowany folder characters — wszystkie dane postaci są teraz w jednolitej strukturze items/persons.json
-- Eksperyment: setup.json — uzupełniono brakujące karty gwiazdkowe w opisie startowej talii postaci (placeholder nie był wcześniej wykryty)
-- Eksperyment: §27 — ostatni pozostały placeholder tekstowy zastąpiony grafiką żetonu śmierci (`smierc-zeton`); wszystkie znane braki grafik/placeholderów w Eksperymencie są teraz zamknięte
-- Edytor: podgląd grafik scenariusza — obrazy były ładowane tylko dla droga-donikad, przez co grafiki Eksperymentu (np. wilkołak w §27) nie wyświetlały się w podglądzie edytora; działa teraz dla każdego wbudowanego scenariusza
+- Edytor: podgląd grafik scenariusza Eksperyment (np. wilkołak w §27) nie wyświetlał się poprawnie przy imporcie do edytora — naprawione
 
 ---
 

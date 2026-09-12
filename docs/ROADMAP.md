@@ -19,41 +19,9 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - **Edytor: rzut kostką** — edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy); gdy pojawi się pierwszy scenariusz korzystający z tej funkcji
 - **Osobne pliki JSON per zasób scenariusza** — zamiast `paragraphs.json` jeden plik per paragraf (`paragraphs/1.json`, `paragraphs/77.json`...); poprawa git diff i DX edytora; wymaga refaktoru loadingu w `index.ts` i ZIP handlera; sensowne przy scenariuszach 200+ paragrafów
 - **Cover image support** — umożliwienie definiowania i wyświetlania grafiki okładkowej dla scenariuszy (przełożone z v0.3.1)
-
----
-
-## Milestone v0.3.3 - Uzupełnienie grafik i karty
-
-### Zakres
-
-**Grafiki dla "Eksperyment":**
-
-- ✅ Utworzenie brakujących grafik story items (6: vii, xvii, xxvi, lvii, xxix, xv, xviii)
-- ✅ Utworzenie brakujących grafik room items (5: 92, 101, 114, 146, 148)
-- ✅ Utworzenie brakujących statusów (2: niebieski, czerwony)
-- ✅ Dodanie brakujących story items do items.json
-
-**Nowy typ zasobu - Karty:**
-
-- ✅ Dodanie wsparcia dla grafik kart (cards) w grze
-- ✅ Dodanie wsparcia dla kart w edytorze
-- ✅ System wyświetlania kart w interfejsie gry
-- ✅ Zastąpienie placeholderów tekstowych w Eksperymencie (11 wystąpień + setup.json)
-
-**Szczegóły postępów zostały przeniesione do [CHANGELOG.md](CHANGELOG.md).**
-
-**Dodatkowo (nieplanowane, dodane w trakcie prac nad v0.3.3):**
-
-- ✅ Widok przeciwnika — przełączane statusy (Czerwony, Niebieski, Zielony) z grafikami zamiast serii przycisków rzutu wyliczanych ręcznie ze scenariuszowego `enemyDiceModifiers`; przycisk rzutu sam wylicza liczbę kości
-- ✅ Statusy ograniczone per przeciwnik (pole `statuses` w danych wroga) — widok pokazuje tylko przełączniki faktycznie używane w danym scenariuszu
-- ✅ 3 karty bazowe bez efektu (0/1/2 gwiazdek) — startowe talie postaci w droga-donikad i eksperyment linkują teraz do nich zamiast lokalnych grafik/pustych placeholderów
-- ✅ Droga donikąd: "karta-negatywna" i "karta-gwiazda" zastąpione wspólnymi kartami (`krwawienie`, `2-gwiazdki`); duplikaty grafik usunięte
-- ✅ Edytor: naprawiono ładowanie obrazków podglądu dla wszystkich wbudowanych scenariuszy (wcześniej działało tylko dla droga-donikad)
-- ✅ Symbole `smierc-zeton` i `rana-ciezka-zeton` — przeniesione z lokalnych grafik droga-donikad do wspólnego folderu symboli, użyte również w Eksperymencie (§27)
-
-### Status
-
-- ✅ Zakończone (2026-09-10)
+- **Code-splitting tras (`React.lazy`)** — `/editor/*` jest importowany statycznie w `App.tsx` i ciągnie za sobą cały pakiet `mermaid` (+ cytoscape, dagre, katex, silniki diagramów) do głównego bundla; gracz, który nigdy nie otwiera edytora, i tak to pobiera. Owinąć `<Editor />` (i ew. inne cięższe strony) w `React.lazy` + `<Suspense>`
+- **Ujednolicenie ładowania lokalnych grafik scenariusza** — `contentBlockRenderer.tsx`/`customTagRenderers.tsx` używają `new URL(dynamiczny_template, import.meta.url)`, co jest kruche (patrz kwirk testowy w TESTING_GUIDE.md) i niespójne z podejściem `import.meta.glob` już użytym w `builtinScenarios.ts`; warto zunifikować na jeden, bardziej przewidywalny mechanizm
+- **Audyt duplikatów grafik w `droga-donikad/images/`** — kontynuacja porządków z v0.3.3 (znaleziono i scalono już karta-negatywna, karta-gwiazda, rip, rana-ciezka); pozostałe pliki (np. `karta-rozwoju.jpg`) nie zostały jeszcze sprawdzone pod kątem duplikatów ze wspólnymi zasobami (cards/symbols)
 
 ---
 
@@ -65,7 +33,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ### Status
 
-- ⏳ Planowane (po v0.3.2)
+- ⏳ Planowane (po v0.3.3)
 
 ---
 
