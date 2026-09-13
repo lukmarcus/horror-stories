@@ -1,0 +1,26 @@
+{
+  "0-gwiazdek": {
+    "name": "0 gwiazdek",
+    "description": "0 gwiazdek."
+  },
+  "1-gwiazdka": {
+    "name": "1 gwiazdka",
+    "description": "1 gwiazdka."
+  },
+  "2-gwiazdki": {
+    "name": "2 gwiazdki",
+    "description": "2 gwiazdki."
+  },
+  "krwawienie": {
+    "name": "Krwawienie",
+    "description": "2 gwiazdki - Odrzuć 1 żeton życia. Jeśli odrzucono i było to Twoje ostatnie, na końcu tury aktualnej figurki sprawdź paragraf 100."
+  },
+  "zatrucie": {
+    "name": "Zatrucie",
+    "description": "1 gwiazdka - Przejdź do paragrafu 174 (tę kartę musisz rozpatrzeć jako ostatnią ze wszystkich dobranych)."
+  },
+  "zranienie": {
+    "name": "Zranienie",
+    "description": "-1 gwiazdka."
+  }
+}

@@ -2,45 +2,56 @@
   "items": [
     {
       "id": "jeff",
+      "name": "Jeff",
       "paragraphId": 1
     },
     {
       "id": "patrick",
+      "name": "Patrick",
       "paragraphId": 9
     },
     {
       "id": "josh",
+      "name": "Josh",
       "paragraphId": 16
     },
     {
       "id": "jessica",
+      "name": "Jessica",
       "paragraphId": 26
     },
     {
       "id": "gosc-od-pizzy",
+      "name": "Gość od pizzy",
       "paragraphId": 45
     },
     {
       "id": "margaret",
+      "name": "Margaret",
       "paragraphId": 55
     },
     {
       "id": "lauren",
+      "name": "Lauren Miller",
       "paragraphId": 62
     },
     {
       "id": "jack",
+      "name": "Jack Torrence",
       "paragraphId": 94
     },
     {
       "id": "steven",
+      "name": "Steven",
       "paragraphId": 159
     },
     {
-      "id": "policjant"
+      "id": "policjant",
+      "name": "Policjant"
     },
     {
-      "id": "sasiad"
+      "id": "sasiad",
+      "name": "Sąsiad"
     }
   ]
 }

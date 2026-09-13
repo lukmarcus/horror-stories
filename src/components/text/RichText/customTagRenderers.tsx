@@ -8,10 +8,11 @@ import {
   getRoomItem,
   getStatus,
   getRandomItem,
+  getCard,
 } from "../../../data/items";
 
 export const CUSTOM_TAG_PATTERN =
-  /<(symbol|letter|item|image|person|enemy|story|room|status|random)\s+id=["']([^"']+)["']\s*\/>/;
+  /<(symbol|letter|item|image|person|enemy|story|room|status|random|card)\s+id=["']([^"']+)["']\s*\/>/;
 
 type TagRenderer = (
   id: string,
@@ -137,6 +138,18 @@ export const TAG_RENDERERS: Record<string, TagRenderer> = {
         alt={d.description || id}
         className="status-image"
         title={d.description || id}
+      />
+    ) : null;
+  },
+  card: (id, key) => {
+    const d = getCard(id);
+    return d ? (
+      <img
+        key={key}
+        src={d.imagePath}
+        alt={d.name}
+        className="card-image"
+        title={d.description || d.name}
       />
     ) : null;
   },

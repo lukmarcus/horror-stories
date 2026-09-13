@@ -109,9 +109,9 @@ describe("RichText data helpers", () => {
 
   describe("getRandomItem", () => {
     it("returns random item for known id", () => {
-      const result = getRandomItem("i");
+      const result = getRandomItem("iii");
       expect(result).toBeDefined();
-      expect(result?.imagePath).toContain("items/i-random."); // Uses prefixed ID
+      expect(result?.imagePath).toContain("items/iii.");
     });
 
     it("returns undefined for unknown id", () => {

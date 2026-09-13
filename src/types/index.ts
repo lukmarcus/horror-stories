@@ -97,7 +97,6 @@ export interface Scenario {
   persons?: string[];
   notes?: string;
   enemies?: string[];
-  enemyDiceModifiers?: number[];
 }
 
 /**
@@ -161,6 +160,7 @@ export interface Enemy {
   id: string;
   name: string;
   image: string;
+  statuses?: string[];
   actions: EnemyActionDefinition[];
   playerVariants: EnemyPlayerVariant[];
 }

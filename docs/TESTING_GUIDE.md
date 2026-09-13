@@ -190,8 +190,9 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 - ✅ Regex tagów RichText (`<symbol>`, `<room>`, `<letter>`, `<person>`, `<enemy>`, `<story>`, `<status>`, `<image>`, `<random>`)
 - ✅ Serializacja bloków treści edytora (`pageToText` / `textToPage`, round-trip, wszystkie prefiks-typy)
 - ✅ Graf dostępności paragrafów (`buildAccessibleFrom` — proste, wariantowe, dedupl.)
+- ✅ Priorytet fallbacku obrazków w blokach treści (`{image: "id"}`): data URL → wspólna karta → wspólny symbol → lokalna grafika scenariusza
 
-### Current Coverage (v0.2.7)
+### Current Coverage (v0.3.3)
 
 | Category                 | Tests   | Coverage | Status |
 | ------------------------ | ------- | -------- | ------ |
@@ -199,7 +200,7 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 | Variant System           | 18      | 100%     | ✅     |
 | Hooks (State)            | 26      | ~80%     | ✅     |
 | Utils (Parsing)          | 40      | ~100%    | ✅     |
-| Components               | 96      | ~95%     | ✅     |
+| Components               | 101     | ~95%     | ✅     |
 | Editor Serialization     | 57      | 100%     | ✅     |
 | Editor Graph Utils       | 12      | 100%     | ✅     |
 | Data / Items             | 38      | 100%     | ✅     |
@@ -210,7 +211,10 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 | Editor (Reducer)         | 25      | 100%     | ✅     |
 | User Paragraph Storage   | 8       | 100%     | ✅     |
 | User Paragraph Converter | 12      | 100%     | ✅     |
-| **Total**                | **422** | **~65%** | **✅** |
+| ...                      | ...     | ...      | ✅     |
+| **Total**                | **762** | **~65%** | **✅** |
+
+_Tabela nie jest wyczerpująca dla wszystkich kategorii dodanych po v0.2.7 (np. Enemy View, Eksperyment scenario tests) — `Total` odzwierciedla faktyczną liczbę testów z `npm test -- --run`._
 
 ## Running Tests
 
@@ -250,6 +254,18 @@ it("should calculate score correctly", () => {
   expect(score).toBe(150);
 });
 ```
+
+### Znany kwirk: `new URL(dynamiczny_template, import.meta.url)`
+
+Mechanizm fallbacku lokalnych grafik scenariusza (`contentBlockRenderer.tsx`,
+`customTagRenderers.tsx`) buduje ścieżkę przez
+`new URL(\`...${scenarioId}...\`, import.meta.url)`. Pod Vitest/jsdom (transform
+vite-node) ten wzorzec rozwiązuje się do ścieżki kończącej się dosłownie na
+`undefined`, nawet gdy zmienne są poprawnie zdefiniowane — nie występuje to w
+prawdziwej przeglądarce/Vite dev. **Nie asercuj dokładnej wartości `src` dla tego
+fallbacku w testach** — sprawdzaj tylko, że nie trafia w ścieżkę współdzielonych
+zasobów (`assets/images/cards`, `assets/images/symbols`), tak jak w
+`RichText.test.tsx`.
 
 ### 2. Descriptive Test Names
 

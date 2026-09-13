@@ -22,7 +22,8 @@ describe("data/items getters", () => {
   describe("getStoryItem", () => {
     it("should return item with imagePath for existing id", () => {
       const firstItem = storyItems[0];
-      const result = getStoryItem(firstItem.id);
+      const romanId = firstItem.romanId || firstItem.id;
+      const result = getStoryItem(romanId);
       expect(result).toBeDefined();
       expect(result!.id).toBe(firstItem.id);
       expect(result!.imagePath).toContain("items");

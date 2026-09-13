@@ -237,5 +237,54 @@ describe("RichText", () => {
       const imageBlock = container.querySelector(".rich-image-block");
       expect(imageBlock?.classList.contains("is-last-block")).toBe(true);
     });
+
+    it("resolves image block to shared card art when id matches a known card", () => {
+      const content: ContentBlock[] = [{ image: "krwawienie" }];
+      const { container } = render(<RichText content={content} />);
+      const img = container.querySelector("img.rich-image");
+      expect(img).not.toBeNull();
+      expect(img?.getAttribute("src")).toContain("cards/krwawienie");
+    });
+
+    it("resolves image block to shared symbol art when id matches a known symbol", () => {
+      const content: ContentBlock[] = [{ image: "smierc-zeton" }];
+      const { container } = render(<RichText content={content} />);
+      const img = container.querySelector("img.rich-image");
+      expect(img).not.toBeNull();
+      expect(img?.getAttribute("src")).toContain("symbols/smierc-zeton");
+    });
+
+    it("prefers shared card art over scenario-local image when both could apply", () => {
+      const content: ContentBlock[] = [{ image: "krwawienie" }];
+      const { container } = render(
+        <RichText content={content} scenarioId="droga-donikad" />,
+      );
+      const img = container.querySelector("img.rich-image");
+      expect(img?.getAttribute("src")).toContain("cards/krwawienie");
+      expect(img?.getAttribute("src")).not.toContain("droga-donikad");
+    });
+
+    it("prefers a user-provided data URL over shared card/symbol art", () => {
+      const content: ContentBlock[] = [{ image: "krwawienie" }];
+      const { container } = render(
+        <RichText
+          content={content}
+          images={{ krwawienie: "data:image/png;base64,abc" }}
+        />,
+      );
+      const img = container.querySelector("img.rich-image");
+      expect(img?.getAttribute("src")).toBe("data:image/png;base64,abc");
+    });
+
+    it("falls back to scenario-local image when id matches no shared card or symbol", () => {
+      const content: ContentBlock[] = [{ image: "map" }];
+      const { container } = render(
+        <RichText content={content} scenarioId="droga-donikad" />,
+      );
+      const img = container.querySelector("img.rich-image");
+      expect(img).not.toBeNull();
+      expect(img?.getAttribute("src")).not.toContain("assets/images/cards");
+      expect(img?.getAttribute("src")).not.toContain("assets/images/symbols");
+    });
   });
 });

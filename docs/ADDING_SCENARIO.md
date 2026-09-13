@@ -48,8 +48,7 @@ src/scenarios/{scenario-id}/
     "duration": 90,
     "persons": ["Postać 1", "Postać 2"],
     "notes": "Dodatkowe uwagi",
-    "enemies": ["wrog-id"],
-    "enemyDiceModifiers": [1]
+    "enemies": ["wrog-id"]
   }
   ```
 
@@ -63,6 +62,7 @@ src/scenarios/{scenario-id}/
    - Lokalizacja: `src/data/enemies/{nazwa-wroga}.json`
    - Format zgodny z `Enemy` interface
    - Zawiera: action table, dice config, tile configuration
+   - Opcjonalne pole `statuses` (tablica id) — określa, które statusy (np. `czerwony`, `niebieski`, `zielony`) ten przeciwnik może faktycznie otrzymać; widok przeciwnika pokazuje tylko te przełączniki
 
 2. **Grafika wroga:**
    - Lokalizacja: `public/assets/images/enemies/{nazwa-wroga}.png`

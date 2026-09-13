@@ -2,10 +2,12 @@
   "items": [
     {
       "id": "wilkolak",
+      "name": "Wilkołak",
       "paragraphId": 40
     },
     {
       "id": "klaun",
+      "name": "Klaun",
       "paragraphId": 117
     }
   ]

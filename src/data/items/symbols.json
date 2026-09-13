@@ -77,6 +77,14 @@
       "name": "Rana ciężka"
     },
     {
+      "id": "rana-ciezka-zeton",
+      "name": "Żeton rany ciężkiej"
+    },
+    {
+      "id": "smierc-zeton",
+      "name": "Żeton śmierci"
+    },
+    {
       "id": "zycie",
       "name": "Życie"
     }

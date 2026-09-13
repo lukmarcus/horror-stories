@@ -14,7 +14,7 @@
     [
       {
         "size": "lg",
-        "text": "DLA KAŻDEJ Z POSTACI SFORMUJ TALIĘ:  2 x , 2 x , 2 x ."
+        "text": "DLA KAŻDEJ Z POSTACI SFORMUJ TALIĘ: 2 x <card id='0-gwiazdek'/>, 2 x <card id='1-gwiazdka'/>, 2 x <card id='2-gwiazdki'/>."
       },
       {
         "text": "<span class='color-blue'>Wyłóż</span> ekwipunki postaci biorących udział w scenariuszu. <span class='color-blue'>Wyłóż</span> jedna obok drugiej cztery losowe karty z talii rozwoju. "

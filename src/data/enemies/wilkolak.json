@@ -2,6 +2,7 @@
   "id": "wilkolak",
   "name": "Wilkołak",
   "image": "wilkolak",
+  "statuses": ["czerwony", "niebieski"],
   "actions": [
     {
       "id": "nieuwaga",

@@ -7,6 +7,30 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.3.3] - 2026-09-12
+
+### Dodano
+
+- Karty — nowy typ zasobu graficznego w grze i edytorze: Zatrucie, Krwawienie, Zranienie oraz 3 karty bazowe bez efektu specjalnego (0/1/2 gwiazdek) używane w startowych taliach postaci
+- Edytor: możliwość wstawiania kart w tekście paragrafów i wyborów
+- Postacie i przeciwnicy wyświetlają teraz swoje nazwy (np. "Gość od pizzy", "Wilkołak") zamiast wewnętrznych identyfikatorów
+- Eksperyment: 5 nowych żetonów planszy (92, 101, 114, 146, 148), 2 nowe żetony statusu (czerwony, niebieski), 4 nowe przedmioty fabularne (Siekiera, Karabin, Śrubokręt, Łom)
+- Gra: widok przeciwnika — statusy (Czerwony, Niebieski, Zielony) zaznacza się teraz ikonami, a liczba kości do rzutu wylicza się automatycznie zamiast ręcznego liczenia modyfikatorów
+- Żeton śmierci i żeton ciężkiej rany — dawniej dostępne tylko w Droga donikąd, teraz są ogólnymi symbolami używanymi też w Eksperymencie (§27)
+
+### Zmieniono
+
+- Edytor: w menu wyboru grafik postacie i przeciwnicy wyświetlają nazwę zamiast identyfikatora (lepsze UX dla polskich znaków)
+- Droga donikąd: odświeżona grafika kart w startowej talii Patricka
+- Usunięto z edytora przykładowe przedmioty (i-random, ii, v), które nie były używane w żadnym scenariuszu
+- Eksperyment: zastąpiono tekst zastępczy prawdziwymi grafikami kart w 9 paragrafach (§4, §5, §10, §19, §52, §93, §103, §128, §221), uzupełniono brakujące grafiki kart w opisie przygotowania talii startowej postaci oraz ostatni brakujący żeton w §27
+
+### Naprawiono
+
+- Edytor: podgląd grafik scenariusza Eksperyment (np. wilkołak w §27) nie wyświetlał się poprawnie przy imporcie do edytora — naprawione
+
+---
+
 ## [0.3.2] - 2026-08-20
 
 ### Dodano

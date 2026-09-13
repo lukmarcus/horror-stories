@@ -7,6 +7,7 @@ import {
   statuses,
   letters,
   randomItems,
+  cards,
   getSymbol,
   getRoomItem,
   getPerson,
@@ -15,6 +16,7 @@ import {
   getStatus,
   getLetter,
   getRandomItem,
+  getCard,
 } from "../../../data/items";
 
 // ── Color ─────────────────────────────────────────────
@@ -64,19 +66,19 @@ export const ROOM_PICKER_ITEMS: ImagePickerItem[] = roomItems.map((r) => ({
 export const PERSON_PICKER_ITEMS: ImagePickerItem[] = persons.map((p) => ({
   id: p.id,
   imagePath: getPerson(p.id)!.imagePath,
-  label: p.id.charAt(0).toUpperCase() + p.id.slice(1),
+  label: p.name ?? p.id,
 }));
 
 export const ENEMY_PICKER_ITEMS: ImagePickerItem[] = enemies.map((e) => ({
   id: e.id,
   imagePath: getEnemy(e.id)!.imagePath,
-  label: e.id.charAt(0).toUpperCase() + e.id.slice(1),
+  label: e.name ?? e.id,
 }));
 
 export const STORY_PICKER_ITEMS: ImagePickerItem[] = storyItems.map((s) => ({
-  id: s.id,
-  imagePath: getStoryItem(s.id)!.imagePath,
-  label: `Przedmiot fabularny ${s.id.toUpperCase()}${s.paragraphId != null ? ` (§${s.paragraphId})` : ""}`,
+  id: s.romanId || s.id,
+  imagePath: getStoryItem(s.romanId || s.id)!.imagePath,
+  label: `Przedmiot fabularny ${(s.romanId || s.id).toUpperCase()}${!isNaN(Number(s.id)) ? ` (§${s.id})` : ""}`,
   sublabel: s.description || undefined,
 }));
 
@@ -98,6 +100,13 @@ export const RANDOM_PICKER_ITEMS: ImagePickerItem[] = randomItems.map((r) => ({
   imagePath: getRandomItem(r.id)!.imagePath,
   label: `Przedmiot losowy ${r.id.toUpperCase()}`,
   sublabel: r.description || undefined,
+}));
+
+export const CARD_PICKER_ITEMS: ImagePickerItem[] = cards.map((c) => ({
+  id: c.id,
+  imagePath: getCard(c.id)!.imagePath,
+  label: `Karta ${c.name}`,
+  sublabel: c.description || undefined,
 }));
 
 export { SPAN_SNIPPETS } from "./snippets";

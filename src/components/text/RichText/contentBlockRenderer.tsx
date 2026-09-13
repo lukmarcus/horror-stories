@@ -1,6 +1,7 @@
 import React from "react";
 import type { ContentBlock } from "../../../types";
 import { parseHtmlWithCustomTags } from "./customTagRenderers";
+import { getCard, getSymbol } from "../../../data/items";
 
 /**
  * Renders an array of ContentBlock objects as React nodes
@@ -27,8 +28,13 @@ export function renderContentBlocks(
         // Handle new image format: {image: "id"}
         if (block.image) {
           const dataUrl = images?.[block.image];
+          // Shared card/symbol art takes precedence over scenario-local images
+          const cardImagePath = getCard(block.image)?.imagePath;
+          const symbolImagePath = getSymbol(block.image)?.imagePath;
           const imagePath =
             dataUrl ??
+            cardImagePath ??
+            symbolImagePath ??
             (scenarioId
               ? new URL(
                   `../../../scenarios/${scenarioId}/images/${block.image}.jpg`,

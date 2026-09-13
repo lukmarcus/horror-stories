@@ -9,8 +9,7 @@
       "duration": 120,
       "persons": ["Jessica", "Patrick"],
       "notes": "drugi gracz dołącza po około 20 min",
-      "enemies": ["klaun"],
-      "enemyDiceModifiers": [1]
+      "enemies": ["klaun"]
     },
     {
       "id": "eksperyment",
