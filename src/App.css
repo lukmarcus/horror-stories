@@ -5,6 +5,15 @@
   color: var(--color-text);
 }
 
+.app__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: var(--color-text-secondary, var(--color-text));
+  font-size: var(--font-size-lg, 1.1rem);
+}
+
 /* Reset default styles */
 #root {
   height: 100%;

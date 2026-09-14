@@ -7,6 +7,14 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.3.4] - W przygotowaniu
+
+### Zmieniono
+
+- Wydajność: edytor scenariuszy (wraz z bibliotekami do rysowania grafu połączeń) ładuje się teraz dopiero przy wejściu na `/editor`, zamiast zawsze przy starcie aplikacji — szybsze pierwsze ładowanie dla graczy, którzy nie korzystają z edytora
+
+---
+
 ## [0.3.3] - 2026-09-12
 
 ### Dodano
