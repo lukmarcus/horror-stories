@@ -255,17 +255,17 @@ it("should calculate score correctly", () => {
 });
 ```
 
-### Znany kwirk: `new URL(dynamiczny_template, import.meta.url)`
+### Rozwiązane: lokalne grafiki scenariusza (`getScenarioImageUrl`)
 
 Mechanizm fallbacku lokalnych grafik scenariusza (`contentBlockRenderer.tsx`,
-`customTagRenderers.tsx`) buduje ścieżkę przez
-`new URL(\`...${scenarioId}...\`, import.meta.url)`. Pod Vitest/jsdom (transform
-vite-node) ten wzorzec rozwiązuje się do ścieżki kończącej się dosłownie na
-`undefined`, nawet gdy zmienne są poprawnie zdefiniowane — nie występuje to w
-prawdziwej przeglądarce/Vite dev. **Nie asercuj dokładnej wartości `src` dla tego
-fallbacku w testach** — sprawdzaj tylko, że nie trafia w ścieżkę współdzielonych
-zasobów (`assets/images/cards`, `assets/images/symbols`), tak jak w
-`RichText.test.tsx`.
+`customTagRenderers.tsx`) dawniej budował ścieżkę przez
+`new URL(\`...${scenarioId}...\`, import.meta.url)`, co pod Vitest/jsdom
+rozwiązywało się do ścieżki kończącej się dosłownie na `undefined`(nie
+występowało to w prawdziwej przeglądarce/Vite dev). Od v0.3.4 obie funkcje
+korzystają z`getScenarioImageUrl()` (`src/utils/scenarioImages.ts`), opartego
+o statyczny `import.meta.glob(...)`— działa deterministycznie wszędzie,
+również pod Vitest. **W testach używaj realnie istniejącego pliku** (np.`"cover"`dla`droga-donikad`), nie fikcyjnego id — nieistniejący plik poprawnie
+zwróci `undefined`i wyrenderuje placeholder zamiast`<img>`.
 
 ### 2. Descriptive Test Names
 

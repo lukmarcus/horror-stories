@@ -10,6 +10,7 @@ import {
   getRandomItem,
   getCard,
 } from "../../../data/items";
+import { getScenarioImageUrl } from "../../../utils/scenarioImages";
 
 export const CUSTOM_TAG_PATTERN =
   /<(symbol|letter|item|image|person|enemy|story|room|status|random|card)\s+id=["']([^"']+)["']\s*\/>/;
@@ -27,12 +28,7 @@ export const TAG_RENDERERS: Record<string, TagRenderer> = {
     if (dataUrl) {
       return <img key={key} src={dataUrl} alt={id} className="inline-image" />;
     }
-    const imagePath = scenarioId
-      ? new URL(
-          `../../../scenarios/${scenarioId}/images/${id}.jpg`,
-          import.meta.url,
-        ).href
-      : undefined;
+    const imagePath = getScenarioImageUrl(scenarioId, id);
     return imagePath ? (
       <img key={key} src={imagePath} alt={id} className="inline-image" />
     ) : (

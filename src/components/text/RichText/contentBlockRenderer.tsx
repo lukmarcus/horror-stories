@@ -2,6 +2,7 @@ import React from "react";
 import type { ContentBlock } from "../../../types";
 import { parseHtmlWithCustomTags } from "./customTagRenderers";
 import { getCard, getSymbol } from "../../../data/items";
+import { getScenarioImageUrl } from "../../../utils/scenarioImages";
 
 /**
  * Renders an array of ContentBlock objects as React nodes
@@ -35,12 +36,7 @@ export function renderContentBlocks(
             dataUrl ??
             cardImagePath ??
             symbolImagePath ??
-            (scenarioId
-              ? new URL(
-                  `../../../scenarios/${scenarioId}/images/${block.image}.jpg`,
-                  import.meta.url,
-                ).href
-              : undefined);
+            getScenarioImageUrl(scenarioId, block.image);
 
           const imageClasses = [
             "rich-image-block",
@@ -103,14 +99,7 @@ export function renderContentBlocks(
         } else if (block.type === "image" && (block.id || block.image)) {
           const imageId = block.image || block.id;
           const dataUrl = images?.[imageId!];
-          const imagePath =
-            dataUrl ??
-            (scenarioId
-              ? new URL(
-                  `../../../scenarios/${scenarioId}/images/${imageId}.jpg`,
-                  import.meta.url,
-                ).href
-              : undefined);
+          const imagePath = dataUrl ?? getScenarioImageUrl(scenarioId, imageId);
 
           const imageClasses = [
             "rich-image-block",
