@@ -9,6 +9,10 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ## [0.3.4] - W przygotowaniu
 
+### Dodano
+
+- Scenariusze użytkownika (tworzone lub importowane w edytorze) mogą mieć teraz grafikę okładkową — wystarczy w panelu grafik nadać obrazkowi identyfikator `cover`, a pojawi się jako tło karty scenariusza na liście scenariuszy (tak jak w scenariuszach wbudowanych)
+
 ### Zmieniono
 
 - Wydajność: edytor scenariuszy (wraz z bibliotekami do rysowania grafu połączeń) ładuje się teraz dopiero przy wejściu na `/editor`, zamiast zawsze przy starcie aplikacji — szybsze pierwsze ładowanie dla graczy, którzy nie korzystają z edytora

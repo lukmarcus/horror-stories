@@ -18,8 +18,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10
 - **Edytor: rzut kostką** — edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy); gdy pojawi się pierwszy scenariusz korzystający z tej funkcji
 - **Osobne pliki JSON per zasób scenariusza** — zamiast `paragraphs.json` jeden plik per paragraf (`paragraphs/1.json`, `paragraphs/77.json`...); poprawa git diff i DX edytora; wymaga refaktoru loadingu w `index.ts` i ZIP handlera; sensowne przy scenariuszach 200+ paragrafów
-- **Cover image support** — umożliwienie definiowania i wyświetlania grafiki okładkowej dla scenariuszy (przełożone z v0.3.1)
-- **Audyt duplikatów grafik w `droga-donikad/images/`** — kontynuacja porządków z v0.3.3 (znaleziono i scalono już karta-negatywna, karta-gwiazda, rip, rana-ciezka); pozostałe pliki (np. `karta-rozwoju.jpg`) nie zostały jeszcze sprawdzone pod kątem duplikatów ze wspólnymi zasobami (cards/symbols)
 
 ---
 
