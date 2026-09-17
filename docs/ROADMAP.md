@@ -18,6 +18,9 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10
 - **Edytor: rzut kostką** — edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy); gdy pojawi się pierwszy scenariusz korzystający z tej funkcji
 - **Osobne pliki JSON per zasób scenariusza** — zamiast `paragraphs.json` jeden plik per paragraf (`paragraphs/1.json`, `paragraphs/77.json`...); poprawa git diff i DX edytora; wymaga refaktoru loadingu w `index.ts` i ZIP handlera; sensowne przy scenariuszach 200+ paragrafów
+- **Brak obsługi błędów w `userScenarioStorage.ts`** — `saveUserScenario()` i `removeUserScenario()` wołają `localStorage.setItem()` bez try/catch (w przeciwieństwie do `loadUserScenarios()` w tym samym pliku)
+- **`zipHandler.ts` — `importFromZip()` ma kilka `JSON.parse()` bez try/catch** — uszkodzony plik `.horrorstory` wywala cały import zamiast pokazać czytelny błąd
+- **Brakujące `aria-label` na przyciskach tylko-ikonowych w edytorze** — `VariantHeader.tsx`, `ParagraphHeader.tsx`, `EditorLayout.tsx` (przycisk „+”) mają tylko `title`, bez `aria-label`
 
 ---
 
