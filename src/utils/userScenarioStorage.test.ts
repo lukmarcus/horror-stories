@@ -93,4 +93,17 @@ describe("removeUserScenario", () => {
     removeUserScenario("test-one");
     expect(loadUserScenarios()).toEqual([]);
   });
+
+  it("does not throw when localStorage.setItem throws (e.g. quota exceeded)", () => {
+    const originalSetItem = localStorageMock.setItem;
+    localStorageMock.setItem = () => {
+      throw new Error("QuotaExceededError");
+    };
+    try {
+      expect(() => saveUserScenario(scenario1)).not.toThrow();
+      expect(() => removeUserScenario(scenario1.id)).not.toThrow();
+    } finally {
+      localStorageMock.setItem = originalSetItem;
+    }
+  });
 });

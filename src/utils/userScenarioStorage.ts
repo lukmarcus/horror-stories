@@ -14,10 +14,14 @@ export function loadUserScenarios(): Scenario[] {
 
 export function removeUserScenario(id: string): void {
   const existing = loadUserScenarios();
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(existing.filter((s) => s.id !== id)),
-  );
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(existing.filter((s) => s.id !== id)),
+    );
+  } catch {
+    // ignore storage errors
+  }
 }
 
 export function saveUserScenario(scenario: Scenario): void {
@@ -28,5 +32,9 @@ export function saveUserScenario(scenario: Scenario): void {
   } else {
     existing.unshift(scenario);
   }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+  } catch {
+    // ignore storage errors
+  }
 }
