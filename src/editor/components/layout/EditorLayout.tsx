@@ -215,6 +215,7 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                 className="editor-sidebar__add-btn"
                 onClick={handleAddParagraph}
                 title="Dodaj paragraf"
+                aria-label="Dodaj paragraf"
               >
                 +
               </button>
