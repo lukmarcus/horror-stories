@@ -32,6 +32,15 @@ function isNullableNumber(v: unknown): v is number | null {
   return v === null || typeof v === "number";
 }
 
+/** Parses JSON text from a zip entry, throwing a readable error naming the file on failure. */
+function parseJsonFile(text: string, filename: string): unknown {
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`Nieprawidłowy JSON w pliku ${filename}`);
+  }
+}
+
 export function isValidScenarioMeta(data: unknown): data is Scenario {
   if (!data || typeof data !== "object") return false;
   const d = data as Record<string, unknown>;
@@ -227,7 +236,7 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   if (!metaFile) throw new Error("Plik nie zawiera meta.json");
 
   const metaText = await metaFile.async("text");
-  const meta = JSON.parse(metaText);
+  const meta = parseJsonFile(metaText, "meta.json");
 
   if (!isValidScenarioMeta(meta)) {
     throw new Error(
@@ -238,7 +247,10 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   let paragraphs: EditorScenario["paragraphs"] = [];
   const paragraphsFile = zip.file("paragraphs.json");
   if (paragraphsFile) {
-    const raw = JSON.parse(await paragraphsFile.async("text"));
+    const raw = parseJsonFile(
+      await paragraphsFile.async("text"),
+      "paragraphs.json",
+    ) as Record<string, unknown>;
     if (Array.isArray(raw.paragraphs)) {
       paragraphs = (raw.paragraphs as unknown[]).map((p: unknown) => {
         const pObj = p as Record<string, unknown>;
@@ -348,15 +360,23 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
   let letters: EditorScenario["letters"];
   const lettersFile = zip.file("letters.json");
   if (lettersFile) {
-    const parsed = JSON.parse(await lettersFile.async("text"));
-    letters = Array.isArray(parsed.letters) ? parsed.letters : [];
+    const parsed = parseJsonFile(
+      await lettersFile.async("text"),
+      "letters.json",
+    ) as Record<string, unknown>;
+    letters = Array.isArray(parsed.letters)
+      ? (parsed.letters as EditorScenario["letters"])
+      : [];
   }
 
   // Load setup.json if present
   let setup: EditorScenario["setup"];
   const setupFile = zip.file("setup.json");
   if (setupFile) {
-    const parsed = JSON.parse(await setupFile.async("text"));
+    const parsed = parseJsonFile(
+      await setupFile.async("text"),
+      "setup.json",
+    ) as Record<string, unknown>;
     // New format: pages[]
     if (Array.isArray(parsed.pages)) {
       const choices = Array.isArray(parsed.choices)
