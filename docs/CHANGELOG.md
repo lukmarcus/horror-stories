@@ -17,6 +17,12 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - Wydajność: edytor scenariuszy (wraz z bibliotekami do rysowania grafu połączeń) ładuje się teraz dopiero przy wejściu na `/editor`, zamiast zawsze przy starcie aplikacji — szybsze pierwsze ładowanie dla graczy, którzy nie korzystają z edytora
 
+### Naprawiono
+
+- Edytor: import scenariusza z uszkodzonym plikiem `.horrorstory` (np. błędny JSON w środku) pokazuje teraz czytelny komunikat błędu zamiast się wywalać
+- Edytor: zapisywanie lub usuwanie scenariusza użytkownika nie powoduje już nieobsłużonego błędu, gdy localStorage jest niedostępny (np. tryb prywatny, przekroczony limit)
+- Dostępność: kilka przycisków tylko-ikonowych w edytorze (warianty, aliasy, dodawanie paragrafu) ma teraz opis dla czytników ekranu
+
 ---
 
 ## [0.3.3] - 2026-09-12
