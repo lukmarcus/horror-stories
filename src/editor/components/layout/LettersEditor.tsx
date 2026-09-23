@@ -2,6 +2,7 @@ import React, { useContext, useMemo } from "react";
 import { EditorContext } from "../../context/editorTypes";
 import { LetterRow } from "./LetterRow";
 import { AddLetterForm } from "./AddLetterForm";
+import { sortParagraphIds } from "../../utils/editorUtils";
 import "./ItemEditor.css";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -11,14 +12,9 @@ export const LettersEditor: React.FC = () => {
 
   const paragraphIds = useMemo(
     () =>
-      (editorCtx?.state.scenario?.paragraphs ?? [])
-        .map((p) => p.id)
-        .sort((a, b) => {
-          const na = parseInt(a, 10);
-          const nb = parseInt(b, 10);
-          if (!isNaN(na) && !isNaN(nb)) return na - nb;
-          return a.localeCompare(b);
-        }),
+      sortParagraphIds(
+        (editorCtx?.state.scenario?.paragraphs ?? []).map((p) => p.id),
+      ),
     [editorCtx?.state.scenario?.paragraphs],
   );
 
