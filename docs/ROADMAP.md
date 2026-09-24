@@ -18,7 +18,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10
 - **Edytor: rzut kostką** — edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy); gdy pojawi się pierwszy scenariusz korzystający z tej funkcji
 - **Osobne pliki JSON per zasób scenariusza** — zamiast `paragraphs.json` jeden plik per paragraf (`paragraphs/1.json`, `paragraphs/77.json`...); poprawa git diff i DX edytora; wymaga refaktoru loadingu w `index.ts` i ZIP handlera; sensowne przy scenariuszach 200+ paragrafów
-- **Niepotrzebny podwójny cast w `Game.tsx`** — `.filter(Boolean as unknown as <T>(v: T | undefined) => v is T)`; zastąpić czytelnym type guardem
 - **Zdublowana logika rzutu kością** — ten sam wzorzec `Math.floor(Math.random() * 6) + 1` w `hooks/useDiceRoll.ts` i `EnemyView.tsx` (`rollActionDice`); wydzielić do `src/utils/diceRoll.ts`
 - **Podwójny cast w `editorReducer.ts`** — `action.payload as unknown as Record<string, unknown>`; wymaga przejrzenia typów akcji, żeby zrobić to porządnie (nie 5-minutowa poprawka)
 - **Non-null assertion `state.scenario!.meta`** w kilku miejscach edytora (`EnemyMetaEditor.tsx`, `ScenarioMetaForm.tsx`) — prawdopodobnie bezpieczne, ale kontrakt nie został do końca zweryfikowany

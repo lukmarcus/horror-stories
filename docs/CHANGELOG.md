@@ -23,6 +23,11 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 - Edytor: zapisywanie lub usuwanie scenariusza użytkownika nie powoduje już nieobsłużonego błędu, gdy localStorage jest niedostępny (np. tryb prywatny, przekroczony limit)
 - Dostępność: kilka przycisków tylko-ikonowych w edytorze (warianty, aliasy, dodawanie paragrafu) ma teraz opis dla czytników ekranu
 
+### Techniczne (bez efektu widocznego dla użytkownika)
+
+- Usunięto zdublowaną logikę sortowania w `LettersEditor.tsx` (teraz korzysta ze wspólnego `sortParagraphIds()`)
+- Usunięto niepotrzebny podwójny cast typów w `Game.tsx` przy filtrowaniu listy przeciwników
+
 ---
 
 ## [0.3.3] - 2026-09-12
