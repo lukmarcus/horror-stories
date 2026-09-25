@@ -7,6 +7,7 @@ import { DiceButtons } from "./DiceButtons";
 import { DiceResult } from "./DiceResult";
 import { ActionDisplay } from "./ActionDisplay";
 import { statuses } from "../../../data/items";
+import { rollDice } from "../../../utils/diceRoll";
 import "./EnemyView.css";
 
 // Only statuses that affect the enemy's dice roll are offered as toggles here
@@ -95,15 +96,9 @@ export const EnemyView: React.FC<EnemyViewProps> = ({
     setActionDiceResult(null);
     for (let frame = 0; frame < 10; frame++) {
       await new Promise((resolve) => setTimeout(resolve, 80));
-      setActionDiceResult(
-        Array.from({ length: count }, () => Math.floor(Math.random() * 6) + 1),
-      );
+      setActionDiceResult(rollDice(count));
     }
-    const final = Array.from(
-      { length: count },
-      () => Math.floor(Math.random() * 6) + 1,
-    );
-    setActionDiceResult(final);
+    setActionDiceResult(rollDice(count));
     setActionDiceRolling(false);
   };
 

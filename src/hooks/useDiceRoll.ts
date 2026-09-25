@@ -1,5 +1,6 @@
 import type { Dispatch } from "react";
 import type { GameAction } from "./useGame";
+import { rollDice } from "../utils/diceRoll";
 
 export function useDiceRoll(
   dispatch: Dispatch<GameAction>,
@@ -11,15 +12,10 @@ export function useDiceRoll(
 
     for (let frame = 0; frame < 10; frame++) {
       await new Promise((resolve) => setTimeout(resolve, 80));
-      const tempRolls = Array(numDice)
-        .fill(0)
-        .map(() => Math.floor(Math.random() * 6) + 1);
-      dispatch({ type: "SET_DICE_ROLLS", payload: tempRolls });
+      dispatch({ type: "SET_DICE_ROLLS", payload: rollDice(numDice) });
     }
 
-    const results = Array(numDice)
-      .fill(0)
-      .map(() => Math.floor(Math.random() * 6) + 1);
+    const results = rollDice(numDice);
     dispatch({ type: "SET_DICE_ROLLS", payload: results });
     const sum = results.reduce((a, b) => a + b, 0);
     dispatch({ type: "SET_DICE_RESULT", payload: sum });
