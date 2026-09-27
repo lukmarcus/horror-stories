@@ -93,7 +93,7 @@ export function editorReducer(
             };
             // New format: setup.pages
             if (raw.setup && typeof raw.setup === "object") {
-              const s = raw.setup as Record<string, unknown>;
+              const s = raw.setup;
               return {
                 pages: Array.isArray(s.pages)
                   ? (s.pages as ContentBlock[][])

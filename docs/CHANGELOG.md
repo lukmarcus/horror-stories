@@ -27,6 +27,8 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 - Usunięto zdublowaną logikę sortowania w `LettersEditor.tsx` (teraz korzysta ze wspólnego `sortParagraphIds()`)
 - Usunięto niepotrzebny podwójny cast typów w `Game.tsx` przy filtrowaniu listy przeciwników
+- Wydzielono wspólną funkcję `rollDice()` (`src/utils/diceRoll.ts`) — usunięto zdublowaną logikę losowania kości w `useDiceRoll.ts` i `EnemyView.tsx`
+- Zastąpiono niebezpieczny podwójny cast typów w `editorReducer.ts` precyzyjniejszym typowaniem przy wczytywaniu scenariusza
 
 ---
 
