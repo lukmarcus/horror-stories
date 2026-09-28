@@ -76,7 +76,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.3.1] - 2026-07-15
+## [0.3.1] - 2026-07-14
 
 ### Dodano
 
