@@ -192,7 +192,7 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 - ✅ Graf dostępności paragrafów (`buildAccessibleFrom` — proste, wariantowe, dedupl.)
 - ✅ Priorytet fallbacku obrazków w blokach treści (`{image: "id"}`): data URL → wspólna karta → wspólny symbol → lokalna grafika scenariusza
 
-### Current Coverage (v0.3.3)
+### Current Coverage (v0.3.4)
 
 | Category                 | Tests   | Coverage | Status |
 | ------------------------ | ------- | -------- | ------ |
@@ -212,7 +212,7 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 | User Paragraph Storage   | 8       | 100%     | ✅     |
 | User Paragraph Converter | 12      | 100%     | ✅     |
 | ...                      | ...     | ...      | ✅     |
-| **Total**                | **762** | **~65%** | **✅** |
+| **Total**                | **773** | **~65%** | **✅** |
 
 _Tabela nie jest wyczerpująca dla wszystkich kategorii dodanych po v0.2.7 (np. Enemy View, Eksperyment scenario tests) — `Total` odzwierciedla faktyczną liczbę testów z `npm test -- --run`._
 
@@ -378,10 +378,9 @@ npm run test -- --reporter=verbose
 
 ## Continuous Integration
 
-Testy automat uruchamiają się na:
+Testy automatycznie uruchamiają się (`.github/workflows/test.yml`) na:
 
-- Push do `develop` i `main`
-- Pull requests
-- Scheduled (nightly builds)
+- Push do `main`
+- Pull requesty do `main`
 
 **Status must:** All tests passing
