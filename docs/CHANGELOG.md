@@ -7,7 +7,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.3.4] - W przygotowaniu
+## [0.3.4] - 2026-09-30
 
 ### Dodano
 
@@ -15,20 +15,13 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ### Zmieniono
 
-- Wydajność: edytor scenariuszy (wraz z bibliotekami do rysowania grafu połączeń) ładuje się teraz dopiero przy wejściu na `/editor`, zamiast zawsze przy starcie aplikacji — szybsze pierwsze ładowanie dla graczy, którzy nie korzystają z edytora
+- Edytor: ładuje się teraz dopiero przy wejściu na `/editor` (wraz z bibliotekami do rysowania grafu połączeń), zamiast zawsze przy starcie aplikacji — szybsze pierwsze ładowanie dla graczy, którzy nie korzystają z edytora
 
 ### Naprawiono
 
 - Edytor: import scenariusza z uszkodzonym plikiem `.horrorstory` (np. błędny JSON w środku) pokazuje teraz czytelny komunikat błędu zamiast się wywalać
 - Edytor: zapisywanie lub usuwanie scenariusza użytkownika nie powoduje już nieobsłużonego błędu, gdy localStorage jest niedostępny (np. tryb prywatny, przekroczony limit)
-- Dostępność: kilka przycisków tylko-ikonowych w edytorze (warianty, aliasy, dodawanie paragrafu) ma teraz opis dla czytników ekranu
-
-### Techniczne (bez efektu widocznego dla użytkownika)
-
-- Usunięto zdublowaną logikę sortowania w `LettersEditor.tsx` (teraz korzysta ze wspólnego `sortParagraphIds()`)
-- Usunięto niepotrzebny podwójny cast typów w `Game.tsx` przy filtrowaniu listy przeciwników
-- Wydzielono wspólną funkcję `rollDice()` (`src/utils/diceRoll.ts`) — usunięto zdublowaną logikę losowania kości w `useDiceRoll.ts` i `EnemyView.tsx`
-- Zastąpiono niebezpieczny podwójny cast typów w `editorReducer.ts` precyzyjniejszym typowaniem przy wczytywaniu scenariusza
+- Edytor: kilka przycisków tylko-ikonowych (warianty, aliasy, dodawanie paragrafu) ma teraz opis dla czytników ekranu
 
 ---
 

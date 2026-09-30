@@ -190,13 +190,12 @@ export const LETTERS_DATA: Record<string, { letters: LetterToken[] }> = {
 import enemyName from "./enemy-name.json";
 import type { Enemy } from "../../types";
 
-export const getEnemy = (id: string): Enemy | null => {
-  const enemies: Record<string, Enemy> = {
-    // ... existing
-    "enemy-id": enemyName as Enemy,
-  };
-  return enemies[id] ?? null;
+export const ENEMIES: Record<string, Enemy> = {
+  // ... existing
+  "enemy-id": enemyName as Enemy,
 };
+
+export const getEnemy = (id: string): Enemy | undefined => ENEMIES[id];
 ```
 
 **Checklist:**
@@ -269,7 +268,7 @@ npm run dev
 - [ ] Grafika wroga się wczytuje
 - [ ] Action table wyświetla prawidłowe dane
 - [ ] Rzuty kostką wroga działają
-- [ ] Modyfikatory kości gracza działają
+- [ ] Statusy przeciwnika (Czerwony/Niebieski/Zielony) — widoczne są tylko te wymienione w polu `statuses` wroga, a przycisk rzutu poprawnie przelicza liczbę kości
 - [ ] Wszystkie action outcomes mają opisy
 
 **Test przedmiotów (jeśli są):**
