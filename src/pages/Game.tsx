@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
+import type { Enemy } from "../types";
 import { SCENARIOS, PARAGRAPHS, SETUP_DATA, LETTERS_DATA } from "../scenarios";
 import { OptionButton, BackToMenu } from "../components/ui";
 import { ParagraphView } from "../components/views/ParagraphView/ParagraphView";
@@ -105,7 +106,7 @@ export const Game: React.FC = () => {
     .sort((a, b) => a.id.localeCompare(b.id));
   const enemies = (currentScenario?.enemies ?? [])
     .map((id) => getEnemy(id))
-    .filter(Boolean as unknown as <T>(v: T | undefined) => v is T);
+    .filter((enemy): enemy is Enemy => enemy !== undefined);
   const currentParagraph = game.state.currentParagraphId
     ? paragraphs[game.state.currentParagraphId]
     : null;
@@ -363,7 +364,7 @@ export const Game: React.FC = () => {
             </h1>
           )}
           <EnemyView
-            enemies={enemies as import("../types").Enemy[]}
+            enemies={enemies}
             minPlayerCount={currentScenario?.minPlayerCount}
             maxPlayerCount={currentScenario?.maxPlayerCount}
             onClose={() => {

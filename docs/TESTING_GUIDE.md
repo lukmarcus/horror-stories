@@ -192,7 +192,7 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 - ✅ Graf dostępności paragrafów (`buildAccessibleFrom` — proste, wariantowe, dedupl.)
 - ✅ Priorytet fallbacku obrazków w blokach treści (`{image: "id"}`): data URL → wspólna karta → wspólny symbol → lokalna grafika scenariusza
 
-### Current Coverage (v0.3.3)
+### Current Coverage (v0.3.4)
 
 | Category                 | Tests   | Coverage | Status |
 | ------------------------ | ------- | -------- | ------ |
@@ -212,7 +212,7 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 | User Paragraph Storage   | 8       | 100%     | ✅     |
 | User Paragraph Converter | 12      | 100%     | ✅     |
 | ...                      | ...     | ...      | ✅     |
-| **Total**                | **762** | **~65%** | **✅** |
+| **Total**                | **773** | **~65%** | **✅** |
 
 _Tabela nie jest wyczerpująca dla wszystkich kategorii dodanych po v0.2.7 (np. Enemy View, Eksperyment scenario tests) — `Total` odzwierciedla faktyczną liczbę testów z `npm test -- --run`._
 
@@ -255,17 +255,17 @@ it("should calculate score correctly", () => {
 });
 ```
 
-### Znany kwirk: `new URL(dynamiczny_template, import.meta.url)`
+### Rozwiązane: lokalne grafiki scenariusza (`getScenarioImageUrl`)
 
 Mechanizm fallbacku lokalnych grafik scenariusza (`contentBlockRenderer.tsx`,
-`customTagRenderers.tsx`) buduje ścieżkę przez
-`new URL(\`...${scenarioId}...\`, import.meta.url)`. Pod Vitest/jsdom (transform
-vite-node) ten wzorzec rozwiązuje się do ścieżki kończącej się dosłownie na
-`undefined`, nawet gdy zmienne są poprawnie zdefiniowane — nie występuje to w
-prawdziwej przeglądarce/Vite dev. **Nie asercuj dokładnej wartości `src` dla tego
-fallbacku w testach** — sprawdzaj tylko, że nie trafia w ścieżkę współdzielonych
-zasobów (`assets/images/cards`, `assets/images/symbols`), tak jak w
-`RichText.test.tsx`.
+`customTagRenderers.tsx`) dawniej budował ścieżkę przez
+`new URL(\`...${scenarioId}...\`, import.meta.url)`, co pod Vitest/jsdom
+rozwiązywało się do ścieżki kończącej się dosłownie na `undefined`(nie
+występowało to w prawdziwej przeglądarce/Vite dev). Od v0.3.4 obie funkcje
+korzystają z`getScenarioImageUrl()` (`src/utils/scenarioImages.ts`), opartego
+o statyczny `import.meta.glob(...)`— działa deterministycznie wszędzie,
+również pod Vitest. **W testach używaj realnie istniejącego pliku** (np.`"cover"`dla`droga-donikad`), nie fikcyjnego id — nieistniejący plik poprawnie
+zwróci `undefined`i wyrenderuje placeholder zamiast`<img>`.
 
 ### 2. Descriptive Test Names
 
@@ -378,10 +378,9 @@ npm run test -- --reporter=verbose
 
 ## Continuous Integration
 
-Testy automat uruchamiają się na:
+Testy automatycznie uruchamiają się (`.github/workflows/test.yml`) na:
 
-- Push do `develop` i `main`
-- Pull requests
-- Scheduled (nightly builds)
+- Push do `main`
+- Pull requesty do `main`
 
 **Status must:** All tests passing

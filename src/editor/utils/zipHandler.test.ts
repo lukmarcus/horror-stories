@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { buildAccessibleFrom, isValidScenarioMeta } from "./zipHandler";
+import JSZip from "jszip";
+import {
+  buildAccessibleFrom,
+  isValidScenarioMeta,
+  importFromZip,
+} from "./zipHandler";
 import type { EditorParagraph } from "../context/editorTypes";
 
 describe("buildAccessibleFrom", () => {
@@ -235,5 +240,74 @@ describe("isValidScenarioMeta", () => {
 
   it("zwraca false gdy minPlayerCount nie jest liczbą ani null", () => {
     expect(isValidScenarioMeta({ ...VALID, minPlayerCount: "1" })).toBe(false);
+  });
+});
+
+describe("importFromZip", () => {
+  const validMeta = {
+    id: "test-scenario",
+    title: "Test Scenario",
+    description: "",
+    minPlayerCount: null,
+    maxPlayerCount: null,
+    duration: null,
+  };
+
+  it("throws a readable error when meta.json contains invalid JSON", async () => {
+    const zip = new JSZip();
+    zip.file("meta.json", "{ not valid json");
+    const blob = await zip.generateAsync({ type: "blob" });
+    const file = new File([blob], "test.horrorstory");
+
+    await expect(importFromZip(file)).rejects.toThrow(
+      "Nieprawidłowy JSON w pliku meta.json",
+    );
+  });
+
+  it("throws a readable error when paragraphs.json contains invalid JSON", async () => {
+    const zip = new JSZip();
+    zip.file("meta.json", JSON.stringify(validMeta));
+    zip.file("paragraphs.json", "not json at all");
+    const blob = await zip.generateAsync({ type: "blob" });
+    const file = new File([blob], "test.horrorstory");
+
+    await expect(importFromZip(file)).rejects.toThrow(
+      "Nieprawidłowy JSON w pliku paragraphs.json",
+    );
+  });
+
+  it("throws a readable error when letters.json contains invalid JSON", async () => {
+    const zip = new JSZip();
+    zip.file("meta.json", JSON.stringify(validMeta));
+    zip.file("letters.json", "{ broken");
+    const blob = await zip.generateAsync({ type: "blob" });
+    const file = new File([blob], "test.horrorstory");
+
+    await expect(importFromZip(file)).rejects.toThrow(
+      "Nieprawidłowy JSON w pliku letters.json",
+    );
+  });
+
+  it("throws a readable error when setup.json contains invalid JSON", async () => {
+    const zip = new JSZip();
+    zip.file("meta.json", JSON.stringify(validMeta));
+    zip.file("setup.json", "{ broken");
+    const blob = await zip.generateAsync({ type: "blob" });
+    const file = new File([blob], "test.horrorstory");
+
+    await expect(importFromZip(file)).rejects.toThrow(
+      "Nieprawidłowy JSON w pliku setup.json",
+    );
+  });
+
+  it("succeeds when all present JSON files are well-formed", async () => {
+    const zip = new JSZip();
+    zip.file("meta.json", JSON.stringify(validMeta));
+    zip.file("paragraphs.json", JSON.stringify({ paragraphs: [] }));
+    const blob = await zip.generateAsync({ type: "blob" });
+    const file = new File([blob], "test.horrorstory");
+
+    const result = await importFromZip(file);
+    expect(result.meta.id).toBe("test-scenario");
   });
 });

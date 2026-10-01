@@ -72,6 +72,7 @@ export const ParagraphHeader: React.FC<ParagraphHeaderProps> = ({
                   className="editor-paragraph-view__alias-remove"
                   onClick={() => onRemoveAlias(alias)}
                   title={`Usuń alias §${alias}`}
+                  aria-label={`Usuń alias §${alias}`}
                 >
                   ×
                 </button>

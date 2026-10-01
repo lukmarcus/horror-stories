@@ -7,6 +7,24 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.3.4] - 2026-09-30
+
+### Dodano
+
+- Scenariusze użytkownika (tworzone lub importowane w edytorze) mogą mieć teraz grafikę okładkową — wystarczy w panelu grafik nadać obrazkowi identyfikator `cover`, a pojawi się jako tło karty scenariusza na liście scenariuszy (tak jak w scenariuszach wbudowanych)
+
+### Zmieniono
+
+- Edytor: ładuje się teraz dopiero przy wejściu na `/editor` (wraz z bibliotekami do rysowania grafu połączeń), zamiast zawsze przy starcie aplikacji — szybsze pierwsze ładowanie dla graczy, którzy nie korzystają z edytora
+
+### Naprawiono
+
+- Edytor: import scenariusza z uszkodzonym plikiem `.horrorstory` (np. błędny JSON w środku) pokazuje teraz czytelny komunikat błędu zamiast się wywalać
+- Edytor: zapisywanie lub usuwanie scenariusza użytkownika nie powoduje już nieobsłużonego błędu, gdy localStorage jest niedostępny (np. tryb prywatny, przekroczony limit)
+- Edytor: kilka przycisków tylko-ikonowych (warianty, aliasy, dodawanie paragrafu) ma teraz opis dla czytników ekranu
+
+---
+
 ## [0.3.3] - 2026-09-12
 
 ### Dodano
@@ -51,7 +69,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [0.3.1] - 2026-07-15
+## [0.3.1] - 2026-07-14
 
 ### Dodano
 

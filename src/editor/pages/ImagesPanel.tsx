@@ -116,6 +116,11 @@ export const ImagesPanel: React.FC = () => {
 
       {error && <p className="images-panel__error">{error}</p>}
 
+      <p className="images-panel__hint">
+        Wgraj grafikę i nadaj jej identyfikator <code>cover</code>, aby
+        wyświetlała się jako tło karty scenariusza na liście scenariuszy.
+      </p>
+
       {count === 0 ? (
         <div className="images-panel__empty">
           <p>Brak grafik. Kliknij „+ Dodaj", aby przesłać pliki JPG lub PNG.</p>

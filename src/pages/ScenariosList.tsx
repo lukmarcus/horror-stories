@@ -12,7 +12,11 @@ import {
   saveUserParagraphs,
   removeUserParagraphs,
 } from "../utils/userParagraphStorage";
-import { saveUserImages, removeUserImages } from "../utils/userImageStorage";
+import {
+  saveUserImages,
+  removeUserImages,
+  loadUserImages,
+} from "../utils/userImageStorage";
 import { saveUserLetters, removeUserLetters } from "../utils/userLetterStorage";
 import { saveUserSetup, removeUserSetup } from "../utils/userSetupStorage";
 import type { Scenario, LetterToken } from "../types";
@@ -28,7 +32,9 @@ function getCoverUrl(scenarioId: string): string | undefined {
     const url = covers[`../scenarios/${scenarioId}/images/cover.${ext}`];
     if (url) return url;
   }
-  return undefined;
+  // User-created/imported scenarios store their images in localStorage;
+  // an uploaded image named "cover" is used the same way as a built-in cover.jpg
+  return loadUserImages(scenarioId).cover;
 }
 
 export const ScenariosList: React.FC = () => {

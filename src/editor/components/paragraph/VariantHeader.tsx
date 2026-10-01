@@ -35,6 +35,7 @@ export const VariantHeader: React.FC<VariantHeaderProps> = ({
         className="editor-paragraph-view__variant-toggle"
         onClick={onToggleCollapse}
         title={collapsed ? "Rozwiń" : "Zwiń"}
+        aria-label={collapsed ? "Rozwiń wariant" : "Zwiń wariant"}
       >
         {collapsed ? "▶" : "▼"}
       </button>
@@ -61,6 +62,7 @@ export const VariantHeader: React.FC<VariantHeaderProps> = ({
             className="editor-paragraph-view__variant-rename-save"
             onClick={handleRename}
             title="Zapisz nazwę"
+            aria-label="Zapisz nazwę wariantu"
           >
             ✓
           </button>
@@ -71,6 +73,7 @@ export const VariantHeader: React.FC<VariantHeaderProps> = ({
               setRenameValue(variantId);
             }}
             title="Anuluj"
+            aria-label="Anuluj zmianę nazwy"
           >
             ✕
           </button>
@@ -84,6 +87,7 @@ export const VariantHeader: React.FC<VariantHeaderProps> = ({
             className="editor-paragraph-view__variant-rename-btn"
             onClick={() => setRenaming(true)}
             title="Zmień nazwę wariantu"
+            aria-label="Zmień nazwę wariantu"
           >
             ✎
           </button>
@@ -111,6 +115,7 @@ export const VariantHeader: React.FC<VariantHeaderProps> = ({
               className="editor-paragraph-view__variant-remove"
               onClick={() => setConfirmDelete(true)}
               title={`Usuń wariant ${variantId}`}
+              aria-label={`Usuń wariant ${variantId}`}
             >
               ✕
             </button>

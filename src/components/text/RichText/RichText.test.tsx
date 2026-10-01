@@ -84,9 +84,11 @@ describe("RichText", () => {
 
     it("renders inline image when scenarioId provided", () => {
       const { container } = render(
-        <RichText text='<image id="map"/>' scenarioId="test-scenario" />,
+        <RichText text='<image id="cover"/>' scenarioId="droga-donikad" />,
       );
-      expect(container.querySelector("img.inline-image")).not.toBeNull();
+      const img = container.querySelector("img.inline-image");
+      expect(img).not.toBeNull();
+      expect(img?.getAttribute("src")).toContain("cover");
     });
 
     it("handles mixed content before and after custom tags", () => {
@@ -188,17 +190,19 @@ describe("RichText", () => {
     });
 
     it("renders image block placeholder when no scenarioId", () => {
-      const content: ContentBlock[] = [{ image: "map" }];
+      const content: ContentBlock[] = [{ image: "cover" }];
       const { container } = render(<RichText content={content} />);
       expect(container.querySelector(".rich-image-icon")).not.toBeNull();
     });
 
     it("renders image block <img> when scenarioId provided", () => {
-      const content: ContentBlock[] = [{ image: "map" }];
+      const content: ContentBlock[] = [{ image: "cover" }];
       const { container } = render(
         <RichText content={content} scenarioId="droga-donikad" />,
       );
-      expect(container.querySelector("img.rich-image")).not.toBeNull();
+      const img = container.querySelector("img.rich-image");
+      expect(img).not.toBeNull();
+      expect(img?.getAttribute("src")).toContain("cover");
     });
 
     it("renders old format {type:'text', html:'...'} block", () => {
@@ -211,13 +215,13 @@ describe("RichText", () => {
     });
 
     it("renders old format {type:'image', id:'...'} block placeholder when no scenarioId", () => {
-      const content: ContentBlock[] = [{ type: "image", id: "map" }];
+      const content: ContentBlock[] = [{ type: "image", id: "cover" }];
       const { container } = render(<RichText content={content} />);
       expect(container.querySelector(".rich-image-icon")).not.toBeNull();
     });
 
     it("renders old format {type:'image', id:'...'} block <img> when scenarioId provided", () => {
-      const content: ContentBlock[] = [{ type: "image", id: "map" }];
+      const content: ContentBlock[] = [{ type: "image", id: "cover" }];
       const { container } = render(
         <RichText content={content} scenarioId="droga-donikad" />,
       );
@@ -225,14 +229,14 @@ describe("RichText", () => {
     });
 
     it("applies spacing-none to image block", () => {
-      const content: ContentBlock[] = [{ image: "map", spacing: "none" }];
+      const content: ContentBlock[] = [{ image: "cover", spacing: "none" }];
       const { container } = render(<RichText content={content} />);
       const imageBlock = container.querySelector(".rich-image-block");
       expect(imageBlock?.classList.contains("spacing-none")).toBe(true);
     });
 
     it("applies is-last-block to image block when last", () => {
-      const content: ContentBlock[] = [{ image: "map" }];
+      const content: ContentBlock[] = [{ image: "cover" }];
       const { container } = render(<RichText content={content} />);
       const imageBlock = container.querySelector(".rich-image-block");
       expect(imageBlock?.classList.contains("is-last-block")).toBe(true);
@@ -277,12 +281,13 @@ describe("RichText", () => {
     });
 
     it("falls back to scenario-local image when id matches no shared card or symbol", () => {
-      const content: ContentBlock[] = [{ image: "map" }];
+      const content: ContentBlock[] = [{ image: "cover" }];
       const { container } = render(
         <RichText content={content} scenarioId="droga-donikad" />,
       );
       const img = container.querySelector("img.rich-image");
       expect(img).not.toBeNull();
+      expect(img?.getAttribute("src")).toContain("cover");
       expect(img?.getAttribute("src")).not.toContain("assets/images/cards");
       expect(img?.getAttribute("src")).not.toContain("assets/images/symbols");
     });

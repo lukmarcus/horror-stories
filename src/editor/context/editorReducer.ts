@@ -1,4 +1,9 @@
-import type { EditorState, EditorAction, EditorChoice } from "./editorTypes";
+import type {
+  EditorState,
+  EditorAction,
+  EditorChoice,
+  EditorScenario,
+} from "./editorTypes";
 import type { ContentBlock } from "../../types";
 import { DEATH_PARAGRAPH, ensureDeath } from "./reducers/reducerUtils";
 import { paragraphReducer } from "./reducers/paragraphReducer";
@@ -82,10 +87,13 @@ export function editorReducer(
             ? action.payload.persons
             : [],
           setup: (() => {
-            const raw = action.payload as unknown as Record<string, unknown>;
+            // `setupSteps` is a legacy field from an older save format, not part of EditorScenario
+            const raw = action.payload as EditorScenario & {
+              setupSteps?: unknown;
+            };
             // New format: setup.pages
             if (raw.setup && typeof raw.setup === "object") {
-              const s = raw.setup as Record<string, unknown>;
+              const s = raw.setup;
               return {
                 pages: Array.isArray(s.pages)
                   ? (s.pages as ContentBlock[][])

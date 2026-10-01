@@ -243,23 +243,44 @@ export interface DiceResult {
 
 ## HTML Tags Support
 
-Obsługiwane tagi w polu `text`:
+Obsługiwane tagi w polu `text` (samozamykające, np. `<symbol id="gwiazda"/>`):
 
 ```html
 <!-- Formatowanie tekstu -->
 <em>italic text</em>
 <strong>bold text</strong>
+<u>underline text</u>
 
-<!-- Komponenty custom -->
-<letter id="j">Custom letter</letter>
-<symbol id="star">Custom symbol</symbol>
-<item id="key">Custom item</item>
-<image id="room">Custom image</image>
+<!-- Komponenty custom (wszystkie w formie <tag id="..."/>) -->
+<symbol id="gwiazda" />
+<!-- symbole akcji (kostka, drzwi, karta-akcji...) -->
+<letter id="a" />
+<!-- żelony alfabetu -->
+<item id="key" />
+<!-- surowy identyfikator w nawiasach [key] -->
+<image id="room" />
+<!-- grafika scenariusza lub grafika użytkownika -->
+<person id="jessica" />
+<!-- gracz -->
+<enemy id="klaun" />
+<!-- przeciwnik -->
+<story id="xiii" />
+<!-- przedmiot fabularny (roman numeral) -->
+<room id="12" />
+<!-- przedmiot z pokoju (numer paragrafu) -->
+<status id="zielony" />
+<!-- żelon statusu -->
+<random id="iii" />
+<!-- przedmiot losowy -->
+<card id="krwawienie" />
+<!-- karta akcji -->
 
-<!-- Kolory -->
+<!-- Kolory (dostępne dla <span class="color-...">) -->
+<span class="color-yellow">Yellow text</span>
 <span class="color-red">Red text</span>
+<span class="color-purple">Purple text</span>
+<span class="color-green">Green text</span>
 <span class="color-blue">Blue text</span>
-<span class="color-gold">Gold text</span>
 ```
 
 ## Spacing Control
@@ -322,26 +343,21 @@ Opcjonalny plik z krokami przygotowania wyświetlanymi przed startem gry.
 
 ```json
 {
-  "steps": [
-    {
-      "stepNumber": 1,
-      "content": [
-        { "text": "Umieść żeton postaci na planszy." },
-        { "image": "jessica-figurka" }
-      ]
-    },
-    {
-      "stepNumber": 2,
-      "content": [{ "text": "Przygotuj talię kart." }],
-      "choices": [{ "text": "Kontynuuj do §1", "nextParagraphId": "1" }]
-    }
-  ]
+  "pages": [
+    [
+      { "text": "Umieść żeton postaci na planszy." },
+      { "image": "jessica-figurka" }
+    ],
+    [{ "text": "Przygotuj talię kart." }]
+  ],
+  "choices": [{ "text": "Przejdź do paragrafu 1", "nextParagraphId": "1" }]
 }
 ```
 
-- `stepNumber` — numer kroku (1-based)
-- `content` — tablica bloków treści (`ContentBlock[]`), identyczna jak w paragrafach
-- `choices` — opcjonalna lista wyborów (identyczna jak w paragrafach); kliknięcie zamyka setup i przechodzi do wskazanego paragrafu
+- `pages` — tablica stron, każda strona to `ContentBlock[]` (identyczne jak w paragrafach); każda strona = jeden krok przygotowania
+- `choices` — opcjonalna lista wyborów (widoczna tylko na ostatniej stronie); kliknięcie zamyka setup i przechodzi do wskazanego paragrafu
+
+> Starszy format `steps: [{ stepNumber, content, choices }]` jest nadal wczytywany dla wstecznej kompatybilności (patrz `zipHandler.ts`), ale nowe scenariusze powinny używać `pages`.
 
 ## Version History
 
@@ -354,6 +370,7 @@ Opcjonalny plik z krokami przygotowania wyświetlanymi przed startem gry.
 | v0.1.1  | id jako tablica, isConditional                | `"id": ["5", "6"]`, `"isConditional": true` |
 | v0.2.9  | letters.json, setup.json                      | żetony alfabetu, kroki przygotowania        |
 | v0.2.11 | pages (zamiast contentPages), spacing control | `"pages": [[...]]`, `"spacing": "none"`     |
+| v0.3.3  | Karty (`<card>`), setup.json używa `pages`    | `<card id="krwawienie"/>`                   |
 
 ## Best Practices
 
@@ -437,14 +454,13 @@ npm run format:json  # (future)
 // ❌ Missing accessibleFrom for non-direct
 {
   "id": "77",
-  "direct": false,
-  "text": "Unreachable!"  // No accessibleFrom paths!
+  "accessibleFrom": [],
+  "text": "Unreachable!"  // Pusta/undefined accessibleFrom = paragraf bezpośredni; jeśli ma być tylko przez link, potrzebuje wpisów tutaj!
 }
 
 // ✅ Proper non-direct
 {
   "id": "77",
-  "direct": false,
   "accessibleFrom": ["15", "20"],
   "text": "Reachable from 15 or 20"
 }
