@@ -8,28 +8,75 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ## Notatki na przyszłość
 
-- **Refactor: zastąpienie wariantów aliasami paragrafów** — obecnie warianty (variants) komplikują edytor i kod. Zamiast tego:
-  - Paragraf §100 z wariantami → osobne paragrafy §100a, §100b, §100c
-  - Dodanie pola `areChoicesHorizontal` do zwykłych paragrafów (nie tylko wariantów) — przyciski na górze strony zamiast wybory na dole
-  - Uproszczenie edytora — jeden widok dla wszystkich paragrafów, bez specjalnego trybu wariantów
-  - Lepsza nawigacja — wszystkie "warianty" widoczne w spisie jako aliasy
-  - Migracja istniejących scenariuszy (droga-donikad: §15, §36, §100, §105; eksperyment: §1, §5, §9)
-  - Breaking change — zaplanować na v0.4.0
 - Strona **Wykrywanie problemów** (paragrafy bez połączeń, niedostępne §, brakujące nextParagraphId) — do osobnego milestone'u po v0.2.10
 - **Edytor: rzut kostką** — edycja `diceResult` (próg, tekst sukcesu/porażki, docelowe paragrafy); gdy pojawi się pierwszy scenariusz korzystający z tej funkcji
 - **Osobne pliki JSON per zasób scenariusza** — zamiast `paragraphs.json` jeden plik per paragraf (`paragraphs/1.json`, `paragraphs/77.json`...); poprawa git diff i DX edytora; wymaga refaktoru loadingu w `index.ts` i ZIP handlera; sensowne przy scenariuszach 200+ paragrafów
 
 ---
 
-## Milestone v0.4.0 - Kolejny dzień w pracy (Scenariusz 3)
+## Milestone v0.4.0 - Refactor wariantów (Etap 1/3): fundament
+
+### Kontekst
+
+Obecnie warianty (`variants`) komplikują edytor i kod. Docelowo zastępujemy je zwykłymi paragrafami z literowymi sufiksami (np. §100 → §100a, §100b, §100c) + polem `areChoicesHorizontal` dostępnym na każdym paragrafie (nie tylko w trybie wariantowym). To breaking change, rozłożony na kilka wersji 0.4.x.
+
+**Odkrycie z research'u:** mechanizm poziomych/pionowych wyborów już działa niezależnie od `variants` — `ParagraphView.tsx` liczy `isHorizontal = !!paragraph.variants || !!paragraph.areChoicesHorizontal`, a kliknięcie przycisku już obsługuje zarówno `nextVariantId`, jak i zwykłe `nextParagraphId`. Etap 1 jest więc w dużej mierze już zrobiony po stronie gry.
 
 ### Zakres
 
-**Scenariusz "Kolejny dzień w pracy"** — według procesu opisanego w [ADDING_SCENARIO.md](ADDING_SCENARIO.md)
+- ⏳ Zgeneralizować etykiety horizontal/vertical w `ChoicesSection.tsx` — usunąć słowo "wariant" z aria-label/legend, gdy nie chodzi o prawdziwy wariant ("Dostępne warianty"/"Wybierz wariant" → ogólniejsze sformułowanie)
+- ⏳ Dodać test end-to-end: zwykły paragraf (bez `variants`) z `areChoicesHorizontal: true` i zwykłymi `nextParagraphId` renderuje się poziomo i nawiguje poprawnie
+- ⏳ Potwierdzić, że nawigacja do takiego paragrafu idzie przez zwykłe `SET_PARAGRAPH` (prawdziwa historia przeglądarki, nie `variantPath`)
 
 ### Status
 
-- ⏳ Planowane (po v0.3.4)
+- ⏳ Planowane
+
+---
+
+## Milestone v0.4.1 - Refactor wariantów (Etap 2/3): migracja danych
+
+### Zakres
+
+- ⏳ Spłaszczyć istniejące `variants` na realne paragrafy z literowymi sufiksami w `droga-donikad` i `eksperyment`
+- ❓ **Do rozstrzygnięcia:** zagnieżdżone warianty (np. §9 jessica → patrick-lezy/patrick-stoi wewnątrz) — jak je spłaszczyć? Osobne paragrafy sąsiadujące połączone przez kolejne poziome-wyborowe paragrafy, czy inna struktura?
+- ❓ **Do rozstrzygnięcia:** obecne warianty mają nazwy semantyczne (`jessica`, `patrick-lezy`) — zamieniamy na czyste litery (`a`, `b`, `c`) czy zachowujemy czytelność w ID (`9-jessica`)?
+- ❓ **Specjalny przypadek:** §100 (śmierć) ma w kodzie twardo wbudowaną ochronę (`DEATH_PARAGRAPH`, `ensureDeath`, nie da się usunąć) — jego warianty (Klaun/Jessica/Patrick) trzeba zmigrować ostrożnie, osobno zweryfikować
+- ⏳ **Kompatybilność starych eksportów `.horrorstory`** — zdecydować, czy import pliku z `variants` (sprzed refaktoru) ma się auto-spłaszczać, czy to świadomie zostaje złamane
+
+### Status
+
+- ⏳ Planowane
+
+---
+
+## Milestone v0.4.2 - Refactor wariantów (Etap 3/3): przebudowa edytora
+
+### Zakres
+
+- ⏳ Usunięcie trybu "Wariantowy": `VariantModeEditor.tsx`, `VariantEditor.tsx`, `VariantsSection.tsx`, `VariantHeader.tsx`, `variantReducer.ts` i powiązane akcje
+- ⏳ Dodanie prostego przełącznika układu (pionowo/poziomo) bezpośrednio przy wyborach zwykłego paragrafu
+- ⏳ Rozwijanie/zwijanie "podparagrafów" w lewym sidebarze — algorytm grupowania po wzorcu ID (numer + opcjonalna litera), stan rozwinięcia/zwinięcia, wcięcie wizualne
+- ⏳ Auto-tworzenie dzieci z literą — rozszerzyć istniejące auto-tworzenie paragrafu (przy wpisaniu nieistniejącego ID w polu wyboru) o auto-sugestię kolejnej wolnej litery (100 → zaproponuj 100a)
+- ⏳ Uproszczenie `useGame.ts`/`Game.tsx` — usunięcie `variantPath`/`ADD_VARIANT`/`CLEAR_VARIANTS` i przycisku "↻ Odśwież warianty"
+- ⏳ Przepisanie/usunięcie testów związanych z wariantami: `variantReducer`, `useGame.test.ts` (variantPath), `Game.e2e.test.tsx`, `EditorContext.test.ts`
+- ⏳ Aktualizacja dokumentacji: `SCENARIO_SCHEMA.md` (sekcje "Variant Paragraph"/"Nested Variants"), `ADDING_SCENARIO.md`, `TESTING_GUIDE.md` (wiersz "Variant System")
+
+### Status
+
+- ⏳ Planowane
+
+---
+
+## Milestone v0.4.3 - Kolejny dzień w pracy (Scenariusz 3)
+
+### Zakres
+
+**Scenariusz "Kolejny dzień w pracy"** — według procesu opisanego w [ADDING_SCENARIO.md](ADDING_SCENARIO.md), budowany już na czystym modelu (bez wariantów od początku)
+
+### Status
+
+- ⏳ Planowane (po v0.4.2)
 
 ---
 
