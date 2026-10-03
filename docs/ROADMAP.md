@@ -39,10 +39,10 @@ Obecnie warianty (`variants`) komplikują edytor i kod. Docelowo zastępujemy je
 ### Zakres
 
 - ⏳ Spłaszczyć istniejące `variants` na realne paragrafy z literowymi sufiksami w `droga-donikad` i `eksperyment`
-- ❓ **Do rozstrzygnięcia:** zagnieżdżone warianty (np. §9 jessica → patrick-lezy/patrick-stoi wewnątrz) — jak je spłaszczyć? Osobne paragrafy sąsiadujące połączone przez kolejne poziome-wyborowe paragrafy, czy inna struktura?
-- ❓ **Do rozstrzygnięcia:** obecne warianty mają nazwy semantyczne (`jessica`, `patrick-lezy`) — zamieniamy na czyste litery (`a`, `b`, `c`) czy zachowujemy czytelność w ID (`9-jessica`)?
-- ❓ **Specjalny przypadek:** §100 (śmierć) ma w kodzie twardo wbudowaną ochronę (`DEATH_PARAGRAPH`, `ensureDeath`, nie da się usunąć) — jego warianty (Klaun/Jessica/Patrick) trzeba zmigrować ostrożnie, osobno zweryfikować
-- ⏳ **Kompatybilność starych eksportów `.horrorstory`** — zdecydować, czy import pliku z `variants` (sprzed refaktoru) ma się auto-spłaszczać, czy to świadomie zostaje złamane
+- ✅ **Rozstrzygnięte:** nazewnictwo — każdy wariant staje się paragrafem-dzieckiem rodzica z dodaną literą na końcu ID (np. §100 z wariantami Klaun/Jessica/Patrick → §100a, §100b, §100c); kolejność liter niekoniecznie musi być alfabetyczna wg nazwy wariantu, ważna jest sama reguła "rodzic + litera"
+- ✅ **Rozstrzygnięte:** zagnieżdżone warianty — spłaszczamy wszystko jako rodzeństwo pod jednym rodzicem (§9a, §9b, §9c, §9d), bez tworzenia kolejnego poziomu zależności w dół
+- ✅ **Rozstrzygnięte:** §100 nie zawsze będzie miało dzieci (nie każdy scenariusz ma warianty śmierci), a ochrona `DEATH_PARAGRAPH`/`ensureDeath` dotyczy tylko samego §100 (nie da się go usunąć, bo silnik go wymaga) — §100a/§100b/§100c to zwykłe paragrafy autora, w pełni edytowalne i usuwalne jak każde inne
+- ✅ **Rozstrzygnięte:** brak kompatybilności wstecznej dla starych eksportów `.horrorstory` ze starym polem `variants` — aplikacja wciąż w rozwoju, to świadomie zostaje złamane, bez auto-spłaszczania przy imporcie
 
 ### Status
 
