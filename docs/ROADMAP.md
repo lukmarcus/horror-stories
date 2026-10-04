@@ -25,12 +25,12 @@ Obecnie warianty (`variants`) komplikują edytor i kod. Docelowo zastępujemy je
 ### Zakres
 
 - ✅ Zgeneralizować etykiety horizontal/vertical w `ChoicesSection.tsx` — usunięto słowo "wariant" z aria-label/legend ("Dostępne warianty"/"Wybierz wariant" → "Dostępne opcje"/"Wybierz opcję"); `EditorPreview.tsx` zostaje bez zmian, bo tam kontekst to faktyczny tryb wariantowy edytora
-- ⏳ Dodać test end-to-end: zwykły paragraf (bez `variants`) z `areChoicesHorizontal: true` i zwykłymi `nextParagraphId` renderuje się poziomo i nawiguje poprawnie
-- ⏳ Potwierdzić, że nawigacja do takiego paragrafu idzie przez zwykłe `SET_PARAGRAPH` (prawdziwa historia przeglądarki, nie `variantPath`)
+- ✅ Dodać test end-to-end: zwykły paragraf (bez `variants`) z `areChoicesHorizontal: true` i zwykłymi `nextParagraphId` renderuje się poziomo i nawiguje poprawnie (`ParagraphView.test.tsx`: sprawdza klasę `.choices--horizontal` i wywołanie `onChoice(id, false)`)
+- ✅ Potwierdzone w kodzie: `Game.tsx`'s `handleChoice` mapuje `isVariant=false` wprost na `game.setParagraph()` (SET_PARAGRAPH) niezależnie od układu poziomego/pionowego — tylko `isVariant=true` (realny `nextVariantId`) idzie przez `game.addVariant()`
 
 ### Status
 
-- ⏳ Planowane
+- ✅ Zakończone
 
 ---
 
