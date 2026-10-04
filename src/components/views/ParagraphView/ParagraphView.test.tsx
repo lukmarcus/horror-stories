@@ -363,6 +363,26 @@ describe("ParagraphView", () => {
     expect(callbacks.onChoice).toHaveBeenCalledWith("variant-1", true);
   });
 
+  it("renders a plain paragraph with areChoicesHorizontal horizontally and navigates via regular SET_PARAGRAPH path (isVariant=false)", () => {
+    const callbacks = makeCallbacks();
+    const para: Paragraph = {
+      ...baseParagraph,
+      areChoicesHorizontal: true,
+      choices: [{ id: "c1", text: "Pokój A", nextParagraphId: "2" }],
+    };
+    const { container } = render(
+      <ParagraphView
+        paragraph={para}
+        currentParagraphId="1"
+        lastDiceResult={null}
+        {...callbacks}
+      />,
+    );
+    expect(container.querySelector(".choices--horizontal")).not.toBeNull();
+    fireEvent.click(screen.getByText("Pokój A"));
+    expect(callbacks.onChoice).toHaveBeenCalledWith("2", false);
+  });
+
   // ---------------------------------------------------------------
   // Dice roll
   // ---------------------------------------------------------------
