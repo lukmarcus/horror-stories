@@ -14,26 +14,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.4.0 - Refactor wariantów (Etap 1/3): fundament
-
-### Kontekst
-
-Obecnie warianty (`variants`) komplikują edytor i kod. Docelowo zastępujemy je zwykłymi paragrafami z literowymi sufiksami (np. §100 → §100a, §100b, §100c) + polem `areChoicesHorizontal` dostępnym na każdym paragrafie (nie tylko w trybie wariantowym). To breaking change, rozłożony na kilka wersji 0.4.x.
-
-**Odkrycie z research'u:** mechanizm poziomych/pionowych wyborów już działa niezależnie od `variants` — `ParagraphView.tsx` liczy `isHorizontal = !!paragraph.variants || !!paragraph.areChoicesHorizontal`, a kliknięcie przycisku już obsługuje zarówno `nextVariantId`, jak i zwykłe `nextParagraphId`. Etap 1 jest więc w dużej mierze już zrobiony po stronie gry.
-
-### Zakres
-
-- ✅ Zgeneralizować etykiety horizontal/vertical w `ChoicesSection.tsx` — usunięto słowo "wariant" z aria-label/legend ("Dostępne warianty"/"Wybierz wariant" → "Dostępne opcje"/"Wybierz opcję"); `EditorPreview.tsx` zostaje bez zmian, bo tam kontekst to faktyczny tryb wariantowy edytora
-- ✅ Dodać test end-to-end: zwykły paragraf (bez `variants`) z `areChoicesHorizontal: true` i zwykłymi `nextParagraphId` renderuje się poziomo i nawiguje poprawnie (`ParagraphView.test.tsx`: sprawdza klasę `.choices--horizontal` i wywołanie `onChoice(id, false)`)
-- ✅ Potwierdzone w kodzie: `Game.tsx`'s `handleChoice` mapuje `isVariant=false` wprost na `game.setParagraph()` (SET_PARAGRAPH) niezależnie od układu poziomego/pionowego — tylko `isVariant=true` (realny `nextVariantId`) idzie przez `game.addVariant()`
-
-### Status
-
-- ✅ Zakończone
-
----
-
 ## Milestone v0.4.1 - Refactor wariantów (Etap 2/3): migracja danych
 
 ### Zakres
