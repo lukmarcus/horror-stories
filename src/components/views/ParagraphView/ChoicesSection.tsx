@@ -39,9 +39,9 @@ export const ChoicesSection: React.FC<ChoicesSectionProps> = ({
   const fieldsetClass = isHorizontal
     ? "choices choices--horizontal"
     : "choices choices--vertical";
-  const ariaLabel = isHorizontal ? "Dostępne warianty" : "Dostępne wybory";
+  const ariaLabel = isHorizontal ? "Dostępne opcje" : "Dostępne wybory";
   const legendText = isHorizontal
-    ? "Wybierz wariant"
+    ? "Wybierz opcję"
     : "Wybierz następny paragraf";
 
   return (
