@@ -383,6 +383,27 @@ describe("ParagraphView", () => {
     expect(callbacks.onChoice).toHaveBeenCalledWith("2", false);
   });
 
+  it("resets to the main input screen when clicking a choice with no next pointer", () => {
+    const callbacks = makeCallbacks();
+    const para: Paragraph = {
+      ...baseParagraph,
+      choices: [
+        { id: "c1", text: "Przejdź dalej", nextParagraphId: "2" },
+        { id: "c2", text: "Opuść paragraf" },
+      ],
+    };
+    render(
+      <ParagraphView
+        paragraph={para}
+        currentParagraphId="1"
+        lastDiceResult={null}
+        {...callbacks}
+      />,
+    );
+    fireEvent.click(screen.getByText("Opuść paragraf"));
+    expect(callbacks.onBack).toHaveBeenCalled();
+  });
+
   // ---------------------------------------------------------------
   // Dice roll
   // ---------------------------------------------------------------
