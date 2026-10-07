@@ -25,7 +25,7 @@
     },
     {
       "id": "2",
-      "accessibleFrom": ["26"],
+      "accessibleFrom": ["26p"],
       "pages": [
         [
           {
@@ -193,48 +193,51 @@
       "choices": [
         {
           "text": "<person id='jessica'/><br />Jessica",
-          "nextVariantId": "jessica"
+          "nextParagraphId": "26j"
         },
         {
           "text": "<person id='patrick'/><br />Patrick",
-          "nextVariantId": "patrick"
+          "nextParagraphId": "26p"
         }
       ],
-      "variants": {
-        "jessica": {
-          "pages": [
-            [
-              {
-                "text": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
-              }
-            ]
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "26j",
+      "accessibleFrom": ["26"],
+      "pages": [
+        [
+          {
+            "text": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "26p",
+      "accessibleFrom": ["26"],
+      "pages": [
+        [
+          {
+            "text": "Poznałaś ją na imprezie i zaproponowałeś, że odwieziesz ją do domu. Co prawda nie byłeś w szczytowej formie, ale było niedaleko, a w nocy ruch był znikomy ruch."
+          },
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
+          "nextParagraphId": "2"
         },
-        "patrick": {
-          "pages": [
-            [
-              {
-                "text": "Poznałaś ją na imprezie i zaproponowałeś, że odwieziesz ją do domu. Co prawda nie byłeś w szczytowej formie, ale było niedaleko, a w nocy ruch był znikomy ruch."
-              },
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
-              "nextParagraphId": "2"
-            },
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>."
-            },
-            {
-              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
-            }
-          ]
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>."
+        },
+        {
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
         }
-      }
+      ]
     },
     {
       "id": "29",

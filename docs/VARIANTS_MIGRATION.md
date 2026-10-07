@@ -7,7 +7,7 @@ Zasada: każdy klucz w `variants` (w kolejności występowania w JSON) → nowy 
 ## droga-donikad/paragraphs.json (4 paragrafy z wariantami)
 
 - [ ] §9 — warianty: jessica, patrick-lezy, patrick-stoi, patrick
-- [ ] §26 — warianty: jessica, patrick
+- [x] §26 — warianty: jessica, patrick → `26j` (Jessica), `26p` (Patrick)
 - [ ] §65 — warianty: patrick-leży, patrick-stoi
 - [ ] §100 — warianty: klaun, jessica, patrick, graj-dalej (UWAGA: to `DEATH_PARAGRAPH`, chroniony przez `ensureDeath` — tylko samo §100 chronione, dzieci 100a-100d zwykłe)
 
