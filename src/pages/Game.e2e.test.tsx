@@ -499,6 +499,32 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
       expect(displayContent[0].text).toBe("Jessica only"); // NOT including main content
     });
 
+    it("should treat a variant with no choices as a dead end, not fall back to parent choices", () => {
+      // Regression test: a terminal variant (e.g. "jessica" below) must not
+      // re-show the parent paragraph's own choices (the jessica/patrick picker).
+      const paragraph: MockParagraph = {
+        id: "26",
+        pages: [[{ text: "Kto robi ten ruch?" }]],
+        choices: [
+          { text: "Jessica", nextVariantId: "jessica" },
+          { text: "Patrick", nextVariantId: "patrick" },
+        ],
+        variants: {
+          jessica: { pages: [[{ text: "Starasz się zachować optymizm." }]] },
+          patrick: {
+            pages: [[{ text: "Poznałaś ją na imprezie." }]],
+            choices: [{ text: "Dalej", nextParagraphId: "2" }],
+          },
+        },
+      };
+
+      const lastVariant = paragraph.variants?.jessica as MockVariant;
+      const displayChoices = lastVariant?.choices;
+
+      expect(displayChoices).toBeUndefined();
+      expect(displayChoices).not.toEqual(paragraph.choices);
+    });
+
     it("should separate variant choices from regular navigation", () => {
       const paragraph = {
         id: "26",
@@ -568,12 +594,8 @@ describe("Multi-page dead-end paragraphs - currentPage reset (v0.1.0 bug fix)", 
     // With proper reset, when navigating to 121:
     // currentPage should be 0, maxPage should be 0
     // Condition (0 === 0) = true, input should appear
-    const page77MaxPage = para77.pages
-      ? para77.pages.length - 1
-      : 0;
-    const page121MaxPage = para121.pages
-      ? para121.pages.length - 1
-      : 0;
+    const page77MaxPage = para77.pages ? para77.pages.length - 1 : 0;
+    const page121MaxPage = para121.pages ? para121.pages.length - 1 : 0;
 
     expect(page77MaxPage).toBe(1);
     expect(page121MaxPage).toBe(0);
