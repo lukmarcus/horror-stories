@@ -942,83 +942,90 @@
       "choices": [
         {
           "text": "<enemy id='klaun'/><br />Klaun",
-          "nextVariantId": "klaun"
+          "nextParagraphId": "100k"
         },
         {
           "text": "<person id='jessica'/><br />Jessica",
-          "nextVariantId": "jessica"
+          "nextParagraphId": "100j"
         },
         {
           "text": "<person id='patrick'/><br />Patrick",
-          "nextVariantId": "patrick"
+          "nextParagraphId": "100p"
         }
       ],
-      "variants": {
-        "klaun": {
-          "pages": [
-            [
-              {
-                "text": "<enemy id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
-              }
-            ]
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "100k",
+      "accessibleFrom": ["100"],
+      "pages": [
+        [
+          {
+            "text": "<enemy id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "100j",
+      "accessibleFrom": ["100"],
+      "pages": [
+        [
+          {
+            "text": "<person id='jessica'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+          },
+          {
+            "image": "rana-ciezka-zeton"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Obie postacie posiadają żeton ciężkiej rany.",
+          "nextParagraphId": "180"
         },
-        "jessica": {
-          "pages": [
-            [
-              {
-                "text": "<person id='jessica'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
-              },
-              {
-                "image": "rana-ciezka-zeton"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Obie postacie posiadają żeton ciężkiej rany.",
-              "nextParagraphId": "180"
-            },
-            {
-              "text": "Tylko Jessica posiada żeton ciężkiej rany.",
-              "nextVariantId": "graj-dalej"
-            }
-          ]
-        },
-        "patrick": {
-          "pages": [
-            [
-              {
-                "text": "<person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
-              },
-              {
-                "image": "rana-ciezka-zeton"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Obie postacie posiadają żeton ciężkiej rany.",
-              "nextParagraphId": "180"
-            },
-            {
-              "text": "Tylko Patrick posiada żeton ciężkiej rany.",
-              "nextVariantId": "graj-dalej"
-            }
-          ]
-        },
-        "graj-dalej": {
-          "pages": [
-            [
-              {
-                "text": "Gra toczy się dalej."
-              }
-            ]
-          ]
+        {
+          "text": "Tylko Jessica posiada żeton ciężkiej rany.",
+          "nextParagraphId": "100g"
         }
-      }
+      ]
+    },
+    {
+      "id": "100p",
+      "accessibleFrom": ["100"],
+      "pages": [
+        [
+          {
+            "text": "<person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+          },
+          {
+            "image": "rana-ciezka-zeton"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Obie postacie posiadają żeton ciężkiej rany.",
+          "nextParagraphId": "180"
+        },
+        {
+          "text": "Tylko Patrick posiada żeton ciężkiej rany.",
+          "nextParagraphId": "100g"
+        }
+      ]
+    },
+    {
+      "id": "100g",
+      "accessibleFrom": ["100j", "100p"],
+      "pages": [
+        [
+          {
+            "text": "Gra toczy się dalej."
+          }
+        ]
+      ]
     },
     {
       "id": "105",
@@ -1312,7 +1319,7 @@
     },
     {
       "id": "180",
-      "accessibleFrom": ["69", "100"],
+      "accessibleFrom": ["69", "100j", "100p"],
       "pages": [
         [
           {

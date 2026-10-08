@@ -9,7 +9,9 @@ Zasada: każdy klucz w `variants` (w kolejności występowania w JSON) → nowy 
 - [x] §9 — warianty: jessica, patrick-lezy, patrick-stoi, patrick → `9j`/`9l`/`9s`/`9p`
 - [x] §26 — warianty: jessica, patrick → `26j` (Jessica), `26p` (Patrick)
 - [x] §65 — warianty: patrick-leży, patrick-stoi → `65l` (leży), `65s` (stoi)
-- [ ] §100 — warianty: klaun, jessica, patrick, graj-dalej (UWAGA: to `DEATH_PARAGRAPH`, chroniony przez `ensureDeath` — tylko samo §100 chronione, dzieci 100a-100d zwykłe)
+- [x] §100 — warianty: klaun, jessica, patrick, graj-dalej → `100k`/`100j`/`100p`/`100g`
+
+**droga-donikad: 4/4 gotowe ✅**
 
 ## eksperyment/paragraphs.json (12 paragrafów z wariantami)
 
