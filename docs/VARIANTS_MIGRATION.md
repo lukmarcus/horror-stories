@@ -15,8 +15,8 @@ Zasada: każdy klucz w `variants` (w kolejności występowania w JSON) → nowy 
 
 ## eksperyment/paragraphs.json (12 paragrafów z wariantami)
 
-- [ ] §1 — warianty: jeff, nie-jeff, jeff-lezy, jeff-stoi
-- [ ] §5 — warianty: y-tak, y-nie
+- [x] §1 — warianty: jeff, nie-jeff, jeff-lezy, jeff-stoi → `1i`/`1l`/`1s`/`1j`
+- [x] §5 — warianty: y-tak, y-nie → `5t` (y-tak), `5n` (y-nie)
 - [ ] §9 — warianty: patrick, nie-patrick, patrick-lezy, patrick-stoi
 - [ ] §11 — warianty: ostatni, nie-ostatni
 - [ ] §16 — warianty: josh, nie-josh, josh-lezy, josh-stoi
