@@ -227,89 +227,96 @@
       "choices": [
         {
           "text": "<person id=\"jessica\"/><person id=\"josh\"/><person id=\"margaret\"/><person id=\"jeff\"/>",
-          "nextVariantId": "nie-patrick"
+          "nextParagraphId": "9i"
         },
         {
           "text": "<person id=\"patrick\"/>",
-          "nextVariantId": "patrick"
+          "nextParagraphId": "9p"
         }
       ],
-      "variants": {
-        "patrick": {
-          "pages": [
-            [
-              {
-                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
-            },
-            {
-              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "9i",
+      "accessibleFrom": ["9"],
+      "pages": [
+        [
+          {
+            "text": "Czy Patrick <person id=\"patrick\"/> leży?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextParagraphId": "9l"
         },
-        "nie-patrick": {
-          "pages": [
-            [
-              {
-                "text": "Czy Patrick <person id=\"patrick\"/> leży?"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Tak.",
-              "nextVariantId": "patrick-lezy"
-            },
-            {
-              "text": "Nie.",
-              "nextVariantId": "patrick-stoi"
-            }
-          ]
-        },
-        "patrick-lezy": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
-            },
-            {
-              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
-            },
-            {
-              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
-        },
-        "patrick-stoi": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
-            },
-            {
-              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
+        {
+          "text": "Nie.",
+          "nextParagraphId": "9s"
         }
-      }
+      ]
+    },
+    {
+      "id": "9l",
+      "accessibleFrom": ["9i"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+        },
+        {
+          "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+        },
+        {
+          "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
+    },
+    {
+      "id": "9s",
+      "accessibleFrom": ["9i"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+        },
+        {
+          "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
+    },
+    {
+      "id": "9p",
+      "accessibleFrom": ["9"],
+      "pages": [
+        [
+          {
+            "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+        },
+        {
+          "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
     },
     {
       "id": "10",
@@ -450,89 +457,96 @@
       "choices": [
         {
           "text": "<person id=\"jessica\"/><person id=\"margaret\"/><person id=\"patrick\"/><person id=\"jeff\"/>",
-          "nextVariantId": "nie-josh"
+          "nextParagraphId": "16i"
         },
         {
           "text": "<person id=\"josh\"/>",
-          "nextVariantId": "josh"
+          "nextParagraphId": "16j"
         }
       ],
-      "variants": {
-        "josh": {
-          "pages": [
-            [
-              {
-                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
-            },
-            {
-              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "16i",
+      "accessibleFrom": ["16"],
+      "pages": [
+        [
+          {
+            "text": "Czy Josh <person id=\"josh\"/> leży?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextParagraphId": "16l"
         },
-        "nie-josh": {
-          "pages": [
-            [
-              {
-                "text": "Czy Josh <person id=\"josh\"/> leży?"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Tak.",
-              "nextVariantId": "josh-lezy"
-            },
-            {
-              "text": "Nie.",
-              "nextVariantId": "josh-stoi"
-            }
-          ]
-        },
-        "josh-lezy": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Joshem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
-            },
-            {
-              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
-            },
-            {
-              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
-        },
-        "josh-stoi": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Joshem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
-            },
-            {
-              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
+        {
+          "text": "Nie.",
+          "nextParagraphId": "16s"
         }
-      }
+      ]
+    },
+    {
+      "id": "16l",
+      "accessibleFrom": ["16i"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Joshem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+        },
+        {
+          "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+        },
+        {
+          "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
+    },
+    {
+      "id": "16s",
+      "accessibleFrom": ["16i"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Joshem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+        },
+        {
+          "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
+    },
+    {
+      "id": "16j",
+      "accessibleFrom": ["16"],
+      "pages": [
+        [
+          {
+            "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+        },
+        {
+          "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
     },
     {
       "id": "17",
@@ -739,89 +753,96 @@
       "choices": [
         {
           "text": "<person id=\"josh\"/><person id=\"margaret\"/><person id=\"patrick\"/><person id=\"jeff\"/>",
-          "nextVariantId": "nie-jessica"
+          "nextParagraphId": "26i"
         },
         {
           "text": "<person id=\"jessica\"/>",
-          "nextVariantId": "jessica"
+          "nextParagraphId": "26j"
         }
       ],
-      "variants": {
-        "jessica": {
-          "pages": [
-            [
-              {
-                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
-            },
-            {
-              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "26i",
+      "accessibleFrom": ["26"],
+      "pages": [
+        [
+          {
+            "text": "Czy Jessica <person id=\"jessica\"/> leży?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextParagraphId": "26l"
         },
-        "nie-jessica": {
-          "pages": [
-            [
-              {
-                "text": "Czy Jessica <person id=\"jessica\"/> leży?"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Tak.",
-              "nextVariantId": "jessica-lezy"
-            },
-            {
-              "text": "Nie.",
-              "nextVariantId": "jessica-stoi"
-            }
-          ]
-        },
-        "jessica-lezy": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jessicą wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
-            },
-            {
-              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
-            },
-            {
-              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
-        },
-        "jessica-stoi": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jessicą wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
-            },
-            {
-              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
+        {
+          "text": "Nie.",
+          "nextParagraphId": "26s"
         }
-      }
+      ]
+    },
+    {
+      "id": "26l",
+      "accessibleFrom": ["26i"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jessicą wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+        },
+        {
+          "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+        },
+        {
+          "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
+    },
+    {
+      "id": "26s",
+      "accessibleFrom": ["26i"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Jessicą wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+        },
+        {
+          "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
+    },
+    {
+      "id": "26j",
+      "accessibleFrom": ["26"],
+      "pages": [
+        [
+          {
+            "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
+        },
+        {
+          "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
     },
     {
       "id": "27",
@@ -1306,89 +1327,96 @@
       "choices": [
         {
           "text": "<person id=\"josh\"/><person id=\"jessica\"/><person id=\"patrick\"/><person id=\"jeff\"/>",
-          "nextVariantId": "nie-margaret"
+          "nextParagraphId": "55i"
         },
         {
           "text": "<person id=\"margaret\"/>",
-          "nextVariantId": "margaret"
+          "nextParagraphId": "55m"
         }
       ],
-      "variants": {
-        "nie-margaret": {
-          "pages": [
-            [
-              {
-                "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
-            },
-            {
-              "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "55i",
+      "accessibleFrom": ["55"],
+      "pages": [
+        [
+          {
+            "text": "Wkraczasz do własnej głowy. Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<em>Jest ciężko, ale na pewno jakoś sobie poradzę!</em> Czujesz przypływ energii. <span class='color-blue'>Możesz wtasować</span> dowolną <symbol id=\"karta-akcji\"/> ze swojego stosu odrzuconego do talii o ile talia nie jest pusta."
         },
-        "margaret": {
-          "pages": [
-            [
-              {
-                "text": "Czy Jessica <person id=\"margaret\"/> leży?"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Tak.",
-              "nextVariantId": "margaret-lezy"
-            },
-            {
-              "text": "Nie.",
-              "nextVariantId": "margaret-stoi"
-            }
-          ]
-        },
-        "margaret-lezy": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Margaret wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
-            },
-            {
-              "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
-            },
-            {
-              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
-        },
-        "margaret-stoi": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Margaret wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
-            },
-            {
-              "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
-            }
-          ]
+        {
+          "text": "Nie trać czasu. Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
         }
-      }
+      ]
+    },
+    {
+      "id": "55m",
+      "accessibleFrom": ["55"],
+      "pages": [
+        [
+          {
+            "text": "Czy Jessica <person id=\"margaret\"/> leży?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextParagraphId": "55l"
+        },
+        {
+          "text": "Nie.",
+          "nextParagraphId": "55s"
+        }
+      ]
+    },
+    {
+      "id": "55l",
+      "accessibleFrom": ["55m"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Margaret wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+        },
+        {
+          "text": "Dobierz do 2<symbol id=\"karta-akcji\"/>. Jeśli dobierzesz co najmniej 1<symbol id=\"gwiazda\"/>, <span class='color-blue'>dobiera 1</span><symbol id=\"zycie\"/>. W tym momencie wstaje."
+        },
+        {
+          "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
+    },
+    {
+      "id": "55s",
+      "accessibleFrom": ["55m"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Margaret wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami."
+        },
+        {
+          "text": "Opuść paragraf. <span class='color-blue'>Otrzymujesz akcję</span>."
+        }
+      ]
     },
     {
       "id": "56",
