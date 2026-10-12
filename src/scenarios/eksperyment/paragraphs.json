@@ -929,33 +929,36 @@
       "choices": [
         {
           "text": "Tak.",
-          "nextVariantId": "z-tak"
+          "nextParagraphId": "30t"
         },
         {
           "text": "Nie.",
-          "nextVariantId": "z-nie"
+          "nextParagraphId": "30n"
         }
       ],
-      "variants": {
-        "z-tak": {
-          "pages": [
-            [
-              {
-                "text": "Jeśli ponawiasz ten paragraf, gdy już <letter id=\"z\"/> jest na <span class='color-yellow'>AKTYWNE</span> toru czasu, tylko tracisz czas."
-              }
-            ]
-          ]
-        },
-        "z-nie": {
-          "pages": [
-            [
-              {
-                "text": "Jeśli brak <letter id=\"z\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu <span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/>, a następnie cofnij o jedno pole (w kierunku 0) żeton <letter id=\"b\"/> na torze czasu. <span class='color-blue'>Wyłóż</span> <letter id=\"z\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
-              }
-            ]
-          ]
-        }
-      }
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "30t",
+      "accessibleFrom": ["30"],
+      "pages": [
+        [
+          {
+            "text": "Jeśli ponawiasz ten paragraf, gdy już <letter id=\"z\"/> jest na <span class='color-yellow'>AKTYWNE</span> toru czasu, tylko tracisz czas."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "30n",
+      "accessibleFrom": ["30"],
+      "pages": [
+        [
+          {
+            "text": "Jeśli brak <letter id=\"z\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu <span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/>, a następnie cofnij o jedno pole (w kierunku 0) żeton <letter id=\"b\"/> na torze czasu. <span class='color-blue'>Wyłóż</span> <letter id=\"z\"/> na <span class='color-yellow'>AKTYWNE</span> toru czasu."
+          }
+        ]
+      ]
     },
     {
       "id": "31",
@@ -978,7 +981,7 @@
     },
     {
       "id": "32",
-      "accessibleFrom": ["24", "77"],
+      "accessibleFrom": ["24", "77t"],
       "pages": [
         [
           {
@@ -1255,54 +1258,57 @@
       "choices": [
         {
           "text": "Tak.",
-          "nextVariantId": "tak"
+          "nextParagraphId": "52t"
         },
         {
           "text": "Nie.",
-          "nextVariantId": "nie"
+          "nextParagraphId": "52n"
         }
       ],
-      "variants": {
-        "tak": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "<span class='color-blue'>Odrzuć</span> <card id=\"zatrucie\"/> z talii i przetasuj ją lub ze stosu odrzuconego. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
-            },
-            {
-              "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z toaletą i przejdź do <span class='color-green'>70</span>.",
-              "nextParagraphId": "70"
-            },
-            {
-              "text": "Opuść paragraf."
-            }
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "52t",
+      "accessibleFrom": ["52"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "<span class='color-blue'>Odrzuć</span> <card id=\"zatrucie\"/> z talii i przetasuj ją lub ze stosu odrzuconego. <span class='color-blue'>Dobierz 1</span><symbol id=\"pd\"/>."
         },
-        "nie": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z toaletą i przejdź do <span class='color-green'>70</span>.",
-              "nextParagraphId": "70"
-            },
-            {
-              "text": "Opuść paragraf."
-            }
-          ]
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z toaletą i przejdź do <span class='color-green'>70</span>.",
+          "nextParagraphId": "70"
+        },
+        {
+          "text": "Opuść paragraf."
         }
-      }
+      ]
+    },
+    {
+      "id": "52n",
+      "accessibleFrom": ["52"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wskaż dowolny przedmiot ze swojego ekwipunku, którym chcesz wejść w interakcję z toaletą i przejdź do <span class='color-green'>70</span>.",
+          "nextParagraphId": "70"
+        },
+        {
+          "text": "Opuść paragraf."
+        }
+      ]
     },
     {
       "id": "54",
@@ -1624,7 +1630,7 @@
     },
     {
       "id": "70",
-      "accessibleFrom": ["52"],
+      "accessibleFrom": ["52t", "52n"],
       "pages": [
         [
           {
@@ -1787,54 +1793,57 @@
       "choices": [
         {
           "text": "Tak.",
-          "nextVariantId": "tak-15a"
+          "nextParagraphId": "77t"
         },
         {
           "text": "Nie.",
-          "nextVariantId": "nie-15a"
+          "nextParagraphId": "77n"
         }
       ],
-      "variants": {
-        "tak-15a": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Wsadź rękę należącą do <room id=\"147\"/> (przejdź do <span class='color-green'>105</span>)",
-              "nextParagraphId": "105"
-            },
-            {
-              "text": "Wsadź rękę należącą do <room id=\"121\"/> (przejdź do <span class='color-green'>32</span>)",
-              "nextParagraphId": "32"
-            },
-            {
-              "text": "Wsadź rękę należącą do <person id=\"lauren\"/> (przejdź do <span class='color-green'>105</span>)",
-              "nextParagraphId": "105"
-            },
-            {
-              "text": "Wsadź rękę należącą do <person id=\"jack\"/> (przejdź do <span class='color-green'>32</span>)",
-              "nextParagraphId": "32"
-            },
-            {
-              "text": "Opuść paragraf."
-            }
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "77t",
+      "accessibleFrom": ["77"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Wsadź rękę należącą do <room id=\"147\"/> (przejdź do <span class='color-green'>105</span>)",
+          "nextParagraphId": "105"
         },
-        "nie-15a": {
-          "pages": [
-            [
-              {
-                "text": "Opuść paragraf."
-              }
-            ]
-          ]
+        {
+          "text": "Wsadź rękę należącą do <room id=\"121\"/> (przejdź do <span class='color-green'>32</span>)",
+          "nextParagraphId": "32"
+        },
+        {
+          "text": "Wsadź rękę należącą do <person id=\"lauren\"/> (przejdź do <span class='color-green'>105</span>)",
+          "nextParagraphId": "105"
+        },
+        {
+          "text": "Wsadź rękę należącą do <person id=\"jack\"/> (przejdź do <span class='color-green'>32</span>)",
+          "nextParagraphId": "32"
+        },
+        {
+          "text": "Opuść paragraf."
         }
-      }
+      ]
+    },
+    {
+      "id": "77n",
+      "accessibleFrom": ["77"],
+      "pages": [
+        [
+          {
+            "text": "Opuść paragraf."
+          }
+        ]
+      ]
     },
     {
       "id": "78",
@@ -2222,7 +2231,7 @@
     },
     {
       "id": "105",
-      "accessibleFrom": ["24", "77"],
+      "accessibleFrom": ["24", "77t"],
       "pages": [
         [
           {
