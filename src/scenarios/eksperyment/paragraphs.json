@@ -348,40 +348,43 @@
       "choices": [
         {
           "text": "Tak",
-          "nextVariantId": "ostatni"
+          "nextParagraphId": "11t"
         },
         {
           "text": "Nie",
-          "nextVariantId": "nie-ostatni"
+          "nextParagraphId": "11n"
         }
       ],
-      "variants": {
-        "ostatni": {
-          "pages": [
-            [
-              {
-                "text": "Każda pozostała figurka graczy na planszy z <symbol id=\"rana-ciezka\"/> umiera z powodu obrażeń i scenariusz się kończy."
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "W tym wypadku przejdź do <span class='color-green'>31</span>.",
-              "nextParagraphId": "31"
-            }
-          ]
-        },
-        "nie-ostatni": {
-          "pages": [
-            [
-              {
-                "text": "Pozostałe figurki graczy wykonują swoje tury."
-              }
-            ]
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "11t",
+      "accessibleFrom": ["11"],
+      "pages": [
+        [
+          {
+            "text": "Każda pozostała figurka graczy na planszy z <symbol id=\"rana-ciezka\"/> umiera z powodu obrażeń i scenariusz się kończy."
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "W tym wypadku przejdź do <span class='color-green'>31</span>.",
+          "nextParagraphId": "31"
         }
-      }
+      ]
+    },
+    {
+      "id": "11n",
+      "accessibleFrom": ["11"],
+      "pages": [
+        [
+          {
+            "text": "Pozostałe figurki graczy wykonują swoje tury."
+          }
+        ]
+      ]
     },
     {
       "id": "12",
@@ -962,7 +965,7 @@
     },
     {
       "id": "31",
-      "accessibleFrom": ["11"],
+      "accessibleFrom": ["11t"],
       "pages": [
         [
           {

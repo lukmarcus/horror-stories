@@ -18,7 +18,7 @@ Zasada: każdy klucz w `variants` (w kolejności występowania w JSON) → nowy 
 - [x] §1 — warianty: jeff, nie-jeff, jeff-lezy, jeff-stoi → `1i`/`1l`/`1s`/`1j`
 - [x] §5 — warianty: y-tak, y-nie → `5t` (y-tak), `5n` (y-nie)
 - [x] §9 — warianty: patrick, nie-patrick, patrick-lezy, patrick-stoi → `9i`/`9p`/`9l`/`9s`
-- [ ] §11 — warianty: ostatni, nie-ostatni
+- [x] §11 — warianty: ostatni, nie-ostatni → `11t`/`11n`
 - [x] §16 — warianty: josh, nie-josh, josh-lezy, josh-stoi → `16i`/`16j`/`16l`/`16s`
 - [ ] §20 — warianty: vii, xvii, xxvi, lvii, xxix
 - [x] §26 — warianty: jessica, nie-jessica, jessica-lezy, jessica-stoi → `26i`/`26j`/`26l`/`26s`
