@@ -1693,74 +1693,81 @@
       "choices": [
         {
           "text": "Tak.",
-          "nextVariantId": "tak-l"
+          "nextParagraphId": "73l"
         },
         {
           "text": "Nie.",
-          "nextVariantId": "nie-l"
+          "nextParagraphId": "73b"
         }
       ],
-      "variants": {
-        "tak-l": {
-          "pages": [
-            [
-              {
-                "text": "Klucz o dziwnej końcówce pasował wprost idealnie. <span class='color-blue'>Odrzuć</span> <room id=\"150\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
-              },
-              {
-                "text": "Połóż <letter id=\"d\"/> na <span class='color-yellow'>AKTYWNE</span>. Jedna z lampek nad drzwiami zmienia natychmiast kolor na zielony."
-              },
-              {
-                "text": "Czy w <span class='color-yellow'>AKTYWNE</span> znajduje się już żeton <letter id=\"e\"/>, <letter id=\"f\"/> lub <letter id=\"p\"/>?"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Tak.",
-              "nextVariantId": "tak-88"
-            },
-            {
-              "text": "Nie.",
-              "nextVariantId": "nie-88"
-            }
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "73l",
+      "accessibleFrom": ["73"],
+      "pages": [
+        [
+          {
+            "text": "Klucz o dziwnej końcówce pasował wprost idealnie. <span class='color-blue'>Odrzuć</span> <room id=\"150\"/> i <span class='color-blue'>dobierz 1</span><symbol id=\"pd\"/>."
+          },
+          {
+            "text": "Połóż <letter id=\"d\"/> na <span class='color-yellow'>AKTYWNE</span>. Jedna z lampek nad drzwiami zmienia natychmiast kolor na zielony."
+          },
+          {
+            "text": "Czy w <span class='color-yellow'>AKTYWNE</span> znajduje się już żeton <letter id=\"e\"/>, <letter id=\"f\"/> lub <letter id=\"p\"/>?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextParagraphId": "73t"
         },
-        "nie-l": {
-          "pages": [
-            [
-              {
-                "text": "Opuść natychmiast paragraf."
-              }
-            ]
-          ]
-        },
-        "tak-88": {
-          "pages": [
-            [
-              {
-                "text": "Przejdź do <span class='color-green'>88</span>."
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Przejdź do <span class='color-green'>88</span>.",
-              "nextParagraphId": "88"
-            }
-          ]
-        },
-        "nie-88": {
-          "pages": [
-            [
-              {
-                "text": "Nic się nie dzieje."
-              }
-            ]
-          ]
+        {
+          "text": "Nie.",
+          "nextParagraphId": "73n"
         }
-      }
+      ]
+    },
+    {
+      "id": "73b",
+      "accessibleFrom": ["73"],
+      "pages": [
+        [
+          {
+            "text": "Opuść natychmiast paragraf."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "73t",
+      "accessibleFrom": ["73l"],
+      "pages": [
+        [
+          {
+            "text": "Przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przejdź do <span class='color-green'>88</span>.",
+          "nextParagraphId": "88"
+        }
+      ]
+    },
+    {
+      "id": "73n",
+      "accessibleFrom": ["73l"],
+      "pages": [
+        [
+          {
+            "text": "Nic się nie dzieje."
+          }
+        ]
+      ]
     },
     {
       "id": "75",
@@ -1970,7 +1977,7 @@
     },
     {
       "id": "88",
-      "accessibleFrom": ["73"],
+      "accessibleFrom": ["73t"],
       "pages": [
         [
           {

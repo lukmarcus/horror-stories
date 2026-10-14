@@ -25,7 +25,7 @@ Zasada: każdy klucz w `variants` (w kolejności występowania w JSON) → nowy 
 - [x] §30 — warianty: z-tak, z-nie → `30t`/`30n`
 - [x] §52 — warianty: tak, nie → `52t`/`52n`
 - [x] §55 — warianty: nie-margaret, margaret, margaret-lezy, margaret-stoi → `55i`/`55m`/`55l`/`55s`
-- [ ] §73 — warianty: tak-l, nie-l, tak-88, nie-88
+- [x] §73 — warianty: tak-l, nie-l, tak-88, nie-88 → `73l`/`73b`/`73t`/`73n`
 - [x] §77 — warianty: tak-15a, nie-15a → `77t`/`77n`
 
 ## Status
@@ -49,6 +49,6 @@ Znalezione przy okazji przeglądu — osobne, stałe numery paragrafów (zgodne 
 ## Sprawdzone: wzorzec "Jeśli X, zrób Y" (potencjalny spoiler drugiej gałęzi)
 
 Przejrzano wszystkie 64 wystąpienia słowa "Jeśli" w eksperyment pod kątem miejsc, gdzie jeden paragraf opisuje OBIE gałęzie (tak/nie) w prozie zamiast jawnego wyboru Tak/Nie — co ujawniałoby graczowi treść niewłaściwej gałęzi niezależnie od stanu gry. **Nie znaleziono nowych kandydatów** poza już znanymi wariantami (§5, §30 — litera na torze czasu/AKTYWNE). Pozostałe wystąpienia to:
+
 - ugruntowany, powtarzający się mechanizm "Sprawdź rzymską cyfrę przedmiotu..." (gracz sam zadeklarował przedmiot, więc zna odpowiedź — brak spoilera)
 - jednostronne warunki "jeśli X, przejdź do Y" bez opisanej gałęzi przeciwnej (np. §32, §105, §137, §192 — zwykła instrukcja porządkowa po już wybranej ścieżce)
-
