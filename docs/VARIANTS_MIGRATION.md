@@ -32,7 +32,7 @@ Zasada: każdy klucz w `variants` (w kolejności występowania w JSON) → nowy 
 
 ## Podsumowanie
 
-**Migracja danych zakończona: 16/16 paragrafów, oba scenariusze.** Plik można usunąć — oba pliki `paragraphs.json` są w pełni wolne od `variants`/`nextVariantId` (zweryfikowane grepem), 776/776 testów przechodzi.
+**Migracja danych zakończona: 16/16 paragrafów, oba scenariusze.** Oba pliki `paragraphs.json` są w pełni wolne od `variants`/`nextVariantId` (zweryfikowane grepem), 776/776 testów przechodzi. Plik NIE do usunięcia jeszcze — patrz sekcja "Poprawki anty-spoilerowe" poniżej (kontekst od autora: warianty były pierwotnie dodawane ręcznie tam, gdzie pomagały uniknąć spoilowania, ale autor przestał to robić w pewnym momencie z braku czasu — poniższa lista to dokończenie tej roboty, inną metodą: literowe paragrafy zamiast starego mechanizmu `variants`).
 
 ## Potencjalne duplikaty treści w eksperyment (NIE w zakresie tej migracji)
 
@@ -47,9 +47,30 @@ Znalezione przy okazji przeglądu — osobne, stałe numery paragrafów (zgodne 
 - §7/§28 — podobny opis planszy 8a (pokój z monitorami)
 - §25/§108 — podobny opis planszy 6a (kuchnia)
 
-## Sprawdzone: wzorzec "Jeśli X, zrób Y" (potencjalny spoiler drugiej gałęzi)
+## Poprawki anty-spoilerowe (zgłoszone przez autora, do zrobienia)
 
-Przejrzano wszystkie 64 wystąpienia słowa "Jeśli" w eksperyment pod kątem miejsc, gdzie jeden paragraf opisuje OBIE gałęzie (tak/nie) w prozie zamiast jawnego wyboru Tak/Nie — co ujawniałoby graczowi treść niewłaściwej gałęzi niezależnie od stanu gry. **Nie znaleziono nowych kandydatów** poza już znanymi wariantami (§5, §30 — litera na torze czasu/AKTYWNE). Pozostałe wystąpienia to:
+### Do pełnego rozbicia na jawne Tak/Nie (jak §73 → `73t`/`73n`)
 
-- ugruntowany, powtarzający się mechanizm "Sprawdź rzymską cyfrę przedmiotu..." (gracz sam zadeklarował przedmiot, więc zna odpowiedź — brak spoilera)
-- jednostronne warunki "jeśli X, przejdź do Y" bez opisanej gałęzi przeciwnej (np. §32, §105, §137, §192 — zwykła instrukcja porządkowa po już wybranej ścieżce)
+Ten sam mechanizm "czy pozostałe litery już AKTYWNE / na torze czasu" co w §73 (który miał `variants` i już go rozbiliśmy), ale tu zapisany jako zwykła proza "Jeśli już..., przejdź do X" zamiast jawnego pytania — przez co zawsze ujawnia regułę niezależnie od stanu gry:
+
+- [ ] §32 — czy w AKTYWNE jest już litera e, d lub p → przejdź do 88
+- [ ] §105 — czy w AKTYWNE jest już litera e, d lub f → przejdź do 88
+- [ ] §137 — czy w AKTYWNE jest już litera d, p lub f → przejdź do 88
+- [ ] §192 — czy litera g jest już na torze czasu
+
+### Do prostszej poprawki (edycja tekstu, bez tworzenia nowych paragrafów)
+
+- [ ] §98 — usunąć zbędny dopisek "(UWAGA: jeśli jesteś ostatnią figurką...)" z tekstu wyboru — to duplikat tego, co już poprawnie robi §11 (pyta Tak/Nie i dopiero wtedy ujawnia konsekwencję)
+- [ ] §160 — zmienić opisy `choices`, żeby nie zdradzały z góry progu/wyniku testu (wynik i tak trafia do podparagrafu §2, gdzie jest opisany)
+- [ ] §143 — jak §160, sam tekst strony zdradza próg testu przed rzutem
+
+### Zgłoszone jako spoiler — do dalszej analizy i poprawki
+
+- [ ] §119 — spoiler z wynikiem przesuwania regału (choice zdradza, że za regałem coś jest, zanim gracz spróbuje)
+- [ ] §118 — spoiler (do ustalenia dokładnej poprawki)
+- [ ] §113 — spoiler wynikowy (do ustalenia dokładnej poprawki)
+
+### Zweryfikowane jako OK — bez zmian
+
+- §149, §136, §135 — ugruntowany wzorzec "deklarujesz przedmiot, potem efekt" — gracz sam zadeklarował przedmiot, więc zna odpowiedź przed czytaniem, brak spoilera
+- §191, §192(choices z §100) — już poprawnie osobne, realne paragrafy osiągane przez jawny wybór
