@@ -592,72 +592,81 @@
       "choices": [
         {
           "text": "<story id=\"vii\"/>",
-          "nextVariantId": "vii"
+          "nextParagraphId": "20a"
         },
         {
           "text": "<story id=\"xvii\"/>",
-          "nextVariantId": "xvii"
+          "nextParagraphId": "20b"
         },
         {
           "text": "<story id=\"xxvi\"/>",
-          "nextVariantId": "xxvi"
-        },
-        {
-          "text": "<story id=\"lvii\"/>",
-          "nextVariantId": "lvii"
+          "nextParagraphId": "20c"
         },
         {
           "text": "<story id=\"xxix\"/>",
-          "nextVariantId": "xxix"
+          "nextParagraphId": "20d"
+        },
+        {
+          "text": "<story id=\"lvii\"/>",
+          "nextParagraphId": "20e"
         }
       ],
-      "variants": {
-        "vii": {
-          "pages": [
-            [
-              {
-                "text": "Nieco je uszkadzasz. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
-              }
-            ]
-          ]
-        },
-        "xvii": {
-          "pages": [
-            [
-              {
-                "text": "<room id=\"12\"/> zastąp <symbol id=\"drzwi-otwarte\"/>. Odrzuć <story id=\"xvii\"/>."
-              }
-            ]
-          ]
-        },
-        "xxvi": {
-          "pages": [
-            [
-              {
-                "text": "Nieco je uszkadzasz. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
-              }
-            ]
-          ]
-        },
-        "lvii": {
-          "pages": [
-            [
-              {
-                "text": "Nieco je uszkadzasz łomem. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
-              }
-            ]
-          ]
-        },
-        "xxix": {
-          "pages": [
-            [
-              {
-                "text": "Nieco je uszkadzasz śrubokrętem. <span class='color-blue'>Połóż 1</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
-              }
-            ]
-          ]
-        }
-      }
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "20a",
+      "accessibleFrom": ["20"],
+      "pages": [
+        [
+          {
+            "text": "Nieco je uszkadzasz. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "20b",
+      "accessibleFrom": ["20"],
+      "pages": [
+        [
+          {
+            "text": "<room id=\"12\"/> zastąp <symbol id=\"drzwi-otwarte\"/>. Odrzuć <story id=\"xvii\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "20c",
+      "accessibleFrom": ["20"],
+      "pages": [
+        [
+          {
+            "text": "Nieco je uszkadzasz. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "20d",
+      "accessibleFrom": ["20"],
+      "pages": [
+        [
+          {
+            "text": "Nieco je uszkadzasz śrubokrętem. <span class='color-blue'>Połóż 1</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "20e",
+      "accessibleFrom": ["20"],
+      "pages": [
+        [
+          {
+            "text": "Nieco je uszkadzasz łomem. <span class='color-blue'>Połóż 2</span><symbol id=\"zycie\"/> pod <room id=\"12\"/>."
+          }
+        ]
+      ]
     },
     {
       "id": "21",

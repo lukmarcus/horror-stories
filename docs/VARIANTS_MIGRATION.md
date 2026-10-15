@@ -20,7 +20,7 @@ Zasada: każdy klucz w `variants` (w kolejności występowania w JSON) → nowy 
 - [x] §9 — warianty: patrick, nie-patrick, patrick-lezy, patrick-stoi → `9i`/`9p`/`9l`/`9s`
 - [x] §11 — warianty: ostatni, nie-ostatni → `11t`/`11n`
 - [x] §16 — warianty: josh, nie-josh, josh-lezy, josh-stoi → `16i`/`16j`/`16l`/`16s`
-- [ ] §20 — warianty: vii, xvii, xxvi, lvii, xxix
+- [x] §20 — warianty: vii, xvii, xxvi, lvii, xxix → `20a`(vii)/`20b`(xvii)/`20c`(xxvi)/`20d`(xxix)/`20e`(lvii), litery i kolejność wg rosnącej wartości rzymskiej
 - [x] §26 — warianty: jessica, nie-jessica, jessica-lezy, jessica-stoi → `26i`/`26j`/`26l`/`26s`
 - [x] §30 — warianty: z-tak, z-nie → `30t`/`30n`
 - [x] §52 — warianty: tak, nie → `52t`/`52n`
@@ -28,10 +28,11 @@ Zasada: każdy klucz w `variants` (w kolejności występowania w JSON) → nowy 
 - [x] §73 — warianty: tak-l, nie-l, tak-88, nie-88 → `73l`/`73b`/`73t`/`73n`
 - [x] §77 — warianty: tak-15a, nie-15a → `77t`/`77n`
 
-## Status
+**eksperyment: 12/12 gotowe ✅**
 
-- Automatyczny skrypt migracji został uruchomiony na próbę i cofnięty (git checkout) — migracja robiona jest ręcznie, paragraf po paragrafie, z potwierdzeniem przed przejściem dalej.
-- Ten plik można usunąć po zakończeniu całej migracji (oba scenariusze odhaczone).
+## Podsumowanie
+
+**Migracja danych zakończona: 16/16 paragrafów, oba scenariusze.** Plik można usunąć — oba pliki `paragraphs.json` są w pełni wolne od `variants`/`nextVariantId` (zweryfikowane grepem), 776/776 testów przechodzi.
 
 ## Potencjalne duplikaty treści w eksperyment (NIE w zakresie tej migracji)
 
