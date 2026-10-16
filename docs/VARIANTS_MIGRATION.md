@@ -53,10 +53,10 @@ Znalezione przy okazji przeglądu — osobne, stałe numery paragrafów (zgodne 
 
 Ten sam mechanizm "czy pozostałe litery już AKTYWNE / na torze czasu" co w §73 (który miał `variants` i już go rozbiliśmy), ale tu zapisany jako zwykła proza "Jeśli już..., przejdź do X" zamiast jawnego pytania — przez co zawsze ujawnia regułę niezależnie od stanu gry:
 
-- [ ] §32 — czy w AKTYWNE jest już litera e, d lub p → przejdź do 88
-- [ ] §105 — czy w AKTYWNE jest już litera e, d lub f → przejdź do 88
-- [ ] §137 — czy w AKTYWNE jest już litera d, p lub f → przejdź do 88
-- [ ] §192 — czy litera g jest już na torze czasu
+- [x] §32 — czy w AKTYWNE jest już litera e, d lub p → `32t`/`32n`
+- [x] §105 — czy w AKTYWNE jest już litera e, d lub f → `105t`/`105n`
+- [x] §137 — czy w AKTYWNE jest już litera d, p lub f → `137t`/`137n` (osobno od istniejącej, niezmienionej logiki "czy wskazano I")
+- [x] §192 — czy litera g jest już na torze czasu → `192t`/`192n`. Zaktualizowano accessibleFrom §88: dodano `32t`, `105t`, `137t`.
 
 ### Do prostszej poprawki (edycja tekstu, bez tworzenia nowych paragrafów)
 

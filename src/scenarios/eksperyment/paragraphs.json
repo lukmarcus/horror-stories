@@ -997,7 +997,49 @@
       "pages": [
         [
           {
-            "text": "Widzisz jak na panelu pojawia się zielone światło, obraz reprezentujący kciuk wystawiony w górę oraz słyszysz beznamiętny, kobiecy głos: \"<em>Witaj doktorze Jack</em>\". <span class='color-blue'>Połóż</span> <letter id=\"f\"/> w AKTYWNE. Jeśli znajduje się tam już <letter id=\"e\"/>, <letter id=\"d\"/> lub <letter id=\"p\"/>, przejdź do <span class='color-green'>88</span>."
+            "text": "Widzisz jak na panelu pojawia się zielone światło, obraz reprezentujący kciuk wystawiony w górę oraz słyszysz beznamiętny, kobiecy głos: \"<em>Witaj doktorze Jack</em>\". <span class='color-blue'>Połóż</span> <letter id=\"f\"/> w AKTYWNE."
+          },
+          {
+            "text": "Czy w AKTYWNE znajduje się już żeton <letter id=\"e\"/>, <letter id=\"d\"/> lub <letter id=\"p\"/>?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextParagraphId": "32t"
+        },
+        {
+          "text": "Nie.",
+          "nextParagraphId": "32n"
+        }
+      ]
+    },
+    {
+      "id": "32t",
+      "accessibleFrom": ["32"],
+      "pages": [
+        [
+          {
+            "text": "Przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przejdź do <span class='color-green'>88</span>.",
+          "nextParagraphId": "88"
+        }
+      ]
+    },
+    {
+      "id": "32n",
+      "accessibleFrom": ["32"],
+      "pages": [
+        [
+          {
+            "text": "Nic się nie dzieje."
           }
         ]
       ]
@@ -1986,7 +2028,7 @@
     },
     {
       "id": "88",
-      "accessibleFrom": ["73t"],
+      "accessibleFrom": ["73t", "32t", "105t", "137t"],
       "pages": [
         [
           {
@@ -2254,7 +2296,49 @@
       "pages": [
         [
           {
-            "text": "Widzisz jak na panelu pojawia się zielone światło, obraz reprezentujący kciuk wystawiony w górę oraz komunikat \"<em>Witaj, doktor Lauren</em>\". <span class='color-blue'>Wyłóż</span> <letter id=\"p\"/> w <span class='color-yellow'>AKTYWNE</span>. Jeśli znajduje się tam już <letter id=\"e\"/>, <letter id=\"d\"/> lub <letter id=\"f\"/>, przejdź do <span class='color-green'>88</span>."
+            "text": "Widzisz jak na panelu pojawia się zielone światło, obraz reprezentujący kciuk wystawiony w górę oraz komunikat \"<em>Witaj, doktor Lauren</em>\". <span class='color-blue'>Wyłóż</span> <letter id=\"p\"/> w <span class='color-yellow'>AKTYWNE</span>."
+          },
+          {
+            "text": "Czy w <span class='color-yellow'>AKTYWNE</span> znajduje się już żelton <letter id=\"e\"/>, <letter id=\"d\"/> lub <letter id=\"f\"/>?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextParagraphId": "105t"
+        },
+        {
+          "text": "Nie.",
+          "nextParagraphId": "105n"
+        }
+      ]
+    },
+    {
+      "id": "105t",
+      "accessibleFrom": ["105"],
+      "pages": [
+        [
+          {
+            "text": "Przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przejdź do <span class='color-green'>88</span>.",
+          "nextParagraphId": "88"
+        }
+      ]
+    },
+    {
+      "id": "105n",
+      "accessibleFrom": ["105"],
+      "pages": [
+        [
+          {
+            "text": "Nic się nie dzieje."
           }
         ]
       ]
@@ -2730,7 +2814,49 @@
             "text": "Jeśli <b>NIE</b> wskazano <b>I</b> opuść paragraf i zakończ akcję. Jeśli wskazano <b>I</b> czytaj dalej."
           },
           {
-            "text": "Diament wydaje się pasować idealnie, a ręce zaciskają się na tyle mocno, że już go nie odzyskasz. Widzisz jak jedna z dwóch lampek nad masywnymi drzwiami zapala się na zielono. <span class='color-blue'>Odrzuć</span> <room id=\"123\"/> i <room id=\"72\"/>, <span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/>. <span class='color-blue'>Połóż</span> <letter id=\"e\"/> w <span class='color-yellow'>AKTYWNE</span>. Jeśli znajduje się tam już <letter id=\"d\"/>, <letter id=\"p\"/> lub <letter id=\"f\"/>, przejdź od razu do przejdź do <span class='color-green'>88</span>."
+            "text": "Diament wydaje się pasować idealnie, a ręce zaciskają się na tyle mocno, że już go nie odzyskasz. Widzisz jak jedna z dwóch lampek nad masywnymi drzwiami zapala się na zielono. <span class='color-blue'>Odrzuć</span> <room id=\"123\"/> i <room id=\"72\"/>, <span class='color-blue'>dobierz 2</span><symbol id=\"pd\"/>. <span class='color-blue'>Połóż</span> <letter id=\"e\"/> w <span class='color-yellow'>AKTYWNE</span>."
+          },
+          {
+            "text": "Czy w <span class='color-yellow'>AKTYWNE</span> znajduje się już żeton <letter id=\"d\"/>, <letter id=\"p\"/> lub <letter id=\"f\"/>?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextParagraphId": "137t"
+        },
+        {
+          "text": "Nie.",
+          "nextParagraphId": "137n"
+        }
+      ]
+    },
+    {
+      "id": "137t",
+      "accessibleFrom": ["137"],
+      "pages": [
+        [
+          {
+            "text": "Przejdź do <span class='color-green'>88</span>."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Przejdź do <span class='color-green'>88</span>.",
+          "nextParagraphId": "88"
+        }
+      ]
+    },
+    {
+      "id": "137n",
+      "accessibleFrom": ["137"],
+      "pages": [
+        [
+          {
+            "text": "Nic się nie dzieje."
           }
         ]
       ]
@@ -3099,7 +3225,40 @@
             "text": "Na twarzach ocalałych maluje się wyraźna ulga, podszyta jednak dumą z tego, że udało się powalić to coś. Nikt nie ma jednak pewności, czy fakt, że mimo odniesionych ran wciąż oddycha, nie oznacza, że jeszcze się podniesie. Wszyscy są zgodni co do jednego — nigdy więcej nie chcieliby mierzyć się z czymś podobnym."
           },
           {
-            "text": "Jeśli brak <letter id=\"g\"/> na torze czasu, <span class='color-blue'>połóż</span> <letter id=\"g\"/> na pole 1 toru czasu."
+            "text": "Czy żeton <letter id=\"g\"/> jest już na torze czasu?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Tak.",
+          "nextParagraphId": "192t"
+        },
+        {
+          "text": "Nie.",
+          "nextParagraphId": "192n"
+        }
+      ]
+    },
+    {
+      "id": "192t",
+      "accessibleFrom": ["192"],
+      "pages": [
+        [
+          {
+            "text": "Nic się nie dzieje."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "192n",
+      "accessibleFrom": ["192"],
+      "pages": [
+        [
+          {
+            "text": "<span class='color-blue'>Połóż</span> <letter id=\"g\"/> na pole 1 toru czasu."
           }
         ]
       ]
