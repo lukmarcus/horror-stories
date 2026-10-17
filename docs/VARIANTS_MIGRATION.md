@@ -32,7 +32,7 @@ Zasada: każdy klucz w `variants` (w kolejności występowania w JSON) → nowy 
 
 ## Podsumowanie
 
-**Migracja danych zakończona: 16/16 paragrafów, oba scenariusze.** Oba pliki `paragraphs.json` są w pełni wolne od `variants`/`nextVariantId` (zweryfikowane grepem), 776/776 testów przechodzi. Plik NIE do usunięcia jeszcze — patrz sekcja "Poprawki anty-spoilerowe" poniżej (kontekst od autora: warianty były pierwotnie dodawane ręcznie tam, gdzie pomagały uniknąć spoilowania, ale autor przestał to robić w pewnym momencie z braku czasu — poniższa lista to dokończenie tej roboty, inną metodą: literowe paragrafy zamiast starego mechanizmu `variants`).
+**Migracja danych zakończona: 16/16 paragrafów, oba scenariusze.** Oba pliki `paragraphs.json` są w pełni wolne od `variants`/`nextVariantId` (zweryfikowane grepem), 776/776 testów przechodzi. Poprawki anty-spoilerowe: §32/§105/§137/§192 przebudowane na jawne Tak/Nie; pozostałe zgłoszone paragrafy (§98, §160, §143, §119, §118, §113) pozostawione bez zmian — brak dobrego pomysłu na przebudowę bez utraty czytelności. **Całość zamknięta, plik można usunąć.**
 
 ## Potencjalne duplikaty treści w eksperyment (NIE w zakresie tej migracji)
 
@@ -58,17 +58,14 @@ Ten sam mechanizm "czy pozostałe litery już AKTYWNE / na torze czasu" co w §7
 - [x] §137 — czy w AKTYWNE jest już litera d, p lub f → `137t`/`137n` (osobno od istniejącej, niezmienionej logiki "czy wskazano I")
 - [x] §192 — czy litera g jest już na torze czasu → `192t`/`192n`. Zaktualizowano accessibleFrom §88: dodano `32t`, `105t`, `137t`.
 
-### Do prostszej poprawki (edycja tekstu, bez tworzenia nowych paragrafów)
+### Pozostawione bez zmian (brak dobrego pomysłu na przebudowę, decyzja autora)
 
-- [ ] §98 — usunąć zbędny dopisek "(UWAGA: jeśli jesteś ostatnią figurką...)" z tekstu wyboru — to duplikat tego, co już poprawnie robi §11 (pyta Tak/Nie i dopiero wtedy ujawnia konsekwencję)
-- [ ] §160 — zmienić opisy `choices`, żeby nie zdradzały z góry progu/wyniku testu (wynik i tak trafia do podparagrafu §2, gdzie jest opisany)
-- [ ] §143 — jak §160, sam tekst strony zdradza próg testu przed rzutem
-
-### Zgłoszone jako spoiler — do dalszej analizy i poprawki
-
-- [ ] §119 — spoiler z wynikiem przesuwania regału (choice zdradza, że za regałem coś jest, zanim gracz spróbuje)
-- [ ] §118 — spoiler (do ustalenia dokładnej poprawki)
-- [ ] §113 — spoiler wynikowy (do ustalenia dokładnej poprawki)
+- §98 — dopisek "(UWAGA: jeśli jesteś ostatnią figurką...)" w tekście wyboru zostaje mimo że dubluje §11
+- §160 — opisy `choices` zdradzające próg testu zostają
+- §143 — jak §160, zostaje
+- §119 — spoiler z wynikiem przesuwania regału, zostaje
+- §118 — zgłoszony spoiler, zostaje
+- §113 — spoiler wynikowy, zostaje
 
 ### Zweryfikowane jako OK — bez zmian
 
