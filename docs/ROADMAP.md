@@ -14,23 +14,6 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 ---
 
-## Milestone v0.4.1 - Refactor wariantów (Etap 2/3): migracja danych
-
-### Zakres
-
-- ✅ Spłaszczyć istniejące `variants` na realne paragrafy z literowymi sufiksami w `droga-donikad` i `eksperyment` (16/16 paragrafów, oba scenariusze — zobacz `docs/VARIANTS_MIGRATION.md`)
-- ✅ **Rozstrzygnięte:** nazewnictwo — każdy wariant staje się paragrafem-dzieckiem rodzica z dodaną literą na końcu ID (np. §100 z wariantami Klaun/Jessica/Patrick → §100a, §100b, §100c); kolejność liter niekoniecznie musi być alfabetyczna wg nazwy wariantu, ważna jest sama reguła "rodzic + litera"
-- ✅ **Rozstrzygnięte:** zagnieżdżone warianty — spłaszczamy wszystko jako rodzeństwo pod jednym rodzicem (§9a, §9b, §9c, §9d), bez tworzenia kolejnego poziomu zależności w dół
-- ✅ **Rozstrzygnięte:** §100 nie zawsze będzie miało dzieci (nie każdy scenariusz ma warianty śmierci), a ochrona `DEATH_PARAGRAPH`/`ensureDeath` dotyczy tylko samego §100 (nie da się go usunąć, bo silnik go wymaga) — §100a/§100b/§100c to zwykłe paragrafy autora, w pełni edytowalne i usuwalne jak każde inne
-- ✅ **Rozstrzygnięte:** brak kompatybilności wstecznej dla starych eksportów `.horrorstory` ze starym polem `variants` — aplikacja wciąż w rozwoju, to świadomie zostaje złamane, bez auto-spłaszczania przy imporcie
-- ⏳ Poprawki anty-spoilerowe w eksperyment — paragrafy, które pierwotnie powinny były dostać warianty (ukryta odpowiedź Tak/Nie), ale autor przestał je dodawać w pewnym momencie z braku czasu; §32, §105, §137, §192 przebudowane na jawne Tak/Nie; reszta (§98, §160, §143, §119, §118, §113) pozostawiona bez zmian (decyzja autora, brak dobrego pomysłu na przebudowę) — szczegóły w `docs/VARIANTS_MIGRATION.md`
-
-### Status
-
-- ✅ Zakończone
-
----
-
 ## Milestone v0.4.2 - Refactor wariantów (Etap 3/3): przebudowa edytora
 
 ### Zakres
