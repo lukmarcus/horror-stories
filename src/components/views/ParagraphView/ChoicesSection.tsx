@@ -71,10 +71,11 @@ export const ChoicesSection: React.FC<ChoicesSectionProps> = ({
             onClick={() => {
               if (choice.nextVariantId) {
                 onChoice(choice.nextVariantId, true);
-              } else if (choice.nextParagraphId === "") {
-                onBack();
               } else if (choice.nextParagraphId) {
                 onChoice(choice.nextParagraphId, false);
+              } else {
+                // No next pointer at all (or explicitly "") - leads nowhere.
+                onBack();
               }
             }}
             aria-label={choice.text || ""}

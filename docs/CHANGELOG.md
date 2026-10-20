@@ -7,6 +7,20 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.4.1] - 2026-10-18
+
+### Zmieniono
+
+- Droga donikąd i Eksperyment: paragrafy, które wcześniej były dostępne tylko w trakcie wyboru w grze (warianty zależne np. od wybranej postaci), mają teraz własne numery (np. 9j, 26p) — można je teraz wpisać ręcznie na ekranie startowym i wrócić do nich tak jak do każdego innego paragrafu
+- Eksperyment: paragrafy §32, §105, §137, §192 ukrywają teraz odpowiedź za jawnym pytaniem Tak/Nie zamiast zdradzać ją wprost w opisie
+
+### Naprawiono
+
+- Kliknięcie wyboru bez wskazanego kolejnego paragrafu zawsze wraca teraz do ekranu startowego (naprawiono regresję, w której działało to tylko dla jawnie pustego pola `nextParagraphId`)
+- Widok paragrafu bez własnej treści nie pokazuje już omyłkowo wyborów paragrafu nadrzędnego
+
+---
+
 ## [0.4.0] - 2026-10-05
 
 > Wersja techniczna — brak zmian widocznych dla użytkownika

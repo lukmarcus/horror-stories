@@ -105,7 +105,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
     ? paragraph.pages[currentPage]
     : paragraph.content;
 
-  // Show input only on last page of dead-end paragraphs
+  // Show input only on last page of dead-end paragraphs.
   const showDeadEndInput = isDeadEnd && currentPage === maxPage;
 
   // Separate variant choices (horizontal/within frame) from regular choices

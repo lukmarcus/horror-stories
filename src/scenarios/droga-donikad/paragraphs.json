@@ -25,7 +25,7 @@
     },
     {
       "id": "2",
-      "accessibleFrom": ["26"],
+      "accessibleFrom": ["26p"],
       "pages": [
         [
           {
@@ -58,86 +58,93 @@
       "choices": [
         {
           "text": "<person id='jessica'/><br />Jessica",
-          "nextVariantId": "jessica"
+          "nextParagraphId": "9j"
         },
         {
           "text": "<person id='patrick'/><br />Patrick",
-          "nextVariantId": "patrick"
+          "nextParagraphId": "9p"
         }
       ],
-      "variants": {
-        "jessica": {
-          "pages": [
-            [
-              {
-                "text": "Poznałaś go na imprezie. Wracaliście jednym autem."
-              },
-              {
-                "text": "Figurka Patricka leży czy stoi?"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Patrick leży",
-              "nextVariantId": "patrick-lezy"
-            },
-            {
-              "text": "Patrick stoi",
-              "nextVariantId": "patrick-stoi"
-            }
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "9j",
+      "accessibleFrom": ["9"],
+      "pages": [
+        [
+          {
+            "text": "Poznałaś go na imprezie. Wracaliście jednym autem."
+          },
+          {
+            "text": "Figurka Patricka leży czy stoi?"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Patrick leży",
+          "nextParagraphId": "9l"
         },
-        "patrick-lezy": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Spróbuj go ocucić (przejdź do paragrafu <span class='color-green'>40</span>)",
-              "nextParagraphId": "40"
-            },
-            {
-              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
-            }
-          ]
-        },
-        "patrick-stoi": {
-          "pages": [
-            [
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Spróbuj z nim porozmawiać (przejdź do paragrafu <span class='color-green'>99</span>)",
-              "nextParagraphId": "99"
-            },
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>."
-            },
-            {
-              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
-            }
-          ]
-        },
-        "patrick": {
-          "pages": [
-            [
-              {
-                "text": "... Głowa nie daje Ci żyć. Domyślasz się, że trochę przesadziłeś na imprezie. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
-              }
-            ]
-          ]
+        {
+          "text": "Patrick stoi",
+          "nextParagraphId": "9s"
         }
-      }
+      ]
+    },
+    {
+      "id": "9l",
+      "accessibleFrom": ["9j"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Spróbuj go ocucić (przejdź do paragrafu <span class='color-green'>40</span>)",
+          "nextParagraphId": "40"
+        },
+        {
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
+        }
+      ]
+    },
+    {
+      "id": "9s",
+      "accessibleFrom": ["9j"],
+      "pages": [
+        [
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Spróbuj z nim porozmawiać (przejdź do paragrafu <span class='color-green'>99</span>)",
+          "nextParagraphId": "99"
+        },
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>."
+        },
+        {
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
+        }
+      ]
+    },
+    {
+      "id": "9p",
+      "accessibleFrom": ["9"],
+      "pages": [
+        [
+          {
+            "text": "... Głowa nie daje Ci żyć. Domyślasz się, że trochę przesadziłeś na imprezie. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
+          }
+        ]
+      ]
     },
     {
       "id": "12",
@@ -193,48 +200,51 @@
       "choices": [
         {
           "text": "<person id='jessica'/><br />Jessica",
-          "nextVariantId": "jessica"
+          "nextParagraphId": "26j"
         },
         {
           "text": "<person id='patrick'/><br />Patrick",
-          "nextVariantId": "patrick"
+          "nextParagraphId": "26p"
         }
       ],
-      "variants": {
-        "jessica": {
-          "pages": [
-            [
-              {
-                "text": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
-              }
-            ]
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "26j",
+      "accessibleFrom": ["26"],
+      "pages": [
+        [
+          {
+            "text": "Starasz się zachować jakieś resztki optymizmu i nie zwariować. Możesz wtasować dowolną <symbol id='karta-akcji'/> ze swojego stosu odrzuconego do talii."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "26p",
+      "accessibleFrom": ["26"],
+      "pages": [
+        [
+          {
+            "text": "Poznałaś ją na imprezie i zaproponowałeś, że odwieziesz ją do domu. Co prawda nie byłeś w szczytowej formie, ale było niedaleko, a w nocy ruch był znikomy ruch."
+          },
+          {
+            "text": "Wybierz jedną z opcji spośród:"
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
+          "nextParagraphId": "2"
         },
-        "patrick": {
-          "pages": [
-            [
-              {
-                "text": "Poznałaś ją na imprezie i zaproponowałeś, że odwieziesz ją do domu. Co prawda nie byłeś w szczytowej formie, ale było niedaleko, a w nocy ruch był znikomy ruch."
-              },
-              {
-                "text": "Wybierz jedną z opcji spośród:"
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Zapytaj ją, czy pamięta co się wydarzyło (przejdź do paragrafu <span class='color-green'>2</span>)",
-              "nextParagraphId": "2"
-            },
-            {
-              "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>."
-            },
-            {
-              "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
-            }
-          ]
+        {
+          "text": "Wymieńcie się przedmiotami. Jeśli gracz kierujący Patrickiem wyrazi zgodę możecie dowolnie przekładać przedmioty między swoimi ekwipunkami. <span class='color-blue'>Otrzymujesz akcję</span>."
+        },
+        {
+          "text": "Opuść paragraf (akcja nie wraca, ale możesz wykonać inną czynność jeśli masz wolną akcję)"
         }
-      }
+      ]
     },
     {
       "id": "29",
@@ -443,7 +453,7 @@
     },
     {
       "id": "40",
-      "accessibleFrom": ["9", "65"],
+      "accessibleFrom": ["9l", "65l"],
       "pages": [
         [
           {
@@ -642,39 +652,42 @@
       "choices": [
         {
           "text": "TAK",
-          "nextVariantId": "patrick-leży"
+          "nextParagraphId": "65l"
         },
         {
           "text": "NIE",
-          "nextVariantId": "patrick-stoi"
+          "nextParagraphId": "65s"
         }
       ],
-      "variants": {
-        "patrick-leży": {
-          "pages": [
-            [
-              {
-                "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
-              }
-            ]
-          ],
-          "choices": [
-            {
-              "text": "Patrick leży na ziemi, przejdź do paragrafu 40",
-              "nextParagraphId": "40"
-            }
-          ]
-        },
-        "patrick-stoi": {
-          "pages": [
-            [
-              {
-                "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
-              }
-            ]
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "65l",
+      "accessibleFrom": ["65"],
+      "pages": [
+        [
+          {
+            "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
+          }
+        ]
+      ],
+      "choices": [
+        {
+          "text": "Patrick leży na ziemi, przejdź do paragrafu 40",
+          "nextParagraphId": "40"
         }
-      }
+      ]
+    },
+    {
+      "id": "65s",
+      "accessibleFrom": ["65"],
+      "pages": [
+        [
+          {
+            "text": "Jeśli wskazano <story id='xiv'/>: Odrzuć: <room id='123'/>, <story id='xiv'/> i <room id='50'/>. W miejscu gdzie stały <room id='50'/> postaw otwarte drzwi, czyli <symbol id='drzwi-otwarte'/>."
+          }
+        ]
+      ]
     },
     {
       "id": "69",
@@ -888,7 +901,7 @@
     },
     {
       "id": "99",
-      "accessibleFrom": ["9"],
+      "accessibleFrom": ["9s"],
       "pages": [
         [
           {
@@ -929,83 +942,90 @@
       "choices": [
         {
           "text": "<enemy id='klaun'/><br />Klaun",
-          "nextVariantId": "klaun"
+          "nextParagraphId": "100k"
         },
         {
           "text": "<person id='jessica'/><br />Jessica",
-          "nextVariantId": "jessica"
+          "nextParagraphId": "100j"
         },
         {
           "text": "<person id='patrick'/><br />Patrick",
-          "nextVariantId": "patrick"
+          "nextParagraphId": "100p"
         }
       ],
-      "variants": {
-        "klaun": {
-          "pages": [
-            [
-              {
-                "text": "<enemy id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
-              }
-            ]
-          ]
+      "areChoicesHorizontal": true
+    },
+    {
+      "id": "100k",
+      "accessibleFrom": ["100"],
+      "pages": [
+        [
+          {
+            "text": "<enemy id='klaun'/> Odrzuć jego figurkę z planszy. Jesteście bezpieczni."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "100j",
+      "accessibleFrom": ["100"],
+      "pages": [
+        [
+          {
+            "text": "<person id='jessica'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+          },
+          {
+            "image": "rana-ciezka-zeton"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Obie postacie posiadają żeton ciężkiej rany.",
+          "nextParagraphId": "180"
         },
-        "jessica": {
-          "pages": [
-            [
-              {
-                "text": "<person id='jessica'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
-              },
-              {
-                "image": "rana-ciezka-zeton"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Obie postacie posiadają żeton ciężkiej rany.",
-              "nextParagraphId": "180"
-            },
-            {
-              "text": "Tylko Jessica posiada żeton ciężkiej rany.",
-              "nextVariantId": "graj-dalej"
-            }
-          ]
-        },
-        "patrick": {
-          "pages": [
-            [
-              {
-                "text": "<person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
-              },
-              {
-                "image": "rana-ciezka-zeton"
-              }
-            ]
-          ],
-          "areChoicesHorizontal": true,
-          "choices": [
-            {
-              "text": "Obie postacie posiadają żeton ciężkiej rany.",
-              "nextParagraphId": "180"
-            },
-            {
-              "text": "Tylko Patrick posiada żeton ciężkiej rany.",
-              "nextVariantId": "graj-dalej"
-            }
-          ]
-        },
-        "graj-dalej": {
-          "pages": [
-            [
-              {
-                "text": "Gra toczy się dalej."
-              }
-            ]
-          ]
+        {
+          "text": "Tylko Jessica posiada żeton ciężkiej rany.",
+          "nextParagraphId": "100g"
         }
-      }
+      ]
+    },
+    {
+      "id": "100p",
+      "accessibleFrom": ["100"],
+      "pages": [
+        [
+          {
+            "text": "<person id='patrick'/> Dobierz żeton ciężkiej rany (obrazek po lewej). Zwróć uwagę na to, że postać posiadająca go będzie ignorowana przez <symbol id='przeciwnik'/>."
+          },
+          {
+            "image": "rana-ciezka-zeton"
+          }
+        ]
+      ],
+      "areChoicesHorizontal": true,
+      "choices": [
+        {
+          "text": "Obie postacie posiadają żeton ciężkiej rany.",
+          "nextParagraphId": "180"
+        },
+        {
+          "text": "Tylko Patrick posiada żeton ciężkiej rany.",
+          "nextParagraphId": "100g"
+        }
+      ]
+    },
+    {
+      "id": "100g",
+      "accessibleFrom": ["100j", "100p"],
+      "pages": [
+        [
+          {
+            "text": "Gra toczy się dalej."
+          }
+        ]
+      ]
     },
     {
       "id": "105",
@@ -1299,7 +1319,7 @@
     },
     {
       "id": "180",
-      "accessibleFrom": ["69", "100"],
+      "accessibleFrom": ["69", "100j", "100p"],
       "pages": [
         [
           {

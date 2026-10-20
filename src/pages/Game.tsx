@@ -146,13 +146,15 @@ export const Game: React.FC = () => {
 
     // Return only the last variant (not accumulated with main paragraph)
     // Strip variants so !!displayParagraph.variants is false for nested variants
+    // A variant with no choices of its own is a valid dead end - don't fall back
+    // to the parent's choices (that would re-show the already-made selection).
     return {
       ...currentParagraph,
       pages:
         lastVariant.pages ||
         (lastVariant.content ? [lastVariant.content] : currentParagraph.pages),
       content: lastVariant.content,
-      choices: lastVariant.choices || currentParagraph.choices,
+      choices: lastVariant.choices,
       areChoicesHorizontal: lastVariant.areChoicesHorizontal,
       variants: undefined,
     };
