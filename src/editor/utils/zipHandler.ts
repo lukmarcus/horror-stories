@@ -69,17 +69,6 @@ export function buildAccessibleFrom(
         map[choice.nextParagraphId].push(p.id);
       }
     }
-    // Choices from variant paragraphs (variant selectors don't link to paragraphs,
-    // but variant choices may link to paragraphs via nextParagraphId)
-    for (const variant of Object.values(p.variants ?? {})) {
-      for (const choice of variant.choices ?? []) {
-        if (!choice.nextParagraphId) continue;
-        if (!map[choice.nextParagraphId]) map[choice.nextParagraphId] = [];
-        if (!map[choice.nextParagraphId].includes(p.id)) {
-          map[choice.nextParagraphId].push(p.id);
-        }
-      }
-    }
   }
   return map;
 }
@@ -89,8 +78,6 @@ function exportChoice(c: EditorChoice): Record<string, unknown> {
   const out: Record<string, unknown> = { text: c.text };
   if (c.nextParagraphId !== undefined && c.nextParagraphId !== "")
     out.nextParagraphId = c.nextParagraphId;
-  if (c.nextVariantId !== undefined && c.nextVariantId !== "")
-    out.nextVariantId = c.nextVariantId;
   return out;
 }
 
@@ -117,38 +104,13 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
       (p.aliases ?? []).length > 0 ? [p.id, ...(p.aliases ?? [])] : p.id;
 
     // ── Prosty (simple) paragraph ──
-    if (!p.variants || Object.keys(p.variants).length === 0) {
-      const cleanChoices = (p.choices ?? []).map(exportChoice);
-      return {
-        id: idField,
-        ...accessibleFromEntry,
-        ...(p.text !== undefined ? { text: p.text } : {}),
-        pages: p.pages ?? [[]],
-        ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
-      };
-    }
-
-    // ── Wariantowy (variant) paragraph ──
-    const selectorChoices = (p.variantSelectors ?? []).map(exportChoice);
-
-    const exportedVariants: Record<string, unknown> = {};
-    for (const [vid, variant] of Object.entries(p.variants)) {
-      const variantChoices = (variant.choices ?? []).map(exportChoice);
-      exportedVariants[vid] = {
-        ...(variant.pages !== undefined ? { pages: variant.pages } : {}),
-        ...(variant.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
-        ...(variantChoices.length > 0 ? { choices: variantChoices } : {}),
-      };
-    }
-
+    const cleanChoices = (p.choices ?? []).map(exportChoice);
     return {
       id: idField,
       ...accessibleFromEntry,
-      ...(p.pages !== undefined && p.pages.length > 0
-        ? { pages: p.pages }
-        : {}),
-      ...(selectorChoices.length > 0 ? { choices: selectorChoices } : {}),
-      variants: exportedVariants,
+      ...(p.text !== undefined ? { text: p.text } : {}),
+      pages: p.pages ?? [[]],
+      ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
     };
   });
 
@@ -260,58 +222,7 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
           ...(c.nextParagraphId !== undefined
             ? { nextParagraphId: String(c.nextParagraphId) }
             : {}),
-          ...(c.nextVariantId !== undefined
-            ? { nextVariantId: String(c.nextVariantId) }
-            : {}),
         });
-
-        if (pObj.variants && typeof pObj.variants === "object") {
-          // Variant paragraph: choices → variantSelectors, variants: pages → pages
-          const rawId = Array.isArray(pObj.id)
-            ? String((pObj.id as unknown[])[0])
-            : String(pObj.id);
-          const rawAliases = Array.isArray(pObj.id)
-            ? (pObj.id as unknown[]).slice(1).map(String)
-            : [];
-          const variantSelectors = (
-            (pObj.choices ?? []) as Record<string, unknown>[]
-          ).map(addId);
-          const variants: Record<string, unknown> = {};
-          for (const [vid, v] of Object.entries(
-            pObj.variants as Record<string, Record<string, unknown>>,
-          )) {
-            // Support both pages (current) and contentPages (legacy) for variants
-            const variantPages = Array.isArray(v.pages)
-              ? v.pages
-              : Array.isArray(v.contentPages)
-                ? v.contentPages
-                : [[]];
-            variants[vid] = {
-              pages: variantPages,
-              ...(v.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
-              choices: (Array.isArray(v.choices)
-                ? (v.choices as Record<string, unknown>[])
-                : []
-              ).map(addId),
-            };
-          }
-          // Support both pages (current) and contentPages (legacy) for intro
-          const introPages = Array.isArray(pObj.pages)
-            ? pObj.pages
-            : Array.isArray(pObj.contentPages)
-              ? pObj.contentPages
-              : [[]];
-          return {
-            id: rawId,
-            ...(rawAliases.length > 0 ? { aliases: rawAliases } : {}),
-            pages: introPages,
-            variantSelectors,
-            variants,
-            ...(Array.isArray(pObj.accessibleFrom)
-              ? { accessibleFrom: pObj.accessibleFrom }
-              : {}),
-          };
-        }
 
         // Simple paragraph
         const rawId = Array.isArray(pObj.id)

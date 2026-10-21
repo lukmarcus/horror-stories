@@ -7,13 +7,6 @@ export interface ChoiceAddRowProps {
   placeholder?: string;
   /** Label shown in the prefix badge before the target input */
   prefixLabel: string;
-  /** Whether to apply variant (green) styling to the prefix */
-  prefixIsVariant?: boolean;
-  /**
-   * When provided, the prefix badge becomes a toggle button.
-   * Called when the user clicks the badge to switch between § and W.
-   */
-  onPrefixToggle?: () => void;
   /** Autocomplete options for the target input */
   targetList: string[];
   /** When true, disables + Dodaj if the target field is empty */
@@ -27,8 +20,6 @@ export interface ChoiceAddRowProps {
 export const ChoiceAddRow: React.FC<ChoiceAddRowProps> = ({
   placeholder = "Tekst nowego wyboru",
   prefixLabel,
-  prefixIsVariant = false,
-  onPrefixToggle,
   targetList,
   requireTarget = false,
   addButtonTitle = "Dodaj wybór",
@@ -59,25 +50,9 @@ export const ChoiceAddRow: React.FC<ChoiceAddRowProps> = ({
         placeholder={placeholder}
       />
       <div className="editor-paragraph-view__choice-target-wrap">
-        {onPrefixToggle ? (
-          <button
-            className={`editor-paragraph-view__choice-type-btn${prefixIsVariant ? " editor-paragraph-view__choice-type-btn--variant" : ""}`}
-            onClick={onPrefixToggle}
-            title={
-              prefixIsVariant
-                ? "Cel: wariant (kliknij → paragraf)"
-                : "Cel: paragraf (kliknij → wariant)"
-            }
-          >
-            {prefixLabel}
-          </button>
-        ) : (
-          <span
-            className={`editor-paragraph-view__choice-target-prefix${prefixIsVariant ? " editor-paragraph-view__choice-target-prefix--variant" : ""}`}
-          >
-            {prefixLabel}
-          </span>
-        )}
+        <span className="editor-paragraph-view__choice-target-prefix">
+          {prefixLabel}
+        </span>
         <input
           className="editor-paragraph-view__choice-target"
           type="text"
@@ -147,7 +122,7 @@ export const ChoiceAddRow: React.FC<ChoiceAddRowProps> = ({
                   setTarget(id);
                 }}
               >
-                {prefixIsVariant ? `W:${id}` : `§${id}`}
+                §{id}
               </li>
             ))}
           </ul>
