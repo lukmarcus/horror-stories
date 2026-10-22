@@ -1,7 +1,4 @@
-import type {
-  EditorParagraph,
-  EditorVariant,
-} from "../editor/context/editorTypes";
+import type { EditorParagraph } from "../editor/context/editorTypes";
 import type { Paragraph, Choice } from "../types";
 
 function editorChoicesToGameChoices(
@@ -13,26 +10,7 @@ function editorChoicesToGameChoices(
     ...(c.nextParagraphId !== undefined
       ? { nextParagraphId: c.nextParagraphId }
       : {}),
-    ...(c.nextVariantId !== undefined
-      ? { nextVariantId: c.nextVariantId }
-      : {}),
   }));
-}
-
-function editorVariantToGameParagraph(
-  variantId: string,
-  variant: EditorVariant,
-): Paragraph {
-  const pages = variant.pages ?? [[]];
-  const choices = editorChoicesToGameChoices(variant.choices);
-  return {
-    id: variantId,
-    ...(pages.length === 1
-      ? { content: pages[0] }
-      : { pages, isMultiPage: true }),
-    choices,
-    ...(variant.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
-  };
 }
 
 /**
@@ -46,28 +24,7 @@ function editorVariantToGameParagraph(
 export function editorParagraphToGameParagraph(
   editorParagraph: EditorParagraph,
 ): Paragraph {
-  const choices = editorChoicesToGameChoices(
-    editorParagraph.variants
-      ? editorParagraph.variantSelectors
-      : editorParagraph.choices,
-  );
-
-  // Variant paragraph
-  if (editorParagraph.variants) {
-    const pages = editorParagraph.pages ?? [[]];
-    const variants: Record<string, Paragraph> = {};
-    for (const [vid, v] of Object.entries(editorParagraph.variants)) {
-      variants[vid] = editorVariantToGameParagraph(vid, v);
-    }
-    return {
-      id: editorParagraph.id,
-      ...(pages.length === 1
-        ? { content: pages[0] }
-        : { pages, isMultiPage: true }),
-      choices,
-      variants,
-    };
-  }
+  const choices = editorChoicesToGameChoices(editorParagraph.choices);
 
   // Pages-based format
   if (editorParagraph.pages) {
