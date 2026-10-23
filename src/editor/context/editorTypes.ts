@@ -18,6 +18,8 @@ export interface EditorParagraph {
   pages?: ContentBlock[][];
   /** Choices for "prosty" paragraphs — vertical, point to nextParagraphId only */
   choices?: EditorChoice[];
+  /** Horizontal choices layout (default: vertical) */
+  areChoicesHorizontal?: boolean;
 }
 
 export interface EditorLetter {
@@ -104,6 +106,10 @@ export type EditorAction =
   | {
       type: "REMOVE_CHOICE";
       payload: { paragraphId: string; choiceId: string };
+    }
+  | {
+      type: "SET_PARAGRAPH_HORIZONTAL";
+      payload: { id: string; value: boolean };
     }
   | { type: "CONVERT_TEXT_TO_PAGES"; payload: string }
   | { type: "ADD_IMAGE"; payload: { id: string; data: string } }

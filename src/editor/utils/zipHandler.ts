@@ -111,6 +111,7 @@ export async function exportToZip(scenario: EditorScenario): Promise<void> {
       ...(p.text !== undefined ? { text: p.text } : {}),
       pages: p.pages ?? [[]],
       ...(cleanChoices.length > 0 ? { choices: cleanChoices } : {}),
+      ...(p.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
     };
   });
 
@@ -246,6 +247,7 @@ export async function importFromZip(file: File): Promise<EditorScenario> {
           ...(pObj.text !== undefined ? { text: String(pObj.text) } : {}),
           pages,
           ...(choices.length > 0 ? { choices } : {}),
+          ...(pObj.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
           ...(Array.isArray(pObj.accessibleFrom)
             ? { accessibleFrom: pObj.accessibleFrom }
             : {}),

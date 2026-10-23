@@ -74,6 +74,7 @@ export async function copyBuiltinScenarioToEditor(
       ...(aliases.length > 0 ? { aliases } : {}),
       pages,
       choices: (p.choices ?? []) as EditorChoice[],
+      ...(p.areChoicesHorizontal ? { areChoicesHorizontal: true } : {}),
     };
   });
 
