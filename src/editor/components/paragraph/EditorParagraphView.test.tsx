@@ -623,6 +623,48 @@ describe("EditorParagraphView", () => {
       // ChoiceAddRow component tested separately - just verify it's present
       expect(screen.getByText("Wybory")).toBeDefined();
     });
+
+    it("dispatches SET_PARAGRAPH_HORIZONTAL when layout toggle clicked", async () => {
+      const user = userEvent.setup();
+      const scenario = createMockScenario([{ id: "10", text: "Test" }]);
+
+      renderWithEditor(
+        <EditorParagraphView
+          paragraphId="10"
+          onRemove={vi.fn()}
+          onNavigate={vi.fn()}
+        />,
+        scenario,
+      );
+
+      const toggleBtn = screen.getByTitle("Poziome wybory (kliknij)");
+      await user.click(toggleBtn);
+
+      expect(mockDispatch).toHaveBeenCalledWith({
+        type: "SET_PARAGRAPH_HORIZONTAL",
+        payload: { id: "10", value: true },
+      });
+    });
+
+    it("shows active layout toggle when areChoicesHorizontal is true", () => {
+      const scenario = createMockScenario([
+        { id: "10", text: "Test", areChoicesHorizontal: true },
+      ]);
+
+      renderWithEditor(
+        <EditorParagraphView
+          paragraphId="10"
+          onRemove={vi.fn()}
+          onNavigate={vi.fn()}
+        />,
+        scenario,
+      );
+
+      const toggleBtn = screen.getByTitle("Pionowe wybory (kliknij)");
+      expect(toggleBtn.className).toContain(
+        "editor-paragraph-view__layout-btn--active",
+      );
+    });
   });
 
   describe("Preview - simple mode", () => {
@@ -646,6 +688,29 @@ describe("EditorParagraphView", () => {
 
       expect(screen.getByText("Podgląd")).toBeDefined();
       // PagesPreview component tested separately
+    });
+
+    it("renders choices horizontally in preview when areChoicesHorizontal is true", () => {
+      const scenario = createMockScenario([
+        {
+          id: "10",
+          text: "Test",
+          areChoicesHorizontal: true,
+          choices: [{ id: "c1", text: "Choice 1", nextParagraphId: "20" }],
+        },
+      ]);
+
+      renderWithEditor(
+        <EditorParagraphView
+          paragraphId="10"
+          onRemove={vi.fn()}
+          onNavigate={vi.fn()}
+        />,
+        scenario,
+      );
+
+      const fieldset = document.querySelector(".choices.choices--horizontal");
+      expect(fieldset).not.toBeNull();
     });
 
     it("shows text content split by lines when no pages", () => {

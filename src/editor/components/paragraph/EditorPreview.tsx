@@ -40,7 +40,9 @@ export const EditorPreview: React.FC<EditorPreviewProps> = ({
           <p className="editor-paragraph-view__preview-empty">Brak treści</p>
         )}
         {(paragraph.choices ?? []).length > 0 && (
-          <fieldset className="choices choices--vertical">
+          <fieldset
+            className={`choices choices--${paragraph.areChoicesHorizontal ? "horizontal" : "vertical"}`}
+          >
             <legend className="sr-only">Dostępne wybory</legend>
             {(paragraph.choices ?? []).map((choice) => (
               <Button

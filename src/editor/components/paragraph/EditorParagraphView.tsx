@@ -162,6 +162,12 @@ export const EditorParagraphView: React.FC<EditorParagraphViewProps> = ({
                 payload: paragraphId,
               })
             }
+            onToggleHorizontal={(value) =>
+              dispatch({
+                type: "SET_PARAGRAPH_HORIZONTAL",
+                payload: { id: paragraphId, value },
+              })
+            }
           />
         </div>
 

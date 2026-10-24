@@ -237,6 +237,34 @@ h3.editor-paragraph-view__label {
   margin-top: 1.5rem;
 }
 
+.editor-paragraph-view__choices-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor-paragraph-view__layout-btn {
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: transparent;
+  color: #aaa;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__layout-btn:hover {
+  background: #2a2a2a;
+  color: #ccc;
+}
+
+.editor-paragraph-view__layout-btn--active {
+  background: #1e2a1e;
+  color: #7ec87e;
+  border-color: #3a5a3a;
+}
+
 .editor-paragraph-view__choice-row,
 .editor-paragraph-view__choice-add {
   display: flex;
