@@ -14,3 +14,36 @@ export function sortParagraphIds(ids: string[]): string[] {
     return a.localeCompare(b);
   });
 }
+
+export interface GroupableEntry {
+  id: string;
+  isAlias: boolean;
+}
+
+export interface GroupedEntry<T extends GroupableEntry> {
+  entry: T;
+  isChild: boolean;
+  parentId: string | null;
+}
+
+/**
+ * Walks a list of sorted paragraph entries and tags lettered sibling IDs
+ * (e.g. "100a" right after "100") as children of the preceding bare numeric ID.
+ * Aliases and lettered IDs with no matching preceding parent are left as standalone.
+ */
+export function groupParagraphEntries<T extends GroupableEntry>(
+  entries: T[],
+): GroupedEntry<T>[] {
+  let currentBase: string | null = null;
+  return entries.map((entry) => {
+    if (entry.isAlias) return { entry, isChild: false, parentId: null };
+
+    const match = /^(\d+)[a-z]+$/.exec(entry.id);
+    if (match && match[1] === currentBase) {
+      return { entry, isChild: true, parentId: currentBase };
+    }
+
+    currentBase = /^\d+$/.test(entry.id) ? entry.id : null;
+    return { entry, isChild: false, parentId: null };
+  });
+}

@@ -140,6 +140,37 @@
   opacity: 0.6;
 }
 
+.editor-sidebar__paragraph-row {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.editor-sidebar__paragraph-row--child {
+  padding-left: 1.1rem;
+}
+
+.editor-sidebar__paragraph-row .editor-sidebar__paragraph {
+  flex: 1;
+  min-width: 0;
+}
+
+.editor-sidebar__group-toggle {
+  flex-shrink: 0;
+  width: 1.1rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #888;
+  font-size: 0.7rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.editor-sidebar__group-toggle:hover {
+  color: #ccc;
+}
+
 .editor-sidebar__add-row {
   margin-top: 0.5rem;
   display: flex;

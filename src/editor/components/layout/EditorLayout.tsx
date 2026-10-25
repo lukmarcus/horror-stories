@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEditor } from "../../context/useEditor";
-import { sortParagraphIds } from "../../utils/editorUtils";
+import { sortParagraphIds, groupParagraphEntries } from "../../utils/editorUtils";
 import "./EditorLayout.css";
 
 interface EditorLayoutProps {
@@ -18,6 +18,9 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
   const { state, dispatch } = useEditor();
   const [newId, setNewId] = useState("");
   const [addError, setAddError] = useState<string | null>(null);
+  const [collapsedGroups, setCollapsedGroups] = useState<Set<string>>(
+    new Set(),
+  );
 
   const letterByParagraphId = Object.fromEntries(
     (state.scenario?.letters ?? []).map((l) => [l.paragraphId, l.id]),
@@ -46,6 +49,22 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
     )!;
     return { id, primaryId: owner.id, isAlias: true };
   });
+
+  const groupedEntries = groupParagraphEntries(allEntries);
+  const groupsWithChildren = new Set(
+    groupedEntries
+      .filter((g) => g.isChild && g.parentId)
+      .map((g) => g.parentId as string),
+  );
+
+  const toggleGroup = (parentId: string) => {
+    setCollapsedGroups((prev) => {
+      const next = new Set(prev);
+      if (next.has(parentId)) next.delete(parentId);
+      else next.add(parentId);
+      return next;
+    });
+  };
 
   const handleAddParagraph = () => {
     const id = newId.trim();
@@ -157,41 +176,69 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
           {allEntries.length > 0 && (
             <div className="editor-sidebar__section-divider" />
           )}
-          {allEntries.map(({ id, primaryId, isAlias }) => (
-            <button
-              key={isAlias ? `alias-${id}` : id}
-              className={`editor-sidebar__paragraph ${
-                activeSection === id ? "editor-sidebar__paragraph--active" : ""
-              }`}
-              onClick={() => onSectionChange(primaryId)}
-              aria-current={activeSection === id ? "true" : undefined}
-              title={isAlias ? `Alias §${id} → §${primaryId}` : undefined}
-            >
-              <span className="editor-sidebar__paragraph-label">
-                §{id}
-                {isAlias && (
-                  <span className="editor-sidebar__paragraph-tag">
-                    &nbsp;→ §{primaryId}
-                  </span>
+          {groupedEntries
+            .filter(
+              (g) =>
+                !g.isChild ||
+                !g.parentId ||
+                !collapsedGroups.has(g.parentId),
+            )
+            .map(({ entry: { id, primaryId, isAlias }, isChild }) => (
+              <div
+                key={isAlias ? `alias-${id}` : id}
+                className={`editor-sidebar__paragraph-row ${
+                  isChild ? "editor-sidebar__paragraph-row--child" : ""
+                }`}
+              >
+                {!isChild && groupsWithChildren.has(id) && (
+                  <button
+                    className="editor-sidebar__group-toggle"
+                    aria-label={
+                      collapsedGroups.has(id)
+                        ? `Rozwiń podparagrafy §${id}`
+                        : `Zwiń podparagrafy §${id}`
+                    }
+                    onClick={() => toggleGroup(id)}
+                  >
+                    {collapsedGroups.has(id) ? "▸" : "▾"}
+                  </button>
                 )}
-                {id === "100" && !isAlias && (
-                  <span className="editor-sidebar__paragraph-tag">
-                    &nbsp;(śmierć)
+                <button
+                  className={`editor-sidebar__paragraph ${
+                    activeSection === id
+                      ? "editor-sidebar__paragraph--active"
+                      : ""
+                  }`}
+                  onClick={() => onSectionChange(primaryId)}
+                  aria-current={activeSection === id ? "true" : undefined}
+                  title={isAlias ? `Alias §${id} → §${primaryId}` : undefined}
+                >
+                  <span className="editor-sidebar__paragraph-label">
+                    §{id}
+                    {isAlias && (
+                      <span className="editor-sidebar__paragraph-tag">
+                        &nbsp;→ §{primaryId}
+                      </span>
+                    )}
+                    {id === "100" && !isAlias && (
+                      <span className="editor-sidebar__paragraph-tag">
+                        &nbsp;(śmierć)
+                      </span>
+                    )}
+                    {!isAlias && letterByParagraphId[id] && (
+                      <span className="editor-sidebar__paragraph-tag">
+                        &nbsp;(litera {letterByParagraphId[id]})
+                      </span>
+                    )}
+                    {!isAlias && personByParagraphId[id] && (
+                      <span className="editor-sidebar__paragraph-tag">
+                        &nbsp;({personByParagraphId[id]})
+                      </span>
+                    )}
                   </span>
-                )}
-                {!isAlias && letterByParagraphId[id] && (
-                  <span className="editor-sidebar__paragraph-tag">
-                    &nbsp;(litera {letterByParagraphId[id]})
-                  </span>
-                )}
-                {!isAlias && personByParagraphId[id] && (
-                  <span className="editor-sidebar__paragraph-tag">
-                    &nbsp;({personByParagraphId[id]})
-                  </span>
-                )}
-              </span>
-            </button>
-          ))}
+                </button>
+              </div>
+            ))}
 
           {state.scenario && (
             <div className="editor-sidebar__add-row">
