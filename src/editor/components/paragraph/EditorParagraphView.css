@@ -340,6 +340,16 @@ h3.editor-paragraph-view__label {
   color: #fff;
 }
 
+.editor-paragraph-view__choice-dropdown-item--suggestion {
+  color: #7ec87e;
+  border-top: 1px solid #333;
+}
+
+.editor-paragraph-view__choice-dropdown-item--suggestion:hover {
+  background: #1e2a1e;
+  color: #9ee89e;
+}
+
 .editor-paragraph-view__choice-remove {
   padding: 0.3rem 0.55rem;
   border-radius: 5px;

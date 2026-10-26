@@ -47,3 +47,24 @@ export function groupParagraphEntries<T extends GroupableEntry>(
     return { entry, isChild: false, parentId: null };
   });
 }
+
+const LETTERS = "abcdefghijklmnopqrstuvwxyz";
+
+/**
+ * Given a bare numeric paragraph ID that already exists, suggests the next
+ * free lettered child ID (e.g. "100" with "100a" taken → "100b").
+ * Returns null if `baseId` isn't a bare number, doesn't exist in `existingIds`,
+ * or all 26 letters are already taken.
+ */
+export function suggestNextLetterChild(
+  baseId: string,
+  existingIds: string[],
+): string | null {
+  if (!/^\d+$/.test(baseId) || !existingIds.includes(baseId)) return null;
+  const used = new Set(existingIds);
+  for (const letter of LETTERS) {
+    const candidate = `${baseId}${letter}`;
+    if (!used.has(candidate)) return candidate;
+  }
+  return null;
+}

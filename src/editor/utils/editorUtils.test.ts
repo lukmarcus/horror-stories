@@ -3,6 +3,7 @@ import {
   filterIds,
   sortParagraphIds,
   groupParagraphEntries,
+  suggestNextLetterChild,
 } from "./editorUtils";
 
 describe("filterIds", () => {
@@ -74,10 +75,7 @@ describe("groupParagraphEntries", () => {
   });
 
   it("traktuje aliasy jako samodzielne wpisy niezależnie od wzorca ID", () => {
-    const result = groupParagraphEntries([
-      entry("100"),
-      entry("100a", true),
-    ]);
+    const result = groupParagraphEntries([entry("100"), entry("100a", true)]);
     expect(result[1].isChild).toBe(false);
   });
 
@@ -118,5 +116,31 @@ describe("sortParagraphIds", () => {
 
   it("poprawnie sortuje ID z jedną cyfrą vs wielocyfrowe", () => {
     expect(sortParagraphIds(["9", "10", "2"])).toEqual(["2", "9", "10"]);
+  });
+});
+
+describe("suggestNextLetterChild", () => {
+  it("sugeruje 'a' gdy paragraf nie ma jeszcze dzieci", () => {
+    expect(suggestNextLetterChild("100", ["100"])).toBe("100a");
+  });
+
+  it("sugeruje kolejną wolną literę", () => {
+    expect(suggestNextLetterChild("100", ["100", "100a", "100b"])).toBe("100c");
+  });
+
+  it("zwraca null gdy baseId nie jest czystym numerem", () => {
+    expect(suggestNextLetterChild("100a", ["100", "100a"])).toBeNull();
+  });
+
+  it("zwraca null gdy baseId nie istnieje na liście", () => {
+    expect(suggestNextLetterChild("999", ["100"])).toBeNull();
+  });
+
+  it("zwraca null gdy wszystkie litery a-z są zajęte", () => {
+    const taken = [
+      "100",
+      ...Array.from("abcdefghijklmnopqrstuvwxyz", (l) => `100${l}`),
+    ];
+    expect(suggestNextLetterChild("100", taken)).toBeNull();
   });
 });

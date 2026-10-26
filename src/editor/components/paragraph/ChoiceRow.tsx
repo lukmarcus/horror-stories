@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { EditorChoice } from "../../context/editorTypes";
-import { filterIds } from "../../utils/editorUtils";
+import { filterIds, suggestNextLetterChild } from "../../utils/editorUtils";
 import { ChoiceTextInput } from "./ChoiceTextInput";
 
 export interface ChoiceRowProps {
@@ -28,7 +28,12 @@ export const ChoiceRow: React.FC<ChoiceRowProps> = ({
   };
 
   const dropdownKey = `${choice.id}-target`;
-  const options = filterIds(targetValue, paragraphIds);
+  const baseOptions = filterIds(targetValue, paragraphIds);
+  const suggestion = suggestNextLetterChild(targetValue.trim(), paragraphIds);
+  const options =
+    suggestion && !baseOptions.includes(suggestion)
+      ? [...baseOptions, suggestion]
+      : baseOptions;
 
   return (
     <div className="editor-paragraph-view__choice-row">
@@ -98,13 +103,13 @@ export const ChoiceRow: React.FC<ChoiceRowProps> = ({
                 id={`${dropdownKey}-option-${index}`}
                 role="option"
                 aria-selected={highlightedIndex === index}
-                className={`editor-paragraph-view__choice-dropdown-item${highlightedIndex === index ? " editor-paragraph-view__choice-dropdown-item--highlighted" : ""}`}
+                className={`editor-paragraph-view__choice-dropdown-item${highlightedIndex === index ? " editor-paragraph-view__choice-dropdown-item--highlighted" : ""}${id === suggestion ? " editor-paragraph-view__choice-dropdown-item--suggestion" : ""}`}
                 onMouseDown={(e) => {
                   e.preventDefault();
                   handleTargetChange(id);
                 }}
               >
-                §{id}
+                {id === suggestion ? `+ §${id} (nowe dziecko)` : `§${id}`}
               </li>
             ))}
           </ul>
