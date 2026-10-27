@@ -3,14 +3,13 @@ import { gameReducer, initialState } from "./useGame";
 
 describe("gameReducer", () => {
   describe("SET_PARAGRAPH", () => {
-    it("should set currentParagraphId and reset variantPath and error", () => {
-      const state = { ...initialState, variantPath: ["jessica"], error: "err" };
+    it("should set currentParagraphId and reset error", () => {
+      const state = { ...initialState, error: "err" };
       const result = gameReducer(state, {
         type: "SET_PARAGRAPH",
         payload: "42",
       });
       expect(result.currentParagraphId).toBe("42");
-      expect(result.variantPath).toEqual([]);
       expect(result.error).toBe("");
     });
 
@@ -21,33 +20,6 @@ describe("gameReducer", () => {
         payload: null,
       });
       expect(result.currentParagraphId).toBeNull();
-    });
-  });
-
-  describe("ADD_VARIANT", () => {
-    it("should append variant to path", () => {
-      const state = { ...initialState, variantPath: ["jessica"] };
-      const result = gameReducer(state, {
-        type: "ADD_VARIANT",
-        payload: "option-a",
-      });
-      expect(result.variantPath).toEqual(["jessica", "option-a"]);
-    });
-
-    it("should start from empty path", () => {
-      const result = gameReducer(initialState, {
-        type: "ADD_VARIANT",
-        payload: "jessica",
-      });
-      expect(result.variantPath).toEqual(["jessica"]);
-    });
-  });
-
-  describe("CLEAR_VARIANTS", () => {
-    it("should reset variantPath to empty array", () => {
-      const state = { ...initialState, variantPath: ["jessica", "patrick"] };
-      const result = gameReducer(state, { type: "CLEAR_VARIANTS" });
-      expect(result.variantPath).toEqual([]);
     });
   });
 
@@ -172,7 +144,6 @@ describe("gameReducer", () => {
       const dirty = {
         ...initialState,
         currentParagraphId: "99",
-        variantPath: ["jessica"],
         error: "err",
         showSetup: true,
         currentSetupStep: 3,
@@ -180,7 +151,6 @@ describe("gameReducer", () => {
       };
       const result = gameReducer(dirty, { type: "RESET" });
       expect(result.currentParagraphId).toBeNull();
-      expect(result.variantPath).toEqual([]);
       expect(result.error).toBe("");
       expect(result.showSetup).toBe(false);
       expect(result.currentSetupStep).toBe(0);
@@ -209,7 +179,6 @@ describe("gameReducer", () => {
       });
       expect(result.currentParagraphId).toBe("30");
       expect(result.fromAlphabet).toBe(true);
-      expect(result.variantPath).toEqual([]);
       expect(result.error).toBe("");
     });
 
@@ -229,32 +198,6 @@ describe("gameReducer", () => {
 
     it("fromAlphabet is false in initialState", () => {
       expect(initialState.fromAlphabet).toBe(false);
-    });
-  });
-
-  describe("SET_PARAGRAPH clears variants (integration)", () => {
-    it("should add variant to path", () => {
-      let variantPath: string[] = [];
-      const addVariant = (id: string) => {
-        variantPath = [...variantPath, id];
-      };
-
-      addVariant("jessica");
-      expect(variantPath).toEqual(["jessica"]);
-
-      const s1 = gameReducer(initialState, {
-        type: "ADD_VARIANT",
-        payload: "jessica",
-      });
-      const s2 = gameReducer(s1, {
-        type: "ADD_VARIANT",
-        payload: "patrick-lezy",
-      });
-      expect(s2.variantPath).toEqual(["jessica", "patrick-lezy"]);
-
-      const s3 = gameReducer(s2, { type: "SET_PARAGRAPH", payload: "40" });
-      expect(s3.currentParagraphId).toBe("40");
-      expect(s3.variantPath).toEqual([]);
     });
   });
 });

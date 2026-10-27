@@ -1,17 +1,6 @@
 import { describe, it, expect } from "vitest";
 import type { Paragraph } from "../types";
 
-interface MockVariant {
-  pages?: Array<Array<{ text: string }>>;
-  text?: string;
-  choices?: Array<{
-    text: string;
-    nextParagraphId?: string;
-    nextVariantId?: string;
-  }>;
-  variants?: Record<string, MockVariant>;
-}
-
 interface MockParagraph {
   id: string;
   text?: string;
@@ -19,9 +8,7 @@ interface MockParagraph {
   choices?: Array<{
     text: string;
     nextParagraphId?: string;
-    nextVariantId?: string;
   }>;
-  variants?: Record<string, MockVariant>;
   isMultiPage?: boolean;
   direct?: boolean;
   accessibleFrom?: string[];
@@ -358,58 +345,6 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
     });
   });
 
-  describe("Refresh button and variant reset (v0.0.12)", () => {
-    it("should clear variant path on refresh", () => {
-      const state = {
-        currentParagraphId: "9",
-        variantPath: ["jessica", "option-a"],
-      };
-
-      const refreshParagraph = () => {
-        state.variantPath = [];
-      };
-
-      refreshParagraph();
-      expect(state.variantPath).toEqual([]);
-    });
-
-    it("should show refresh button with paragraph ID", () => {
-      const getRefreshButtonText = (id: string) => `↻ Odśwież #${id}`;
-
-      expect(getRefreshButtonText("9")).toBe("↻ Odśwież #9");
-      expect(getRefreshButtonText("26")).toBe("↻ Odśwież #26");
-    });
-
-    it("should reset to initial paragraph content after refresh", () => {
-      // Simulate paragraph with variants
-      const paragraph: MockParagraph = {
-        id: "9",
-        pages: [[{ text: "Choose a character" }]],
-        variants: {
-          jessica: { pages: [[{ text: "Jessica's story" }]] },
-          patrick: { pages: [[{ text: "Patrick's story" }]] },
-        },
-      };
-
-      let variantPath: string[] = ["jessica"];
-
-      // Get accumulated content
-      let content = [...(paragraph.pages?.[0] ?? [])];
-      if (variantPath.length > 0) {
-        const variant = paragraph.variants?.[variantPath[0]] as MockVariant;
-        if (variant?.pages) {
-          content.push(...variant.pages[0]);
-        }
-      }
-      expect(content).toHaveLength(2); // main + variant
-
-      // Refresh clears variants
-      variantPath = [];
-      content = [...(paragraph.pages?.[0] ?? [])];
-      expect(content).toHaveLength(1); // only main
-    });
-  });
-
   describe("Input for dead-end paragraphs (v0.0.12)", () => {
     it("should show input field for dead-end paragraphs without direct back", () => {
       const deadEndParagraph = {
@@ -449,123 +384,6 @@ describe("End-to-End Scenario - Droga Donikąd", () => {
       const available = ["1", "2", "3", "9", "26", "50"];
       expect(validateInput(9, available)).toBe(true);
       expect(validateInput(999, available)).toBe(false);
-    });
-  });
-
-  describe("New variant structure (v0.0.12)", () => {
-    it("should support variants within single paragraph", () => {
-      const modernParagraph = {
-        id: "9",
-        pages: [[{ text: "Którą postacią jesteś?" }]],
-        choices: [
-          { text: "Jessica", nextVariantId: "jessica" },
-          { text: "Patrick", nextVariantId: "patrick" },
-        ],
-        areChoicesHorizontal: true,
-        variants: {
-          jessica: {
-            pages: [[{ text: "Jessica's content" }]],
-            choices: [{ text: "Continue", nextParagraphId: "26" }],
-          },
-          patrick: {
-            pages: [[{ text: "Patrick's content" }]],
-            choices: [{ text: "Continue", nextParagraphId: "26" }],
-          },
-        },
-      };
-
-      expect(modernParagraph.variants).toBeDefined();
-      expect(modernParagraph.variants.jessica).toBeDefined();
-      expect(modernParagraph.variants.patrick).toBeDefined();
-    });
-
-    it("should display only selected variant (reset display, not accumulation)", () => {
-      const paragraph: MockParagraph = {
-        id: "9",
-        pages: [[{ text: "Main content" }]],
-        variants: {
-          jessica: { pages: [[{ text: "Jessica only" }]] },
-        },
-      };
-
-      const variantPath = ["jessica"];
-
-      // Get content for display (reset mode - only last variant)
-      const lastVariantId = variantPath[variantPath.length - 1];
-      const lastVariant = paragraph.variants?.[lastVariantId] as MockVariant;
-      const displayContent = lastVariant?.pages?.[0] ?? [];
-
-      expect(displayContent).toHaveLength(1);
-      expect(displayContent[0].text).toBe("Jessica only"); // NOT including main content
-    });
-
-    it("should treat a variant with no choices as a dead end, not fall back to parent choices", () => {
-      // Regression test: a terminal variant (e.g. "jessica" below) must not
-      // re-show the parent paragraph's own choices (the jessica/patrick picker).
-      const paragraph: MockParagraph = {
-        id: "26",
-        pages: [[{ text: "Kto robi ten ruch?" }]],
-        choices: [
-          { text: "Jessica", nextVariantId: "jessica" },
-          { text: "Patrick", nextVariantId: "patrick" },
-        ],
-        variants: {
-          jessica: { pages: [[{ text: "Starasz się zachować optymizm." }]] },
-          patrick: {
-            pages: [[{ text: "Poznałaś ją na imprezie." }]],
-            choices: [{ text: "Dalej", nextParagraphId: "2" }],
-          },
-        },
-      };
-
-      const lastVariant = paragraph.variants?.jessica as MockVariant;
-      const displayChoices = lastVariant?.choices;
-
-      expect(displayChoices).toBeUndefined();
-      expect(displayChoices).not.toEqual(paragraph.choices);
-    });
-
-    it("should separate variant choices from regular navigation", () => {
-      const paragraph = {
-        id: "26",
-        choices: [
-          { text: "Option A", nextVariantId: "variant-a" },
-          { text: "Navigate to 50", nextParagraphId: "50" },
-          { text: "Option B", nextVariantId: "variant-b" },
-        ],
-      };
-
-      const variantChoices = paragraph.choices.filter((c) => c.nextVariantId);
-      const regularChoices = paragraph.choices.filter((c) => c.nextParagraphId);
-
-      expect(variantChoices).toHaveLength(2);
-      expect(regularChoices).toHaveLength(1);
-    });
-
-    it("should handle nested variants with multiple levels", () => {
-      const paragraph: MockParagraph = {
-        id: "9",
-        variants: {
-          jessica: {
-            text: "Jessica path",
-            variants: {
-              "jessica-detail": {
-                text: "Jessica detailed",
-              },
-            },
-          },
-        },
-      };
-
-      const variantPath = ["jessica", "jessica-detail"];
-
-      // Navigate through nested variants
-      let current: MockVariant | MockParagraph | undefined = paragraph;
-      for (const variantId of variantPath) {
-        current = current?.variants?.[variantId];
-      }
-
-      expect(current?.text).toBe("Jessica detailed");
     });
   });
 });

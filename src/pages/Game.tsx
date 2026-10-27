@@ -111,57 +111,6 @@ export const Game: React.FC = () => {
     ? paragraphs[game.state.currentParagraphId]
     : null;
 
-  // Effect: Auto-clear variants when navigating to a paragraph without variants
-  // This handles both manual navigation (handleChoice) and browser back/forward
-  React.useEffect(() => {
-    if (
-      game.state.variantPath.length > 0 &&
-      currentParagraph &&
-      !currentParagraph.variants
-    ) {
-      game.clearVariants();
-    }
-    // Intentionally depends only on currentParagraphId to trigger on paragraph changes.
-    // Adding game/currentParagraph would cause excessive re-runs or stale closure issues.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [game.state.currentParagraphId]);
-
-  // Helper: Get variant content - shows only the last variant in path, not accumulated
-  const getDisplayParagraph = (): typeof currentParagraph | null => {
-    if (!currentParagraph) return null;
-
-    // If no variant selected, show main paragraph
-    if (game.state.variantPath.length === 0 || !currentParagraph.variants) {
-      return currentParagraph;
-    }
-
-    // Get the last variant in the path
-    const lastVariantId =
-      game.state.variantPath[game.state.variantPath.length - 1];
-    const lastVariant = currentParagraph.variants?.[lastVariantId];
-
-    if (!lastVariant) {
-      return currentParagraph;
-    }
-
-    // Return only the last variant (not accumulated with main paragraph)
-    // Strip variants so !!displayParagraph.variants is false for nested variants
-    // A variant with no choices of its own is a valid dead end - don't fall back
-    // to the parent's choices (that would re-show the already-made selection).
-    return {
-      ...currentParagraph,
-      pages:
-        lastVariant.pages ||
-        (lastVariant.content ? [lastVariant.content] : currentParagraph.pages),
-      content: lastVariant.content,
-      choices: lastVariant.choices,
-      areChoicesHorizontal: lastVariant.areChoicesHorizontal,
-      variants: undefined,
-    };
-  };
-
-  const displayParagraph = getDisplayParagraph();
-
   const handleMainInputSubmit = (value: string): string | null => {
     const result = jumpToParagraph(value, paragraphs);
 
@@ -175,14 +124,12 @@ export const Game: React.FC = () => {
     }
 
     game.setParagraph(value.trim());
-    game.clearVariants();
     return null;
   };
 
   const handleConfirmAccessibility = () => {
     if (game.state.pendingParagraphId) {
       game.setParagraph(game.state.pendingParagraphId);
-      game.clearVariants();
     }
     game.closeWarning();
   };
@@ -208,22 +155,13 @@ export const Game: React.FC = () => {
     }
 
     game.setParagraph(value.trim());
-    game.clearVariants();
     game.clearDiceResult();
     return null;
   };
 
-  const handleChoice = (
-    nextId: string | undefined,
-    isVariant: boolean = false,
-  ) => {
+  const handleChoice = (nextId: string | undefined) => {
     if (!nextId) return;
-
-    if (isVariant) {
-      game.addVariant(nextId);
-    } else {
-      game.setParagraph(nextId);
-    }
+    game.setParagraph(nextId);
     game.clearDiceResult();
   };
 
@@ -332,7 +270,6 @@ export const Game: React.FC = () => {
             letters={letters}
             onGoToParagraph={(id) => {
               game.setParagraphFromAlphabet(id);
-              game.clearVariants();
             }}
           />
         </>
@@ -350,7 +287,6 @@ export const Game: React.FC = () => {
             onConfirm={() => {
               game.toggleDeathView();
               game.setParagraph("100");
-              game.clearVariants();
             }}
             onCancel={() => game.toggleDeathView()}
           />
@@ -457,7 +393,7 @@ export const Game: React.FC = () => {
                 )}
                 {currentParagraph ? (
                   <ParagraphView
-                    paragraph={displayParagraph || currentParagraph}
+                    paragraph={currentParagraph}
                     currentParagraphId={game.state.currentParagraphId!}
                     lastDiceResult={game.state.lastDiceResult}
                     onChoice={handleChoice}
@@ -465,12 +401,9 @@ export const Game: React.FC = () => {
                     onBack={handleBackToInput}
                     scenarioId={scenarioId}
                     images={isUserScenario ? userImages : undefined}
-                    hasVariants={Boolean(currentParagraph?.variants)}
-                    variantPathLength={game.state.variantPath.length}
                     accessibleFrom={
                       (currentParagraph?.accessibleFrom || []) as string[]
                     }
-                    onRefreshVariants={() => game.clearVariants()}
                     onNavigateToParagraph={handleChoice}
                     onShowDice={() => game.toggleDiceView()}
                     onShowAlphabet={() => game.toggleAlphabetView()}

@@ -14,15 +14,12 @@ interface ParagraphViewProps {
   paragraph: Paragraph;
   currentParagraphId: string;
   lastDiceResult: number | null;
-  onChoice: (nextId: string | undefined, isVariant?: boolean) => void;
+  onChoice: (nextId: string | undefined) => void;
   onJumpToParagraph: (value: string) => string | null;
   onBack: () => void;
   scenarioId?: string;
   images?: Record<string, string>;
-  hasVariants?: boolean;
-  variantPathLength?: number;
   accessibleFrom?: string[];
-  onRefreshVariants?: () => void;
   onNavigateToParagraph?: (paragraphId: string) => void;
   onShowDice?: () => void;
   onShowAlphabet?: () => void;
@@ -63,10 +60,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   onBack,
   scenarioId,
   images,
-  hasVariants = false,
-  variantPathLength = 0,
   accessibleFrom = [],
-  onRefreshVariants,
   onNavigateToParagraph,
   onShowDice,
   onShowAlphabet,
@@ -108,21 +102,15 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
   // Show input only on last page of dead-end paragraphs.
   const showDeadEndInput = isDeadEnd && currentPage === maxPage;
 
-  // Separate variant choices (horizontal/within frame) from regular choices
-  // Top-level paragraphs: horizontal when they have variants
-  // Nested variants: horizontal when explicitly marked with areChoicesHorizontal
-  const isHorizontal = !!paragraph.variants || !!paragraph.areChoicesHorizontal;
-  const variantChoices = isHorizontal ? paragraph.choices || [] : [];
+  // Horizontal choices layout when explicitly marked via areChoicesHorizontal
+  const isHorizontal = !!paragraph.areChoicesHorizontal;
+  const horizontalChoices = isHorizontal ? paragraph.choices || [] : [];
   const regularChoices = isHorizontal ? [] : paragraph.choices || [];
 
   return (
     <>
       <ParagraphNavigation
-        currentParagraphId={currentParagraphId}
-        hasVariants={hasVariants}
-        variantPathLength={variantPathLength}
         accessibleFrom={accessibleFrom}
-        onRefreshVariants={onRefreshVariants}
         onBackToAlphabet={onBackToAlphabet}
         onNavigateToParagraph={onNavigateToParagraph}
         onBack={onBack}
@@ -200,7 +188,7 @@ export const ParagraphView: React.FC<ParagraphViewProps> = ({
         )}
 
         <ChoicesSection
-          choices={variantChoices}
+          choices={horizontalChoices}
           isHorizontal={true}
           hasPages={hasPages}
           currentPage={currentPage}

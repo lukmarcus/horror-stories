@@ -12,7 +12,7 @@ interface ChoicesSectionProps {
   maxPage: number;
   scenarioId?: string;
   images?: Record<string, string>;
-  onChoice: (nextId: string | undefined, isVariant?: boolean) => void;
+  onChoice: (nextId: string | undefined) => void;
   onBack: () => void;
 }
 
@@ -55,10 +55,8 @@ export const ChoicesSection: React.FC<ChoicesSectionProps> = ({
             <ConditionalChoice
               key={choiceKey}
               choice={choice}
-              onYes={() =>
-                choice.yesNextId && onChoice(choice.yesNextId, false)
-              }
-              onNo={() => choice.noNextId && onChoice(choice.noNextId, false)}
+              onYes={() => choice.yesNextId && onChoice(choice.yesNextId)}
+              onNo={() => choice.noNextId && onChoice(choice.noNextId)}
             />
           );
         }
@@ -69,10 +67,8 @@ export const ChoicesSection: React.FC<ChoicesSectionProps> = ({
             variant="primary"
             size="lg"
             onClick={() => {
-              if (choice.nextVariantId) {
-                onChoice(choice.nextVariantId, true);
-              } else if (choice.nextParagraphId) {
-                onChoice(choice.nextParagraphId, false);
+              if (choice.nextParagraphId) {
+                onChoice(choice.nextParagraphId);
               } else {
                 // No next pointer at all (or explicitly "") - leads nowhere.
                 onBack();

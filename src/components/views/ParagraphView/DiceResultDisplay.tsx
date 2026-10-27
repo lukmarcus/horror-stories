@@ -6,7 +6,7 @@ interface DiceResultDisplayProps {
   diceResult: DiceResult;
   lastDiceResult: number;
   isDiceRollSuccess: boolean;
-  onChoice: (nextId: string | undefined, isVariant?: boolean) => void;
+  onChoice: (nextId: string | undefined) => void;
 }
 
 export const DiceResultDisplay: React.FC<DiceResultDisplayProps> = ({
@@ -24,7 +24,6 @@ export const DiceResultDisplay: React.FC<DiceResultDisplayProps> = ({
             isDiceRollSuccess
               ? diceResult.successNextId
               : diceResult.failNextId,
-            false,
           )
         }
         aria-label="Przejść do następnego paragrafu"
