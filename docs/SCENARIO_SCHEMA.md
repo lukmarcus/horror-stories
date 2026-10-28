@@ -18,9 +18,6 @@ export interface Paragraph {
   // Nawigacja
   choices?: Choice[];
 
-  // Warianty (v0.0.12+)
-  variants?: Record<string, Paragraph>;
-
   // Media
   image?: string; // URL obrazu paragrafu
   audio?: string;
@@ -69,7 +66,6 @@ export interface Choice {
   id: string; // Wymagane unikatowe ID
   text?: string; // Tekst przycisku
   nextParagraphId?: string; // Przejdź do paragrafu
-  nextVariantId?: string; // Wejdź w wariant
 
   // Wybory warunkowe
   isConditional?: boolean;
@@ -144,45 +140,6 @@ export interface DiceResult {
 }
 ```
 
-### Variant Paragraph (v0.0.12+)
-
-```json
-{
-  "id": "9",
-  "pages": [[{ "text": "Którą postacią jesteś?" }]],
-  "choices": [
-    {
-      "text": "Jessica",
-      "nextVariantId": "jessica"
-    },
-    {
-      "text": "Patrick",
-      "nextVariantId": "patrick"
-    }
-  ],
-  "variants": {
-    "jessica": {
-      "pages": [[{ "text": "Poznałaś Patrick'a na imprezie." }]],
-      "choices": [
-        {
-          "text": "Idę do kuchni",
-          "nextParagraphId": "26"
-        }
-      ]
-    },
-    "patrick": {
-      "pages": [[{ "text": "Głowa ta nie daje Ci żyć." }]],
-      "choices": [
-        {
-          "text": "Idę do kuchni",
-          "nextParagraphId": "26"
-        }
-      ]
-    }
-  }
-}
-```
-
 ### Paragraph with Images & Rich Text
 
 ```json
@@ -204,40 +161,28 @@ export interface DiceResult {
 }
 ```
 
-### Nested Variants
+### Paragraph-dziecko z literowym sufiksem (od v0.4.1)
+
+Paragrafy, które wcześniej były wariantami tego samego ID (np. zależnie od wybranej postaci), są teraz zwykłymi, osobnymi paragrafami z ID rodzica + literą. Dostępność ograniczona przez `accessibleFrom`, a układ poziomy przez `areChoicesHorizontal` na rodzicu:
 
 ```json
 {
   "id": "9",
-  "pages": [[{ "text": "Wybierz postać" }]],
+  "pages": [[{ "text": "Którą postacią jesteś?" }]],
+  "areChoicesHorizontal": true,
   "choices": [
-    {
-      "text": "Jessica",
-      "nextVariantId": "jessica"
-    }
-  ],
-  "variants": {
-    "jessica": {
-      "pages": [[{ "text": "Jessica view" }]],
-      "choices": [
-        {
-          "text": "Detale",
-          "nextVariantId": "jessica-detail"
-        }
-      ],
-      "variants": {
-        "jessica-detail": {
-          "pages": [[{ "text": "Jessica detailed view" }]],
-          "choices": [
-            {
-              "text": "Wróć do wyboru",
-              "nextParagraphId": "26"
-            }
-          ]
-        }
-      }
-    }
-  }
+    { "text": "Jessica", "nextParagraphId": "9j" },
+    { "text": "Patrick", "nextParagraphId": "9p" }
+  ]
+}
+```
+
+```json
+{
+  "id": "9j",
+  "accessibleFrom": ["9"],
+  "pages": [[{ "text": "Poznałaś Patrick'a na imprezie." }]],
+  "choices": [{ "text": "Idę do kuchni", "nextParagraphId": "26" }]
 }
 ```
 
@@ -365,40 +310,46 @@ Opcjonalny plik z krokami przygotowania wyświetlanymi przed startem gry.
 | ------- | --------------------------------------------- | ------------------------------------------- |
 | v0.0.9  | Initial format                                | `"text": "..."`                             |
 | v0.0.10 | Multi-page, Rich text                         | `"contentPages": [[...]]`                   |
-| v0.0.12 | Variants, Reset display                       | `"variants": {...}`                         |
+| v0.0.12 | Variants, Reset display (usunięte w v0.4.1/v0.4.2) | `"variants": {...}`                         |
 | v0.1.0  | DiceResult, content (single-page)             | `"hasDiceRoll": true`                       |
 | v0.1.1  | id jako tablica, isConditional                | `"id": ["5", "6"]`, `"isConditional": true` |
 | v0.2.9  | letters.json, setup.json                      | żetony alfabetu, kroki przygotowania        |
 | v0.2.11 | pages (zamiast contentPages), spacing control | `"pages": [[...]]`, `"spacing": "none"`     |
 | v0.3.3  | Karty (`<card>`), setup.json używa `pages`    | `<card id="krwawienie"/>`                   |
+| v0.4.1  | Warianty spłaszczone na paragrafy-rodzeństwo z literą | `"id": "9j"`, `"accessibleFrom": ["9"]`      |
 
 ## Best Practices
 
 1. **Unique IDs** - Każdy paragraf ma unikatowe ID
 2. **Proper linking** - Wszystkie nextParagraphId istnieją
 3. **Back navigation** - accessibleFrom dla niedostępnych paragrafów
-4. **Variant structure** - Zagniezdzony warianty z variant content
+4. **Paragraph-dzieci z literą** - zależne od wyboru paragrafy jako osobne ID rodzic+litera (np. `9j`), z `accessibleFrom` wskazującym rodzica
 5. **Content organization** - Logiczne podziały na stron
 
 ## Migration Guide
 
-### v0.0.10→v0.0.12 (Text Format)
+### v0.4.0→v0.4.1 (Warianty → Paragrafy-rodzeństwo)
 
 ```json
-// Stare (v0.0.10)
-{
-  "id": "9-jessica",
-  "text": "Jessica story"
-}
-
-// Nowe (v0.0.12) - warianty wewnątrz paragrafu
+// Stare (przed v0.4.1) - warianty wewnątrz paragrafu
 {
   "id": "9",
+  "choices": [{ "text": "Jessica", "nextVariantId": "jessica" }],
   "variants": {
-    "jessica": {
-      "text": "Jessica story"
-    }
+    "jessica": { "text": "Jessica story" }
   }
+}
+
+// Nowe (v0.4.1+) - osobny paragraf rodzic + litera
+{
+  "id": "9",
+  "areChoicesHorizontal": true,
+  "choices": [{ "text": "Jessica", "nextParagraphId": "9j" }]
+}
+{
+  "id": "9j",
+  "accessibleFrom": ["9"],
+  "text": "Jessica story"
 }
 ```
 

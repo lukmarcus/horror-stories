@@ -24,11 +24,11 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 - ✅ Auto-tworzenie dzieci z literą — rozszerzyć istniejące auto-tworzenie paragrafu (przy wpisaniu nieistniejącego ID w polu wyboru) o auto-sugestię kolejnej wolnej litery (100 → zaproponuj 100a)
 - ✅ Uproszczenie `useGame.ts`/`Game.tsx` — usunięcie `variantPath`/`ADD_VARIANT`/`CLEAR_VARIANTS` i przycisku "↻ Odśwież warianty"
 - ✅ Przepisanie/usunięcie testów związanych z wariantami: `variantReducer`, `useGame.test.ts` (variantPath), `Game.e2e.test.tsx`, `EditorContext.test.ts`
-- ⏳ Aktualizacja dokumentacji: `SCENARIO_SCHEMA.md` (sekcje "Variant Paragraph"/"Nested Variants"), `ADDING_SCENARIO.md`, `TESTING_GUIDE.md` (wiersz "Variant System")
+- ✅ Aktualizacja dokumentacji: `SCENARIO_SCHEMA.md` (sekcje "Variant Paragraph"/"Nested Variants"), `ADDING_SCENARIO.md`, `TESTING_GUIDE.md` (wiersz "Variant System")
 
 ### Status
 
-- ⏳ Planowane
+- ✅ Zakończone
 
 ---
 

@@ -257,7 +257,7 @@ npm run dev
 **Test specjalnych mechanik:**
 
 - [ ] **Rzuty kostką** (jeśli są): próg działa, success/fail prowadzą do właściwych §
-- [ ] **Warianty** (jeśli są): selektory działają, warianty się przełączają
+- [ ] **Paragrafy-dzieci z literą** (jeśli są, np. `9j`): przełącznik układu poziomego działa, `accessibleFrom` prowadzi z powrotem do rodzica
 - [ ] **Żetony alfabetu** (jeśli są): kliknięcie prowadzi do właściwego §
 - [ ] **Conditional choices** (jeśli są): Yes/No prowadzą do właściwych §
 - [ ] **Back buttons** (accessibleFrom): działają dla paragrafów z wieloma wejściami
