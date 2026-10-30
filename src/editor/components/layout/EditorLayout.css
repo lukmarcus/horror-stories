@@ -143,11 +143,6 @@
 .editor-sidebar__paragraph-row {
   display: flex;
   align-items: center;
-  gap: 0.1rem;
-}
-
-.editor-sidebar__paragraph-row--child {
-  padding-left: 1.1rem;
 }
 
 .editor-sidebar__paragraph-row .editor-sidebar__paragraph {
@@ -155,20 +150,37 @@
   min-width: 0;
 }
 
-.editor-sidebar__group-toggle {
+.editor-sidebar__paragraph-row--child .editor-sidebar__paragraph {
+  margin-left: 0.75rem;
+}
+
+.editor-sidebar__group-gutter {
   flex-shrink: 0;
-  width: 1.1rem;
+  width: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-sidebar__group-toggle {
+  width: 1.25rem;
+  height: 1.25rem;
   padding: 0;
   border: none;
+  border-radius: 3px;
   background: none;
   color: #888;
-  font-size: 0.7rem;
-  cursor: pointer;
+  font-size: 0.8rem;
   line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .editor-sidebar__group-toggle:hover {
   color: #ccc;
+  background: #222;
 }
 
 .editor-sidebar__add-row {

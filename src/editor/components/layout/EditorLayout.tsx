@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEditor } from "../../context/useEditor";
-import { sortParagraphIds, groupParagraphEntries } from "../../utils/editorUtils";
+import {
+  sortParagraphIds,
+  groupParagraphEntries,
+} from "../../utils/editorUtils";
 import "./EditorLayout.css";
 
 interface EditorLayoutProps {
@@ -179,9 +182,7 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
           {groupedEntries
             .filter(
               (g) =>
-                !g.isChild ||
-                !g.parentId ||
-                !collapsedGroups.has(g.parentId),
+                !g.isChild || !g.parentId || !collapsedGroups.has(g.parentId),
             )
             .map(({ entry: { id, primaryId, isAlias }, isChild }) => (
               <div
@@ -190,19 +191,21 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({
                   isChild ? "editor-sidebar__paragraph-row--child" : ""
                 }`}
               >
-                {!isChild && groupsWithChildren.has(id) && (
-                  <button
-                    className="editor-sidebar__group-toggle"
-                    aria-label={
-                      collapsedGroups.has(id)
-                        ? `Rozwiń podparagrafy §${id}`
-                        : `Zwiń podparagrafy §${id}`
-                    }
-                    onClick={() => toggleGroup(id)}
-                  >
-                    {collapsedGroups.has(id) ? "▸" : "▾"}
-                  </button>
-                )}
+                <span className="editor-sidebar__group-gutter">
+                  {!isChild && groupsWithChildren.has(id) && (
+                    <button
+                      className="editor-sidebar__group-toggle"
+                      aria-label={
+                        collapsedGroups.has(id)
+                          ? `Rozwiń podparagrafy §${id}`
+                          : `Zwiń podparagrafy §${id}`
+                      }
+                      onClick={() => toggleGroup(id)}
+                    >
+                      {collapsedGroups.has(id) ? "▶" : "▼"}
+                    </button>
+                  )}
+                </span>
                 <button
                   className={`editor-sidebar__paragraph ${
                     activeSection === id

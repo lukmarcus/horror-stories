@@ -28,7 +28,7 @@ Projekt Horror Stories - Aplikacja towarzysząca grze planszowej.
 
 **Poprawki po manualnym testowaniu:**
 
-- ⏳ Sidebar — wizualna poprawka zwijania grup: stały "gutter" (np. 1.25rem) na toggle dla każdego wiersza (pusty gdy brak dzieci), żeby rodzic i zwykłe paragrafy miały tekst na tej samej linii bazowej; wcięcie dzieci liczone dodatkowo od tej linii; większy/czytelniejszy symbol toggle (dziś wygląda jak kropka)
+- ✅ Sidebar — wizualna poprawka zwijania grup: stały "gutter" (np. 1.25rem) na toggle dla każdego wiersza (pusty gdy brak dzieci), żeby rodzic i zwykłe paragrafy miały tekst na tej samej linii bazowej; wcięcie dzieci liczone dodatkowo od tej linii; większy/czytelniejszy symbol toggle (dziś wygląda jak kropka)
 - ⏳ Sugestia nowej litery — przypięcie do aktualnie edytowanego paragrafu zamiast parsowania wpisanego tekstu: zawsze pierwsza/przypięta pozycja na liście, widoczna od razu po kliknięciu w pole, dziecko zawsze dla bieżącego paragrafu (nie dla innego, nawet jeśli jego numer pasuje do wpisanego substringu)
 
 ### Status
