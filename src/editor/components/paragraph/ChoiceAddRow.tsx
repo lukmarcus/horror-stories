@@ -9,6 +9,8 @@ export interface ChoiceAddRowProps {
   prefixLabel: string;
   /** Autocomplete options for the target input */
   targetList: string[];
+  /** ID of the paragraph currently being edited — letter suggestion is always a child of this one */
+  currentParagraphId?: string;
   /** When true, disables + Dodaj if the target field is empty */
   requireTarget?: boolean;
   /** Button title for the + Dodaj button */
@@ -21,6 +23,7 @@ export const ChoiceAddRow: React.FC<ChoiceAddRowProps> = ({
   placeholder = "Tekst nowego wyboru",
   prefixLabel,
   targetList,
+  currentParagraphId,
   requireTarget = false,
   addButtonTitle = "Dodaj wybór",
   onAdd,
@@ -40,10 +43,12 @@ export const ChoiceAddRow: React.FC<ChoiceAddRowProps> = ({
   };
 
   const baseOptions = filterIds(target, targetList);
-  const suggestion = suggestNextLetterChild(target.trim(), targetList);
+  const suggestion = currentParagraphId
+    ? suggestNextLetterChild(currentParagraphId, targetList)
+    : null;
   const options =
     suggestion && !baseOptions.includes(suggestion)
-      ? [...baseOptions, suggestion]
+      ? [suggestion, ...baseOptions]
       : baseOptions;
 
   return (

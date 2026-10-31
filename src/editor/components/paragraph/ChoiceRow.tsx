@@ -6,6 +6,8 @@ import { ChoiceTextInput } from "./ChoiceTextInput";
 export interface ChoiceRowProps {
   choice: EditorChoice;
   paragraphIds: string[];
+  /** ID of the paragraph currently being edited — letter suggestion is always a child of this one */
+  currentParagraphId?: string;
   focusedId: string | null;
   setFocusedId: (id: string | null) => void;
   onUpdate: (choice: EditorChoice) => void;
@@ -15,6 +17,7 @@ export interface ChoiceRowProps {
 export const ChoiceRow: React.FC<ChoiceRowProps> = ({
   choice,
   paragraphIds,
+  currentParagraphId,
   focusedId,
   setFocusedId,
   onUpdate,
@@ -29,10 +32,12 @@ export const ChoiceRow: React.FC<ChoiceRowProps> = ({
 
   const dropdownKey = `${choice.id}-target`;
   const baseOptions = filterIds(targetValue, paragraphIds);
-  const suggestion = suggestNextLetterChild(targetValue.trim(), paragraphIds);
+  const suggestion = currentParagraphId
+    ? suggestNextLetterChild(currentParagraphId, paragraphIds)
+    : null;
   const options =
     suggestion && !baseOptions.includes(suggestion)
-      ? [...baseOptions, suggestion]
+      ? [suggestion, ...baseOptions]
       : baseOptions;
 
   return (

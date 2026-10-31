@@ -92,6 +92,7 @@ export const SimpleModeEditor: React.FC<SimpleModeEditorProps> = ({
             key={choice.id}
             choice={choice}
             paragraphIds={availableIds}
+            currentParagraphId={paragraphId}
             focusedId={focusedTargetId}
             setFocusedId={setFocusedTargetId}
             onUpdate={onUpdateChoice}
@@ -102,6 +103,7 @@ export const SimpleModeEditor: React.FC<SimpleModeEditorProps> = ({
         <ChoiceAddRow
           prefixLabel="§"
           targetList={availableIds}
+          currentParagraphId={paragraphId}
           onAdd={onAddChoice}
         />
       </div>
