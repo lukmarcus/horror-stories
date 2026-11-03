@@ -7,7 +7,6 @@ import type {
 import type { ContentBlock } from "../../types";
 import { DEATH_PARAGRAPH, ensureDeath } from "./reducers/reducerUtils";
 import { paragraphReducer } from "./reducers/paragraphReducer";
-import { variantReducer } from "./reducers/variantReducer";
 import { letterReducer } from "./reducers/letterReducer";
 import { personReducer } from "./reducers/personReducer";
 import { setupReducer } from "./reducers/setupReducer";
@@ -133,7 +132,6 @@ export function editorReducer(
   // ── Domain reducers ───────────────────────────────────────────────────────
   return [
     paragraphReducer,
-    variantReducer,
     letterReducer,
     personReducer,
     setupReducer,

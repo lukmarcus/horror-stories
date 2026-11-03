@@ -2,7 +2,6 @@ import { useReducer } from "react";
 
 export interface GameState {
   currentParagraphId: string | null;
-  variantPath: string[]; // Path of variant choices (for cumulative content)
   inputValue: string;
   showSetup: boolean;
   currentSetupStep: number;
@@ -22,8 +21,6 @@ export interface GameState {
 export type GameAction =
   | { type: "SET_PARAGRAPH"; payload: string | null }
   | { type: "SET_PARAGRAPH_FROM_ALPHABET"; payload: string }
-  | { type: "ADD_VARIANT"; payload: string } // Append variant to path
-  | { type: "CLEAR_VARIANTS" } // Reset variant path
   | { type: "SET_INPUT"; payload: string }
   | { type: "SET_ERROR"; payload: string }
   | { type: "CLEAR_ERROR" }
@@ -45,7 +42,6 @@ export type GameAction =
 
 export const initialState: GameState = {
   currentParagraphId: null,
-  variantPath: [],
   inputValue: "",
   showSetup: false,
   currentSetupStep: 0,
@@ -68,7 +64,6 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       return {
         ...state,
         currentParagraphId: action.payload,
-        variantPath: [],
         error: "",
         fromAlphabet: false,
       };
@@ -76,14 +71,9 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       return {
         ...state,
         currentParagraphId: action.payload,
-        variantPath: [],
         error: "",
         fromAlphabet: true,
       };
-    case "ADD_VARIANT":
-      return { ...state, variantPath: [...state.variantPath, action.payload] };
-    case "CLEAR_VARIANTS":
-      return { ...state, variantPath: [] };
     case "SET_INPUT":
       return { ...state, inputValue: action.payload };
     case "SET_ERROR":
@@ -141,8 +131,6 @@ interface UseGameReturn {
   dispatch: React.Dispatch<GameAction>;
   setParagraph: (id: string | null) => void;
   setParagraphFromAlphabet: (id: string) => void;
-  addVariant: (id: string) => void;
-  clearVariants: () => void;
   setInput: (value: string) => void;
   setError: (error: string) => void;
   clearError: () => void;
@@ -174,8 +162,6 @@ export function useGame(): UseGameReturn {
       dispatch({ type: "SET_PARAGRAPH", payload: id }),
     setParagraphFromAlphabet: (id: string) =>
       dispatch({ type: "SET_PARAGRAPH_FROM_ALPHABET", payload: id }),
-    addVariant: (id: string) => dispatch({ type: "ADD_VARIANT", payload: id }),
-    clearVariants: () => dispatch({ type: "CLEAR_VARIANTS" }),
     setInput: (value: string) =>
       dispatch({ type: "SET_INPUT", payload: value }),
     setError: (error: string) =>

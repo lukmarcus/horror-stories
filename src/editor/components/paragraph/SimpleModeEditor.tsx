@@ -15,6 +15,7 @@ interface SimpleModeEditorProps {
   onAddChoice: (text: string, target: string) => void;
   onSetText: (text: string) => void;
   onConvertToPages: () => void;
+  onToggleHorizontal: (value: boolean) => void;
 }
 
 export const SimpleModeEditor: React.FC<SimpleModeEditorProps> = ({
@@ -28,10 +29,12 @@ export const SimpleModeEditor: React.FC<SimpleModeEditorProps> = ({
   onAddChoice,
   onSetText,
   onConvertToPages,
+  onToggleHorizontal,
 }) => {
   const text = paragraph.text ?? "";
   const pages = paragraph.pages ?? null;
   const hasPages = pages !== null;
+  const isHorizontal = !!paragraph.areChoicesHorizontal;
 
   return (
     <>
@@ -69,13 +72,27 @@ export const SimpleModeEditor: React.FC<SimpleModeEditorProps> = ({
       )}
 
       <div className="editor-paragraph-view__choices">
-        <h3 className="editor-paragraph-view__label">Wybory</h3>
+        <div className="editor-paragraph-view__choices-heading-row">
+          <h3 className="editor-paragraph-view__label">Wybory</h3>
+          <button
+            className={`editor-paragraph-view__layout-btn${isHorizontal ? " editor-paragraph-view__layout-btn--active" : ""}`}
+            onClick={() => onToggleHorizontal(!isHorizontal)}
+            title={
+              isHorizontal
+                ? "Pionowe wybory (kliknij)"
+                : "Poziome wybory (kliknij)"
+            }
+          >
+            {isHorizontal ? "→ Poziome" : "↓ Pionowe"}
+          </button>
+        </div>
 
         {(paragraph.choices ?? []).map((choice) => (
           <ChoiceRow
             key={choice.id}
             choice={choice}
             paragraphIds={availableIds}
+            currentParagraphId={paragraphId}
             focusedId={focusedTargetId}
             setFocusedId={setFocusedTargetId}
             onUpdate={onUpdateChoice}
@@ -86,6 +103,7 @@ export const SimpleModeEditor: React.FC<SimpleModeEditorProps> = ({
         <ChoiceAddRow
           prefixLabel="§"
           targetList={availableIds}
+          currentParagraphId={paragraphId}
           onAdd={onAddChoice}
         />
       </div>

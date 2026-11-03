@@ -5,39 +5,30 @@ import "./EditorParagraphView.css";
 interface ParagraphHeaderProps {
   paragraphId: string;
   paragraph: EditorParagraph;
-  isVariantMode: boolean;
   isDeath: boolean;
   incomingFrom: string[];
   paragraphLetter: string | null;
-  variantIds: string[]; // List of variant IDs
   onNavigate: (id: string) => void;
   onNavigateToLetters?: () => void;
   onRemove: (id: string) => void;
   onAddAlias: (alias: string) => string | null; // Returns error message or null on success
   onRemoveAlias: (alias: string) => void;
-  onSwitchToSimple: () => void;
-  onSwitchToVariant: () => void;
 }
 
 export const ParagraphHeader: React.FC<ParagraphHeaderProps> = ({
   paragraphId,
   paragraph,
-  isVariantMode,
   isDeath,
   incomingFrom,
   paragraphLetter,
-  variantIds,
   onNavigate,
   onNavigateToLetters,
   onRemove,
   onAddAlias,
   onRemoveAlias,
-  onSwitchToSimple,
-  onSwitchToVariant,
 }) => {
   const [newAlias, setNewAlias] = useState("");
   const [aliasError, setAliasError] = useState("");
-  const [confirmSwitchSimple, setConfirmSwitchSimple] = useState(false);
   const [confirmDeleteParagraph, setConfirmDeleteParagraph] = useState(false);
 
   const handleAddAlias = () => {
@@ -136,52 +127,6 @@ export const ParagraphHeader: React.FC<ParagraphHeaderProps> = ({
         )}
       </div>
       <div className="editor-paragraph-view__header-right">
-        <div className="editor-paragraph-view__mode-toggle">
-          <button
-            className={`editor-paragraph-view__mode-btn${!isVariantMode ? " editor-paragraph-view__mode-btn--active" : ""}`}
-            onClick={
-              isVariantMode
-                ? () => {
-                    if (variantIds.length > 0) {
-                      setConfirmSwitchSimple(true);
-                    } else {
-                      onSwitchToSimple();
-                    }
-                  }
-                : undefined
-            }
-            disabled={!isVariantMode}
-          >
-            Prosty
-          </button>
-          <button
-            className={`editor-paragraph-view__mode-btn${isVariantMode ? " editor-paragraph-view__mode-btn--active" : ""}`}
-            onClick={!isVariantMode ? onSwitchToVariant : undefined}
-            disabled={isVariantMode}
-          >
-            Wariantowy
-          </button>
-        </div>
-        {confirmSwitchSimple && (
-          <span className="editor-paragraph-view__inline-confirm">
-            <span>Usunąć wszystkie warianty?</span>
-            <button
-              className="editor-paragraph-view__inline-confirm-yes"
-              onClick={() => {
-                setConfirmSwitchSimple(false);
-                onSwitchToSimple();
-              }}
-            >
-              Tak
-            </button>
-            <button
-              className="editor-paragraph-view__inline-confirm-no"
-              onClick={() => setConfirmSwitchSimple(false)}
-            >
-              Anuluj
-            </button>
-          </span>
-        )}
         {confirmDeleteParagraph ? (
           <span className="editor-paragraph-view__inline-confirm">
             <span>Usunąć §{paragraphId}?</span>

@@ -363,160 +363,6 @@ describe("EditorParagraphView", () => {
     });
   });
 
-  describe("Mode toggle", () => {
-    it("starts in simple mode by default", () => {
-      const scenario = createMockScenario([{ id: "10", text: "Test" }]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const simpleBtn = screen.getByRole("button", { name: "Prosty" });
-      expect(simpleBtn.className).toContain(
-        "editor-paragraph-view__mode-btn--active",
-      );
-    });
-
-    it("switches to variant mode when button clicked", async () => {
-      const user = userEvent.setup();
-      const scenario = createMockScenario([{ id: "10", text: "Test" }]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const variantBtn = screen.getByRole("button", { name: "Wariantowy" });
-      await user.click(variantBtn);
-
-      expect(mockDispatch).toHaveBeenCalledWith({
-        type: "ENABLE_VARIANT_MODE",
-        payload: "10",
-      });
-    });
-
-    it("shows confirmation when switching from variant mode with variants", async () => {
-      const user = userEvent.setup();
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "Test",
-          variants: { "variant-1": { pages: [[]] } },
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const simpleBtn = screen.getByRole("button", { name: "Prosty" });
-      await user.click(simpleBtn);
-
-      expect(screen.getByText("Usunąć wszystkie warianty?")).toBeDefined();
-    });
-
-    it("confirms switch to simple mode", async () => {
-      const user = userEvent.setup();
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "Test",
-          variants: { "variant-1": { pages: [[]] } },
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const simpleBtn = screen.getByRole("button", { name: "Prosty" });
-      await user.click(simpleBtn);
-
-      const confirmBtn = screen.getByRole("button", { name: "Tak" });
-      await user.click(confirmBtn);
-
-      expect(mockDispatch).toHaveBeenCalledWith({
-        type: "DISABLE_VARIANT_MODE",
-        payload: "10",
-      });
-    });
-
-    it("cancels switch to simple mode", async () => {
-      const user = userEvent.setup();
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "Test",
-          variants: { "variant-1": { pages: [[]] } },
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const simpleBtn = screen.getByRole("button", { name: "Prosty" });
-      await user.click(simpleBtn);
-
-      const cancelBtn = screen.getByRole("button", { name: "Anuluj" });
-      await user.click(cancelBtn);
-
-      expect(mockDispatch).not.toHaveBeenCalledWith(
-        expect.objectContaining({ type: "DISABLE_VARIANT_MODE" }),
-      );
-      expect(screen.queryByText("Usunąć wszystkie warianty?")).toBeNull();
-    });
-
-    it("switches to simple mode directly when no variants", async () => {
-      const user = userEvent.setup();
-      const scenario = createMockScenario([
-        { id: "10", text: "Test", variants: {} },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const simpleBtn = screen.getByRole("button", { name: "Prosty" });
-      await user.click(simpleBtn);
-
-      expect(mockDispatch).toHaveBeenCalledWith({
-        type: "DISABLE_VARIANT_MODE",
-        payload: "10",
-      });
-      expect(screen.queryByText("Usunąć wszystkie warianty?")).toBeNull();
-    });
-  });
-
   describe("Paragraph deletion", () => {
     it("shows confirmation when delete button clicked", async () => {
       const user = userEvent.setup();
@@ -777,71 +623,10 @@ describe("EditorParagraphView", () => {
       // ChoiceAddRow component tested separately - just verify it's present
       expect(screen.getByText("Wybory")).toBeDefined();
     });
-  });
 
-  describe("Variant mode - intro content", () => {
-    it("renders PagesEditor with singlePage for intro", () => {
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "",
-          variants: { var1: { pages: [[]] } },
-          pages: [[{ type: "text", text: "Intro text" }]],
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      expect(screen.getByText("Treść wprowadzająca")).toBeDefined();
-    });
-  });
-
-  describe("Variant mode - selectors", () => {
-    it("renders list of variant selectors", () => {
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "",
-          variants: { var1: { pages: [[]] } },
-          variantSelectors: [
-            { id: "s1", text: "Select Variant 1", nextVariantId: "var1" },
-          ],
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      expect(
-        screen.getByText("Selektor wariantów (→ poziome przyciski)"),
-      ).toBeDefined();
-    });
-
-    it("updates selector text when changed", async () => {
+    it("dispatches SET_PARAGRAPH_HORIZONTAL when layout toggle clicked", async () => {
       const user = userEvent.setup();
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "",
-          variants: { var1: { pages: [[]] } },
-          variantSelectors: [
-            { id: "s1", text: "Old text", nextVariantId: "var1" },
-          ],
-        },
-      ]);
+      const scenario = createMockScenario([{ id: "10", text: "Test" }]);
 
       renderWithEditor(
         <EditorParagraphView
@@ -852,97 +637,18 @@ describe("EditorParagraphView", () => {
         scenario,
       );
 
-      const textInput = screen.getByPlaceholderText("Tekst przycisku");
-      await user.clear(textInput);
-      await user.type(textInput, "New text");
-
-      expect(mockDispatch).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: "UPDATE_VARIANT_SELECTOR",
-          payload: expect.objectContaining({
-            paragraphId: "10",
-            choice: expect.objectContaining({ text: expect.any(String) }),
-          }),
-        }),
-      );
-    });
-
-    it("shows dropdown when variant target input focused", () => {
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "",
-          variants: { var1: { pages: [[]] }, var2: { pages: [[]] } },
-          variantSelectors: [{ id: "s1", text: "Select", nextVariantId: "" }],
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const targetInputs = screen.getAllByPlaceholderText("?");
-      const targetInput = targetInputs[targetInputs.length - 1];
-
-      // Focus the input by typing (more reliable than click for focus)
-      targetInput.focus();
-
-      // Check if dropdown appears by looking for the dropdown container
-      const dropdown = document.querySelector(
-        ".editor-paragraph-view__choice-dropdown",
-      );
-      expect(dropdown).toBeDefined();
-
-      // Verify dropdown has items
-      if (dropdown) {
-        expect(dropdown.textContent).toContain("W:var1");
-        expect(dropdown.textContent).toContain("W:var2");
-      }
-    });
-
-    it("removes selector when remove button clicked", async () => {
-      const user = userEvent.setup();
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "",
-          variants: { var1: { pages: [[]] } },
-          variantSelectors: [
-            { id: "s1", text: "Select", nextVariantId: "var1" },
-          ],
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const removeBtn = screen.getByTitle("Usuń przycisk");
-      await user.click(removeBtn);
+      const toggleBtn = screen.getByTitle("Poziome wybory (kliknij)");
+      await user.click(toggleBtn);
 
       expect(mockDispatch).toHaveBeenCalledWith({
-        type: "REMOVE_VARIANT_SELECTOR",
-        payload: { paragraphId: "10", choiceId: "s1" },
+        type: "SET_PARAGRAPH_HORIZONTAL",
+        payload: { id: "10", value: true },
       });
     });
 
-    it("renders ChoiceAddRow for adding selectors", () => {
+    it("shows active layout toggle when areChoicesHorizontal is true", () => {
       const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "",
-          variants: { var1: { pages: [[]] } },
-        },
+        { id: "10", text: "Test", areChoicesHorizontal: true },
       ]);
 
       renderWithEditor(
@@ -954,151 +660,10 @@ describe("EditorParagraphView", () => {
         scenario,
       );
 
-      // ChoiceAddRow tested separately - verify presence
-      expect(
-        screen.getByText("Selektor wariantów (→ poziome przyciski)"),
-      ).toBeDefined();
-    });
-  });
-
-  describe("Variant mode - variants list", () => {
-    it("renders list of variants using VariantEditor", () => {
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "",
-          variants: {
-            var1: { pages: [[{ type: "text", text: "Variant 1" }]] },
-            var2: { pages: [[{ type: "text", text: "Variant 2" }]] },
-          },
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
+      const toggleBtn = screen.getByTitle("Pionowe wybory (kliknij)");
+      expect(toggleBtn.className).toContain(
+        "editor-paragraph-view__layout-btn--active",
       );
-
-      expect(screen.getByText("Warianty")).toBeDefined();
-      // VariantEditor component tested separately
-    });
-
-    it('shows "Brak wariantów" when no variants exist', () => {
-      const scenario = createMockScenario([
-        { id: "10", text: "", variants: {} },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      expect(
-        screen.getByText("Brak wariantów — dodaj pierwszy poniżej."),
-      ).toBeDefined();
-    });
-
-    it("adds new variant when button clicked", async () => {
-      const user = userEvent.setup();
-      const scenario = createMockScenario([
-        { id: "10", text: "", variants: {} },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const input = screen.getByPlaceholderText("nazwa-nowego-wariantu");
-      await user.type(input, "new-variant");
-
-      const addBtn = screen.getByRole("button", { name: "+ Dodaj wariant" });
-      await user.click(addBtn);
-
-      expect(mockDispatch).toHaveBeenCalledWith({
-        type: "ADD_VARIANT",
-        payload: { paragraphId: "10", variantId: "new-variant" },
-      });
-    });
-
-    it("adds new variant when Enter pressed", async () => {
-      const user = userEvent.setup();
-      const scenario = createMockScenario([
-        { id: "10", text: "", variants: {} },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const input = screen.getByPlaceholderText("nazwa-nowego-wariantu");
-      await user.type(input, "another-variant{Enter}");
-
-      expect(mockDispatch).toHaveBeenCalledWith({
-        type: "ADD_VARIANT",
-        payload: { paragraphId: "10", variantId: "another-variant" },
-      });
-    });
-
-    it("normalizes variant ID to lowercase alphanumeric", async () => {
-      const user = userEvent.setup();
-      const scenario = createMockScenario([
-        { id: "10", text: "", variants: {} },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const input = screen.getByPlaceholderText(
-        "nazwa-nowego-wariantu",
-      ) as HTMLInputElement;
-      await user.type(input, "Test_Variant@123!");
-
-      // Input should filter out invalid characters (keeps only a-z0-9-)
-      expect(input.value).toBe("testvariant123");
-    });
-
-    it("disables add button when variant ID empty", () => {
-      const scenario = createMockScenario([
-        { id: "10", text: "", variants: {} },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      const addBtn = screen.getByRole("button", {
-        name: "+ Dodaj wariant",
-      }) as HTMLButtonElement;
-      expect(addBtn.disabled).toBe(true);
     });
   });
 
@@ -1123,6 +688,29 @@ describe("EditorParagraphView", () => {
 
       expect(screen.getByText("Podgląd")).toBeDefined();
       // PagesPreview component tested separately
+    });
+
+    it("renders choices horizontally in preview when areChoicesHorizontal is true", () => {
+      const scenario = createMockScenario([
+        {
+          id: "10",
+          text: "Test",
+          areChoicesHorizontal: true,
+          choices: [{ id: "c1", text: "Choice 1", nextParagraphId: "20" }],
+        },
+      ]);
+
+      renderWithEditor(
+        <EditorParagraphView
+          paragraphId="10"
+          onRemove={vi.fn()}
+          onNavigate={vi.fn()}
+        />,
+        scenario,
+      );
+
+      const fieldset = document.querySelector(".choices.choices--horizontal");
+      expect(fieldset).not.toBeNull();
     });
 
     it("shows text content split by lines when no pages", () => {
@@ -1209,58 +797,6 @@ describe("EditorParagraphView", () => {
       await user.click(choiceBtn);
 
       expect(onNavigate).toHaveBeenCalledWith("20");
-    });
-  });
-
-  describe("Preview - variant mode", () => {
-    it("shows intro PagesPreview and selector buttons", () => {
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "",
-          variants: { var1: { pages: [[]] } },
-          pages: [[{ type: "text", text: "Intro" }]],
-          variantSelectors: [
-            { id: "s1", text: "Select Variant", nextVariantId: "var1" },
-          ],
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      expect(screen.getAllByText("Podgląd").length).toBeGreaterThan(0);
-      const choicesFieldset = document.querySelector(
-        ".choices.choices--horizontal",
-      );
-      expect(choicesFieldset).toBeDefined();
-    });
-
-    it('shows "Brak treści wprowadzającej" when no intro pages', () => {
-      const scenario = createMockScenario([
-        {
-          id: "10",
-          text: "",
-          variants: { var1: { pages: [[]] } },
-        },
-      ]);
-
-      renderWithEditor(
-        <EditorParagraphView
-          paragraphId="10"
-          onRemove={vi.fn()}
-          onNavigate={vi.fn()}
-        />,
-        scenario,
-      );
-
-      expect(screen.getByText("Brak treści wprowadzającej")).toBeDefined();
     });
   });
 });

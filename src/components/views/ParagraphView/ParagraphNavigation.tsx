@@ -2,37 +2,20 @@ import React from "react";
 import { OptionButton } from "../../ui";
 
 interface ParagraphNavigationProps {
-  currentParagraphId: string;
-  hasVariants: boolean;
-  variantPathLength: number;
   accessibleFrom: string[];
-  onRefreshVariants?: () => void;
   onBackToAlphabet?: () => void;
   onNavigateToParagraph?: (paragraphId: string) => void;
   onBack: () => void;
 }
 
 export const ParagraphNavigation: React.FC<ParagraphNavigationProps> = ({
-  currentParagraphId,
-  hasVariants,
-  variantPathLength,
   accessibleFrom,
-  onRefreshVariants,
   onBackToAlphabet,
   onNavigateToParagraph,
   onBack,
 }) => {
   return (
     <nav className="game__content-nav">
-      {hasVariants && variantPathLength > 0 && onRefreshVariants && (
-        <OptionButton
-          icon="🔄"
-          line1="Odśwież"
-          line2={`#${currentParagraphId}`}
-          onClick={onRefreshVariants}
-        />
-      )}
-
       {onBackToAlphabet && (
         <OptionButton
           icon="◀️"

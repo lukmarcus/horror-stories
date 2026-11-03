@@ -237,6 +237,34 @@ h3.editor-paragraph-view__label {
   margin-top: 1.5rem;
 }
 
+.editor-paragraph-view__choices-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor-paragraph-view__layout-btn {
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: transparent;
+  color: #aaa;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.editor-paragraph-view__layout-btn:hover {
+  background: #2a2a2a;
+  color: #ccc;
+}
+
+.editor-paragraph-view__layout-btn--active {
+  background: #1e2a1e;
+  color: #7ec87e;
+  border-color: #3a5a3a;
+}
+
 .editor-paragraph-view__choice-row,
 .editor-paragraph-view__choice-add {
   display: flex;
@@ -310,6 +338,16 @@ h3.editor-paragraph-view__label {
 .editor-paragraph-view__choice-dropdown-item:hover {
   background: #3a3a3a;
   color: #fff;
+}
+
+.editor-paragraph-view__choice-dropdown-item--suggestion {
+  color: #7ec87e;
+  border-top: 1px solid #333;
+}
+
+.editor-paragraph-view__choice-dropdown-item--suggestion:hover {
+  background: #1e2a1e;
+  color: #9ee89e;
 }
 
 .editor-paragraph-view__choice-remove {
@@ -420,146 +458,12 @@ h3.editor-paragraph-view__label {
   border-color: #5a7aaa;
 }
 
-/* ── Mode toggle (Prosty / Wariantowy) ──────────────────────────────────────── */
+/* ── Header actions (right side) ──────────────────────────────────────────── */
 
 .editor-paragraph-view__header-right {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-
-.editor-paragraph-view__mode-toggle {
-  display: flex;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid #3a3a3a;
-}
-
-.editor-paragraph-view__mode-btn {
-  padding: 0.35rem 0.8rem;
-  border: none;
-  background: transparent;
-  color: #aaa;
-  font-size: 0.85rem;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.editor-paragraph-view__mode-btn:hover:not(:disabled) {
-  background: #2a2a2a;
-  color: #ccc;
-}
-
-.editor-paragraph-view__mode-btn--active {
-  background: #2a3e2a;
-  color: #7ec87e;
-  cursor: default;
-}
-
-/* ── Choice type toggle (§ / W) ──────────────────────────────────────────── */
-
-.editor-paragraph-view__choice-type-btn {
-  padding: 0.4rem 0.5rem;
-  border: 1px solid #555;
-  border-right: none;
-  border-radius: 4px 0 0 4px;
-  background: #222;
-  color: #aaa;
-  font-size: 0.85rem;
-  font-family: monospace;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  line-height: 1;
-}
-
-.editor-paragraph-view__choice-type-btn:hover {
-  background: #2a2a2a;
-  color: #ccc;
-}
-
-.editor-paragraph-view__choice-type-btn--variant {
-  background: #1e2a1e;
-  color: #7ec87e;
-  border-color: #3a5a3a;
-}
-
-.editor-paragraph-view__choice-target-prefix--variant {
-  background: #1e2a1e;
-  color: #7ec87e;
-  border-color: #3a5a3a;
-}
-
-/* Choice row spacing in variant mode — direct children of .editor (mirrors .choices gap in simple mode) */
-.editor-paragraph-view__editor
-  > .editor-paragraph-view__choice-row
-  + .editor-paragraph-view__choice-row,
-.editor-paragraph-view__editor
-  > .editor-paragraph-view__choice-row
-  + .editor-paragraph-view__choice-add {
-  margin-top: 0.5rem;
-}
-
-/* ── Variants section (list + add row) ───────────────────────────────────── */
-
-.editor-paragraph-view__variants-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-/* Add-variant row pinned to the bottom of the variants list */
-.editor-paragraph-view__variant-add-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid #2a2a2a;
-  margin-top: 0.5rem;
-}
-
-.editor-paragraph-view__variants-empty {
-  font-size: 0.85rem;
-  color: #666;
-  font-style: italic;
-}
-
-.editor-paragraph-view__variant-add-row {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.editor-paragraph-view__variant-add-input {
-  padding: 0.35rem 0.6rem;
-  border-radius: 4px;
-  border: 1px solid #444;
-  background: #1a1a1a;
-  color: #ccc;
-  font-size: 0.85rem;
-  font-family: monospace;
-  width: 14rem;
-}
-
-.editor-paragraph-view__variant-add-btn {
-  padding: 0.35rem 0.7rem;
-  border-radius: 4px;
-  border: 1px solid #3a5a3a;
-  background: #1a2a1a;
-  color: #7ec87e;
-  font-size: 0.85rem;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.editor-paragraph-view__variant-add-btn:hover:not(:disabled) {
-  background: #2a3e2a;
-}
-
-.editor-paragraph-view__variant-add-btn:disabled {
-  opacity: 0.4;
-  cursor: default;
 }
 
 .editor-paragraph-view__incoming-empty {

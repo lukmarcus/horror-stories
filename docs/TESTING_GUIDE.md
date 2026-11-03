@@ -173,8 +173,7 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 ### Coverage Checklist
 
 - ✅ Logika gry (navigacja, walidacja)
-- ✅ System wariantów (akumulacja, reset, separacja)
-- ✅ State management (variantPath, paragraph changes)
+- ✅ State management (zmiany paragrafu, stan gry)
 - ✅ Dostępność paragrafów (direct/indirect)
 - ✅ Browser history (URL state)
 - ✅ Input validation
@@ -189,15 +188,14 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 - ✅ Data helpers: `getSymbol`, `getRoomItem`, `getLetter`, `getPerson`, `getEnemy`, `getStoryItem`, `getStatus`, `getRandomItem` (wszystkie ID z danych)
 - ✅ Regex tagów RichText (`<symbol>`, `<room>`, `<letter>`, `<person>`, `<enemy>`, `<story>`, `<status>`, `<image>`, `<random>`)
 - ✅ Serializacja bloków treści edytora (`pageToText` / `textToPage`, round-trip, wszystkie prefiks-typy)
-- ✅ Graf dostępności paragrafów (`buildAccessibleFrom` — proste, wariantowe, dedupl.)
+- ✅ Graf dostępności paragrafów (`buildAccessibleFrom` — proste, dedupl.)
 - ✅ Priorytet fallbacku obrazków w blokach treści (`{image: "id"}`): data URL → wspólna karta → wspólny symbol → lokalna grafika scenariusza
 
-### Current Coverage (v0.4.1)
+### Current Coverage (v0.4.2)
 
 | Category                 | Tests   | Coverage | Status |
 | ------------------------ | ------- | -------- | ------ |
 | Game Logic               | 3       | 100%     | ✅     |
-| Variant System           | 18      | 100%     | ✅     |
 | Hooks (State)            | 26      | ~80%     | ✅     |
 | Utils (Parsing)          | 40      | ~100%    | ✅     |
 | Components               | 101     | ~95%     | ✅     |
@@ -212,7 +210,7 @@ Każda publiczna funkcja/hook powinna mieć testy dla:
 | User Paragraph Storage   | 8       | 100%     | ✅     |
 | User Paragraph Converter | 12      | 100%     | ✅     |
 | ...                      | ...     | ...      | ✅     |
-| **Total**                | **776** | **~65%** | **✅** |
+| **Total**                | **658** | **~65%** | **✅** |
 
 _Tabela nie jest wyczerpująca dla wszystkich kategorii dodanych po v0.2.7 (np. Enemy View, Eksperyment scenario tests) — `Total` odzwierciedla faktyczną liczbę testów z `npm test -- --run`._
 
@@ -273,12 +271,12 @@ zwróci `undefined`i wyrenderuje placeholder zamiast`<img>`.
 // ✅ DOBRY STYL - co się testuje i jaki powinien być rezultat?
 it("should return -1 when searching for non-existent item");
 it("should add item to cart and increase count");
-it("should clear variant path when navigating to new paragraph");
+it("should reset currentPage when navigating to a different paragraph");
 
 // ❌ ZŁY STYL - nie jasne co się testuje
 it("should work");
 it("test search function");
-it("variant test");
+it("paragraph test");
 ```
 
 ### 3. DRY in Tests

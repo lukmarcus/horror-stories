@@ -78,6 +78,11 @@ export function paragraphReducer(
         ...p,
         pages: action.payload.pages,
       }));
+    case "SET_PARAGRAPH_HORIZONTAL":
+      return mapParagraph(state, action.payload.id, (p) => ({
+        ...p,
+        areChoicesHorizontal: action.payload.value ? true : undefined,
+      }));
     case "ADD_PAGE":
       return mapParagraph(state, action.payload.paragraphId, (p) => ({
         ...p,

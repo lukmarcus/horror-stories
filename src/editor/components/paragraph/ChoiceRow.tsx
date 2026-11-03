@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import type { EditorChoice } from "../../context/editorTypes";
-import { filterIds } from "../../utils/editorUtils";
+import { filterIds, suggestNextLetterChild } from "../../utils/editorUtils";
 import { ChoiceTextInput } from "./ChoiceTextInput";
 
 export interface ChoiceRowProps {
   choice: EditorChoice;
   paragraphIds: string[];
-  variantIds?: string[];
+  /** ID of the paragraph currently being edited — letter suggestion is always a child of this one */
+  currentParagraphId?: string;
   focusedId: string | null;
   setFocusedId: (id: string | null) => void;
   onUpdate: (choice: EditorChoice) => void;
@@ -16,37 +17,28 @@ export interface ChoiceRowProps {
 export const ChoiceRow: React.FC<ChoiceRowProps> = ({
   choice,
   paragraphIds,
-  variantIds,
+  currentParagraphId,
   focusedId,
   setFocusedId,
   onUpdate,
   onRemove,
 }) => {
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
-  const isVariantTarget = !!choice.nextVariantId;
-  const targetValue = isVariantTarget
-    ? (choice.nextVariantId ?? "")
-    : (choice.nextParagraphId ?? "");
+  const targetValue = choice.nextParagraphId ?? "";
 
   const handleTargetChange = (val: string) => {
-    if (isVariantTarget) {
-      onUpdate({ ...choice, nextVariantId: val, nextParagraphId: undefined });
-    } else {
-      onUpdate({ ...choice, nextParagraphId: val, nextVariantId: undefined });
-    }
-  };
-
-  const toggleTargetType = () => {
-    if (isVariantTarget) {
-      onUpdate({ ...choice, nextParagraphId: "", nextVariantId: undefined });
-    } else {
-      onUpdate({ ...choice, nextVariantId: "", nextParagraphId: undefined });
-    }
+    onUpdate({ ...choice, nextParagraphId: val });
   };
 
   const dropdownKey = `${choice.id}-target`;
-  const list = isVariantTarget ? (variantIds ?? []) : paragraphIds;
-  const options = filterIds(targetValue, list);
+  const baseOptions = filterIds(targetValue, paragraphIds);
+  const suggestion = currentParagraphId
+    ? suggestNextLetterChild(currentParagraphId, paragraphIds)
+    : null;
+  const options =
+    suggestion && !baseOptions.includes(suggestion)
+      ? [suggestion, ...baseOptions]
+      : baseOptions;
 
   return (
     <div className="editor-paragraph-view__choice-row">
@@ -56,21 +48,7 @@ export const ChoiceRow: React.FC<ChoiceRowProps> = ({
         placeholder="Tekst wyboru"
       />
       <div className="editor-paragraph-view__choice-target-wrap">
-        {variantIds ? (
-          <button
-            className={`editor-paragraph-view__choice-type-btn${isVariantTarget ? " editor-paragraph-view__choice-type-btn--variant" : ""}`}
-            onClick={toggleTargetType}
-            title={
-              isVariantTarget
-                ? "Cel: wariant (kliknij → paragraf)"
-                : "Cel: paragraf (kliknij → wariant)"
-            }
-          >
-            {isVariantTarget ? "W" : "§"}
-          </button>
-        ) : (
-          <span className="editor-paragraph-view__choice-target-prefix">§</span>
-        )}
+        <span className="editor-paragraph-view__choice-target-prefix">§</span>
         <input
           className="editor-paragraph-view__choice-target"
           type="text"
@@ -130,13 +108,13 @@ export const ChoiceRow: React.FC<ChoiceRowProps> = ({
                 id={`${dropdownKey}-option-${index}`}
                 role="option"
                 aria-selected={highlightedIndex === index}
-                className={`editor-paragraph-view__choice-dropdown-item${highlightedIndex === index ? " editor-paragraph-view__choice-dropdown-item--highlighted" : ""}`}
+                className={`editor-paragraph-view__choice-dropdown-item${highlightedIndex === index ? " editor-paragraph-view__choice-dropdown-item--highlighted" : ""}${id === suggestion ? " editor-paragraph-view__choice-dropdown-item--suggestion" : ""}`}
                 onMouseDown={(e) => {
                   e.preventDefault();
                   handleTargetChange(id);
                 }}
               >
-                {isVariantTarget ? `W:${id}` : `§${id}`}
+                {id === suggestion ? `+ §${id} (nowe dziecko)` : `§${id}`}
               </li>
             ))}
           </ul>

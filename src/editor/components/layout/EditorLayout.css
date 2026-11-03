@@ -140,6 +140,49 @@
   opacity: 0.6;
 }
 
+.editor-sidebar__paragraph-row {
+  display: flex;
+  align-items: center;
+}
+
+.editor-sidebar__paragraph-row .editor-sidebar__paragraph {
+  flex: 1;
+  min-width: 0;
+}
+
+.editor-sidebar__paragraph-row--child .editor-sidebar__paragraph {
+  margin-left: 0.75rem;
+}
+
+.editor-sidebar__group-gutter {
+  flex-shrink: 0;
+  width: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-sidebar__group-toggle {
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  background: none;
+  color: #888;
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-sidebar__group-toggle:hover {
+  color: #ccc;
+  background: #222;
+}
+
 .editor-sidebar__add-row {
   margin-top: 0.5rem;
   display: flex;

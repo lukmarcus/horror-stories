@@ -11,7 +11,6 @@ export interface Choice {
   text?: string;
   html?: string;
   nextParagraphId?: string;
-  nextVariantId?: string; // For variant content navigation
   isConditional?: boolean;
   yesText?: string;
   noText?: string;
@@ -54,7 +53,6 @@ export interface Paragraph {
   content?: ContentBlock[];
   pages?: ContentBlock[][];
   choices?: Choice[];
-  variants?: Record<string, Paragraph>; // For variant content
   image?: string;
   audio?: string;
   hasDiceRoll?: boolean;
@@ -63,7 +61,7 @@ export interface Paragraph {
   accessibleFrom?: string[]; // If empty/undefined, paragraph is directly accessible (isDirect=true)
   items?: string[];
   isMultiPage?: boolean;
-  areChoicesHorizontal?: boolean; // Only meaningful on nested variants; top-level paragraphs derive this from !!variants
+  areChoicesHorizontal?: boolean; // Horizontal choices layout instead of the default vertical list
 }
 
 /**

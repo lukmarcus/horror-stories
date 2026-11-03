@@ -24,13 +24,6 @@ export function buildDefinition(
         extraIds.add(c.nextParagraphId);
       }
     }
-    for (const variant of Object.values(p.variants ?? {})) {
-      for (const c of variant.choices ?? []) {
-        if (c.nextParagraphId && !knownIds.has(c.nextParagraphId)) {
-          extraIds.add(c.nextParagraphId);
-        }
-      }
-    }
   }
 
   for (const p of paragraphs) {
@@ -68,14 +61,6 @@ export function buildDefinition(
       if (seenTargets.has(c.nextParagraphId)) continue;
       seenTargets.add(c.nextParagraphId);
       lines.push(`  p${p.id} --> p${c.nextParagraphId}`);
-    }
-    for (const variant of Object.values(p.variants ?? {})) {
-      for (const c of variant.choices ?? []) {
-        if (!c.nextParagraphId) continue;
-        if (seenTargets.has(c.nextParagraphId)) continue;
-        seenTargets.add(c.nextParagraphId);
-        lines.push(`  p${p.id} -.-> p${c.nextParagraphId}`);
-      }
     }
   }
 

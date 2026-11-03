@@ -36,39 +36,6 @@ describe("buildDefinition", () => {
     expect(result).toContain("p1 --> p2");
   });
 
-  it("renders variant choice as dashed arrow", () => {
-    const result = buildDefinition([
-      p("1", {
-        variants: {
-          A: {
-            pages: [],
-            choices: [{ id: "vc1", text: "Escape", nextParagraphId: "3" }],
-          },
-        },
-      }),
-      p("3"),
-    ]);
-    expect(result).toContain("p1 -.-> p3");
-  });
-
-  it("solid and dashed arrows are distinct", () => {
-    const result = buildDefinition([
-      p("1", {
-        choices: [{ id: "c1", text: "Simple", nextParagraphId: "2" }],
-        variants: {
-          A: {
-            pages: [],
-            choices: [{ id: "vc1", text: "Variant", nextParagraphId: "3" }],
-          },
-        },
-      }),
-      p("2"),
-      p("3"),
-    ]);
-    expect(result).toContain("p1 --> p2");
-    expect(result).toContain("p1 -.-> p3");
-  });
-
   it("renders unknown target paragraph as '§id ?' node without click", () => {
     const result = buildDefinition([
       p("1", { choices: [{ id: "c1", text: "Go", nextParagraphId: "99" }] }),
@@ -89,25 +56,6 @@ describe("buildDefinition", () => {
     ]);
     const arrowCount = (result.match(/p1 --> p2/g) ?? []).length;
     expect(arrowCount).toBe(1);
-  });
-
-  it("deduplicates across simple and variant choices to the same target", () => {
-    const result = buildDefinition([
-      p("1", {
-        choices: [{ id: "c1", text: "Simple", nextParagraphId: "2" }],
-        variants: {
-          A: {
-            pages: [],
-            choices: [{ id: "vc1", text: "Variant", nextParagraphId: "2" }],
-          },
-        },
-      }),
-      p("2"),
-    ]);
-    // Simple choice adds -->, variant choice would add -.-> but target already seen
-    const solidCount = (result.match(/p1 --> p2/g) ?? []).length;
-    const dashedCount = (result.match(/p1 -.-> p2/g) ?? []).length;
-    expect(solidCount + dashedCount).toBe(1);
   });
 
   it("ignores choices without nextParagraphId", () => {

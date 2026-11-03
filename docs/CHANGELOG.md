@@ -7,6 +7,21 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [0.4.2] - 2026-11-01
+
+### Zmieniono
+
+- Edytor: usunięty tryb "Wariantowy" dla paragrafów — rozgałęzienia fabuły tworzy się teraz jako zwykłe, osobne paragrafy (np. §9j) zamiast wariantów wewnątrz jednego paragrafu
+- Edytor: przy wyborach zwykłego paragrafu dostępny jest prosty przełącznik układu poziomy/pionowy (wcześniej wymagał trybu wariantowego)
+- Edytor: lista paragrafów w panelu bocznym grupuje teraz paragrafy-dzieci z literą (np. 9j, 9l) pod wspólnym rodzicem, z możliwością zwinięcia/rozwinięcia grupy
+- Edytor: podczas wpisywania celu wyboru pojawia się podpowiedź kolejnej wolnej litery dla aktualnie edytowanego paragrafu (np. "+ §9c (nowe dziecko)")
+
+### Naprawiono
+
+- Edytor: wczytanie wbudowanego scenariusza i ponowny eksport nie gubi już ustawienia poziomego układu wyborów
+
+---
+
 ## [0.4.1] - 2026-10-18
 
 ### Zmieniono

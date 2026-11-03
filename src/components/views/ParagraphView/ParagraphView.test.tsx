@@ -295,7 +295,7 @@ describe("ParagraphView", () => {
       />,
     );
     fireEvent.click(screen.getByText("Do paragrafu 5"));
-    expect(callbacks.onChoice).toHaveBeenCalledWith("5", false);
+    expect(callbacks.onChoice).toHaveBeenCalledWith("5");
   });
 
   it("calls onBack when regular choice has empty nextParagraphId", () => {
@@ -342,28 +342,7 @@ describe("ParagraphView", () => {
     expect(screen.getByText("✗ Nie")).toBeDefined();
   });
 
-  it("renders variant choices and calls onChoice with isVariant=true", () => {
-    const callbacks = makeCallbacks();
-    const para: Paragraph = {
-      ...baseParagraph,
-      variants: {
-        "variant-1": { id: "variant-1", pages: [[]], choices: [] },
-      },
-      choices: [{ id: "v1", text: "Wariant A", nextVariantId: "variant-1" }],
-    };
-    render(
-      <ParagraphView
-        paragraph={para}
-        currentParagraphId="1"
-        lastDiceResult={null}
-        {...callbacks}
-      />,
-    );
-    fireEvent.click(screen.getByText("Wariant A"));
-    expect(callbacks.onChoice).toHaveBeenCalledWith("variant-1", true);
-  });
-
-  it("renders a plain paragraph with areChoicesHorizontal horizontally and navigates via regular SET_PARAGRAPH path (isVariant=false)", () => {
+  it("renders a plain paragraph with areChoicesHorizontal horizontally and navigates via onChoice", () => {
     const callbacks = makeCallbacks();
     const para: Paragraph = {
       ...baseParagraph,
@@ -380,7 +359,7 @@ describe("ParagraphView", () => {
     );
     expect(container.querySelector(".choices--horizontal")).not.toBeNull();
     fireEvent.click(screen.getByText("Pokój A"));
-    expect(callbacks.onChoice).toHaveBeenCalledWith("2", false);
+    expect(callbacks.onChoice).toHaveBeenCalledWith("2");
   });
 
   it("resets to the main input screen when clicking a choice with no next pointer", () => {
@@ -503,7 +482,7 @@ describe("ParagraphView", () => {
       />,
     );
     fireEvent.click(screen.getByText("PRZEJDŹ"));
-    expect(callbacks.onChoice).toHaveBeenCalledWith("10", false);
+    expect(callbacks.onChoice).toHaveBeenCalledWith("10");
   });
 
   it("calls onChoice with failNextId when PRZEJDŹ clicked on fail", () => {
@@ -529,7 +508,7 @@ describe("ParagraphView", () => {
       />,
     );
     fireEvent.click(screen.getByText("PRZEJDŹ"));
-    expect(callbacks.onChoice).toHaveBeenCalledWith("20", false);
+    expect(callbacks.onChoice).toHaveBeenCalledWith("20");
   });
 
   // ---------------------------------------------------------------
@@ -563,51 +542,5 @@ describe("ParagraphView", () => {
     );
     fireEvent.click(screen.getByRole("button", { name: /§3/ }));
     expect(callbacks.onNavigateToParagraph).toHaveBeenCalledWith("3");
-  });
-
-  it("shows refresh button when hasVariants and variantPathLength > 0", () => {
-    const callbacks = { ...makeCallbacks(), onRefreshVariants: vi.fn() };
-    render(
-      <ParagraphView
-        paragraph={baseParagraph}
-        currentParagraphId="1"
-        lastDiceResult={null}
-        {...callbacks}
-        hasVariants
-        variantPathLength={1}
-      />,
-    );
-    expect(screen.getByText(/Odśwież/)).toBeDefined();
-  });
-
-  it("calls onRefreshVariants when refresh button clicked", () => {
-    const callbacks = { ...makeCallbacks(), onRefreshVariants: vi.fn() };
-    render(
-      <ParagraphView
-        paragraph={baseParagraph}
-        currentParagraphId="1"
-        lastDiceResult={null}
-        {...callbacks}
-        hasVariants
-        variantPathLength={1}
-      />,
-    );
-    fireEvent.click(screen.getByText(/Odśwież/));
-    expect(callbacks.onRefreshVariants).toHaveBeenCalled();
-  });
-
-  it("does not show refresh button when variantPathLength is 0", () => {
-    const callbacks = { ...makeCallbacks(), onRefreshVariants: vi.fn() };
-    render(
-      <ParagraphView
-        paragraph={baseParagraph}
-        currentParagraphId="1"
-        lastDiceResult={null}
-        {...callbacks}
-        hasVariants
-        variantPathLength={0}
-      />,
-    );
-    expect(screen.queryByText(/Odśwież/)).toBeNull();
   });
 });
